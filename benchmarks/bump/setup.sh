@@ -6,7 +6,7 @@ fi
 mkdir -p filtered_data
 
 for file in ./repository/data/benchmark/*.json; do
-    if grep -q "COMPILATION_FAILURE" $file || grep -q "TEST_FAILURE" $file; then
+    if grep -q "COMPILATION_FAILURE" $file; then
         cp $file "./filtered_data/$(basename $file)"
     fi
 done
@@ -14,7 +14,12 @@ done
 original_files_count=$(ls -1q ./repository/data/benchmark/* | wc -l)
 filtered_files_count=$(ls -1q ./filtered_data/* | wc -l)
 
-echo "kept $filtered_files_count / $original_files_count files"
+echo "kept $filtered_files_count / $original_files_count files for failure type"
+echo "filtering size and compilation type"
+
+python filter.py
+
+echo "bump config done."
 
 
 

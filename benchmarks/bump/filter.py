@@ -18,3 +18,11 @@ for key in execution_times:
         files_to_remove.append(key)
 
 print(f"we should remove {len(files_to_remove)} files for time or size constraints")
+
+removed_count = 0
+for key in files_to_remove:
+    if os.path.exists(f"./filtered_data/{key}.json"):
+        os.remove(f"./filtered_data/{key}.json")
+        removed_count += 1
+
+print(f"{removed_count} files removed")
