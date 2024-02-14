@@ -1,3 +1,4 @@
 .env
 benchmarks/**/repository
 benchmarks/**/filtered_data
+benchmarks/**/clients
