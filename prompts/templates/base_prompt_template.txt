@@ -1,0 +1,14 @@
+the following code fails:
+```java
+  {{ client_code }}
+```
+
+with the following error message:
+{{ error_message }}
+
+the new library version includes the following changes:
+{{ bump_description }}
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+You cannot change the return type, function signature, parameters order, parameters name, parameters type.

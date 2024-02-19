@@ -1,4 +1,4 @@
-from pipeline.types.ErrorInfo import ErrorInfo
+from pipeline.types.error_info import ErrorInfo
 
 
 class DetectedFault:

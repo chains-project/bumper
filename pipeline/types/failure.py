@@ -1,6 +1,6 @@
 from typing import List
-from pipeline.types.ApiChange import ApiChange
-from pipeline.types.DetectedFault import DetectedFault
+from pipeline.types.api_change import ApiChange
+from pipeline.types.detected_fault import DetectedFault
 
 class Failure:
     def __init__(
