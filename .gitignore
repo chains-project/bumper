@@ -3,3 +3,7 @@ benchmarks/**/repository
 benchmarks/**/filtered_data
 benchmarks/**/clients
 .DS_Store
+
+.vscode
+.idea
+libs/java/**/target/
