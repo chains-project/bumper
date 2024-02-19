@@ -19,9 +19,9 @@ public class Main {
 
         Set<ApiChange> apiChanges = jApiCmpAnalyze.getChanges();
         List<ApiChange> filteredList = apiChanges.stream()
-            .filter(c -> c.getNotNullElement().contains("org.pitest.coverage"))
+            .filter(c -> c.getValue().contains("org.pitest.coverage"))
             .sorted((a, b) -> {
-                return a.getNotNullElement().compareTo(b.getNotNullElement());
+                return a.getValue().compareTo(b.getValue());
             })
             .toList();
 
