@@ -1,4 +1,8 @@
-the following code fails:
+act as a senior software engineer, your goal is fix code failures.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
 ```java
   {{ client_code }}
 ```
@@ -11,4 +15,4 @@ the new library version includes the following changes:
 
 propose a patch that I can apply to the code in order to fix the error.
 Your response will be automatically parsed by an algorithm, be sure to only return the code.
-You cannot change the return type, function signature, parameters order, parameters name, parameters type.
+you CANNOT change the function signature

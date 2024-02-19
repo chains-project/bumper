@@ -41,23 +41,21 @@ public class FaultDetector {
         for (CtMethodImpl<?> e : clazz.getElements(new TypeFilter<>(CtMethodImpl.class))) {
             if(containsAnError(e)) {
                 // System.out.println("#### HERE ####");
-                // System.out.println(e.getElements(new TypeFilter<>(CtInvocationImpl.class)));
-                    e.getElements(new TypeFilter<>(CtInvocationImpl.class))
-                        .stream()
-                        .forEach((el) -> {
-                            CtPath path = new CtPathBuilder()
-                                                .recursiveWildcard()
-                                                .name(depGrpId)
-                                                .build();
-                                                
-                            List<String> l = path.evaluateOn(el).stream().map(line -> line.getParent().toString()).toList();
+                String dependencyIdentifier = e.getElements(new TypeFilter<>(CtInvocationImpl.class))
+                    .stream()
+                    .flatMap((el) -> {
+                        CtPath path = new CtPathBuilder()
+                                            .recursiveWildcard()
+                                            .name(depGrpId)
+                                            .build();
+                                            
+                        return path.evaluateOn(el).stream().map(line -> line.getParent().toString());
+                    })
+                    .filter(r -> r != null && r.contains(dependencyGroupID))
+                    .findFirst()
+                    .orElse("");
 
-                            // System.out.println(el.toString() + " | ");
-                            // System.out.println(l);
-                            // System.out.println(getDependencyMethodName(el, dependencyGroupID));
-                            
-                            // System.out.println(el.getTarget().getParent(CtClassImpl.class).getSuperclass());
-                        });
+                // System.out.println(dependencyIdentifier);
                 // System.out.println("#### HERE ####");
 
                 DetectedFault fault = new DetectedFault();
@@ -66,6 +64,7 @@ public class FaultDetector {
                 fault.clientLineNumber = e.getPosition().getLine();
                 fault.clientEndLineNumber = e.getPosition().getEndLine();
                 fault.errorInfo = getMavenErrorLog(e);
+                fault.plausibleDependencyIdentifier = dependencyIdentifier;
                 results.add(fault);
             }
         }

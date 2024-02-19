@@ -8,3 +8,4 @@ benchmarks/**/clients
 .idea
 libs/java/**/target/
 test.json
+test.txt

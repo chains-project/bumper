@@ -82,7 +82,7 @@ public class Main {
                 String project = this.client.toString();
 
                 log.getErrorInfo().forEach((k, v) -> {
-                    FaultDetector detector = new FaultDetector("org.pitest", v);
+                    FaultDetector detector = new FaultDetector(dependencyGroupID, v);
                     List<DetectedFault> results = detector.detectFaults(project + k);
 
                     results.forEach(fault -> {

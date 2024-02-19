@@ -8,6 +8,7 @@ import se.kth.log_Analyzer.MavenErrorLog;
 public class DetectedFault {
     public String methodName;
     public String methodCode;
+    public String plausibleDependencyIdentifier;
     public int clientLineNumber;
     public int clientEndLineNumber;
     public MavenErrorLog.ErrorInfo errorInfo;

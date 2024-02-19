@@ -8,8 +8,10 @@ class DetectedFault:
             method_code: str,
             client_line_number: int,
             client_end_line_number: int,
-            error_info: ErrorInfo
+            error_info: ErrorInfo,
+            plausible_dependency_identifier: str
     ):
+        self.plausible_dependency_identifier = plausible_dependency_identifier
         self.error_info = error_info
         self.client_end_line_number = client_end_line_number
         self.client_line_number = client_line_number
@@ -23,5 +25,6 @@ class DetectedFault:
             method_code=data['methodCode'],
             client_line_number=data['clientLineNumber'],
             client_end_line_number=data['clientEndLineNumber'],
+            plausible_dependency_identifier=data['plausibleDependencyIdentifier'],
             error_info=ErrorInfo.from_json(data['errorInfo']),
         )

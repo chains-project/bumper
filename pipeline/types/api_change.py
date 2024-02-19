@@ -21,3 +21,9 @@ class ApiChange:
             action=ApiChangeAction(data["action"]),
             value=data["value"],
         )
+
+    def get_diff(self):
+        if self.action == ApiChangeAction.REMOVE:
+            return f"-- {self.value}"
+        else:
+            return f"++ {self.value}"

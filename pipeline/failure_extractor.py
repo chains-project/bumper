@@ -25,7 +25,8 @@ class FailureExtractor:
             '-c', self.project.path,
             '-o', old_dependency_path,
             '-n', new_dependency_path,
-            '-l', log_path
+            '-l', log_path,
+            '-g', self.project.library_group_id
         ], stdout=subprocess.PIPE)
         json_data = json.loads(result.stdout)
 

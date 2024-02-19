@@ -6,8 +6,10 @@ class Project:
             path: str,
             library_name: str,
             old_library_version: str,
-            new_library_version: str
+            new_library_version: str,
+            library_group_id: str = ""
     ) -> None:
+        self.library_group_id = library_group_id
         self.project_name = project_name
         self.project_id = project_id
         self.path = path
