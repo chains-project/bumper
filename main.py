@@ -30,14 +30,19 @@ load_dotenv()
 #     path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/5fcd0c3ad7727850c47602b17530dc355e5bd097"
 # )
 
-project = Project(
-    project_id="0abf7148300f40a1da0538ab060552bca4a2f1d8",
-    project_name="biapi",
-    library_name="jasperreports",
-    library_group_id="net.sf.jasperreports",
-    new_library_version="6.18.1",
-    old_library_version="6.19.1",
-    path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/0abf7148300f40a1da0538ab060552bca4a2f1d8"
+# project = Project(
+#     project_id="0abf7148300f40a1da0538ab060552bca4a2f1d8",
+#     project_name="biapi",
+#     library_name="jasperreports",
+#     library_group_id="net.sf.jasperreports",
+#     new_library_version="6.18.1",
+#     old_library_version="6.19.1",
+#     path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/0abf7148300f40a1da0538ab060552bca4a2f1d8"
+# )
+
+project = Project.from_bump(
+    bump_folder="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump",
+    project_id="0c60d0b08c999769313bfe2335fa792efcfb0300"
 )
 
 subprocess.run([
