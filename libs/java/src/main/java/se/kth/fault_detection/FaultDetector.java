@@ -14,10 +14,8 @@ import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.path.CtPath;
 import spoon.reflect.path.CtPathBuilder;
-import spoon.reflect.reference.CtFieldReference;
 import spoon.reflect.visitor.filter.TypeFilter;
 import spoon.support.reflect.code.CtInvocationImpl;
-import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 
 public class FaultDetector {

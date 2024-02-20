@@ -1,4 +1,5 @@
 from pipeline.failure_extractor import FailureExtractor
+from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator import PatchGenerator
 from pipeline.types.project import Project
 from dotenv import load_dotenv
@@ -47,4 +48,6 @@ print(f"Generating patch for project {project.project_name}")
 patch = patch_generator.generate(prompt)
 project.save_patch(patch, prompt=prompt)
 
-print(f"Patch generated")
+print(f"Patched file: ")
+patch_applicator = PatchApplicator(project)
+print(patch_applicator.get_patched_content(patch, failure))
