@@ -1,18 +1,23 @@
 package se.kth.fault_detection;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import se.kth.log_Analyzer.MavenErrorLog;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.path.CtPath;
 import spoon.reflect.path.CtPathBuilder;
+import spoon.reflect.reference.CtFieldReference;
 import spoon.reflect.visitor.filter.TypeFilter;
 import spoon.support.reflect.code.CtInvocationImpl;
+import spoon.support.reflect.declaration.CtClassImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 
 public class FaultDetector {
@@ -55,12 +60,20 @@ public class FaultDetector {
                     .findFirst()
                     .orElse("");
 
+                CtClass<?> parentClass = e.getParent(CtClass.class);
+                Set<CtMethod<?>> methods = new HashSet<CtMethod<?>>();
+                methods.add(e);
+                parentClass.setMethods(methods);
+                
+                // System.out.println(parentClass.toString());
+
                 // System.out.println(dependencyIdentifier);
                 // System.out.println("#### HERE ####");
 
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 fault.methodCode = e.toString();
+                fault.inClassCode = parentClass.toString();
                 fault.clientLineNumber = e.getPosition().getLine();
                 fault.clientEndLineNumber = e.getPosition().getEndLine();
                 fault.errorInfo = getMavenErrorLog(e);
@@ -93,20 +106,5 @@ public class FaultDetector {
             int errorLineNumber = Integer.parseInt(mavenErrorLog.getClientLinePosition());
             return errorLineNumber >= startLineNumber && errorLineNumber <= endLineNumber;
         });
-    }
-
-    private String getDependencyMethodName(CtElement e, String dependencyGrpID) {
-        CtElement parent = e.getParent(new TypeFilter<>(CtClass.class));
-        while (parent != null) {
-            if (String.valueOf(parent).contains(dependencyGrpID)) {
-                int openingParenthesisIndex = String.valueOf(e).indexOf('(');
-                if (openingParenthesisIndex != -1) {
-                    return String.valueOf(e).substring(0, openingParenthesisIndex);
-                }
-                return String.valueOf(e);
-            }
-            parent = parent.getParent(new TypeFilter<>(CtClass.class));
-        }
-        return null;
     }
 }
