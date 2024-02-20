@@ -9,3 +9,4 @@ benchmarks/**/clients
 libs/java/**/target/
 test.json
 test.txt
+g_credentials.json

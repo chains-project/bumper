@@ -1,6 +1,14 @@
+import vertexai
+import os
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.prompt_generator import PromptGenerator
 from pipeline.types.project import Project
+from dotenv import load_dotenv
+from langchain_google_vertexai import VertexAI
+
+load_dotenv()
+vertexai.init(location=os.getenv("GOOGLE_CLOUD_REGION"))
+model = VertexAI(model_name="gemini-pro")
 
 project = Project(
     project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95",
@@ -36,4 +44,6 @@ params = {
     "error_message": failure.detected_fault.error_info.error_message,
     "bump_description": failure.get_api_diff()
 }
-print(generator.get_text(params))
+
+message = generator.get_text(params)
+print(model.invoke(message))
