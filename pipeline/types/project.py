@@ -1,3 +1,10 @@
+import time
+import os
+
+from pipeline.types.patch import Patch
+from pipeline.types.prompt import Prompt
+
+
 class Project:
     def __init__(
             self,
@@ -16,3 +23,12 @@ class Project:
         self.library_name = library_name
         self.old_library_version = old_library_version
         self.new_library_version = new_library_version
+
+    def save_patch(self, patch: Patch, prompt: Prompt = None):
+        filename = f"prompts/{prompt.template}/{int(time.time())}.txt" if prompt is not None else f"others/{int(time.time())}.txt"
+        path = f"{self.path}/patches/{filename}"
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+
+        with open(path, "w") as f:
+            f.write(patch.value)
+            f.close()

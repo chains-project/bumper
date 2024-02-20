@@ -1,8 +1,15 @@
-class PromptGenerator:
-    def __init__(self, template: str):
+class Prompt:
+    def __init__(
+            self,
+            template: str,
+            values: dict
+    ):
         self.template = template
+        self.values = values
 
-    def get_text(self, values: dict):
+    def get_text(self, values: dict = None):
+        values = values or self.values
+
         with open(self.get_template_path(), 'r') as file:
             data = file.read()
             for key in values.keys():
