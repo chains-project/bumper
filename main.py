@@ -59,4 +59,4 @@ subprocess.run([
     'benchmarks/bump/scripts/test_patched_code.sh',
     project.project_id,
     patch_applicator.get_patched_code_path(patch, failure)
-], stdout=subprocess.PIPE)
+])
