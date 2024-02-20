@@ -1,7 +1,9 @@
 import re
+import time
 
 
 class Patch:
+    id: int
     value: str
 
     def __init__(
@@ -9,6 +11,7 @@ class Patch:
             value="",
     ):
         self.value = value
+        self.id = int(time.time())
 
     @staticmethod
     def from_md(md_text: str):

@@ -1,4 +1,3 @@
-import time
 import os
 
 from pipeline.types.patch import Patch
@@ -25,7 +24,7 @@ class Project:
         self.new_library_version = new_library_version
 
     def save_patch(self, patch: Patch, prompt: Prompt = None):
-        filename = f"prompts/{prompt.template}/{int(time.time())}.txt" if prompt is not None else f"others/{int(time.time())}.txt"
+        filename = f"prompts/{prompt.template}/{patch.id}.txt" if prompt is not None else f"others/{patch.id}.txt"
         path = f"{self.path}/patches/{filename}"
         os.makedirs(os.path.dirname(path), exist_ok=True)
 

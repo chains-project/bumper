@@ -1,3 +1,5 @@
+import subprocess
+
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator import PatchGenerator
@@ -8,25 +10,25 @@ from pipeline.types.prompt import Prompt
 
 load_dotenv()
 
-project = Project(
-    project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95",
-    project_name="flink-faker",
-    library_name="datafaker",
-    library_group_id="net.datafaker",
-    new_library_version="1.4.0",
-    old_library_version="1.3.0",
-    path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95",
-)
-
 # project = Project(
-#     project_id="5fcd0c3ad7727850c47602b17530dc355e5bd097",
-#     project_name="pitest-mutation-testing-elements-plugin",
-#     library_name="pitest-entry",
-#     library_group_id="org.pitest",
-#     new_library_version="1.10.0",
-#     old_library_version="1.9.11",
-#     path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/5fcd0c3ad7727850c47602b17530dc355e5bd097"
+#     project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95",
+#     project_name="flink-faker",
+#     library_name="datafaker",
+#     library_group_id="net.datafaker",
+#     new_library_version="1.4.0",
+#     old_library_version="1.3.0",
+#     path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95",
 # )
+
+project = Project(
+    project_id="5fcd0c3ad7727850c47602b17530dc355e5bd097",
+    project_name="pitest-mutation-testing-elements-plugin",
+    library_name="pitest-entry",
+    library_group_id="org.pitest",
+    new_library_version="1.10.0",
+    old_library_version="1.9.11",
+    path="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/5fcd0c3ad7727850c47602b17530dc355e5bd097"
+)
 
 extractor = FailureExtractor(project)
 failures = extractor.get_failures()
@@ -48,6 +50,13 @@ print(f"Generating patch for project {project.project_name}")
 patch = patch_generator.generate(prompt)
 project.save_patch(patch, prompt=prompt)
 
-print(f"Patched file: ")
 patch_applicator = PatchApplicator(project)
-print(patch_applicator.get_patched_content(patch, failure))
+patch_applicator.save_patched_code(patch, failure)
+print("File patched")
+print("Checking for validity...")
+subprocess.run([
+    'sh',
+    'benchmarks/bump/scripts/test_patched_code.sh',
+    project.project_id,
+    patch_applicator.get_patched_code_path(patch, failure)
+], stdout=subprocess.PIPE)
