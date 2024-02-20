@@ -31,3 +31,8 @@ class Project:
         with open(path, "w") as f:
             f.write(patch.value)
             f.close()
+
+        if prompt is not None:
+            with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}_prompt.txt", "w") as f:
+                f.write(prompt.get_text())
+                f.close()
