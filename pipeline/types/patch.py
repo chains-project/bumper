@@ -15,6 +15,8 @@ class Patch:
 
     @staticmethod
     def from_md(md_text: str):
-        return Patch(
-            value=re.search("```(?:java|Java)\s*[\r\n]+([\s\S]*?)[\r\n]*```", md_text).group(1)
-        )
+        found = re.search("```(?:java|Java)\s*[\r\n]+([\s\S]*?)[\r\n]*```", md_text)
+        if found:
+            return Patch(value=found.group(1) or "")
+        else:
+            return Patch(value="")
