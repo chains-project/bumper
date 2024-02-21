@@ -1,3 +1,6 @@
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$parent_path"
+
 if ! [ -d './repository' ]; then
     git clone https://github.com/chains-project/bump.git ./repository
 fi

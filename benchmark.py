@@ -55,7 +55,7 @@ def run_project(project: Project):
     patch_generator = PatchGenerator()
     print(f"Generating patch for project {project.project_name}")
     patch = patch_generator.generate(prompt)
-    project.save_patch(patch, prompt=prompt)
+    project.save_patch(patch, prompt=prompt, failure=failure)
     patch_applicator = PatchApplicator(project)
     patch_applicator.save_patched_code(patch, failure)
     print("File patched")

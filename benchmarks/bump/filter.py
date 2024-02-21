@@ -61,7 +61,10 @@ def it_contains_any(this: str, has_any: List[str]) -> bool:
 def main():
     filter_files_for_time_or_size()
     filter_files_for_error_type(keep=[
-        "incompatible types"
+        "incompatible types",
+        "cannot be applied to given types",
+        "method cannot be applied to given types",
+        "constructor in class cannot be applied to given types"
     ])
 
 
