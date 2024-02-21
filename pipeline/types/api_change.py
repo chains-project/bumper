@@ -19,7 +19,7 @@ class ApiChange:
     def from_json(data: dict):
         return ApiChange(
             action=ApiChangeAction(data["action"]),
-            value=data["value"],
+            value=data["completeValue"],
         )
 
     def get_diff(self):

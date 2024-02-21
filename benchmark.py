@@ -83,7 +83,7 @@ def get_bump() -> List[Project]:
             ])
             result.append(project)
 
-    return result
+    return sorted(result, key=lambda x: x.project_id)
 
 
 if __name__ == "__main__":

@@ -6,20 +6,22 @@ import java.util.Set;
 
 public class Main {
 
-    static String client_id = "5fcd0c3ad7727850c47602b17530dc355e5bd097";
-    static String project_folder = "pitest-mutation-testing-elements-plugin";
-    static String old_version = "pitest-entry-1.9.11";
-    static String new_version = "pitest-entry-1.10.0";
+    static String client_id = "0a11c04038eae517540051dbf51f7f26b7221f20";
+    static String project_folder = "simplelocalize-cli";
+    static String old_version = "snakeyaml-1.24";
+    static String new_version = "snakeyaml-2.0";
+    static String org_id = "org.yaml";
     public static void main(String[] args) {
 
         JApiCmpAnalyze jApiCmpAnalyze = new JApiCmpAnalyze(
-            Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/breaking-good/clients/" + client_id + "/" + old_version + ".jar"),
-            Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/breaking-good/clients/" + client_id + "/" + new_version + ".jar")
+            Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + old_version + ".jar"),
+            Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + new_version + ".jar")
         );
 
         Set<ApiChange> apiChanges = jApiCmpAnalyze.getChanges();
         List<ApiChange> filteredList = apiChanges.stream()
-            .filter(c -> c.getValue().contains("org.pitest.coverage"))
+            .filter(c -> c.getValue().contains(org_id))
+            .filter(c -> c.getValue().contains("Constructor"))
             .sorted((a, b) -> {
                 return a.getValue().compareTo(b.getValue());
             })

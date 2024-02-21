@@ -10,8 +10,12 @@ import japicmp.model.JApiChangeStatus;
 import japicmp.model.JApiClass;
 import japicmp.output.OutputFilter;
 import japicmp.util.Optional;
+import javassist.NotFoundException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Modifier;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -55,17 +59,49 @@ public class JApiCmpAnalyze {
                     //         ));
                     // }
 
+                    jApiClass1.getConstructors().forEach(jApiConstructor -> {
+                        if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.REMOVED) || jApiConstructor.getChangeStatus().equals(JApiChangeStatus.NEW)) {
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setOldModifier(jApiConstructor.getOldConstructor().isPresent() ? jApiConstructor.getOldConstructor().get().getModifiers() : 0)
+                                    .setOldReturnType(jApiConstructor.getName())
+                                    .setOldElement(jApiConstructor.getOldConstructor().isPresent() ? jApiConstructor.getOldConstructor().get().getLongName() : "null")
+
+                                    .setNewModifier(jApiConstructor.getNewConstructor().isPresent() ? jApiConstructor.getNewConstructor().get().getModifiers() : 0)
+                                    .setNewReturnType(jApiConstructor.getName())
+                                    .setNewElement(jApiConstructor.getNewConstructor().isPresent() ? jApiConstructor.getNewConstructor().get().getLongName() : "null")
+
+                                    .setCategory(jApiConstructor.getCompatibilityChanges().toString())
+                                    .setName(jApiConstructor.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
+                        }
+                    });
+
                     //get methods
                     jApiClass1.getMethods().forEach(jApiMethod -> {
                         if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.REMOVED) || jApiMethod.getChangeStatus().equals(JApiChangeStatus.NEW)) {
-                            libraryChanges.add(new ApiChange(
-                                    jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getLongName() : "null",
-                                    jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getLongName() : "null",
-                                    jApiMethod.getCompatibilityChanges().toString(),
-                                    jApiMethod.getName(),
-                                    new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()),
-                                    new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName())
-                            ));
+                            try {
+                                libraryChanges.add(
+                                    new ApiChange()
+                                        .setOldModifier(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getModifiers() : 0)
+                                        .setOldReturnType(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getReturnType().getName() : null)
+                                        .setOldElement(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getLongName() : "null")
+
+                                        .setNewModifier(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getModifiers() : 0)
+                                        .setNewReturnType(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getReturnType().getName() : null)
+                                        .setNewElement(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getLongName() : "null")
+                                        
+                                        .setCategory(jApiMethod.getCompatibilityChanges().toString())
+                                        .setName(jApiMethod.getName())
+                                        .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                        .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                                );
+                            } catch (Exception e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
                         }
                     });
                 });

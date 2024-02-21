@@ -1,41 +1,29 @@
 package se.kth.breaking_changes;
 
+import java.lang.reflect.Modifier;
 import java.util.Objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.experimental.Accessors;
 
+@lombok.Setter
+@lombok.Getter
+@Accessors(chain = true)
 public class ApiChange {
+    private int oldModifier;
+    private String oldReturnType;
     private String oldElement;
-
+    
+    private int newModifier;
+    private String newReturnType;
     private String newElement;
 
     private String category;
-
     private String description;
-
     private String name;
-
     private ApiMetadata newVersion;
-
     private ApiMetadata oldVersion;
-
-    public ApiChange(String oldElement, String newElement, String category, String name) {
-        this.oldElement = oldElement;
-        this.newElement = newElement;
-        this.category = category;
-        this.name = name;
-
-    }
-
-    public ApiChange(String oldElement, String newElement, String category, String name, ApiMetadata newVersion, ApiMetadata oldVersion) {
-        this.oldElement = oldElement;
-        this.newElement = newElement;
-        this.category = category;
-        this.name = name;
-        this.newVersion = newVersion;
-        this.oldVersion = oldVersion;
-    }
 
     public ApiChange() {
     }
@@ -52,9 +40,9 @@ public class ApiChange {
 
     public String toDiffString() {
         if(!this.oldElement.equals("null")) {
-            return "-- " + this.oldElement;
+            return "-- " + this.getCompleteValue();
         } else {
-            return "++ " + this.newElement;
+            return "++ " + this.getCompleteValue();
         }
     }
 
@@ -63,6 +51,14 @@ public class ApiChange {
             return this.oldElement;
         } else {
             return this.newElement;
+        }
+    }
+
+    public String getCompleteValue() {
+        if(!this.oldElement.equals("null")) {
+            return Modifier.toString(this.oldModifier) + " " + this.oldReturnType + " " + this.oldElement;
+        } else {
+            return Modifier.toString(this.newModifier) + " " + this.newReturnType + " " + this.newElement;
         }
     }
 
