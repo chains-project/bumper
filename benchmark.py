@@ -49,7 +49,7 @@ def run_project(project: Project):
             "in_class_client_code": failure.detected_fault.in_class_code,
             "client_code": failure.detected_fault.method_code,
             "error_message": failure.detected_fault.error_info.error_message,
-            "bump_description": failure.get_api_diff()
+            "bump_description": failure.get_api_diff(project_id=project.project_id)
         }
     )
     patch_generator = PatchGenerator()

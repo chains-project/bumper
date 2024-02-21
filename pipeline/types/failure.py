@@ -1,7 +1,8 @@
 from typing import List
+
+from pipeline.breaking_elements_extractor import BreakingElementsExtractor
 from pipeline.types.api_change import ApiChange
 from pipeline.types.detected_fault import DetectedFault
-
 
 class Failure:
     def __init__(
@@ -19,9 +20,11 @@ class Failure:
             detected_fault=DetectedFault.from_json(data['detectedFault'])
         )
 
-    def get_api_diff(self):
+    def get_api_diff(self, project_id: str) -> str:
         plausible_changes = filter(
-            lambda x: self.detected_fault.plausible_dependency_identifier in x.value,
+            lambda x: any(
+                element in x.value for element in BreakingElementsExtractor.extract(project_id)
+            ),
             self.api_changes
         )
         return "\n".join([c.get_diff() for c in plausible_changes])
