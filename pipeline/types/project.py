@@ -40,8 +40,8 @@ class Project:
         self.old_library_version = old_library_version
         self.new_library_version = new_library_version
 
-    def save_patch(self, patch: Patch, prompt: Prompt = None, failure: Failure = None):
-        filename = f"prompts/{prompt.template}/{patch.id}.txt" if prompt is not None else f"others/{patch.id}.txt"
+    def save_patch(self, patch: Patch, prompt: Prompt, failure: Failure = None):
+        filename = f"prompts/{prompt.template}/{patch.id}/patch.txt"
         path = f"{self.path}/patches/{filename}"
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
@@ -49,12 +49,11 @@ class Project:
             f.write(patch.value)
             f.close()
 
-        if prompt is not None:
-            with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}_prompt.txt", "w") as f:
-                f.write(prompt.get_text())
-                f.close()
+        with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}/prompt.txt", "w") as f:
+            f.write(prompt.get_text())
+            f.close()
 
         if failure is not None:
-            with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}_original.txt", "w") as f:
+            with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}/original.txt", "w") as f:
                 f.write(failure.detected_fault.method_code)
                 f.close()
