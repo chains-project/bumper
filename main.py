@@ -42,7 +42,7 @@ load_dotenv()
 
 project = Project.from_bump(
     bump_folder="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump",
-    project_id="0c60d0b08c999769313bfe2335fa792efcfb0300"
+    project_id="a698299490d70ce07b7af6e29ebf4627d412f4dd"
 )
 
 subprocess.run([
