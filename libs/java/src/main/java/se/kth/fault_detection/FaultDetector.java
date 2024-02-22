@@ -63,9 +63,7 @@ public class FaultDetector {
                     .filter(r -> r != null && r.contains(dependencyGroupID))
                     .findFirst()
                     .orElse("");
-            
-                // System.out.println("#### HERE ####");
-
+        
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 // fault.methodCode = e.toString();
@@ -75,10 +73,10 @@ public class FaultDetector {
                 Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();
                 Set<CtMethod<?>> oldMethods = parentClass.getMethods();
                 newMethods.add(e);
+                
                 parentClass.setMethods(newMethods);
 
-                fault.inClassCode = parentClass.getOriginalSourceFragment().getSourceCode();
-
+                fault.inClassCode = parentClass.toString();
                 parentClass.setMethods(oldMethods);
                 
 
