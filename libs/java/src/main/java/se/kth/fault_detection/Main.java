@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Main {
 
-    static String client_id = "1ef97ea6c5b6e34151fe6167001b69e003449f95";
-    static String project_folder = "flink-faker";
-    static String dependency_group_id = "net.datafaker";
+    static String client_id = "28be199c825d419957bc753a9519e8e9ecc6a08e";
+    static String project_folder = "license-maven-plugin";
+    static String dependency_group_id = "org.apache.maven.shared";
 
     // static String client_id = "5fcd0c3ad7727850c47602b17530dc355e5bd097";
     // static String project_folder = "pitest-mutation-testing-elements-plugin";
@@ -19,11 +19,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/breaking-good/clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
+        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
 
         try {
             MavenErrorLog log = mavenLog.analyzeCompilationErrors();
-            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/breaking-good/clients/" + client_id;
+            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id;
 
             log.getErrorInfo().forEach((k, v) -> {
                 FaultDetector detector = new FaultDetector(dependency_group_id, v);

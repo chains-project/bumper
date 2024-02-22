@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
@@ -11,8 +12,8 @@ from pipeline.types.prompt import Prompt
 load_dotenv()
 
 project = Project.from_bump(
-    bump_folder="/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump",
-    project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95"
+    bump_folder=os.getenv("BUMP_PATH"),
+    project_id="28be199c825d419957bc753a9519e8e9ecc6a08e"
 )
 
 subprocess.run([
@@ -25,6 +26,11 @@ subprocess.run([
 extractor = FailureExtractor(project)
 failures = extractor.get_failures()
 failure = failures[0]
+api_dff = failure.get_api_diff(project.project_id)
+
+if api_dff == "":
+    print("ERROR: Cannot find any relevant api-diff. It is probable better to manually fix this breaking update.")
+    exit(1)
 
 # print(failure.get_api_diff(project.project_id))
 # exit(0)

@@ -6,11 +6,11 @@ import java.util.Set;
 
 public class Main {
 
-    static String client_id = "0abf7148300f40a1da0538ab060552bca4a2f1d8";
-    static String project_folder = "xdev-software";
-    static String old_version = "jasperreports-6.18.1";
-    static String new_version = "jasperreports-6.19.1";
-    static String org_id = "net.sf.jasperreports";
+    static String client_id = "7f7de81d28b68b091bef2e6f6ffd1836167be6ea";
+    // static String project_folder = "snmpman";
+    static String old_version = "snmp4j-agent-3.0.3";
+    static String new_version = "snmp4j-agent-3.6.6";
+    static String org_id = "org.snmp4j";
     public static void main(String[] args) {
         JApiCmpAnalyze jApiCmpAnalyze = new JApiCmpAnalyze(
             Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + old_version + ".jar"),
@@ -20,6 +20,7 @@ public class Main {
         Set<ApiChange> apiChanges = jApiCmpAnalyze.getChanges();
         List<ApiChange> filteredList = apiChanges.stream()
             .filter(c -> c.getValue().contains(org_id))
+            .filter(c -> c.getValue().contains("getRegistry"))
             .sorted((a, b) -> {
                 return a.getValue().compareTo(b.getValue());
             })

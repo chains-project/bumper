@@ -48,17 +48,6 @@ public class JApiCmpAnalyze {
 
                 //go for each change
                 jApiClasses.iterator().forEachRemaining(jApiClass1 -> {
-                    // if(jApiClass1.getChangeStatus().equals(JApiChangeStatus.REMOVED) || jApiClass1.getChangeStatus().equals(JApiChangeStatus.NEW)) {
-                    //     libraryChanges.add(new ApiChange(
-                    //                 jApiClass1.getOldClass().isPresent() ? jApiClass1.getOldClass().get().getName() : "null",
-                    //                 jApiClass1.getNewClass().isPresent() ? jApiClass1.getNewClass().get().getName() : "null",
-                    //                 jApiClass1.getCompatibilityChanges().toString(),
-                    //                 "class",
-                    //                 new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()),
-                    //                 new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName())
-                    //         ));
-                    // }
-
                     jApiClass1.getConstructors().forEach(jApiConstructor -> {
                         if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.NEW)) {
                             libraryChanges.add(
@@ -108,6 +97,30 @@ public class JApiCmpAnalyze {
                                     .setModifier(jApiMethod.getOldMethod().get().getModifiers())
                                     .setReturnType(this.getReturnType(jApiMethod.getOldMethod().get().getSignature()))
                                     .setElement(jApiMethod.getOldMethod().get().getLongName())
+                                    .setCategory(jApiMethod.getCompatibilityChanges().toString())
+                                    .setName(jApiMethod.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
+                        } else if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.MODIFIED)) {
+                            System.out.println("MODIFIED: " + jApiMethod.getOldMethod().get().getLongName());
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setAction(ApiChangeType.REMOVE)
+                                    .setModifier(jApiMethod.getOldMethod().get().getModifiers())
+                                    .setReturnType(this.getReturnType(jApiMethod.getOldMethod().get().getSignature()))
+                                    .setElement(jApiMethod.getOldMethod().get().getLongName())
+                                    .setCategory(jApiMethod.getCompatibilityChanges().toString())
+                                    .setName(jApiMethod.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setAction(ApiChangeType.ADD)
+                                    .setModifier(jApiMethod.getNewMethod().get().getModifiers())
+                                    .setReturnType(this.getReturnType(jApiMethod.getNewMethod().get().getSignature()))
+                                    .setElement(jApiMethod.getNewMethod().get().getLongName())
                                     .setCategory(jApiMethod.getCompatibilityChanges().toString())
                                     .setName(jApiMethod.getName())
                                     .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
