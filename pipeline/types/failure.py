@@ -20,7 +20,10 @@ class Failure:
             detected_fault=DetectedFault.from_json(data['detectedFault'])
         )
 
-    def get_api_diff(self, project_id: str) -> str:
+    def get_api_diff(self, project_id: str, only_relevant: bool = True) -> str:
+        if not only_relevant:
+            return "\n".join([c.get_diff() for c in self.api_changes])
+
         plausible_changes = filter(
             lambda x: any(
                 element in x.value for element in BreakingElementsExtractor.extract(project_id)

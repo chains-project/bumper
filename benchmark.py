@@ -42,6 +42,12 @@ def run_benchmark(projects: List[Project]):
 def run_project(project: Project):
     extractor = FailureExtractor(project)
     failures = extractor.get_failures()
+
+    if len(failures) > 1:
+        print("Multiple failures detected, skipping project...")
+        return
+
+
     failure = failures[0]
     prompt = Prompt(
         template="complete_instructions_on_top",

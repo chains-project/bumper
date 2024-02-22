@@ -1,6 +1,7 @@
 import os
 import subprocess
 
+from pipeline.breaking_elements_extractor import BreakingElementsExtractor
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator import PatchGenerator
@@ -13,7 +14,7 @@ load_dotenv()
 
 project = Project.from_bump(
     bump_folder=os.getenv("BUMP_PATH"),
-    project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95"
+    project_id="9836e07e553e29f16ee35b5d7e4d0370e1789ecd"
 )
 
 subprocess.run([
@@ -29,8 +30,11 @@ failure = failures[0]
 api_dff = failure.get_api_diff(project.project_id)
 
 if api_dff == "":
+    relevant_keys = '\n'.join(BreakingElementsExtractor.extract(project.project_id))
     print("ERROR: Cannot find any relevant api-diff. It is probable better to manually fix this breaking update.")
-    exit(1)
+    print(f"All diffs: {failure.get_api_diff(project.project_id, False)}")
+    print(f"Relevant keys: {relevant_keys}")
+    # exit(1)
 
 # print(failure.get_api_diff(project.project_id))
 # exit(0)

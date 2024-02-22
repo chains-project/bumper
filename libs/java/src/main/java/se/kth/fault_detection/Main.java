@@ -9,9 +9,9 @@ import java.util.List;
 
 public class Main {
 
-    static String client_id = "28be199c825d419957bc753a9519e8e9ecc6a08e";
-    static String project_folder = "license-maven-plugin";
-    static String dependency_group_id = "org.apache.maven.shared";
+    static String client_id = "9836e07e553e29f16ee35b5d7e4d0370e1789ecd";
+    static String project_folder = "docker-adapter";
+    static String dependency_group_id = "com.artipie";
 
     // static String client_id = "5fcd0c3ad7727850c47602b17530dc355e5bd097";
     // static String project_folder = "pitest-mutation-testing-elements-plugin";

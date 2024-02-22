@@ -44,6 +44,12 @@ public class FaultDetector {
         for (CtMethodImpl<?> e : clazz.getElements(new TypeFilter<>(CtMethodImpl.class))) {
             if(containsAnError(e)) {
                 // System.out.println("#### HERE ####");
+                // System.out.println(e.getSimpleName());
+                // System.out.println(getMavenErrorLog(e).getClientFilePath());
+                // System.out.println(getMavenErrorLog(e).getClientLinePosition());
+                // System.out.println(getMavenErrorLog(e).getErrorMessage());
+                // System.out.println(e.getOriginalSourceFragment().getSourceCode());
+
                 String dependencyIdentifier = e.getElements(new TypeFilter<>(CtInvocationImpl.class))
                     .stream()
                     .flatMap((el) -> {
@@ -57,22 +63,24 @@ public class FaultDetector {
                     .filter(r -> r != null && r.contains(dependencyGroupID))
                     .findFirst()
                     .orElse("");
-
-                CtClass<?> parentClass = e.getParent(CtClass.class);
-                Set<CtMethod<?>> methods = new HashSet<CtMethod<?>>();
-                methods.add(e);
-                parentClass.setMethods(methods);
-                
-                // System.out.println(parentClass.toString());
-
-                // System.out.println(dependencyIdentifier);
+            
                 // System.out.println("#### HERE ####");
 
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 // fault.methodCode = e.toString();
                 fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
+
+                CtClass<?> parentClass = e.getParent(CtClass.class);
+                Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();
+                Set<CtMethod<?>> oldMethods = parentClass.getMethods();
+                newMethods.add(e);
+                parentClass.setMethods(newMethods);
+
                 fault.inClassCode = parentClass.getOriginalSourceFragment().getSourceCode();
+
+                parentClass.setMethods(oldMethods);
+                
 
                 // System.out.println(e.getOriginalSourceFragment().getSourceCode());
                 // System.out.println(e.toString());
