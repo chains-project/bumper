@@ -29,7 +29,11 @@ public class Main {
                 FaultDetector detector = new FaultDetector(dependency_group_id, v);
                 List<DetectedFault> results = detector.detectFaults(project + k);
 
-                results.forEach(System.out::println);
+                results.forEach(r -> {
+                    System.out.println(r.errorInfo.getClientFilePath());
+                    System.out.println(r.errorInfo.getClientLinePosition());
+                    System.out.println(r.clientLineNumber + ":" + r.clientEndLineNumber);
+                });
             });
 
 

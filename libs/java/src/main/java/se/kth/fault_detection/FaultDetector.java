@@ -68,11 +68,18 @@ public class FaultDetector {
                 // System.out.println(dependencyIdentifier);
                 // System.out.println("#### HERE ####");
 
+
+                String[] lines = e.toString().split("\r\n|\r|\n");
+                int numberOfLines = lines.length;
+
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 fault.methodCode = e.toString();
                 fault.inClassCode = parentClass.toString();
-                fault.clientLineNumber = e.getPosition().getLine();
+
+                // Need to do this trick as getLine does not take into account for decorators
+                fault.clientLineNumber = e.getPosition().getEndLine() - numberOfLines + 1; 
+
                 fault.clientEndLineNumber = e.getPosition().getEndLine();
                 fault.errorInfo = getMavenErrorLog(e);
                 fault.plausibleDependencyIdentifier = dependencyIdentifier;
