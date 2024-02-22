@@ -13,7 +13,7 @@ load_dotenv()
 
 project = Project.from_bump(
     bump_folder=os.getenv("BUMP_PATH"),
-    project_id="28be199c825d419957bc753a9519e8e9ecc6a08e"
+    project_id="1ef97ea6c5b6e34151fe6167001b69e003449f95"
 )
 
 subprocess.run([

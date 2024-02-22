@@ -103,7 +103,7 @@ public class JApiCmpAnalyze {
                                     .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
                             );
                         } else if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.MODIFIED)) {
-                            System.out.println("MODIFIED: " + jApiMethod.getOldMethod().get().getLongName());
+                            // System.out.println("MODIFIED: " + jApiMethod.getOldMethod().get().getLongName());
                             libraryChanges.add(
                                 new ApiChange()
                                     .setAction(ApiChangeType.REMOVE)
