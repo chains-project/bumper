@@ -19,11 +19,10 @@ class PatchApplicator:
         patched_content = ""
         with open(absolute_path, "r") as f:
             for i, row in enumerate(f, 1):
-                if i == failure.detected_fault.client_line_number - 1:
+                if i == failure.detected_fault.client_line_number:
                     patched_content += "// TODO: review this AI generated patch!\n"
                     patched_content += patch.value + "\n"
-                if (
-                        i < failure.detected_fault.client_line_number - 1) or i > failure.detected_fault.client_end_line_number:
+                if (i < failure.detected_fault.client_line_number) or i > failure.detected_fault.client_end_line_number:
                     patched_content += row
 
             f.close()

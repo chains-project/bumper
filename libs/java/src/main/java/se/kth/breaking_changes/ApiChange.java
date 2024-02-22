@@ -11,13 +11,10 @@ import lombok.experimental.Accessors;
 @lombok.Getter
 @Accessors(chain = true)
 public class ApiChange {
-    private int oldModifier;
-    private String oldReturnType;
-    private String oldElement;
-    
-    private int newModifier;
-    private String newReturnType;
-    private String newElement;
+    private int modifier;
+    private String returnType;
+    private String element;
+    private ApiChangeType action;
 
     private String category;
     private String description;
@@ -39,7 +36,7 @@ public class ApiChange {
     }
 
     public String toDiffString() {
-        if(!this.oldElement.equals("null")) {
+        if(this.action.equals(ApiChangeType.REMOVE)) {
             return "-- " + this.getCompleteValue();
         } else {
             return "++ " + this.getCompleteValue();
@@ -47,27 +44,11 @@ public class ApiChange {
     }
 
     public String getValue() {
-        if(!this.oldElement.equals("null")) {
-            return this.oldElement;
-        } else {
-            return this.newElement;
-        }
+        return this.element;
     }
 
     public String getCompleteValue() {
-        if(!this.oldElement.equals("null")) {
-            return Modifier.toString(this.oldModifier) + " " + this.oldReturnType + " " + this.oldElement;
-        } else {
-            return Modifier.toString(this.newModifier) + " " + this.newReturnType + " " + this.newElement;
-        }
-    }
-
-    public String getAction() {
-        if(!this.oldElement.equals("null")) {
-            return "REMOVE";
-        } else {
-            return "ADD";
-        }
+        return Modifier.toString(this.modifier) + " " + this.returnType + " " + this.element;
     }
 
     @Override
@@ -75,14 +56,19 @@ public class ApiChange {
         if (this == that) return true;
         if (that == null || getClass() != that.getClass()) return false;
         ApiChange thatLibraryChange = (ApiChange) that;
-        return this.oldElement.equals(thatLibraryChange.oldElement)
-                && this.newElement.equals(thatLibraryChange.newElement)
+        return this.element.equals(thatLibraryChange.element)
+                && this.action.equals(thatLibraryChange.action)
                 && this.category.equals(thatLibraryChange.category)
                 && this.name.equals(thatLibraryChange.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(oldElement, newElement, category, name);
+        return Objects.hash(element, action, category, name);
     }
+}
+
+enum ApiChangeType {
+    REMOVE,
+    ADD
 }

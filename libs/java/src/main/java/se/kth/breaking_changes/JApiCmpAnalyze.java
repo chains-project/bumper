@@ -60,17 +60,25 @@ public class JApiCmpAnalyze {
                     // }
 
                     jApiClass1.getConstructors().forEach(jApiConstructor -> {
-                        if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.REMOVED) || jApiConstructor.getChangeStatus().equals(JApiChangeStatus.NEW)) {
+                        if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.NEW)) {
                             libraryChanges.add(
                                 new ApiChange()
-                                    .setOldModifier(jApiConstructor.getOldConstructor().isPresent() ? jApiConstructor.getOldConstructor().get().getModifiers() : 0)
-                                    .setOldReturnType(jApiConstructor.getName())
-                                    .setOldElement(jApiConstructor.getOldConstructor().isPresent() ? jApiConstructor.getOldConstructor().get().getLongName() : "null")
-
-                                    .setNewModifier(jApiConstructor.getNewConstructor().isPresent() ? jApiConstructor.getNewConstructor().get().getModifiers() : 0)
-                                    .setNewReturnType(jApiConstructor.getName())
-                                    .setNewElement(jApiConstructor.getNewConstructor().isPresent() ? jApiConstructor.getNewConstructor().get().getLongName() : "null")
-
+                                    .setAction(ApiChangeType.ADD)
+                                    .setModifier(jApiConstructor.getNewConstructor().get().getModifiers())
+                                    .setReturnType(jApiConstructor.getName())
+                                    .setElement(jApiConstructor.getNewConstructor().get().getLongName())
+                                    .setCategory(jApiConstructor.getCompatibilityChanges().toString())
+                                    .setName(jApiConstructor.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
+                        } else if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.REMOVED)) {
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setAction(ApiChangeType.REMOVE)
+                                    .setModifier(jApiConstructor.getOldConstructor().get().getModifiers())
+                                    .setReturnType(jApiConstructor.getName())
+                                    .setElement(jApiConstructor.getOldConstructor().get().getLongName())
                                     .setCategory(jApiConstructor.getCompatibilityChanges().toString())
                                     .setName(jApiConstructor.getName())
                                     .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
@@ -81,27 +89,30 @@ public class JApiCmpAnalyze {
 
                     //get methods
                     jApiClass1.getMethods().forEach(jApiMethod -> {
-                        if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.REMOVED) || jApiMethod.getChangeStatus().equals(JApiChangeStatus.NEW)) {
-                            try {
-                                libraryChanges.add(
-                                    new ApiChange()
-                                        .setOldModifier(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getModifiers() : 0)
-                                        .setOldReturnType(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getReturnType().getName() : null)
-                                        .setOldElement(jApiMethod.getOldMethod().isPresent() ? jApiMethod.getOldMethod().get().getLongName() : "null")
-
-                                        .setNewModifier(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getModifiers() : 0)
-                                        .setNewReturnType(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getReturnType().getName() : null)
-                                        .setNewElement(jApiMethod.getNewMethod().isPresent() ? jApiMethod.getNewMethod().get().getLongName() : "null")
-                                        
-                                        .setCategory(jApiMethod.getCompatibilityChanges().toString())
-                                        .setName(jApiMethod.getName())
-                                        .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
-                                        .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
-                                );
-                            } catch (Exception e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            }
+                        if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.NEW)) {
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setAction(ApiChangeType.ADD)
+                                    .setModifier(jApiMethod.getNewMethod().get().getModifiers())
+                                    .setReturnType(this.getReturnType(jApiMethod.getNewMethod().get().getSignature()))
+                                    .setElement(jApiMethod.getNewMethod().get().getLongName())
+                                    .setCategory(jApiMethod.getCompatibilityChanges().toString())
+                                    .setName(jApiMethod.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
+                        } else if (jApiMethod.getChangeStatus().equals(JApiChangeStatus.REMOVED)) {
+                            libraryChanges.add(
+                                new ApiChange()
+                                    .setAction(ApiChangeType.REMOVE)
+                                    .setModifier(jApiMethod.getOldMethod().get().getModifiers())
+                                    .setReturnType(this.getReturnType(jApiMethod.getOldMethod().get().getSignature()))
+                                    .setElement(jApiMethod.getOldMethod().get().getLongName())
+                                    .setCategory(jApiMethod.getCompatibilityChanges().toString())
+                                    .setName(jApiMethod.getName())
+                                    .setNewVersion(new ApiMetadata(newJar.toFile().getName(), newJar.getFileName().getFileName()))
+                                    .setOldVersion(new ApiMetadata(oldJar.toFile().getName(), oldJar.getFileName().getFileName()))
+                            );
                         }
                     });
                 });
@@ -109,6 +120,34 @@ public class JApiCmpAnalyze {
         });
 
         return libraryChanges;
+    }
+
+    private String getReturnType(String fromSignature) {
+        int semicolonIndex = fromSignature.indexOf(')');
+        String type = fromSignature.substring(semicolonIndex + 1);
+
+        if(type.equals("Z")) {
+            return "bool";
+        } else if (type.equals("V")) {
+            return "void";
+        } else if (type.equals("I")) {
+            return "int";
+        } else if (type.indexOf("L") < 0) {
+            return type;
+        }
+
+        
+        type = type
+            .replace("/", ".")
+            .replace(";", "");
+
+        // for generics
+        type = type.replace("[", "");
+
+        // Remove the initial L that indicates that return type is a class
+        type = type.substring(1);
+
+        return type;
     }
 
     private static Options getDefaultOptions() {
