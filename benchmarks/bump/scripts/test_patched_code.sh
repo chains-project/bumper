@@ -30,6 +30,8 @@ docker remove $1
 
 if [ "$(cat $patched_version_path/$1.log | grep -c "BUILD SUCCESS")" -gt 0 ]; then
   echo "REPAIRED SUCCESSFULLY :)"
+  exit 0
 else
   echo "REPAIR UNSUCCESSFUL :("
+  exit 1
 fi
