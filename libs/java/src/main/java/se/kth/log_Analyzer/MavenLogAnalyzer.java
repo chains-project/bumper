@@ -36,25 +36,57 @@ public class MavenLogAnalyzer {
             Pattern pathPattern = Pattern.compile("/[^:/]+(/[^\\[\\]:]+)");
 
             while ((line = reader.readLine()) != null) {
-                Map<Integer, String> lines = new HashMap<>();
                 Matcher matcher = errorPattern.matcher(line);
                 if (matcher.find()) {
                     Integer lineNumber = Integer.valueOf(matcher.group(1));
                     Matcher pathMatcher = pathPattern.matcher(line);
-                    lines.put(lineNumber, line);
+
                     if (pathMatcher.find()) {
                         currentPath = pathMatcher.group();
-
                     }
+
                     if (currentPath != null) {
-                        mavenErrorLogs.addErrorInfo(currentPath, new MavenErrorLog.ErrorInfo(String.valueOf(lineNumber), currentPath, line));
+                        mavenErrorLogs.addErrorInfo(
+                            currentPath, 
+                            new MavenErrorLog.ErrorInfo(String.valueOf(lineNumber), currentPath, line)
+                                .setAdditionalInfo(
+                                    this.extractAdditionalInfo(reader)
+                                )
+                        );
                     }
                 }
+
             }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         return mavenErrorLogs;
+    }
+
+    private String extractAdditionalInfo(BufferedReader fromReader) {
+        String line = null;
+        int charRead = -1;
+
+        try {
+            // Read first char of new line and reset the buffer
+            fromReader.mark(1);
+			charRead = fromReader.read();
+            fromReader.reset();
+
+            if(((char) charRead) == ' ') {
+                line = fromReader.readLine();
+                if(line == null) {
+                    return "";
+                } else {
+                    return line + "\n" + extractAdditionalInfo(fromReader);
+                }
+            } else {
+                return "";
+			}
+		} catch (IOException e) {
+            e.printStackTrace();
+            return "";
+		}
     }
 }

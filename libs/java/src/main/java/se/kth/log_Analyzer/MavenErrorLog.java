@@ -31,11 +31,13 @@ public class MavenErrorLog {
 
     @lombok.Getter
     @lombok.Setter
+    @lombok.experimental.Accessors(chain = true)
     public static class ErrorInfo {
 
         String clientLinePosition;
         String clientFilePath;
         String errorMessage;
+        String additionalInfo;
 
         public ErrorInfo(String clientLinePosition, String clientFilePath, String errorMessage) {
             this.clientLinePosition = clientLinePosition;

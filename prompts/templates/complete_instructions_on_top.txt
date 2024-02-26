@@ -18,6 +18,7 @@ the following client code fails:
 
 with the following error message:
 {{ error_message }}
+{{ additional_info }}
 
 the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
 {{ bump_description }}
