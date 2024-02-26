@@ -26,4 +26,8 @@ public class DetectedFault {
             return "";
         }
     }
+
+    public int getIdentifier() {
+        return this.errorInfo.hashCode();
+    }
 }

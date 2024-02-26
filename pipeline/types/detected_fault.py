@@ -4,6 +4,7 @@ from pipeline.types.error_info import ErrorInfo
 class DetectedFault:
     def __init__(
             self,
+            identifier: int,
             method_name: str,
             method_code: str,
             in_class_code: str,
@@ -12,6 +13,7 @@ class DetectedFault:
             error_info: ErrorInfo,
             plausible_dependency_identifier: str
     ):
+        self.identifier = identifier
         self.in_class_code = in_class_code
         self.plausible_dependency_identifier = plausible_dependency_identifier
         self.error_info = error_info
@@ -23,6 +25,7 @@ class DetectedFault:
     @staticmethod
     def from_json(data: dict):
         return DetectedFault(
+            identifier=data['identifier'],
             method_name=data['methodName'],
             method_code=data['methodCode'],
             client_line_number=data['clientLineNumber'],

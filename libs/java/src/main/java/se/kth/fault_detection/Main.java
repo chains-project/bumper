@@ -30,6 +30,7 @@ public class Main {
                 List<DetectedFault> results = detector.detectFaults(project + k);
 
                 results.forEach(r -> {
+                    System.out.println("ERROR #" + r.getIdentifier());
                     System.out.println(r.errorInfo.getClientFilePath());
                     System.out.println(r.errorInfo.getClientLinePosition());
                     System.out.println(r.clientLineNumber + ":" + r.clientEndLineNumber);
