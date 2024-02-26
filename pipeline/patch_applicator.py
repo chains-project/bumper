@@ -29,13 +29,25 @@ class PatchApplicator:
             return patched_content
 
     def save_patched_code(self, patch: Patch, failure: Failure):
-        path = self.get_patched_code_path(patch, failure)
-        os.makedirs(os.path.dirname(path), exist_ok=True)
+        patched_code_path = self.get_patched_code_path(patch, failure)
+        os.makedirs(os.path.dirname(patched_code_path), exist_ok=True)
 
         subprocess.run([
             'cp', "-r",
             f"{self.project.path}/{self.project.project_name}/",
             f"{self.project.path}/patched_code/{patch.id}/{self.project.project_name}"
+        ], stdout=subprocess.PIPE)
+
+        subprocess.run([
+            'ln', '-s',
+            f"{self.project.path}/{self.project.library_name}-{self.project.old_library_version}.jar",
+            f"{self.project.path}/patched_code/{patch.id}/{self.project.library_name}-{self.project.old_library_version}.jar"
+        ], stdout=subprocess.PIPE)
+
+        subprocess.run([
+            'ln', '-s',
+            f"{self.project.path}/{self.project.library_name}-{self.project.new_library_version}.jar",
+            f"{self.project.path}/patched_code/{patch.id}/{self.project.library_name}-{self.project.new_library_version}.jar"
         ], stdout=subprocess.PIPE)
 
         file_path = failure.detected_fault.error_info.client_file_path

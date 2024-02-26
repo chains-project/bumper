@@ -1,3 +1,4 @@
+import copy
 import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
@@ -50,7 +51,19 @@ class ProjectRepairer:
                 print("Failure patched!")
                 return True
             else:
-                print("Failure not patched, trying again...")
+                print("Project not patched, trying to understand if it patched the specific failure:")
+                print(f"Before we have {len(failures)} failures")
+
+                new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
+                print(f"Now we have {len(new_failures)} failures")
+                if len(new_failures) < len(failures):
+                    print("Failure is fixed, we can continue from here")
+                    new_project = copy.deepcopy(self.project)
+                    new_project.path = self.project.path + f"/patched_code/{patch.id}"
+                    repairer = ProjectRepairer(project=new_project)
+                    return repairer.repair()
+                else:
+                    print("Failure not fixed, trying to generate new patch")
 
         print(f"Repair failed for this failure (#{failure.detected_fault.identifier})")
         return False
