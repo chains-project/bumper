@@ -43,11 +43,13 @@ public class JApiCmpAnalyze {
 
         //list of classes
         jApiClasses.forEach(jApiClass -> {
+
             //read incompatible changes
             jApiClass.getCompatibilityChanges().forEach(jApiCompatibilityChange -> {
 
                 //go for each change
                 jApiClasses.iterator().forEachRemaining(jApiClass1 -> {
+
                     jApiClass1.getConstructors().forEach(jApiConstructor -> {
                         if (jApiConstructor.getChangeStatus().equals(JApiChangeStatus.NEW)) {
                             libraryChanges.add(

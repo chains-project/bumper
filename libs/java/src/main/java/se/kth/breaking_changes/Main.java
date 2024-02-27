@@ -20,7 +20,7 @@ public class Main {
         Set<ApiChange> apiChanges = jApiCmpAnalyze.getChanges();
         List<ApiChange> filteredList = apiChanges.stream()
             .filter(c -> c.getValue().contains(org_id))
-            .filter(c -> c.getValue().contains("getRegistry"))
+            .filter(c -> c.getValue().contains("ManagedObject"))
             .sorted((a, b) -> {
                 return a.getValue().compareTo(b.getValue());
             })
