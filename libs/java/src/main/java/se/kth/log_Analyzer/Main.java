@@ -5,7 +5,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("benchmarks/bump/clients/9836e07e553e29f16ee35b5d7e4d0370e1789ecd/docker-adapter/9836e07e553e29f16ee35b5d7e4d0370e1789ecd.log"));
+        String path = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236/flink-faker/1ef97ea6c5b6e34151fe6167001b69e003449f95.log";
+        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File(path));
 
         try {
             MavenErrorLog errorLog = mavenLog.analyzeCompilationErrors();

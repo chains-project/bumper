@@ -42,14 +42,8 @@ public class FaultDetector {
         List<DetectedFault> results = new ArrayList<>();
 
         for (CtMethodImpl<?> e : clazz.getElements(new TypeFilter<>(CtMethodImpl.class))) {
-            if(containsAnError(e)) {
-                // System.out.println("#### HERE ####");
-                // System.out.println(e.getSimpleName());
-                // System.out.println(getMavenErrorLog(e).getClientFilePath());
-                // System.out.println(getMavenErrorLog(e).getClientLinePosition());
-                // System.out.println(getMavenErrorLog(e).getErrorMessage());
-                // System.out.println(e.getOriginalSourceFragment().getSourceCode());
 
+            if(containsAnError(e)) {
                 String dependencyIdentifier = e.getElements(new TypeFilter<>(CtInvocationImpl.class))
                     .stream()
                     .flatMap((el) -> {
@@ -79,15 +73,7 @@ public class FaultDetector {
                 fault.inClassCode = parentClass.toString();
                 parentClass.setMethods(oldMethods);
                 
-
-                // System.out.println(e.getOriginalSourceFragment().getSourceCode());
-                // System.out.println(e.toString());
-
-                // Need to do this trick as getLine does not take into account for decorators
-                String[] lines = e.getOriginalSourceFragment().getSourceCode().split("\r\n|\r|\n");
-                int numberOfLines = lines.length;
-                fault.clientLineNumber = e.getPosition().getEndLine() - numberOfLines + 1; 
-
+                fault.clientLineNumber = getRealLinePosition(e);
                 fault.clientEndLineNumber = e.getPosition().getEndLine();
                 fault.errorInfo = getMavenErrorLog(e);
                 fault.plausibleDependencyIdentifier = dependencyIdentifier;
@@ -98,13 +84,14 @@ public class FaultDetector {
     }
 
     private MavenErrorLog.ErrorInfo getMavenErrorLog(CtElement element) {
-        int startLineNumber = element.getPosition().getLine();
+        int startLineNumber = this.getRealLinePosition(element);
         int endLineNumber = element.getPosition().getEndLine();
 
         return mavenErrorLog
                     .stream()
                     .filter(mavenErrorLog -> {
                         int errorLineNumber = Integer.parseInt(mavenErrorLog.getClientLinePosition());
+                        element.toString();
                         return errorLineNumber >= startLineNumber && errorLineNumber <= endLineNumber;
                     })
                     .findFirst()
@@ -112,12 +99,19 @@ public class FaultDetector {
     }
 
     private boolean containsAnError(CtElement element) {
-        int startLineNumber = element.getPosition().getLine();
+        int startLineNumber = this.getRealLinePosition(element);
         int endLineNumber = element.getPosition().getEndLine();
 
         return mavenErrorLog.stream().anyMatch(mavenErrorLog -> {
             int errorLineNumber = Integer.parseInt(mavenErrorLog.getClientLinePosition());
             return errorLineNumber >= startLineNumber && errorLineNumber <= endLineNumber;
         });
+    }
+
+    private int getRealLinePosition(CtElement element) {
+        // Need to do this trick as getLine does not take into account for decorators
+        String[] lines = element.getOriginalSourceFragment().getSourceCode().split("\r\n|\r|\n");
+        int numberOfLines = lines.length;
+        return element.getPosition().getEndLine() - numberOfLines + 1;
     }
 }

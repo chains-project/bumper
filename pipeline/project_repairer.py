@@ -55,6 +55,10 @@ class ProjectRepairer:
                 print(f"Before we have {len(failures)} failures")
 
                 new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
+                if len(new_failures) <= 0:
+                    print("Error extracting new failures, cannot repair project")
+                    return False
+
                 print(f"Now we have {len(new_failures)} failures")
                 if len(new_failures) < len(failures):
                     print("Failure is fixed, we can continue from here")
