@@ -17,6 +17,7 @@ class ProjectRepairer:
 
         extractor = FailureExtractor(self.project)
         failures = extractor.get_failures(base_path=base_path)
+        print(f"found {len(failures)} failures!")
 
         if len(failures) <= 0:
             return True

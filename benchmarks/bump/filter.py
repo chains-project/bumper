@@ -57,14 +57,37 @@ def it_contains_any(this: str, has_any: List[str]) -> bool:
 
     return False
 
+def filter_files_for_update_category(allow_major=False):
+    if allow_major is True:
+        return
+
+    directory = "./filtered_data"
+    removed_count = 0
+
+    for filename in os.scandir(directory):
+        if filename.is_file():
+            key = filename.name.replace(".json", "")
+            path = filename.path
+            with open(path) as f:
+                json_value = json.load(f)["updatedDependency"]
+                previous_version = json_value["previousVersion"].split(".")
+                new_version = json_value["newVersion"].split(".")
+                if previous_version[0] != new_version[0]:
+                    if remove_file(f"./filtered_data/{key}.json"):
+                        removed_count += 1
+
+    print(f"{removed_count} files removed for major version change")
+
 
 def main():
     filter_files_for_time_or_size()
+    filter_files_for_update_category(allow_major=False)
     filter_files_for_error_type(keep=[
-        "incompatible types",
-        "cannot be applied to given types",
-        "method cannot be applied to given types",
-        "constructor in class cannot be applied to given types"
+        "cannot find symbol",
+        # "incompatible types",
+        # "cannot be applied to given types",
+        # "method cannot be applied to given types",
+        # "constructor in class cannot be applied to given types"
     ])
 
 

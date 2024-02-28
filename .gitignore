@@ -1,7 +1,7 @@
 .env
 benchmarks/**/repository
 benchmarks/**/filtered_data
-benchmarks/**/clients
+benchmarks/bump/*clients
 .DS_Store
 
 .vscode
