@@ -34,7 +34,7 @@ def filter_files_for_time_or_size():
     print(f"{removed_count} files removed")
 
 
-def filter_files_for_error_type(keep: List[str]):
+def filter_files_for_error_type(keep: List[str], discard: List[str]):
     directory = "./repository/reproductionLogs/successfulReproductionLogs"
     removed_count = 0
 
@@ -43,7 +43,8 @@ def filter_files_for_error_type(keep: List[str]):
             key = filename.name.replace(".log", "")
             path = filename.path
             with open(path) as f:
-                if not it_contains_any(f.read(), keep):
+                content = f.read()
+                if it_contains_any(content, discard) or not it_contains_any(content, keep):
                     if remove_file(f"./filtered_data/{key}.json"):
                         removed_count += 1
 
@@ -56,6 +57,7 @@ def it_contains_any(this: str, has_any: List[str]) -> bool:
             return True
 
     return False
+
 
 def filter_files_for_update_category(allow_major=False):
     if allow_major is True:
@@ -82,13 +84,19 @@ def filter_files_for_update_category(allow_major=False):
 def main():
     filter_files_for_time_or_size()
     filter_files_for_update_category(allow_major=False)
-    filter_files_for_error_type(keep=[
-        "cannot find symbol",
-        # "incompatible types",
-        # "cannot be applied to given types",
-        # "method cannot be applied to given types",
-        # "constructor in class cannot be applied to given types"
-    ])
+    filter_files_for_error_type(
+        keep=[
+            "cannot find symbol",
+            # "incompatible types",
+            # "cannot be applied to given types",
+            # "method cannot be applied to given types",
+            # "constructor in class cannot be applied to given types"
+        ],
+        discard=[
+            "class file has wrong version",
+            ".internal"
+        ]
+    )
 
 
 if __name__ == "__main__":

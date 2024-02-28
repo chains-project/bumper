@@ -13,20 +13,20 @@ public class Main {
     // static String project_folder = "docker-adapter";
     // static String dependency_group_id = "com.artipie";
 
-    // static String client_id = "5fcd0c3ad7727850c47602b17530dc355e5bd097";
-    // static String project_folder = "pitest-mutation-testing-elements-plugin";
-    // static String dependency_group_id = "org.pitest";
+    static String client_id = "1c0972fc3d905b9f2a305a78f8a158a0b3fd8639";
+    static String project_folder = "license-maven-plugin";
+    static String dependency_group_id = "org.apache.maven.shared";
     
-    static String dependency_group_id = "net.datafaker";
+    // static String dependency_group_id = "net.datafaker";
 
     public static void main(String[] args) {
 
-        // MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
-        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236/flink-faker/1ef97ea6c5b6e34151fe6167001b69e003449f95.log"));
+        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
+        // MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236/flink-faker/1ef97ea6c5b6e34151fe6167001b69e003449f95.log"));
 
         try {
             MavenErrorLog log = mavenLog.analyzeCompilationErrors();
-            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236";
+            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id;
 
             log.getErrorInfo().forEach((k, v) -> {
                 System.out.println("Fault: " + k);
@@ -39,6 +39,10 @@ public class Main {
                     System.out.println(r.errorInfo.getClientLinePosition());
                     System.out.println(r.clientLineNumber + ":" + r.clientEndLineNumber);
                 });
+
+                if(results.size() <= 0) {
+                    System.out.println("WARNING: no error detected from this");
+                }
             });
 
 
