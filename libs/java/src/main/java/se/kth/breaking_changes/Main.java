@@ -10,7 +10,7 @@ public class Main {
     // static String project_folder = "snmpman";
     static String old_version = "dss-pades-5.9";
     static String new_version = "dss-pades-5.10.2";
-    static String org_id = "";
+    static String org_id = "eu.europa.ec.joinup.sd-dss";
     public static void main(String[] args) {
         JApiCmpAnalyze jApiCmpAnalyze = new JApiCmpAnalyze(
             Path.of("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + old_version + ".jar"),
@@ -19,8 +19,8 @@ public class Main {
 
         Set<ApiChange> apiChanges = jApiCmpAnalyze.getChanges();
         List<ApiChange> filteredList = apiChanges.stream()
-            .filter(c -> c.getValue().contains(org_id))
-            .filter(c -> c.getValue().contains("CertificationPermission"))
+            // .filter(c -> c.getValue().contains(org_id))
+            .filter(c -> c.getValue().contains("eu.europa.esig.dss.pades"))
             .sorted((a, b) -> {
                 return a.getValue().compareTo(b.getValue());
             })
