@@ -10,77 +10,32 @@ import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtClass;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.declaration.CtImport;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
-import spoon.reflect.path.CtPath;
-import spoon.reflect.path.CtPathBuilder;
 import spoon.reflect.visitor.filter.TypeFilter;
-import spoon.support.reflect.code.CtInvocationImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 
 public class FaultDetector {
-    private String dependencyGroupID;
-
     private Set<MavenErrorLog.ErrorInfo> mavenErrorLog;
 
-    public FaultDetector(String dependencyGroupID, Set<MavenErrorLog.ErrorInfo> mavenErrorLog) {
-        this.dependencyGroupID = dependencyGroupID;
+    public FaultDetector(Set<MavenErrorLog.ErrorInfo> mavenErrorLog) {
         this.mavenErrorLog = mavenErrorLog;
     }
 
     public List<DetectedFault> detectFaults(String projectFilePath) {
         Launcher spoon = new Launcher();
+        spoon.getEnvironment().setAutoImports(true);
         spoon.addInputResource(projectFilePath);
         spoon.buildModel();
 
-        return getElementFromSourcePosition(spoon.getModel(), dependencyGroupID);
-    }
+        CtModel model = spoon.getModel();
+        List<DetectedFault> result = new ArrayList<DetectedFault>();
 
+        result.addAll(getMethodFaults(model));
+        result.addAll(getImportFaults(model));
 
-    public List<DetectedFault> getElementFromSourcePosition(CtModel model, String depGrpId) {
-        CtType<?> clazz = model.getAllTypes().iterator().next();
-        List<DetectedFault> results = new ArrayList<>();
-
-        for (CtMethodImpl<?> e : clazz.getElements(new TypeFilter<>(CtMethodImpl.class))) {
-
-            if(containsAnError(e)) {
-                String dependencyIdentifier = e.getElements(new TypeFilter<>(CtInvocationImpl.class))
-                    .stream()
-                    .flatMap((el) -> {
-                        CtPath path = new CtPathBuilder()
-                                            .recursiveWildcard()
-                                            .name(depGrpId)
-                                            .build();
-                                            
-                        return path.evaluateOn(el).stream().map(line -> line.getParent().toString());
-                    })
-                    .filter(r -> r != null && r.contains(dependencyGroupID))
-                    .findFirst()
-                    .orElse("");
-        
-                DetectedFault fault = new DetectedFault();
-                fault.methodName = e.getSimpleName();
-                // fault.methodCode = e.toString();
-                fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
-
-                CtClass<?> parentClass = e.getParent(CtClass.class);
-                Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();
-                Set<CtMethod<?>> oldMethods = parentClass.getMethods();
-                newMethods.add(e);
-                
-                parentClass.setMethods(newMethods);
-
-                fault.inClassCode = parentClass.toString();
-                parentClass.setMethods(oldMethods);
-                
-                fault.clientLineNumber = getRealLinePosition(e);
-                fault.clientEndLineNumber = e.getPosition().getEndLine();
-                fault.errorInfo = getMavenErrorLog(e);
-                fault.plausibleDependencyIdentifier = dependencyIdentifier;
-                results.add(fault);
-            }
-        }
-        return results;
+        return result;
     }
 
     private MavenErrorLog.ErrorInfo getMavenErrorLog(CtElement element) {
@@ -113,5 +68,56 @@ public class FaultDetector {
         String[] lines = element.getOriginalSourceFragment().getSourceCode().split("\r\n|\r|\n");
         int numberOfLines = lines.length;
         return element.getPosition().getEndLine() - numberOfLines + 1;
+    }
+
+    private List<DetectedFault> getImportFaults(CtModel model) {
+        CtType<?> mainClass = model.getAllTypes().iterator().next();
+        List<DetectedFault> result = new ArrayList<DetectedFault>();
+
+        mainClass.getPosition().getCompilationUnit().getImports().stream()
+            .forEach((CtElement element) -> {
+                if(this.containsAnError(element)) {
+                    result.add(
+                        new DetectedFault()
+                            .setMethodName("import")
+                            .setMethodCode(element.toString())
+                            .setClientLineNumber(element.getPosition().getLine())
+                            .setClientEndLineNumber(element.getPosition().getEndLine())
+                            .setErrorInfo(getMavenErrorLog(element))
+                    );
+                }
+            });
+
+        return result;
+    }
+
+    private List<DetectedFault> getMethodFaults(CtModel model) {
+        CtType<?> mainClass = model.getAllTypes().iterator().next();
+        List<DetectedFault> results = new ArrayList<>();
+
+        mainClass.getElements(new TypeFilter<>(CtMethodImpl.class)).stream().forEach(e -> {
+            if(containsAnError(e)) {
+                DetectedFault fault = new DetectedFault();
+                fault.methodName = e.getSimpleName();
+                fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
+
+                CtClass<?> parentClass = e.getParent(CtClass.class);
+                Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();
+                Set<CtMethod<?>> oldMethods = parentClass.getMethods();
+                newMethods.add(e);
+                
+                parentClass.setMethods(newMethods);
+
+                fault.inClassCode = parentClass.toString();
+                parentClass.setMethods(oldMethods);
+                
+                fault.clientLineNumber = getRealLinePosition(e);
+                fault.clientEndLineNumber = e.getPosition().getEndLine();
+                fault.errorInfo = getMavenErrorLog(e);
+                fault.plausibleDependencyIdentifier = null;
+                results.add(fault);
+            }
+        });
+        return results;
     }
 }

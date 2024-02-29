@@ -13,9 +13,9 @@ public class Main {
     // static String project_folder = "docker-adapter";
     // static String dependency_group_id = "com.artipie";
 
-    static String client_id = "1c0972fc3d905b9f2a305a78f8a158a0b3fd8639";
-    static String project_folder = "license-maven-plugin";
-    static String dependency_group_id = "org.apache.maven.shared";
+    static String client_id = "4a3efad6e00824e5814b9c8f571c9c98aad40281";
+    static String project_folder = "open-pdf-sign";
+    static String dependency_group_id = "eu.europa.ec.joinup.sd-dss";
     
     // static String dependency_group_id = "net.datafaker";
 
@@ -30,7 +30,7 @@ public class Main {
 
             log.getErrorInfo().forEach((k, v) -> {
                 System.out.println("Fault: " + k);
-                FaultDetector detector = new FaultDetector(dependency_group_id, v);
+                FaultDetector detector = new FaultDetector(v);
                 List<DetectedFault> results = detector.detectFaults(project + k);
 
                 results.forEach(r -> {

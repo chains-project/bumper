@@ -3,8 +3,13 @@ package se.kth.fault_detection;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.Getter;
+import lombok.Setter;
 import se.kth.log_Analyzer.MavenErrorLog;
 
+@Setter
+@Getter
+@lombok.experimental.Accessors(chain = true)
 public class DetectedFault {
     public String methodName;
     public String methodCode;
