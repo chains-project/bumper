@@ -101,6 +101,7 @@ public class FaultDetector {
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
+                fault.qualifiedCode = e.getOriginalSourceFragment().toString();
 
                 CtClass<?> parentClass = e.getParent(CtClass.class);
                 Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();

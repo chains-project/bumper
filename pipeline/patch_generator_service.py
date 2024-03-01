@@ -30,7 +30,7 @@ class PatchGeneratorService:
                 return ImportPatchGenerator(failure=failure, project=project)
             
             # TODO: make substitute patch generator
-            return TypingPatchGenerator(failure=failure, project=project)
+            return TypingPatchGenerator(failure=failure, project=project, use_fully_qualified=True)
         
         print(f"PatchGenerator not found for {error_message}")
         exit(1)
