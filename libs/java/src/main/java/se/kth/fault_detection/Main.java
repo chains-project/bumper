@@ -13,9 +13,9 @@ public class Main {
     // static String project_folder = "docker-adapter";
     // static String dependency_group_id = "com.artipie";
 
-    static String client_id = "4a3efad6e00824e5814b9c8f571c9c98aad40281";
-    static String project_folder = "open-pdf-sign";
-    static String dependency_group_id = "eu.europa.ec.joinup.sd-dss";
+    static String client_id = "4aab2869639226035c999c282f31efba15648ea3";
+    static String project_folder = "http";
+    static String dependency_group_id = "";
     
     // static String dependency_group_id = "net.datafaker";
 

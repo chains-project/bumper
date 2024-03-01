@@ -32,8 +32,9 @@ public class FaultDetector {
         CtModel model = spoon.getModel();
         List<DetectedFault> result = new ArrayList<DetectedFault>();
 
-        result.addAll(getMethodFaults(model));
+        // Order is very important as you tipically want to fix from the first error
         result.addAll(getImportFaults(model));
+        result.addAll(getMethodFaults(model));
 
         return result;
     }
