@@ -100,8 +100,8 @@ public class FaultDetector {
             if(this.containsAnError(e)) {
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
+                fault.qualifiedCode = e.toStringDebug();
                 fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
-                fault.qualifiedCode = e.getOriginalSourceFragment().toString();
 
                 CtClass<?> parentClass = e.getParent(CtClass.class);
                 Set<CtMethod<?>> newMethods = new HashSet<CtMethod<?>>();
