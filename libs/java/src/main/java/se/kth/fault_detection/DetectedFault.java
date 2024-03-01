@@ -13,7 +13,8 @@ import se.kth.log_Analyzer.MavenErrorLog;
 public class DetectedFault {
     public String methodName;
     public String methodCode;
-    public String qualifiedCode;
+    public String qualifiedMethodCode;
+    public String qualifiedInClassCode;
     public String inClassCode;
     public String plausibleDependencyIdentifier;
     public int clientLineNumber;

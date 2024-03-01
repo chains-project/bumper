@@ -25,5 +25,5 @@ the new library version includes the following changes, where `--` indicates a r
 
 you also know that the failing method is inserted in this class:
 ```java
-{{ in_class_client_code }}
+{{ qualified_in_class_code }}
 ```

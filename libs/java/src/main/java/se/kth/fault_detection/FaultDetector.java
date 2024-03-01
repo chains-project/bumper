@@ -100,7 +100,7 @@ public class FaultDetector {
             if(this.containsAnError(e)) {
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
-                fault.qualifiedCode = e.toStringDebug();
+                fault.qualifiedMethodCode = e.toStringDebug();
                 fault.methodCode = e.getOriginalSourceFragment().getSourceCode();
 
                 CtClass<?> parentClass = e.getParent(CtClass.class);
@@ -111,6 +111,7 @@ public class FaultDetector {
                 parentClass.setMethods(newMethods);
 
                 fault.inClassCode = parentClass.toString();
+                fault.qualifiedInClassCode = parentClass.toStringDebug();
                 parentClass.setMethods(oldMethods);
                 
                 fault.clientLineNumber = getRealLinePosition(e);
