@@ -3,7 +3,7 @@ import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator import PatchGenerator
+from pipeline.patch_generator_service import PatchGenerator
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
@@ -23,7 +23,7 @@ class ProjectRepairer:
             return True
 
         failure = failures[0]
-        for run in range(0, 5):
+        for _ in range(0, 5):
             prompt = Prompt(
                 template="complete_instructions_on_top",
                 values={

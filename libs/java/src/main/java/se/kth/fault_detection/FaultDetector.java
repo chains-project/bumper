@@ -64,7 +64,7 @@ public class FaultDetector {
     }
 
     private int getRealLinePosition(CtElement element) {
-        // Need to do this trick as getLine does not take into account for decorators
+        // Need to do this trick as getLine does not take into account for decorators, and comments
         String[] lines = element.getOriginalSourceFragment().getSourceCode().split("\r\n|\r|\n");
         int numberOfLines = lines.length;
         return element.getPosition().getEndLine() - numberOfLines + 1;
@@ -96,7 +96,7 @@ public class FaultDetector {
         List<DetectedFault> results = new ArrayList<>();
 
         mainClass.getElements(new TypeFilter<>(CtMethodImpl.class)).stream().forEach(e -> {
-            if(containsAnError(e)) {
+            if(this.containsAnError(e)) {
                 DetectedFault fault = new DetectedFault();
                 fault.methodName = e.getSimpleName();
                 fault.methodCode = e.getOriginalSourceFragment().getSourceCode();

@@ -20,7 +20,7 @@ class Failure:
             detected_fault=DetectedFault.from_json(data['detectedFault'])
         )
 
-    def get_api_diff(self, project_id: str, only_relevant: bool = True) -> str:
+    def get_api_diff(self, project_id: str = None, only_relevant: bool = True) -> str:
         if not only_relevant:
             return "\n".join([c.get_diff() for c in self.api_changes])
 

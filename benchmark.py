@@ -5,7 +5,7 @@ from typing import List
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator import PatchGenerator
+from pipeline.patch_generator_service import PatchGenerator
 from pipeline.types.project import Project
 from dotenv import load_dotenv
 
