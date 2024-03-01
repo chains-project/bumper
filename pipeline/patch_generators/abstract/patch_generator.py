@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 import json
 import os
 
+import jsonpickle
+
 from pipeline.types.failure import Failure
 from pipeline.types.patch import Patch
 from pipeline.types.project import Project
@@ -11,9 +13,13 @@ class PatchGenerator(ABC):
         super().__init__()
         self.failure = failure
         self.project = project
+        self.after_init()
+
+    def after_init(self):
+        pass
 
     @abstractmethod
-    def generate() -> Patch:
+    def generate(self) -> Patch:
         pass
         
     def save_patch(self, patch: Patch):
@@ -29,8 +35,12 @@ class PatchGenerator(ABC):
             f.write(self.failure.detected_fault.method_code)
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/failure.json", "w") as f:
-            f.write(json.dumps(self.failure.__dict__))
+        with open(f"{self.project.path}/patches/{patch.id}/detected_fault.json", "w") as f:
+            f.write(jsonpickle.encode(self.failure.detected_fault))
+            f.close()
+
+        with open(f"{self.project.path}/patches/{patch.id}/api_diff.txt", "w") as f:
+            f.write(self.failure.get_api_diff(only_relevant=False))
             f.close()
 
         with open(f"{self.project.path}/patches/{patch.id}/metadata.json", "w") as f:

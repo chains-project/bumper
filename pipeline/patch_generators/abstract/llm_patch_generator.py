@@ -11,14 +11,14 @@ from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
 class LLMPatchGenerator(PatchGenerator):
+    def after_init(self):
+        self.init_llm()
+    
     def init_llm(self):
         vertexai.init(location=os.getenv("GOOGLE_CLOUD_REGION"))
         self.model = VertexAI(model_name="gemini-pro")
 
     def get_model(self) -> BaseLLM:
-        if self.model is None:
-            self.init_llm()
-            
         return self.model
 
     def generate(self) -> Patch:

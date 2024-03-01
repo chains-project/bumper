@@ -3,7 +3,8 @@ import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator_service import PatchGenerator
+from pipeline.patch_generator_service import PatchGeneratorService
+
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
@@ -24,20 +25,13 @@ class ProjectRepairer:
 
         failure = failures[0]
         for _ in range(0, 5):
-            prompt = Prompt(
-                template="complete_instructions_on_top",
-                values={
-                    "in_class_client_code": failure.detected_fault.in_class_code,
-                    "client_code": failure.detected_fault.method_code,
-                    "error_message": failure.detected_fault.error_info.error_message,
-                    "additional_info": failure.detected_fault.error_info.additional_info,
-                    "bump_description": failure.get_api_diff(project_id=self.project.project_id)
-                }
-            )
-            patch_generator = PatchGenerator()
+            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project)
+
             print(f"Generating patch for project {self.project.project_name}")
-            patch = patch_generator.generate(prompt)
-            self.project.save_patch(patch, prompt=prompt, failure=failure)
+            patch = patch_generator.generate()
+            patch_generator.save_patch(patch)
+            print("Patch generated")
+
             patch_applicator = PatchApplicator(self.project)
             patch_applicator.save_patched_code(patch, failure)
             print("File patched")

@@ -26,7 +26,7 @@ class PatchGeneratorService:
             return TypingPatchGenerator(failure=failure, project=project)
         
         if "cannot find symbol" in error_message:
-            if PatchGeneratorService.is_import_error(error_message):
+            if PatchGeneratorService.is_import_error(failure=failure):
                 return ImportPatchGenerator(failure=failure, project=project)
             
             # TODO: make substitute patch generator
