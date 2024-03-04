@@ -22,8 +22,3 @@ with the following error message:
 
 the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
 {{ bump_description }}
-
-you also know that the failing method is inserted in this class:
-```java
-{{ qualified_in_class_code }}
-```
