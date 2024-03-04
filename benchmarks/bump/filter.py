@@ -44,14 +44,14 @@ def filter_files_for_error_type(keep: List[str], discard: List[str]):
             path = filename.path
             with open(path) as f:
                 content = f.read()
-                if it_contains_any(content, discard) or not it_contains_any(content, keep):
+                if contains_any(content, discard) or not contains_any(content, keep):
                     if remove_file(f"./filtered_data/{key}.json"):
                         removed_count += 1
 
     print(f"{removed_count} files removed")
 
 
-def it_contains_any(this: str, has_any: List[str]) -> bool:
+def contains_any(this: str, has_any: List[str]) -> bool:
     for s in has_any:
         if s in this:
             return True
