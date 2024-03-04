@@ -20,9 +20,9 @@ def main(project_id: str):
         bump_folder=os.getenv("BUMP_PATH"),
         project_id=project_id
     )
-    result = project.get_result()
+    metadata = project.get_metadata()
 
-    if result["repaired"] is True:
+    if metadata.get("repaired") is True:
         print(f"PROJECT {project.project_id} IS ALREADY REPAIRED!")
         exit(0)
 
@@ -33,9 +33,11 @@ def main(project_id: str):
     ])
 
     repairer = ProjectRepairer(project=project)
-    if repairer.repair():
+    result = repairer.repair()
+    project.save_metadata(meta=result.__dict__)
+
+    if result.repaired:
         print(f"PROJECT {project.project_id} REPAIRED!")
-        project.set_as_repaired()
         exit(0)
     else:
         print(f"FAILED TO REPAIR PROJECT {project.project_id}")

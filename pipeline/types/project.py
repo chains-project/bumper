@@ -58,8 +58,8 @@ class Project:
                 f.write(failure.detected_fault.method_code)
                 f.close()
 
-    def get_result(self) -> dict:
-        path = f"{self.path}/result.json"
+    def get_metadata(self) -> dict:
+        path = f"{self.path}/metadata.json"
         if os.path.exists(path=path):
             with open(path, "r") as f:
                 result = json.loads(f.read())
@@ -70,11 +70,8 @@ class Project:
             "repaired": False
         }
 
-    def set_as_repaired(self, meta: dict = None):
-        with open(f"{self.path}/result.json", "w") as f:
-            f.write(json.dumps({
-                "repaired": True,
-                "meta": meta
-            }))
+    def save_metadata(self, meta: dict = {"successful": False}):
+        with open(f"{self.path}/metadata.json", "w") as f:
+            f.write(json.dumps(meta))
             f.close()
             

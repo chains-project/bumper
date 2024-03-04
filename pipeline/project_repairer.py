@@ -6,6 +6,7 @@ from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator_service import PatchGeneratorService
 
 from pipeline.types.project import Project
+from pipeline.types.project_repair_status import ProjectRepairStatus
 from pipeline.types.prompt import Prompt
 
 
@@ -13,7 +14,7 @@ class ProjectRepairer:
     def __init__(self, project: Project):
         self.project = project
 
-    def repair(self, from_patch_id=None) -> bool:
+    def repair(self, from_patch_id=None) -> ProjectRepairStatus:
         base_path = f"{self.project.path}/patched_code/{from_patch_id}" if from_patch_id else self.project.path
 
         extractor = FailureExtractor(self.project)
@@ -21,10 +22,10 @@ class ProjectRepairer:
         print(f"found {len(failures)} failures!")
 
         if len(failures) <= 0:
-            return True
+            return ProjectRepairStatus(successful=True)
 
         failure = failures[0]
-        for _ in range(0, 5):
+        for trial_count in range(1, 6):
             patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project)
 
             print(f"Generating patch for project {self.project.project_name}")
@@ -44,25 +45,26 @@ class ProjectRepairer:
             ], stdout=subprocess.PIPE)
             if result.returncode == 0:
                 print("Failure patched!")
-                return True
+                return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True)
             else:
                 print("Project not patched, trying to understand if it patched the specific failure:")
                 print(f"Before we have {len(failures)} failures")
 
                 new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
                 if len(new_failures) <= 0:
-                    print("Error extracting new failures, cannot repair project")
-                    return False
-
+                    print("Error extracting new failures, patch is not valid.")
+                    continue
+                    # return ProjectRepairStatus(generated_patch_count=trial_count, repaired=False)
                 print(f"Now we have {len(new_failures)} failures")
                 if len(new_failures) < len(failures):
                     print("Failure is fixed, we can continue from here")
                     new_project = copy.deepcopy(self.project)
                     new_project.path = self.project.path + f"/patched_code/{patch.id}"
                     repairer = ProjectRepairer(project=new_project)
-                    return repairer.repair()
+                    return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True)\
+                                .merge(repairer.repair())
                 else:
                     print("Failure not fixed, trying to generate new patch")
 
         print(f"Repair failed for this failure (#{failure.detected_fault.identifier})")
-        return False
+        return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=5, repaired=False)
