@@ -57,3 +57,24 @@ class Project:
             with open(f"{self.path}/patches/prompts/{prompt.template}/{patch.id}/original.txt", "w") as f:
                 f.write(failure.detected_fault.method_code)
                 f.close()
+
+    def get_result(self) -> dict:
+        path = f"{self.path}/result.json"
+        if os.path.exists(path=path):
+            with open(path, "r") as f:
+                result = json.loads(f.read())
+                f.close()
+                return result
+        
+        return {
+            "repaired": False
+        }
+
+    def set_as_repaired(self, meta: dict = None):
+        with open(f"{self.path}/result.json", "w") as f:
+            f.write(json.dumps({
+                "repaired": True,
+                "meta": meta
+            }))
+            f.close()
+            

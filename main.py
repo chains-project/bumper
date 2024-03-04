@@ -20,6 +20,11 @@ def main(project_id: str):
         bump_folder=os.getenv("BUMP_PATH"),
         project_id=project_id
     )
+    result = project.get_result()
+
+    if result["repaired"] is True:
+        print(f"PROJECT {project.project_id} IS ALREADY REPAIRED!")
+        exit(0)
 
     subprocess.run([
         'sh',
@@ -28,7 +33,13 @@ def main(project_id: str):
     ])
 
     repairer = ProjectRepairer(project=project)
-    repairer.repair()
+    if repairer.repair():
+        print(f"PROJECT {project.project_id} REPAIRED!")
+        project.set_as_repaired()
+        exit(0)
+    else:
+        print(f"FAILED TO REPAIR PROJECT {project.project_id}")
+        exit(1)
 
 
 if __name__ == "__main__":
