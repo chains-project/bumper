@@ -1,13 +1,20 @@
+import argparse
 import json
 import os
 import subprocess
+import sys
 from typing import List
+
+import jsonpickle
+import tqdm
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator_service import PatchGenerator
+from pipeline.patch_generator_service import PatchGenerator, PipelineRunningMode
+from pipeline.project_repairer import ProjectRepairer
 from pipeline.types.project import Project
 from dotenv import load_dotenv
+from pipeline.types.project_repair_status import ProjectRepairStatus
 
 from pipeline.types.prompt import Prompt
 
@@ -17,61 +24,50 @@ load_dotenv()
 class BenchmarkReport:
     def __init__(self, benchmark: str):
         self.benchmark = benchmark
-        self.test_count = 0
-        self.successful_test_count = 0
+        self.projects_count = 0
+        self.successfull_repaired = 0
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
+    
+    def save(self, to_path: str):
+        os.makedirs(os.path.dirname(to_path), exist_ok=True)
+        with open(to_path, "w") as f:
+            f.write(jsonpickle.encode(self))
+            f.close
 
 
-def main():
+def main(mode: PipelineRunningMode):
     benchmarks = {
         "bump": get_bump()
     }
 
-    for projects in benchmarks.values():
-        run_benchmark(projects)
+    for key, projects in benchmarks:
+        run_benchmark(key, projects, mode=mode)
 
 
-def run_benchmark(projects: List[Project]):
-    for project in projects:
-        run_project(project)
+def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
+    report = BenchmarkReport(benchmark=key)
+    report.projects_count = len(projects)
+
+    for project in tqdm (projects, desc=f"Running projects for {key}..."):
+        status = run_project(project, mode=mode)
+        if status.repaired:
+            report.successfull_repaired += 1
+    
+    report.save(to_path=f"results/benchmark/{mode}/{key}.json")
 
 
-def run_project(project: Project):
-    extractor = FailureExtractor(project)
-    failures = extractor.get_failures()
-
-    if len(failures) > 1:
-        print("Multiple failures detected, skipping project...")
-        return
-
-
-    failure = failures[0]
-    prompt = Prompt(
-        template="complete_instructions_on_top",
-        values={
-            "in_class_client_code": failure.detected_fault.in_class_code,
-            "client_code": failure.detected_fault.method_code,
-            "error_message": failure.detected_fault.error_info.error_message,
-            "bump_description": failure.get_api_diff(project_id=project.project_id)
-        }
-    )
-    patch_generator = PatchGenerator()
-    print(f"Generating patch for project {project.project_name}")
-    patch = patch_generator.generate(prompt)
-    project.save_patch(patch, prompt=prompt, failure=failure)
-    patch_applicator = PatchApplicator(project)
-    patch_applicator.save_patched_code(patch, failure)
-    print("File patched")
-    print("Checking for validity...")
+def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
     subprocess.run([
         'sh',
-        'benchmarks/bump/scripts/test_patched_code.sh',
+        'benchmarks/bump/scripts/clone_client_code.sh',
         project.project_id,
-        patch_applicator.get_patched_code_path(patch, failure)
     ])
+
+    repairer = ProjectRepairer(project=project, mode=mode)
+    return repairer.repair()
 
 
 def get_bump() -> List[Project]:
@@ -93,4 +89,10 @@ def get_bump() -> List[Project]:
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-m", "--mode", help="Mode [STANDARD, BASELINE]", type=PipelineRunningMode, choices=list(PipelineRunningMode), required=True)
+
+    options = parser.parse_args()
+    main(
+        mode=options.mode
+    )

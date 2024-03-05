@@ -87,10 +87,10 @@ def main():
     filter_files_for_error_type(
         keep=[
             "cannot find symbol",
-            # "incompatible types",
-            # "cannot be applied to given types",
-            # "method cannot be applied to given types",
-            # "constructor in class cannot be applied to given types"
+            "incompatible types",
+            "cannot be applied to given types",
+            "method cannot be applied to given types",
+            "constructor in class cannot be applied to given types"
         ],
         discard=[
             "class file has wrong version",

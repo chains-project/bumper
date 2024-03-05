@@ -1,8 +1,10 @@
+from enum import Enum
 import os
 import vertexai
 from langchain_core.language_models import BaseLLM
 from langchain_google_vertexai import VertexAI
 from pipeline.patch_generators.abstract.patch_generator import PatchGenerator
+from pipeline.patch_generators.baseline_patch_generator import BaselinePatchGenerator
 from pipeline.patch_generators.decorator_patch_generator import DecoratorPatchGenerator
 from pipeline.patch_generators.import_patch_generator import ImportPatchGenerator
 from pipeline.patch_generators.typing_patch_generator import TypingPatchGenerator
@@ -10,10 +12,20 @@ from pipeline.types.failure import Failure
 
 from pipeline.types.project import Project
 
+class PipelineRunningMode(Enum):
+    BASELINE = "baseline"
+    STANDARD = "standard"
+
+    def __str__(self):
+        return self.value
+
 class PatchGeneratorService:
     
     @staticmethod
-    def get_generator(failure: Failure, project: Project) -> PatchGenerator:
+    def get_generator(failure: Failure, project: Project, mode: PipelineRunningMode = PipelineRunningMode.STANDARD) -> PatchGenerator:
+        if mode is PipelineRunningMode.BASELINE:
+            return BaselinePatchGenerator(failure=failure, project=project)
+
         error_message = failure.detected_fault.error_info.error_message
 
         if "method does not override" in error_message:

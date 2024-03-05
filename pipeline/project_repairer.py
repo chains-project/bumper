@@ -3,7 +3,7 @@ import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator_service import PatchGeneratorService
+from pipeline.patch_generator_service import PatchGeneratorService, PipelineRunningMode
 
 from pipeline.types.project import Project
 from pipeline.types.project_repair_status import ProjectRepairStatus
@@ -11,8 +11,9 @@ from pipeline.types.prompt import Prompt
 
 
 class ProjectRepairer:
-    def __init__(self, project: Project):
+    def __init__(self, project: Project, mode: PipelineRunningMode = PipelineRunningMode.STANDARD):
         self.project = project
+        self.mode = mode
 
     def repair(self, from_patch_id=None) -> ProjectRepairStatus:
         base_path = f"{self.project.path}/patched_code/{from_patch_id}" if from_patch_id else self.project.path
@@ -26,7 +27,7 @@ class ProjectRepairer:
 
         failure = failures[0]
         for trial_count in range(1, 6):
-            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project)
+            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.mode)
 
             print(f"Generating patch for project {self.project.project_name}")
             patch = patch_generator.generate()
