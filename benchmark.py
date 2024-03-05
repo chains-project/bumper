@@ -1,4 +1,5 @@
 import argparse
+import contextlib
 import json
 import os
 import subprocess
@@ -6,7 +7,7 @@ import sys
 from typing import List
 
 import jsonpickle
-import tqdm
+from tqdm import tqdm
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
@@ -15,9 +16,7 @@ from pipeline.project_repairer import ProjectRepairer
 from pipeline.types.project import Project
 from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
-
 from pipeline.types.prompt import Prompt
-
 load_dotenv()
 
 
@@ -43,15 +42,15 @@ def main(mode: PipelineRunningMode):
         "bump": get_bump()
     }
 
-    for key, projects in benchmarks:
-        run_benchmark(key, projects, mode=mode)
+    for key in benchmarks.keys():
+        run_benchmark(key, benchmarks[key], mode=mode)
 
 
 def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
     report = BenchmarkReport(benchmark=key)
     report.projects_count = len(projects)
 
-    for project in tqdm (projects, desc=f"Running projects for {key}..."):
+    for project in tqdm(projects, desc=f"Running projects for {key}..."):
         status = run_project(project, mode=mode)
         if status.repaired:
             report.successfull_repaired += 1
