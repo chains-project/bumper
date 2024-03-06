@@ -69,7 +69,7 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
             print(f"Skipping {project.project_id} because already run.")
             continue
         status = run_project(project, mode=mode)
-        report.add_result(status)
+        report.add_result(key=project.project_id, result=status)
 
 
 def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
