@@ -13,7 +13,7 @@ class Prompt:
         with open(self.get_template_path(), 'r') as file:
             data = file.read()
             for key in values.keys():
-                data = data.replace("{{ " + key + " }}", values[key])
+                data = data.replace("{{ " + key + " }}", values.get(key) or "")
             return data
 
     def get_template_path(self):
