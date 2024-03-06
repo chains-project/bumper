@@ -61,7 +61,7 @@ class ProjectRepairer:
                     print("Failure is fixed, we can continue from here")
                     new_project = copy.deepcopy(self.project)
                     new_project.path = self.project.path + f"/patched_code/{patch.id}"
-                    repairer = ProjectRepairer(project=new_project)
+                    repairer = ProjectRepairer(project=new_project, mode=self.mode)
                     return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True)\
                                 .merge(repairer.repair())
                 else:
