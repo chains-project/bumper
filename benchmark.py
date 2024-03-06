@@ -21,20 +21,34 @@ load_dotenv()
 
 
 class BenchmarkReport:
-    def __init__(self, benchmark: str):
-        self.benchmark = benchmark
-        self.projects_count = 0
-        self.successfull_repaired = 0
+    def __init__(self, path: str):
+        self.path = path
+        self.results = {}
+
+    @staticmethod
+    def load(from_path: str):
+        report = BenchmarkReport(path=from_path)
+        if os.path.exists(from_path):
+            with open(from_path, "r") as f:
+                report.results = jsonpickle.decode(f.read())
+                f.close()
+        return report
+            
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=4)
-    
-    def save(self, to_path: str):
+
+    def save(self):
+        to_path = self.path
         os.makedirs(os.path.dirname(to_path), exist_ok=True)
         with open(to_path, "w") as f:
-            f.write(jsonpickle.encode(self))
+            f.write(jsonpickle.encode(self.results))
             f.close
+
+    def add_result(self, key: str, result: ProjectRepairStatus):
+        self.results[key] = result
+        self.save()
 
 
 def main(mode: PipelineRunningMode):
@@ -47,15 +61,15 @@ def main(mode: PipelineRunningMode):
 
 
 def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
-    report = BenchmarkReport(benchmark=key)
-    report.projects_count = len(projects)
+    path = f"results/benchmark/{mode}/{key}.json"
+    report = BenchmarkReport.load(from_path=path)
 
     for project in tqdm(projects, desc=f"Running projects for {key}..."):
+        if report.results.get(project.project_id) is not None:
+            print(f"Skipping {project.project_id} because already run.")
+            continue
         status = run_project(project, mode=mode)
-        if status.repaired:
-            report.successfull_repaired += 1
-    
-    report.save(to_path=f"results/benchmark/{mode}/{key}.json")
+        report.add_result(status)
 
 
 def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
