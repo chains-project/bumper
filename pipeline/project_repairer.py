@@ -69,4 +69,4 @@ class ProjectRepairer:
                     print("Failure not fixed, trying to generate new patch")
 
         print(f"Repair failed for this failure (#{failure.detected_fault.identifier})")
-        return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=5, repaired=False)
+        return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=trial_count, repaired=False)
