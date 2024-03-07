@@ -16,7 +16,11 @@ class LLMPatchGenerator(PatchGenerator):
     
     def init_llm(self):
         vertexai.init(location=os.getenv("GOOGLE_CLOUD_REGION"))
-        self.model = VertexAI(model_name="gemini-pro")
+        self.model = VertexAI(
+            model_name="gemini-pro",
+            temperature=os.getenv("LLM_TEMPERATURE", 0.5),
+            top_p=os.getenv("LLM_TOP_P", 1.0),
+        )
 
     def get_model(self) -> BaseLLM:
         return self.model
