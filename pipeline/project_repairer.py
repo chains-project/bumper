@@ -1,4 +1,5 @@
 import copy
+import os
 import subprocess
 
 from pipeline.failure_extractor import FailureExtractor
@@ -26,7 +27,7 @@ class ProjectRepairer:
             return ProjectRepairStatus(successful=True)
 
         failure = failures[0]
-        for trial_count in range(1, 6):
+        for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
             patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.mode)
 
             print(f"Generating patch for project {self.project.project_name}")
