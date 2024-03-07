@@ -65,11 +65,14 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
     report = BenchmarkReport.load(from_path=path)
 
     for project in tqdm(projects, desc=f"Running projects for {key}..."):
-        if report.results.get(project.project_id) is not None:
-            print(f"Skipping {project.project_id} because already run.")
-            continue
-        status = run_project(project, mode=mode)
-        report.add_result(key=project.project_id, result=status)
+        try:
+            if report.results.get(project.project_id) is not None:
+                print(f"Skipping {project.project_id} because already run.")
+                continue
+            status = run_project(project, mode=mode)
+            report.add_result(key=project.project_id, result=status)
+        except:
+            print(f"Skipping {project.project_id} because is failing to run.")
 
 
 def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
