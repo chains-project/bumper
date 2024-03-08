@@ -19,6 +19,23 @@ from pipeline.types.project_repair_status import ProjectRepairStatus
 from pipeline.types.prompt import Prompt
 load_dotenv()
 
+class DummyFile(object):
+  file = None
+  def __init__(self, file):
+    self.file = file
+
+  def write(self, x):
+    # Avoid print() second call (useless \n)
+    if len(x.rstrip()) > 0:
+        tqdm.write(x, file=self.file)
+
+@contextlib.contextmanager
+def nostdout():
+    save_stdout = sys.stdout
+    sys.stdout = DummyFile(sys.stdout)
+    yield
+    sys.stdout = save_stdout
+
 
 class BenchmarkReport:
     def __init__(self, path: str):
@@ -64,23 +81,24 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
     path = f"results/benchmark/{mode}/{key}.json"
     report = BenchmarkReport.load(from_path=path)
 
-    for project in tqdm(projects, desc=f"Running projects for {key}..."):
-        try:
-            if report.results.get(project.project_id) is not None:
-                print(f"Skipping {project.project_id} because already run.")
-                continue
-            status = run_project(project, mode=mode)
-            report.add_result(key=project.project_id, result=status)
-        except:
-            print(f"Skipping {project.project_id} because is failing to run.")
+    progress = tqdm(projects, desc=f"Running projects for {key}...", file=sys.stdout)
+    for project in progress:
+        with nostdout():
+            try:
+                if report.results.get(project.project_id) is None:
+                    status = run_project(project, mode=mode)
+                    report.add_result(key=project.project_id, result=status)
+                else:
+                    print(f"✅ {project.project_name} ({project.project_id})")
+                    progress.update(1)
+            except KeyboardInterrupt:
+                exit(1)
+            except:
+                print(f"Skipping {project.project_id} because is failing to run.")
 
 
 def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
-    subprocess.run([
-        'sh',
-        'benchmarks/bump/scripts/clone_client_code.sh',
-        project.project_id,
-    ])
+    print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
 
     repairer = ProjectRepairer(project=project, mode=mode)
     return repairer.repair()

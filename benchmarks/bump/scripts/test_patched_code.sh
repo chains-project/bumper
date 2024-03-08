@@ -22,16 +22,14 @@ mkdir -p clients/$1
 project_id=$(cat filtered_data/$1.json | tr { '\n' | tr , '\n' | tr } '\n' | grep '"project"' | awk  -F'"' '{print $4}')
 patched_version_path=$2
 
-docker run --name "$1" -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking" 
+docker run --name "$1" --platform linux/amd64 -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking"
 docker cp $patched_version_path $1:/
 docker exec -it $1 mvn clean test -B | tee $patched_version_path/$1.log
 docker stop $1
 docker remove $1
 
 if [ "$(cat $patched_version_path/$1.log | grep -c "BUILD SUCCESS")" -gt 0 ]; then
-  echo "REPAIRED SUCCESSFULLY :)"
   exit 0
 else
-  echo "REPAIR UNSUCCESSFUL :("
   exit 1
 fi

@@ -16,7 +16,6 @@ if ! [ -f "filtered_data/$1.json" ]; then
 fi
 
 if [ -d "clients/$1" ]; then
-    echo "$1 client code already cloned!"
     exit 0
 fi
 
