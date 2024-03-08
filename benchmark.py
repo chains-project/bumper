@@ -4,6 +4,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from typing import List
 
 import jsonpickle
@@ -81,7 +82,7 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
     path = f"results/benchmark/{mode}/{key}.json"
     report = BenchmarkReport.load(from_path=path)
 
-    progress = tqdm(projects, desc=f"Running projects for {key}...", file=sys.stdout)
+    progress = tqdm(projects, desc=f"Running projects for {key}...", file=sys.stdout, miniters=1)
     for project in progress:
         with nostdout():
             try:
@@ -90,7 +91,7 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
                     report.add_result(key=project.project_id, result=status)
                 else:
                     print(f"✅ {project.project_name} ({project.project_id})")
-                    progress.update(1)
+                    time.sleep(0.2)
             except KeyboardInterrupt:
                 exit(1)
             except:
