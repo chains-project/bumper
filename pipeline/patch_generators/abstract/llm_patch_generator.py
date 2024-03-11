@@ -29,6 +29,10 @@ class LLMPatchGenerator(PatchGenerator):
         md = self.get_model().invoke(self.get_prompt().get_text())
         result = Patch.from_md(md)
 
+        with open(f"{self.project.path}/patches/{result.id}/model_response.md", "w") as f:
+            f.write(md)
+            f.close()
+
         return result
     
     def save_patch(self, patch: Patch):
