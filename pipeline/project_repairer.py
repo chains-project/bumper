@@ -27,11 +27,13 @@ class ProjectRepairer:
             return ProjectRepairStatus(successful=True)
 
         failure = failures[0]
+        patches = []
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
             patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.mode)
 
             print(f"Generating patch for project {self.project.project_name}")
             patch = patch_generator.generate()
+            patches.append(patch)
             patch_generator.save_patch(patch)
             print("Patch generated")
 
@@ -47,7 +49,7 @@ class ProjectRepairer:
             ], stdout=subprocess.PIPE)
             if result.returncode == 0:
                 print("Failure patched!")
-                return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True)
+                return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
             else:
                 print("Project not patched, trying to understand if it patched the specific failure:")
                 print(f"Before we have {len(failures)} failures")
@@ -63,10 +65,10 @@ class ProjectRepairer:
                     new_project = copy.deepcopy(self.project)
                     new_project.path = self.project.path + f"/patched_code/{patch.id}"
                     repairer = ProjectRepairer(project=new_project, mode=self.mode)
-                    return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True)\
+                    return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)\
                                 .merge(repairer.repair())
                 else:
                     print("Failure not fixed, trying to generate new patch")
 
         print(f"Repair failed for this failure (#{failure.detected_fault.identifier})")
-        return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=trial_count, repaired=False)
+        return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=trial_count, repaired=False, patches=patches)
