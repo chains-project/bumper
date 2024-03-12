@@ -1,32 +1,32 @@
 from abc import abstractmethod
 import os
 import vertexai
-from langchain_core.language_models import BaseLLM
-from langchain_google_vertexai import VertexAI
+from langchain_core.language_models import BaseChatModel
 from pipeline.patch_generators.abstract.patch_generator import PatchGenerator
 from pipeline.types.failure import Failure
+from pipeline.types.llm import LLMType
 
 from pipeline.types.patch import Patch
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
 class LLMPatchGenerator(PatchGenerator):
+    def __init__(self, failure: Failure, project: Project, model: LLMType) -> None:
+        self.llm_type = model
+        super().__init__(failure, project)
+
     def after_init(self):
         self.init_llm()
     
     def init_llm(self):
-        vertexai.init(location=os.getenv("GOOGLE_CLOUD_REGION"))
-        self.model = VertexAI(
-            model_name="gemini-pro",
-            temperature=os.getenv("LLM_TEMPERATURE", 0.5),
-            top_p=os.getenv("LLM_TOP_P", 1.0),
-        )
+        self.model = self.llm_type.get_model()
 
-    def get_model(self) -> BaseLLM:
+    def get_model(self) -> BaseChatModel:
         return self.model
 
     def generate(self) -> Patch:
-        md = self.get_model().invoke(self.get_prompt().get_text())
+        message = self.get_model().invoke(self.get_prompt().get_text())
+        md = message.content
         result = Patch.from_md(md)
 
         with open(f"{self.project.path}/patches/{result.id}/model_response.md", "w") as f:

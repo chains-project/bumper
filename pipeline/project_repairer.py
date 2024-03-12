@@ -31,7 +31,7 @@ class ProjectRepairer:
         failure = failures[0]
         patches = []
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
-            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.pipeline)
+            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, pipeline=self.pipeline, model=self.model)
 
             print(f"Generating patch for project {self.project.project_name}")
             patch = patch_generator.generate()

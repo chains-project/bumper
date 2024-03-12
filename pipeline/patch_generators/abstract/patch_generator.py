@@ -5,6 +5,7 @@ import os
 import jsonpickle
 
 from pipeline.types.failure import Failure
+from pipeline.types.llm import LLMType
 from pipeline.types.patch import Patch
 from pipeline.types.project import Project
 

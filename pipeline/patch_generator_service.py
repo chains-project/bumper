@@ -9,6 +9,7 @@ from pipeline.patch_generators.decorator_patch_generator import DecoratorPatchGe
 from pipeline.patch_generators.import_patch_generator import ImportPatchGenerator
 from pipeline.patch_generators.typing_patch_generator import TypingPatchGenerator
 from pipeline.types.failure import Failure
+from pipeline.types.llm import LLMType
 
 from pipeline.types.project import Project
 
@@ -22,9 +23,9 @@ class PipelineRunningMode(Enum):
 class PatchGeneratorService:
     
     @staticmethod
-    def get_generator(failure: Failure, project: Project, mode: PipelineRunningMode = PipelineRunningMode.STANDARD) -> PatchGenerator:
-        if mode is PipelineRunningMode.BASELINE:
-            return BaselinePatchGenerator(failure=failure, project=project)
+    def get_generator(failure: Failure, project: Project, pipeline: PipelineRunningMode = PipelineRunningMode.STANDARD, model: LLMType = LLMType.GEMINI) -> PatchGenerator:
+        if pipeline is PipelineRunningMode.BASELINE:
+            return BaselinePatchGenerator(failure=failure, project=project, model=model)
 
         error_message = failure.detected_fault.error_info.error_message
 
@@ -32,17 +33,17 @@ class PatchGeneratorService:
             return DecoratorPatchGenerator(failure=failure, project=project)
         
         if "incompatible types" in error_message:
-            return TypingPatchGenerator(failure=failure, project=project)
+            return TypingPatchGenerator(failure=failure, project=project, model=model)
         
         if "reference to" in error_message and "is ambiguous" in error_message:
-            return TypingPatchGenerator(failure=failure, project=project)
+            return TypingPatchGenerator(failure=failure, project=project, model=model)
         
         if "cannot find symbol" in error_message:
             if PatchGeneratorService.is_import_error(failure=failure):
                 return ImportPatchGenerator(failure=failure, project=project)
             
             # TODO: make substitute patch generator
-            return TypingPatchGenerator(failure=failure, project=project, use_fully_qualified=True)
+            return TypingPatchGenerator(failure=failure, project=project, use_fully_qualified=True, model=model)
         
         print(f"PatchGenerator not found for {error_message}")
         exit(1)

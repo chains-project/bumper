@@ -1,12 +1,13 @@
 from pipeline.patch_generators.abstract.llm_patch_generator import LLMPatchGenerator
 from pipeline.types.failure import Failure
+from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
 
 class TypingPatchGenerator(LLMPatchGenerator):
-    def __init__(self, failure: Failure, project: Project, use_fully_qualified: bool = False) -> None:
-        super().__init__(failure, project)
+    def __init__(self, failure: Failure, project: Project, model: LLMType, use_fully_qualified: bool = False) -> None:
+        super().__init__(failure, project, model)
         self.use_fully_qualified = use_fully_qualified
 
     def get_prompt(self) -> Prompt:

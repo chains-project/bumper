@@ -105,8 +105,9 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                     time.sleep(0.2)
             except KeyboardInterrupt:
                 exit(1)
-            except:
-                print(f"Skipping {project.project_id} because is failing to run.")
+            except Exception as error:
+                print(f"Skipping {project.project_id} because is failing to run:")
+                print(error)
 
 
 def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
