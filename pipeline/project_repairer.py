@@ -5,6 +5,7 @@ import subprocess
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator_service import PatchGeneratorService, PipelineRunningMode
+from pipeline.types.llm import LLMType
 
 from pipeline.types.project import Project
 from pipeline.types.project_repair_status import ProjectRepairStatus
@@ -12,12 +13,13 @@ from pipeline.types.prompt import Prompt
 
 
 class ProjectRepairer:
-    def __init__(self, project: Project, mode: PipelineRunningMode = PipelineRunningMode.STANDARD):
+    def __init__(self, project: Project, pipeline: PipelineRunningMode = PipelineRunningMode.STANDARD, model: LLMType = LLMType.GEMINI):
         self.project = project
-        self.mode = mode
+        self.pipeline = pipeline
+        self.model = model
 
-    def repair(self, from_patch_id=None) -> ProjectRepairStatus:
-        base_path = f"{self.project.path}/patched_code/{from_patch_id}" if from_patch_id else self.project.path
+    def repair(self) -> ProjectRepairStatus:
+        base_path = self.project.path
 
         extractor = FailureExtractor(self.project)
         failures = extractor.get_failures(base_path=base_path)
@@ -29,11 +31,11 @@ class ProjectRepairer:
         failure = failures[0]
         patches = []
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
-            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.mode)
+            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, mode=self.pipeline)
 
             print(f"Generating patch for project {self.project.project_name}")
             patch = patch_generator.generate()
-            patches.append(patch)
+            patches.append(patch.id)
             patch_generator.save_patch(patch)
             print("Patch generated")
 
@@ -48,7 +50,7 @@ class ProjectRepairer:
                 patch_applicator.get_patched_code_path(patch, failure)
             ], stdout=subprocess.PIPE)
             if result.returncode == 0:
-                print("Failure patched!")
+                print("Project patched!")
                 return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
             else:
                 print("Project not patched, trying to understand if it patched the specific failure:")
@@ -64,7 +66,7 @@ class ProjectRepairer:
                     print("Failure is fixed, we can continue from here")
                     new_project = copy.deepcopy(self.project)
                     new_project.path = self.project.path + f"/patched_code/{patch.id}"
-                    repairer = ProjectRepairer(project=new_project, mode=self.mode)
+                    repairer = ProjectRepairer(project=new_project, mode=self.pipeline)
                     return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)\
                                 .merge(repairer.repair())
                 else:

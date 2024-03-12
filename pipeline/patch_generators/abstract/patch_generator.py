@@ -36,7 +36,7 @@ class PatchGenerator(ABC):
             f.close()
 
         with open(f"{self.project.path}/patches/{patch.id}/detected_fault.json", "w") as f:
-            f.write(jsonpickle.encode(self.failure.detected_fault))
+            f.write(jsonpickle.encode(self.failure.detected_fault, indent=4))
             f.close()
 
         with open(f"{self.project.path}/patches/{patch.id}/api_diff.txt", "w") as f:

@@ -14,6 +14,7 @@ from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator_service import PatchGenerator, PipelineRunningMode
 from pipeline.project_repairer import ProjectRepairer
+from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
 from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
@@ -69,25 +70,35 @@ class BenchmarkReport:
         self.save()
 
 
-def main(mode: PipelineRunningMode):
+def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
     benchmarks = {
         "bump": get_bump()
     }
 
     for key in benchmarks.keys():
-        run_benchmark(key, benchmarks[key], mode=mode)
+        run_benchmark(
+            key=key,
+            name=name,
+            projects=benchmarks[key],
+            pipeline=pipeline,
+            model=model
+        )
 
 
-def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
-    path = f"results/benchmark/{mode}/{key}.json"
+def run_benchmark(key: str, name: str, projects: List[Project], pipeline: PipelineRunningMode, model: LLMType):
+    path = f"results/benchmark/{name}/{key}/{pipeline}/{model}.json"
     report = BenchmarkReport.load(from_path=path)
 
-    progress = tqdm(projects, desc=f"Running projects for {key}...", file=sys.stdout, miniters=1)
+    progress = tqdm(projects, desc=f"Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout, miniters=1)
     for project in progress:
         with nostdout():
             try:
                 if report.results.get(project.project_id) is None:
-                    status = run_project(project, mode=mode)
+                    status = run_project(
+                        project=project,
+                        pipeline=pipeline,
+                        model=model
+                    )
                     report.add_result(key=project.project_id, result=status)
                 else:
                     print(f"✅ {project.project_name} ({project.project_id})")
@@ -98,10 +109,10 @@ def run_benchmark(key: str, projects: List[Project], mode: PipelineRunningMode):
                 print(f"Skipping {project.project_id} because is failing to run.")
 
 
-def run_project(project: Project, mode: PipelineRunningMode) -> ProjectRepairStatus:
+def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
     print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
 
-    repairer = ProjectRepairer(project=project, mode=mode)
+    repairer = ProjectRepairer(project=project, pipeline=pipeline, model=model)
     return repairer.repair()
 
 
@@ -125,9 +136,13 @@ def get_bump() -> List[Project]:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--mode", help="Mode [STANDARD, BASELINE]", type=PipelineRunningMode, choices=list(PipelineRunningMode), required=True)
+    parser.add_argument("-n", "--name", help="Name of the benchmark execution", type=str, required=True)
+    parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)
+    parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE]", type=PipelineRunningMode, choices=list(PipelineRunningMode), required=True)
 
     options = parser.parse_args()
     main(
-        mode=options.mode
+        name=options.name,
+        pipeline=options.pipeline,
+        model=options.model
     )
