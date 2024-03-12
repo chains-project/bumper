@@ -1,7 +1,6 @@
 from enum import Enum
 import os
 import vertexai
-from langchain_core.language_models import BaseLLM
 from langchain_google_vertexai import VertexAI
 from pipeline.patch_generators.abstract.patch_generator import PatchGenerator
 from pipeline.patch_generators.baseline_patch_generator import BaselinePatchGenerator

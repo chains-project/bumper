@@ -25,21 +25,25 @@ class LLMPatchGenerator(PatchGenerator):
         return self.model
 
     def generate(self) -> Patch:
-        message = self.get_model().invoke(self.get_prompt().get_text())
+        prompt = self.get_prompt().get_text()
+        message = self.get_model().invoke(prompt)
         md = message.content
-        result = Patch.from_md(md)
+        patch = Patch.from_md(md)
+        
+        patch.__prompt = prompt
+        patch.__response = md
 
-        with open(f"{self.project.path}/patches/{result.id}/model_response.md", "w") as f:
-            f.write(md)
-            f.close()
-
-        return result
+        return patch
     
     def save_patch(self, patch: Patch):
         super().save_patch(patch)
 
         with open(f"{self.project.path}/patches/{patch.id}/prompt.txt", "w") as f:
-            f.write(self.get_prompt().get_text())
+            f.write(patch.__prompt)
+            f.close()
+
+        with open(f"{self.project.path}/patches/{patch.id}/model_response.md", "w") as f:
+            f.write(patch.__response)
             f.close()
 
     @abstractmethod

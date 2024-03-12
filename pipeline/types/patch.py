@@ -5,6 +5,8 @@ import time
 class Patch:
     id: int
     value: str
+    __prompt: str = None
+    __response: str = None
 
     def __init__(
             self,

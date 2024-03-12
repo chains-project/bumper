@@ -62,7 +62,7 @@ class BenchmarkReport:
         to_path = self.path
         os.makedirs(os.path.dirname(to_path), exist_ok=True)
         with open(to_path, "w") as f:
-            f.write(jsonpickle.encode(self.results))
+            f.write(jsonpickle.encode(self.results, indent=4))
             f.close
 
     def add_result(self, key: str, result: ProjectRepairStatus):
