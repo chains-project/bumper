@@ -1,0 +1,9 @@
+2d1
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+3a3,4
+>     try {
+>         List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+6a8,10
+>     } catch (NoSuchElementException e) {
+>         System.out.println("Element not found: " + e.getMessage());
+>     }

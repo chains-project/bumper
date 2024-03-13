@@ -1,0 +1,4 @@
+2c2
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+---
+>     List<XmlFieldInstance> instances = cache.read(branch.getJsonPath());
