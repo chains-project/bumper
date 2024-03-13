@@ -38,11 +38,14 @@ class LLMPatchGenerator(PatchGenerator):
     def save_patch(self, patch: Patch):
         super().save_patch(patch)
 
-        with open(f"{self.project.path}/patches/{patch.id}/prompt.txt", "w") as f:
+        root_project = self.project.root_project or self.project
+        path = f"{root_project.path}/patches/{patch.id}"
+
+        with open(f"{path}/prompt.txt", "w") as f:
             f.write(patch.__prompt)
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/model_response.md", "w") as f:
+        with open(f"{path}/model_response.md", "w") as f:
             f.write(patch.__response)
             f.close()
 
