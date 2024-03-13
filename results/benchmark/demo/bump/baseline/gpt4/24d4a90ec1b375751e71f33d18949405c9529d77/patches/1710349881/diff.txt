@@ -1,0 +1,6 @@
+1c1
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> long time = System.currentTimeMillis();
+\ No newline at end of file

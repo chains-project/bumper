@@ -1,0 +1,15 @@
+1c1,10
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import java.lang.Math;
+> 
+> public class YourClass {
+>     public void yourMethod() {
+>         long yourLongValue = 123456789L;
+>         int yourIntValue = Math.toIntExact(yourLongValue);
+>         
+>         // your code...
+>     }
+> }
+\ No newline at end of file
