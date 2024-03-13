@@ -1,0 +1,2 @@
+  import eu.europa.esig.dss.pades.signature.PAdESSignatureParameters;
+  import eu.europa.esig.dss.model.pades.SignatureImageParameters.VisualSignatureAlignmentHorizontal;
