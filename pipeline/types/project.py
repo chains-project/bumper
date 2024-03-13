@@ -1,10 +1,11 @@
+from __future__ import annotations
+
 import json
 import os
 
 from pipeline.types.failure import Failure
 from pipeline.types.patch import Patch
 from pipeline.types.prompt import Prompt
-from __future__ import annotations
 
 
 class Project:

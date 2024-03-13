@@ -26,7 +26,7 @@ class PatchGenerator(ABC):
     def save_patch(self, patch: Patch):
         root_project = self.project.root_project or self.project
         path = f"{root_project.path}/patches/{patch.id}"
-        os.makedirs(os.path.dirname(path), exist_ok=True)
+        os.makedirs(os.path.dirname(f"{path}/"), exist_ok=True)
 
         with open(f"{path}/patch.txt", "w") as f:
             f.write(patch.value)
