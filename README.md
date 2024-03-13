@@ -1,4 +1,4 @@
-# Bump-ER
+# Bumper
 Automatic repair with LLMs for breaking dependency update (bump)
 
 # Findings
