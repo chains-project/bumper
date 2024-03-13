@@ -1,0 +1,4 @@
+3c3
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     return Timestamp.from(super.between(from, to).toInstant());
