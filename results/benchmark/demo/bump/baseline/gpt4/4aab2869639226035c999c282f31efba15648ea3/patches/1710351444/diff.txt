@@ -1,0 +1,13 @@
+4a5,8
+>         Storage storage = new Storages().newStorage(
+>             sub.string("type"), 
+>             Yaml.createYamlInput(sub.toString()).readYamlMapping()
+>         );
+6,10c10
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+---
+>             new BlockingStorage(storage)

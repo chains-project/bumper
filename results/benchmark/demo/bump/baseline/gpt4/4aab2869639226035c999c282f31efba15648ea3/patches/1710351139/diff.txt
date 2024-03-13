@@ -1,0 +1,6 @@
+1c1
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.storage.Storages;
+\ No newline at end of file

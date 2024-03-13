@@ -1,0 +1,13 @@
+5,10c5,7
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+---
+>         Storage storage = new Storages().newStorage(
+>             sub.string("type"), 
+>             Yaml.createYamlInput(sub.toString()).readYamlMapping()
+11a9
+>         return new YamlPolicy(new BlockingStorage(storage));

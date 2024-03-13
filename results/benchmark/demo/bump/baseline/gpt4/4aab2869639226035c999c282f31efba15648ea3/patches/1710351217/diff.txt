@@ -1,0 +1,6 @@
+1c1
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.newpackage.NewEquivalentClass; 
+\ No newline at end of file

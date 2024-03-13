@@ -1,0 +1,8 @@
+4a5,7
+>         Yaml yaml = new Yaml();
+>         String yamlString = sub.toString();
+>         YamlMapping yamlMapping = yaml.createYamlInput(yamlString).readYamlMapping();
+8c11
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                     sub.string("type"), yamlMapping
