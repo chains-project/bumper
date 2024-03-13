@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import json
 import os
+import subprocess
 
 import jsonpickle
 
@@ -49,3 +50,13 @@ class PatchGenerator(ABC):
                 "PatchGenerator": type(self).__name__
             }))
             f.close()
+
+        with open(f"{path}/diff.txt", "w") as f:
+            subprocess.run([
+                'diff', "-w", "-t",
+                f"{path}/original.txt",
+                f"{path}/patch.txt"
+            ], stdout=f)
+            f.close()
+
+        

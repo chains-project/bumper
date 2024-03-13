@@ -86,8 +86,8 @@ def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
 
 
 def run_benchmark(key: str, name: str, projects: List[Project], pipeline: PipelineRunningMode, model: LLMType):
-    path = f"results/benchmark/{name}/{key}/{pipeline}/{model}.json"
-    report = BenchmarkReport.load(from_path=path)
+    path = f"results/benchmark/{name}/{key}/{pipeline}/{model}"
+    report = BenchmarkReport.load(from_path=f"{path}/report.json")
 
     progress = tqdm(projects, desc=f"Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout, miniters=1)
     for project in progress:
@@ -99,6 +99,7 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                         pipeline=pipeline,
                         model=model
                     )
+                    save_patches(project=project, path=path)
                     report.add_result(key=project.project_id, result=status)
                 else:
                     print(f"✅ {project.project_name} ({project.project_id})")
@@ -109,6 +110,9 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                 print(f"Skipping {project.project_id} because is failing to run:")
                 print(error)
 
+def save_patches(project: Project, path: str):
+    os.makedirs(os.path.dirname(f"{path}/patches/"), exist_ok=True)
+    subprocess.call(f"mv {project.path}/patches/* {path}/patches", shell=True)
 
 def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
     print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
