@@ -1,5 +1,5 @@
 # Bumper
-Automatic repair with LLMs for breaking dependency update (bump)
+Automatic program repair with LLMs for breaking dependency update (bump)
 
 # Findings
 - Some clients fail because the new dependency version required a different java version
