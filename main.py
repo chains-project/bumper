@@ -27,7 +27,7 @@ def main(project_id: str):
         exit(0)
 
     subprocess.run([
-        'sh',
+        'bash',
         'benchmarks/bump/scripts/clone_client_code.sh',
         project.project_id,
     ])

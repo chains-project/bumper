@@ -135,7 +135,7 @@ def get_bump() -> List[Project]:
             key = filename.name.replace(".json", "")
             project = Project.from_bump(bump_folder, key)
             subprocess.run([
-                'sh',
+                'bash',
                 'benchmarks/bump/scripts/clone_client_code.sh',
                 project.project_id,
             ])

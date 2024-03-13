@@ -83,7 +83,7 @@ class ProjectRepairer:
 
             try:
                 result = subprocess.run([
-                    'sh',
+                    'bash',
                     'benchmarks/bump/scripts/test_patched_code.sh',
                     self.project.project_id,
                     patch_applicator.get_patched_code_path(patch, failure)
@@ -92,7 +92,7 @@ class ProjectRepairer:
             except subprocess.TimeoutExpired:
                 print("[ERROR] test_patched_code.sh timed out! Cleaning up before continuing...")
                 subprocess.run([
-                    'sh',
+                    'bash',
                     'benchmarks/bump/scripts/cleanup_after_failure.sh',
                     self.project.project_id,
                 ], stdout=subprocess.PIPE)
