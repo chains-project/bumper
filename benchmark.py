@@ -100,7 +100,7 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                         pipeline=pipeline,
                         model=model
                     )
-                    save_patches(project=project, path=path)
+                    move_patches(project=project, path=path)
                     report.add_result(key=project.project_id, result=status)
                 else:
                     print(f"✅ {project.project_name} ({project.project_id})")
@@ -111,12 +111,15 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                 print(f"Skipping {project.project_id} because is failing to run:")
                 print(error)
 
-def save_patches(project: Project, path: str):
+def move_patches(project: Project, path: str):
     os.makedirs(os.path.dirname(f"{path}/patches/"), exist_ok=True)
     subprocess.call(f"mv {project.path}/patches/* {path}/patches", shell=True)
 
 def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
     print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
+
+    subprocess.call(f"rm -rf {project.path}/patches", shell=True)
+    subprocess.call(f"rm -rf {project.path}/patched_code", shell=True)
 
     repairer = ProjectRepairer(project=project, pipeline=pipeline, model=model)
     return repairer.repair()
