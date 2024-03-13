@@ -1,0 +1,2 @@
+  int minutes = 5; // replace with actual value
+  long milliseconds = TimeUnit.MINUTES.toMillis(minutes);

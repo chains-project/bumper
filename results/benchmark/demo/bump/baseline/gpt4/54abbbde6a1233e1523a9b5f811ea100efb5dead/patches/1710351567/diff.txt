@@ -1,0 +1,12 @@
+2d1
+<     @Override
+10a10
+>         Session session = null;
+19c19
+<             final Session session = jsch.getSession(
+---
+>             session = jsch.getSession(
+29d28
+<             return session;
+32a32
+>         return session;

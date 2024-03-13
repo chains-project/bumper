@@ -1,0 +1,5 @@
+  // import com.jcabi.aspects.Tv; // remove or comment this line
+
+  // replace usage of Tv with alternative code
+  // for example, if Tv was used for time conversion, use:
+  // java.time.Duration duration = java.time.Duration.ofMillis(millis);

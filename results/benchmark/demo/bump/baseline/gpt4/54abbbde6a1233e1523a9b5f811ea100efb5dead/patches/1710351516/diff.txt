@@ -1,0 +1,7 @@
+1c1,2
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+>   int minutes = 5; // replace with actual value
+>   long milliseconds = TimeUnit.MINUTES.toMillis(minutes);
+\ No newline at end of file
