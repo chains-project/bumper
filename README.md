@@ -17,3 +17,17 @@ Automatic program repair with LLMs for breaking dependency update (bump)
 ## BUMP
 - [78 clients](./benchmarks/bump/analysis/clients_failing_due_to_java_version.txt) have failures due to incompatible java version, they won't be used with the repair pipeline
 - [141 clients](./benchmarks/bump/analysis/clients_failing_due_to_internal_apis.txt) have failures due to usage of internal api, they won't be used with the repair pipeline
+
+
+## HOW TO RUN
+```
+bash setup.sh
+```
+
+```
+cd libs/java && mvn package && cd -
+```
+
+```
+python benchmark.py --help
+```
