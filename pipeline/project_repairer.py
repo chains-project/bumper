@@ -34,7 +34,7 @@ class ProjectRepairer:
         patches = []
 
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
-            patch = self.generate_patch(falure=failure)
+            patch = self.generate_patch(failure=failure)
             result = self.check_for_validity(patch=patch, failure=failure)
             
             if self.is_success(result):
@@ -100,4 +100,4 @@ class ProjectRepairer:
             return subprocess.CompletedProcess(returncode=1)
     
     def is_success(self, result: subprocess.CompletedProcess) -> bool:
-         return True if result.returncode is 0 else False
+         return True if result.returncode == 0 else False
