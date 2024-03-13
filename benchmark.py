@@ -103,7 +103,8 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                     move_patches(project=project, path=path)
                     report.add_result(key=project.project_id, result=status)
                 else:
-                    print(f"✅ {project.project_name} ({project.project_id})")
+                    icon = "✅" if report.results.get(project.project_id).repaired is True else "❌"
+                    print(f"{icon} {project.project_name} ({project.project_id})")
                     time.sleep(0.2)
             except KeyboardInterrupt:
                 exit(1)
