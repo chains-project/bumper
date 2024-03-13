@@ -9,7 +9,6 @@ certifi==2024.2.2
 charset-normalizer==3.3.2
 dataclasses-json==0.6.4
 distro==1.9.0
-docker==7.0.0
 exceptiongroup==1.2.0
 frozenlist==1.4.1
 google-ai-generativelanguage==0.4.0
@@ -77,5 +76,4 @@ types-protobuf==4.24.0.20240129
 types-requests==2.31.0.20240218
 typing-inspect==0.9.0
 typing_extensions==4.9.0
-urllib3==1.26.18
 yarl==1.9.4
