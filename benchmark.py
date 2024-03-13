@@ -68,6 +68,7 @@ class BenchmarkReport:
     def add_result(self, key: str, result: ProjectRepairStatus):
         self.results[key] = result
         self.save()
+        subprocess.call("git add . && git commit -m \"[Benchmark] update results\" && git push", shell=True)
 
 
 def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
