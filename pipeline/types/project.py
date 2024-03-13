@@ -4,6 +4,7 @@ import os
 from pipeline.types.failure import Failure
 from pipeline.types.patch import Patch
 from pipeline.types.prompt import Prompt
+from __future__ import annotations
 
 
 class Project:
@@ -30,7 +31,8 @@ class Project:
             library_name: str,
             old_library_version: str,
             new_library_version: str,
-            library_group_id: str = ""
+            library_group_id: str = "",
+            root_project: Project = None
     ) -> None:
         self.library_group_id = library_group_id
         self.project_name = project_name
@@ -39,6 +41,7 @@ class Project:
         self.library_name = library_name
         self.old_library_version = old_library_version
         self.new_library_version = new_library_version
+        self.root_project = root_project
 
     def save_patch(self, patch: Patch, prompt: Prompt, failure: Failure = None):
         filename = f"prompts/{prompt.template}/{patch.id}/patch.txt"

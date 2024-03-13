@@ -35,7 +35,6 @@ class ProjectRepairer:
 
             print(f"Generating patch for project {self.project.project_name}")
             patch = patch_generator.generate()
-            patches.append(patch.id)
             patch_generator.save_patch(patch)
             print("Patch generated")
 
@@ -51,6 +50,7 @@ class ProjectRepairer:
             ], stdout=subprocess.PIPE)
             if result.returncode == 0:
                 print("Project patched!")
+                patches.append(patch.id)
                 return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
             else:
                 print("Project not patched, trying to understand if it patched the specific failure:")
@@ -60,11 +60,13 @@ class ProjectRepairer:
                 if len(new_failures) <= 0:
                     print("Error extracting new failures, patch is not valid.")
                     continue
-                    # return ProjectRepairStatus(generated_patch_count=trial_count, repaired=False)
+
                 print(f"Now we have {len(new_failures)} failures")
                 if len(new_failures) < len(failures):
                     print("Failure is fixed, we can continue from here")
+                    patches.append(patch.id)
                     new_project = copy.deepcopy(self.project)
+                    new_project.root_project = self.project.root_project or self.project
                     new_project.path = self.project.path + f"/patched_code/{patch.id}"
                     repairer = ProjectRepairer(project=new_project, pipeline=self.pipeline, model=self.model)
                     return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)\

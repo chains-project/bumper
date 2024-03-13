@@ -24,27 +24,27 @@ class PatchGenerator(ABC):
         pass
         
     def save_patch(self, patch: Patch):
-        filename = f"{patch.id}/patch.txt"
-        path = f"{self.project.path}/patches/{filename}"
+        root_project = self.project.root_project or self.project
+        path = f"{root_project.path}/patches/{patch.id}"
         os.makedirs(os.path.dirname(path), exist_ok=True)
 
-        with open(path, "w") as f:
+        with open(f"{path}/patch.txt", "w") as f:
             f.write(patch.value)
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/original.txt", "w") as f:
+        with open(f"{path}/original.txt", "w") as f:
             f.write(self.failure.detected_fault.method_code)
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/detected_fault.json", "w") as f:
+        with open(f"{path}/detected_fault.json", "w") as f:
             f.write(jsonpickle.encode(self.failure.detected_fault, indent=4))
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/api_diff.txt", "w") as f:
+        with open(f"{path}/api_diff.txt", "w") as f:
             f.write(self.failure.get_api_diff(only_relevant=False))
             f.close()
 
-        with open(f"{self.project.path}/patches/{patch.id}/metadata.json", "w") as f:
+        with open(f"{path}/metadata.json", "w") as f:
             f.write(json.dumps({
                 "PatchGenerator": type(self).__name__
             }))
