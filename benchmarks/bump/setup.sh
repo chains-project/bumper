@@ -1,5 +1,7 @@
-parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
-cd "$parent_path"
+#!/bin/bash
+
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" || exit ; pwd -P )
+cd "$parent_path" || exit
 
 if ! [ -d './repository' ]; then
     git clone https://github.com/chains-project/bump.git ./repository
