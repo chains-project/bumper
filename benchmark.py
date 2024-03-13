@@ -112,7 +112,7 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                 print(error)
 
 def move_patches(project: Project, path: str):
-    os.makedirs(os.path.dirname(f"{path}/patches/"), exist_ok=True)
+    os.makedirs(os.path.dirname(f"{path}/{project.project_id}/patches/"), exist_ok=True)
     subprocess.call(f"mv {project.path}/patches/* {path}/{project.project_id}/patches", shell=True)
 
 def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
