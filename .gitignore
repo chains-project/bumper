@@ -10,3 +10,10 @@ libs/java/**/target/
 test.json
 test.txt
 g_credentials.json
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
