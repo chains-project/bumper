@@ -1,0 +1,7 @@
+15c15
+<             } else {
+---
+>             } else if (!isEmpty(step.username) && !isEmpty(step.password)) {
+17a18,19
+>             } else {
+>                 throw new IllegalArgumentException("Either 'credentialsId' or both 'username' and 'password' must be specified");

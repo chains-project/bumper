@@ -1,0 +1,4 @@
+20c20
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, step.version);
