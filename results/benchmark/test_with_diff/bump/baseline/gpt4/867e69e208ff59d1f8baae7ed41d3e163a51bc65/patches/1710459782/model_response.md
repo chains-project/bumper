@@ -1,0 +1,3 @@
+Without knowing the changes in the new library version it's impossible to propose a patch. The error message indicates that the class TFramedTransport cannot be found in the package org.apache.thrift.transport. This can be due to the class being moved to a different package or being renamed or removed in the new version of the library. 
+
+Please provide the changes in the new version of the library so I can propose a solution.

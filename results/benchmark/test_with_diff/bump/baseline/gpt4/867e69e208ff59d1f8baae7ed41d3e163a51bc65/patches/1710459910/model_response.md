@@ -1,0 +1,1 @@
+I am sorry, but I can't provide a solution because you didn't provide the changes made in the new library version. I need that information to determine what changes need to be made to the client code.

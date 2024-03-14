@@ -1,0 +1,1 @@
+import org.apache.thrift.newpackage.NewClassName; // replace "newpackage" and "NewClassName" with actual values
