@@ -1,0 +1,10 @@
+2a3,7
+>     ClassName mutatedClass = data.getMutatedClass().iterator().next();
+>     byte[] byteCode = null; // You need to fetch the byte code for the class
+>     long timeStamp = 0L; // You need to fetch the timestamp for when the class was modified
+>     ClassInfoVisitor classInfoVisitor = new ClassInfoVisitor();
+>     ClassInfoBuilder classInfo = classInfoVisitor.getClassInfo(mutatedClass, byteCode, timeStamp);
+4c9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo.build());
