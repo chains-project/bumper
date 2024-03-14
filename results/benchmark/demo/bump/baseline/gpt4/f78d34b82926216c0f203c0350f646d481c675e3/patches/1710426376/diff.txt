@@ -1,0 +1,7 @@
+19,20c19,21
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         // Removed the dependency on develop.p2p.lib.LeetConverter as it doesn't exist
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
