@@ -1,0 +1,7 @@
+1c1,2
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> // replace with the correct package if the Tv class is moved
+> import com.correct.package.Tv;
+\ No newline at end of file

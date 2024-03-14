@@ -1,0 +1,1 @@
+I'm sorry, but I can't provide a patch without knowing the changes in the new library version. Could you please provide the changes?
