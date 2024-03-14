@@ -1,0 +1,1 @@
+As an AI, I need more information to solve this problem. Specifically, I need to know the changes in the new version of the library. Without this information, it's impossible to propose a patch to fix the issue. Please provide more details about the changes in the library.
