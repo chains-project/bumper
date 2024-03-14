@@ -1,0 +1,15 @@
+1,6d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+18,21c12,13
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+<             Locale locale = Locale.getDefault();
+<             generate( sink, locale );
+---
+>             SiteRendererSink sink = new SiteRendererSink( new RenderingContext( outputDirectory, getOutputName() + ".html" ) );
+>             generate( sink, Locale.getDefault() );

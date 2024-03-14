@@ -1,0 +1,12 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+16,17d10
+<         try
+<         {
+20a14,15
+>         try
+>         {

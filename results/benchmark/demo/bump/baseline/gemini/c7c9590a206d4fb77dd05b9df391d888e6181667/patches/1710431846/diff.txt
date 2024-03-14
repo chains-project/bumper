@@ -1,0 +1,11 @@
+1,6d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+21c15
+<             generate( sink, locale );
+---
+>             ++generate( sink, locale );

@@ -1,0 +1,12 @@
+6d5
+<     @Override
+16,17d14
+<         try
+<         {
+22,27d18
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+<         }

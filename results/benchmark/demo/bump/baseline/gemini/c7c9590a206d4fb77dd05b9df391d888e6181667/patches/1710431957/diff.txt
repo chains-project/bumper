@@ -1,0 +1,17 @@
+1,6d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+16,17c10
+<         try
+<         {
+---
+>         String locale = Locale.getDefault().toString();
+20c13,14
+<             Locale locale = Locale.getDefault();
+---
+>         try
+>         {

@@ -1,0 +1,29 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+7,11c2,3
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+>     public void execute() throws MojoExecutionException {
+>         if (!canGenerateReport()) {
+16,17c8
+<         try
+<         {
+---
+>         try {
+22,24c13,16
+<         }
+<         catch ( MavenReportException e )
+<         {
+---
+>         } catch (MavenReportException e) {
+>             String prefix = "An error has occurred in " + getName(Locale.ENGLISH) + " report generation";
+>             throw new MojoExecutionException(prefix + ": " + e.getMessage(), e);
+>         } catch (IOException e) {

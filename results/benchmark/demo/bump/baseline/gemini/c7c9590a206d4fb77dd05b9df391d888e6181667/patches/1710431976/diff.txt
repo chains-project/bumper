@@ -1,0 +1,27 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+15a11,12
+>         SiteRendererSink sink = null;
+>         RenderingContext context = null;
+18,19c15,16
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+---
+>             context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+>             sink = new SiteRendererSink( context );
+26a24,34
+>         }
+>         finally
+>         {
+>             if ( sink != null )
+>             {
+>                 sink.close();
+>             }
+>             if ( context != null )
+>             {
+>                 context.close();
+>             }

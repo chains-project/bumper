@@ -1,0 +1,12 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+23a19,23
+>         {
+>             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+>             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+>         }
+>         catch ( SiteRendererException e )
