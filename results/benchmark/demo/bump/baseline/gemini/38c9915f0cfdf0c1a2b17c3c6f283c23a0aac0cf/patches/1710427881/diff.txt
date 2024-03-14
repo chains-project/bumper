@@ -1,0 +1,4 @@
+1a2,3
+>   import static org.cactoos.scalar.UncheckedScalar.of;
+>   import static org.cactoos.text.TextOf.textOf;
+\ No newline at end of file
