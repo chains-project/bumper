@@ -1,0 +1,6 @@
+18c18,20
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             // Use the new method to get the enchantment
+>             Enchantment enchantment = XEnchantment.matchXEnchantment("power").get().parseEnchant();
+>             pageMeta.addEnchant(enchantment, 1, false);
