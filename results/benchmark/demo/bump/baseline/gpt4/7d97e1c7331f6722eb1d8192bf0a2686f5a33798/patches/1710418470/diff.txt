@@ -1,0 +1,6 @@
+1c1
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+>   int Tv = 0; // or another suitable initial value
+\ No newline at end of file
