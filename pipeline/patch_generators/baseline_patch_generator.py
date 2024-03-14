@@ -1,3 +1,4 @@
+import os
 from pipeline.patch_generators.abstract.llm_patch_generator import LLMPatchGenerator
 from pipeline.types.failure import Failure
 from pipeline.types.project import Project
@@ -5,9 +6,15 @@ from pipeline.types.prompt import Prompt
 
 
 class BaselinePatchGenerator(LLMPatchGenerator):
+    def get_prompt_template(self) -> str:
+        if os.getenv("WITHOUT_APIDIFF") == "True":
+            return "base_prompt_template"
+        
+        return "base_prompt_template_with_diff"
+
     def get_prompt(self) -> Prompt:
         return Prompt(
-                template="base_prompt_template",
+                template=self.get_prompt_template(),
                 values=self.get_params()
             )
     
