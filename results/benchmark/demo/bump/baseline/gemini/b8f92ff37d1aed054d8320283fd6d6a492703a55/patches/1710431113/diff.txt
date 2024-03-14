@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4,5
+<         ++return directoryScanner.getClasses();
+---
+>         List<String> classes = directoryScanner.getClasses();
+>         ++return classes;

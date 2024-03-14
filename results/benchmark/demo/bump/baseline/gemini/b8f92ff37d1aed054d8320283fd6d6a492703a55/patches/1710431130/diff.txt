@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<         ++return directoryScanner.getClasses();
+---
+>         return ++directoryScanner.getClasses();
