@@ -1,0 +1,7 @@
+import org.cactoos.scalar.UncheckedScalar;
+
+// rest of the code
+
+UncheckedScalar scalar;
+
+// rest of the code

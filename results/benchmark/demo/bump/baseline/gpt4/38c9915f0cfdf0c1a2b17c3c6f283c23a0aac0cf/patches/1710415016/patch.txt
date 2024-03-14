@@ -1,0 +1,5 @@
+  import java.util.Arrays;
+
+  String delimiter = ", ";
+  String[] elements = {"Element1", "Element2", "Element3"}; // This should be replaced with the actual elements
+  String joinedText = String.join(delimiter, elements);

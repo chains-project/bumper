@@ -1,0 +1,8 @@
+import org.cactoos.iterable.IterableOf;
+
+Iterable<String> iterable = new IterableOf<>("A", "B", "C");
+
+int length = 0;
+for (Object i : iterable) {
+    length++;
+}

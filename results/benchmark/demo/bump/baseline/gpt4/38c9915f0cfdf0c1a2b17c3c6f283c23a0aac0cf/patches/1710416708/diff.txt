@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.apache.commons.collections4.IterableUtils;
+\ No newline at end of file

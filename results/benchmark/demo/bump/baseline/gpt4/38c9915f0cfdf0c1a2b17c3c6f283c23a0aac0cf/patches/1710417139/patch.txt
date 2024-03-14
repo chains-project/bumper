@@ -1,0 +1,5 @@
+import java.util.Collection;
+
+// Replace the usage of LengthOf with Collection's size() method
+Collection<?> yourCollection = // your iterable or collection
+int length = yourCollection.size();

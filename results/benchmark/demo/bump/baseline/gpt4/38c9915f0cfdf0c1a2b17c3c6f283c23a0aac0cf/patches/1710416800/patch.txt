@@ -1,0 +1,6 @@
+import java.util.stream.StreamSupport;
+
+//...
+
+// Assuming `iterable` is the instance of Iterable you're working with.
+int length = StreamSupport.stream(iterable.spliterator(), false).count();

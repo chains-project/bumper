@@ -1,0 +1,4 @@
+import java.util.Collection;
+
+// Replace LengthOf with Collection.size()
+int length = ((Collection<?>) iterable).size();

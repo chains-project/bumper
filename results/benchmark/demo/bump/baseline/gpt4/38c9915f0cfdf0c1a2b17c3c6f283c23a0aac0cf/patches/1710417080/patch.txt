@@ -1,0 +1,3 @@
+  import java.util.stream.StreamSupport;
+
+  int length = StreamSupport.stream(iterable.spliterator(), false).count();

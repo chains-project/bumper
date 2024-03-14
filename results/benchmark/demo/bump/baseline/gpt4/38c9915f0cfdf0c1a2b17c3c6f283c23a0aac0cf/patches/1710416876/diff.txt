@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import java.util.Optional;
+\ No newline at end of file

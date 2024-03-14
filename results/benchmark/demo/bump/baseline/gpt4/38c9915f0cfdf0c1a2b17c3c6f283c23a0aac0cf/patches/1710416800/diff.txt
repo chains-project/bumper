@@ -1,0 +1,11 @@
+1c1,6
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import java.util.stream.StreamSupport;
+> 
+> //...
+> 
+> // Assuming `iterable` is the instance of Iterable you're working with.
+> int length = StreamSupport.stream(iterable.spliterator(), false).count();
+\ No newline at end of file
