@@ -1,0 +1,1 @@
+import org.yaml.snakeyaml.Yaml; // replace `TrustedTagInspector` with the correct class
