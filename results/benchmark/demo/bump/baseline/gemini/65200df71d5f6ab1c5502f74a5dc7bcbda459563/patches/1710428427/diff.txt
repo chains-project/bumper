@@ -1,0 +1,14 @@
+1a2,6
+>         Map<String, String> extraProperties = globalConfig.extraProperties();
+>         extraProperties.put("sonar.analysis.language", globalConfig.getEnabledLanguages());
+>         extraProperties.put("sonar.analysis.clientPid", globalConfig.getClientPid());
+>         extraProperties.put("sonar.analysis.workDir", globalConfig.getWorkDir());
+>         extraProperties.put("sonar.analysis.modulesProvider", globalConfig.getModulesProvider());
+3,7c8
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>                 .setExtraProperties(extraProperties)

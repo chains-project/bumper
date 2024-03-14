@@ -1,0 +1,7 @@
+1,2c1,3
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+---
+>   private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration(
+>       GlobalConfig globalConfig) {
+>         return AnalysisEngineConfiguration.newBuilder()

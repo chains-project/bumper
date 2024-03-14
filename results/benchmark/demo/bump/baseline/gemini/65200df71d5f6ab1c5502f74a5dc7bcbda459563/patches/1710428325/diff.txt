@@ -1,0 +1,6 @@
+1c1
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+---
+>   private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration(Config globalConfig) {
+7a8
+>                 .setClassLoader(globalConfig.getClassLoader())
