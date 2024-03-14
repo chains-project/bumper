@@ -1,0 +1,27 @@
+@Override
+protected JFrogPlatformInstance run() throws Exception {
+    if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+        throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+    }
+    String urlWithoutSlash = removeEnd(step.url, "/");
+    String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+    String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+
+    ArtifactoryServer artifactoryServer = new ArtifactoryServer();
+    DistributionServer distributionServer = new DistributionServer();
+    if (!isEmpty(step.credentialsId)) {
+        artifactoryServer.setUrl(artifactoryUrl);
+        artifactoryServer.setCredentialsId(step.credentialsId);
+        distributionServer.setUrl(distributionUrl);
+        distributionServer.setCredentialsId(step.credentialsId);
+    } else {
+        artifactoryServer.setUrl(artifactoryUrl);
+        artifactoryServer.setUsername(step.username);
+        artifactoryServer.setPassword(step.password);
+        distributionServer.setUrl(distributionUrl);
+        distributionServer.setUsername(step.username);
+        distributionServer.setPassword(step.password);
+    }
+    artifactoryServer.setPlatformUrl(urlWithoutSlash);
+    return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+}

@@ -1,0 +1,5 @@
+20c20,21
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     String emptyString = "";
+>     return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, emptyString);

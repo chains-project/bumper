@@ -1,0 +1,8 @@
+11a12
+> 
+18a20,21
+> 
+>     if (artifactoryServer != null) {
+19a23,24
+>     }
+> 

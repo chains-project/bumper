@@ -1,0 +1,22 @@
+10,11c10,11
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     ArtifactoryServer artifactoryServer = null;
+>     DistributionServer distributionServer = null;
+12a13
+>         try {
+14a16,18
+>         } catch (Exception e) {
+>             throw new Exception("Cannot find symbol", e);
+>         }
+15a20
+>         try {
+17a23,25
+>         } catch (Exception e) {
+>             throw new Exception("Cannot find symbol", e);
+>         }
+18a27
+>     if (artifactoryServer != null) {
+19a29
+>     }
