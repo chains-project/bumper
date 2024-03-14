@@ -1,0 +1,5 @@
+Based on the information provided, there are no details about the changes in the new version of the library. The error message indicates that the class `Tv` from package `com.jcabi.aspects` can't be found. This class may have been removed, renamed or moved to a different package in the new version of the library. Without knowing these details, it's impossible to provide a specific code fix. 
+
+However, a general solution would be to remove the import statement and replace the usage of `Tv` class with an equivalent one. If `Tv` was a utility class, you might need to find an equivalent class in the new version of the library or implement the functionality yourself.
+
+Please provide more details about the new version of the library or the functionality of the `Tv` class so that a more accurate solution can be provided.
