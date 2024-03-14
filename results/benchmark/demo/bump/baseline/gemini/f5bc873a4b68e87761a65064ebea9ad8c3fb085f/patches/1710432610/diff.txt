@@ -1,0 +1,5 @@
+1a2,5
+>   MavenProject project = new MavenProject();
+>   project.setGroupId("myfaces.tobago");
+>   project.setArtifactId("tobago-tool");
+>   project.setVersion("0.0.1-SNAPSHOT");
