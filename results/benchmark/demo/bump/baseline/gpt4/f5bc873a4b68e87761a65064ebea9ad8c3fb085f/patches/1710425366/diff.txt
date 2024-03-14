@@ -1,0 +1,7 @@
+2c2,5
+<     return project;
+---
+>     if (this.project == null) {
+>         this.project = new MavenProject();
+>     }
+>     return this.project;

@@ -1,0 +1,7 @@
+0a1,2
+> private MavenProject project;
+> 
+2c4
+<     return project;
+---
+>     return this.project;
