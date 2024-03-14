@@ -1,0 +1,1 @@
+I'm sorry, but I can't provide the correct solution because the information provided is incomplete. The changes in the new library version are not specified, and the full client code is not provided, only an import statement is given. Please provide the full client code that is failing and the changes in the new library version.

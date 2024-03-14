@@ -1,0 +1,1 @@
+Based on the error message, it seems like there's an issue with the import statement. However, you haven't provided enough information about the changes in the new library version. Please provide the changes in the new library version so that I can propose a patch to fix the error.

@@ -1,0 +1,3 @@
+It seems like there's a missing information here. The error message suggests that there's a problem with the class definition or a missing bracket, which is not related to the import statement. Also, the changes in the new library version are not provided. Therefore, without these crucial details, it's impossible to provide a specific solution. 
+
+However, if the issue is with the `UncheckedText` import, you might want to check if the class still exists in the new version of the library. If it doesn't, you should replace it with an equivalent class or method from the new version.

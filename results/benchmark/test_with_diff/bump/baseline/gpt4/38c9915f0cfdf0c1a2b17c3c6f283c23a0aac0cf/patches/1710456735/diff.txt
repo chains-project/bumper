@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+>   import org.cactoos.Text;
+>   import org.cactoos.text.TextOf;
+>   import org.cactoos.text.TextEnvelope;
+> 
+>   public final class Trimmed extends TextEnvelope {
+> 
+>       public Trimmed(final Text text) {
+>           super(new TextOf(text.asString().trim()));
+>       }
+>   }
+\ No newline at end of file

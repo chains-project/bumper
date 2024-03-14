@@ -1,0 +1,1 @@
+I'm sorry, but I can't provide the correct solution without the details about the library changes. The changes are supposed to be listed after the line "the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:", but they are missing. Please provide the changes in the library so I can help you to fix the issue.

@@ -1,0 +1,1 @@
+Without the information about the changes made in the new library version, it is impossible to provide a patch for the failing code. Please provide the changes made in the new version of the library.
