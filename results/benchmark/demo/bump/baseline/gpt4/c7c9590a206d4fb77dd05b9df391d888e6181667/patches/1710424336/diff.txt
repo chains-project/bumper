@@ -1,0 +1,10 @@
+6d5
+<     @Override
+20a20,22
+>             if (locale == null) {
+>                 locale = Locale.ENGLISH;
+>             }
+25c27
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+---
+>             String prefix = "An error has occurred in " + getName( locale ) + " report generation";

@@ -1,0 +1,6 @@
+18c18,20
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+---
+>             File outputDirectory = new File("/path/to/output/directory"); // define output directory
+>             String outputName = "outputName"; // define output name
+>             RenderingContext context = new RenderingContext( outputDirectory, outputName + ".html" );

@@ -1,0 +1,5 @@
+18c18,19
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+---
+>             File outputDirectoryFile = new File(outputDirectory);
+>             RenderingContext context = new RenderingContext( outputDirectoryFile, getOutputName() + ".html" );

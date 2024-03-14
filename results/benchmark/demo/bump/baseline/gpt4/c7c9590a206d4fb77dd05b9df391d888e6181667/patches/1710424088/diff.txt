@@ -1,0 +1,13 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+7,8c2
+<     public void execute()
+<         throws MojoExecutionException
+---
+> public void execute() throws MojoExecutionException
+17a12
+>         File outputDirectory = new File("outputDirectory");
