@@ -1,0 +1,4 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         SortedMap<MOScope, ManagedObject<?>> reg = (SortedMap<MOScope, ManagedObject<?>>) server.getRegistry();
