@@ -1,0 +1,6 @@
+1a2
+>         ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+7c8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>                 .setModulesProvider(modulesProvider != null ? modulesProvider : ModulesProvider.EMPTY)

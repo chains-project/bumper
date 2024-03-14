@@ -1,0 +1,9 @@
+1a2,4
+>         Map<String, String> extraProperties = new HashMap<>();
+>         extraProperties.putAll(globalConfig.extraProperties());
+>         extraProperties.put(AnalysisEngineConfiguration.OPTION_WORK_DIR, globalConfig.getWorkDir());
+5,6c8
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>                 .setExtraProperties(extraProperties)

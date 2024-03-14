@@ -1,0 +1,9 @@
+1a2,5
+>         ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+>         if (modulesProvider == null) {
+>             modulesProvider = new ModulesProvider();
+>         }
+7c11
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>                 .setModulesProvider(modulesProvider)

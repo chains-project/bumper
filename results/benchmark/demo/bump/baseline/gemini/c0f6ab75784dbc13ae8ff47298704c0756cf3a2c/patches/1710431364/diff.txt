@@ -1,0 +1,8 @@
+1a2,3
+>         Map<String, String> extraProperties = globalConfig.extraProperties();
+>         extraProperties.put("sonar.analysis.workdir", globalConfig.getWorkDir());
+5,6c7
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>                 .setExtraProperties(extraProperties)
