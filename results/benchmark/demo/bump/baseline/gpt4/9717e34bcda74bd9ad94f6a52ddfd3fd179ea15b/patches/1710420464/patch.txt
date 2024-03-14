@@ -1,0 +1,7 @@
+import com.jcabi.aspects.Tv;
+
+public class MyClass {
+    public void myMethod() {
+        int x = Tv.a(5);
+    }
+}

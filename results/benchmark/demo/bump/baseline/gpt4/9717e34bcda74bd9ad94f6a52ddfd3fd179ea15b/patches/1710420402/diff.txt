@@ -1,0 +1,8 @@
+1c1,3
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> public class Tv {
+>     // Define the methods and variables used in your code
+> }
+\ No newline at end of file

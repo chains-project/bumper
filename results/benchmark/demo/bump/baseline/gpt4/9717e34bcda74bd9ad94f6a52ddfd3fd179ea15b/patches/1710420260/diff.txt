@@ -1,0 +1,7 @@
+1c1,2
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+>   // import com.jcabi.aspects.Tv;
+>   // Replace with a class from Java Standard Library or another library that provides the required functionality.
+\ No newline at end of file
