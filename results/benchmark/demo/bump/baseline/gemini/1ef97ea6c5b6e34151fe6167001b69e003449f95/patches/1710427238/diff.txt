@@ -1,0 +1,11 @@
+1d0
+< @Override
+3c2,7
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     Date between = super.between(from, to);
+>     if (between != null) {
+>       return new Timestamp(between.getTime());
+>     } else {
+>       return null;
+>     }
