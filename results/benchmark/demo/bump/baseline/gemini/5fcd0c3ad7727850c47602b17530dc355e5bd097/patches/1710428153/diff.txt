@@ -1,0 +1,9 @@
+2a3,6
+>     ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+>     if (classInfo == null) {
+>       classInfo = ClassInfo.EMPTY;
+>     }
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

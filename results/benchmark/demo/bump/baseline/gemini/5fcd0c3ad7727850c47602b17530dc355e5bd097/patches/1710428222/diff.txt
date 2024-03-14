@@ -1,0 +1,10 @@
+2a3,7
+>     final String mutatedClass = data.getMutatedClass();
+>     ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(mutatedClass));
+>     if (classInfo == null) {
+>       classInfo = coverage.getClassInfo(Collections.singleton(mutatedClass));
+>     }
+4c9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

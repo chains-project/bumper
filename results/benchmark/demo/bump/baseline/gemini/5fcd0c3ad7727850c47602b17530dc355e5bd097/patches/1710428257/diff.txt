@@ -1,0 +1,6 @@
+2a3
+>     final ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+4c5
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);
