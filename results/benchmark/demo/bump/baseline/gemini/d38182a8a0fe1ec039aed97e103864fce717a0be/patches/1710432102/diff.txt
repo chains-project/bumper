@@ -1,0 +1,9 @@
+7c7
+<         new AuthScopeSlice(
+---
+>         AuthScopeSlice slice = new AuthScopeSlice(
+41c41,42
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+---
+>         );
+>         slice.response(line, Headers.EMPTY, Content.EMPTY).send(
