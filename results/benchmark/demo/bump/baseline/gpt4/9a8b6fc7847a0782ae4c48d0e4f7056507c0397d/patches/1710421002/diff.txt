@@ -1,0 +1,4 @@
+7c7
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         StandardPBEStringEncryptor stringEncrypter = new StandardPBEStringEncryptor();

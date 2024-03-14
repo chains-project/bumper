@@ -1,0 +1,6 @@
+4d3
+< 
+11c10
+<                                 stringEncrypter.setProviderName(getProviderName());
+---
+>             stringEncrypter.setProvider(getProviderName());
