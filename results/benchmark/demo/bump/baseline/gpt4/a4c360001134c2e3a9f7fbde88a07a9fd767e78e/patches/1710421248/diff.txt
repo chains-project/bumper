@@ -1,0 +1,12 @@
+2c2
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+---
+>     final String packagesToScan = System.getenv("PACKAGE_TO_SCAN");
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>         return s.matches(".+\\.class");
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (s.matches(regex)) {
