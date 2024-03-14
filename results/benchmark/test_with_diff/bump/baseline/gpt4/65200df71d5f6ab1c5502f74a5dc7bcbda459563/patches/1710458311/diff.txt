@@ -1,0 +1,11 @@
+1a2,9
+>     LanguageSupportRepository languageSupportRepository = globalConfig.getLanguageSupportRepository();
+>     Set<Language> enabledLanguages;
+>     if (globalConfig.isConnectedMode()) {
+>         enabledLanguages = languageSupportRepository.getEnabledLanguagesInConnectedMode();
+>     } else {
+>         enabledLanguages = languageSupportRepository.getEnabledLanguagesInStandaloneMode();
+>     }
+>     
+3d10
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
