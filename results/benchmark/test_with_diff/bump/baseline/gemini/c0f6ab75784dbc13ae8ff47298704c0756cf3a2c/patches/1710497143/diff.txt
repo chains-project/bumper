@@ -1,0 +1,10 @@
+1a2,6
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         boolean connectedMode = globalConfig.getConnectedMode();
+>         Set<Language> enabledLanguagesInMode = connectedMode ?
+>                 globalConfig.getLanguageSupportRepository().getEnabledLanguagesInConnectedMode() :
+>                 globalConfig.getLanguageSupportRepository().getEnabledLanguagesInStandaloneMode();
+3c8
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+---
+>                 .addEnabledLanguages(enabledLanguagesInMode)
