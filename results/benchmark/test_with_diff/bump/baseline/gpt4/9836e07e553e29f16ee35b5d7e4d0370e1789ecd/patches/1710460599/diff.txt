@@ -1,0 +1,19 @@
+8,9c8
+<             new StringContains(
+<                 false,
+---
+>         new org.hamcrest.core.SubstringMatcher(
+11c10,20
+<             )
+---
+>         ) {
+>             @Override
+>             protected boolean evalSubstringOf(String s) {
+>                 return s.contains(this.substring);
+>             }
+> 
+>             @Override
+>             protected String relationship() {
+>                 return "containing";
+>             }
+>         }
