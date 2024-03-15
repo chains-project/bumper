@@ -1,0 +1,19 @@
+1,10d0
+< @ParameterizedTest
+<     @ValueSource(strings = {
+<         "",
+<         ".0",
+<         "*",
+<         "\u00ea",
+<         "-my-tag",
+<         //@checkstyle LineLengthCheck (1 line)
+<         "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+<     })
+13c3
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+---
+>         MatcherAssert.assertThat(tag.valid(), IsEqual.equalTo(false));
+20c10
+<             new AllOf<>(
+---
+>             AllOf.allOf(

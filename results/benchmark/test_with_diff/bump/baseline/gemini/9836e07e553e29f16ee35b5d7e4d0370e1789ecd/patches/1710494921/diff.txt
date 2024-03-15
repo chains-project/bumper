@@ -1,0 +1,6 @@
+1d0
+< @Test
+11c10
+<                 String.format("Status: Downloaded newer image for %s", image)
+---
+>                 "Status: Downloaded newer image for %s".formatted(image)
