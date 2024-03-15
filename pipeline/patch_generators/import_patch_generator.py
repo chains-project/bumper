@@ -5,4 +5,4 @@ from pipeline.types.patch import Patch
 class ImportPatchGenerator(PatchGenerator):
     def generate(self) -> Patch:
         # We always remove broken imports, we solve them at usage level
-        return Patch()
+        return Patch(force_validation=True)

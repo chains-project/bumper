@@ -44,8 +44,7 @@ class PatchGeneratorService:
             # TODO: make substitute patch generator
             return TypingPatchGenerator(failure=failure, project=project, use_fully_qualified=True, model=model)
         
-        print(f"PatchGenerator not found for {error_message}")
-        exit(1)
+        return TypingPatchGenerator(failure=failure, project=project, use_fully_qualified=True, model=model)
 
     @staticmethod
     def is_import_error(failure: Failure) -> bool:

@@ -5,15 +5,18 @@ import time
 class Patch:
     id: int
     value: str
+    force_validation: bool = False,
     __prompt: str = None
     __response: str = None
 
     def __init__(
             self,
             value="",
+            force_validation = False
     ):
         self.value = value
         self.id = int(time.time())
+        self.force_validation = force_validation
 
     @staticmethod
     def from_md(md_text: str):

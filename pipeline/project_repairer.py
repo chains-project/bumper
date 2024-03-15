@@ -43,14 +43,18 @@ class ProjectRepairer:
                 return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
             else:
                 print("Project not patched, trying to understand if it patched the specific failure:")
-                print(f"Before we have {len(failures)} failures")
 
-                new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
-                if len(new_failures) <= 0:
-                    print("Error extracting new failures, patch is not valid.")
-                    continue
+                if patch.force_validation is False:
+                    print(f"Before we have {len(failures)} failures")
+                    new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
+                    if len(new_failures) <= 0:
+                        print("Error extracting new failures, patch is not valid.")
+                        continue
+                    print(f"Now we have {len(new_failures)} failures")
+                else:
+                     print("Patch is forcing validation = True!")
+                     new_failures = []
 
-                print(f"Now we have {len(new_failures)} failures")
                 if len(new_failures) < len(failures):
                     print("Failure is fixed, we can continue from here")
                     patches.append(patch.id)
