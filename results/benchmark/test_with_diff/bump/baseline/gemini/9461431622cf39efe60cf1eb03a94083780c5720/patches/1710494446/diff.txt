@@ -1,0 +1,6 @@
+12c12,14
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             //++
+>             final SortedMap<MOScope, ManagedObject> reg = new TreeMap<>(server.getRegistry());
+>             //++

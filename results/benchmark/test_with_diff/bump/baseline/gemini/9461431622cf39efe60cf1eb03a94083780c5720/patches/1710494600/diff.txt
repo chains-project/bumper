@@ -1,0 +1,4 @@
+13c13
+<             DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+---
+>             ++DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
