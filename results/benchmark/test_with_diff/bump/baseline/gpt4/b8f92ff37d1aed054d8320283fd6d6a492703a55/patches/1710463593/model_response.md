@@ -1,0 +1,5 @@
+The error message indicates that the `getWildcard()` method in the `TestListResolver` class is not found. However, based on the changes in the new library version, there's no information about this class or method. Therefore, it's not possible to propose a patch that can fix the error with the provided information.
+
+The `getWildcard()` method might have been removed, renamed, or moved to another class in the new library version. You need to check the library's documentation or source code to find out what happened to this method and how you should use the new version of the library.
+
+If `getWildcard()` method has been removed or replaced, you need to find out the new way to achieve the same functionality. If it has been moved to another class, you need to change the class name in your code. If it has been renamed, you need to replace the old method name with the new one in your code.

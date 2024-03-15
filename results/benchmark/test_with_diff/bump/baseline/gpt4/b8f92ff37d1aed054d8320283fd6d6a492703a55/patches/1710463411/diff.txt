@@ -1,0 +1,14 @@
+2c2,3
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     String wildcard = getWildcardReplacement(); // This method should be implemented to provide the required functionality
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, wildcard);
+4a6,12
+> 
+> private static String getWildcardReplacement() {
+>     // Implement this method to return the required wildcard string
+>     // This could involve reading from a configuration file, 
+>     // or using a constant value, depending on the requirements of your project
+>     return "*";
+> }
+\ No newline at end of file

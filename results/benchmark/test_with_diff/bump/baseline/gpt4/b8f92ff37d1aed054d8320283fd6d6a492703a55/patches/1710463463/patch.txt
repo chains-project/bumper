@@ -1,0 +1,5 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    String wildcard = "*"; // Manually specify the wildcard
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, wildcard);
+    return directoryScanner.scan().getClasses();
+}

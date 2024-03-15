@@ -1,0 +1,12 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    String wildcard = getWildcardReplacement(); // This method should be implemented to provide the required functionality
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, wildcard);
+    return directoryScanner.scan().getClasses();
+}
+
+private static String getWildcardReplacement() {
+    // Implement this method to return the required wildcard string
+    // This could involve reading from a configuration file, 
+    // or using a constant value, depending on the requirements of your project
+    return "*";
+}

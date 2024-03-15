@@ -1,0 +1,5 @@
+2c2,3
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     String wildcard = "*"; // replace this with the appropriate wildcard if necessary
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, wildcard);
