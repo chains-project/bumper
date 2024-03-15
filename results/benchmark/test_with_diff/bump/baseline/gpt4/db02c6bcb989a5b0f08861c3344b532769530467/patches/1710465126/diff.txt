@@ -1,0 +1,13 @@
+3,4c3
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+---
+>     IllegalArgumentException thrown = Assertions.assertThrows(
+9,10c8,11
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected path")
+---
+>     );
+>     MatcherAssert.assertThat(
+>             thrown.getMessage(),
+>             CoreMatchers.containsString("Unexpected path")
