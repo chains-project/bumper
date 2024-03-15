@@ -1,0 +1,43 @@
+act as a senior software engineer, your goal is fix code failures.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+/**
+ * AwsOcket can read and write large S3 content.
+ *
+ * @throws Exception
+ * 		If fails
+ */
+@org.junit.Test
+public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+    final com.jcabi.s3.Bucket bucket = this.rule.bucket();
+    final java.lang.String name = "test-44.txt";
+    final com.jcabi.s3.Ocket.Text ocket = new com.jcabi.s3.Ocket.Text(bucket.ocket(name));
+    final java.lang.String data = org.apache.commons.lang3.RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+    ocket.write(data);
+    try {
+        org.hamcrest.MatcherAssert.assertThat(ocket.read(), org.hamcrest.Matchers.equalTo(data));
+    } finally {
+        bucket.remove(name);
+    }
+}
+```
+
+with the following error message:
+[ERROR] /jcabi-s3/src/test/java/com/jcabi/s3/AwsOcketITCase.java:[84,54] cannot find symbol
+  symbol:   variable Tv
+  location: class com.jcabi.s3.AwsOcketITCase
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
