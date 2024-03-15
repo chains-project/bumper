@@ -1,0 +1,13 @@
+5,11c5,8
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>             final Config storage = Config.from(Yaml.createYamlInput(sub.toString()).readYamlMapping());
+>             final StoragesLoader loader = new StoragesLoader();
+>             final StorageFactory factory = loader.newObject(storage.getString("type"), storage);
+>             return new YamlPolicy(new BlockingStorage(factory.newStorage(storage)));
