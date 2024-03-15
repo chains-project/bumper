@@ -1,0 +1,7 @@
+8,9c8,10
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>             String[] urls = {server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+>                     step.url, step.artifactoryUrl, step.distributionUrl};
+>             if (isAllBlank(urls)) {

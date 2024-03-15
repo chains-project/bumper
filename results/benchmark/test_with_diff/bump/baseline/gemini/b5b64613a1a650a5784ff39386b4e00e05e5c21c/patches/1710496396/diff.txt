@@ -1,0 +1,6 @@
+8,9c8,9
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>             if (isBlank(server.getUrl()) && isBlank(server.getArtifactory().getUrl()) && isBlank(server.getDistribution().getUrl())
+>                     && isBlank(step.url) && isBlank(step.artifactoryUrl) && isBlank(step.distributionUrl)) {
