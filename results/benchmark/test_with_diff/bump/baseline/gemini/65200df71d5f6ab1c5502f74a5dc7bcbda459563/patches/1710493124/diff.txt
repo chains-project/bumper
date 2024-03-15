@@ -1,0 +1,13 @@
+1a2,8
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         Set<LanguageSupportRepository.Language> enabledLanguagesInConnectedMode = new HashSet<>();
+>         Set<LanguageSupportRepository.Language> enabledLanguagesInStandaloneMode = new HashSet<>();
+>         for (Language language : enabledLanguages) {
+>             enabledLanguagesInConnectedMode.add(LanguageSupportRepository.Language.valueOf(language.name()));
+>             enabledLanguagesInStandaloneMode.add(LanguageSupportRepository.Language.valueOf(language.name()));
+>         }
+3d9
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a14,15
+>                 .setEnabledLanguagesInConnectedMode(enabledLanguagesInConnectedMode)
+>                 .setEnabledLanguagesInStandaloneMode(enabledLanguagesInStandaloneMode)
