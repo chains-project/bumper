@@ -1,0 +1,6 @@
+2a3
+>     String expectedMessage = "Unexpected path";
+10c11
+<             new StringContains(false, "Unexpected path")
+---
+>         Matchers.containsString(expectedMessage)
