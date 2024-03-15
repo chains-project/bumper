@@ -1,0 +1,2 @@
+// import the new package that contains the equivalent functionality
+import org.bouncycastle.crypto.new_package.AlertDescription;
