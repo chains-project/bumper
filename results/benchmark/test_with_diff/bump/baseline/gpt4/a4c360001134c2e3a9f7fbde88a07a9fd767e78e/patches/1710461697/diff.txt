@@ -1,0 +1,8 @@
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>         return new FilterBuilder().include(".+\\.class").test(s);
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (new FilterBuilder().include(regex).test(s)) {
