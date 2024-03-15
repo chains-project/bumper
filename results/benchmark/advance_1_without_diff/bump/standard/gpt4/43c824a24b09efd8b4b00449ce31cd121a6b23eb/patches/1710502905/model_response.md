@@ -1,0 +1,3 @@
+Given the error message, it appears that the class `JsonBranch` is no longer available in the updated library. Therefore, we must replace it with a class or method that provides similar functionality. However, without information on what new classes or methods have been added to the library, it's impossible to propose a specific code patch. 
+
+Please provide the new classes or methods added to the library so that I can propose a suitable patch.
