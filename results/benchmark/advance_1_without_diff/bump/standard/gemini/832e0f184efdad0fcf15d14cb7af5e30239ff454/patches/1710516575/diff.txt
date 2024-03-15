@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+16c15
+<             ++pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getEnchantment("power").get(), 1, false);++
+---
+>             pageMeta.addEnchant(org.bukkit.enchantments.Enchantment.getByName("power"), 1, false);

@@ -1,0 +1,9 @@
+1d0
+< // TODO: review this AI generated patch!
+16c15,18
+<             ++pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getEnchantment("power").get(), 1, false);++
+---
+>             boolean success = pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getEnchantment("power").get(), 1, false);
+>             if (!success) {
+>                 pageMeta.setDisplayName(org.bukkit.ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+>             }

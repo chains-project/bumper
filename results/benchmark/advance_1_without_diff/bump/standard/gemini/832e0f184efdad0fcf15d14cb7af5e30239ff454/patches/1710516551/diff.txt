@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+16c15
+<             ++pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getEnchantment("power").get(), 1, false);++
+---
+>             pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getEnchantment("power").get(), 1, false);
+17a17,19
+>     } else if (buttonType.equalsIgnoreCase("Close")) {
+>         pageButton = com.cryptomorin.xseries.XMaterial.BARRIER.parseItem();
+>         pageMeta.setDisplayName(org.bukkit.ChatColor.RED + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcConfigGUICloseButton"));
