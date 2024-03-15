@@ -1,0 +1,6 @@
+3,4c3,4
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     PasswordEncoder encoder = new CustomPasswordEncoder();
+>     encoder.setPasswordEncryptor(new CustomPasswordEncryptor());

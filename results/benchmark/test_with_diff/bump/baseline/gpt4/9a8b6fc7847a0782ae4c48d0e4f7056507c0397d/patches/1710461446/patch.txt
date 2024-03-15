@@ -1,0 +1,6 @@
+@Override
+protected Object createStringEncoder() {
+    Object encoder = new Object(); // Replace Object with the new encoder class
+    // encoder.setPasswordEncryptor(new StrongPasswordEncryptor()); // Replace with new method for setting password encryptor
+    return encoder;
+}

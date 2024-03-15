@@ -1,0 +1,8 @@
+15c15,19
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         // The PBEPasswordEncoder class has been removed in the new library version
+>         // You need to replace it with a compatible class from the new version
+>         // As no new classes or methods were provided in the problem, I will assume that the library provides a class named PasswordEncoderImpl that has similar functionalities
+> 
+>         PasswordEncoderImpl encoder = new PasswordEncoderImpl();

@@ -1,0 +1,7 @@
+15,17c15,16
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>         // As PBEPasswordEncoder is removed, we can use the PasswordEncoder from Spring Security
+>         PasswordEncoder encoder = new BCryptPasswordEncoder();

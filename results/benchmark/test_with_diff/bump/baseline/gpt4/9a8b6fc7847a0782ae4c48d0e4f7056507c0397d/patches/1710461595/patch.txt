@@ -1,0 +1,5 @@
+@Override
+protected Object createStringEncoder() {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    return encoder;
+}

@@ -1,0 +1,6 @@
+@Override
+protected SomeNewEncoderClass createStringEncoder() {
+    SomeNewEncoderClass encoder = new SomeNewEncoderClass();
+    encoder.setSomeNewEncryptorMethod(new SomeNewEncryptorClass());
+    return encoder;
+}

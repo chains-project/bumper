@@ -1,0 +1,8 @@
+1,6d0
+< @Override
+<             protected PasswordEncoder createStringEncoder() {
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+<                 return encoder;
+<             }
+\ No newline at end of file

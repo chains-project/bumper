@@ -1,0 +1,1 @@
+import org.jasypt.spring.security.NewPasswordEncoder;

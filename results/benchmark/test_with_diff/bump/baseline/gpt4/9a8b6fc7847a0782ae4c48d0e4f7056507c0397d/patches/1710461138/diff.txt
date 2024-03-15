@@ -1,0 +1,4 @@
+15c15
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         PBKDF2PasswordEncoder encoder = new PBKDF2PasswordEncoder();

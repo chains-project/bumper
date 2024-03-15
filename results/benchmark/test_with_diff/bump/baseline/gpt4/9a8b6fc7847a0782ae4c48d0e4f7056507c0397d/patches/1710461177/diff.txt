@@ -1,0 +1,7 @@
+15,16c15,17
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         // Assuming NewPasswordEncoder is a replacement for PBEPasswordEncoder
+>         NewPasswordEncoder encoder = new NewPasswordEncoder();
+>         encoder.setEncryptor(stringEncrypter);

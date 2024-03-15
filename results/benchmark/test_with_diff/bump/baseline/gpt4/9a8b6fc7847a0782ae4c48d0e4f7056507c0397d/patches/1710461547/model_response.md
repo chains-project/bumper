@@ -1,0 +1,1 @@
+I'm sorry, but without the information about the new version of the library, it's impossible to provide a correct solution. The library changes indicate only the methods that have been removed, not the ones that have been added or modified. I would need information about the new version of the library in order to provide a solution.

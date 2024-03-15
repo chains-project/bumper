@@ -1,0 +1,9 @@
+4d3
+< 
+5a5
+> 
+15,16c15
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         org.springframework.security.crypto.password.Pbkdf2PasswordEncoder encoder = new org.springframework.security.crypto.password.Pbkdf2PasswordEncoder(new String(chars));

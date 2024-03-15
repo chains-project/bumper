@@ -1,0 +1,6 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new CustomPasswordEncoder();
+    encoder.setPasswordEncryptor(new CustomPasswordEncryptor());
+    return encoder;
+}

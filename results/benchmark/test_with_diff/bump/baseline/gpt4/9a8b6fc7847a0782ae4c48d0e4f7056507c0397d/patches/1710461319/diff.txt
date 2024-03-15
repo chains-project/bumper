@@ -1,0 +1,8 @@
+15,16c15,18
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         // Create a new PasswordEncoder using the BCryptPasswordEncoder class
+>         PasswordEncoder encoder = new BCryptPasswordEncoder();
+>         // Encode the password using the BCrypt algorithm
+>         String encodedPassword = encoder.encode(new String(chars));
