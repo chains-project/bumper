@@ -1,0 +1,30 @@
+act as a senior software engineer, your goal is fix code failures.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder().addEnabledLanguages(sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages()).setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid()).setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties()).setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir()).setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider()).build();
+}
+```
+
+with the following error message:
+[ERROR] /sorald/sorald/src/main/java/sorald/sonar/SonarLintEngine.java:[163,17] cannot find symbol
+  symbol:   method addEnabledLanguages(java.util.Set<org.sonarsource.sonarlint.core.commons.Language>)
+  location: class org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.Builder
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public java.util.Set org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.getEnabledLanguages()
+++ public java.util.Set org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInConnectedMode()
+++ public java.util.Set org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInStandaloneMode()
