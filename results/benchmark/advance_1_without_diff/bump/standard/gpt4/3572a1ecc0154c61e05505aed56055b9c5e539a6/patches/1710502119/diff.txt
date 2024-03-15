@@ -1,0 +1,19 @@
+1,2c1,2
+< @Override
+<     public void init(OutputStream os) {
+---
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+4c4
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>     // Use the TIOStreamTransport to be compatible with singer_thrift
+6,9c6,8
+<       final int bufferCapacity = 10;
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>     final org.apache.thrift.TConfiguration tConfig = new org.apache.thrift.TConfiguration();
+>     org.apache.thrift.transport.TIOStreamTransport tIOStreamTransport = new org.apache.thrift.transport.TIOStreamTransport(tConfig, os);
+>     protocol = new org.apache.thrift.protocol.TBinaryProtocol(tIOStreamTransport);
