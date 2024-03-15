@@ -1,0 +1,9 @@
+2,5c2,4
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>         final String expectedLogMessage =
+>             String.format("Status: Downloaded newer image for %s", image);
+>         return new StringContains(expectedLogMessage);

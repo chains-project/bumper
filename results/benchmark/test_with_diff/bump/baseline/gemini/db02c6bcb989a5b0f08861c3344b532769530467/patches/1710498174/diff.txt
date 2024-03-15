@@ -1,0 +1,10 @@
+7a8
+>         final Digest expectedDigest = new Digest.Sha256(digest);
+9c10
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>             new CheckedBlobSource(new Content.From("data".getBytes()), expectedDigest)
+33c34
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(true, expectedDigest.toString())
