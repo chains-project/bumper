@@ -1,0 +1,14 @@
+3,4c3
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+---
+>     String exceptionMessage = Assertions.assertThrows(
+9,10c8,12
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected path")
+---
+>     ).getMessage();
+> 
+>     MatcherAssert.assertThat(
+>         exceptionMessage,
+>         CoreMatchers.containsString("Unexpected path")
