@@ -1,3 +1,4 @@
+import os
 from pipeline.patch_generators.abstract.llm_patch_generator import LLMPatchGenerator
 from pipeline.types.failure import Failure
 from pipeline.types.llm import LLMType
@@ -18,6 +19,12 @@ class TypingPatchGenerator(LLMPatchGenerator):
             )
     
     def get_template(self) -> str:
+        if os.getenv("WITHOUT_APIDIFF") == "True":
+            if self.use_fully_qualified is True:
+                return "fully_qualified_typing_without_diff" 
+            else:
+                return "complete_instructions_on_top_without_diff"
+
         if self.use_fully_qualified is True:
             return "fully_qualified_typing"
         
