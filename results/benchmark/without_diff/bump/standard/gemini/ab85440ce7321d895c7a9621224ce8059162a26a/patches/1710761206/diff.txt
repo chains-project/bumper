@@ -1,0 +1,11 @@
+10,14c10,13
+<         final boolean expected = com.google.common.base.Throwables.getRootCause(throwable).getMessage().contains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7");
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.IsEqual.equalTo(true));++
+<         final boolean expected2 = com.google.common.base.Throwables.getRootCause(throwable).getMessage().contains(digest);
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected2, org.hamcrest.core.IsEqual.equalTo(true));++
+<         return java.util.concurrent.CompletableFuture.allOf();
+---
+>         final java.lang.String expected = com.google.common.base.Throwables.getRootCause(throwable).getMessage();
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.StringContains.containsString("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"));
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected, org.hamcrest.core.StringContains.containsString(digest));
+>         java.util.concurrent.CompletableFuture.allOf();

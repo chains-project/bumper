@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+11c10
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.IsEqual.equalTo(true));++
+---
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.IsEqual.equalTo(true));
+13,15c12,14
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected2, org.hamcrest.core.IsEqual.equalTo(true));++
+<         return java.util.concurrent.CompletableFuture.allOf();
+<     }).join();
+---
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected2, org.hamcrest.core.IsEqual.equalTo(true));
+>         return null;
+>     });

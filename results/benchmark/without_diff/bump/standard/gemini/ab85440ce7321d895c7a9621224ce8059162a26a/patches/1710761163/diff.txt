@@ -1,0 +1,11 @@
+11c11
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.IsEqual.equalTo(true));++
+---
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", expected, org.hamcrest.core.IsEqual.equalTo(true));
+13,14c13,15
+<         ++org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected2, org.hamcrest.core.IsEqual.equalTo(true));++
+<         return java.util.concurrent.CompletableFuture.allOf();
+---
+>         org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", expected2, org.hamcrest.core.IsEqual.equalTo(true));
+>         java.util.concurrent.CompletableFuture.allOf();
+>         return blob;
