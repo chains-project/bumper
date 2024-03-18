@@ -1,0 +1,19 @@
+1,2c1,2
+< @Override
+<     public void init(OutputStream os) {
+---
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+7,9c7,14
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>     framedTransport = new com.pinterest.singer.client.logback.TFastFramedTransport(
+>         new org.apache.thrift.transport.TIOStreamTransport(
+>             new org.apache.thrift.TConfiguration(),
+>             os
+>         ),
+>         bufferCapacity
+>     );
+>     protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
