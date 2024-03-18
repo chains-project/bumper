@@ -19,7 +19,6 @@ from pipeline.types.project import Project
 from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
 from pipeline.types.prompt import Prompt
-load_dotenv()
 
 class DummyFile(object):
   file = None
@@ -145,6 +144,8 @@ def get_bump() -> List[Project]:
 
 
 if __name__ == "__main__":
+    load_dotenv(override=True)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--name", help="Name of the benchmark execution", type=str, required=True)
     parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)

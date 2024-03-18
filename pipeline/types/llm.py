@@ -55,7 +55,7 @@ class LLMResolver:
         return ChatGroq(
             model_name="llama2-70b-4096",
             temperature=os.getenv("LLM_TEMPERATURE", 0.5),
-            top_p=os.getenv("LLM_TOP_P", 1.0),
+            model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)}
         )
     
     @staticmethod
@@ -63,5 +63,5 @@ class LLMResolver:
         return ChatGroq(
             model_name="mixtral-8x7b-32768",
             temperature=os.getenv("LLM_TEMPERATURE", 0.5),
-            top_p=os.getenv("LLM_TOP_P", 1.0),
+            model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)}
         )
