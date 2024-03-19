@@ -1,0 +1,12 @@
+1d0
+< // TODO: review this AI generated patch!
+2a2
+>     Description description = Description.createChainedWithConverter((Description.ChainedConverter) null);
+11c11
+<             description.appendText("a string containing ").appendValue(image));
+---
+>             description.appendText("a string containing ").appendValue(image);
+13c13
+<     }.describedAs("imagePulled(" + image + ")");
+---
+>     }.describeTo(description);

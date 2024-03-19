@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+2a2
+>     String imagePattern = String.format("Status: Downloaded newer image for %s", image);
+5,6c5,6
+<         protected boolean matchesSafely(String item) {
+<             return item.contains(String.format("Status: Downloaded newer image for %s", image));
+---
+>         public boolean matchesSafely(String item) {
+>             return item.contains(imagePattern);
+11c11
+<             description.appendText("a string containing ").appendValue(image));
+---
+>             description.appendText("a string containing ").appendValue(image);
