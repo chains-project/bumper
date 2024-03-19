@@ -1,0 +1,37 @@
+1a2
+>     XMaterial material = null;
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         material = XMaterial.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         material = XMaterial.GREEN_STAINED_GLASS;
+14,18c11
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+<                         if (args[0].equals("1")) {
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>         material = XMaterial.LILY_PAD;
+19a13,15
+>     if (material != null) {
+>         pageButton = material.parseItem();
+>         pageMeta.setDisplayName(getDisplayName(buttonType, args));
+23d18
+<                 
+26a22,28
+> 
+> private static String getDisplayName(String buttonType, String[] args) {
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+>         return ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args);
+>     }
+>     return ChatColor.values()[CommonDefinitions.getColor(buttonType)] + CommonDefinitions.getMessage("wwcConfigGUIPageButton", buttonType);
+> }
+\ No newline at end of file

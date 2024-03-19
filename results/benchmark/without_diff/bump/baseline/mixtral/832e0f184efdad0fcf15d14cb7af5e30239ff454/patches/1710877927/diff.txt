@@ -1,0 +1,46 @@
+2,4c2,5
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+<                 ItemMeta pageMeta = pageButton.getItemMeta();
+<                 pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>     ItemStack pageButton;
+>     ItemMeta pageMeta;
+>     XMaterial material;
+> 
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         material = XMaterial.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         material = XMaterial.GREEN_STAINED_GLASS;
+14,16c11,25
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         material = XMaterial.LILY_PAD;
+>     } else {
+>         material = XMaterial.WHITE_STAINED_GLASS;
+>         pageMeta = pageButton.getItemMeta();
+>         pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+>         pageButton.setItemMeta(pageMeta);
+>         return pageButton;
+>     }
+> 
+>     pageButton = material.parseItem();
+>     pageMeta = pageButton.getItemMeta();
+>     pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+> 
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+>         pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+21c30,31
+<                         pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+---
+>         pageMeta.setDisplayName(ChatColor.getByChar(material.data.get(1))
+>                 + CommonDefinitions.getMessage(buttonType.toUpperCase() + "PageButton"));

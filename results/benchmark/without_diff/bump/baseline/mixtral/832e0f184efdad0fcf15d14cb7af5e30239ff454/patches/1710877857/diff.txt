@@ -1,0 +1,33 @@
+7,8c7,8
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.RED +
+>                 CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+11,12c11,12
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.GREEN +
+>                 CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+15,16c15,16
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageMeta.setDisplayName(ChatColor.AQUA +
+>                 CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+18c18,27
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             if (XPEnchantment.hasSupport()) { // check if XPEnchantment is available
+>                 pageMeta.addEnchant(XPEnchantment.matchXPEnchantment("power").get().getXPEnchantment(), 1, false);
+>             } else { // if XPEnchantment is not available, use reflection or another approach to add the enchantment
+>                 try {
+>                     // replace with appropriate Reflections usage
+>                     pageMeta.addEnchant(new Enchantment(0), 1, false);
+>                 } catch (IllegalArgumentException e) {
+>                     e.printStackTrace();
+>                 }
+>             }
+23d31
+<                 

@@ -1,0 +1,63 @@
+2c2,3
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>     XMaterial material = XMaterial.WHITE_STAINED_GLASS;
+>     ItemStack pageButton = material.parseItem();
+4a6
+> 
+6,8c8,9
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         material = XMaterial.RED_STAINED_GLASS;
+>         pageButton = material.parseItem();
+10,12c11,12
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         material = XMaterial.GREEN_STAINED_GLASS;
+>         pageButton = material.parseItem();
+14,19c14,15
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+<                         if (args[0].equals("1")) {
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                         }
+---
+>         material = XMaterial.LILY_PAD;
+>         pageButton = material.parseItem();
+21a18,19
+>         pageButton.setItemMeta(pageMeta);
+>         return pageButton;
+23a22
+>     pageMeta.setDisplayName(getDisplayName(buttonType, material, args));
+24a24,28
+> 
+>     if (buttonType.equalsIgnoreCase("Page Number") && args[0].equals("1")) {
+>         pageButton.addUnsafeEnchantment(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1);
+>     }
+> 
+26a31,49
+> 
+> private static ChatColor getColor(XMaterial material) {
+>     return material.equals(XMaterial.RED_STAINED_GLASS) ? ChatColor.RED :
+>            material.equals(XMaterial.GREEN_STAINED_GLASS) ? ChatColor.GREEN :
+>            material.equals(XMaterial.LILY_PAD) ? ChatColor.AQUA : ChatColor.WHITE;
+> }
+> 
+> private static String getDisplayName(String buttonType, XMaterial material, String[] args) {
+>     ChatColor color = getColor(material);
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+>         return color + CommonDefinitions.getMessage("wwcGUIPageNumber", args);
+>     }
+>     return color + CommonDefinitions.getMessage(getButtonMessageKey(buttonType));
+> }
+> 
+> private static String getButtonMessageKey(String buttonType) {
+>     return "wwcConfigGUIPreviousPageButton".equalsIgnoreCase(buttonType) ? "wwcConfigGUIPreviousPageButton" :
+>            "wwcConfigGUINextPageButton";
+> }
+\ No newline at end of file

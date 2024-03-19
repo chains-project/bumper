@@ -1,0 +1,57 @@
+1a2
+>     XMaterial material;
+4a6
+> 
+6,8c8
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         material = XMaterial.RED_STAINED_GLASS;
+10,12c10
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         material = XMaterial.GREEN_STAINED_GLASS;
+14,19c12
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+<                         if (args[0].equals("1")) {
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                         }
+---
+>         material = XMaterial.LILY_PAD;
+21a15,25
+>         pageButton.setItemMeta(pageMeta);
+>         return pageButton;
+>     }
+> 
+>     pageButton = material.parseItem();
+>     pageMeta.setDisplayName(getDisplayName(buttonType, material));
+> 
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+>         if (args[0].equals("1")) {
+>             pageMeta.addEnchant(getPowerEnchantment(), 1, false);
+>         }
+26a31,48
+> 
+> private static ChatColor getChatColor(String buttonType) {
+>     if (buttonType.equalsIgnoreCase("Next")) {
+>         return ChatColor.GREEN;
+>     } else if (buttonType.equalsIgnoreCase("Page Number")) {
+>         return ChatColor.AQUA;
+>     }
+>     return ChatColor.RED;
+> }
+> 
+> private static String getDisplayName(String buttonType, XMaterial material) {
+>     return getChatColor(buttonType) + CommonDefinitions.getMessage("wwcConfigGUIPageNumber", args)
+>             .replace("{material}", material.name());
+> }
+> 
+> private static Enchantment getPowerEnchantment() {
+>     return XEnchantment.matchXEnchantment("power").get().parseEnchantment();
+> }
+\ No newline at end of file
