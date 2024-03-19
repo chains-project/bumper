@@ -1,0 +1,15 @@
+2,3c2,12
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+>     Resourse[] resources = resolver.getResources("classpath*:" + testSrcFolder.getPath() + "/**/*.class");
+>     List<String> classLocations = new ArrayList<>();
+>     for (Resourse resource : resources) {
+>         try {
+>             classLocations.add(resource.getURI().toString());
+>         } catch (IOException e) {
+>             // handle exception
+>         }
+>     }
+>     return classLocations;

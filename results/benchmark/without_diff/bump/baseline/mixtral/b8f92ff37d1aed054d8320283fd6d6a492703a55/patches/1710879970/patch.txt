@@ -1,0 +1,7 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    AntDirectoryScanner directoryScanner = new AntDirectoryScanner(); // use AntDirectoryScanner instead
+    directoryScanner.setBasedir(testSrcFolder);
+    directoryScanner.setIncludes(new String[]{TestListResolver.getWildcard()});
+    directoryScanner.scan();
+    return Arrays.asList(directoryScanner.getIncludedFiles()); // get the included files
+}
