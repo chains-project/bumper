@@ -1,0 +1,26 @@
+2a3
+>         Pattern patternToScan;
+4,5c5,6
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+<         }
+---
+>             patternToScan = Pattern.compile(".+\\.class");
+>         } else {
+6a8
+>             StringBuilder sb = new StringBuilder();
+8,10c10,14
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+<                 return true;
+---
+>                 if (sb.length() > 0) {
+>                     sb.append("|");
+>                 }
+>                 String regex = String.format("\\.?\\.??%s\\..+\\.class", packageToScan.replaceAll("\\.", "\\."));
+>                 sb.append("(").append(regex).append(")");
+11a16
+>             patternToScan = Pattern.compile(sb.toString());
+13c18
+<         return false;
+---
+>         return patternToScan.matcher(s).matches();

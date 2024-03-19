@@ -1,0 +1,20 @@
+3,5c3,4
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+<         }
+---
+>         Predicate<String> packageFilter = (str) -> true;
+>         if (packagesToScan != null && !packagesToScan.isEmpty()) {
+6a6
+>             packageFilter = str -> {
+8,9c8,9
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>                     String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan.trim());
+>                     if (str.matches(regex)) {
+13a14,17
+>             };
+>         }
+>         FilterBuilder filterBuilder = new FilterBuilder();
+>         return packageFilter.and(filterBuilder.include(".+\\.class")).apply(s);
