@@ -1,0 +1,11 @@
+2,5c2,6
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     if (image.startsWith("sha256:")) {
+>         return new StringStartsWith(String.format("Status: Downloaded newer image for %s", image));
+>     } else {
+>         return new StringContainsIgnoringCase(String.format("Status: Downloaded newer image for %s", image));
+>     }

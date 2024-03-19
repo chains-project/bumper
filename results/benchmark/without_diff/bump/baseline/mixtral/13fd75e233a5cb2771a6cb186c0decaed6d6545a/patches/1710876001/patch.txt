@@ -1,0 +1,7 @@
+private static Matcher<String> imagePulled(final String image) {
+    if (image.startsWith("sha256:")) {
+        return new StringStartsWith(String.format("Status: Downloaded newer image for %s", image));
+    } else {
+        return new StringContainsIgnoringCase(String.format("Status: Downloaded newer image for %s", image));
+    }
+}

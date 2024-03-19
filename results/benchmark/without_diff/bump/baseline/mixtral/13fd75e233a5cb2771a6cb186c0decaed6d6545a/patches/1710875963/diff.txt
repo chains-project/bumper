@@ -1,0 +1,7 @@
+1a2
+>     String searchString = String.format("Downloaded newer image for %s", image);
+4c5,6
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>             searchString, 
+>             searchString

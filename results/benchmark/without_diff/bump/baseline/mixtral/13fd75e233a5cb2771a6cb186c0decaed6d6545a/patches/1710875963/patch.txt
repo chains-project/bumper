@@ -1,0 +1,8 @@
+private static Matcher<String> imagePulled(final String image) {
+    String searchString = String.format("Downloaded newer image for %s", image);
+    return new StringContains(
+            false,
+            searchString, 
+            searchString
+    );
+}

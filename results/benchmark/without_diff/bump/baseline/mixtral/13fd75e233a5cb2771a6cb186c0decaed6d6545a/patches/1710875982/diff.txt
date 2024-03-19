@@ -1,0 +1,10 @@
+2,5c2,5
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return is(allOf(
+>         stringContains("Status: Downloaded newer image for"),
+>         stringContainsIgnoringCase(image)
+>     ));

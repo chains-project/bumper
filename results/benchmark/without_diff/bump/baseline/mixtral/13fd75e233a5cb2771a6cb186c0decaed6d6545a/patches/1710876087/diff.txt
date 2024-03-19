@@ -1,0 +1,10 @@
+2,5c2,5
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>   if (StringUtils.isBlank(image)) {
+>     throw new IllegalArgumentException("Image name cannot be blank");
+>   }
+>   return new StringContains(String.format("Status: Downloaded newer image for %s", image));
