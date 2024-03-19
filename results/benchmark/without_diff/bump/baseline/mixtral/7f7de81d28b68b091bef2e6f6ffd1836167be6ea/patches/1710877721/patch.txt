@@ -1,0 +1,21 @@
+private void registerHard(final MOGroup group) {
+    try {
+        // Use a method reference to get the registry field, it's safer and cleaner
+        Field registry = server.getClass().getDeclaredField("registry");
+        registry.setAccessible(true);
+
+        // Create a new, empty SortedMap with the correct type
+        SortedMap<MOScope, ManagedObject<?>> reg = new TreeMap<>();
+        DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+        reg.put(contextScope, group);
+
+        // Use the putAll method to copy the existing registry into the new map
+        SortedMap<MOScope, ManagedObject<? extends ManagedObject>> existingReg = server.getRegistry();
+        reg.putAll(existingReg);
+
+        // Set the new registry value
+        registry.set(server, reg);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        log.warn("could not set server registry", e);
+    }
+}

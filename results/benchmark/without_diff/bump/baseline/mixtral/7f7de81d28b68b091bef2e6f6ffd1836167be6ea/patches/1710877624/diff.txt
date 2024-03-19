@@ -1,0 +1,17 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+10c3,4
+<             final Field registry = server.getClass().getDeclaredField("registry");
+---
+>         Class<? extends DefaultMOServer> clazz = server.getClass();
+>         Field registry = clazz.getDeclaredField("registry");
+12c6
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         SortedMap<MOScope, ManagedObject<?>> reg = (SortedMap<MOScope, ManagedObject<?>>) registry.get(server);

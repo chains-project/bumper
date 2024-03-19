@@ -1,0 +1,19 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+9a3
+>         // Use a generic wildcard when getting the type of the "registry" field
+12c6,11
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         
+>         // Declare and initialize a new SortedMap with the correct type
+>         @SuppressWarnings("unchecked")
+>         SortedMap<MOScope, ManagedObject<?>> reg = new TreeMap<>();
+>         reg.putAll(server.getRegistry());
+> 

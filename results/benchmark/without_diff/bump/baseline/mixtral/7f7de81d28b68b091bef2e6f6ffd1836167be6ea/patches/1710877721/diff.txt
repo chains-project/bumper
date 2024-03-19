@@ -1,0 +1,26 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+10c3,4
+<             final Field registry = server.getClass().getDeclaredField("registry");
+---
+>         // Use a method reference to get the registry field, it's safer and cleaner
+>         Field registry = server.getClass().getDeclaredField("registry");
+12c6,8
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+> 
+>         // Create a new, empty SortedMap with the correct type
+>         SortedMap<MOScope, ManagedObject<?>> reg = new TreeMap<>();
+14a11,16
+> 
+>         // Use the putAll method to copy the existing registry into the new map
+>         SortedMap<MOScope, ManagedObject<? extends ManagedObject>> existingReg = server.getRegistry();
+>         reg.putAll(existingReg);
+> 
+>         // Set the new registry value

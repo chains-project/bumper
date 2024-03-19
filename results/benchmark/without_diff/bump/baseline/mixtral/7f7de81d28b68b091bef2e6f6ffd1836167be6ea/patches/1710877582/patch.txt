@@ -1,0 +1,19 @@
+private void registerHard(final MOGroup group) {
+    try {
+        // Use a method reference to get the registry field in a type-safe way
+        Field registry = server.getClass().getDeclaredField("registry");
+        registry.setAccessible(true);
+
+        // Create a copy of the registry using the putAll method
+        SortedMap<MOScope, ManagedObject<?>> newRegistry = new TreeMap<>();
+        newRegistry.putAll(registry.get(server));
+
+        DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+        newRegistry.put(contextScope, group);
+
+        // Use the putAll method to update the registry in a type-safe way
+        registry.set(server, newRegistry);
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        log.warn("could not set server registry", e);
+    }
+}

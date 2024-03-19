@@ -1,0 +1,18 @@
+private void registerHard(final MOGroup group) {
+    try {
+        Class<? extends DefaultMOServer> serverClass = server.getClass();
+        Field registry = serverClass.getDeclaredField("registry");
+        registry.setAccessible(true);
+        Object reg = registry.get(server);
+        if (reg instanceof SortedMap) {
+            SortedMap<MOScope, ManagedObject<?>> regMap = (SortedMap<MOScope, ManagedObject<?>>) reg;
+            DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+            regMap.put(contextScope, group);
+            registry.set(server, regMap);
+        } else {
+            throw new IllegalStateException("Unexpected type of registry: " + reg.getClass());
+        }
+    } catch (NoSuchFieldException | IllegalAccessException | ClassCastException e) {
+        log.warn("could not set server registry", e);
+    }
+}
