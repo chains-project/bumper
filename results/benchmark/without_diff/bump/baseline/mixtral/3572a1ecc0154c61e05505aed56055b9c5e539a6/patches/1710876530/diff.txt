@@ -1,0 +1,8 @@
+1c1,3
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> private static TFramedTransport newFramedTransport(TTransport transport) {
+>   return new TFastFramedTransport(transport, MAX_FRAME_SIZE, MAX_FRAME_SIZE);
+> }
+\ No newline at end of file

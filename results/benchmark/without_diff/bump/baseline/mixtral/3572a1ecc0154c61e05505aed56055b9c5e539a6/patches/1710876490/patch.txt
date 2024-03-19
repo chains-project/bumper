@@ -1,0 +1,17 @@
+import org.apache.thrift.transport.TFastFramedTransport;
+import org.apache.thrift.protocol.TCompactProtocol;
+import org.apache.thrift.TException;
+import com.pinterest.singer.SingerService;
+import com.pinterest.singer.SingerService.Client;
+
+@Override
+public void start() {
+  TFastFramedTransport transport = new TFastFramedTransport(socket);
+  TCompactProtocol protocol = new TCompactProtocol(transport);
+  try {
+    transport.open();
+    client = new Client(protocol);
+  } catch (TException e) {
+    throw new RuntimeException(e);
+  }
+}

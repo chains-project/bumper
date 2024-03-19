@@ -1,0 +1,7 @@
+-  private static void validateThriftTransportFactory(LoggerContext loggerContext, Appender appender) {
++  private static void validateThriftTransportFactory(LoggerContext loggerContext, Appender<ILoggingEvent> appender) {
+    if (appender instanceof ThriftAppender) {
+-      TFramedTransport.Factory transportFactory = (TFramedTransport.Factory) appender.getParameters().getTransportFactory();
++      TFastFramedTransport.Factory transportFactory = (TFastFramedTransport.Factory) appender.getParameters().getTransportFactory();
+    }
+  }

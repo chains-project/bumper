@@ -1,0 +1,62 @@
+import org.apache.thrift.transport.TFastFramedTransport;
+
+class DefaultTFastFramedTransport implements TFastFramedTransport {
+  private boolean zlibEnabled;
+  private boolean zstdEnabled;
+  private int compressionSize;
+
+  DefaultTFastFramedTransport() {
+    this.zlibEnabled = false;
+    this.zstdEnabled = false;
+    this.compressionSize = 15;
+  }
+
+  @Override
+  public void close() {}
+
+  @Override
+  public int read(byte[] buf, int off, int len) {
+    return -1;
+  }
+
+  @Override
+  public void write(byte[] buf, int off, int len) {}
+
+  @Override
+  public void flush() {}
+
+  @Override
+  public long getBytesTransferred() {
+    return 0;
+  }
+
+  @Override
+  public void setCompressionSize(int size) {
+    this.compressionSize = size;
+  }
+
+  @Override
+  public int getCompressionSize() {
+    return compressionSize;
+  }
+
+  @Override
+  public void setZlibEnabled(boolean enabled) {
+    this.zlibEnabled = enabled;
+  }
+
+  @Override
+  public boolean isZlibEnabled() {
+    return zlibEnabled;
+  }
+
+  @Override
+  public void setZstdEnabled(boolean enabled) {
+    this.zstdEnabled = enabled;
+  }
+
+  @Override
+  public boolean isZstdEnabled() {
+    return zstdEnabled;
+  }
+}

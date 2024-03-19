@@ -1,0 +1,3 @@
+private static TFramedTransport newFramedTransport(TTransport transport) {
+  return new TFastFramedTransport(transport, MAX_FRAME_SIZE, MAX_FRAME_SIZE);
+}
