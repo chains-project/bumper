@@ -1,0 +1,72 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+10,12c3,28
+<             final Field registry = server.getClass().getDeclaredField("registry");
+<             registry.setAccessible(true);
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         Class<?> registryClass = server.getClass();
+>         Field registryField = registryClass.getDeclaredField("registry");
+>         registryField.setAccessible(true);
+>         Object registry = registryField.get(server);
+>         Class<?> registryType = registry.getClass();
+>         Field regTypeField = registryType.getDeclaredField("regType");
+>         regTypeField.setAccessible(true);
+>         Class<?> regType = Class.forName("org.snmp4j.agent.mo.snmp.DefaultMOContextScope");
+>         Class<? extends ManagedObject> managedObjectType = (Class<? extends ManagedObject>) Class.forName("org.snmp4j.agent.mo.snmp.MOGroup");
+>         ParameterizedType paramType = ParameterizedType.class.cast(managedObjectType.getGenericInterfaces()[0]);
+>         Type[] typeArgs = paramType.getActualTypeArguments();
+>         Type scopeType = typeArgs[0];
+>         ParameterizedType mapType = new ParameterizedTypeImpl(Map.class, new Class<?>[]{MOScope.class, Class.forName("org.snmp4j.agent.ManagedObject")}, new Type[]{scopeType, managedObjectType});
+>         Object newRegistry = Array.newInstance(registryType, 1);
+>         Array.set(newRegistry, 0, registry);
+>         Field regField = registryType.getDeclaredField("reg");
+>         regField.setAccessible(true);
+>         regField.set(newRegistry, new HashMap<>());
+>         regField = registryType.getDeclaredField("regType");
+>         regField.setAccessible(true);
+>         regField.set(newRegistry, regType);
+>         regField = registryType.getDeclaredField("regMap");
+>         regField.setAccessible(true);
+>         regField.set(newRegistry, newRegistry);
+>         registryField.set(server, newRegistry);
+>         SortedMap<MOScope, ManagedObject> reg = (SortedMap<MOScope, ManagedObject>) registryField.get(server);
+15,16c31,32
+<             registry.set(server, reg);
+<         } catch (NoSuchFieldException | IllegalAccessException e) {
+---
+>         registryField.set(server, reg);
+>     } catch (NoSuchFieldException | IllegalAccessException | ClassNotFoundException e) {
+19a36,60
+> 
+> static class ParameterizedTypeImpl implements ParameterizedType {
+>     private final Class raw;
+>     private final Type[] args;
+> 
+>     ParameterizedTypeImpl(Class raw, Type[] args) {
+>         this.raw = raw;
+>         this.args = args != null ? args : new Type[0];
+>     }
+> 
+>     @Override
+>     public Type getRawType() {
+>         return raw;
+>     }
+> 
+>     @Override
+>     public Type[] getActualTypeArguments() {
+>         return args;
+>     }
+> 
+>     @Override
+>     public Type getOwnerType() {
+>         return null;
+>     }
+> }
+\ No newline at end of file

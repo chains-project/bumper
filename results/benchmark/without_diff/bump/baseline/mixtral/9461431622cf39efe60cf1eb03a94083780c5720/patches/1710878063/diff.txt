@@ -1,0 +1,26 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+10c3,4
+<             final Field registry = server.getClass().getDeclaredField("registry");
+---
+>         // Use a explicit type for the registry field
+>         Field registry = server.getClass().getDeclaredField("registry");
+12c6,11
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+> 
+>         // Create a copy of the registry before modifying it
+>         @SuppressWarnings("unchecked")
+>         SortedMap<MOScope, ManagedObject<? extends ManagedObject>> originalReg = (SortedMap<MOScope, ManagedObject<? extends ManagedObject>>) registry.get(server);
+>         SortedMap<MOScope, ManagedObject<?>> reg = new TreeMap<>(originalReg);
+> 
+16c15
+<         } catch (NoSuchFieldException | IllegalAccessException e) {
+---
+>     } catch (NoSuchFieldException | ClassCastException | IllegalAccessException e) {

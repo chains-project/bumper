@@ -1,0 +1,18 @@
+private void registerHard(final MOGroup group) {
+    try {
+        // Use a explicit type for the registry field
+        Field registry = server.getClass().getDeclaredField("registry");
+        registry.setAccessible(true);
+
+        // Create a copy of the registry before modifying it
+        @SuppressWarnings("unchecked")
+        SortedMap<MOScope, ManagedObject<? extends ManagedObject>> originalReg = (SortedMap<MOScope, ManagedObject<? extends ManagedObject>>) registry.get(server);
+        SortedMap<MOScope, ManagedObject<?>> reg = new TreeMap<>(originalReg);
+
+        DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+        reg.put(contextScope, group);
+        registry.set(server, reg);
+    } catch (NoSuchFieldException | ClassCastException | IllegalAccessException e) {
+        log.warn("could not set server registry", e);
+    }
+}
