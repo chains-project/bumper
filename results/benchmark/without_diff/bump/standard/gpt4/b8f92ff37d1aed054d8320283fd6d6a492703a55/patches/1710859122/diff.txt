@@ -1,0 +1,34 @@
+7a8
+>  *
+11c12
+<     private boolean classToInclude(String className) {
+---
+> private boolean classToInclude(java.lang.String className) {
+13,14c14,15
+<         for (String pattern : config.getJacocoExcludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>     for (java.lang.String pattern : config.getJacocoExcludes()) {
+>         org.jacoco.core.runtime.WildcardMatcher matcher = new org.jacoco.core.runtime.WildcardMatcher(pattern);
+20,21c21,22
+<         for (String pattern : config.getJacocoIncludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>     for (java.lang.String pattern : config.getJacocoIncludes()) {
+>         org.jacoco.core.runtime.WildcardMatcher matcher = new org.jacoco.core.runtime.WildcardMatcher(pattern);
+26d26
+< 
+28,29c28,29
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinJavaDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), null);
+34,35c34,35
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinTestDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), null);
+40d39
+< 
