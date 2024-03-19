@@ -16,5 +16,14 @@
         "patches": [
             1710851067
         ]
+    },
+    "17f2bcaaba4805b218743f575919360c5aec5da4": {
+        "py/object": "pipeline.types.project_repair_status.ProjectRepairStatus",
+        "fixed_errors_count": 1,
+        "generated_patch_count": 11,
+        "repaired": false,
+        "patches": [
+            1710851416
+        ]
     }
 }
