@@ -1,0 +1,17 @@
+```java
+private boolean shouldScan(java.lang.String s) {
+    final java.lang.String packagesToScan = java.lang.System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+    if ((packagesToScan == null) || packagesToScan.isEmpty()) {
+        return new org.reflections.util.FilterBuilder().include(".+\\.class").test(s);
+    }
+    final java.lang.String[] packages = packagesToScan.split(",");
+    for (java.lang.String packageToScan : packages) {
+        java.lang.String regex = java.lang.String.format(".?\\.??%s\\..+\\.class", packageToScan);
+        if (new org.reflections.util.FilterBuilder().include(regex).test(s)) {
+            return true;
+        }
+    }
+    return false;
+}
+```
+In the above code, I have replaced the `apply` method with the `test` method because the `apply` method is not available in the `FilterBuilder` class. The `test` method is a functional interface method that can be used as a replacement for the `apply` method.
