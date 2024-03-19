@@ -1,0 +1,65 @@
+import org.apache.maven.doxia.siterenderer.decoration.AbstractXhtmlDecorator;
+import org.apache.maven.doxia.siterenderer.SiteRenderer;
+import org.apache.maven.doxia.siterenderer.decoration.Decorator;
+import org.apache.maven.doxia.siterenderer.DocumentContent;
+import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.doxia.siterenderer.sink.SiteSink;
+
+@Override
+public void execute() throws MojoExecutionException, MojoFailureException {
+    if (skip) {
+        getLog().info("Skipping SCoverage report generation");
+        return;
+    }
+
+    SiteRenderer siteRenderer = getSiteRenderer();
+    DocumentContent documentContent = siteRenderer.getDocumentContent();
+    SiteSink sink = documentContent.getSiteSink();
+
+    sink.head();
+    sink.title();
+    sink.text("SCoverage Report");
+    sink.title_();
+    sink.head_();
+
+    sink.body();
+    sink.section1();
+    sink.text("SCoverage Report");
+    sink.section1_();
+
+    sink.section2();
+    sink.text("Coverage Summary");
+    sink.section2_();
+
+    sink.section3();
+    sink.text("Package Detail");
+    sink.section3_();
+
+    sink.section2();
+    sink.text("File Detail");
+    sink.section2_();
+
+    sink.section3();
+    sink.text("Line Detail");
+    sink.section3_();
+
+    sink.body_();
+
+    Decorator decorator = new AbstractXhtmlDecorator() {
+        @Override
+        public void startElement(String name, Attributes attributes) throws SiteVisitorException {
+            if (name.equals("body")) {
+                sink.body();
+            }
+            sink.head();
+            sink.head_();
+            sink.body();
+            sink.section1();
+            sink.text("SCoverage Report");
+            sink.section1_();
+        }
+    };
+
+    siteRenderer.setDecorator(decorator);
+    siteRenderer.render(documentContent);
+}

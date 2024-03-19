@@ -1,0 +1,11 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+21c16,17
+<             generate( sink, locale );
+---
+>         ReportGenerator reportGenerator = new ReportGenerator(); // added
+>         reportGenerator.generate( sink, locale ); // modified

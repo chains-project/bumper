@@ -1,0 +1,30 @@
+@Override
+public void execute()
+throws MojoExecutionException
+{
+    if ( !canGenerateReport() )
+    {
+        getLog().info( "Skipping SCoverage report generation" );
+        return;
+    }
+
+    try
+    {
+        RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+        SiteRendererSink sink = new SiteRendererSink( context );
+        Locale locale = Locale.getDefault();
+        generate( sink, locale, getLog() ); // pass the log object
+    }
+    catch ( MavenReportException e )
+    {
+        String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+        throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+    }
+}
+
+// Add a new generate method overload that accepts a logger
+private void generate(SiteRendererSink sink, Locale locale, Logger logger)
+throws MavenReportException
+{
+    // Implement the report generation logic here, using the logger object for logging
+}

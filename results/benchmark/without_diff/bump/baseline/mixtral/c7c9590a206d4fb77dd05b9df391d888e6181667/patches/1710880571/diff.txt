@@ -1,0 +1,10 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+25c20
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+---
+>         String prefix = "An error has occurred in " + getName( java.util.Locale.ENGLISH ) + " report generation";

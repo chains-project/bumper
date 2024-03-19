@@ -1,0 +1,26 @@
+  @Override
+  public void execute()
+      throws MojoExecutionException
+  {
+      if ( !canGenerateReport() )
+      {
+          getLog().info( "Skipping SCoverage report generation" );
+          return;
+      }
+
+      try
+      {
+          RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+          SiteRendererSink sink = new SiteRendererSink( context );
+          Locale locale = Locale.getDefault();
+          Class siteRendererClass = Class.forName( "org.apache.maven.doxia.siterenderer.SiteRenderer" );
+          Object siteRenderer = siteRendererClass.getConstructor( SiteRenderer.Role.class ).newInstance( sink );
+          Method generateMethod = siteRendererClass.getMethod( "generate", Locale.class );
+          generateMethod.invoke( siteRenderer, locale );
+      }
+      catch ( MavenReportException | ReflectiveOperationException e )
+      {
+          String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+          throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+      }
+  }

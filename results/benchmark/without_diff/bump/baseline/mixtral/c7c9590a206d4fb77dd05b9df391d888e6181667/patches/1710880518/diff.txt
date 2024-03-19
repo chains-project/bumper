@@ -1,0 +1,12 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+21c16,18
+<             generate( sink, locale );
+---
+>         ComponentProvider componentProvider = (ComponentProvider) getComponent( "org.apache.maven.doxia.sink.SinkProvider" );
+>         Sink sinkInstance = componentProvider.newSink( context );
+>         generate( sinkInstance, locale );

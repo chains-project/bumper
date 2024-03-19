@@ -1,0 +1,17 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+21c16,19
+<             generate( sink, locale );
+---
+>           Class siteRendererClass = Class.forName( "org.apache.maven.doxia.siterenderer.SiteRenderer" );
+>           Object siteRenderer = siteRendererClass.getConstructor( SiteRenderer.Role.class ).newInstance( sink );
+>           Method generateMethod = siteRendererClass.getMethod( "generate", Locale.class );
+>           generateMethod.invoke( siteRenderer, locale );
+23c21
+<         catch ( MavenReportException e )
+---
+>       catch ( MavenReportException | ReflectiveOperationException e )

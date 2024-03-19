@@ -1,0 +1,19 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+21c16
+<             generate( sink, locale );
+---
+>         generate( sink, locale, getLog() ); // pass the log object
+28a24,30
+> 
+> // Add a new generate method overload that accepts a logger
+> private void generate(SiteRendererSink sink, Locale locale, Logger logger)
+> throws MavenReportException
+> {
+>     // Implement the report generation logic here, using the logger object for logging
+> }
+\ No newline at end of file

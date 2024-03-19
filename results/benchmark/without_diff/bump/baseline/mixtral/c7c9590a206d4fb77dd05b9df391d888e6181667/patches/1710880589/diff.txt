@@ -1,0 +1,27 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+10,11c5,10
+<         if ( !canGenerateReport() )
+<         {
+---
+>     if (outputDirectory == null) {
+>         getLog().info("Skipping SCoverage report generation due to null outputDirectory");
+>         return;
+>     }
+> 
+>     if (!canGenerateReport()) {
+16,17c15
+<         try
+<         {
+---
+>     try {
+22,24c20
+<         }
+<         catch ( MavenReportException e )
+<         {
+---
+>     } catch (MavenReportException e) {
