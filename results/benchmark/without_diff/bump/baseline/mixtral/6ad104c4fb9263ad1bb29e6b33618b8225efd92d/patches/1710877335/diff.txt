@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // ...
+> 
+> private void someMethod() {
+>     JceTls tls = new JceTls(); // Added null check and instantiation
+>     if (tls != null) {
+>         // Rest of the method code
+>     }
+> }
+\ No newline at end of file

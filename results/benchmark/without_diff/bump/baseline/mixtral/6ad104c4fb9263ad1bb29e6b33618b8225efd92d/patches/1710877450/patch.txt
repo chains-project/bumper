@@ -1,0 +1,12 @@
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+// Add the following code at the beginning of the failing method
+BouncyCastleProvider provider = new BouncyCastleProvider();
+Security.addProvider(provider);
+
+// Replace the failing import statement with the following code
+JceTls jceTls = new JceTls();
+jceTls.setSecureRandom(new SecureRandom());
+TLSClientContextBuilder builder = TLSClientContextBuilder.builder();
+builder.ciphers(jceTls.getCipherSuites());
+TLSClientContext clientContext = builder.build();

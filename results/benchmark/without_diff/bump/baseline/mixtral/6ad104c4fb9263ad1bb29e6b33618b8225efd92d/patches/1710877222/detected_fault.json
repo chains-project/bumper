@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 157990006,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java:[23,44] ';' expected",
+        "client_file_path": "/HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java",
+        "client_line_position": "23"
+    },
+    "client_end_line_number": 23,
+    "client_line_number": 23,
+    "method_code": "import org.bouncycastle.jce.provider.JceTls;",
+    "qualified_code": "import org.bouncycastle.jce.provider.JceTls;",
+    "method_name": "import"
+}

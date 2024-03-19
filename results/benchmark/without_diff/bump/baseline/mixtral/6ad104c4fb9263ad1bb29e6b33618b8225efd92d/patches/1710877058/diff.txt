@@ -1,0 +1,15 @@
+0a1,8
+> import org.bouncycastle.jce.provider.BouncyCastleProvider;
+> 
+> // Add this line at the beginning of the class
+> static {
+>     Security.addProvider(new BouncyCastleProvider());
+> }
+> 
+> // Change this line
+1a10,13
+> 
+> // To this line
+> import org.bouncycastle.jce.provider.JceTLSClient;
+> import org.bouncycastle.jce.provider.JceTls FatalAlert;
+\ No newline at end of file

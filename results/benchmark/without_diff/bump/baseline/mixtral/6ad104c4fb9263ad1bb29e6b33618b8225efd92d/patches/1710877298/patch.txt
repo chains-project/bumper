@@ -1,0 +1,9 @@
+import org.bouncycastle.jce.provider.JceTls;
+
+...
+
+private void decode(InputStream inputStream, OutputStream outputStream) throws IOException, TLSFatalAlert {
+    // Assuming the problem is in this line
+    Reader reader = new InputStreamReader(inputStream, UTF_8);
+    ...
+}

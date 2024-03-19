@@ -1,0 +1,4 @@
+@Override
+protected void finalize() throws IOException {
+    JceTls.setChaChaEnabled(false); // faulty line
+}

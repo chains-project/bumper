@@ -1,0 +1,4 @@
+if (cipherSuite.getJceId() == JceTls.CHACHA20_POLY1305_SHA256) {
+    cipherSuite = new Chacha20Poly1305Suite(); // added semicolon here
+}
+import org.bouncycastle.jce.provider.JceTls;

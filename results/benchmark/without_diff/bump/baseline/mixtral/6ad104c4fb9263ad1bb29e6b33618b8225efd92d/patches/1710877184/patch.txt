@@ -1,0 +1,2 @@
+import org.bouncycastle.jce.provider.JceTls;
+; // add this line to satisfy syntax requirement

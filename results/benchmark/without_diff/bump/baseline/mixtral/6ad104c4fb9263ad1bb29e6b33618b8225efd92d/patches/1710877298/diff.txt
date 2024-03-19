@@ -1,0 +1,10 @@
+1a2,9
+> 
+> ...
+> 
+> private void decode(InputStream inputStream, OutputStream outputStream) throws IOException, TLSFatalAlert {
+>     // Assuming the problem is in this line
+>     Reader reader = new InputStreamReader(inputStream, UTF_8);
+>     ...
+> }
+\ No newline at end of file

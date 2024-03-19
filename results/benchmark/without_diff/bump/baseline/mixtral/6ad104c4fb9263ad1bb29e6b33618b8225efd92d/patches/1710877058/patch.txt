@@ -1,0 +1,13 @@
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+// Add this line at the beginning of the class
+static {
+    Security.addProvider(new BouncyCastleProvider());
+}
+
+// Change this line
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// To this line
+import org.bouncycastle.jce.provider.JceTLSClient;
+import org.bouncycastle.jce.provider.JceTls FatalAlert;
