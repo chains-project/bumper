@@ -1,0 +1,43 @@
+act as a senior software engineer, your goal is fix code failures.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+/**
+ * Generates SCoverage report.
+ *
+ * @throws MojoExecutionException
+ * 		if unexpected problem occurs
+ */
+@java.lang.Override
+public void execute() throws org.apache.maven.plugin.MojoExecutionException {
+    if (!canGenerateReport()) {
+        getLog().info("Skipping SCoverage report generation");
+        return;
+    }
+    try {
+        org.scoverage.plugin.RenderingContext context = new org.scoverage.plugin.RenderingContext(outputDirectory, getOutputName() + ".html");
+        org.apache.maven.doxia.siterenderer.sink.SiteRendererSink sink = new org.apache.maven.doxia.siterenderer.sink.SiteRendererSink(context);
+        java.util.Locale locale = java.util.Locale.getDefault();
+        generate(sink, locale);
+    } catch (org.apache.maven.reporting.MavenReportException e) {
+        java.lang.String prefix = ("An error has occurred in " + getName(java.util.Locale.ENGLISH)) + " report generation";
+        throw new org.apache.maven.plugin.MojoExecutionException((prefix + ": ") + e.getMessage(), e);
+    }
+}
+```
+
+with the following error message:
+[ERROR] /scoverage-maven-plugin/src/main/java/org/scoverage/plugin/SCoverageReportMojo.java:[386,44] cannot find symbol
+  symbol:   class RenderingContext
+  location: class org.scoverage.plugin.SCoverageReportMojo
