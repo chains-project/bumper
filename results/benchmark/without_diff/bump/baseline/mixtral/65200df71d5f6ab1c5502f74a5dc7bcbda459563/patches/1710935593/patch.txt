@@ -1,0 +1,13 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    Map<String, Object> extraProperties = globalConfig.extraProperties();
+    String workDir = globalConfig.getWorkDir();
+    Supplier<List<Module>> modulesProvider = globalConfig.getModulesProvider();
+
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .putAllExtraProperties(extraProperties)
+            .setWorkDir(workDir)
+            .setModulesProvider(modulesProvider)
+            .build();
+}

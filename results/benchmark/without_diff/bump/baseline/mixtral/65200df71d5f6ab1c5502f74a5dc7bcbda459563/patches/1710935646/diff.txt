@@ -1,0 +1,12 @@
+2c2,4
+<         return AnalysisEngineConfiguration.builder()
+---
+>     AnalysisEngineConfiguration config = null;
+>     try {
+>         config = AnalysisEngineConfiguration.builder()
+8a11,15
+>     } catch (Exception e) {
+>         // Handle exception and provide default configuration
+>         config = AnalysisEngineConfiguration.defaultConfiguration();
+>     }
+>     return config;

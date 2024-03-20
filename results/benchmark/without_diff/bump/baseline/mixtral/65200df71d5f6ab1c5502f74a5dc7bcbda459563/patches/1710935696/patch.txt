@@ -1,0 +1,39 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    if (AnalysisEngineConfiguration.getClass() == null) {
+        // If AnalysisEngineConfiguration is not found, return a default configuration object
+        return new AnalysisEngineConfiguration() {
+            @Override
+            public SettableModuleDiscoverer modulesProvider() {
+                return new DefaultModuleDiscoverer(Collections.emptyList());
+            }
+
+            @Override
+            public File workDir() {
+                return new File(System.getProperty("user.dir"));
+            }
+
+            @Override
+            public Properties extraProperties() {
+                return new Properties();
+            }
+
+            @Override
+            public List<String> getEnabledLanguages() {
+                return Collections.emptyList();
+            }
+
+            @Override
+            public String clientPid() {
+                return "0";
+            }
+        };
+    }
+
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(globalConfig.getModulesProvider())
+            .build();
+}

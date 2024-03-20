@@ -1,0 +1,7 @@
+1a2
+>     ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+7,8c8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>             .build(modulesProvider);

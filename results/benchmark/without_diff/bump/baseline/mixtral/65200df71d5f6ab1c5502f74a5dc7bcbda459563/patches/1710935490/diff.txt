@@ -1,0 +1,11 @@
+1a2,4
+>     if (AnalysisEngineConfiguration == null) {
+>         // Add a try-catch block to handle the missing symbol error
+>         try {
+8a12,17
+>         } catch (Exception e) {
+>             // Log the error or handle it appropriately
+>             e.printStackTrace();
+>         }
+>     }
+>     return null;

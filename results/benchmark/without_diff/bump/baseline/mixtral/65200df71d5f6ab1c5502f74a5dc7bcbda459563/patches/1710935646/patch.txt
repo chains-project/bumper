@@ -1,0 +1,16 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    AnalysisEngineConfiguration config = null;
+    try {
+        config = AnalysisEngineConfiguration.builder()
+                .addEnabledLanguages(globalConfig.getEnabledLanguages())
+                .setClientPid(globalConfig.getClientPid())
+                .setExtraProperties(globalConfig.extraProperties())
+                .setWorkDir(globalConfig.getWorkDir())
+                .setModulesProvider(globalConfig.getModulesProvider())
+                .build();
+    } catch (Exception e) {
+        // Handle exception and provide default configuration
+        config = AnalysisEngineConfiguration.defaultConfiguration();
+    }
+    return config;
+}
