@@ -1,0 +1,18 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// Create a variable to hold the RenderingContext instance
+RenderingContext renderingContext = null;
+
+// Replace the import statement with a method call to get the RenderingContext instance
+renderingContext = getRenderingContext();
+
+// Use the renderingContext instance instead of the import statement
+renderingContext.printStackTrace();
+
+// Add a method to get the RenderingContext instance
+private static RenderingContext getRenderingContext() {
+    // Create a new RenderingContext instance
+    RenderingContext renderingContext = new RenderingContext();
+    // Return the renderingContext instance
+    return renderingContext;
+}

@@ -1,0 +1,10 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// Create a variable for the rendering context
+RenderingContext renderingContext = new RenderingContext();
+
+// Modify the import statement to use the variable
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// Replace the failing import statement with the variable
+renderingContext.setBackgroundColor(Color.WHITE);

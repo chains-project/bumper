@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Create a variable for the RenderingContext import
+> RenderingContext renderingContext = null;
+> 
+> // Replace the failing import with the variable
+> renderingContext = new RenderingContext();
+\ No newline at end of file
