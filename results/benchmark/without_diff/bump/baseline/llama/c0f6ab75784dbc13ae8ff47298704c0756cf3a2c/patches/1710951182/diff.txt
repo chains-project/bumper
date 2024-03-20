@@ -1,0 +1,7 @@
+7a8
+>                 .setLanguageModuleDescriptors(getLanguageModuleDescriptors()) // Added this line
+8a10,13
+>     }
+> 
+>     private static List<LanguageModuleDescriptor> getLanguageModuleDescriptors() {
+>         return Arrays.asList(new LanguageModuleDescriptor("js", "js")); // Add this method

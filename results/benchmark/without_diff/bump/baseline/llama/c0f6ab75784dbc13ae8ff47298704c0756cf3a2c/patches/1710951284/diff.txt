@@ -1,0 +1,2 @@
+7a8
+>             .setDependencyResolver(new DefaultDependencyResolver(globalConfig.getDependencyResolver()))

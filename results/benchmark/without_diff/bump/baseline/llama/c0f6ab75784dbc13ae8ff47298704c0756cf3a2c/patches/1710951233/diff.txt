@@ -1,0 +1,13 @@
+7a8
+>             .setLanguageModuleDescriptors(getLanguageModuleDescriptors()) // Add this line
+9a11,19
+> 
+> private static List<LanguageModuleDescriptor> getLanguageModuleDescriptors() {
+>     return Arrays.asList( // Replace with a list of LanguageModuleDescriptor
+>             new LanguageModuleDescriptor("java", JavaLanguage.INSTANCE),
+>             new LanguageModuleDescriptor("js", JavaScriptLanguage.INSTANCE),
+>             // Add or remove language descriptors as needed
+>             // ...
+>     );
+> }
+\ No newline at end of file

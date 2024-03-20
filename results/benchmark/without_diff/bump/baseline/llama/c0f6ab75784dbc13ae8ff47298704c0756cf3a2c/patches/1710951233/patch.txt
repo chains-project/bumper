@@ -1,0 +1,19 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(globalConfig.getModulesProvider())
+            .setLanguageModuleDescriptors(getLanguageModuleDescriptors()) // Add this line
+            .build();
+}
+
+private static List<LanguageModuleDescriptor> getLanguageModuleDescriptors() {
+    return Arrays.asList( // Replace with a list of LanguageModuleDescriptor
+            new LanguageModuleDescriptor("java", JavaLanguage.INSTANCE),
+            new LanguageModuleDescriptor("js", JavaScriptLanguage.INSTANCE),
+            // Add or remove language descriptors as needed
+            // ...
+    );
+}

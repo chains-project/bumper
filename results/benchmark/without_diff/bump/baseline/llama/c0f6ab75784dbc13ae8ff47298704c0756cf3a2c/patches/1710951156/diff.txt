@@ -1,0 +1,2 @@
+7a8
+>             .setProjectBaseDir(globalConfig.getProjectBaseDir()) // Add this line
