@@ -1,0 +1,11 @@
+2c2,3
+<         return new StringContains(
+---
+>     return new AllOf(
+>             new StringContains(
+4a6,10
+>             ),
+>             new StringContains(
+>                     true,
+>                     "pullImage"
+>             )
