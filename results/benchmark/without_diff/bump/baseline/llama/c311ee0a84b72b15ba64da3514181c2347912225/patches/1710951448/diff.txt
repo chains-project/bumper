@@ -1,0 +1,8 @@
+2,4c2,4
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>         return new AllOf(
+>             new StringContains(false, "Status: Downloaded newer image for " + image),
+>             new StringEndsWith(image)
