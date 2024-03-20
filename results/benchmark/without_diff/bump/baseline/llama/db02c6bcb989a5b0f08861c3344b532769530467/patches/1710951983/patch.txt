@@ -1,0 +1,6 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new AllOf(
+        new StringContains(false, "Status: Downloaded newer image for " + image),
+        new StringContains(false, " pulling image " + image)
+    );
+}
