@@ -1,0 +1,12 @@
+7a8
+>             .setLanguageModuleDescriptors(getLanguageModuleDescriptors()) // Added this line
+9a11,18
+> 
+> private static List<LanguageModuleDescriptor> getLanguageModuleDescriptors() {
+>     List<LanguageModuleDescriptor> descriptors = new ArrayList<>();
+>     for (Language language : globalConfig.getEnabledLanguages()) {
+>         descriptors.add(LanguageModuleDescriptor.forLanguage(language));
+>     }
+>     return descriptors;
+> }
+\ No newline at end of file

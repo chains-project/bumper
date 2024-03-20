@@ -1,0 +1,6 @@
+2c2
+<         return AnalysisEngineConfiguration.builder()
+---
+>     var config = AnalysisEngineConfiguration.builder()
+8a9
+>     return config;

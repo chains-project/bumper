@@ -1,0 +1,18 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(globalConfig.getModulesProvider())
+            .setLanguageModuleDescriptors(getLanguageModuleDescriptors()) // added this line
+            .build();
+}
+
+private static List<LanguageModuleDescriptor> getLanguageModuleDescriptors() {
+    List<LanguageModuleDescriptor> descriptors = new ArrayList<>();
+    for (Language language : globalConfig.getEnabledLanguages()) {
+        descriptors.add(LanguageModuleDescriptor.forLanguage(language));
+    }
+    return descriptors;
+}

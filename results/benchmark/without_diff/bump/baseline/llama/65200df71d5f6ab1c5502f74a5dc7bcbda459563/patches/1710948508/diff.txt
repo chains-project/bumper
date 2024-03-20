@@ -1,0 +1,2 @@
+7a8
+>             .setLanguageVersion(LanguageVersion.of(JavaVersion.VERSION_1_8)) // Add this line
