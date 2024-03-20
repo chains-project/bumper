@@ -1,0 +1,9 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+...
+
+try {
+    // Your existing code that uses JsonBranch
+} catch (Exception e) {
+    // Handle the exception, if needed
+}

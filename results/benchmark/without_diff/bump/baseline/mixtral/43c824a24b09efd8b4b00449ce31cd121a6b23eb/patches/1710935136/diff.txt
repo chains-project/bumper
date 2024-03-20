@@ -1,0 +1,7 @@
+1a2,6
+> import de.gwdg.metadataqa.api.schema.groundtruth.GroundTruth;
+> 
+> // ...
+> 
+> GroundTruth groundTruth = JsonBranch.get("groundTruth");
+\ No newline at end of file

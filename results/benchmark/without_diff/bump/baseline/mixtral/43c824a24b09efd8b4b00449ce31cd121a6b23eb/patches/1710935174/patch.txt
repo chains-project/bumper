@@ -1,0 +1,10 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+import de.gwdg.metadataqa.api.schema.MarcSchema;
+
+@JsonBranch("value")
+@JsonBranch("indicator1")
+@JsonBranch("indicator2")
+@JsonBranch("tag")
+MarcSchema.MarcField marcField(String value, String indicator1, String indicator2, String tag) {
+    return new MarcSchema.MarcField(value, indicator1, indicator2, tag);
+}

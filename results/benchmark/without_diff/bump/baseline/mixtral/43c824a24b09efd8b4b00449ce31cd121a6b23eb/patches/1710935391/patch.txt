@@ -1,0 +1,14 @@
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+    List<JsonFieldInstance> instances = cache.get(branch.getJsonPath());
+    if (instances == null) {
+        return new ArrayList<>();
+    }
+    List<String> values = new ArrayList<>();
+    for (JsonFieldInstance instance : instances) {
+        String value = instance.getValue();
+        if (value != null) {
+            values.add(value);
+        }
+    }
+    return values;
+}

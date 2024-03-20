@@ -1,0 +1,6 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+import de.gwdg.metadataqa.api.schema.groundtruth.GroundTruth;
+
+// ...
+
+GroundTruth groundTruth = JsonBranch.get("groundTruth");

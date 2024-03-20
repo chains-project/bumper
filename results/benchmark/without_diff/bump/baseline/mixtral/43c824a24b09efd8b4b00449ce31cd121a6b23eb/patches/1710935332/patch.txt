@@ -1,0 +1,6 @@
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+    return cache.get(branch.getJsonPath())
+            .stream()
+            .map(XmlFieldInstance::getValue)
+            .collect(Collectors.toList());
+}

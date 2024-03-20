@@ -1,0 +1,16 @@
+2c2
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+---
+>     List<JsonFieldInstance> instances = cache.get(branch.getJsonPath());
+5c5
+<       for (XmlFieldInstance instance : instances)
+---
+>       for (JsonFieldInstance instance : instances)
+8a9,14
+> 
+> static class JsonFieldInstance {
+>     String getValue() {
+>         // Implementation for getting the value from the JSON field instance
+>     }
+> }
+\ No newline at end of file

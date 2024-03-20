@@ -1,0 +1,16 @@
+2d1
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+4,6c3,11
+<     if (instances != null)
+<       for (XmlFieldInstance instance : instances)
+<         values.add(instance.getValue());
+---
+>     if (cache != null && branch != null) {
+>         String json = cache.get(branch.getJsonPath());
+>         if (json != null) {
+>             List<String> jsonValues = JsonPath.read(json, branch.getJsonPath());
+>             if (jsonValues != null) {
+>                 values.addAll(jsonValues);
+>             }
+>         }
+>     }

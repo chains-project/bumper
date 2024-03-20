@@ -1,0 +1,13 @@
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+    List<String> values = new ArrayList<>();
+    if (cache != null && branch != null) {
+        String json = cache.get(branch.getJsonPath());
+        if (json != null) {
+            List<String> jsonValues = JsonPath.read(json, branch.getJsonPath());
+            if (jsonValues != null) {
+                values.addAll(jsonValues);
+            }
+        }
+    }
+    return values;
+}

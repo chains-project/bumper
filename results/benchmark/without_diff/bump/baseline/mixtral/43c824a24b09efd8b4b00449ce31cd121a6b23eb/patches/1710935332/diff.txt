@@ -1,0 +1,12 @@
+2,7c2,5
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+<     List<String> values = new ArrayList<>();
+<     if (instances != null)
+<       for (XmlFieldInstance instance : instances)
+<         values.add(instance.getValue());
+<     return values;
+---
+>     return cache.get(branch.getJsonPath())
+>             .stream()
+>             .map(XmlFieldInstance::getValue)
+>             .collect(Collectors.toList());
