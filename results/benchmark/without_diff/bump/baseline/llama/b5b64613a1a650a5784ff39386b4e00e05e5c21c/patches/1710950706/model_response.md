@@ -1,0 +1,26 @@
+Here's a proposed patch to fix the error in the provided code:
+```java
+private DeleteReleaseBundleRequest createRequest(String distRules, List<String> countryCodes, String siteName,
+                                                     String cityName, boolean dryRun, boolean deleteFromDist) throws IOException {
+        DeleteReleaseBundleRequest request;
+        if (StringUtils.isNotBlank(distRules)) {
+            if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+                throw new IOException("The distRules input can't be used with site, city or country codes");
+            }
+            ObjectMapper mapper = createMapper();
+            request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+        } else {
+            request = new DeleteReleaseBundleRequest();
+            request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+        }
+        request.setDryRun(dryRun);
+        request.setOnSuccess(deleteFromDist ?
+                DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+        return request;
+    }
+```
+The patch addresses the error by removing the `Override` annotation, which is not allowed in the method signature. The `Override` annotation is used to indicate that a method overrides a method from a superclass or interface, but it's not necessary in this case because the method does not override any method.
+
+Additionally, the patch adds a variable `mapper` to hold the `ObjectMapper` instance, which makes the code more readable.
+
+With this patch, the code should compile without any errors, and the `createRequest` method should work as expected.

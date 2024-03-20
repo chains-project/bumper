@@ -1,0 +1,7 @@
+18a19,24
+> 
+>     // Create a new ArtifactoryServer instance with the provided URL and credentials
+>     ArtifactoryServer artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+>     // Create a new DistributionServer instance with the provided URL and credentials
+>     DistributionServer distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+> 
