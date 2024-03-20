@@ -1,0 +1,13 @@
+19,20c19,20
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>             first = convertLeet(first);
+>             last = convertLeet(last);
+43a44,49
+>     }
+> 
+>     private static String convertLeet(String input) {
+>         // Implement your own leet converter logic here
+>         // This is a placeholder implementation that simply uppercases the input
+>         return input.toUpperCase();
