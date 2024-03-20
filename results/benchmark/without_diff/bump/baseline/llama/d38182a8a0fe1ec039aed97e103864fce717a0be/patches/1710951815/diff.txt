@@ -1,0 +1,12 @@
+10c10
+<                 public Scope scope(final String rqline) {
+---
+>             public Scope scope(String rqline) {
+16,20c16
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+---
+>             public Response response(String line, Iterable<Map.Entry<String, String>> headers, Publisher<ByteBuffer> body) {
