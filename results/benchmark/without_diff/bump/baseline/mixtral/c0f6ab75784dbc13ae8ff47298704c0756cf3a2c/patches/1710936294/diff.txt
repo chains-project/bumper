@@ -1,0 +1,19 @@
+1a2,5
+>     try {
+>         // Assuming the missing symbol is a method in the AnalysisEngineConfiguration.Builder class
+>         Method setExtraPropertiesMethod = AnalysisEngineConfiguration.Builder.class.getMethod("setExtraProperties", Map.class);
+> 
+5c9
+<                 .setExtraProperties(globalConfig.extraProperties())
+---
+>                 .setExtraProperties(globalConfig.extraProperties()) // If the method is missing, this line will throw a NoSuchMethodError
+8a13,21
+>     } catch (NoSuchMethodException e) {
+>         // If the method is missing, provide a default implementation
+>         return AnalysisEngineConfiguration.builder()
+>                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+>                 .setClientPid(globalConfig.getClientPid())
+>                 .setWorkDir(globalConfig.getWorkDir())
+>                 .setModulesProvider(globalConfig.getModulesProvider())
+>                 .build();
+>     }

@@ -1,0 +1,19 @@
+2c2,11
+<         return AnalysisEngineConfiguration.builder()
+---
+>     AnalysisEngineConfiguration.Builder builder = null;
+>     try {
+>         builder = AnalysisEngineConfiguration.builder();
+>     } catch (NoSuchMethodError e) {
+>         // Handle the missing method error here
+>         // You can add logging or any other error handling mechanism
+>     }
+> 
+>     if (builder != null) {
+>         return builder
+8a18,22
+>     } else {
+>         // Handle the error when the builder is null
+>         // You can add logging or any other error handling mechanism
+>         return null;
+>     }

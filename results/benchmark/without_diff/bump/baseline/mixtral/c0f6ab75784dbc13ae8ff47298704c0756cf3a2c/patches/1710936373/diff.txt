@@ -1,0 +1,6 @@
+1a2
+>     PropertyNestedMap extraProperties = globalConfig.extraProperties();
+5c6
+<                 .setExtraProperties(globalConfig.extraProperties())
+---
+>             .setExtraProperties(extraProperties != null ? extraProperties : Collections.emptyMap())

@@ -1,0 +1,12 @@
+2c2,4
+<         return AnalysisEngineConfiguration.builder()
+---
+>     AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder();
+>     try {
+>         return builder
+8a11,15
+>     } catch (NoSuchMethodError | IllegalAccessError e) {
+>         // Fallback implementation
+>         // You can provide a different implementation here or throw a more informative error message
+>         throw new IllegalStateException("Failed to build AnalysisEngineConfiguration. Please check your dependencies.", e);
+>     }
