@@ -1,0 +1,6 @@
+  static List<String> getClassesLoc(File testSrcFolder) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+        List<String> classes = directoryScanner.scan();
+        classes.stream().filter(className -> !className.startsWith("fr.spoonlabs.flacoco.core.test.strategies.classloader.finder.classes.impl.")).collect(Collectors.toList());
+        return classes;
+    }

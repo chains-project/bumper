@@ -1,0 +1,6 @@
+3c3,5
+<         return directoryScanner.scan().getClasses();
+---
+>         List<String> classes = directoryScanner.scan();
+>         classes.stream().filter(className -> !className.startsWith("fr.spoonlabs.flacoco.core.test.strategies.classloader.finder.classes.impl.")).collect(Collectors.toList());
+>         return classes;

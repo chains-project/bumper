@@ -1,0 +1,7 @@
+  static List<String> getClassesLoc(File testSrcFolder) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+        return Stream.concat(directoryScanner.scan().spliterator(), Stream.of(testSrcFolder.getAbsolutePath()))
+            .filter(path -> path.endsWith(".class"))
+            .map(path -> path.substring(testSrcFolder.getAbsolutePath().length() + 1))
+            .collect(Collectors.toList());
+    }
