@@ -1,0 +1,13 @@
+@Override
+public JsonArray asJsonArray() throws IOException {
+    JsonArray result = new JsonArray();
+    try {
+        for ( Wallet wallet : this ) {
+            result.add( wallet.asJson() );
+        }
+    } catch ( final Exception e ) {
+        // Handle the exception here, e.g. by logging it or providing a default value
+        // for the result.
+    }
+    return result;
+}

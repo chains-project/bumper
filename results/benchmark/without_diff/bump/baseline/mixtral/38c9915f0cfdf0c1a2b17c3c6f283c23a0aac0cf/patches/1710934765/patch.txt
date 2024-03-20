@@ -1,0 +1,9 @@
+import java.util.stream.Collectors;
+
+// ...
+
+new JoinedText("", // Separator
+  objects() // Collection<CharSequence>
+    .stream()
+    .collect(Collectors.joining())
+);

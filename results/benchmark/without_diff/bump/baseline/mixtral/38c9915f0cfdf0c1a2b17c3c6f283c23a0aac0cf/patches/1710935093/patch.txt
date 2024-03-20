@@ -1,0 +1,7 @@
+@Override
+public String deposit(Collection<String> walletIds) throws IOException {
+    return walletIds.stream()
+        .map(this::wallet)
+        .map(Wallet::deposit)
+        .collect(Collectors.joining("\n"));
+}

@@ -1,0 +1,17 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public ListResponse<WalletDto> list(ListRequest<WalletDto> request) {
+    List<WalletDto> result = new ArrayList<>();
+    for (String id : request.getIds()) {
+        Optional<Wallet> wallet = wallets.get(id);
+        if (wallet.isPresent()) {
+            result.add(new WalletDto(wallet.get()));
+        }
+    }
+    return new ListResponse<>(result, new Joined(", ").joining(result.stream()
+            .map(WalletDto::id)
+            .collect(Collectors.toList())));
+}

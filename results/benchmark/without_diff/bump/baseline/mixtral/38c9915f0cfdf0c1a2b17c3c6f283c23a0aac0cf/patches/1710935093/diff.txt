@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.Joined;
+\ No newline at end of file
+---
+> @Override
+> public String deposit(Collection<String> walletIds) throws IOException {
+>     return walletIds.stream()
+>         .map(this::wallet)
+>         .map(Wallet::deposit)
+>         .collect(Collectors.joining("\n"));
+> }
+\ No newline at end of file

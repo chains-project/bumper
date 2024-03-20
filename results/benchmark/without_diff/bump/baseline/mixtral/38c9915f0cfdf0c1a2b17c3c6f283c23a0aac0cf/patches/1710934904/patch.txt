@@ -1,0 +1,5 @@
+import java.util.stream.Collectors;
+
+// ...
+
+new JoinedText("", Arrays.stream(messages).collect(Collectors.toList()).toArray(new String[0]));

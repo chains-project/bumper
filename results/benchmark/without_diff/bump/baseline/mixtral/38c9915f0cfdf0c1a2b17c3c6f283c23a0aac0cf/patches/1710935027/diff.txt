@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.Joined;
+\ No newline at end of file
+---
+> import java.util.stream.Collectors;
+> 
+> @Override
+> public String income(String id, List<String> hashes) throws IOException {
+>     String path = String.format("/wallets/%s/income", id);
+>     try (HttpResponse<String> response = http.postForm(api, path,
+>         new Form().add("hashes", String.join(",", hashes))
+>     )) {
+>         if (response.statusCode() != 200) throw new HttpException(response.statusCode());
+>     }
+>     return response.body();
+> }
+\ No newline at end of file

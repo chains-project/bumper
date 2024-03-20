@@ -1,0 +1,2 @@
+-        new Joined(", ", values);
++        values.stream().collect(Collectors.joining(", "));

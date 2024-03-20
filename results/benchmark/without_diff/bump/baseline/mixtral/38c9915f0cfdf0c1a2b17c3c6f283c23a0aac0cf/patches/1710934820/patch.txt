@@ -1,0 +1,5 @@
+-import org.cactoos.text.JoinedText;
++import org.cactoos.text.Joined;
+
+-  new JoinedText(", ", new TextOf(currencies));
++  new Joined(", ", currencies);

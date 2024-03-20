@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> @Override
+> public InputStream open(String id) throws IOException {
+>     List<String> lines = new ArrayList<>();
+>     for (final Wallet wallet : wallets.values()) {
+>         lines.add(wallet.id() + " " + wallet.amount());
+>     }
+>     String joined = String.join(System.lineSeparator(), lines);
+>     return new ByteArrayInputStream(joined.getBytes());
+> }
+\ No newline at end of file

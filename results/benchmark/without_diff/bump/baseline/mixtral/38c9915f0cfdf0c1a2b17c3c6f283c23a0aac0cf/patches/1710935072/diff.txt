@@ -1,0 +1,22 @@
+1c1,17
+< import org.cactoos.text.Joined;
+\ No newline at end of file
+---
+> import org.cactoos.input.Inputs;
+> 
+> // ...
+> 
+> @Override
+> public ApiOp next(ApiOp op) {
+>     List<String> responses = new ArrayList<>();
+>     for (String url : urls) {
+>         responses.add(new String(new Inputs(op.call(url)).asBytes()));
+>     }
+>     return new ApiOp() {
+>         @Override
+>         public String call(String url) throws IOException {
+>             return new Joined(",", responses).asString();
+>         }
+>     };
+> }
+\ No newline at end of file

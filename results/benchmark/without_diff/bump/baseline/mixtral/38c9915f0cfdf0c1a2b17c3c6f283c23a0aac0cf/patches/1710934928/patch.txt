@@ -1,0 +1,9 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public String asString() throws IOException {
+    Joined joined = new Joined(", ", this.wallets.values());
+    return String.format("Found %d wallets: %s", this.wallets.size(), joined.asString());
+}

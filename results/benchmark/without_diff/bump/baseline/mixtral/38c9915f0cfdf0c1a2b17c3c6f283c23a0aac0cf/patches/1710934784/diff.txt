@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextJoined;
+> 
+> // ...
+> 
+> public InputStream inputOf(String id) throws IOException {
+>     TextJoined joined = new TextJoined(",",
+>         new TextOf(id),
+>         new TextOf(System.lineSeparator()),
+>         new TextOf(new JsonOf(new WalletOf(id).value()))
+>     );
+>     return new ByteArrayInputStream(joined.asString().getBytes());
+> }
+\ No newline at end of file

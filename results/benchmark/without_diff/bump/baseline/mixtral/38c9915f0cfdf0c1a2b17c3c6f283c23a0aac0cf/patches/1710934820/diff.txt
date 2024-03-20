@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> -import org.cactoos.text.JoinedText;
+> +import org.cactoos.text.Joined;
+> 
+> -  new JoinedText(", ", new TextOf(currencies));
+> +  new Joined(", ", currencies);
+\ No newline at end of file

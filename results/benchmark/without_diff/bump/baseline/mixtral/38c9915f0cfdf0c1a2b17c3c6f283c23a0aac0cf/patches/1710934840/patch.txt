@@ -1,0 +1,10 @@
+import java.util.stream.Collectors;
+
+//...
+
+@Override
+public String asString() throws IOException {
+    return wallets.stream()
+        .map(Wallet::asString)
+        .collect(Collectors.joining("\n"));
+}

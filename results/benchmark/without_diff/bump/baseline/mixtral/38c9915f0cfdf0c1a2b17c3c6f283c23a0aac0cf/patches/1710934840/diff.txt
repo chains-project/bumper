@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import java.util.stream.Collectors;
+> 
+> //...
+> 
+> @Override
+> public String asString() throws IOException {
+>     return wallets.stream()
+>         .map(Wallet::asString)
+>         .collect(Collectors.joining("\n"));
+> }
+\ No newline at end of file

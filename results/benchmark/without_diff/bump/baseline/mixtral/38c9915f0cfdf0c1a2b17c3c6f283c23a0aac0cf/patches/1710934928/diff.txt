@@ -1,0 +1,10 @@
+1a2,9
+> 
+> // ...
+> 
+> @Override
+> public String asString() throws IOException {
+>     Joined joined = new Joined(", ", this.wallets.values());
+>     return String.format("Found %d wallets: %s", this.wallets.size(), joined.asString());
+> }
+\ No newline at end of file

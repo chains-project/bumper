@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import java.util.stream.Collectors;
+> 
+> // ...
+> 
+> new JoinedText("", // Separator
+>   objects() // Collection<CharSequence>
+>     .stream()
+>     .collect(Collectors.joining())
+> );
+\ No newline at end of file

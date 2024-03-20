@@ -1,0 +1,18 @@
+1c1,13
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> @Override
+> public JsonArray asJsonArray() throws IOException {
+>     JsonArray result = new JsonArray();
+>     try {
+>         for ( Wallet wallet : this ) {
+>             result.add( wallet.asJson() );
+>         }
+>     } catch ( final Exception e ) {
+>         // Handle the exception here, e.g. by logging it or providing a default value
+>         // for the result.
+>     }
+>     return result;
+> }
+\ No newline at end of file

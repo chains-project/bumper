@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import com.squareup.okhttp3.internal.io.TextJoined; // import the TextJoined class
+> 
+> // ...
+> 
+> @Override
+> public String asString() throws IOException {
+>     TextJoined joined = new TextJoined(", ", accounts().stream().map(Account::asString));
+>     return String.format("{\"addresses\":%s}", joined.value());
+> }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+import com.squareup.okhttp3.internal.io.TextJoined; // import the TextJoined class
+
+// ...
+
+@Override
+public String asString() throws IOException {
+    TextJoined joined = new TextJoined(", ", accounts().stream().map(Account::asString));
+    return String.format("{\"addresses\":%s}", joined.value());
+}

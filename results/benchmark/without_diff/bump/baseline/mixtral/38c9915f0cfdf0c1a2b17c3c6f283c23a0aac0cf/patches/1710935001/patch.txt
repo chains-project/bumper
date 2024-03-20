@@ -1,0 +1,10 @@
+import java.util.StringJoiner;
+
+@Override
+public String asJson() throws IOException {
+    StringJoiner joiner = new StringJoiner(",", "[", "]");
+    for (Wallet wallet : this.wallets) {
+        joiner.add(new GsonBuilder().create().toJson(wallet));
+    }
+    return joiner.toString();
+}

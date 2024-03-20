@@ -1,0 +1,7 @@
+1c1,2
+< import org.cactoos.text.Joined;
+\ No newline at end of file
+---
+> -        new Joined(", ", values);
+> +        values.stream().collect(Collectors.joining(", "));
+\ No newline at end of file

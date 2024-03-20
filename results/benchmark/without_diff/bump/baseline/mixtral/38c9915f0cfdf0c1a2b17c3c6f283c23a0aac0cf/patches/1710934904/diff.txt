@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import java.util.stream.Collectors;
+> 
+> // ...
+> 
+> new JoinedText("", Arrays.stream(messages).collect(Collectors.toList()).toArray(new String[0]));
+\ No newline at end of file
