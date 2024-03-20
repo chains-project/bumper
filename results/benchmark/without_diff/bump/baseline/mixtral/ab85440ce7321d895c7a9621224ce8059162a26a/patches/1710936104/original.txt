@@ -1,0 +1,4 @@
+// TODO: review this AI generated patch!
+private static Matcher<String> imagePulled(final String image) {
+    return is(containsString(String.format("Status: Downloaded newer image for %s", image))));
+}

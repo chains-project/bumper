@@ -1,0 +1,11 @@
+2,5c2,6
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return is(containsString(String.format("Status: Downloaded newer image for %s", image))));
+> }
+> 
+> private static Matcher<String> containsString(final String str) {
+>     return new StringContains(str);
