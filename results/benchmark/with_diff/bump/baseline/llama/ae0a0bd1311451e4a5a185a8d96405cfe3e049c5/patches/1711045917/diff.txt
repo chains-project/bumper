@@ -1,0 +1,14 @@
+5c5,15
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String s) {
+>                 return s.contains("Downloaded newer image for " + image);
+>             }
+> 
+>             @Override
+>             public void describeTo(Description description) {
+>                 description.appendText("Status: Downloaded newer image for " + image);
+>             }
+>         };
