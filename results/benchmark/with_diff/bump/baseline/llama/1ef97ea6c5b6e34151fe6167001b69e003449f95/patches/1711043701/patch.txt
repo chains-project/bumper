@@ -1,0 +1,5 @@
+@Override
+public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    java.sql.Timestamp timestamp = net.datafaker.DateAndTime.between(from, to);
+    return new Timestamp(timestamp.getTime());
+}
