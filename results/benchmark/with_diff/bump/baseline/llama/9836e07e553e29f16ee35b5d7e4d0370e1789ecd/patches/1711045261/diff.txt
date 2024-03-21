@@ -1,0 +1,9 @@
+5c5,10
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String actual) {
+>                 return super.matches(actual.replaceFirst("Status: Downloaded newer image for ", ""));
+>             }
+>         };
