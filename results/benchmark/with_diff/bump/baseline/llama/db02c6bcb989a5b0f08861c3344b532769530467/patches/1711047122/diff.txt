@@ -1,0 +1,14 @@
+5c5,15
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String s) {
+>                 return s.contains("Image pulled");
+>             }
+> 
+>             @Override
+>             public void describeMismatch(String s, Description description) {
+>                 description.appendText("Image pulled");
+>             }
+>         };
