@@ -1,0 +1,9 @@
+import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+
+public class TrustedTagInspectorWrapper {
+    private static final TrustedTagInspector inspector = new TrustedTagInspector();
+
+    public static boolean isGlobalTagAllowed(Tag tag) {
+        return inspector.isGlobalTagAllowed(tag);
+    }
+}
