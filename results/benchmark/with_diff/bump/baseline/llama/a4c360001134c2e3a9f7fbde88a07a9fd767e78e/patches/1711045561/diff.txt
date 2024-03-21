@@ -1,0 +1,4 @@
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (new FilterBuilder().include(regex).test(s)) { // Changed from 'apply' to 'test'
