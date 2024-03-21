@@ -1,0 +1,7 @@
+  private static Matcher<String> imagePulled(final String image) {
+        String pulledImage = "Pulled image: " + image;
+        return new StringContains(
+            false,
+            pulledImage
+        );
+    }

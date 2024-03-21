@@ -1,0 +1,6 @@
+1a2
+>         String pulledImage = "Pulled image: " + image;
+4c5
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>             pulledImage

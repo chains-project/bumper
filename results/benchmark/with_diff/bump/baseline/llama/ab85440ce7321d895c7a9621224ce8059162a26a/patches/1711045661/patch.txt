@@ -1,0 +1,12 @@
+  private static Matcher<String> imagePulled(final String image) {
+        return new StringContains(
+            false,
+            String.format("Status: Downloaded newer image for %s", image)
+        ) {
+            // override the match method to use the new hamcrest method
+            @Override
+            public boolean match(String s) {
+                return super.match(s) && s.contains(image);
+            }
+        };
+    }

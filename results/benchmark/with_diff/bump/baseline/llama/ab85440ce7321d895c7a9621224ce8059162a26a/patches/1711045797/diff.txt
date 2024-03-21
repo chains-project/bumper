@@ -1,0 +1,15 @@
+5c5,16
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String actual) {
+>                 return actual.contains(image);
+>             }
+> 
+>             @Override
+>             public void describeMismatch(String item, Description mismatchDescription) {
+>                 super.describeMismatch(item, mismatchDescription);
+>                 mismatchDescription.appendText(" did not contain ").appendValue(image);
+>             }
+>         };

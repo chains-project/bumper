@@ -1,0 +1,10 @@
+5c5,11
+<         );
+---
+>         ) {
+>             // override the match method to use the new hamcrest method
+>             @Override
+>             public boolean match(String s) {
+>                 return super.match(s) && s.contains(image);
+>             }
+>         };

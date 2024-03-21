@@ -1,0 +1,17 @@
+  private static Matcher<String> imagePulled(final String image) {
+        return new StringContains(
+            false,
+            String.format("Status: Downloaded newer image for %s", image)
+        ) {
+            @Override
+            public boolean matches(String actual) {
+                return actual.contains(image);
+            }
+
+            @Override
+            public void describeMismatch(String item, Description mismatchDescription) {
+                super.describeMismatch(item, mismatchDescription);
+                mismatchDescription.appendText(" did not contain ").appendValue(image);
+            }
+        };
+    }
