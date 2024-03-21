@@ -1,0 +1,8 @@
+private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+    // Create a new ClassInfoBuilder instance
+    final ClassInfoBuilder classInfoBuilder = new ClassInfoBuilder(coverage.getClassInfo(data.getMutatedClass()));
+    // Get the class info using the ClassInfoBuilder
+    final ClassInfo classInfo = classInfoBuilder.build();
+    // Create a new MutationTestSummaryData instance
+    return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
+}

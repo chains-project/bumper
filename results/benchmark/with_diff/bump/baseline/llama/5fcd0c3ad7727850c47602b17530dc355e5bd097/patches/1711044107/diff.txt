@@ -1,0 +1,10 @@
+3,4c3,8
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>     // Create a new ClassInfoBuilder with the class name and bytecode
+>     org.pitest.classinfo.ClassInfoBuilder classInfoBuilder = new org.pitest.classinfo.ClassInfoBuilder(data.getMutatedClass().getName(), data.getMutatedClass().getBytes());
+>     // Use the ClassInfoBuilder to get the ClassInfo object
+>     org.pitest.classinfo.ClassInfo classInfo = classInfoBuilder.build();
+>     // Create a new MutationTestSummaryData object with the class info
+>     return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);

@@ -1,0 +1,13 @@
+private MutationTestSummaryData createSummaryData(
+    final CoverageDatabase coverage, final ClassMutationResults data) {
+    // Create a new ClassInfoBuilder with the mutated class name
+    org.pitest.classinfo.ClassInfoBuilder classInfoBuilder = new org.pitest.classinfo.ClassInfoBuilder(data.getMutatedClass().getName());
+    // Get the ClassInfo object using the ClassInfoBuilder
+    org.pitest.classinfo.ClassInfo classInfo = classInfoBuilder.build();
+    // Create a new CoverageData object with the ClassInfo object
+    org.pitest.coverage.CoverageData coverageData = new org.pitest.coverage.CoverageData(classInfo);
+    // Get the ClassInfo object from the CoverageData object
+    org.pitest.classinfo.ClassInfo classInfoFromCoverage = coverageData.getClassInfo();
+    // Create a new MutationTestSummaryData object using the ClassInfo object
+    return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfoFromCoverage);
+}

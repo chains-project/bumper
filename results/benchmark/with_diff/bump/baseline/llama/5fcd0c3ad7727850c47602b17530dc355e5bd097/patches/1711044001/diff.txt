@@ -1,0 +1,9 @@
+4c4,9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(),
+>         coverage.getClassInfo(Collections.singleton(data.getMutatedClass()), new org.pitest.classinfo.ClassInfoBuilder() {
+>             public org.pitest.classinfo.ClassInfo getClassInfo(org.pitest.classinfo.ClassName name, byte[] bytes, long time) {
+>                 return new org.pitest.classinfo.ClassInfo(name, bytes, time);
+>             }
+>         }).getClassInfo(data.getMutatedClass()));
