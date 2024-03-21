@@ -1,0 +1,14 @@
+5c5,15
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String s) {
+>                 return s.contains("Image pulled:") || s.contains("Status: Downloaded newer image for ");
+>             }
+> 
+>             @Override
+>             public void describeMismatchSafely(String item, Description description) {
+>                 description.appendText("was not pulled");
+>             }
+>         };
