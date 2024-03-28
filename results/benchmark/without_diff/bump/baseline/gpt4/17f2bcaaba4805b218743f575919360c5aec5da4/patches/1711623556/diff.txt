@@ -1,0 +1,8 @@
+1a2,7
+>   public class PGS_MorphologyGroupShapeTests {
+>       @Test
+>       public void testMethod() {
+>           // Your test code here
+>       }
+>   }
+\ No newline at end of file
