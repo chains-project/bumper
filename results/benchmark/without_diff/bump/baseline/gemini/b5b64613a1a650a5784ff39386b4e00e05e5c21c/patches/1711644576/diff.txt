@@ -1,0 +1,7 @@
+10c10
+<         } else {
+---
+>         } else if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+12a13,14
+>         } else {
+>             throw new IOException("Either distRules or countryCodes and siteName and cityName must be provided");

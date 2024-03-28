@@ -1,0 +1,5 @@
+15,16c15
+<         request.setOnSuccess(deleteFromDist ?
+<                 DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>         request.setOnSuccess(deleteFromDist ? DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
