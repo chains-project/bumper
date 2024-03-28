@@ -1,0 +1,4 @@
+1a2,3
+>   import com.artipie.http.auth.Policy;
+>   import com.artipie.http.auth.YamlPolicyFactory;
+\ No newline at end of file
