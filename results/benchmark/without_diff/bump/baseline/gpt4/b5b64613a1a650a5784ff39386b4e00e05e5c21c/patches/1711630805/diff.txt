@@ -1,0 +1,7 @@
+13,14c13,15
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         Credentials credentials = CredentialsProvider.lookupCredentials(step.credentialsId);
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, credentials);
+>         distributionServer = new DistributionServer(distributionUrl, credentials);
