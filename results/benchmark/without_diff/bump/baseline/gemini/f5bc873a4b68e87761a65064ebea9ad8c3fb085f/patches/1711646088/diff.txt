@@ -1,0 +1,3 @@
+1a2
+> import org.apache.maven.plugin.AbstractMojo;
+\ No newline at end of file
