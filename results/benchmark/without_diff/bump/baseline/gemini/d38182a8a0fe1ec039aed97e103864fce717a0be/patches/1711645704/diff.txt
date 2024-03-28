@@ -1,0 +1,17 @@
+8,10c8
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+---
+>             (rqline) -> {
+13,22d10
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
