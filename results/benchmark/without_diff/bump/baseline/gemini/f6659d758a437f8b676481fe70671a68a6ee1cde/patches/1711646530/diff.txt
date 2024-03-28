@@ -1,0 +1,4 @@
+11c11
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+---
+>     final ++YamlConstructor++ constructor = new ++YamlConstructor++(loadingConfig) {{

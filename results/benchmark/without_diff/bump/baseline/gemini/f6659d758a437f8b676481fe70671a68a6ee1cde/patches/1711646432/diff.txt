@@ -1,0 +1,2 @@
+16a17
+>             this.yamlConstructors.put(new Tag("!Timestamp"), new JavaTimestampConstruct());
