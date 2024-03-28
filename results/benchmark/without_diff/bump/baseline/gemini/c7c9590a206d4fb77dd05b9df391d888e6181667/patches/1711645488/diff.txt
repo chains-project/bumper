@@ -1,0 +1,2 @@
+0a1
+> import org.apache.maven.doxia.module.xhtml.decoration.DecorationModel;
