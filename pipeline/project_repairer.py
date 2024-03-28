@@ -34,50 +34,61 @@ class ProjectRepairer:
         patches = []
 
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
-            patch = self.generate_patch(failure=failure)
-            result = self.check_for_validity(patch=patch, failure=failure)
-            
-            if self.is_success(result):
-                print("Project patched!")
-                patches.append(patch.id)
-                return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
-            else:
-                print("Project not patched, trying to understand if it patched the specific failure:")
-
-                if patch.force_validation is False:
-                    print(f"Before we have {len(failures)} failures")
-                    new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
-                    if len(new_failures) <= 0:
-                        print("Error extracting new failures, patch is not valid.")
-                        continue
-                    print(f"Now we have {len(new_failures)} failures")
-                else:
-                     print("Patch is forcing validation = True!")
-                     new_failures = []
-
-                if len(new_failures) < len(failures):
-                    print("Failure is fixed, we can continue from here")
+            try:
+                patch = self.generate_patch(failure=failure)
+                result = self.check_for_validity(patch=patch, failure=failure)
+                
+                if self.is_success(result):
+                    print("Project patched!")
                     patches.append(patch.id)
-                    new_project = copy.deepcopy(self.project)
-                    new_project.root_project = self.project.root_project or self.project
-                    new_project.path = self.project.path + f"/patched_code/{patch.id}"
-                    repairer = ProjectRepairer(project=new_project, pipeline=self.pipeline, model=self.model)
-                    return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)\
-                                .merge(repairer.repair())
+                    return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)
                 else:
-                    print("Failure not fixed, trying to generate new patch")
+                    print("Project not patched, trying to understand if it patched the specific failure:")
+
+                    if patch.force_validation is False:
+                        print(f"Before we have {len(failures)} failures")
+                        new_failures = extractor.get_failures(base_path=f"{base_path}/patched_code/{patch.id}")
+                        if len(new_failures) <= 0:
+                            print("Error extracting new failures, patch is not valid.")
+                            continue
+                        print(f"Now we have {len(new_failures)} failures")
+                    else:
+                        print("Patch is forcing validation = True!")
+                        new_failures = []
+
+                    if len(new_failures) < len(failures):
+                        print("Failure is fixed, we can continue from here")
+                        patches.append(patch.id)
+                        new_project = copy.deepcopy(self.project)
+                        new_project.root_project = self.project.root_project or self.project
+                        new_project.path = self.project.path + f"/patched_code/{patch.id}"
+                        repairer = ProjectRepairer(project=new_project, pipeline=self.pipeline, model=self.model)
+                        return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True, patches=patches)\
+                                    .merge(repairer.repair())
+                    else:
+                        print("Failure not fixed, trying to generate new patch")
+            except KeyboardInterrupt:
+                exit(1)
+            except:
+                 print("Failure in running the last repair round, skipping.")
 
         print(f"Repair failed for this failure (#{failure.detected_fault.identifier})")
         return ProjectRepairStatus(fixed_errors_count=0, generated_patch_count=trial_count, repaired=False, patches=patches)
     
     def generate_patch(self, failure: Failure) -> Patch:
-            patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, pipeline=self.pipeline, model=self.model)
-            print(f"Generating patch for project {self.project.project_name}")
-            patch = patch_generator.generate()
-            patch_generator.save_patch(patch)
-            print("Patch generated")
-
-            return patch
+            try:
+                patch_generator = PatchGeneratorService.get_generator(failure=failure, project=self.project, pipeline=self.pipeline, model=self.model)
+                print(f"Generating patch for project {self.project.project_name}")
+                patch = patch_generator.generate()
+                patch_generator.save_patch(patch)
+                print("Patch generated")
+                return patch
+            except KeyboardInterrupt:
+                exit(1)
+            except:
+                print("Failing to generate the patch.")
+                raise
+                
     
     def check_for_validity(self, patch: Patch, failure: Failure) -> subprocess.CompletedProcess:
             patch_applicator = PatchApplicator(self.project)
