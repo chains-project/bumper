@@ -1,0 +1,19 @@
+8,14c8
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+---
+>         new Slice() {
+21c15,20
+<                     return StandardRs.OK;
+---
+>                 cline.set(line);
+>                 return new Slice.Simple(
+>                     new RsStatus(RsStatus.OK),
+>                     new Headers.From("WWW-Authenticate", new Scope.FromString(action).string()),
+>                     Content.EMPTY
+>                 ).response(line, headers, body);
