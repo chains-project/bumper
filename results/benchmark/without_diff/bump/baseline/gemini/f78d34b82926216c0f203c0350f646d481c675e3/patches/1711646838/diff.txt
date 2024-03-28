@@ -1,0 +1,6 @@
+8c8,10
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>         ArrayList<Double> weightingValues = new ArrayList<>();
+>         inputData.forEach(input -> weightingValues.add(input.getWeightingValue()));
+>         weightingValues.parallelStream().forEachOrdered(weightingValue -> input(weightingValue));

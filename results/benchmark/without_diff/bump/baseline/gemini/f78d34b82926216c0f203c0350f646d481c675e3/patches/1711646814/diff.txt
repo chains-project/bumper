@@ -1,0 +1,5 @@
+8a9,12
+>         double sum = 0;
+>         for (Input input : inputData) {
+>             sum += input.getWeightingValue();
+>         }
