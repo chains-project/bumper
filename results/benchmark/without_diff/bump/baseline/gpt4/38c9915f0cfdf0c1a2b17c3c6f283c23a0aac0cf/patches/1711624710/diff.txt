@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.text.RandomText;
+\ No newline at end of file
+---
+>   import org.cactoos.Text;
+>   import org.cactoos.text.TextOf;
+>   import java.util.UUID;
+> 
+>   Text randomText = new TextOf(UUID.randomUUID().toString());
+\ No newline at end of file

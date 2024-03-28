@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.StickyScalar;
+\ No newline at end of file
