@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TTransport;
+
+// Replace TFastFramedTransport with TTransport
+public static TTransport createFastFramedTransport(InetSocketAddress address) {
+  return new TFastFramedTransport(new TFramedTransport.Factory().getTransport(new TSocket(address.getHostString(), address.getPort())));
+}

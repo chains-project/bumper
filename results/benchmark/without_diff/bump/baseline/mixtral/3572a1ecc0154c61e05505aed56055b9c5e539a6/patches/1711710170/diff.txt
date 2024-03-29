@@ -1,0 +1,12 @@
+1c1,7
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TSocket;
+> 
+> // ...
+> 
+> public static TTransport createTransport(String host, int port) throws TTransportException {
+>     return new TSocket(host, port);
+> }
+\ No newline at end of file

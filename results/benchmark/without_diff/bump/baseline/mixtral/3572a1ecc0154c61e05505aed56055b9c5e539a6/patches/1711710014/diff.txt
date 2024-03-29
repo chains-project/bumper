@@ -1,0 +1,11 @@
+1c1,6
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+> // Replace TFastFramedTransport with TTransport
+> public static TTransport createFastFramedTransport(InetSocketAddress address) {
+>   return new TFastFramedTransport(new TFramedTransport.Factory().getTransport(new TSocket(address.getHostString(), address.getPort())));
+> }
+\ No newline at end of file
