@@ -1,0 +1,54 @@
+2c2
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+---
+> public Policy<?> getPolicy(PolicyConfig config) {
+3a4,31
+>     return new Policy<Object>() {
+>         @Override
+>         public String id() {
+>             return "yaml";
+>         }
+> 
+>         @Override
+>         public Optional<String> alias() {
+>             return Optional.empty();
+>         }
+> 
+>         @Override
+>         public Optional<String> description() {
+>             return Optional.empty();
+>         }
+> 
+>         @Override
+>         public Optional<List<String>> tags() {
+>             return Optional.empty();
+>         }
+> 
+>         @Override
+>         public Optional<Boolean> active() {
+>             return Optional.of(true);
+>         }
+> 
+>         @Override
+>         public Optional<Map<String, Object>> params() {
+5,9c33,37
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                 return Optional.of(
+>                     new ObjectMapper()
+>                         .readValue(
+>                             Yaml.createYamlInput(sub.toString()).readYamlMapping().toString(),
+>                             Map.class
+12,13c40,42
+<         } catch (final IOException err) {
+<             throw new UncheckedIOException(err);
+---
+>             } catch (IOException e) {
+>                 throw new UncheckedIOException(e);
+>             }
+14a44
+>     };

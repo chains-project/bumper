@@ -1,0 +1,19 @@
+@Override
+public Policy<?> getPolicy(PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    return new Policy<Object>() {
+        @Override
+        public String type() {
+            return sub.string("type");
+        }
+
+        @Override
+        public BlockingStorage value() throws IOException {
+            return new BlockingStorage(
+                new Storages().newStorage(
+                    type(), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+                )
+            );
+        }
+    };
+}

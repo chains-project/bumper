@@ -1,0 +1,6 @@
+3a4
+>         Storages storages = new Storages();
+7c8
+<                     new Storages().newStorage(
+---
+>                     storages.newStorage(
