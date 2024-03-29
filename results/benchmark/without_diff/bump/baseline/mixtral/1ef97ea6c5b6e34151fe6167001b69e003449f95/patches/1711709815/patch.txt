@@ -1,0 +1,8 @@
+  @Override
+  public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    if (from == null || to == null) {
+      throw new IllegalArgumentException("Both 'from' and 'to' arguments must not be null.");
+    }
+    long time = super.between(from, to).getTime();
+    return new Timestamp(time);
+  }
