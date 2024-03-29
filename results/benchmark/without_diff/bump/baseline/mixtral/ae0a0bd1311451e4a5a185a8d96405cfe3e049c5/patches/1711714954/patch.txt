@@ -1,0 +1,9 @@
+import org.apache.commons.lang3.StringUtils;
+
+private static Matcher<String> imagePulled(final String image) {
+    return new StringContains(
+        false,
+        String.format("Downloaded newer image for %s", image),
+        StringUtils::contains
+    );
+}
