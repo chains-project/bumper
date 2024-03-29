@@ -1,0 +1,11 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2
+<     import org.apache.commons.lang3.StringUtils;
+---
+>     boolean containsImage = StringUtils.contains(image, "--image--");
+6c5,6
+<         StringUtils.contains(String.format("Status: Downloaded newer image for %s", image), "Status: Downloaded newer image for ")
+---
+>         String.format("Status: Downloaded newer image for %s", image),
+>         StringUtils.join(new String[]{"Status: Downloaded newer image for ", image, ".", "Pulling image: ", image}, ""))

@@ -1,0 +1,6 @@
+1a2
+>     import org.apache.commons.lang3.StringUtils;
+4c5
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>         StringUtils.contains(String.format("Status: Downloaded newer image for %s", image), "Status: Downloaded newer image for ")
