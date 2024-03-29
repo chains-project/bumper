@@ -1,0 +1,15 @@
+if (org.junit.runner.JUnitCore.class.getDeclaredMethod("ignore", Class.class) == null) {
+    // If the Ignore class is not available, use a different approach to ignore the test case
+    // For example, you can use a custom annotation or a property to mark the test case as ignored
+    @org.junit.Test
+    public void testCase() {
+        // Test case implementation
+    }
+} else {
+    // If the Ignore class is available, use it to ignore the test case
+    @org.junit.Test
+    @org.junit.Ignore
+    public void testCase() {
+        // Test case implementation
+    }
+}

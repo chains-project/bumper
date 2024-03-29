@@ -1,0 +1,18 @@
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LinearRing;
+import org.locationtech.jts.geom.util.LinearRingFactory;
+import org.locationtech.jts.noding.NodingGraphProcessor;
+import org.locationtech.jts.noding.SegmentString;
+
+//...
+
+@Test
+public void testFastPolygonizer() throws IOException {
+    //...
+    SegmentString segmentString = new SegmentString(coordinateSequence);
+    NodingGraphProcessor ngp = new NodingGraphProcessor(nodingNoder);
+    ngp.computeNodes(segmentString);
+    //...
+}
