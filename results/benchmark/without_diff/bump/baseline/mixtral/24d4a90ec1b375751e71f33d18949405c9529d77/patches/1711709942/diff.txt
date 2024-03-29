@@ -1,0 +1,19 @@
+1c1,14
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.S3;
+> import com.jcabi.s3.gd.GdBucket;
+> 
+> @Tv({1, 2, 3})
+> public class AwsOcketITCase {
+>     // ...
+>     @Override
+>     public void testOcket() throws Exception {
+>         S3 s3 = new S3("http://s3.amazonaws.com", "accessKey", "secretKey");
+>         GdBucket bucket = s3.bucket("my-bucket");
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file
