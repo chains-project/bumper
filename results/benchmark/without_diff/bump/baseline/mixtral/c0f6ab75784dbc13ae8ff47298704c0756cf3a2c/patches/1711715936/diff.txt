@@ -1,0 +1,14 @@
+2,7c2,7
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>     return new AnalysisEngineConfigurationBuilder()
+>             .withEnabledLanguages(globalConfig.getEnabledLanguages())
+>             .withClientPid(globalConfig.getClientPid())
+>             .withExtraProperties(globalConfig.extraProperties())
+>             .withWorkDir(globalConfig.getWorkDir())
+>             .withModulesProvider(globalConfig.getModulesProvider())

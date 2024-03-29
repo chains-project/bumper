@@ -1,0 +1,14 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    FileWorkDirProvider workDirProvider = new FileWorkDirProvider(globalConfig.getWorkDir());
+    ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+    if (modulesProvider instanceof ExternalModuleProvider) {
+        modulesProvider = new WrapperExternalModulesProvider((ExternalModuleProvider) modulesProvider);
+    }
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDirProvider(workDirProvider)
+            .setModulesProvider(modulesProvider)
+            .build();
+}
