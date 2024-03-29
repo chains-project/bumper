@@ -1,0 +1,15 @@
+import java.security.GeneralSecurityException;
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+public class ChachaDecoder {
+    @Override
+    public byte[] decode(byte[] data, byte[] key, byte[] iv) throws GeneralSecurityException {
+        SecretKeySpec secretKey = new SecretKeySpec(key, "ChaCha20");
+        Cipher cipher = Cipher.getInstance("ChaCha20-Poly1305");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
+        return cipher.doFinal(data);
+    }
+}

@@ -1,0 +1,17 @@
+1c1,12
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.crypto.TlsCrypto;
+> 
+> // ...
+> 
+> private TlsCrypto crypto;
+> 
+> // ...
+> 
+> @Override
+> public void init(TlsCrypto crypto) {
+>     this.crypto = crypto;
+> }
+\ No newline at end of file
