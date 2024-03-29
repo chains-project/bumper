@@ -1,0 +1,12 @@
+11c11
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+---
+>     Constructor constructor = new Constructor(clazz, loadingConfig) {{
+21,23c21,23
+<         try {
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+<         } catch (FileNotFoundException e) {
+---
+>     try (InputStream inputStream = new FileInputStream(path)) {
+>         return yaml.load(new BufferedReader(new InputStreamReader(inputStream)));
+>     } catch (IOException e) {

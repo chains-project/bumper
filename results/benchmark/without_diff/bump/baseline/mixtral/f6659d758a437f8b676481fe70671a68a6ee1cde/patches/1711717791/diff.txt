@@ -1,0 +1,8 @@
+11c11
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+---
+>     Constructor constructor = new Constructor(clazz, loadingConfig) {{
+22c22
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+---
+>         return yaml.loadAs(new FileReader(path), clazz);

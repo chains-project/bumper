@@ -1,0 +1,8 @@
+19c19
+<         Yaml yaml = new Yaml(constructor, representer);
+---
+>     Yaml yaml = new Yaml(new ObjectConstructor(constructor), representer);
+22c22
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+---
+>         return clazz.cast(yaml.load(new BufferedReader(new FileReader(path))));
