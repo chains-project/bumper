@@ -1,0 +1,18 @@
+import eu.europa.esig.dss.model.DSSException;
+
+// ...
+
+try {
+    CertificationPermission permission = new CertificationPermission();
+    permission.setReason("Reason for certification");
+    permission.setContactInformation("Contact information");
+    permission.setLocation("Location");
+    permission.setLegalReason("Legal reason");
+    permission.setSignerLocation("Signer location");
+    permission.setSignerName("Signer name");
+    permission.setSignerRegistrationNumber("Signer registration number");
+    permission.setSignerCertificationLevel(CertificationPermission.CERTIFICATION_CERTIFIED_NO_CHANGES_ALLOWED);
+    permission.setPermissions(CertificationPermission.CERTIFICATION_PERMIT_NO_CHANGES_ALLOWED);
+} catch (DSSException e) {
+    // Handle exception
+}

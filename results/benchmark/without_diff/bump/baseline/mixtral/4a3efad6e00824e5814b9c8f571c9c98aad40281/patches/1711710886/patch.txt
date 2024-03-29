@@ -1,0 +1,9 @@
+import eu.europa.esig.dss.model.DSSException;
+
+// ...
+
+try {
+    // Your existing code that uses CertificationPermission
+} catch (DSSException e) {
+    // Handle the exception appropriately
+}

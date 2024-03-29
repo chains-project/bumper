@@ -1,0 +1,13 @@
+import eu.europa.esig.dss.model.DSSException;
+
+// ...
+
+try {
+    CertificationPermission permission = new CertificationPermission(certificate);
+    permission.setSigningDate(new Date());
+    permission.setReason("Certification");
+    permission.setLocation("City");
+    pdfDoc.getDocumentCatalog().getAcroForm().getFields().get(0).certifyWith(permission);
+} catch (DSSException e) {
+    // Handle exception
+}

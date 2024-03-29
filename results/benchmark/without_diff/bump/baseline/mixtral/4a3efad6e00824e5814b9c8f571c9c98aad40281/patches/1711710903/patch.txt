@@ -1,0 +1,13 @@
+import eu.europa.esig.dss.model.DSSException;
+
+// ...
+
+if (signer.getCertificationLevel() != null) {
+    CertificationPermission certificationPermission;
+    try {
+        certificationPermission = CertificationPermission.calculateCertificationPermission(signer.getCertificationLevel());
+    } catch (DSSException e) {
+        throw new RuntimeException("Failed to calculate certification permission", e);
+    }
+    signatureAppearance.setCertificationLevel(certificationPermission.getValue());
+}
