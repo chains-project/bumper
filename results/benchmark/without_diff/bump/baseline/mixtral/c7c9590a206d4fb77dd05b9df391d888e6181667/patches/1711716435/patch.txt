@@ -1,0 +1,7 @@
+import org.apache.maven.doxia.sink.Sink;
+
+@Override
+public void someMethod(RenderingContext renderingContext) {
+    Sink sink = renderingContext.getSink();
+    // use sink instead of renderingContext
+}

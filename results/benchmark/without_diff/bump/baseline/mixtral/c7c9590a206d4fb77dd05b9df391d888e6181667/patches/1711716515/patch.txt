@@ -1,0 +1,24 @@
+import org.apache.maven.doxia.siterenderer.decoration.DecoratingSiteRenderer;
+import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+import org.apache.maven.doxia.tools.SiteRenderer;
+import org.apache.maven.doxia.tools.siterenderer.SiteRendererFactory;
+import org.apache.maven.doxia.tools.siterenderer.SiteRendererRequest;
+import org.apache.maven.doxia.tools.siterenderer.SiteRendererResult;
+import org.apache.maven.doxia.util.XmlFriendlyException;
+import org.apache.maven.project.MavenProject;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+
+public class SCoverageReportMojo extends AbstractSCoverageReportMojo {
+    // existing code
+    
+    @Override
+    protected void renderSite(MavenProject project) throws MojoFailureException, IOException, XmlFriendlyException {
+        // existing code
+    }
+    
+    // existing code
+}

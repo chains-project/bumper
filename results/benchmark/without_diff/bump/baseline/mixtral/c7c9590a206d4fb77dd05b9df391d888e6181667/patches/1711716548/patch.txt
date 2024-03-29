@@ -1,0 +1,6 @@
+import org.apache.maven.doxia.sink.Sink;
+
+@Override
+protected void decorate(Sink sink, RenderingContext renderingContext) {
+  // Existing code here
+}

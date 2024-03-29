@@ -1,0 +1,10 @@
+import org.apache.maven.doxia.sink.Sink;
+
+...
+
+@Override
+public void executeReport(Locale locale) throws MojoExecutionException, MojoFailureException {
+    try (Sink sink = new org.apache.maven.doxia.sink.impl.SinkEventEntityDecorator(new SinkAdapter())) {
+        ...
+    }
+}

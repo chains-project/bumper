@@ -1,0 +1,8 @@
+import org.apache.maven.doxia.sink.Sink;
+
+@Deprecated
+@Override
+protected void decorateContext(RenderingContext renderingContext) {
+  Sink sink = renderingContext.getSink();
+  // Use the 'sink' object to perform the necessary decoration
+}
