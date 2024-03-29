@@ -1,0 +1,19 @@
+0a1,3
+> import org.apache.thrift.transport.TSaslTransport;
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.TSaslTransportFactory;
+1a5,17
+> 
+> // ...
+> 
+> private TTransport createTransport() {
+>   TTransport transport = new TFramedTransport(new TSaslTransport(
+>     new TFramedTransport.Factory(),
+>     socket,
+>     serviceName,
+>     new TSaslTransportFactory.ClientCallbackHandler(username, password)
+>   ));
+>   transport.open();
+>   return transport;
+> }
+\ No newline at end of file
