@@ -1,0 +1,8 @@
+import com.mojang.authlib.GameProfile;
+
+GameProfile toGameProfile(Object obj) {
+    if (obj instanceof net.minecraft.server.v1_12_R1.GameProfile) {
+        return new GameProfile((net.minecraft.server.v1_12_R1.GameProfile) obj);
+    }
+    return null;
+}

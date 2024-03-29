@@ -1,0 +1,49 @@
+0a1,16
+> import net.minecraft.server.v1_12_R1.EntityPlayer;
+> import net.minecraft.server.v1_12_R1.GameProfile;
+> import net.minecraft.server.v1_12_R1.MinecraftServer;
+> import net.minecraft.server.v1_12_R1.PlayerInteractManager;
+> import net.minecraft.server.v1_12_R1.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+> import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.Properties;
+> import java.util.UUID;
+> 
+> public class PlayerUtils {
+> 
+2c18
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+---
+>      * ワールド内に新しいプレイヤーを作成して、{@code EntityPlayer}として返します。
+5c21
+<      * @return 創造されたプレイヤー。
+---
+>      * @return 作成されたプレイヤー。
+7,8c23,24
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     @SuppressWarnings("deprecation")
+>     public static EntityPlayer getRandomPlayer(World world) {
+17,20c33,35
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+36c51,53
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+---
+>         profile.getProperties().put("textures", new Properties());
+>         profile.getProperties().get("textures").put("Model", skin.getLeft());
+>         profile.getProperties().get("textures").put("Signature", skin.getRight());
+44a62
+> }
+\ No newline at end of file

@@ -1,0 +1,7 @@
+import net.minecraft.server.{GameProfile, version};
+
+if (version.startsWith("v1_12")) {
+    // original code using GameProfile goes here
+} else {
+    throw new RuntimeException("Unsupported Minecraft version: " + version);
+}
