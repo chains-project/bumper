@@ -1,0 +1,13 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    FileWorkingDirProvider workDirProvider = new FileWorkingDirProvider();
+    ModulesProvider modulesProvider = new ChainedModulesProvider(globalConfig.getModulesProvider());
+    ExtraPropertiesExtension extraProperties = new ExtraPropertiesExtension();
+
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(extraProperties)
+            .setWorkDir(workDirProvider)
+            .setModulesProvider(modulesProvider)
+            .build();
+}
