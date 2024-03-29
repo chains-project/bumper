@@ -1,0 +1,17 @@
+  @Override
+  public Slice slice(final String action) {
+    Set<Authentication.User> users = Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).collect(Collectors.toSet());
+    return new DockerSlice(
+        new AstoDocker(new InMemoryStorage()),
+        new Permissions.Single(TestAuthentication.ALICE.name(), action),
+        new BearerAuthScheme(
+            token -> {
+              Optional<Authentication.User> user = users.stream()
+                  .filter(u -> token.equals(token(u)))
+                  .findFirst();
+              return CompletableFuture.completedFuture(user.map(Authentication.User::name).orElse(null));
+            },
+            ""
+        )
+    );
+  }
