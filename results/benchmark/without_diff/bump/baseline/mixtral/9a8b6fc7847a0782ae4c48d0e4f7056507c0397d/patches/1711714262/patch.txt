@@ -1,0 +1,8 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+@Override
+public PBEPasswordEncoder getPasswordEncoder() {
+    BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+    textEncryptor.setPassword(this.password);
+    return new PBEPasswordEncoder(textEncryptor.getAlgorithm(), textEncryptor.getPassword().toCharArray());
+}
