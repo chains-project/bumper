@@ -1,0 +1,11 @@
+1c1,6
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Joined;
+> 
+> @Override
+> public String asString() throws IOException {
+>   return new Joined(SEPARATOR, inputs()).asString();
+> }
+\ No newline at end of file

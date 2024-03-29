@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Joined;
+> 
+> // ...
+> 
+> @Override
+> public Text walletsIn(String address) throws IOException {
+>   return new Joined("", Arrays.stream(client.walletsIn(address))
+>     .map(WalletInfo::new)
+>     .map(WalletInfo::toString)
+>     .toArray(String[]::new)
+>   );
+> }
+\ No newline at end of file

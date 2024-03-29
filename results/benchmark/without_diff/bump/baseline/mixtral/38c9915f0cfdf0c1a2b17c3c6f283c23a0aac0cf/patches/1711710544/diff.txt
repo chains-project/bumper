@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> 
+> Scalar<Iterable<String>> wallets() {
+>   return new SolidScalar<Iterable<String>>() {
+>     @Override
+>     protected Iterable<String> value() throws Exception {
+>       // Existing implementation
+>     }
+>   };
+> }
+\ No newline at end of file

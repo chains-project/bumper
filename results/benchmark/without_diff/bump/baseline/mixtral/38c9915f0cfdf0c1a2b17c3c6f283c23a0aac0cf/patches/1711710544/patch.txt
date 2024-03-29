@@ -1,0 +1,10 @@
+import org.cactoos.Scalar;
+
+Scalar<Iterable<String>> wallets() {
+  return new SolidScalar<Iterable<String>>() {
+    @Override
+    protected Iterable<String> value() throws Exception {
+      // Existing implementation
+    }
+  };
+}

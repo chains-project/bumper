@@ -1,0 +1,6 @@
+import org.cactoos.Text;
+import org.cactoos.text.Joined;
+
+Text joined(Text... texts) {
+  return new Joined(texts);
+}

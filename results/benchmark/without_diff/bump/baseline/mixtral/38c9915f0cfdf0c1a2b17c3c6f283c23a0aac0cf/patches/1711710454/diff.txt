@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.func.ScalarOf;
+> 
+> // ...
+> 
+> @Override
+> public InputStream walletStream(String name) throws IOException {
+>   return new ScalarOf<InputStream>(() -> wallets.get(name).stream()).value();
+> }
+\ No newline at end of file
