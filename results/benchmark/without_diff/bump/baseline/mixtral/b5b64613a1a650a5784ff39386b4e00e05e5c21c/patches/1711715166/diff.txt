@@ -1,0 +1,6 @@
+1d0
+< @Override
+19c18
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+---
+>     artifactoryServer.setUrl(urlWithoutSlash); // changed to 'setUrl' instead of 'setPlatformUrl'

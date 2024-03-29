@@ -1,0 +1,10 @@
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+@Override
+public CreateJFrogInstanceStep execute(StepContext context) throws IOException, InterruptedException {
+    // existing code
+    if (isBlank(jfrogInstanceId) || isBlank(url) || isBlank(apiKey)) {
+        // existing code
+    }
+    // existing code
+}
