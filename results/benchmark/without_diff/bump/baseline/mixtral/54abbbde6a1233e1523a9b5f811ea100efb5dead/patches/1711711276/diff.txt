@@ -1,0 +1,53 @@
+1,9d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+13,43c4,13
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+<             jsch.setHostKeyRepository(new EasyRepo());
+<             if (this.passphrase == null) {
+<                 jsch.addIdentity(file.getAbsolutePath());
+<             } else {
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+<             }
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );
+<             return this.session(jsch);
+<         } catch (final JSchException ex) {
+---
+>         JSch jsch = new JSch();
+>         jsch.setLogger(new JschLogger());
+>         jsch.setKnownHosts(new File("~", ".ssh/known_hosts").getAbsolutePath());
+>         jsch.setConfig("PreferredAuthentications", "publickey,keyboard-interactive,password");
+>         jsch.addIdentity(file.getAbsolutePath(), this.key.getBytes(StandardCharsets.UTF_8), null, this.passphrase.getBytes(StandardCharsets.UTF_8));
+>         Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+>         session.setConfig("StrictHostKeyChecking", "no");
+>         session.connect();
+>         return session;
+>     } catch (JSchException ex) {

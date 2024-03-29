@@ -1,0 +1,34 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+11c9,10
+<         final File file = File.createTempFile("jcabi-ssh", ".key");
+---
+>         File file = null;
+>         Session session = null;
+13c12
+<             JSch.setLogger(new JschLogger());
+---
+>             file = File.createTempFile("jcabi-ssh", ".key");
+15,24c14
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+---
+>             jsch.setLogger(new JschLogger());
+42c32
+<             return this.session(jsch);
+---
+>             session = this.session(jsch);
+45a36
+>             if (file != null && Files.exists(file.toPath())) {
+47a39,40
+>         }
+>         return session;

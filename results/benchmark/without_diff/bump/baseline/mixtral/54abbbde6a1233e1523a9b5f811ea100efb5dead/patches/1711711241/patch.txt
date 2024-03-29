@@ -1,0 +1,12 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({11})
+public class MyClass {
+    private Ssh ssh;
+
+    public MyClass() {
+        this.ssh = new Ssh("my-ssh-server.com", 22, "username", "password");
+    }
+
+    // other methods using ssh
+}

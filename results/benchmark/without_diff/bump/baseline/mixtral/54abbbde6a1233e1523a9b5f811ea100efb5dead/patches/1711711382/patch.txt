@@ -1,0 +1,47 @@
+protected Session session() throws IOException {
+    final File file = File.createTempFile("jcabi-ssh", ".key");
+    try {
+        JSch jsch = new JSch();
+        jsch.setLogger(new JschLogger());
+        Session session = null;
+        try {
+            new Unchecked<>(
+                new LengthOf(
+                    new TeeInput(
+                        this.key.replaceAll("\\r", "")
+                            .replaceAll("\\n\\s+|\\n{2,}", "\\n")
+                            .trim(),
+                        file
+                    )
+                )
+            ).value();
+            jsch.setKnownHosts(new File("~/.ssh/known_hosts").getAbsolutePath());
+            if (this.passphrase == null) {
+                jsch.addIdentity(file.getAbsolutePath());
+            } else {
+                jsch.addIdentity(
+                    this.getLogin(),
+                    this.key.getBytes(StandardCharsets.UTF_8),
+                    null,
+                    this.passphrase.getBytes(StandardCharsets.UTF_8)
+                );
+            }
+            Logger.debug(
+                this,
+                "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+                this.getLogin(), this.getAddr(), this.getPort(),
+                file.length()
+            );
+            session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+            session.setConfig("StrictHostKeyChecking", "no");
+            session.connect();
+        } catch (JSchException ex) {
+            throw new IOException(ex);
+        }
+        return session;
+    } catch (final JSchException ex) {
+        throw new IOException(ex);
+    } finally {
+        Files.deleteIfExists(file.toPath());
+    }
+}

@@ -1,0 +1,17 @@
+@Override
+public Ssh.Session session(String host) {
+  return new Ssh.Session() {
+    @Override
+    public OutputStream open(String file, int timeout) throws IOException {
+      try (Jsch jsch = new Jsch()) {
+        Session session = jsch.getSession(user(), host, 22);
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.connect();
+        Channel channel = session.openChannel("sftp");
+        channel.connect();
+        ChannelSftp sftp = (ChannelSftp) channel;
+        return sftp.put(file, sftp.get(file));
+      }
+    }
+  };
+}

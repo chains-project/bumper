@@ -1,0 +1,8 @@
+import java.time.Duration;
+
+// ...
+
+@Override
+public Duration timeout() {
+    return Duration.ofMinutes(5);
+}
