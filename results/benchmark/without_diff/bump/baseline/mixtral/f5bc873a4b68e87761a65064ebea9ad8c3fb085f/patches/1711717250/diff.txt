@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> try {
+>     this.themeArtifact = repositorySystem.resolveArtifact(
+>         repositorySystemSession,
+>         artifactRequest);
+> } catch (DependencyResolutionRequiredException e) {
+>     LOGGER.log(Level.ERROR, "Dependency resolution failed", e);
+>     throw new MojoExecutionException("Dependency resolution failed", e);
+> }
+\ No newline at end of file

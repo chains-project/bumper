@@ -1,0 +1,5 @@
+try {
+    this.dependencyResolver.resolve(this.project, remoteRepos, localRepository, report);
+} catch (DependencyResolutionRequiredException e) {
+    throw new MojoExecutionException("Unable to resolve dependencies.", e);
+}

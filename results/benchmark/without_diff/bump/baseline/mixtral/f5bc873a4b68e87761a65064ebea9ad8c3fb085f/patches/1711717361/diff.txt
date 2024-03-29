@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+>     private void resolveDependencies() throws DependencyResolutionRequiredException {
+>         if (this.artifact == null) {
+>             this.artifact = this.project.getArtifact();
+>         }
+>         this.dependency = new Dependency(this.artifact, this.artifact.getScope());
+>         this.dependency.setVersion("${tobago.version}");
+>         this.project.addDependency(this.dependency);
+> 
+>         // Resolve the dependencies of the project
+>         this.project.resolve();
+>     }
+\ No newline at end of file

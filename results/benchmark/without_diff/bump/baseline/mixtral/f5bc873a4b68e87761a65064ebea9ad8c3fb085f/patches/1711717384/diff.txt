@@ -1,0 +1,27 @@
+1c1,22
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+>     private void loadTheme(File themeDir) throws MojoExecutionException, DependencyResolutionRequiredException {
+>         if (themeDir == null || !themeDir.isDirectory()) {
+>             return;
+>         }
+> 
+>         File[] themeFiles = themeDir.listFiles();
+>         if (themeFiles == null) {
+>             return;
+>         }
+> 
+>         for (File themeFile : themeFiles) {
+>             if (themeFile.isFile() && themeFile.getName().endsWith(THEME_FILE_SUFFIX)) {
+>                 String themeName = FilenameUtils.removeExtension(themeFile.getName());
+>                 try (InputStream input = new FileInputStream(themeFile)) {
+>                     Theme theme = new Theme(themeName, input);
+>                     themes.put(themeName, theme);
+>                 } catch (IOException e) {
+>                     throw new MojoExecutionException("Error loading theme file " + themeFile, e);
+>                 }
+>             }
+>         }
+>     }
+\ No newline at end of file
