@@ -1,0 +1,9 @@
+1c1,4
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> @Tv([33,25])
+> private void fix() {
+>   // no-op
+> }
+\ No newline at end of file
