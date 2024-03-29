@@ -1,0 +1,11 @@
+import com.jcabi.github.Github;
+
+public class MkGithub {
+
+    protected Github github() {
+        return new Github("your-github-token-here");
+    }
+
+    // existing methods...
+
+}
