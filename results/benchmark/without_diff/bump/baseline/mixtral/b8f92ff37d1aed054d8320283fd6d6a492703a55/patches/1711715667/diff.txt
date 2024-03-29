@@ -1,0 +1,6 @@
+3c3,5
+<         return directoryScanner.scan().getClasses();
+---
+>     directoryScanner.scan();
+>     ClasspathScanner classpathScanner = new ClasspathScanner(new URL[]{}, new EmptyResolver());
+>     return classpathScanner.scan().getClasses();

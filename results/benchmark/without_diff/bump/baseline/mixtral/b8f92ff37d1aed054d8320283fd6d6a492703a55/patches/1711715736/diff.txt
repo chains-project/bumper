@@ -1,0 +1,9 @@
+3c3,8
+<         return directoryScanner.scan().getClasses();
+---
+>         directoryScanner.scan();
+>         List<String> classes = new ArrayList<>();
+>         for (String classFile : directoryScanner.getIncludedFiles()) {
+>             classes.add(classFile.substring(0, classFile.length() - 6));
+>         }
+>         return classes;
