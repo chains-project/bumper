@@ -1,0 +1,18 @@
+1a2,17
+> 
+> // existing import statements
+> 
+> import java.util.Map;
+> import java.util.function.Function;
+> 
+> // ... other class code ...
+> 
+> private static final Function<Map<String, Object>, JsonBranch> JSON_BRANCH_FUNCTION = jsonNode -> {
+>     return new JsonBranch() {
+>         @Override
+>         public String getValue(String path) {
+>             return (String) ((ObjectNode) jsonNode).get(path);
+>         }
+>     };
+> };
+\ No newline at end of file

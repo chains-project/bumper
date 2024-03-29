@@ -1,0 +1,16 @@
+1a2,15
+> 
+> // existing code here
+> 
+> public class MarcFactory {
+>   // existing code here
+> 
+>   @Override
+>   public void someMethod() {
+>     JsonBranch jsonBranch = new JsonBranch();
+>     // use jsonBranch as needed
+>   }
+> 
+>   // existing code here
+> }
+\ No newline at end of file
