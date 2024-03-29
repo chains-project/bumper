@@ -1,0 +1,13 @@
+2a3
+>         Pattern patternToScan = Pattern.compile(".+\\.class");
+4c5
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>             return patternToScan.matcher(s).matches();
+8,9c9,11
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan.trim());
+>             patternToScan = Pattern.compile(regex);
+>             if (patternToScan.matcher(s).matches()) {

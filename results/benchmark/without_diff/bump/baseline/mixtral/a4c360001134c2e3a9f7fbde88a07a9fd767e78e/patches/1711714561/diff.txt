@@ -1,0 +1,13 @@
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>             return new FilterBuilder().include(".*\\.class").apply(s);
+6a7
+>         Pattern pattern = Pattern.compile(".*");
+8,9c9,11
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>             String regex = String.format(".*?\\.??%s\\..+\\.class", packageToScan);
+>             pattern = Pattern.compile(regex);
+>             if (pattern.asPredicate().test(s)) {

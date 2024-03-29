@@ -1,0 +1,14 @@
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>         return new FilterBuilder().include(".*\\.class").apply(s);
+6a7
+>     Pattern pattern = Pattern.compile("\\.?\\.??(?:::\\p{JavaIdentifier})+\\..+\\.class");
+8c9,11
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+---
+>         Matcher matcher = pattern.matcher(packageToScan);
+>         if (matcher.matches()) {
+>             String regex = matcher.replaceAll("\\Q$packageToScan" + "\\E");
+12a16
+>     }
