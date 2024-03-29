@@ -1,0 +1,13 @@
+1d0
+< // TODO: review this AI generated patch!
+4,5c3
+<         @Override
+<         protected booleanmatchesSafely(String item) {
+---
+>         private boolean matches(String item) {
+6a5,9
+>         }
+> 
+>         @Override
+>         public boolean matchesSafely(String item) {
+>             return matches(item);

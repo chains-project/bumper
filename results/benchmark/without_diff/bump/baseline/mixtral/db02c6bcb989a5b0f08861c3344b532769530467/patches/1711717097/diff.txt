@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<         protected booleanmatchesSafely(String item) {
+---
+>         public boolean matchesSafely(String item) {
+11c10
+<             description.appendText("a string containing the substring: Status: Downloaded newer image for " + image);
+---
+>             description.appendText(String.format("a string containing the substring: Status: Downloaded newer image for %s", image));

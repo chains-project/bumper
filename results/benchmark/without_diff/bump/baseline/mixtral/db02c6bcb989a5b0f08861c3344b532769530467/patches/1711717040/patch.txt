@@ -1,0 +1,14 @@
+private static Matcher<String> imagePulled(final String image) {
+    boolean containsImage = String.format("Status: Downloaded newer image for %s", image);
+    return new TypeSafeMatcher<String>() {
+        @Override
+        public boolean matchesSafely(String item) {
+            return item.contains(containsImage);
+        }
+
+        @Override
+        public void describeTo(Description description) {
+            description.appendText(String.format("a string containing the substring: %s", containsImage));
+        }
+    };
+}

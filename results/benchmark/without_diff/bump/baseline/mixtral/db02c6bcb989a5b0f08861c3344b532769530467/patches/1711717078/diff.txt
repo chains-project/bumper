@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+2a2
+>     Pattern pattern = Pattern.compile(String.format("Status: Downloaded newer image for %s", image));
+6c6
+<             return item.contains(String.format("Status: Downloaded newer image for %s", image));
+---
+>             return pattern.matcher(item).find();
