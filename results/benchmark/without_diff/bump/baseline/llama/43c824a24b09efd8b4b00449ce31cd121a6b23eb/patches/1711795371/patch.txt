@@ -1,0 +1,9 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+public class MarcFactory {
+    private static final JsonBranch marcJson = new JsonBranch("http://schema.org/marc21");
+    
+    public static JsonBranch getMarcJson() {
+        return marcJson;
+    }
+}

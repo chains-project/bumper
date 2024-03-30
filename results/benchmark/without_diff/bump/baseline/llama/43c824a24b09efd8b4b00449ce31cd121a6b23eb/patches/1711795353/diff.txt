@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MarcFactory {
+>     private static final JsonBranch JSON_BRANCH = new JsonBranch();
+> 
+>     public static Marc createMarc() {
+>         return JSON_BRANCH.createObject("Marc", "http://metadataqa.gwdg.de/vocabulary/marc");
+>     }
+> }
+\ No newline at end of file
