@@ -1,0 +1,18 @@
+1a2,17
+> 
+> public class SshByPassword {
+>     private static final Tv T = new Tv(SshByPassword.class);
+> 
+>     public static void main(String[] args) throws Exception {
+>         T.add(new com.jcabi.aspects.Tv.Method(SshByPassword.class, "main", args));
+>         com.jcabi.ssh.SshByPassword ssh = new com.jcabi.ssh.SshByPassword();
+>         ssh.setPassword("my_secret_password");
+>         ssh.setHost("my_host");
+>         ssh.setPort(22);
+>         ssh.setUsername("my_username");
+>         ssh.connect();
+>         System.out.println("Connected to server");
+>         ssh.disconnect();
+>     }
+> }
+\ No newline at end of file

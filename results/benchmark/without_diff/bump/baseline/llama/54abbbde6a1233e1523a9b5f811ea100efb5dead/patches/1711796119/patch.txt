@@ -1,0 +1,14 @@
+import com.jcabi.aspects.Tv;
+
+public class Ssh {
+    private static final Tv T = new Tv();
+
+    public static void main(String[] args) {
+        T.add(new com.jcabi.aspects.Tv.Advice() {
+            @Override
+            public void advice(Advice.Context context) {
+                // Ignore
+            }
+        });
+    }
+}

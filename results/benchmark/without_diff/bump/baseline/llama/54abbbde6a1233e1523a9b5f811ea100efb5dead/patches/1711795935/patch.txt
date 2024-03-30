@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class SshByPassword {
+    private static final Tv T = new Tv(SshByPassword.class);
+
+    public static void main(String[] args) throws Exception {
+        T.add(new com.jcabi.aspects.Aspect());
+        // your code here
+    }
+}
