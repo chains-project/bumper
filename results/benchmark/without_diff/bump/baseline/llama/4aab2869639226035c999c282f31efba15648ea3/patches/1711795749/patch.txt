@@ -1,0 +1,14 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private static final Storages STORAGES = new Storages();
+
+    public static Policy loadPolicy(final String policyFile) {
+        try {
+            // ...
+        } catch (IOException e) {
+            // ...
+        }
+        return null;
+    }
+}

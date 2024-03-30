@@ -1,0 +1,19 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private final Storages storages;
+
+    public YamlPolicyFactory(Storages storages) {
+        this.storages = storages;
+    }
+
+    public Policy loadPolicy(String policyFile) {
+        // Remove the following line as it is not needed
+        // String yamlPolicy = new String(Files.readAllBytes(Paths.get(policyFile)), Charset.defaultCharset());
+
+        // Instead, use the Astolith Storage API to read the policy file
+        try (InputStream policyStream = storages.open(policyFile)) {
+            return new YamlPolicyParser(policyStream).parse();
+        }
+    }
+}

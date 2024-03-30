@@ -1,0 +1,16 @@
+1a2,15
+> 
+> public class YamlPolicyFactory {
+>     private static final Storages STORAGES = new Storages();
+> 
+>     public static Policy loadPolicy(String policyFile) {
+>         try {
+>             // Replace the failing line with the following code
+>             InputStream policyStream = STORAGES.open(policyFile);
+>             return new YamlPolicy(policyStream);
+>         } catch (IOException e) {
+>             throw new RuntimeException(e);
+>         }
+>     }
+> }
+\ No newline at end of file
