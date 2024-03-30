@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class RegionITCase {
+>     private static final Tv TV = Tv.helyisOf(Tv.class);
+> 
+>     @org.junit.Test
+>     public void testRegion() {
+>         // Remove the failing import and use the replaced import
+>         // com.jcabi.aspects.Tv;
+>         // Use the replaced import
+>         TV.helyisOf(Tv.class);
+>     }
+> }
+\ No newline at end of file

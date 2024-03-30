@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class RegionITCase {
+>     private static final Tv TV = new Tv();
+> 
+>     @org.junit.Test
+>     public void testRegion() {
+>         // ...
+>     }
+> }
+\ No newline at end of file
