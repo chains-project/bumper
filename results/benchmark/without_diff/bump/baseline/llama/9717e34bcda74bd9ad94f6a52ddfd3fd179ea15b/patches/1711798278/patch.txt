@@ -1,0 +1,14 @@
+import com.jcabi.aspects.Tv;
+
+public class MkGithub {
+    private static final Tv T = new Tv(MkGithub.class);
+
+    public static void main(String[] args) {
+        T.add(new com.jcabi.aspects.AfterAspect());
+        T.add(new com.jcabi.aspects.BeforeAspect());
+        T.add(new com.jcabi.aspects.AroundAspect());
+        T.add(new com.jcabi.aspects.AfterReturningAspect());
+        T.add(new com.jcabi.aspects.AfterThrowingAspect());
+        T.add(new com.jcabi.aspects.BeforeAspect(Tv.class));
+    }
+}
