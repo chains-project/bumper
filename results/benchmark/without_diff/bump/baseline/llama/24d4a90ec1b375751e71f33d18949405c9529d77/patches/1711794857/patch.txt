@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv TV = Tv.javadoc();
+
+    public void testSomething() {
+        // Your code here
+    }
+}
