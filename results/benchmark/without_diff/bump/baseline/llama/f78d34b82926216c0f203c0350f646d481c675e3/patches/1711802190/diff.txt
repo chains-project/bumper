@@ -1,0 +1,8 @@
+43a44,50
+>     }
+> 
+>     private static Pair<String, String> getRandomSkin() {
+>         // develop.p2p.lib.LeetConverter is not available
+>         // return new Pair<>(LeetConverter.convert("random.nextBoolean() ? \"http://www.minecraft.net/skin/\" + (random.nextBoolean() ? \"male\": \"female\") + \"/\")", "http://www.minecraft.net/skin/male/"));
+>         // instead, use a hardcoded URL
+>         return new Pair<>("https://example.com/male", "https://example.com/female");
