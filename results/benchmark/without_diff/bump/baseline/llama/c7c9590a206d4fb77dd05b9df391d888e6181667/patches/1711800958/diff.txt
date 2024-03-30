@@ -1,0 +1,14 @@
+1a2,13
+> 
+> // Create a variable for the rendering context
+> RenderingContext renderingContext = new RenderingContext();
+> 
+> // Modify the import statement to use the updated package name
+> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+> 
+> // Remove the override decorator as the method is not overriding any method in the new version
+> public void generateReport(String outputDirectory) {
+>     // Use the created variable for the rendering context
+>     renderingContext.generateReport(outputDirectory);
+> }
+\ No newline at end of file

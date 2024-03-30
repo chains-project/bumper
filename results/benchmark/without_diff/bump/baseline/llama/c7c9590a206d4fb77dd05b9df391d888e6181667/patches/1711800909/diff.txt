@@ -1,0 +1,8 @@
+1a2,7
+> 
+> public class SCoverageReportMojo {
+>     private void generateReport(File outputDirectory, RenderingContext renderingContext) {
+>         // ...
+>     }
+> }
+\ No newline at end of file
