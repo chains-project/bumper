@@ -44,5 +44,12 @@
         "generated_patch_count": 10,
         "repaired": false,
         "patches": []
+    },
+    "38c9915f0cfdf0c1a2b17c3c6f283c23a0aac0cf": {
+        "py/object": "pipeline.types.project_repair_status.ProjectRepairStatus",
+        "fixed_errors_count": 0,
+        "generated_patch_count": 10,
+        "repaired": false,
+        "patches": []
     }
 }
