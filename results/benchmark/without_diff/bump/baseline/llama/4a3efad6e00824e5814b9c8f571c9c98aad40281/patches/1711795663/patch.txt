@@ -1,0 +1,15 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    private static final String Pades_Certification_Permission = "eu.europa.esig.dss.pades.CertificationPermission";
+
+    public static void main(String[] args) {
+        try {
+            // ...
+            CertificationPermission certificationPermission = (CertificationPermission) Class.forName(Pades_Certification_Permission).newInstance();
+            // ...
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+}

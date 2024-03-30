@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class Signer {
+>     private static final String PERMISSION_NAME = "permissions";
+> 
+>     public static void main(String[] args) {
+>         CertificationPermission permission = new CertificationPermission(PERMISSION_NAME);
+>         // ...
+>     }
+> }
+\ No newline at end of file
