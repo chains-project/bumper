@@ -1,0 +1,2 @@
+7a8
+>             .setDependencyVersion(DependencyVersion.getDefaultVersion()) // Add this line
