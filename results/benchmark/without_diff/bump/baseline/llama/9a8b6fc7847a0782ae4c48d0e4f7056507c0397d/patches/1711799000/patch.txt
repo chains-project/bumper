@@ -1,0 +1,17 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder();
+    encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+        @Override
+            protected void encrypt(CharSequence password, MessageDigest messageDigest) {
+                // Fix for missing dependency
+                try {
+                    Class.forName("org.apache.commons.codec.binary.Base64");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                super.encrypt(password, messageDigest);
+            }
+        });
+        return encoder;
+    }

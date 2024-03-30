@@ -1,0 +1,11 @@
+4c4,11
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+>         @Override
+>             protected void encryptPassword(CharSequence password, MessageDigest messageDigest) {
+>                 // Remove this line, it's not needed
+>                 // messageDigest.update(password.toString());
+>                 super.encryptPassword(password, messageDigest);
+>             }
+>         });
