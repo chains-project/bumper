@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Create a variable to hold the AlertDescription object
+> AlertDescription alertDescription = null;
+> 
+> // Check if the alertDescription object is not null
+> if (alertDescription != null) {
+>   // Call the appropriate method on the alertDescription object
+>   alertDescription.printStackTrace();
+> }
+\ No newline at end of file
