@@ -1,0 +1,39 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8,9c2,9
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>         String url = server.getUrl();
+>         String artifactoryUrl = server.getArtifactory().getUrl();
+>         String distributionUrl = server.getDistribution().getUrl();
+>         String stepUrl = step.url;
+>         String stepArtifactoryUrl = step.artifactoryUrl;
+>         String stepDistributionUrl = step.distributionUrl;
+>         
+>         if (isAllBlank(url, artifactoryUrl, distributionUrl, stepUrl, stepArtifactoryUrl, stepDistributionUrl)) {
+12c12,13
+<             if (isNotBlank(step.credentialsId)) {
+---
+>         
+>         if (!isBlank(step.credentialsId)) {
+20a22,34
+>     
+>     private boolean isAllBlank(String... strings) {
+>         for (String s : strings) {
+>             if (s != null && !s.isEmpty()) {
+>                 return false;
+>             }
+>         }
+>         return true;
+>     }
+>     
+>     private boolean isNotBlank(String s) {
+>         return s != null && !s.isEmpty();
+>     }
+\ No newline at end of file

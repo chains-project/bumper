@@ -1,0 +1,28 @@
+private void checkInputs(JFrogPlatformInstance server) throws IOException {
+        if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+                step.url, step.artifactoryUrl, step.distributionUrl)) {
+            throw new IOException("Server URL is missing");
+        }
+        if (isNotBlank(step.credentialsId)) {
+            if (isNotBlank(step.username)) {
+                throw new IOException("'rtServer' step can't include both credentialsId and username");
+            }
+            if (isNotBlank(step.password)) {
+                throw new IOException("'rtServer' step can't include both credentialsId and password");
+            }
+        }
+    }
+
+    private boolean isAllBlank(String... strings) {
+        for (String str : strings) {
+            if (String.valueOf(str).isEmpty()) {
+                continue;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isNotBlank(String str) {
+        return !String.valueOf(str).isEmpty();
+    }

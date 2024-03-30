@@ -1,0 +1,14 @@
+12c12,22
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+---
+>         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile) {
+>             @Override
+>             public void extract() throws Exception {
+>                 super.extract();
+>                 // Add the following line to fix the error
+>                 BuildDockerCreator buildDockerCreator = new BuildDockerCreator(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+>                 buildDockerCreator.setOverwrite(true);
+>                 buildDockerCreator.setForce(true);
+>                 buildDockerCreator.execute();
+>             }
+>         };

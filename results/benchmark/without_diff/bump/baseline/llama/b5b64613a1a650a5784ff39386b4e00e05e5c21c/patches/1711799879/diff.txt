@@ -1,0 +1,10 @@
+12c12,18
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+---
+>         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile) {
+>             @Override
+>             public void extract() throws Exception {
+>                 super.extract();
+>                 // Add your code here
+>             }
+>         };
