@@ -1,0 +1,5 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+        List<String> classes = directoryScanner.scan().getClasses();
+        return classes.stream().filter(className -> !className.contains("$")).collect(Collectors.toList());
+    }
