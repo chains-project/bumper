@@ -1,0 +1,9 @@
+import org.cactoos.scalar.SolidScalar;
+
+public class WalletsIn {
+    private final SolidScalar<String> walletId;
+
+    public WalletsIn(String walletId) {
+        this.walletId = SolidScalar.of(walletId);
+    }
+}

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class WalletsIn {
+>     private final SolidScalar<String> walletId;
+> 
+>     public WalletsIn(String walletId) {
+>         this.walletId = SolidScalar.of(walletId);
+>     }
+> }
+\ No newline at end of file

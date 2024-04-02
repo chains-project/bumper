@@ -1,0 +1,20 @@
+1a2,19
+> 
+> // ...
+> 
+> public class WalletsIn {
+>     private final IoCheckedScalar<String> walletId;
+> 
+>     public WalletsIn(IoCheckedScalar<String> walletId) {
+>         this.walletId = walletId;
+>     }
+> 
+>     public void setWalletId(IoCheckedScalar<String> walletId) {
+>         this.walletId = walletId;
+>     }
+> 
+>     public IoCheckedScalar<String> getWalletId() {
+>         return walletId;
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,5 @@
+import org.cactoos.scalar.IoCheckedScalar;
+
+// ...
+
+IoCheckedScalar<String> scalar = IoCheckedScalar.of(" Failure message ");

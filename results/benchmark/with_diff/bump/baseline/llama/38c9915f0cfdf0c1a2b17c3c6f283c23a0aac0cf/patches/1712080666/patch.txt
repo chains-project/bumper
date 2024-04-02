@@ -1,0 +1,13 @@
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    private final IoCheckedScalar<String> scalar;
+
+    public WalletsIn(IoCheckedScalar<String> scalar) {
+        this.scalar = scalar;
+    }
+
+    public void doIn() {
+        scalar.getValue();
+    }
+}

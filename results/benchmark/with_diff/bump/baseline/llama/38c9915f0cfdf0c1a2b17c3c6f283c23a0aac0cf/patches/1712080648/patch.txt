@@ -1,0 +1,13 @@
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    private final IoCheckedScalar<InputStream> inputStream;
+
+    public WalletsIn(IoCheckedScalar<InputStream> inputStream) {
+        this.inputStream = inputStream;
+    }
+
+    public void doSomething() {
+        // Your code here
+    }
+}

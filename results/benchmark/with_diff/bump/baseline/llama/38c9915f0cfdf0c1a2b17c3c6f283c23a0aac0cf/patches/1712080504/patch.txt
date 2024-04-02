@@ -1,0 +1,5 @@
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    private static final IoCheckedScalar<String> scalar = IoCheckedScalar.of("wallets.in");
+}
