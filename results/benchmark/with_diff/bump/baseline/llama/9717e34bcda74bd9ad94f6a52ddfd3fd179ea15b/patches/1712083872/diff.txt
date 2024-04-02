@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MkGithub {
+>     private static final Tv TV = Tv.empty();
+> 
+>     public static void main(String[] args) {
+>         TV.println("Hello, GitHub!");
+>     }
+> }
+\ No newline at end of file
