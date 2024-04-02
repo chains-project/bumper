@@ -1,0 +1,7 @@
+1c1,2
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> // The class DependencyResolutionRequiredException has been removed or relocated.
+> // It needs to be replaced or removed from the import statements.
+\ No newline at end of file
