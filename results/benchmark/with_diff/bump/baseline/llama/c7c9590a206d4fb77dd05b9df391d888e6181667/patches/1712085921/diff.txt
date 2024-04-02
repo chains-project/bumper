@@ -1,0 +1,23 @@
+1a2,22
+> 
+> public class SCoverageReportMojo extends AbstractMojo {
+>     private RenderingContext renderingContext;
+> 
+>     public void setRenderingContext(RenderingContext renderingContext) {
+>         this.renderingContext = renderingContext;
+>     }
+> 
+>     public void execute() throws MojoExecutionException {
+>         // ...
+>         RenderingContext context = getRenderingContext();
+>         // ...
+>     }
+> 
+>     private RenderingContext getRenderingContext() {
+>         if (renderingContext == null) {
+>             renderingContext = new RenderingContext();
+>         }
+>         return renderingContext;
+>     }
+> }
+\ No newline at end of file

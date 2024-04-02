@@ -1,0 +1,30 @@
+1a2,29
+> 
+> public class SCoverageReportMojo {
+>     private static final String OUTPUT_NAME = "outputName";
+> 
+>     public void execute() throws MojoExecutionException {
+>         // ...
+>         RenderingContext renderingContext = new RenderingContext();
+>         // ...
+>     }
+> 
+>     public static class RenderingContext implements org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext {
+>         private final SiteRenderingContext siteRenderingContext;
+> 
+>         public RenderingContext(SiteRenderingContext siteRenderingContext) {
+>             this.siteRenderingContext = siteRenderingContext;
+>         }
+> 
+>         @Override
+>         public SiteRenderingContext getSiteRenderingContext() {
+>             return siteRenderingContext;
+>         }
+> 
+>         @Override
+>         public String getOutputName() {
+>             return OUTPUT_NAME;
+>         }
+>     }
+> }
+\ No newline at end of file
