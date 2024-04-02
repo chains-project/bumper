@@ -1,0 +1,4 @@
+3,5d2
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+<                 throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+<             }
