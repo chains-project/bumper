@@ -1,0 +1,18 @@
+1a2,17
+> 
+> public class MarcFactory {
+>     private JsonBranch jsonBranch;
+> 
+>     public MarcFactory() {
+>         this.jsonBranch = new JsonBranch();
+>     }
+> 
+>     public MarcFactory(JsonBranch jsonBranch) {
+>         this.jsonBranch = jsonBranch;
+>     }
+> 
+>     public void createMarc() {
+>         // ...
+>     }
+> }
+\ No newline at end of file
