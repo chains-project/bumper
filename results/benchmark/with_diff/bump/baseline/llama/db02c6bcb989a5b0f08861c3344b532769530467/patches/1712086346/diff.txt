@@ -1,0 +1,19 @@
+5c5,20
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String s) {
+>                 return s.contains("Downloaded newer image for " + image);
+>             }
+> 
+>             @Override
+>             public void describeMismatch(String s, Description description) {
+>                 description.appendText("was not pulled");
+>             }
+> 
+>             @Override
+>             public void describeTo(Description description) {
+>                 description.appendText("Image pulled");
+>             }
+>         };
