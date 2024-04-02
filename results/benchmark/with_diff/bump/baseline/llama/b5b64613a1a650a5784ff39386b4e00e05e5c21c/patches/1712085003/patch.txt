@@ -1,0 +1,7 @@
+import org.jenkinsci.plugins.p4.util.P4Util;
+
+...
+
+if (P4Util.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+    throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+}
