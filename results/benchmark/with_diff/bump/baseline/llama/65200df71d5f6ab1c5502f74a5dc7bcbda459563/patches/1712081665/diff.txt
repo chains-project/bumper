@@ -1,0 +1,12 @@
+7a8,18
+>             .setLanguageSupportRepository(new LanguageSupportRepository() {
+>                 @Override
+>                 public Set<String> getEnabledLanguagesInConnectedMode() {
+>                     return globalConfig.getEnabledLanguages();
+>                 }
+> 
+>                 @Override
+>                 public Set<String> getEnabledLanguagesInStandaloneMode() {
+>                     return globalConfig.getEnabledLanguages();
+>                 }
+>             })
