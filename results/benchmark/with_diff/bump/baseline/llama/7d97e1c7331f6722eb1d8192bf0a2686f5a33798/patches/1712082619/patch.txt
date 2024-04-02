@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class RegionITCase {
+    private static final Tv TV = Tv.getInstance();
+
+    @org.junit.Test
+    public void testRegion() {
+        // ...
+    }
+}
