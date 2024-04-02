@@ -1,0 +1,6 @@
+3c3
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+>         loadingConfig.setTagInspector(new com.premiumminds.billy.core.test.TrustedTagInspector()); // Changed line
+18d17
+< 

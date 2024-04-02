@@ -1,0 +1,14 @@
+3c3
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+>     loadingConfig.setTagInspector(new TrustedTagInspectorImpl()); // Changed from TrustedTagInspector to TrustedTagInspectorImpl
+26a27,34
+> 
+> class TrustedTagInspectorImpl implements TagInspector {
+>     @Override
+>     public boolean isGlobalTagAllowed(Tag tag) {
+>         // Implement your desired behavior for isGlobalTagAllowed
+>         return true; // By default, allow all global tags
+>     }
+> }
+\ No newline at end of file
