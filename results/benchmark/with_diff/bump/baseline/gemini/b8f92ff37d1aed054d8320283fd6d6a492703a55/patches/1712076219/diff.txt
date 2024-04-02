@@ -1,0 +1,4 @@
+3c3
+<         return directoryScanner.scan().getClasses();
+---
+>         return directoryScanner.scan().getTestClassNames();
