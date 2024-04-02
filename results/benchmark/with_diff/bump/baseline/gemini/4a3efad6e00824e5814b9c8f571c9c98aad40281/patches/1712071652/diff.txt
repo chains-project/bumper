@@ -1,0 +1,6 @@
+1c1
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+>   import eu.europa.esig.dss.pades.PAdESPermission;
+\ No newline at end of file
