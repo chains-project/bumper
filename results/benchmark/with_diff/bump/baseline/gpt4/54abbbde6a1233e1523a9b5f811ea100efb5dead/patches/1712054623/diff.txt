@@ -1,0 +1,6 @@
+1d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+4c3
+<         attempts = Tv.SEVEN,
+---
+>         attempts = 7,
