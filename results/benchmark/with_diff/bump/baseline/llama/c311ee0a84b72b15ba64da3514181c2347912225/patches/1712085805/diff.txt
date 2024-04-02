@@ -1,0 +1,15 @@
+5c5,16
+<         );
+---
+>         ) {
+>             @Override
+>             public boolean matches(String s) {
+>                 return s.contains("Downloaded newer image for " + image);
+>             }
+> 
+>             @Override
+>             public void describeMismatchSafely(String s, Description description) {
+>                 description.appendText("was ");
+>                 description.appendValue(s);
+>             }
+>         };
