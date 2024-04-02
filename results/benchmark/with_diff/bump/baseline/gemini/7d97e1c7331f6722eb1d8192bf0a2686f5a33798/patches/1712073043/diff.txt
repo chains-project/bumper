@@ -1,0 +1,5 @@
+1a2,4
+>   import com.jcabi.aspects.Loggable;
+> 
+>   @Loggable(value = Tv.Off.class, prepend = true)
+\ No newline at end of file
