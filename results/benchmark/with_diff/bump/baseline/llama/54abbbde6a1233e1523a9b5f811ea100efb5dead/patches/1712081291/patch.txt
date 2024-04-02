@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class SshByPassword {
+    private static final Tv Tv = new Tv();
+
+    public static void main(String[] args) throws Exception {
+        Tv.set(Tv.class, "ssh.password", "my_secret_password");
+        // ...
+    }
+}
