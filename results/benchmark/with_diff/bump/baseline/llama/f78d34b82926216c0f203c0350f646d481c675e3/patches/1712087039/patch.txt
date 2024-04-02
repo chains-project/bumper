@@ -1,0 +1,9 @@
+public void input(ArrayList<Input> inputData) {
+    inputData.parallelStream().forEachOrdered(input -> {
+        double sum = 0;
+        for (int i = 0; i < input.getWeightingValue().length; i++) {
+            sum += input.getWeightingValue()[i] * sigmoid(input.getInputs().get(i).getWeightingValue());
+        }
+        setValue(sigmoid(sum));
+    });
+}
