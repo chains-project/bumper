@@ -1,0 +1,11 @@
+1d0
+< @Override
+4a4,5
+>             final Config storageConfig = new Config.FromYaml(Yaml.createYamlInput(sub.toString()).readYamlMapping());
+>             final StorageFactory storageFactory = new StoragesLoader().newFactory(sub.string("type"));
+7,9c8
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                     storageFactory.newStorage(storageConfig)
