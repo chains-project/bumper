@@ -1,0 +1,18 @@
+1d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+3,9d1
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+25c17
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+---
+>                 (int) TimeUnit.SECONDS.toMillis(10)
+27c19
+<             session.setServerAliveCountMax(Tv.MILLION);
+---
+>             session.setServerAliveCountMax(1000000);
