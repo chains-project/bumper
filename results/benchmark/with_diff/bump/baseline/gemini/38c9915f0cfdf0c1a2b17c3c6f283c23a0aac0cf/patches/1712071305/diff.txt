@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.collection.Filtered;
+\ No newline at end of file
+---
+>   import org.cactoos.collection.CollectionFilter;
+\ No newline at end of file

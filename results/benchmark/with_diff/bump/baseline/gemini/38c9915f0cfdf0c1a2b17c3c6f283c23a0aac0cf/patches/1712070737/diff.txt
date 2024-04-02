@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+>   import org.cactoos.text.Text;
+\ No newline at end of file
