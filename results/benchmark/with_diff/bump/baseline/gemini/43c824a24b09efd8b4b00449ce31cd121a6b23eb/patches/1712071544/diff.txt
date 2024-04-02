@@ -1,0 +1,9 @@
+1a2,8
+>   import de.gwdg.metadataqa.api.json.JsonBranchType;
+> 
+>   public class MarcFactory {
+>     public static JsonBranch createJsonBranch(String branch, JsonBranchType type) {
+>       return new JsonBranch(branch, type);
+>     }
+>   }
+\ No newline at end of file
