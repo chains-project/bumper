@@ -1,0 +1,6 @@
+5c5,7
+<         if (StringUtils.isAllBlank(kanikoImageFile, jibImageFile) || StringUtils.isNoneBlank(kanikoImageFile, jibImageFile)) {
+---
+>     boolean isKanikoImageFileBlank = (kanikoImageFile == null || kanikoImageFile.trim().isEmpty());
+>     boolean isJibImageFileBlank = (jibImageFile == null || jibImageFile.trim().isEmpty());
+>     if ((isKanikoImageFileBlank && isJibImageFileBlank) || (!isKanikoImageFileBlank && !isJibImageFileBlank)) {

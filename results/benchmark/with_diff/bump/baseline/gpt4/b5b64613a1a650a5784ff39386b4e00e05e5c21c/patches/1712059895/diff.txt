@@ -1,0 +1,6 @@
+12c12,14
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>             hudson.model.ItemGroup context = Jenkins.get(); // assuming Jenkins instance as context
+>             org.jenkinsci.plugins.p4.workspace.Workspace workspace = new org.jenkinsci.plugins.p4.workspace.ManualWorkspaceImpl("none", false, clientString);
+>             ClientHelper perforceClient = new ClientHelper(context, credentials, buildListener, workspace);
