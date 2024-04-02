@@ -1,0 +1,8 @@
+2a3,5
+>     ClassInfoVisitor visitor = new ClassInfoVisitor();
+>     byte[] bytes = coverage.getBytecode(data.getMutatedClass());
+>     coverage.visitClass(data.getMutatedClass(), bytes, visitor);
+4c7
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), visitor.getClassInfo());

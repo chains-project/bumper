@@ -1,0 +1,6 @@
+2a3
+>     Set<ClassName> set = Collections.singleton(data.getMutatedClass());
+4c5
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), coverage.getClassInfo(set));
