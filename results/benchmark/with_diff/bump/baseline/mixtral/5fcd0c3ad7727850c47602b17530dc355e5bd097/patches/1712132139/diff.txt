@@ -1,0 +1,10 @@
+1,2c1,2
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+---
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+>     ClassInfoBuilder builder = ClassInfo.builder(data.getMutatedClass());
+4c4
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), coverage.getClassInfo(builder.getClassInfo()));
