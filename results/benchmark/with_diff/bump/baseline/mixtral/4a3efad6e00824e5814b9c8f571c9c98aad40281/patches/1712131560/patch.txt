@@ -1,0 +1,7 @@
+@Override
+public void signPdf(String inputFilePath, String outputFilePath, List<X509Certificate> certificates, String reason, String location) throws Exception {
+    PdfSigningParameters signingParameters = new PdfSigningParameters();
+    CertificationPermission permission = new CertificationPermission(CertificationPermission.CERTIFICATION_ALL);
+    signingParameters.setCertificationPermission(permission);
+    // ... other code ...
+}
