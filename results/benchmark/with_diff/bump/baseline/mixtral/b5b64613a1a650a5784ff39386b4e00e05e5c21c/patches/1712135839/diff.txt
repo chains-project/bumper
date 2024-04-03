@@ -1,0 +1,30 @@
+3c3
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+6,8c6,8
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+<             String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+<             String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+---
+>     String urlWithoutSlash = urlWithoutSlash(step.url);
+>     String artifactoryUrl = artifactoryUrl(step.artifactoryUrl, urlWithoutSlash);
+>     String distributionUrl = distributionUrl(step.distributionUrl, urlWithoutSlash);
+12c12
+<             if (!isEmpty(step.credentialsId)) {
+---
+>     if (!StringUtils.isEmpty(step.credentialsId)) {
+21a22,33
+> 
+> private String urlWithoutSlash(String url) {
+>     return url == null ? "" : (url.endsWith("/") ? url.substring(0, url.length() - 1) : url);
+> }
+> 
+> private String artifactoryUrl(String artifactoryUrl, String urlWithoutSlash) {
+>     return StringUtils.defaultIfBlank(artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+> }
+> 
+> private String distributionUrl(String distributionUrl, String urlWithoutSlash) {
+>     return StringUtils.defaultIfBlank(distributionUrl, urlWithoutSlash + "/" + "distribution");
+> }
+\ No newline at end of file
