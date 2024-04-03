@@ -1,0 +1,41 @@
+1c1,36
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.password.PasswordEncryptor;
+> import org.jasypt.digest.StandardStringDigester;
+> import org.springframework.security.authentication.encoding.PasswordEncoder;
+> import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+> 
+> // ...
+> 
+> @Override
+> public PBEPasswordEncoder createPasswordEncoder() {
+>     PBEStringEncryptor encryptor = new PBEStringEncryptor();
+>     encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>     encryptor.setPassword("password");
+> 
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     textEncryptor.setStandardParameters();
+>     textEncryptor.setPassword("password");
+> 
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     passwordEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>     passwordEncryptor.setPassword("password");
+> 
+>     PasswordEncoder springPasswordEncoder = new Pbkdf2PasswordEncoder();
+> 
+>     StandardStringDigester digester = new StandardStringDigester();
+>     digester.setAlgorithm("SHA-512");
+> 
+>     return new PBEPasswordEncoder(
+>         encryptor,
+>         textEncryptor,
+>         passwordEncryptor,
+>         springPasswordEncoder,
+>         digester
+>     );
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+import org.jasypt.password.PBEPasswordEncoder;
+import org.jasypt.util.text.TextEncryptor;
+
+@Override
+public PBEPasswordEncoder createPasswordEncoder() {
+    PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+    TextEncryptor textEncryptor = new org.jasypt.util.text.StrongTextEncryptor();
+    encoder.setTextEncryptor(textEncryptor);
+    return encoder;
+}

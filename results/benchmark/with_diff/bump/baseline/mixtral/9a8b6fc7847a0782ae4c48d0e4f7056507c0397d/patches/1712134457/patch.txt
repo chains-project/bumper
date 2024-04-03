@@ -1,0 +1,20 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+// ...
+
+@Override
+public PBEPasswordEncoder getPasswordEncoder() {
+    PBEStringEncryptor encryptor = new PBEStringEncryptor();
+    encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+    encryptor.setPassword("your-secret-password");
+
+    TextEncryptor textEncryptor = new TextEncryptor();
+    textEncryptor.setStringEncryptor(encryptor);
+
+    PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
+
+    return (PBEPasswordEncoder) passwordEncoder;
+}

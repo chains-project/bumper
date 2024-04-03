@@ -1,0 +1,38 @@
+1c1,33
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.password.PasswordEncryptor;
+> import org.jasypt.digest.StringDigester;
+> import org.springframework.security.authentication.encoding.PasswordEncoder;
+> import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+> 
+> // ...
+> 
+> @Override
+> public PBEPasswordEncoder getPasswordEncoder() {
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     StringDigester stringDigester = new StringDigester();
+>     PasswordEncoder pbkdf2PasswordEncoder = new Pbkdf2PasswordEncoder();
+> 
+>     // configure the encryptors and digester as needed
+> 
+>     PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+>     encoder.setPbeStringEncryptor(pbeStringEncryptor);
+>     encoder.setTextEncryptor(textEncryptor);
+>     encoder.setPasswordEncryptor(passwordEncryptor);
+>     encoder.setStringDigester(stringDigester);
+>     encoder.setPasswordEncoder(pbkdf2PasswordEncoder);
+> 
+>     return encoder;
+> }
+> 
+> @Override
+> public boolean isPasswordValid(String encryptedPassword, String plainPassword, Object salt) {
+>     return getPasswordEncoder().isPasswordValid(plainPassword, encryptedPassword, salt);
+> }
+\ No newline at end of file

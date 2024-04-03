@@ -1,0 +1,25 @@
+1c1,20
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+> 
+> //...
+> 
+> @Override
+> public PBEPasswordEncoder createPasswordEncoder() {
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     textEncryptor.setPassword(password);
+> 
+>     PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>     pbeStringEncryptor.setAlgorithm(algorithm);
+>     pbeStringEncryptor.setPassword(password);
+>     textEncryptor.setStringEncryptor(pbeStringEncryptor);
+> 
+>     PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();
+>     return new PBEPasswordEncoder(textEncryptor, passwordEncoder);
+> }
+\ No newline at end of file
