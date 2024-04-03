@@ -1,0 +1,48 @@
+0a1,15
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.Single;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.UserPermissions;
+> import com.artipie.http.rs.StandardRs;
+> import com.artipie.http.rs.Rs;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.function.Function;
+> import org.hamcrest.MatcherAssert;
+> import static org.hamcrest.Matchers.equalTo;
+> import static org.mockito.Mockito.mock;
+> import static org.mockito.Mockito.when;
+> 
+6a22,29
+>     UserPermissions userPermissions = new UserPermissions(
+>         () -> new User$Simple(Set.of(), mock(PermissionCollection.class)),
+>         permissions -> mock(UserPermissions.class)
+>     );
+>     Single<Authentication.User> authUserSingle = new Single<>(new AuthUser("alice"), userPermissions);
+>     Permission permission = mock(Permission.class);
+>     when(permission.allowed(authUserSingle)).thenReturn(true);
+>     Permissions permissions = new Permissions(permission);
+8,23c31
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+---
+>         rqline -> new Scope.FromString(action),
+28c36
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                     return Optional.of(authUserSingle);

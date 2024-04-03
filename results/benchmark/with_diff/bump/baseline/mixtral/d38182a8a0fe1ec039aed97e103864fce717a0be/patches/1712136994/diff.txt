@@ -1,0 +1,85 @@
+0a1,17
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.rs.StandardRs;
+> import com.artipie.http.Slice;
+> import io.reactivex.CompletableFuture;
+> import java.util.concurrent.Executor;
+> import java.util.function.Function;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.core.IsEqual;
+> import static java.util.Collections.emptyMap;
+> import static java.util.Collections.emptySet;
+> import static java.util.Collections.singleton;
+> import static java.util.concurrent.CompletableFuture.completedFuture;
+> import static java.util.concurrent.Executors.newSingleThreadExecutor;
+> 
+> public class AuthScopeSliceTest {
+5,38c22,26
+<         final AtomicReference<String> caction = new AtomicReference<>();
+<         final AtomicReference<String> cline = new AtomicReference<>();
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+<                     }
+< 
+<                     @Override
+<                     public String challenge() {
+<                         return "";
+<                     }
+<                 }
+<             ),
+<             (user, act) -> {
+<                 caction.set(act);
+---
+>         final Executor executor = newSingleThreadExecutor();
+>         final Function<AuthUser, CompletableFuture<Permissions.Single>> auth =
+>             user -> completedFuture(new Permissions.Single(user, action));
+>         final Function<AuthUser, Boolean> check = (user, act) -> {
+>             System.out.println("AuthUser: " + user);
+40,42c28,37
+<             }
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+---
+>         };
+>         new AuthScopeSlice(
+>             new Slice.Simple(request -> {
+>                 System.out.println("Request: " + request);
+>                 return completedFuture(StandardRs.OK);
+>             }),
+>             auth,
+>             check
+>         ).response(line, emptyMap(), emptySet()).send(
+>             (status, headers, body) -> completedFuture(new Void[])
+46c41
+<             cline.get(),
+---
+>             line,
+51c46
+<             caction.get(),
+---
+>             action,
+54a50
+> }
+\ No newline at end of file
