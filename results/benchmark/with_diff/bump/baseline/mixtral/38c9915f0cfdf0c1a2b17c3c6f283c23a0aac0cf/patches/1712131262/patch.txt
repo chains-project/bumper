@@ -1,0 +1,14 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.TextOf;
+
+// ...
+
+@Override
+public String text() {
+  return new TextEnvelope(
+    new JoinedText(
+      new TextOf(api().wallets())
+    ),
+    "["
+  ).asString();
+}

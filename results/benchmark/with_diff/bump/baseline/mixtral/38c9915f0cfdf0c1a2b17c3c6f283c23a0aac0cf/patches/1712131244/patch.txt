@@ -1,0 +1,17 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public JsonArray asJsonArray() throws IOException {
+  return new JsonArray(
+    new JoinedText(
+      Texts.of(
+        wallets.values().stream()
+          .map(Wallet::asJson)
+          .toArray(JsonValue[]::new)
+      ),
+      ","
+    ).asString()
+  );
+}

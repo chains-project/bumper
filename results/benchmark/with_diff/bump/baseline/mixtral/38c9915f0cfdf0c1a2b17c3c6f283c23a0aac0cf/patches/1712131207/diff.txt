@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextCollector;
+> 
+> // ...
+> 
+> @Override
+> public String asString() throws IOException {
+>   return new TextCollector(
+>     input -> new JoinedText(
+>       Iterables.values(input)
+>     )
+>   ).toString(addresses);
+> }
+\ No newline at end of file
