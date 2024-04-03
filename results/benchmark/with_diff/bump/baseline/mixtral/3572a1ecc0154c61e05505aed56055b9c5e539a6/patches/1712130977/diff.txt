@@ -1,0 +1,32 @@
+1c1,27
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TIOStreamTransport;
+> 
+> // ...
+> 
+> public class AppenderUtils {
+>   // ...
+> 
+>   @Override
+>   public void start() {
+>     if (this.transport == null) {
+>       TransportFactory factory = new TransportFactory();
+>       this.transport = factory.getTransport(new TIOStreamTransport(new TConfiguration(), new ByteArrayInputStream(new byte[0])));
+>     }
+> 
+>     if (!this.transport.isOpen()) {
+>       this.transport.open();
+>     }
+>   }
+> 
+>   // ...
+> 
+>   private static class TransportFactory {
+>     TIOStreamTransport getTransport(TIOStreamTransport transport) {
+>       return transport;
+>     }
+>   }
+> }
+\ No newline at end of file

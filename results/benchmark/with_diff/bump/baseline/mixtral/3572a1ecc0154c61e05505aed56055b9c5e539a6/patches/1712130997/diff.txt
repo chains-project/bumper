@@ -1,0 +1,28 @@
+1c1,23
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TIOStreamTransport;
+> 
+> import java.io.InputStream;
+> import java.io.OutputStream;
+> 
+> public class AppenderUtils {
+>     // ...
+> 
+>     @Override
+>     protected TTransport createTransport(TConfiguration conf) {
+>         TTransport transport;
+>         if (conf.isUseTFramedTransport()) {
+>             InputStream input = conf.getInput();
+>             OutputStream output = conf.getOutput();
+>             transport = new TFastFramedTransport(new TIOStreamTransport(conf), input, output);
+>         } else {
+>             transport = new TSocketTransport(conf);
+>         }
+>         return transport;
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file
