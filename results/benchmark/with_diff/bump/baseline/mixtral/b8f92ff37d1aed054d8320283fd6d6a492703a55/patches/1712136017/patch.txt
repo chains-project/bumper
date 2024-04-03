@@ -1,0 +1,6 @@
+import org.apache.maven.surefire.api.testset.TestRequest;
+
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestRequest.getWildcard());
+    return directoryScanner.scan().getClasses();
+}
