@@ -1,0 +1,14 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+
+import java.io.Writer;
+
+public class SCoverageReportMojo {
+    // ...
+
+    @Override
+    protected void renderDocument(Writer writer, RenderingContext renderingContext, SiteRenderingContext siteRenderingContext) throws IOException {
+        SiteRendererSink sink = new SiteRendererSink(renderingContext);
+        // ... (use 'sink' object for rendering)
+    }
+}
