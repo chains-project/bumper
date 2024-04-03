@@ -1,0 +1,15 @@
+1c1,10
+< import org.apache.commons.lang3.RandomStringUtils;
+\ No newline at end of file
+---
+> import static org.apache.commons.lang3.StringUtils.randomString;
+> 
+> // ...
+> 
+> @Test
+> @Override
+> public void testS3BucketCreation() {
+>     String bucketName = randomString(10) + "-test-bucket-" + UUID.randomUUID();
+>     // ...
+> }
+\ No newline at end of file

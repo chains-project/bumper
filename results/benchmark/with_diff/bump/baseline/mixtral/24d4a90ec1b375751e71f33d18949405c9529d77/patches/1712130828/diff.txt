@@ -1,0 +1,18 @@
+1c1,13
+< import org.apache.commons.lang3.RandomStringUtils;
+\ No newline at end of file
+---
+> import org.apache.commons.text.RandomStringGenerator;
+> 
+> @Test
+> @DisplayName("S3 bucket should be created with random name")
+> public void testBucketCreationWithRandomName() throws IOException {
+>     final String bucketName = new RandomStringGenerator.Builder().withinRange('a', 'z').build().generate(10);
+>     try (AmazonS3 s3 = new S3ClientV2(awsCredentialsProvider)) {
+>         s3.createBucket(bucketName);
+>         assertThat(s3.listBuckets()).contains(bucketName);
+>     }
+>     // Clean up resources
+>     new S3ClientV2(awsCredentialsProvider).deleteBucket(bucketName);
+> }
+\ No newline at end of file

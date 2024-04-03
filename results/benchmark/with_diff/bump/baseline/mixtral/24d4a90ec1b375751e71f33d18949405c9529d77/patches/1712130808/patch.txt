@@ -1,0 +1,10 @@
+import org.apache.commons.lang3.RandomUtils;
+
+// ...
+
+@Test
+@DisplayName("testPutObject")
+public void testPutObject() throws Exception {
+    String content = RandomUtils.randomAlphanumeric(10);
+    // ...
+}

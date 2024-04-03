@@ -1,0 +1,11 @@
+import org.apache.commons.text.RandomStringGenerator;
+
+...
+
+@Test
+@Override
+public void testRandomStringGeneration() {
+    final int length = 10;
+    final String randomString = new RandomStringGenerator.Builder().withinRange('a', 'z').build().generate(length);
+    assertTrue(randomString.length() == length);
+}

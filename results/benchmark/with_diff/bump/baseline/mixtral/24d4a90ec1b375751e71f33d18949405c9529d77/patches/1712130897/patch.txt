@@ -1,0 +1,10 @@
+import static org.apache.commons.lang3.StringUtils.randomString;
+
+// ...
+
+@Test
+@Override
+public void testS3BucketCreation() {
+    String bucketName = randomString(10) + "-test-bucket-" + UUID.randomUUID();
+    // ...
+}

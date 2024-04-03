@@ -1,0 +1,21 @@
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+
+import java.io.IOException;
+
+public class AwsOcketITCase {
+
+    public void testGetObject() throws IOException {
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet httpget = new HttpGet("http://s3.amazonaws.com/test-bucket/test-object");
+        CloseableHttpResponse response = httpclient.execute(httpget);
+        try {
+            System.out.println(EntityUtils.toString(response.getEntity()));
+        } finally {
+            response.close();
+        }
+    }
+}
