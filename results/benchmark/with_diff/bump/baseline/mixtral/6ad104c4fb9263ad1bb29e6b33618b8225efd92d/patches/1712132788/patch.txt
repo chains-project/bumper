@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+@Override
+protected void decodeHandshakeMessage(InputStream inputStream) throws IOException {
+    int messageType = readUint8(inputStream);
+    int messageLength = readUint24(inputStream);
+
+    if (messageType != HandshakeType.newSessionTicket) {
+        throw new TlsFatalAlert(AlertDescription.decode(inputStream));
+    }
+
+    // ...
+}

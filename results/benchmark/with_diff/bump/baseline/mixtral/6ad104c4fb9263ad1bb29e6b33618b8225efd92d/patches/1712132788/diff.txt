@@ -1,0 +1,18 @@
+0a1
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+1a3,16
+> 
+> // ...
+> 
+> @Override
+> protected void decodeHandshakeMessage(InputStream inputStream) throws IOException {
+>     int messageType = readUint8(inputStream);
+>     int messageLength = readUint24(inputStream);
+> 
+>     if (messageType != HandshakeType.newSessionTicket) {
+>         throw new TlsFatalAlert(AlertDescription.decode(inputStream));
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file
