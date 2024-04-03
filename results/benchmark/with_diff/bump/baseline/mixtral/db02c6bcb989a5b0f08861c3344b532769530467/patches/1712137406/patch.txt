@@ -1,0 +1,30 @@
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.provider.ValueSource;
+
+class TagValidTest {
+
+    @Test
+    @ValueSource(strings = {
+        "",
+        ".0",
+        "*",
+        "\u00ea",
+        "-my-tag",
+        //@checkstyle LineLengthCheck (1 line)
+        "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+    })
+    void shouldFailToGetValueWhenInvalid(final String original) {
+        final Tag.Valid tag = new Tag.Valid(original);
+        assertThat(tag.valid(), new IsEqual<>(false));
+        assertThrows(InvalidTagNameException.class, tag::value);
+        final Throwable throwable = assertDoesNotThrow(() -> tag.value());
+        assertThat(throwable, not(containsString(original)));
+        assertThat(throwable.getMessage(), containsString("Invalid tag"));
+    }
+}

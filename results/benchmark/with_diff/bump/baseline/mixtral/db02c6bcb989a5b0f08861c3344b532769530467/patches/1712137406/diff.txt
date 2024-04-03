@@ -1,0 +1,37 @@
+1c1,12
+< @ParameterizedTest
+---
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.containsString;
+> import static org.hamcrest.Matchers.not;
+> import static org.junit.jupiter.api.Assertions.assertThrows;
+> import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+> 
+> import org.junit.jupiter.api.Test;
+> import org.junit.jupiter.params.provider.ValueSource;
+> 
+> class TagValidTest {
+> 
+>     @Test
+13,26c24,29
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+<         final Throwable throwable = Assertions.assertThrows(
+<             InvalidTagNameException.class,
+<             tag::value
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+<         );
+---
+>         assertThat(tag.valid(), new IsEqual<>(false));
+>         assertThrows(InvalidTagNameException.class, tag::value);
+>         final Throwable throwable = assertDoesNotThrow(() -> tag.value());
+>         assertThat(throwable, not(containsString(original)));
+>         assertThat(throwable.getMessage(), containsString("Invalid tag"));
+>     }
