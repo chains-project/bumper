@@ -1,0 +1,19 @@
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     new InstanceOf(InvalidDigestException.class)
+21a22
+>                 String message = Throwables.getRootCause(throwable).getMessage();
+24,26c25,26
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+---
+>                     message,
+>                     new StringContains.ContainsString(
+32,33c32,33
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                     message,
+>                     new StringContains.ContainsString(digest)
