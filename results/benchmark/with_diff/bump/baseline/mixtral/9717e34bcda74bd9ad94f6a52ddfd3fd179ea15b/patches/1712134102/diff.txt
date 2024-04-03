@@ -1,0 +1,11 @@
+1c1,6
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aspects.Loggable;
+> 
+> @Loggable
+> public class MkGithub {
+>   // ...
+> }
+\ No newline at end of file
