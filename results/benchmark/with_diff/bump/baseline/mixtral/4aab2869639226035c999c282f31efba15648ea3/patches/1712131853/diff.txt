@@ -1,0 +1,21 @@
+5,11c5,16
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         Config cfg = new Config() {
+>             @Override
+>             public String string(String key) {
+>                 return sub.string(key);
+>             }
+> 
+>             @Override
+>             public YamlMapping toYamlMapping() {
+>                 return Yaml.createYamlInput(sub.toString()).readYamlMapping();
+>             }
+>         };
+>         return new YamlPolicy(new BlockingStorage(new StoragesLoader().newStorage("", cfg)));
