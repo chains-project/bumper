@@ -1,0 +1,6 @@
+2a3
+>     boolean containsUnexpectedPath = false;
+10c11
+<             new StringContains(false, "Unexpected path")
+---
+>         new StringContains(containsUnexpectedPath, "Unexpected path")

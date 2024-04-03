@@ -1,0 +1,20 @@
+11a12
+>     final StringContains contains = new StringContains(original);
+14c15
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     final InvalidTagNameException exception = Assertions.assertThrows(
+19,21c20,21
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+---
+>         exception.getMessage(),
+>         new AllOf<>(Arrays.asList(
+23,25c23,24
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>             contains
+>         ))
