@@ -1,0 +1,11 @@
+1a2,10
+> import org.apache.thrift.transport.TSocket;
+> import org.apache.thrift.transport.TTransport;
+> 
+> public TTransport createTransport(final String serverAddress, final int serverPort) {
+>     TTransport transport = new TSocket(serverAddress, serverPort);
+>     transport = new TFramedTransport(transport);
+>     transport.open();
+>     return transport;
+> }
+\ No newline at end of file

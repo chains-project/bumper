@@ -1,0 +1,15 @@
+import org.apache.thrift.transport.FramedTransport;
+
+// change the import statement to use the new class name
+// and replace TFramedTransport with FramedTransport
+// in the method body
+@Override
+public void start() {
+  try {
+    if (transport instanceof FramedTransport) {
+      // do something
+    }
+  } catch (TException e) {
+    // handle exception
+  }
+}
