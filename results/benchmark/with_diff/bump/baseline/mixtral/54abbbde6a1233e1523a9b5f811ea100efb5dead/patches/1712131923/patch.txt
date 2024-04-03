@@ -1,0 +1,13 @@
+import com.jcabi.ssh.Ssh;
+
+// create a variable for the Tv aspect
+Tv tv = new Tv();
+
+public class SshByPassword implements SshByPasswordRt {
+    @Override
+    public Ssh ssh(String host, int port, String login, String password) {
+        // use the Tv aspect on the port
+        return new SshByPassword.Base(host, tv.increase(port), login, password);
+    }
+    // rest of the class
+}
