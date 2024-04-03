@@ -1,0 +1,21 @@
+1c1,16
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> import org.yaml.snakeyaml.nodes.Tag;
+> 
+> // ...
+> 
+> public void someMethod() {
+>     Yaml yaml = new Yaml(new MyTagInspector());
+>     // ...
+> }
+> 
+> private static class MyTagInspector extends org.yaml.snakeyaml.resolver.Resolver {
+>     @Override
+>     protected boolean isGlobalTagAllowed(Tag tag) {
+>         // your custom logic here
+>     }
+> }
+\ No newline at end of file

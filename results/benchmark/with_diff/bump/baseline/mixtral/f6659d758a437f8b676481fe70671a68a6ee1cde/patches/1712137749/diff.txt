@@ -1,0 +1,9 @@
+1c1,4
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> 
+> // create a Yaml instance with a custom TrustedTagInspector
+> Yaml yaml = new Yaml(new Yaml.SafeConstructor().setTrustedTags(new TrustedTagInspector()));
+\ No newline at end of file
