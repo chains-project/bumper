@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from jsonpickle.handlers import BaseHandler
+import jsonpickle
+
 
 class ProjectRepairStatus:
     def __init__(
@@ -22,3 +25,21 @@ class ProjectRepairStatus:
         self.patches = self.patches + status.patches
         self.repaired = True if self.repaired and status.repaired else False
         return self
+
+
+# Need to use a dedicated handler because jsonpickle does not support schema evolution, WTF!
+class ProjectRepairStatusSerializationHandler(BaseHandler):
+    def flatten(self, obj, data):
+        return self.context.flatten(obj, data)
+
+    def restore(self, obj):
+        initial_errors_count = obj.pop("initial_errors_count", 0)
+
+        result = ProjectRepairStatus()
+        result.__dict__ = obj
+        result.initial_errors_count = initial_errors_count
+
+        return result
+
+
+jsonpickle.handlers.register(ProjectRepairStatus, ProjectRepairStatusSerializationHandler)

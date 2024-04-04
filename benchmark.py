@@ -18,8 +18,6 @@ from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
 from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
-from pipeline.types.prompt import Prompt
-
 
 class DummyFile(object):
     file = None
@@ -69,7 +67,7 @@ class BenchmarkReport:
     def add_result(self, key: str, result: ProjectRepairStatus):
         self.results[key] = result
         self.save()
-        subprocess.call("git add . && git commit -m \"[Benchmark] update results\" && git push", shell=True)
+        # subprocess.call("git add . && git commit -m \"[Benchmark] update results\" && git push", shell=True)
 
 
 def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
