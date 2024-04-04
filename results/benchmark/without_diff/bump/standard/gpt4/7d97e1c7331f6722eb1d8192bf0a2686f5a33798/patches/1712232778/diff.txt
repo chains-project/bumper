@@ -1,0 +1,23 @@
+1,21d0
+< @Test
+<     void putsAndRemovesIndividualItems() {
+<         final Domain domain = this.domain();
+<         try {
+<             final String name = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+<             final String attr = RandomStringUtils.randomAlphabetic(Tv.EIGHT);
+<             final String value = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+<             for (int idx = 0; idx < 2; ++idx) {
+<                 domain.item(name).put(attr, value);
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.hasKey(attr)
+<                 );
+<                 domain.item(name).remove(attr);
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.not(Matchers.hasKey(attr))
+<                 );
+<             }
+<         } finally {
+<             domain.drop();
+<         }
+<     }
+\ No newline at end of file
