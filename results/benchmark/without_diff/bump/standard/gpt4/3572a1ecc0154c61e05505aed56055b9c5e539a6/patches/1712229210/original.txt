@@ -1,0 +1,4 @@
+@Override
+    protected TSerializer initialValue() {
+      return new TSerializer(new TBinaryProtocol.Factory());
+    }
