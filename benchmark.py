@@ -90,7 +90,7 @@ def update_metadata(project: Project, report: BenchmarkReport):
     if current_result.initial_errors_count <= 0:
         print(f"updating 'initial_errors_count' for project {project.project_id}")
         extractor = FailureExtractor(project)
-        current_result.initial_errors_count = extractor.get_failures()
+        current_result.initial_errors_count = len(extractor.get_failures())
         report.results[project.project_id] = current_result
         report.save()
 
