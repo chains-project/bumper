@@ -1,13 +1,16 @@
 from __future__ import annotations
 
+
 class ProjectRepairStatus:
     def __init__(
             self,
-            fixed_errors_count = 0,
-            generated_patch_count = 0,
-            patches = [],
+            fixed_errors_count=0,
+            generated_patch_count=0,
+            patches=[],
             repaired: bool = False,
+            initial_errors_count=0,
     ) -> None:
+        self.initial_errors_count = initial_errors_count
         self.fixed_errors_count = fixed_errors_count
         self.generated_patch_count = generated_patch_count
         self.repaired = repaired

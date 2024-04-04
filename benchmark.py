@@ -20,15 +20,18 @@ from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
 from pipeline.types.prompt import Prompt
 
-class DummyFile(object):
-  file = None
-  def __init__(self, file):
-    self.file = file
 
-  def write(self, x):
-    # Avoid print() second call (useless \n)
-    if len(x.rstrip()) > 0:
-        tqdm.write(x, file=self.file)
+class DummyFile(object):
+    file = None
+
+    def __init__(self, file):
+        self.file = file
+
+    def write(self, x):
+        # Avoid print() second call (useless \n)
+        if len(x.rstrip()) > 0:
+            tqdm.write(x, file=self.file)
+
 
 @contextlib.contextmanager
 def nostdout():
@@ -51,7 +54,6 @@ class BenchmarkReport:
                 report.results = jsonpickle.decode(f.read())
                 f.close()
         return report
-            
 
     def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
@@ -62,7 +64,7 @@ class BenchmarkReport:
         os.makedirs(os.path.dirname(to_path), exist_ok=True)
         with open(to_path, "w") as f:
             f.write(jsonpickle.encode(self.results, indent=4))
-            f.close
+            f.close()
 
     def add_result(self, key: str, result: ProjectRepairStatus):
         self.results[key] = result
@@ -85,11 +87,22 @@ def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
         )
 
 
+def update_metadata(project: Project, report: BenchmarkReport):
+    current_result = report.results.get(project.project_id)
+    if current_result.initial_errors_count <= 0:
+        print(f"updating 'initial_errors_count' for project {project.project_id}")
+        extractor = FailureExtractor(project)
+        current_result.initial_errors_count = extractor.get_failures()
+        report.results[project.project_id] = current_result
+        report.save()
+
+
 def run_benchmark(key: str, name: str, projects: List[Project], pipeline: PipelineRunningMode, model: LLMType):
     path = f"results/benchmark/{name}/{key}/{pipeline}/{model}"
     report = BenchmarkReport.load(from_path=f"{path}/report.json")
 
-    progress = tqdm(projects, desc=f"Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout, miniters=1)
+    progress = tqdm(projects, desc=f"Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout,
+                    miniters=1)
     for project in progress:
         with nostdout():
             try:
@@ -104,6 +117,7 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                 else:
                     icon = "✅" if report.results.get(project.project_id).repaired is True else "❌"
                     print(f"{icon} {project.project_name} ({project.project_id})")
+                    update_metadata(project=project, report=report)
                     time.sleep(0.2)
             except KeyboardInterrupt:
                 exit(1)
@@ -111,9 +125,11 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                 print(f"Skipping {project.project_id} because is failing to run:")
                 print(error)
 
+
 def move_patches(project: Project, path: str):
     os.makedirs(os.path.dirname(f"{path}/{project.project_id}/patches/"), exist_ok=True)
     subprocess.call(f"mv {project.path}/patches/* {path}/{project.project_id}/patches", shell=True)
+
 
 def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType) -> ProjectRepairStatus:
     print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
@@ -149,7 +165,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--name", help="Name of the benchmark execution", type=str, required=True)
     parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)
-    parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE]", type=PipelineRunningMode, choices=list(PipelineRunningMode), required=True)
+    parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE]", type=PipelineRunningMode,
+                        choices=list(PipelineRunningMode), required=True)
 
     options = parser.parse_args()
     main(
