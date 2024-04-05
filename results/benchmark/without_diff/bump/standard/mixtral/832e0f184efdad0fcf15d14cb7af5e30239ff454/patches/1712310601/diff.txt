@@ -1,0 +1,59 @@
+13d12
+<                         
+16d14
+<                         
+20d17
+< 
+28d24
+<                                 
+33,34c29,30
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+---
+>                 currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().getEnchantment(), 1, false);
+>                 lore.add(((ChatColor.YELLOW + "") + ChatColor.ITALIC) + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+44c40
+<                                 listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+---
+>             listOfAvailableLangs[i] = ClickableItem.of(currentLang, (e) -> {
+48c44
+<                                                 translateCommand = new WWCTranslate((CommandSender)player, null, null, new String[] {main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(), selectedSourceLanguage, outLang});
+---
+>                     translateCommand = new WWCTranslate((CommandSender) (player), null, null, new String[]{ main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(), selectedSourceLanguage, outLang });
+50c46
+<                                                 translateCommand = new WWCGlobal((CommandSender)player, null, null, new String[] {selectedSourceLanguage, outLang});
+---
+>                     translateCommand = new WWCGlobal((CommandSender) (player), null, null, new String[]{ selectedSourceLanguage, outLang });
+56d51
+< 
+61d55
+< 
+64,67c58
+<                                 contents.set(5, 2,
+<                                                 ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"),
+<                                                                 e -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                                                 pagination.previous().getPage())));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), (e) -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage())));
+69,71c60
+<                                 contents.set(5, 2,
+<                                                 ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"),
+<                                                                 e -> WWCTranslateGUISourceLanguage.getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), (e) -> WWCInventoryManager.getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player)));
+73d61
+< 
+76,79c64
+<                                 contents.set(5, 6,
+<                                                 ClickableItem.of(WWCInventoryManager.getCommonButton("Next"),
+<                                                                 e -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                                                 pagination.next().getPage())));
+---
+>             contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), (e) -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage())));
+81d65
+<                         
+83c67,68
+<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+---
+>         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[]{ (pagination.getPage() + 1) + "" }), (e) -> {
+>         }));

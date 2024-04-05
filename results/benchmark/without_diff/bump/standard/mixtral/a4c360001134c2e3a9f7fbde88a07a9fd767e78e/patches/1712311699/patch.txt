@@ -1,0 +1,14 @@
+private boolean shouldScan(String s) {
+    final String packagesToScan = System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+    if ((packagesToScan) == null || packagesToScan.isEmpty()) {
+        return new org.reflections.util.ConfigurationBuilder().setUrls(ClasspathHelper.forClasspath()).filterInputsBy(new FilterBuilder().include(".+\\.class")).filterInputsBy(new TypeAnnotationsScan()).scan().getTypesAnnotatedWith(org.junit.Test.class).stream().anyMatch(t -> t.getQualifiedName().equals(s));
+    }
+    final String[] packages = packagesToScan.split(",");
+    for (String packageToScan : packages) {
+        String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+        if (new org.reflections.util.FilterBuilder().include(regex).asEager().matcher(s).matches()) {
+            return true;
+        }
+    }
+    return false;
+}

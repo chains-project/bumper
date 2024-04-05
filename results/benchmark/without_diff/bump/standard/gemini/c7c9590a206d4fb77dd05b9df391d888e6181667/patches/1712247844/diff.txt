@@ -1,0 +1,3 @@
+1a2
+> import org.apache.maven.doxia.sink.Sink;
+\ No newline at end of file

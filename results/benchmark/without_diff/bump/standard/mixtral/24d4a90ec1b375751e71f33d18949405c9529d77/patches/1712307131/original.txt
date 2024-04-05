@@ -1,0 +1,17 @@
+/**
+     * AwsOcket can read and write large S3 content.
+     * @throws Exception If fails
+     */
+    @Test
+    public void readsAndWritesLargeObjectContent() throws Exception {
+        final Bucket bucket = this.rule.bucket();
+        final String name = "test-44.txt";
+        final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+        final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+        ocket.write(data);
+        try {
+            MatcherAssert.assertThat(ocket.read(), Matchers.equalTo(data));
+        } finally {
+            bucket.remove(name);
+        }
+    }

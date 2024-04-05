@@ -1,0 +1,18 @@
+import org.jasypt.util.text.StrongTextEncryptor;
+
+public class GeoStorePBEPasswordEncoder {
+    private StrongTextEncryptor encryptor = new StrongTextEncryptor();
+
+    public GeoStorePBEPasswordEncoder() {
+        // Initialize the encryptor with a secret key
+        encryptor.setPassword("my-secret-key");
+    }
+
+    public String encode(String rawPassword) {
+        return encryptor.encrypt(rawPassword);
+    }
+
+    public boolean matches(String rawPassword, String encodedPassword) {
+        return encryptor.checkPassword(rawPassword, encodedPassword);
+    }
+}

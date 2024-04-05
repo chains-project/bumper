@@ -1,0 +1,9 @@
+import static java.time.Duration.ofMinutes;
+
+// ...
+
+@java.lang.Override
+@com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = ofMinutes(1), verbose = false, types = java.io.IOException.class)
+protected com.jcraft.jsch.Session session() throws java.io.IOException {
+    // ...
+}

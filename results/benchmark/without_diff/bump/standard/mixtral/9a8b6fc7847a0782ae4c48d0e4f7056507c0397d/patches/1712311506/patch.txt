@@ -1,0 +1,12 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+private PBEPasswordEncoder passwordEncoder;
+
+public PBEPasswordEncoder getPasswordEncoder() {
+    if (passwordEncoder == null) {
+        BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+        textEncryptor.setPassword("my-secret-password");
+        passwordEncoder = new PBEPasswordEncoder(textEncryptor.getAlgorithm(), textEncryptor.getPasswordCharArray());
+    }
+    return passwordEncoder;
+}

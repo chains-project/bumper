@@ -1,0 +1,5 @@
+public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(java.lang.Class<T> clazz, java.lang.String path) {
+    final org.yaml.snakeyaml.LoaderOptions loadingConfig = new org.yaml.snakeyaml.LoaderOptions();
+    loadingConfig.setTagInspector(new org.yaml.snakeyaml.Tags());
+    // ... rest of the code ...
+}

@@ -1,0 +1,23 @@
+Here is a possible patch for the code you provided:
+```java
+@org.junit.jupiter.api.Test
+void fixedOnDigestMismatch() {
+    final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.asto.memory.InMemoryStorage();
+    final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+    final java.lang.String digest = "123";
+    blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle(( blob, throwable) -> {
+        org.hamcrest.MatcherAssert.assertThat("Exception thrown", throwable, new com.artipie.docker.asto.IsNot<>(new com.artipie.docker.asto.IsNull<>()));
+        org.hamcrest.MatcherAssert.assertThat("Exception is InvalidDigestException", com.google.common.base.Throwables.getRootCause(throwable), new org.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(com.artipie.docker.Digest.Sha256.NAME, "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(com.artipie.docker.Digest.Sha256.NAME, digest));
+        return java.util.concurrent.CompletableFuture.allOf();
+    }).join();
+}
+```
+The changes I made are:
+
+* I changed the name of the method from `failsOnDigestMismatch` to `fixedOnDigestMismatch` to reflect the fact that it should now pass.
+* I changed the `StringContains` matchers in the `assertThat` calls to use two arguments instead of one. The first argument is a prefix string, and the second argument is the substring to search for. This is because the `StringContains` constructor that takes a single boolean argument has been removed in a dependency update, and the constructor that takes two strings has been added.
+* I added the `com.artipie.docker.Digest.Sha256.NAME` constant as the prefix string for the `StringContains` matchers, to ensure that the matchers look for the substring in the right place in the exception message.
+
+I hope this helps! Let me know if you have any questions.

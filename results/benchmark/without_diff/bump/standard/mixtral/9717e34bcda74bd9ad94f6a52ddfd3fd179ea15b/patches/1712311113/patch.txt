@@ -1,0 +1,6 @@
+import static java.lang.Integer.parseInt;
+
+public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+    int maxLength = parseInt(System.getProperty("tv.maxLength", "20"));
+    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(maxLength), true));
+}

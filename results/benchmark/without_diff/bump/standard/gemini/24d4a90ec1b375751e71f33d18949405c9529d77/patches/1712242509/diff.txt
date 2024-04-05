@@ -1,0 +1,27 @@
+0a1,2
+> import static org.testng.Assert.assertEquals;
+> 
+3c5,7
+<      * @throws Exception If fails
+---
+>  *
+>  * @throws Exception
+>  *              If fails
+5,10c9,14
+<     @Test
+<     public void readsAndWritesLargeObjectContent() throws Exception {
+<         final Bucket bucket = this.rule.bucket();
+<         final String name = "test-44.txt";
+<         final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+<         final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+---
+> @org.junit.Test
+> public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+>     final com.jcabi.s3.Bucket bucket = this.rule.bucket();
+>     final java.lang.String name = "test-44.txt";
+>     final com.jcabi.s3.Ocket.Text ocket = new com.jcabi.s3.Ocket.Text(bucket.ocket(name));
+>     final java.lang.String data = org.apache.commons.lang3.RandomStringUtils.random(100 * 1000);
+13c17
+<             MatcherAssert.assertThat(ocket.read(), Matchers.equalTo(data));
+---
+>         assertEquals(ocket.read(), data);

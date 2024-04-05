@@ -1,0 +1,12 @@
+2,4c2,4
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>     final String packagesToScan = System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+>     if ((packagesToScan) == null || packagesToScan.isEmpty()) {
+>         return new org.reflections.util.ConfigurationBuilder().setUrls(ClasspathHelper.forClasspath()).filterInputsBy(new FilterBuilder().include(".+\\.class")).filterInputsBy(new TypeAnnotationsScan()).scan().getTypesAnnotatedWith(org.junit.Test.class).stream().anyMatch(t -> t.getQualifiedName().equals(s));
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (new org.reflections.util.FilterBuilder().include(regex).asEager().matcher(s).matches()) {

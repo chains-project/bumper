@@ -1,0 +1,65 @@
+1,13c1
+< @Test
+<     void testScope() {
+<         final String line = "GET /resource.txt HTTP/1.1";
+<         final String action = "foo:bar:baz";
+<         final AtomicReference<String> caction = new AtomicReference<>();
+<         final AtomicReference<String> cline = new AtomicReference<>();
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+---
+> import com.artipie.http.auth.Authentication;
+15,26c3,5
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+---
+> ...
+> 
+>         @java.lang.Override
+28c7
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>             return java.util.Optional.of(new Authentication.User("alice"));
+31,32c10,11
+<                     @Override
+<                     public String challenge() {
+---
+>         @java.lang.Override
+>         public java.lang.String challenge() {
+35,54d13
+<                 }
+<             ),
+<             (user, act) -> {
+<                 caction.set(act);
+<                 return true;
+<             }
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+<         MatcherAssert.assertThat(
+<             "Request line passed to slice",
+<             cline.get(),
+<             new IsEqual<>(line)
+<         );
+<         MatcherAssert.assertThat(
+<             "Scope passed as action to permissions",
+<             caction.get(),
+<             new IsEqual<>(action)
+<         );
+<     }
+\ No newline at end of file

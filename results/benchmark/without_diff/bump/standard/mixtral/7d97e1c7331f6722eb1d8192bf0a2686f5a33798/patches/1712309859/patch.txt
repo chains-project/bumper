@@ -1,0 +1,22 @@
+import static java.lang.Integer.valueOf;
+import static java.util.Arrays.stream;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.iterableWithSize;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
+import com.amazonaws.services.simpledb.model.SelectRequest;
+import com.jcabi.simpledb.Domain;
+
+/**
+ * Region.Simple can select many items.
+ */
+@Test
+void selectsManyItems() {
+    final Domain domain = this.domain();
+    try {
+        stream(IntStream.rangeClosed(1, Tv.TEN).toArray()).forEach(i -> domain.item(String.format("i-%d", i)).put("hey", ""));
+        assertThat(domain.select(new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), iterableWithSize(Tv.TEN));
+    } finally {
+        domain.drop();
+    }
+}

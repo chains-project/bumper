@@ -1,0 +1,6 @@
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    org.apache.maven.shared.utils.runner.DirectoryScanner directoryScanner = new org.apache.maven.shared.utils.runner.DirectoryScanner(testSrcFolder);
+    directoryScanner.setIncludes(new String[]{"**/*.class"});
+    directoryScanner.scan();
+    return directoryScanner.getIncludedFiles();
+}

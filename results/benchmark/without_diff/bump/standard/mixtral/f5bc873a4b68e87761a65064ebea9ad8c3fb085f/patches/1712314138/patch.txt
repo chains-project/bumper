@@ -1,0 +1,7 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+
+public MavenProject getMavenProject(String basedir) {
+    Model model = getModel(basedir);
+    return new MavenProject(model);
+}

@@ -1,0 +1,3 @@
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+// ...
+signatureParameters.setPermission(PAdESSignatureParameters.CertificationPermission.MINIMAL_CHANGES_PERMITTED);

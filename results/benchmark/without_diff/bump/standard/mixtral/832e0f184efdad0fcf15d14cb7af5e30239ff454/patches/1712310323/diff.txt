@@ -1,0 +1,55 @@
+5,6d4
+<                         
+<                         /* White stained glass borders as default, Green stained glass borders for active */
+12d9
+<                         
+20,22d16
+<                         
+<                         /* Outgoing Chat Button */
+<                         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers")) {
+27,29c21,23
+<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         outgoingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>             Enchantment powerEnchantment = XEnchantment.getMatchingXEnchantment("power").get().getEnchantment();
+>             outgoingChatMeta.addEnchant(powerEnchantment, 1, false);
+>             outgoingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+31,32c25
+<                                         outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>             outgoingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+35c28
+<                                 contents.set(1, 3, ClickableItem.of(outgoingChatButton, e -> {
+---
+>         contents.set(1, 3, ClickableItem.of(outgoingChatButton, (e) -> {
+41,44d33
+<                         }
+<                         
+<                         /* Incoming Chat Button */
+<                         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers")) {
+49,51c38,40
+<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                 incomingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>             Enchantment powerEnchantment = XEnchantment.getMatchingXEnchantment("power").get().getEnchantment();
+>             incomingChatMeta.addEnchant(powerEnchantment, 1, false);
+>             incomingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+53,54c42
+<                                 incomingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>             incomingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+57c45
+<                         contents.set(1, 5, ClickableItem.of(incomingChatButton, e -> {
+---
+>         contents.set(1, 5, ClickableItem.of(incomingChatButton, (e) -> {
+63,66c51
+<                         }
+<                         
+<                         /* Bottom Left Option: Previous Page */
+<                         contents.set(2, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+---
+>         contents.set(2, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), (e) -> {

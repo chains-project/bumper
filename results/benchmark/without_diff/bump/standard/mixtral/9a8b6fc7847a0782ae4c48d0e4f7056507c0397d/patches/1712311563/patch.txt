@@ -1,0 +1,18 @@
+import org.jasypt.util.text.StrongTextEncryptor;
+
+public class GeoStorePBEPasswordEncoder {
+    private StrongTextEncryptor encryptor;
+
+    public GeoStorePBEPasswordEncoder() {
+        this.encryptor = new StrongTextEncryptor();
+        this.encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+    }
+
+    public String encode(String rawPass) {
+        return encryptor.encrypt(rawPass);
+    }
+
+    public boolean matches(String rawPass, String encodedPass) {
+        return encryptor.checkPassword(rawPass, encodedPass);
+    }
+}
