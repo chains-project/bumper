@@ -13,8 +13,8 @@ public class Main {
     // static String project_folder = "docker-adapter";
     // static String dependency_group_id = "com.artipie";
 
-    static String client_id = "4aab2869639226035c999c282f31efba15648ea3";
-    static String project_folder = "http";
+    static String client_id = "24d4a90ec1b375751e71f33d18949405c9529d77";
+    static String project_folder = "jcabi-s3";
     static String dependency_group_id = "";
     
     // static String dependency_group_id = "net.datafaker";
@@ -35,7 +35,7 @@ public class Main {
 
                 results.forEach(r -> {
                     System.out.println("ERROR #" + r.getIdentifier());
-                    System.out.println(r.errorInfo.getClientFilePath());
+                    System.out.println("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + r.errorInfo.getClientFilePath());
                     System.out.println(r.errorInfo.getClientLinePosition());
                     System.out.println(r.clientLineNumber + ":" + r.clientEndLineNumber);
                 });
