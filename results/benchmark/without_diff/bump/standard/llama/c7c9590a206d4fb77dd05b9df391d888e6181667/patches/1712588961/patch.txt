@@ -1,0 +1,13 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// Create a variable to hold the RenderingContext instance
+RenderingContext renderingContext = null;
+
+// Check if the RenderingContext instance is null
+if (renderingContext == null) {
+  // If it's null, create a new instance
+  renderingContext = new RenderingContext();
+}
+
+// Use the renderingContext instance to call the method
+renderingContext.render(node);

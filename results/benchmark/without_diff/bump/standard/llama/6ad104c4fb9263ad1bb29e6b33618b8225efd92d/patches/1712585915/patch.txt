@@ -1,0 +1,23 @@
+import java.security.SecureRandom;
+import java.util.Arrays;
+
+public class ChachaDecoder {
+    private static final int CHACHA_KEY_SIZE = 256;
+    private static final int CHACHA_IV_SIZE = 96;
+    private static final SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
+    private static final byte[] encryptionKey = new byte[CHACHA_KEY_SIZE];
+    private static final byte[] initializationVector = new byte[CHACHA_IV_SIZE];
+
+    public ChachaDecoder() {
+        initialize();
+    }
+
+    private void initialize() {
+        random.nextBytes(encryptionKey);
+        random.nextBytes(initializationVector);
+    }
+
+    public void decrypt(byte[] encryptedData) {
+        // ...
+    }
+}

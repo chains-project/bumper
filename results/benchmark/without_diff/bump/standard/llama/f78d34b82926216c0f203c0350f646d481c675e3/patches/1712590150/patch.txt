@@ -1,0 +1,11 @@
+// replace the line
+if (random.nextBoolean()) {
+    first = develop.p2p.lib.LeetConverter.convert(first);
+    last = develop.p2p.lib.LeetConverter.convert(last);
+}
+
+// with
+if (random.nextBoolean()) {
+    first = org.apache.commons.lang.StringEscapeUtils.escapeJava(first);
+    last = org.apache.commons.lang.StringEscapeUtils.escapeJava(last);
+}

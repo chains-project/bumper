@@ -1,0 +1,12 @@
+1a2,11
+> 
+> // Create a variable to hold the result of the assumeTrue method
+> boolean canRun = assumeTrue(false);
+> 
+> // Use the variable instead of the method call
+> if (canRun) {
+>     // Your code that relies on assumeTrue() here
+> } else {
+>     // Handle the case where assumeTrue() returns false
+> }
+\ No newline at end of file

@@ -1,0 +1,25 @@
+import java.security.SecureRandom;
+import java.util.Random;
+
+public class ChachaDecoder {
+    private static final int CHACHA_KEY_SIZE = 32;
+    private static final int CHACHA_IV_SIZE = 12;
+    private static final int CHACHA_BLOCK_SIZE = 16;
+
+    private SecureRandom random;
+    private byte[] key;
+    private byte[] iv;
+
+    public ChachaDecoder() {
+        this.random = SecureRandom.getInstance("SHA1PRNG");
+        this.key = new byte[CHACHA_KEY_SIZE];
+        this.iv = new byte[CHACHA_IV_SIZE];
+    }
+
+    public void decode(byte[] input, int offset, int length) {
+        byte[] output = new byte[length];
+        ChaCha20StreamCipher cipher = new ChaCha20StreamCipher(random, key, iv);
+        cipher.encrypt(input, offset, length, output);
+        return output;
+    }
+}

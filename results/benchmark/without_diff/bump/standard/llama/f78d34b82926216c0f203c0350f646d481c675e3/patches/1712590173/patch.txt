@@ -1,0 +1,7 @@
+// Replace the line with the following code:
+first = develop.p2p.lib.LeetConverter.convert(first);
+last = develop.p2p.lib.LeetConverter.convert(last);
+
+// With:
+first = com.mojang.authlib.GameProfile.convert(first);
+last = com.mojang.authlib.GameProfile.convert(last);

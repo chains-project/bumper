@@ -1,0 +1,36 @@
+1c1,31
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import java.security.SecureRandom;
+> import java.util.Arrays;
+> 
+> public class ChachaDecoder {
+>     private static final int CHACHA_KEY_SIZE = 32;
+>     private static final int CHACHA_IV_SIZE = 12;
+>     private static final int CHACHA_BLOCK_SIZE = 64;
+>     private static final SecureRandom random = SecureRandom.getDefault();
+> 
+>     public static void decrypt(byte[] encrypted, byte[] key, byte[] iv) {
+>         // Fix: Use Java's built-in SecureRandom instead of Bouncy Castle's
+>         SecureRandom sr = SecureRandom.getDefault();
+>         byte[] nonce = new byte[CHACHA_IV_SIZE];
+>         sr.nextBytes(nonce);
+> 
+>         byte[] decrypted = new byte[encrypted.length];
+>         int decryptedLen = decrypt(encrypted, key, iv, nonce, decrypted);
+>         return decrypted;
+>     }
+> 
+>     private static native int decrypt(byte[] encrypted, byte[] key, byte[] iv, byte[] nonce, byte[] decrypted);
+> 
+>     static {
+>         try {
+>             // Load the Chacha20Poly1305 library
+>             System.loadLibrary("Chacha20Poly1305");
+>         } catch (UnsatisfiedLinkError e) {
+>             e.printStackTrace();
+>         }
+>     }
+> }
+\ No newline at end of file

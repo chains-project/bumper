@@ -1,0 +1,31 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// Create a new class that implements the missing RenderingContext interface
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomRenderingContext implements RenderingContext {
+    private List<String> messages = new ArrayList<>();
+
+
+    @Override
+    public void addMessage(String message) {
+        messages.add(message);
+    }
+
+    @Override
+    public void clearMessages() {
+        messages.clear();
+    }
+
+    @Override
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    @Override
+    public void render(String content) throws IOException {
+        // Implement rendering logic here
+    }
+}

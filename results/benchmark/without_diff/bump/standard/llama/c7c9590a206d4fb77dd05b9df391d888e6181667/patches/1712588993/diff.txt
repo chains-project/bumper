@@ -1,0 +1,14 @@
+1a2,13
+> 
+> // Create a variable to hold the RenderingContext instance
+> RenderingContext renderingContext = null;
+> 
+> // Check if the RenderingContext instance is null
+> if (renderingContext == null) {
+>   // Create a new RenderingContext instance if it's null
+>   renderingContext = new RenderingContext();
+> }
+> 
+> // Use the renderingContext instance to render the XHTML
+> renderingContext.render(xhtml);
+\ No newline at end of file
