@@ -43,7 +43,7 @@ class ProjectRepairer:
                     print("Project patched!")
                     patches.append(patch.id)
                     return ProjectRepairStatus(fixed_errors_count=1, generated_patch_count=trial_count, repaired=True,
-                                               patches=patches)
+                                               patches=patches, initial_errors_count=len(failures))
                 else:
                     print("Project not patched, trying to understand if it patched the specific failure:")
 
