@@ -1,0 +1,29 @@
+1a2,28
+> 
+> // Replace the removed PBEPasswordEncoder with the new PasswordEncoder
+> import org.jasypt.spring.security.PasswordEncoder;
+> 
+> public class GeoStorePBEPasswordEncoder {
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         passwordEncoder = new PasswordEncoder();
+>     }
+> 
+>     public String encodePassword(String password, Object salt) {
+>         return passwordEncoder.encodePassword(password, salt);
+>     }
+> 
+>     public boolean isPasswordValid(String password, String encodedPassword, Object salt) {
+>         return passwordEncoder.isPasswordValid(password, encodedPassword, salt);
+>     }
+> 
+>     public void setPbeStringEncryptor(PBEStringEncryptor pbeStringEncryptor) {
+>         passwordEncoder.setPbeStringEncryptor(pbeStringEncryptor);
+>     }
+> 
+>     public void setTextEncryptor(TextEncryptor textEncryptor) {
+>         passwordEncoder.setTextEncryptor(textEncryptor);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,5 @@
+// Replace the line with the following code:
+signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+
+// With:
+signatureParameters.setPermission(eu.europa.esig.dss.enumerations.CertificationPermission.MINIMAL_CHANGES_PERMITTED);

@@ -1,0 +1,12 @@
+/**
+ * Create repo with random name.
+ *
+ * @return Repo
+ * @throws IOException
+ * 		If fails
+ */
+public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+    int randomSize = 20;
+    String randomName = org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(randomSize);
+    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(randomName, true));
+}

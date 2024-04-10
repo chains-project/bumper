@@ -1,0 +1,13 @@
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateParsingException;
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.TlsIOException;
+
+public class ChachaDecoder {
+    public static void main(String[] args) throws CertificateEncodingException, CertificateParsingException, TlsIOException {
+        // Replace the following line with the proposed patch
+        AlertDescription alertDescription = TlsFatalAlert.getAlertDescription();
+        // ...
+    }
+}

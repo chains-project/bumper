@@ -1,0 +1,21 @@
+import static org.junit.Assume.assumeTrue;
+
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+public class PGS_MorphologyGroupShapeTests {
+    private static final PointIndexMMWrapper pointIndexMMWrapper = new PointIndexMMWrapper();
+    private static final PHTreeMMP phtreeMMP = new PHTreeMMP();
+    private static final MinHeap minHeap = new MinHeap();
+    private static final MinMaxHeap minMaxHeap = new MinMaxHeap();
+
+    @Test
+    public void test() {
+        assumeTrue(pointIndexMMWrapper.size() > 0);
+        assumeTrue(phtreeMMP.size() > 0);
+        assumeTrue(minHeap.size() > 0);
+        assumeTrue(minMaxHeap.size() > 0);
+    }
+}

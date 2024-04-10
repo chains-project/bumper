@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class SCoverageReportMojo {
+>     private RenderingContext renderingContext;
+> 
+>     public SCoverageReportMojo() {
+>         super();
+>         renderingContext = new org.apache.maven.doxia.siterenderer.RenderingContext();
+>     }
+> 
+>     public void execute() throws MojoExecutionException {
+>         // your code here
+>     }
+> }
+\ No newline at end of file

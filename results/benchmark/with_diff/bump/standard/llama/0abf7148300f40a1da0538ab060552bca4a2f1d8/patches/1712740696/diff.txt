@@ -1,0 +1,16 @@
+1,2c1
+< private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)
+<         {
+---
+> private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {
+4,5c3
+<                 if(border == null)
+<                 {
+---
+>     if (border == null) {
+8d5
+<                 
+11a9,11
+>     // added the following line to convert float to int
+>     int lineWidth = (int) border.getLineWidth();
+>     textField.getLineBox().getPen().setLineWidth(lineWidth);

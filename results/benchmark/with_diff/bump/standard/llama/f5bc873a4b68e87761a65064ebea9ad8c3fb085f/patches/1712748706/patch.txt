@@ -1,0 +1,12 @@
+import org.apache.maven.project.MavenProject;
+
+// Replace the import with a reference to the updated version of the library
+import org.apache.maven.project.MavenProject;
+
+// Create a variable to reference the updated version of the library
+MavenProject updatedMavenProject = new MavenProject();
+
+// Modify the code to use the updated version of the library
+updatedMavenProject.setGroupId("myfaces-tobago");
+updatedMavenProject.setArtifactId("tobago-theme-plugin");
+updatedMavenProject.setVersion("1.0");

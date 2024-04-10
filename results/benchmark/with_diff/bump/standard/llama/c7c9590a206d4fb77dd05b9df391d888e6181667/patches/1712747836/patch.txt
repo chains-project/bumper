@@ -1,0 +1,17 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+public class SCoverageReportMojo {
+    private RenderingContext renderingContext;
+
+    public SCoverageReportMojo() {
+        this.renderingContext = new RenderingContext();
+    }
+
+    public void execute() throws MojoExecutionException {
+        // ...
+    }
+
+    public RenderingContext getRenderingContext() {
+        return renderingContext;
+    }
+}

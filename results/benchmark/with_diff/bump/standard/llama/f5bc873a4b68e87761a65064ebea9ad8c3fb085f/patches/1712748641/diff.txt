@@ -1,0 +1,13 @@
+1a2,12
+> 
+> // Replace the import with a fully qualified import
+> import org.apache.maven.project.MavenProject;
+> 
+> // Create a variable to hold the MavenProject instance
+> MavenProject project = new MavenProject();
+> 
+> // Use the variable instead of the import
+> project.setArtifactId("myfaces-tobago-theme-plugin");
+> project.setGroupId("org.apache.myfaces");
+> project.setVersion("1.0.0");
+\ No newline at end of file

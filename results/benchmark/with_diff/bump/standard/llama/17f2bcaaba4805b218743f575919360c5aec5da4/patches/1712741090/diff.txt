@@ -1,0 +1,22 @@
+1a2,21
+> 
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     private static final PointIndexMMWrapper POINT_INDEX_MM_WRAPPER = new PointIndexMMWrapper();
+>     private static final PHTreeMMP PHTREE_MMP = new PHTreeMMP();
+>     private static final MinHeap MIN_HEAP = new MinHeap();
+>     private static final MinMaxHeap MIN_MAX_HEAP = new MinMaxHeap();
+> 
+>     @Test
+>     public void test() {
+>         assumeTrue(POINT_INDEX_MM_WRAPPER.size() > 0);
+>         assumeTrue(PHTREE_MMP.size() > 0);
+>         assumeTrue(MIN_HEAP.size() > 0);
+>         assumeTrue(MIN_MAX_HEAP.size() > 0);
+>     }
+> }
+\ No newline at end of file

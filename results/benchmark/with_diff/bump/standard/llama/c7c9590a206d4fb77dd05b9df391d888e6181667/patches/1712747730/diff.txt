@@ -1,0 +1,13 @@
+1a2,12
+> 
+> // Replace the import statement with the following:
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> 
+> // Replace the failing line with the following:
+> RenderingContext renderingContext = new RenderingContext(new SiteRenderingContext(project, layout, null));
+> 
+> // Add the following method to the RenderingContext class:
+> public static RenderingContext getRenderingContext(SiteRenderingContext siteRenderingContext) {
+>     return new RenderingContext(siteRenderingContext);
+> }
+\ No newline at end of file

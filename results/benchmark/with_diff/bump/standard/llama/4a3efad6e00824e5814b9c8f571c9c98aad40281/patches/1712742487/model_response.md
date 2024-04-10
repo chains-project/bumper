@@ -1,0 +1,23 @@
+It seems that the error is caused by the removal of the `CertificationPermission` class in the new version of the library. To fix this error, you can replace the line:
+```
+signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+```
+with:
+```
+signatureParameters.setPermission(eu.europa.esig.dss.enumerations.CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+```
+This will fix the error by importing the `CertificationPermission` enum from the `eu.europa.esig.dss.enumerations` package, which is not removed in the new version of the library.
+
+Here's the full patch:
+```
+---
+
+org/openpdfsign/Signer.java
+
+72,43: replace `signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);` with
+`signatureParameters.setPermission(eu.europa.esig.dss.enumerations.CertificationPermission.MINIMAL_CHANGES_PERMITTED);`
+
+
+---
+```
+This patch replaces the line that causes the error with the corrected line that imports the `CertificationPermission` enum from the `eu.europa.esig.dss.enumerations` package.

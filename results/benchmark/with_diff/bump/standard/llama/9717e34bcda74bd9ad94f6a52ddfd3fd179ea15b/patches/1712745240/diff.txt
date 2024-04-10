@@ -1,0 +1,15 @@
+1,13d0
+< /**
+<      * Create repo with random name.
+<      * @return Repo
+<      * @throws IOException If fails
+<      */
+<     public Repo randomRepo() throws IOException {
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+<     }
+\ No newline at end of file

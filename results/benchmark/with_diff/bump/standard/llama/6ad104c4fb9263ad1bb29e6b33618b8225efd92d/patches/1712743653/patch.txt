@@ -1,0 +1,29 @@
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import org.bouncycastle.asn1.ASN1Encodable;
+import org.bouncycastle.asn1.ASN1InputStream;
+import org.bouncycastle.asn1.ASN1ObjectIdentifier;
+import org.bouncycastle.asn1.DERInputStream;
+import org.bouncycastle.asn1.DERObjectIdentifier;
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    public static void main(String[] args) throws CertificateException, IOException {
+        X509Certificate cert = getCertificate();
+        ASN1InputStream ain = new ASN1InputStream(cert.getEncoded());
+        DERInputStream din = new DERInputStream(ain);
+        ASN1ObjectIdentifier oid = new ASN1ObjectIdentifier("1.3.6.1.4.1.32621.1.2.4.1.1");
+        DERObjectIdentifier derOid = new DERObjectIdentifier(oid);
+        TlsFatalAlert alert = new TlsFatalAlert(derOid, din);
+        AlertDescription description = alert.getAlertDescription();
+        System.out.println(description.getMessage());
+    }
+
+    private static X509Certificate getCertificate() throws CertificateException, IOException {
+        // Load the certificate from a file or other source
+        // ...
+        return (X509Certificate) cert;
+    }
+}

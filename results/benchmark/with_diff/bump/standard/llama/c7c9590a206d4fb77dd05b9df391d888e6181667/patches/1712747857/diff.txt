@@ -1,0 +1,19 @@
+1a2,18
+> 
+> public class SCoverageReportMojo {
+>     private RenderingContext renderingContext;
+> 
+>     public SCoverageReportMojo() {
+>         super();
+>         renderingContext = new RenderingContext();
+>     }
+> 
+>     public void execute() throws MojoExecutionException {
+>         // ...
+>     }
+> 
+>     public RenderingContext getRenderingContext() {
+>         return renderingContext;
+>     }
+> }
+\ No newline at end of file

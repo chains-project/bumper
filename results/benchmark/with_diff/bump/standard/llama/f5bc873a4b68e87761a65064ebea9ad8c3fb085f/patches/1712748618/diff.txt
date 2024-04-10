@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Replace the import with the following line
+> import org.apache.maven.project.MavenProject;
+> 
+> // Add the following line at the end of the file
+> MavenProject project = new MavenProject();
+\ No newline at end of file

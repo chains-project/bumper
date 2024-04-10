@@ -1,0 +1,36 @@
+1a2,35
+> 
+> // Create a new class that implements the missing RenderingContext interface
+> class CustomRenderingContext implements RenderingContext {
+>     // Implement the methods of the RenderingContext interface
+>     public void setOutputName(String outputName) {}
+>     public String getOutputName() {
+>         return "custom-output-name";
+>     }
+>     public void setResourceManager(org.apache.maven.doxia.module.xhtml.decoration.render.ResourceManager resourceManager) {}
+>     public org.apache.maven.doxia.module.xhtml.decoration.render.ResourceManager getResourceManager() {
+>         return null;
+>     }
+> }
+> 
+> // Modify the client code to use the custom RenderingContext
+> import org.apache.maven.doxia.siterenderer.DefaultSiteRenderer;
+> import org.apache.maven.doxia.siterenderer.DoxiaDocumentRenderer;
+> import org.apache.maven.doxia.siterenderer.Renderer;
+> import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
+> 
+> public class SCoverageReportMojo extends AbstractMojo {
+>     // ...
+> 
+>     // Use the custom RenderingContext instead of the removed one
+>     private RenderingContext renderingContext = new CustomRenderingContext();
+> 
+>     public void execute() throws MojoExecutionException {
+>         // ...
+> 
+>         // Use the custom RenderingContext when calling the renderer
+>         DoxiaDocumentRenderer renderer = new DoxiaDocumentRenderer(renderingContext);
+>         renderer.renderDocument(writer, renderingContext, siteRenderingContext);
+>     }
+> }
+\ No newline at end of file

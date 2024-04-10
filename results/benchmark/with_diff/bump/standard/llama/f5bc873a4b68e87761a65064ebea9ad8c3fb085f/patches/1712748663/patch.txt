@@ -1,0 +1,18 @@
+import org.apache.maven.project.MavenProject;
+
+// Replace the import with a fully qualified import
+import java.lang.reflect.InvocationTargetException;
+
+// Add a try-catch block to handle the missing dependency
+try {
+    MavenProject project = MavenProject.getProject(pomFile);
+    // rest of the code
+} catch (InvocationTargetException e) {
+    // Handle the error and provide a fallback
+    MavenProject fallbackProject = new MavenProject(pomFile);
+    // configure the fallback project
+    fallbackProject.setGroupId("myfaces-tobago-fallback");
+    fallbackProject.setArtifactId("tobago-theme-plugin");
+    fallbackProject.setVersion("1.0-SNAPSHOT");
+    // use the fallback project
+}
