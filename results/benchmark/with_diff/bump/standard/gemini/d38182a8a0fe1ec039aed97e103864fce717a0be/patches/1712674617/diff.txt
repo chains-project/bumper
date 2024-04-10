@@ -1,0 +1,75 @@
+1,10c1,3
+< @Test
+<     void testScope() {
+<         final String line = "GET /resource.txt HTTP/1.1";
+<         final String action = "foo:bar:baz";
+<         final AtomicReference<String> caction = new AtomicReference<>();
+<         final AtomicReference<String> cline = new AtomicReference<>();
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+---
+>     new com.artipie.docker.http.AuthScopeSlice(new com.artipie.docker.http.ScopeSlice() {
+>         @java.lang.Override
+>         public com.artipie.docker.http.Scope scope(final java.lang.String rqline) {
+12c5
+<                     return new Scope.FromString(action);
+---
+>             return new com.artipie.docker.http.Scope.FromString(action);
+15,28c8,15
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>         @java.lang.Override
+>         public com.artipie.http.Response response(final java.lang.String line, final java.lang.Iterable<java.util.Map.Entry<java.lang.String, java.lang.String>> headers, final org.reactivestreams.Publisher<java.nio.ByteBuffer> body) {
+>             return com.artipie.http.rs.StandardRs.OK;
+>         }
+>     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.AuthScheme.Result() {
+>         @java.lang.Override
+>         public Optional<com.artipie.http.auth.Authentication.User> user() {
+>             return java.util.Optional.of(new com.artipie.http.auth.AuthUser("alice", ""));
+31,32c18,19
+<                     @Override
+<                     public String challenge() {
+---
+>         @java.lang.Override
+>         public java.lang.String challenge() {
+35,37c22
+<                 }
+<             ),
+<             (user, act) -> {
+---
+>     }), ( user, act) -> {
+40,54c25
+<             }
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+<         MatcherAssert.assertThat(
+<             "Request line passed to slice",
+<             cline.get(),
+<             new IsEqual<>(line)
+<         );
+<         MatcherAssert.assertThat(
+<             "Scope passed as action to permissions",
+<             caction.get(),
+<             new IsEqual<>(action)
+<         );
+<     }
+\ No newline at end of file
+---
+>     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> java.util.concurrent.CompletableFuture.allOf()).toCompletableFuture().join();
+\ No newline at end of file

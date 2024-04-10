@@ -1,0 +1,10 @@
+1a2,9
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> public class ChachaDecoder {
+> 
+>     public static void main(String[] args) {
+>         TlsFatalAlert alert = new TlsFatalAlert(AlertDescription.close_notify);
+>     }
+> }
+\ No newline at end of file

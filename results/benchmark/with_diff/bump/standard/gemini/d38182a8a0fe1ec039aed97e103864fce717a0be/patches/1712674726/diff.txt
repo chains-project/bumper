@@ -1,0 +1,58 @@
+0a1,10
+> import com.artipie.http.auth.*;
+> 
+> import java.util.concurrent.atomic.AtomicReference;
+> 
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.core.IsEqual;
+> import org.junit.jupiter.api.Test;
+> 
+> public class AuthScopeSliceTest {
+> 
+7,8c17
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+---
+>         new AuthScopeSlice(new ScopeSlice() {
+16,20c25
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+---
+>             public Response response(final String line, final Iterable<Map.Entry<String, String>> headers, final Publisher<ByteBuffer> body) {
+23,25c28
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+---
+>         }, (headers, rline) -> CompletableFuture.completedFuture(new AuthScheme.Result() {
+28c31
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                 return Optional.of(new AuthUser("alice"));
+35,37c38
+<                 }
+<             ),
+<             (user, act) -> {
+---
+>         }), (user, act) -> {
+39a41,43
+>         }).response(line, Headers.EMPTY, Content.EMPTY).send((status, headers, body) -> CompletableFuture.allOf()).toCompletableFuture().join();
+>         MatcherAssert.assertThat("Request line passed to slice", cline.get(), new IsEqual<>(line));
+>         MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new IsEqual<>(action));
+41,53d44
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+<         MatcherAssert.assertThat(
+<             "Request line passed to slice",
+<             cline.get(),
+<             new IsEqual<>(line)
+<         );
+<         MatcherAssert.assertThat(
+<             "Scope passed as action to permissions",
+<             caction.get(),
+<             new IsEqual<>(action)
+<         );

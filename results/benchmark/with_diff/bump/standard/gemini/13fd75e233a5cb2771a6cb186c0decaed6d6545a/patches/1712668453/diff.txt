@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+12c11
+<         ++return java.util.concurrent.CompletableFuture.allOf();
+---
+>         return null;
