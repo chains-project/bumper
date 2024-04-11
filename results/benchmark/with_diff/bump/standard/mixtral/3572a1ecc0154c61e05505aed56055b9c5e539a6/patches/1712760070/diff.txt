@@ -1,0 +1,18 @@
+1,2c1,2
+< @Override
+<     public void init(OutputStream os) {
+---
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+4,5c4
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+<       // log.
+---
+>     // Use the TFlushingFastFramedTransport to be compatible with singer_thrift log.
+7,8c6,8
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>     TConfiguration tConfig = new TConfiguration();
+>     TIOStreamTransport transport = new TIOStreamTransport(tConfig, os);
+>     framedTransport = new TFastFramedTransport(transport, bufferCapacity);

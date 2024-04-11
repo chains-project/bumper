@@ -1,0 +1,11 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+
+//...
+
+private void renderDocument(Writer writer, RenderingContext renderingContext, SiteRenderingContext siteRenderingContext) throws SiteRendererException, IOException {
+    DoxiaSiteRenderer siteRenderer = new DoxiaSiteRenderer(new DefaultSiteDecorator());
+    SiteRendererSink sink = new SiteRendererSink(renderingContext);
+    siteRenderer.setSink(sink);
+    siteRenderer.renderDocument(writer, renderingContext, siteRenderingContext);
+}

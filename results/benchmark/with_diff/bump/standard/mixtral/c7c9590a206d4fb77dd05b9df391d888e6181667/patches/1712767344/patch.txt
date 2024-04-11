@@ -1,0 +1,6 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.lang.String;
+
+RenderingContext renderingContext = new ...; // initialize the rendering context using appropriate constructor
+String outputName = renderingContext.getOutputName();
+...

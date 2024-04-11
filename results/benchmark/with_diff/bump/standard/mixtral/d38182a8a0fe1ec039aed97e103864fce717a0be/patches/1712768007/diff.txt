@@ -1,0 +1,23 @@
+2,8c2,11
+<         public Slice slice(final String action) {
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+> public com.artipie.http.Slice slice(final String action) {
+>     return new com.artipie.docker.http.DockerSlice(
+>         new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()),
+>         new com.artipie.http.auth.Permissions.Single(
+>             new com.artipie.http.auth.AuthUser(TestAuthentication.ALICE.name(), ""),
+>             action
+>         ),
+>         new com.artipie.http.auth.BearerAuthScheme(
+>             (token) -> java.util.concurrent.CompletableFuture.completedFuture(
+>                 java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+10c13
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new com.artipie.http.auth.AuthUser(user.name(), ""))

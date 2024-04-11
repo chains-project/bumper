@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 758119607,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class TFramedTransport\n  location: package org.apache.thrift.transport\n",
+        "error_message": "[ERROR] /singer/singer/src/main/java/com/pinterest/singer/utils/SimpleThriftLogger.java:[24,35] cannot find symbol",
+        "client_file_path": "/singer/singer/src/main/java/com/pinterest/singer/utils/SimpleThriftLogger.java",
+        "client_line_position": "24"
+    },
+    "client_end_line_number": 24,
+    "client_line_number": 24,
+    "method_code": "import org.apache.thrift.transport.TFramedTransport;",
+    "qualified_code": "import org.apache.thrift.transport.TFramedTransport;",
+    "method_name": "import"
+}

@@ -1,0 +1,120 @@
+1,2c1,2
+< @Override
+<         public void init(Player player, InventoryContents contents) {
+---
+> @java.lang.Override
+> public void init(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+4,5c4
+<                         ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+<                         
+---
+>         com.expl0itz.worldwidechat.util.ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+7,8c6,7
+<                         ItemStack customBorders = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+<                         ItemMeta borderMeta = customBorders.getItemMeta();
+---
+>         org.bukkit.inventory.ItemStack customBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+>         org.bukkit.inventory.meta.ItemMeta borderMeta = customBorders.getItemMeta();
+11,12c10
+<                         contents.fillBorders(ClickableItem.empty(customBorders));
+<                         
+---
+>         contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customBorders));
+14,15c12,13
+<                                 ItemStack customBordersActive = XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+<                                 ItemMeta borderMetaActive = customBordersActive.getItemMeta();
+---
+>             org.bukkit.inventory.ItemStack customBordersActive = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta borderMetaActive = customBordersActive.getItemMeta();
+18c16
+<                                 contents.fillBorders(ClickableItem.empty(customBordersActive));
+---
+>             contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customBordersActive));
+20d17
+<                         
+22,24c19,21
+<                         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers")) {
+<                                 ItemStack outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+<                                 ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+---
+>         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || ((!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers"))) {
+>             org.bukkit.inventory.ItemStack outgoingChatButton = com.cryptomorin.xseries.XMaterial.CHEST_MINECART.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+26,29c23,25
+<                                         outgoingChatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         outgoingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                 outgoingChatMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>                 outgoingChatMeta.addEnchant(getEnchantmentByName("power"), 1, false);
+>                 outgoingChatMeta.setDisplayName(org.bukkit.ChatColor.GREEN + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+31,32c27
+<                                         outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                 outgoingChatMeta.setDisplayName(org.bukkit.ChatColor.YELLOW + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+35,37c30,32
+<                                 contents.set(1, 3, ClickableItem.of(outgoingChatButton, e -> {
+<                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+<                                         WWCTranslateChatOutgoing translateChatOutgoing = new WWCTranslateChatOutgoing((CommandSender) player, null, null, args);
+---
+>             contents.set(1, 3, fr.minuskube.inv.ClickableItem.of(outgoingChatButton, ( e) -> {
+>                 java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+>                 com.expl0itz.worldwidechat.commands.WWCTranslateChatOutgoing translateChatOutgoing = new com.expl0itz.worldwidechat.commands.WWCTranslateChatOutgoing(((org.bukkit.command.CommandSender) (player)), null, null, args);
+42d36
+<                         
+44,46c38,40
+<                         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers")) {
+<                 ItemStack incomingChatButton = XMaterial.MAP.parseItem();
+<                         ItemMeta incomingChatMeta = incomingChatButton.getItemMeta();
+---
+>         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || ((!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers"))) {
+>             org.bukkit.inventory.ItemStack incomingChatButton = com.cryptomorin.xseries.XMaterial.MAP.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta incomingChatMeta = incomingChatButton.getItemMeta();
+48,51c42,44
+<                                 incomingChatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                 incomingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                 incomingChatMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>                 incomingChatMeta.addEnchant(getEnchantmentByName("power"), 1, false);
+>                 incomingChatMeta.setDisplayName(org.bukkit.ChatColor.GREEN + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+53,54c46
+<                                 incomingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                 incomingChatMeta.setDisplayName(org.bukkit.ChatColor.YELLOW + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+57,59c49,51
+<                         contents.set(1, 5, ClickableItem.of(incomingChatButton, e -> {
+<                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+<                                 WWCTranslateChatIncoming translateChatIncoming = new WWCTranslateChatIncoming((CommandSender) player, null, null, args);
+---
+>             contents.set(1, 5, fr.minuskube.inv.ClickableItem.of(incomingChatButton, ( e) -> {
+>                 java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+>                 com.expl0itz.worldwidechat.commands.WWCTranslateChatIncoming translateChatIncoming = new com.expl0itz.worldwidechat.commands.WWCTranslateChatIncoming(((org.bukkit.command.CommandSender) (player)), null, null, args);
+64d55
+<                         
+66,67c57,58
+<                         contents.set(2, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                 WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+---
+>         contents.set(2, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+>             com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+69,70c60,69
+<                 } catch (Exception e) {
+<                         WWCInventoryManager.inventoryError(player, e);
+---
+>     } catch (java.lang.Exception e) {
+>         com.expl0itz.worldwidechat.inventory.WWCInventoryManager.inventoryError(player, e);
+>     }
+> }
+> 
+> private org.bukkit.enchantments.Enchantment getEnchantmentByName(java.lang.String name) {
+>     for (org.bukkit.enchantments.Enchantment enchantment : org.bukkit.enchantments.Enchantment.values()) {
+>         if (enchantment.getName().equalsIgnoreCase(name)) {
+>             return enchantment;
+>         }
+71a71
+>     return null;

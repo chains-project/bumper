@@ -1,0 +1,14 @@
+1a2,13
+> import org.apache.maven.project.ProjectBuilder;
+> import org.apache.maven.project.ProjectBuildingException;
+> import org.apache.maven.project.ProjectConfigurationBuilder;
+> 
+> // ...
+> 
+> private MavenProject getMavenProject() throws ProjectBuildingException {
+>     ProjectBuilder projectBuilder = projectBuilderFactory.getProjectBuilder();
+>     ProjectConfigurationBuilder configBuilder = projectBuilder.getProjectConfigurationBuilder();
+> 
+>     return projectBuilder.build(project, configBuilder).getProject();
+> }
+\ No newline at end of file

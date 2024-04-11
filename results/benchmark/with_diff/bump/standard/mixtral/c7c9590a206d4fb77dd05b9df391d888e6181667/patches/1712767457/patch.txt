@@ -1,0 +1,9 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
+
+//...
+
+public void someMethod(Writer writer, RenderingContext renderingContext, SiteRenderingContext siteRenderingContext) {
+    String outputName = renderingContext.getOutputName();
+    //... use outputName further in the method
+}

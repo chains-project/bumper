@@ -1,0 +1,17 @@
+1c1,12
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.model.Model;
+> import org.apache.maven.project.DefaultProjectBuilder;
+> import org.apache.maven.project.ProjectBuilder;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> // ...
+> 
+> private MavenProject getMavenProject(String pomFilePath) throws ProjectBuildingException {
+>     ProjectBuilder projectBuilder = new DefaultProjectBuilder();
+>     Model model = projectBuilder.readModel(new File(pomFilePath));
+>     return projectBuilder.build(model);
+> }
+\ No newline at end of file

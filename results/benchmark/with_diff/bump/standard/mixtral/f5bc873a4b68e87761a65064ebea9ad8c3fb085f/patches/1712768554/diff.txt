@@ -1,0 +1,19 @@
+1c1,14
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.project.ProjectBuilderConfiguration;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> //...
+> 
+> MavenProject mavenProject = null;
+> try {
+>     ProjectBuilderConfiguration config = new ProjectBuilderConfiguration();
+>     MavenProjectBuilder builder = new MavenProjectBuilder();
+>     mavenProject = builder.build(projectFile, config);
+> } catch (ProjectBuildingException e) {
+>     throw new MojoExecutionException("Failed to build Maven project", e);
+> }
+\ No newline at end of file

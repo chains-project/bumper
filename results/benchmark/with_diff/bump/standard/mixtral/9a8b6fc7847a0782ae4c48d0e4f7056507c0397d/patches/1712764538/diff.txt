@@ -1,0 +1,38 @@
+1c1,33
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.BasicPasswordEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> 
+> import java.util.HashMap;
+> import java.util.Map;
+> 
+> public class GeoStorePBEPasswordEncoder {
+> 
+>     //...
+> 
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         BasicPasswordEncryptor encryptor = new BasicPasswordEncryptor();
+>         Map<String, PasswordEncoder> encoders = new HashMap<>();
+>         encoders.put("BCrypt", new BCryptPasswordEncoder());
+>         encoders.put("PBKDF2", new Pbkdf2PasswordEncoder());
+>         encoders.put("SCRYPT", new SCryptPasswordEncoder());
+>         encoders.put("SHA-1", new StandardPasswordEncoder());
+>         encoders.put("MD5", new Md5PasswordEncoder());
+>         this.passwordEncoder = new DelegatingPasswordEncoder("BCrypt", encoders);
+>         this.passwordEncoder.setDelegateEncryptor(encryptor);
+>     }
+> 
+>     //...
+> 
+>     public boolean isPasswordValid(String encryptedPassword, String rawPassword, Object salt) {
+>         return passwordEncoder.matches(rawPassword, encryptedPassword);
+>     }
+> 
+>     //...
+> 
+> }
+\ No newline at end of file

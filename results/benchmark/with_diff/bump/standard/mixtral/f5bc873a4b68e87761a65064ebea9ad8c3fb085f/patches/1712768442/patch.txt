@@ -1,0 +1,25 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.DefaultProjectBuilder;
+import org.apache.maven.project.ProjectBuilderConfiguration;
+import org.apache.maven.project.ProjectBuildingException;
+
+// ...
+
+private MavenProject readProjectFromFile(String path) throws ProjectBuildingException {
+    Model model = mavenSession.getModel();
+    ProjectBuilder projectBuilder = new DefaultProjectBuilder();
+    ProjectBuildingException exception = null;
+    MavenProject mavenProject = null;
+
+    try {
+        mavenProject = projectBuilder.build(model, new File(path)).get(0);
+    } catch (ProjectBuildingException e) {
+        exception = e;
+    }
+
+    if (mavenProject == null) {
+        throw exception;
+    }
+
+    return mavenProject;
+}
