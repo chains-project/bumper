@@ -1,0 +1,19 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  {{ client_code }}
+```
+
+with the following error message:
+{{ error_message }}
+{{ additional_info }}
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+{{ api_dff }}
+
+Find suitable substitutes in the new library version that can be used to solve the error above.
+Return a list of potential substitutes in order from the most to the least useful, keep up to 20 rows.
+
