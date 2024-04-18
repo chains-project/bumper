@@ -1,0 +1,19 @@
+1c1,14
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> @Deprecated
+> protected void renderHeadElement(RenderingContext renderingContext, String elementName, String... attributes) {
+>     Sink sink = renderingContext.getSink();
+>     sink.head_openStart(elementName);
+>     for (String attribute : attributes) {
+>         int equalsIndex = attribute.indexOf('=');
+>         String key = attribute.substring(0, equalsIndex).trim();
+>         String value = attribute.substring(equalsIndex + 1).trim();
+>         sink.attribute(key, value);
+>     }
+>     sink.head_openEnd();
+> }
+\ No newline at end of file

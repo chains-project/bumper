@@ -1,0 +1,12 @@
+import org.apache.maven.project.MavenProject;
+
+// Replace the import with a new import that uses the updated package name
+import org.apache.maven.artifact.Artifact;
+
+// Create a new variable to hold the artifact
+Artifact artifact = new Artifact();
+
+// Replace the usage of MavenProject with the artifact variable
+artifact.setGroupId("org.apache.myfaces.tobago");
+artifact.setArtifactId("tobago-theme-plugin");
+artifact.setVersion("1.0.0");

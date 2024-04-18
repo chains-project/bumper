@@ -1,0 +1,20 @@
+1c1,15
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> import org.apache.maven.project.ProjectBuilder;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> // ...
+> 
+> @Override
+> protected MavenProject getProject(MavenSession session) throws MojoExecutionException {
+>     ProjectBuilder projectBuilder = mavenSession.getProjectBuilder();
+>     try {
+>         return projectBuilder.build(session.getCurrentProject().getBasedir()).getProject();
+>     } catch (ProjectBuildingException e) {
+>         throw new MojoExecutionException("Could not build project: " + e.getMessage(), e);
+>     }
+> }
+\ No newline at end of file

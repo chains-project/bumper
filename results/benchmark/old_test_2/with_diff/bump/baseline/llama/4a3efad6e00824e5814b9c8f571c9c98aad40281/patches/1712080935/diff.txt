@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Create a variable for the certification permission
+> CertificationPermission certificationPermission = null;
+> 
+> // Get the certification permission from the library
+> certificationPermission = eu.europa.esig.dss.pades.CertificationPermission.getInstance();
+> 
+> // Use the certification permission to sign the PDF
+> certificationPermission.signPDF();
+\ No newline at end of file

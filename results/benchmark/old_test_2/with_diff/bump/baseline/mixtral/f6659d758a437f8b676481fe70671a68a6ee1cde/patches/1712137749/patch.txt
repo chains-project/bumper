@@ -1,0 +1,4 @@
+import org.yaml.snakeyaml.Yaml;
+
+// create a Yaml instance with a custom TrustedTagInspector
+Yaml yaml = new Yaml(new Yaml.SafeConstructor().setTrustedTags(new TrustedTagInspector()));

@@ -1,0 +1,26 @@
+1c1,21
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+>   import org.apache.thrift.transport.TTransport;
+>   import org.apache.thrift.transport.TTransportFactory;
+> 
+>   public class ThriftReader {
+> 
+>     private final TTransportFactory transportFactory;
+> 
+>     public ThriftReader(TTransportFactory transportFactory) {
+>       this.transportFactory = transportFactory;
+>     }
+> 
+>     public TTransport openTransport() {
+>       TTransport transport = transportFactory.getTransport();
+>       if (transport instanceof TFramedTransport) {
+>         ((TFramedTransport) transport).open();
+>       } else {
+>         transport.open();
+>       }
+>       return transport;
+>     }
+>   }
+\ No newline at end of file

@@ -1,0 +1,48 @@
+1,9d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+10a2,8
+>     JschSession session = new JschSession();
+>     return session.connect(this.getLogin(), this.getAddr(), this.getPort(),
+>         this.password);
+> }
+> 
+> private static class JschSession {
+>     public Session connect(String login, String addr, int port, String password) throws IOException {
+13c11
+<             final JSch jsch = new JSch();
+---
+>             JSch jsch = new JSch();
+15d12
+<                 this,
+17,20c14
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+<             final Session session = jsch.getSession(
+<                 this.getLogin(), this.getAddr(), this.getPort()
+---
+>                 login, addr, port
+21a16
+>             Session session = jsch.getSession(login, addr, port);
+23,26c18,19
+<             session.setPassword(this.password);
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+---
+>             session.setPassword(password);
+>             session.setServerAliveInterval((int) TimeUnit.SECONDS.toMillis(Tv.TEN));
+30c23
+<         } catch (final JSchException ex) {
+---
+>         } catch (JSchException ex) {
+33a27
+> }
+\ No newline at end of file

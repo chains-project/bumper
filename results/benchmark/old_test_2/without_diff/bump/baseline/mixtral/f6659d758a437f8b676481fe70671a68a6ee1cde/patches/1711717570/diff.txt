@@ -1,0 +1,56 @@
+11,19c11,15
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+<         Yaml yaml = new Yaml(constructor, representer);
+---
+>     ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+>     JavaTimeModule javaTimeModule = new JavaTimeModule();
+>     javaTimeModule.addDeserializer(ZoneId.class, new ZoneIdDeserializer());
+>     javaTimeModule.addDeserializer(LocalDate.class, new LocalDateDeserializer());
+>     objectMapper.registerModule(javaTimeModule);
+22,23c18,19
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+<         } catch (FileNotFoundException e) {
+---
+>         return objectMapper.readValue(new File(path), clazz);
+>     } catch (IOException e) {
+26a23,54
+> 
+> static class ZoneIdDeserializer extends StdDeserializer<ZoneId> {
+>     protected ZoneIdDeserializer() {
+>         this(null);
+>     }
+> 
+>     protected ZoneIdDeserializer(Class<?> vc) {
+>         super(vc);
+>     }
+> 
+>     @Override
+>     public ZoneId deserialize(JsonParser p, DeserializationContext ctxt)
+>       throws IOException, JsonProcessingException {
+>         return ZoneId.of(p.getText());
+>     }
+> }
+> 
+> static class LocalDateDeserializer extends StdDeserializer<LocalDate> {
+>     protected LocalDateDeserializer() {
+>         this(null);
+>     }
+> 
+>     protected LocalDateDeserializer(Class<?> vc) {
+>         super(vc);
+>     }
+> 
+>     @Override
+>     public LocalDate deserialize(JsonParser p, DeserializationContext ctxt)
+>       throws IOException, JsonProcessingException {
+>         return LocalDate.parse(p.getText());
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+import com.jcabi.aspects.Tv;
+
+public class MkGithub {
+    private static Tv tv = new Tv();
+
+    public static void main(String[] args) {
+        tv.setHost("github.com");
+        tv.setApiToken("your-token-here");
+        // ...
+    }
+}

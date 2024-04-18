@@ -1,9 +1,0 @@
-import org.cactoos.func.ScalarEnforce;
-
-// ...
-
-@Override
-public InputStream input(String name) throws IOException {
-  return new ScalarEnforce<>("name", (String arg) -> new WalletFile(arg).inputStream())
-    .apply(name);
-}

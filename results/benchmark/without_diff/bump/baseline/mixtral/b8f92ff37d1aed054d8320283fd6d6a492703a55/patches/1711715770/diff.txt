@@ -1,6 +1,0 @@
-3c3,5
-<         return directoryScanner.scan().getClasses();
----
->     directoryScanner.scan();
->     ClassFileSet classFiles = directoryScanner.getClasses();
->     return classFiles.getFiles();

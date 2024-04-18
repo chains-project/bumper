@@ -1,8 +1,0 @@
--- public TrustedPrefixesTagInspector org.yaml.snakeyaml.inspector.TrustedPrefixesTagInspector(java.util.List)
--- public bool org.yaml.snakeyaml.inspector.TrustedPrefixesTagInspector.isGlobalTagAllowed(org.yaml.snakeyaml.nodes.Tag)
--- public TrustedTagInspector org.yaml.snakeyaml.inspector.TrustedTagInspector()
--- public bool org.yaml.snakeyaml.inspector.TrustedTagInspector.isGlobalTagAllowed(org.yaml.snakeyaml.nodes.Tag)
-++ public int org.yaml.snakeyaml.reader.StreamReader.getDocumentIndex()
-++ public void org.yaml.snakeyaml.reader.StreamReader.resetDocumentIndex()
-++ public abstract void org.yaml.snakeyaml.scanner.Scanner.resetDocumentIndex()
-++ public void org.yaml.snakeyaml.scanner.ScannerImpl.resetDocumentIndex()

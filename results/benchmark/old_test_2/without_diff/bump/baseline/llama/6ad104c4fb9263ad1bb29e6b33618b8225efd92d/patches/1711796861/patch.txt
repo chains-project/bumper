@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// Create a variable to hold the AlertDescription object
+AlertDescription alertDescription = null;
+
+// Check if the alertDescription object is null
+if (alertDescription != null) {
+    // Call the method on the alertDescription object
+    alertDescription.printStackTrace();
+}

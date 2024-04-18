@@ -1,0 +1,4 @@
+9c9
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>                     step.url, step.artifactoryUrl, step.distributionUrl, server.getP4().getUrl())) {

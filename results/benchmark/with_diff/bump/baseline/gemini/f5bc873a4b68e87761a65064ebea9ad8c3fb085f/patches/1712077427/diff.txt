@@ -1,4 +1,0 @@
-2c2
-<     return project;
----
->     return (MavenProject) project;

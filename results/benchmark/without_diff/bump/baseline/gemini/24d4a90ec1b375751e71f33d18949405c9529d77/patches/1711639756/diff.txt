@@ -1,3 +1,0 @@
-1a2
->   private Tv tv = new Tv();
-\ No newline at end of file

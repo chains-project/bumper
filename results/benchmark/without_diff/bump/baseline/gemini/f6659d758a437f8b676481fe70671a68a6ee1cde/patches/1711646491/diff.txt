@@ -1,4 +1,0 @@
-19c19
-<         Yaml yaml = new Yaml(constructor, representer);
----
->         final Yaml yaml = new Yaml(constructor, representer);

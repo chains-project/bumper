@@ -1,6 +1,0 @@
-3c3,5
-<         return directoryScanner.scan().getClasses();
----
->         List<String> classes = directoryScanner.scan();
->         classes.stream().filter(className -> !className.contains("$"));
->         return classes;

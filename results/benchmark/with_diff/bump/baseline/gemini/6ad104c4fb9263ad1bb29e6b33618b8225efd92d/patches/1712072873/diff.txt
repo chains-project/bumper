@@ -1,7 +1,0 @@
-1a2,6
-> import org.bouncycastle.crypto.tls.TlsFatalAlert;
-> 
->   public TlsFatalAlert ChachaDecoder(short alertDescription) {
->     return new TlsFatalAlert(alertDescription);
->   }
-\ No newline at end of file

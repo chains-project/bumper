@@ -1,0 +1,23 @@
+1d0
+< // TODO: review this AI generated patch!
+14,15c13,14
+<     final Matcher<Throwable> invalidTagMsg = new ArgumentMatchers.<Throwable>allOf(
+<         new ArgumentMatchers.<Throwable>hasMessage(new IsEqual<>("Invalid tag")),
+---
+>     final Matcher<Throwable> invalidTagMsg = ArgumentMatchers.<Throwable>allOf(
+>         ArgumentMatchers.<Throwable>hasMessage(new IsEqual<>("Invalid tag")),
+18,19c17,27
+<     final Tag.Valid tag = new Tag.Valid(original);
+<     Assertions.assertThrows(InvalidTagNameException.class, () -> tag.value(), invalidTagMsg);
+---
+>     InvalidTagNameException exception = null;
+>     try {
+>         new Tag.Valid(original).value();
+>     } catch (InvalidTagNameException e) {
+>         exception = e;
+>     }
+>     Assertions.assertThrows(InvalidTagNameException.class, () -> {
+>         if (exception != null) {
+>             throw exception;
+>         }
+>     }, invalidTagMsg);

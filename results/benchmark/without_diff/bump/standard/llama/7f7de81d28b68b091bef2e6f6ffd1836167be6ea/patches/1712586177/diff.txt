@@ -1,8 +1,0 @@
-15c15,19
-<             registry.set(server, reg);
----
->         // Fix: Replace the line below with the following code
->         // registry.set(server, reg);
->         Field modifiableRegistry = server.getClass().getDeclaredField("modifiableRegistry");
->         modifiableRegistry.setAccessible(true);
->         modifiableRegistry.set(server, reg);

@@ -1,7 +1,0 @@
-@Tv(42)
-@Test
-@DisplayName("test region description")
-void testRegionDescription() {
-    final Region region = new Region.Simple("my-region");
-    assertEquals("my-region", region.description());
-}

@@ -1,0 +1,10 @@
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>         return s.endsWith(".class");
+8,9c8,9
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan.replace(".", "\\."));
+>         if (s.matches(".*.class" + regex)) {

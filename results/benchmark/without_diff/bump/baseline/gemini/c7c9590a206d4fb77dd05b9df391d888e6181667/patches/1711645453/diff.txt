@@ -1,3 +1,0 @@
-0a1,2
-> import org.apache.maven.doxia.decoration.DecorationModel;
-> import org.apache.maven.doxia.decoration.Skin;

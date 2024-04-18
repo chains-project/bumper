@@ -1,0 +1,3 @@
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+PAdESSignatureParameters signatureParameters = new PAdESSignatureParameters();
+signatureParameters.setPermission(eu.europa.esig.dss.pades.PAdESPermissions.MINIMAL_CHANGES_PERMITTED);

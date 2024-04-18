@@ -1,0 +1,2 @@
+0a1
+>   import org.cactoos.text.Text;

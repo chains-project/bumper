@@ -1,0 +1,6 @@
+12,13c12,13
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+---
+>             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId", ZoneId.class));
+>             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate", LocalDate.class));

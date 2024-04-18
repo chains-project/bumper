@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class Signer {
+>     // ...
+>     @Override
+>     public void sign() {
+>         // ...
+>         CertificationPermission certificationPermission = new CertificationPermission();
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file

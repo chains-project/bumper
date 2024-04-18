@@ -1,4 +1,0 @@
-2c2
-<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
----
->     final String packagesToScan = System.getenv("PACKAGE_TO_SCAN");

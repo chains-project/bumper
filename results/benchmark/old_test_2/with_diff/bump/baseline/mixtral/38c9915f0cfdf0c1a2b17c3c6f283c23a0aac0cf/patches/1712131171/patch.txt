@@ -1,0 +1,10 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String wallets(String user) throws IOException {
+  List<String> wallets = new ArrayList<>();
+  // ...
+  return new JoinedText(Texts.length(wallets), "\n").multiJoin(wallets);
+}

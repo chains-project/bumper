@@ -1,8 +1,0 @@
-8c8
-<                 ).name()
----
->             )
-10c10
-<             new StringContains(false, "Unexpected path")
----
->         new StringStartsWith("Unexpected path")

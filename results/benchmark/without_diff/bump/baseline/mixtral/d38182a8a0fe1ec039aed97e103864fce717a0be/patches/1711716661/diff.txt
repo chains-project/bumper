@@ -1,4 +1,0 @@
-21c21
-<                     return StandardRs.OK;
----
->                     return Response.Ok;

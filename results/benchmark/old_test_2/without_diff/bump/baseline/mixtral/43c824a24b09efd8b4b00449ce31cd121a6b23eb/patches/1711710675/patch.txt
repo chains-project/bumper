@@ -1,0 +1,7 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+// existing code here
+
+public JsonBranch getJsonBranch() {
+  // use the JsonBranch class here
+}

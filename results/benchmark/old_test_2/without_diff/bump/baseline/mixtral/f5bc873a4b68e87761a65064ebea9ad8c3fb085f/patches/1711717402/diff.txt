@@ -1,0 +1,10 @@
+1c1,5
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> try {
+>     this.dependencyResolver.resolve(this.project, remoteRepos, localRepository, report);
+> } catch (DependencyResolutionRequiredException e) {
+>     throw new MojoExecutionException("Unable to resolve dependencies.", e);
+> }
+\ No newline at end of file

@@ -1,0 +1,35 @@
+1,6c1,13
+< /**
+<      * AwsOcket can read and write large S3 content.
+<      * @throws Exception If fails
+<      */
+<     @Test
+<     public void readsAndWritesLargeObjectContent() throws Exception {
+---
+> import com.jcabi.s3.Bucket;
+> import com.jcabi.s3.Ocket;
+> import com.jcabi.s3.Ocket.Text;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.equalTo;
+> import java.io.IOException;
+> 
+> public class AwsOcketITCase {
+> 
+>     // ...
+> 
+>     public void readsAndWritesLargeObjectContent() throws IOException {
+9,10c16,18
+<         final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+<         final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+---
+>         final Ocket.Text ocket = new Text(bucket.ocket(name));
+>         final int largeSize = 100 * 1000;
+>         final String data = RandomStringUtils.random(largeSize);
+13c21
+<             MatcherAssert.assertThat(ocket.read(), Matchers.equalTo(data));
+---
+>             assertThat(ocket.read(), equalTo(data));
+17a26
+> }
+\ No newline at end of file

@@ -1,7 +1,0 @@
-import org.codehaus.plexus.util.DirectoryScanner;
-
-// Create a new variable to hold the directory scanner instance
-DirectoryScanner directoryScanner = new DirectoryScanner();
-
-// Replace the failing line with a call to the constructor that takes a directory path
-directoryScanner.setIncludedDirectories(new String[] {"src/main/java"});

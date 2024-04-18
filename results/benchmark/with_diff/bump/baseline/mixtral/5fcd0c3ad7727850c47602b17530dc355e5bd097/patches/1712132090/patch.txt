@@ -1,5 +1,0 @@
-private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
-    ClassName mutatedClassName = data.getMutatedClass();
-    org.pitest.classinfo.ClassInfo classInfo = coverage.getClassInfo(mutatedClassName);
-    return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
-}

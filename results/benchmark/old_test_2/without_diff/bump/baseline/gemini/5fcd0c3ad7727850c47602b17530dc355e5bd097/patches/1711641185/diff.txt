@@ -1,0 +1,9 @@
+3,4c3,7
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>     final String fileName = data.getFileName();
+>     final List<MutationResult> mutations = data.getMutations();
+>     final Collection<ClassInfo> classInfos =
+>         coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+>     return new MutationTestSummaryData(fileName, mutations, classInfos);

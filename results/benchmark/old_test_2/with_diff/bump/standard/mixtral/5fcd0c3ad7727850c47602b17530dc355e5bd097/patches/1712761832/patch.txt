@@ -1,0 +1,10 @@
+private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
+    org.pitest.classinfo.ClassInfoBuilder builder = org.pitest.classinfo.ClassInfo.builder();
+    coverage.getRawCoverage(data.getMutatedClass()).ifPresent(rawCoverage -> {
+        byte[] rawData = rawCoverage.getRawData();
+        long timestamp = rawCoverage.getTimestamp();
+        builder = builder.addRawData(data.getMutatedClass().asString(), rawData, timestamp);
+    });
+    org.pitest.classinfo.ClassInfo classInfo = builder.build();
+    return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
+}

@@ -1,9 +1,0 @@
-@Override
-public Policy<?> getPolicy(final PolicyConfig config) {
-    final PolicyConfig sub = config.config("storage");
-    try (InputStream input = new ByteArrayInputStream(sub.string("type").getBytes(StandardCharsets.UTF_8))) {
-        return new YamlPolicy(new BlockingStorage(new Storages().newStorage(sub.string("type"), Yaml.createYamlInput(input).readYamlMapping())));
-    } catch (final IOException err) {
-        throw new UncheckedIOException(err);
-    }
-}

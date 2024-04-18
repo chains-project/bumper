@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Add a variable to store the result of assumeTrue()
+> boolean canRun = assumeTrue();
+> 
+> // Replace the import with a local variable
+> import static org.junit.Assume.assumeTrue;
+> 
+> // Use the local variable instead of the imported method
+> canRun = assumeTrue();
+\ No newline at end of file

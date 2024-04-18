@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.engines.ChaCha20Engine;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.ParametersWithIV;
+
+// ...
+
+public class ChachaDecoder {
+    // ...
+
+    private void decode(ChaCha20Engine cipher, byte[] input, int inOff, int length, byte[] output, int outOff) {
+        // Use the ChaCha20Engine directly instead of the TlsChaCha20Engine
+        cipher.processBytes(input, inOff, length, output, outOff);
+    }
+
+    // ...
+}

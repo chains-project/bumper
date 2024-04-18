@@ -1,6 +1,0 @@
-4a5
->         StoragesLoader storages = new StoragesLoader();
-7c8
-<                     new Storages().newStorage(
----
->                 storages.newObject(

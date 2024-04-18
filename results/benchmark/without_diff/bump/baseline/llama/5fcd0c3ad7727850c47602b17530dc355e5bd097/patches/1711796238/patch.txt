@@ -1,6 +1,0 @@
-private MutationTestSummaryData createSummaryData(
-    final CoverageDatabase coverage, final ClassMutationResults data) {
-    String className = data.getMutatedClass().getCanonicalName();
-    ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(className));
-    return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
-}

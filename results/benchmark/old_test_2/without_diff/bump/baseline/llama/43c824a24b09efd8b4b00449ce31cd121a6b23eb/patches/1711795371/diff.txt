@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MarcFactory {
+>     private static final JsonBranch marcJson = new JsonBranch("http://schema.org/marc21");
+>     
+>     public static JsonBranch getMarcJson() {
+>         return marcJson;
+>     }
+> }
+\ No newline at end of file

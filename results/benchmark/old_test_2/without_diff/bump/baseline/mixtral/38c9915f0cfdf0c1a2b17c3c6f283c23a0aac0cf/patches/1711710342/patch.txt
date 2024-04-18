@@ -1,0 +1,10 @@
+import org.cactoos.list.Joined;
+
+// ...
+
+@Override
+public InputStream inputOfWallets() throws IOException {
+  return new Joined<>(
+    inputOfWalletsSupplier()
+  ).stream();
+}

@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class WalletsIn {
+>     private final JoinedText walletNames;
+> 
+>     public WalletsIn(String... walletNames) {
+>         this.walletNames = JoinedText.join(", ", walletNames);
+>     }
+> 
+>     public String getWalletNames() {
+>         return walletNames.toString();
+>     }
+> }
+\ No newline at end of file

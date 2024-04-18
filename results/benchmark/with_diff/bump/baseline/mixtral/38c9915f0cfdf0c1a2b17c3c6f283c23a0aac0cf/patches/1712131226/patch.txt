@@ -1,5 +1,0 @@
-import org.cactoos.text.Texts;
-
-// ...
-
-new JoinedText(Texts.wrap("some-text"))

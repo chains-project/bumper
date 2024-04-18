@@ -1,4 +1,0 @@
-22c22
-<             return yaml.load(new BufferedReader(new FileReader(path)));
----
->             return yaml.loadAs(new BufferedReader(new FileReader(path)), clazz);

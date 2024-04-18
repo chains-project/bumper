@@ -1,4 +1,0 @@
-2c2
-<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
----
->         DirectoryScanner directoryScanner = DirectoryScanner.create(testSrcFolder, TestListResolver.getWildcard());

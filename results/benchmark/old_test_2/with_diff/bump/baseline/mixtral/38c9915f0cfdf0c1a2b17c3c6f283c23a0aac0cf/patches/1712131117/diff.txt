@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.iterable.IterableOf;
+> import org.cactoos.text.Joined;
+> 
+> // ...
+> 
+> @Override
+> public String asString() throws IOException {
+>   return new Joined(new IterableOf<Text>(
+>     new TextOf(new WalletsJson(new WalletsIn(this.api()))),
+>     "\n"
+>   )).asString();
+> }
+\ No newline at end of file

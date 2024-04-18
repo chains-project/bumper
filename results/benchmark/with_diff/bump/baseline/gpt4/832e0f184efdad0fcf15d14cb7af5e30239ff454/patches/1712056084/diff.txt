@@ -1,4 +1,0 @@
-18c18
-<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
----
->             pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);

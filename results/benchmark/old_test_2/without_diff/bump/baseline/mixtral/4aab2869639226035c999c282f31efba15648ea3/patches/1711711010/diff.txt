@@ -1,0 +1,6 @@
+3a4
+>     Object storageConfig = Yaml.createYamlInput(sub.toString()).readYamlMapping();
+8c9
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                     sub.string("type"), storageConfig

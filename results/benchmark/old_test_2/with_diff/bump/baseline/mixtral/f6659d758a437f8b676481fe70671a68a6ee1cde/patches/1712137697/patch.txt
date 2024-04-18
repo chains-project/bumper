@@ -1,0 +1,9 @@
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+protected Yaml createYaml(TrustedTagInspector trustedTagInspector) {
+    Yaml yaml = new Yaml(trustedTagInspector);
+    // ...
+    return yaml;
+}

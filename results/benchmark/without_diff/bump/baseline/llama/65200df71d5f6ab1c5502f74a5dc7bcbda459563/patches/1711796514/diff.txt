@@ -1,2 +1,0 @@
-7a8
->             .setDependencyVersion(DependencyVersion.fromMap(ImmutableMap.of("my-dependency", "1.2.3")))

@@ -1,8 +1,0 @@
-4d3
-< 
-15,17c14
-<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
-<                         encoder.setPbeStringEncryptor(stringEncrypter);
-< 
----
->                 org.springframework.security.crypto.password.PasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();

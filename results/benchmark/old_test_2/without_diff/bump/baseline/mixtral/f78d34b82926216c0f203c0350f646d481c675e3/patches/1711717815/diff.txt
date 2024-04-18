@@ -1,0 +1,67 @@
+0a1,21
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import org.bukkit.event.player.PlayerKickEvent;
+> import org.bukkit.inventory.meta.SkullMeta;
+> 
+> import java.util.Properties;
+> import java.util.Random;
+> import java.util.UUID;
+> 
+> import static net.minecraft.server.v1_16_R3.MinecraftServer.getServer;
+> 
+> public class PlayerUtils {
+> 
+>     // ... other methods ...
+> 
+7,8c28
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     public static Player getRandomPlayer(org.bukkit.World world) {
+12c32
+<             : RandomWordUtils.getRandomWord();
+---
+>                 : WordUtils.randomWord();
+15c35
+<             : RandomWordUtils.getRandomWord();
+---
+>                 : WordUtils.randomWord();
+17,20c37,39
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+30c49
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+---
+>         org.bukkit.WorldServer worldServer = ((CraftWorld) world).getHandle();
+36c55,58
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+---
+>         profile.getProperties().put("textures", new Properties() {{
+>             put("textures", skin.getLeft());
+>             put("Signature", skin.getRight());
+>         }});
+38c60
+<         return new EntityPlayer(
+---
+>         return new CraftPlayer(getServer(), new EntityPlayer(
+43c65,69
+<         );
+---
+>         ));
+>     }
+> 
+>     // ... other methods ...
+> 

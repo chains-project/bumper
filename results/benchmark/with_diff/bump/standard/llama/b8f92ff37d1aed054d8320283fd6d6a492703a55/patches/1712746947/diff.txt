@@ -1,6 +1,0 @@
-1,4d0
-< static List<String> getClassesLoc(File testSrcFolder) {
-<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
-<         return directoryScanner.scan().getClasses();
-<     }
-\ No newline at end of file

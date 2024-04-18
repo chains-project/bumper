@@ -1,9 +1,0 @@
-5c5,10
-<         );
----
->         ) {
->             @Override
->             protected boolean matchesSafely(String item) {
->                 return item.contains(getSubstring());
->             }
->         };

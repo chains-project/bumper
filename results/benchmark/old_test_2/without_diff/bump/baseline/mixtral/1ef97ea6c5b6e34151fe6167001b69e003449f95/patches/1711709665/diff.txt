@@ -1,0 +1,6 @@
+3c3,5
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>   long fromTime = from.getTime();
+>   long toTime = to.getTime();
+>   return new Timestamp(fromTime < toTime ? fromTime : toTime);

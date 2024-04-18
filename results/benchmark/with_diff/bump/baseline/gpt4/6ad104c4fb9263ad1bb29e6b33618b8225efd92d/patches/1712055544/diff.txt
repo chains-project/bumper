@@ -1,4 +1,0 @@
-9c9
-<       throw new TlsFatalAlert(AlertDescription.bad_record_mac);
----
->       throw new IOException("Bad record MAC");

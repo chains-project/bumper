@@ -1,0 +1,25 @@
+import eu.europa.esig.dss.pades.PadesSigner;
+import eu.europa.esig.dss.pades.PadesSignatureLevel;
+import eu.europa.esig.dss.pades.PadesSigningCertificateSource;
+import eu.europa.esig.dss.pades.PadesSigningCertificate;
+import eu.europa.esig.dss.pades.PadesCertificationLevel;
+
+// ...
+
+@Override
+public void signPdf(InputStream inputStream, OutputStream outputStream, String signatureFieldName,
+                     String reason, String location, String certificateAlias, String password) throws Exception {
+    // Your existing code here
+
+    // Create a PadesSigner object
+    PadesSigner padesSigner = new PadesSigner(signingCertificateSource, PadesSignatureLevel.B_BASIC);
+
+    // Set the certification level
+    padesSigner.setCertificationLevel(PadesCertificationLevel.CERTIFIED_NO_CHANGES_ALLOWED);
+
+    // Set the permission
+    padesSigner.setSigningCertificate(signingCertificate);
+    padesSigner.setCertificationPermission(CertificationPermission.NO_CHANGES_ALLOWED);
+
+    // Rest of your existing code here
+}

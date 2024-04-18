@@ -1,0 +1,52 @@
+1,18c1
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+< 
+<         if (random.nextBoolean())
+<         {
+---
+> // Replace the line with the following code:
+21,36d3
+<         }
+< 
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+<         if (name.length() > 16)
+<             name = random.nextBoolean() ? first: last;
+< 
+<         if (name.length() > 16)
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+< 
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+< 
+<         Pair<String, String> skin = getRandomSkin();
+< 
+<         GameProfile profile = new GameProfile(UUID.randomUUID(), name);
+< 
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+38,44c5,7
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+<     }
+\ No newline at end of file
+---
+> // With:
+> first = org.apache.commons.lang3.StringEscapeUtils.escapeJava(first);
+> last = org.apache.commons.lang3.StringEscapeUtils.escapeJava(last);
+\ No newline at end of file

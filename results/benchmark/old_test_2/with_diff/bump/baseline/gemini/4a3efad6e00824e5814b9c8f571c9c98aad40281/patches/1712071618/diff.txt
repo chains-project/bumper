@@ -1,0 +1,8 @@
+1c1,3
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.pades.CertificationLevel;
+> 
+>       CertificationLevel certificationLevel = CertificationLevel.LEVEL_NOT_SET;
+\ No newline at end of file

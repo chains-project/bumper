@@ -1,1 +1,0 @@
-import static ai.djl.basicmath.BasicMath.sigmoid;

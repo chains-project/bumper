@@ -1,6 +1,0 @@
-import org.apache.maven.doxia.siterenderer.Renderer;
-
-Renderer renderer = new Renderer();
-RenderingContext renderingContext = new RenderingContext();
-// initialize renderingContext with necessary data
-renderer.render(document, outputStream, renderingContext);

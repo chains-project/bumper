@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class RegionITCase {
+>     private static final Tv T = new Tv();
+> 
+>     public void testSomething() {
+>         T.add(new com.jcabi.aspects.Tv.Advice() {
+>             @Override
+>             public void advice(com.jcabi.aspects.Advice.JoinPoint joinPoint) {
+>                 // Your advice code here
+>             }
+>         });
+>     }
+> }
+\ No newline at end of file

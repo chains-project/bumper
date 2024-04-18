@@ -1,0 +1,6 @@
+import org.cactoos.scalar.UncheckedScalar;
+
+@Override
+public Currencies currencies() throws IOException {
+  return new UncheckedScalar<>(() -> api.currencies());
+}

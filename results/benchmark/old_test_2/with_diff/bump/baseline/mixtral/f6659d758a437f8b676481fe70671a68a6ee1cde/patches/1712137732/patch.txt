@@ -1,0 +1,31 @@
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+protected Yaml createYaml() {
+    Yaml yaml = new Yaml(new CustomTagInspector());
+    // ...
+    return yaml;
+}
+
+private static class CustomTagInspector extends org.yaml.snakeyaml.resolver.Resolver {
+    @Override
+    public void addImplicitResolver(Tag tag, Class<?> nodeClass) {
+        super.addImplicitResolver(tag, nodeClass);
+    }
+
+    @Override
+    public void addImplicitResolvers(Map<Tag, Class<?>> m) {
+        super.addImplicitResolvers(m);
+    }
+
+    @Override
+    public void addImplicitResolvers(Collection<TaggedType<?>> m) {
+        super.addImplicitResolvers(m);
+    }
+
+    @Override
+    public void addImplicitResolver(String ns, Tag tag, Class<?> nodeClass) {
+        super.addImplicitResolver(ns, tag, nodeClass);
+    }
+}

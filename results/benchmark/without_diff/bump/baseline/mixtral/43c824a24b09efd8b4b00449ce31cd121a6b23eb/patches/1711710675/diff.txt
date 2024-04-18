@@ -1,8 +1,0 @@
-1a2,7
-> 
-> // existing code here
-> 
-> public JsonBranch getJsonBranch() {
->   // use the JsonBranch class here
-> }
-\ No newline at end of file

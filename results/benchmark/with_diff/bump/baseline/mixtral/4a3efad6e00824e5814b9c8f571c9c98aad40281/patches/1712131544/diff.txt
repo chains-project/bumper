@@ -1,9 +1,0 @@
-1c1,4
-< import eu.europa.esig.dss.pades.CertificationPermission;
-\ No newline at end of file
----
-> @Override
-> public void setCertificationPermission(CertificationPermission permission) {
->     // existing code here
-> }
-\ No newline at end of file

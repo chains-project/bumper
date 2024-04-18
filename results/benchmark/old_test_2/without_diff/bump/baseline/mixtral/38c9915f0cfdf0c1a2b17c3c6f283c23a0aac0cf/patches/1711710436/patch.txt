@@ -1,0 +1,19 @@
+import org.cactoos.scalar.StickyScalar;
+
+// ...
+
+@Override
+public Scalar<List<Wallet>> apply(String... args) throws IOException {
+  String url = String.format("http://localhost:%s/wallets", args[0]);
+  HttpResponse response = new HttpClient(url).get();
+  if (response.status() != HttpStatus.OK) {
+    throw new IOException(String.format("Can't get wallets list: %s", response.body()));
+  }
+  return new StickyScalar<>(() -> {
+    try {
+      return objectMapper.readValue(response.body(), new TypeReference<List<Wallet>>() {});
+    } catch (JsonProcessingException e) {
+      throw new IOException(e);
+    }
+  });
+}

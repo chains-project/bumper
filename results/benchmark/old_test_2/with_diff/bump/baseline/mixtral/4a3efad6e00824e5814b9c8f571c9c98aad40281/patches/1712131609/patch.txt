@@ -1,0 +1,10 @@
+import eu.europa.esig.dss.pades.PadesCertificationLevel;
+
+//...
+
+@Override
+public void setCertificationLevel(CertificationLevel certificationLevel) {
+    if (certificationLevel != null) {
+        this.certificationLevel = PadesCertificationLevel.getCertificationLevel(certificationLevel.name());
+    }
+}

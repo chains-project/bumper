@@ -1,0 +1,9 @@
+@Override
+public void init(OutputStream os) {
+    this.os = os;
+    // Use the TFramedTransport to be compatible with singer_thrift log.
+    final int bufferCapacity = 10;
+    Transport transport = new TFramedTransport(new TIOStreamTransport(os));
+    transport.open();
+    protocol = new TBinaryProtocol(transport);
+}

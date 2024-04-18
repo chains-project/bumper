@@ -1,9 +1,0 @@
-2c2,7
-<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
----
->     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver() {
->         @Override
->         protected String getWildcard() {
->             return "**/*.class";
->         }
->     });

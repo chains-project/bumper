@@ -1,0 +1,6 @@
+26d25
+<                         true,
+33c32
+<                     new StringContains(true, digest)
+---
+>                 new StringContains(digest)

@@ -1,7 +1,0 @@
-1,6d0
-< /**
-<          * Validate step's inputs.
-<          *
-<          * @param server - The server to check
-<          * @throws IOException if there is an illegal step configuration.
-<          */

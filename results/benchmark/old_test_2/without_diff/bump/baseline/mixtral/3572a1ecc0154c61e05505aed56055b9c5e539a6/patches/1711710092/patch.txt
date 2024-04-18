@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TTransport;
+
+// Use a different framed transport that is not causing issues
+private static TTransport createFramedTransport(String host, int port) {
+  return new org.apache.thrift.transport.TFramedTransport(new org.apache.http.impl.conn.DefaultSchemePortBuilder().build().connect(host, port));
+}

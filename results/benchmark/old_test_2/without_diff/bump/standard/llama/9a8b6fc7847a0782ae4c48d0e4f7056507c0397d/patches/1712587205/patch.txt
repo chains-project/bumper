@@ -1,0 +1,10 @@
+import org.springframework.security.crypto.password.PBEPasswordEncoder;
+
+// Replace the failing method with the following code:
+public class GeoStorePBEPasswordEncoder {
+    private static final PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+
+    public static String encode(String password) {
+        return encoder.encode(password);
+    }
+}

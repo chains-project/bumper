@@ -1,5 +1,0 @@
-3c3,4
-<         return directoryScanner.scan().getClasses();
----
->         directoryScanner.scan();
->         return directoryScanner.getClasses();

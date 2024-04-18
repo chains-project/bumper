@@ -1,4 +1,0 @@
-import org.apache.thrift.transport.TTransport;
-
-// Replace TFastFramedTransport with TFramedTransport
-TFramedTransport transport = new TFramedTransport();

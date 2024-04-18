@@ -1,0 +1,19 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PBEPasswordEncoder;
+
+//...
+
+private PasswordEncoder passwordEncoder;
+
+//...
+
+passwordEncoder = new PBEPasswordEncoder(
+    new PBEStringEncryptor(
+        new org.jasypt.properties.PropertyValueEncryptionUtilities().loadPropertiesFromStream(
+            this.getClass().getClassLoader().getResourceAsStream("jasypt.properties")
+        ),
+        "MD5WithRSA"
+    )
+);

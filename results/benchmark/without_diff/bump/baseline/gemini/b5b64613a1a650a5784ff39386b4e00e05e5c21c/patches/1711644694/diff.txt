@@ -1,6 +1,0 @@
-11,12c11,12
-<             request = new DeleteReleaseBundleRequest();
-<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
----
->             DistributionRules distributionRules = Utils.createDistributionRules(countryCodes, siteName, cityName);
->             request = new DeleteReleaseBundleRequest().setDistributionRules(distributionRules);

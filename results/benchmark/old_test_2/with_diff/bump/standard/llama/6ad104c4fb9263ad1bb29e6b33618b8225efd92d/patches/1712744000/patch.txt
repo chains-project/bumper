@@ -1,0 +1,25 @@
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+public class ChachaDecoder {
+    private static final Logger logger = Logger.getLogger(ChachaDecoder.class.getName());
+
+
+    public ChachaDecoder() {
+        super();
+    }
+
+    public void decode(byte[] input) {
+        AlertDescription alert = null;
+        try {
+            alert = AlertDescription.getInstance(input);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "Failed to parse AlertDescription", e);
+        }
+        if (alert != null) {
+            // handle alert
+        }
+    }
+}

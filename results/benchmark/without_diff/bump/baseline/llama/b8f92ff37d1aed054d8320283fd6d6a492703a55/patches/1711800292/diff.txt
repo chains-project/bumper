@@ -1,8 +1,0 @@
-3c3,7
-<         return directoryScanner.scan().getClasses();
----
->         List<String> classes = directoryScanner.scan().stream()
->                 .filter(className -> !className.contains("$"))
->                 .map(className -> testSrcFolder.getAbsolutePath() + File.separator + className)
->                 .collect(Collectors.toList());
->         return classes;

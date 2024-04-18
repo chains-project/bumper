@@ -1,9 +1,0 @@
-import eu.europa.esig.dss.pades.CertificationPermission;
-
-// Create a variable for the certification permission
-CertificationPermission certificationPermission = null;
-
-// Check if the certification permission is present
-if (certificationPermission != null) {
-    // Do something with the certification permission
-}

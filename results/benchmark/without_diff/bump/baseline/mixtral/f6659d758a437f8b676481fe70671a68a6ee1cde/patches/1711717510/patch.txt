@@ -1,7 +1,0 @@
-import org.yaml.snakeyaml.Yaml;
-
-// ...
-
-protected Yaml createYaml() {
-    return new Yaml(new TrustedTagInspector());
-}

@@ -1,6 +1,0 @@
-static List<String> getClassesLoc(File testSrcFolder) {
-    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
-    directoryScanner.scan();
-    ClasspathScanner classpathScanner = new ClasspathScanner(new URL[]{}, new EmptyResolver());
-    return classpathScanner.scan().getClasses();
-}

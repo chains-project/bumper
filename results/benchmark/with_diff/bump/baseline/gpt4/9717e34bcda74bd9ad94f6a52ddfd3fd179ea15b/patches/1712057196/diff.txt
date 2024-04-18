@@ -1,6 +1,0 @@
-1c1
-< import com.jcabi.aspects.Tv;
-\ No newline at end of file
----
-> // Tv class was removed, no replacement available
-\ No newline at end of file

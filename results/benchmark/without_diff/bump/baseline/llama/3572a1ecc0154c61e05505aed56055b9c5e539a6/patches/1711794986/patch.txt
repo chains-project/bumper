@@ -1,7 +1,0 @@
-import org.apache.thrift.transport.TFastFramedTransport;
-
-public class AppenderUtils {
-    public static TFastFramedTransport getTFastFramedTransport() {
-        return new TFastFramedTransport();
-    }
-}

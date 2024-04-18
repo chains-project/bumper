@@ -1,8 +1,0 @@
-4a5
->         Config cfg = new YamlConfig(sub.toString());
-7,8c8,9
-<                     new Storages().newStorage(
-<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
----
->                 new StoragesLoader().newStorage(
->                     cfg.string("type")

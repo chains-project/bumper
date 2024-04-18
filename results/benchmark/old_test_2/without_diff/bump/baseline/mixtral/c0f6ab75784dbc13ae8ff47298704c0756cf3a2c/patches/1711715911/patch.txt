@@ -1,0 +1,56 @@
+  private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+        ReturnAnalysisEngineConfigurationBuilder builder = ReturnAnalysisEngineConfiguration.builder();
+        builder.setEnabledLanguages(globalConfig.getEnabledLanguages());
+        builder.setClientPid(globalConfig.getClientPid());
+        builder.setExtraProperties(globalConfig.extraProperties());
+        builder.setWorkDir(globalConfig.getWorkDir());
+        builder.setModulesProvider(globalConfig.getModulesProvider());
+        return builder.build();
+    }
+
+    private static class ReturnAnalysisEngineConfigurationBuilder {
+        private List<Language> enabledLanguages;
+        private String clientPid;
+        private Properties extraProperties;
+        private File workDir;
+        private ModulesProvider modulesProvider;
+
+        public static ReturnAnalysisEngineConfigurationBuilder builder() {
+            return new ReturnAnalysisEngineConfigurationBuilder();
+        }
+
+        public ReturnAnalysisEngineConfigurationBuilder setEnabledLanguages(List<Language> enabledLanguages) {
+            this.enabledLanguages = enabledLanguages;
+            return this;
+        }
+
+        public ReturnAnalysisEngineConfigurationBuilder setClientPid(String clientPid) {
+            this.clientPid = clientPid;
+            return this;
+        }
+
+        public ReturnAnalysisEngineConfigurationBuilder setExtraProperties(Properties extraProperties) {
+            this.extraProperties = extraProperties;
+            return this;
+        }
+
+        public ReturnAnalysisEngineConfigurationBuilder setWorkDir(File workDir) {
+            this.workDir = workDir;
+            return this;
+        }
+
+        public ReturnAnalysisEngineConfigurationBuilder setModulesProvider(ModulesProvider modulesProvider) {
+            this.modulesProvider = modulesProvider;
+            return this;
+        }
+
+        public AnalysisEngineConfiguration build() {
+            return AnalysisEngineConfiguration.builder()
+                    .addEnabledLanguages(enabledLanguages)
+                    .setClientPid(clientPid)
+                    .setExtraProperties(extraProperties)
+                    .setWorkDir(workDir)
+                    .setModulesProvider(modulesProvider)
+                    .build();
+        }
+    }

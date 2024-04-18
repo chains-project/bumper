@@ -1,7 +1,0 @@
-2a3,4
->     Set<String> classNames = Collections.singleton(data.getMutatedClass());
->     CoverageDatabase.MutationCoverageMap classInfo = coverage.getClassInfo(classNames);
-4c6
-<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
----
->         data.getMutations(), classInfo.get(data.getMutatedClass()));

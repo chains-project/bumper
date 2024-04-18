@@ -1,0 +1,23 @@
+1c1,18
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> // create a variable for the Tv aspect
+> Tv tv = new Tv();
+> 
+> public class SshByPassword extends SshByKey {
+>     // use the Tv aspect on the 'super' constructor
+>     public SshByPassword(String host, int port, String username, String password) {
+>         super(host, port, username, tv.increase(password));
+>     }
+> 
+>     // override the 'execute' method
+>     @Override
+>     public String execute(String command) throws IOException, InterruptedException {
+>         // use the Tv aspect on the 'super' execute method
+>         return super.execute(tv.increase(command));
+>     }
+> }
+\ No newline at end of file

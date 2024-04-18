@@ -1,6 +1,0 @@
-import com.jcabi.github.Github;
-
-@Override
-public Github github() {
-    return new Github("https://github.com");
-}

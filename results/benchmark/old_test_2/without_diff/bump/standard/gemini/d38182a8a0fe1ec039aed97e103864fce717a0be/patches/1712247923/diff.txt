@@ -1,0 +1,52 @@
+1c1,6
+< @Test
+---
+> import java.util.Optional;
+> 
+> import com.artipie.http.auth.AuthScheme;
+> import com.artipie.http.auth.Authentication;
+> 
+> public class AuthScopeSliceTest {
+7,8c12
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+---
+>         new AuthScopeSlice(new ScopeSlice() {
+16,20c20
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+---
+>             public Response response(final String line, final Iterable<Map.Entry<String, String>> headers, final Publisher<ByteBuffer> body) {
+23,25c23
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+---
+>         }, (headers, rline) -> CompletableFuture.completedFuture(new AuthScheme.Result() {
+35,37c33
+<                 }
+<             ),
+<             (user, act) -> {
+---
+>         }), (user, act) -> {
+39a36,38
+>         }).response(line, Headers.EMPTY, Content.EMPTY).send((status, headers, body) -> CompletableFuture.allOf()).toCompletableFuture().join();
+>         MatcherAssert.assertThat("Request line passed to slice", cline.get(), new IsEqual<>(line));
+>         MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new IsEqual<>(action));
+41,53d39
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+<         MatcherAssert.assertThat(
+<             "Request line passed to slice",
+<             cline.get(),
+<             new IsEqual<>(line)
+<         );
+<         MatcherAssert.assertThat(
+<             "Scope passed as action to permissions",
+<             caction.get(),
+<             new IsEqual<>(action)
+<         );

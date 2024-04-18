@@ -1,6 +1,0 @@
-1,4d0
-< @Override
-<     protected TSerializer initialValue() {
-<       return new TSerializer(new TBinaryProtocol.Factory());
-<     }
-\ No newline at end of file

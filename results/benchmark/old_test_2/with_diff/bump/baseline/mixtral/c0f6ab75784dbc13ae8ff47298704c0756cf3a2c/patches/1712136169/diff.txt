@@ -1,0 +1,6 @@
+1a2
+>     LanguageSupportRepository languageSupportRepository = GlobalComponentProvider.getLanguageSupportRepository();
+3d3
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a8
+>             .setEnabledLanguages(languageSupportRepository.getEnabledLanguagesInConnectedMode())

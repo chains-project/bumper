@@ -1,4 +1,0 @@
-@Override
-public Timestamp between(Date from, Date to) throws IllegalArgumentException {
-    return new Timestamp(Math.max(from.getTime(), to.getTime()) - Math.min(from.getTime(), to.getTime()));
-}

@@ -1,0 +1,10 @@
+0a1,3
+> import com.artipie.asto.factory.StoragesLoader;
+> import com.artipie.asto.factory.Config;
+> 
+4a8
+>         StoragesLoader storages = new StoragesLoader();
+7c11
+<                     new Storages().newStorage(
+---
+>                 storages.newStorage(

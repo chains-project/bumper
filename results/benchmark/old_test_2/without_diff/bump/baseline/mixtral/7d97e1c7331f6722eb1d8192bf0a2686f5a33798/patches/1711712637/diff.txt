@@ -1,0 +1,22 @@
+1c1,17
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aspects.Loggable;
+> 
+> @Loggable(Loggable.LOG_LEVEL_DEBUG)
+> public class RegionITCase {
+>     // existing code...
+> 
+>     @Test(timeout = 1000)
+>     @Category(IntegrationTest.class)
+>     public void testGetRegion() throws Exception {
+>         // replace 'new SimpleDB' with 'SimpleDB.create'
+>         try (SimpleDB simpledb = SimpleDB.create(System.getenv("AWS_KEY"), System.getenv("AWS_SECRET"), new Region("us-east-1"))) {
+>             // existing code...
+>         }
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

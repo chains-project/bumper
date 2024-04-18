@@ -1,0 +1,6 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public AlertDescription decode(byte[] input) throws TlsFatalAlert {
+    short alertDescription = (short) ((input[0] & 0xFF) << 8 | (input[1] & 0xFF));
+    return new TlsFatalAlert(alertDescription).getAlertDescription();
+}

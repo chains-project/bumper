@@ -1,0 +1,8 @@
+1a2,7
+> 
+> public class ChachaDecoder {
+>     public static AlertDescription getAlertDescription(short alert) {
+>         return AlertDescription.create(alert, org.bouncycastle.crypto.tls.TlsFatalAlert.getAlertDescription());
+>     }
+> }
+\ No newline at end of file

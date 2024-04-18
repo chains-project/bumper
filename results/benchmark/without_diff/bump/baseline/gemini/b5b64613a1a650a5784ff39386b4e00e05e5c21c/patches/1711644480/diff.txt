@@ -1,4 +1,0 @@
-19c19
-<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
----
->             distributionServer.setPlatformUrl(urlWithoutSlash);

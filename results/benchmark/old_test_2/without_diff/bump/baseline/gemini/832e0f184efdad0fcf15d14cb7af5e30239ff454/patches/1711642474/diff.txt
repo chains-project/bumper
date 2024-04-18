@@ -1,0 +1,5 @@
+17c17,18
+<                         if (args[0].equals("1")) {
+---
+>                         int pageNumber = Integer.parseInt(args[0]);
+>                         if (pageNumber == 1) {

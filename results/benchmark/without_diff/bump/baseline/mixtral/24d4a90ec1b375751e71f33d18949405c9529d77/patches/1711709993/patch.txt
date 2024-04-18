@@ -1,8 +1,0 @@
-import com.jcabi.s3.S3;
-
-@Tv({1, 2, 3})
-public class AwsOcketITCase {
-    private S3 s3() {
-        return new S3("http://s3.amazonaws.com");
-    }
-}

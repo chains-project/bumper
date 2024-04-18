@@ -1,0 +1,11 @@
+1c1,6
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.shared.invoker.MavenInvocationException;
+> import org.apache.maven.shared.invoker.MavenInvoker;
+> import org.apache.maven.shared.invoker.InvocationRequest;
+> import org.apache.maven.shared.invoker.DefaultInvocationRequest;
+> import org.apache.maven.shared.invoker.InvocationResult;
+> import org.apache.maven.shared.invoker.DefaultInvoker;
+\ No newline at end of file

@@ -1,0 +1,2 @@
+// Remove the following import statement
+// import eu.europa.esig.dss.pades.CertificationPermission;

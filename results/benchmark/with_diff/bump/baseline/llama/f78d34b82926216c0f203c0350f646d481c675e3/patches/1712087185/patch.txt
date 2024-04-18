@@ -1,6 +1,0 @@
-public void input(ArrayList<Input> inputData) {
-    inputData.parallelStream().forEachOrdered(input -> {
-        D weightingValue = tokyo.peya.lib.LearnMath.sigmoid(input.getWeightingValue());
-        setValue(weightingValue);
-    });
-}

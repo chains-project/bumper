@@ -1,7 +1,0 @@
-3c3
-<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
----
->         if(GROUP_SHAPE.getChildCount() == 2) {
-6a7
-> }
-\ No newline at end of file

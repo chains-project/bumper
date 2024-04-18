@@ -1,6 +1,0 @@
-8,9c8,9
-<             ObjectMapper mapper = createMapper();
-<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
----
->             request = new DeleteReleaseBundleRequest();
->             request.setDistributionRules(distRules);

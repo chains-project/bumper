@@ -1,0 +1,33 @@
+1c1,28
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.Yaml;
+> 
+> // ...
+> 
+> public class AbstractTest {
+>   // ...
+> 
+>   @Override
+>   protected Yaml createYaml() {
+>     Yaml yaml = new Yaml(new CustomTagInspector());
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   private static class CustomTagInspector extends org.yaml.snakeyaml.resolver.Resolver {
+>     @Override
+>     protected TrustedTagInspector getTagInspector() {
+>       return new TrustedTagInspector();
+>     }
+> 
+>     @Override
+>     public boolean isGlobalTagAllowed(Tag tag) {
+>       return super.isGlobalTagAllowed(tag);
+>     }
+>   }
+> }
+\ No newline at end of file

@@ -1,7 +1,0 @@
-import com.jcabi.ssh.Ssh;
-
-// ...
-
-protected Ssh ssh(String host, String user, String password) {
-    return Ssh.create(host, user, password);
-}

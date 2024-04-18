@@ -1,0 +1,8 @@
+import static org.junit.Assume.assumeTrue;
+
+// Add the following line to import the required class
+import org.tinspin.index.util.MinHeapI;
+
+public class PGS_MorphologyGroupShapeTests {
+    // ...
+}

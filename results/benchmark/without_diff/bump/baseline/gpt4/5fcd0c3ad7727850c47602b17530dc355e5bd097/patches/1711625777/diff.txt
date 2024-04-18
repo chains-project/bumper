@@ -1,4 +1,0 @@
-4c4
-<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
----
->         data.getMutations(), coverage.getClassInfo(data.getMutatedClass()));

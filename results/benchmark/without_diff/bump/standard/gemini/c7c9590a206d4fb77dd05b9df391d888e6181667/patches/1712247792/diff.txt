@@ -1,5 +1,0 @@
-1a2,4
-> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext.Theme;
-> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext.Theme.Color;
-> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext.Theme.Font;
-\ No newline at end of file

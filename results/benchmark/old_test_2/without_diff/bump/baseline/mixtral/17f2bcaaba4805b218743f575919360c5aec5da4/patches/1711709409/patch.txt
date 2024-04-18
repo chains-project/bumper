@@ -1,0 +1,26 @@
+import org.locationtech.jts.geom.CoordinateSequence;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.util.LinearComponentExtracter;
+import org.locationtech.jts.index.quadtree.Quadtree;
+
+import java.util.List;
+
+//...
+
+@Test
+public void testFastPolygonizer() throws Exception {
+    GeometryFactory gf = new GeometryFactory();
+    Quadtree index = new Quadtree();
+    LinearComponentExtracter lce = new LinearComponentExtracter();
+
+    //...
+
+    List<CoordinateSequence> rings = lce.extract(polygon);
+    for (CoordinateSequence ring : rings) {
+        Envelope env = ring.getEnvelope();
+        index.insert(env.getMinX(), env.getMinY(), env.getMaxX(), env.getMaxY(), ring);
+    }
+
+    //...
+}

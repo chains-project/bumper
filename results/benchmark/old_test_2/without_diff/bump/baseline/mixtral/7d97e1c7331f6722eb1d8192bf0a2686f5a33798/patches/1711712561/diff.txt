@@ -1,0 +1,20 @@
+1c1,15
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aspects.Loggable;
+> 
+> @Loggable(Loggable.DEBUG)
+> public class RegionITCase {
+>     // existing code...
+> 
+>     @Test
+>     @DisplayName("Test simple db region")
+>     public void testSimpleDbRegion() {
+>         Region region = new Region("test-region");
+>         // use region object here...
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

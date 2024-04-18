@@ -1,0 +1,23 @@
+1c1,18
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> @Tv({1, 2, 3})
+> public class MyClass {
+>     private Ssh ssh;
+> 
+>     public MyClass(Ssh ssh) {
+>         this.ssh = ssh;
+>     }
+> 
+>     // existing code here...
+> 
+>     @Override
+>     public void someMethod() {
+>         // use ssh object instead of com.jcabi.aspects.Tv
+>         // other existing code here...
+>     }
+> }
+\ No newline at end of file

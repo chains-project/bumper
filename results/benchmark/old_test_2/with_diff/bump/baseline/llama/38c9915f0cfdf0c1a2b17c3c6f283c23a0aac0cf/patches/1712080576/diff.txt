@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class WalletsIn {
+>     private final IoCheckedScalar<String> walletId;
+> 
+>     public WalletsIn(IoCheckedScalar<String> walletId) {
+>         this.walletId = walletId;
+>     }
+> 
+>     public String getWalletId() {
+>         return walletId.get();
+>     }
+> }
+\ No newline at end of file

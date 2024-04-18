@@ -1,3 +1,0 @@
-1a2
-> import org.apache.maven.doxia.module.xhtml.decoration.render.XhtmlDecorationRenderer;
-\ No newline at end of file

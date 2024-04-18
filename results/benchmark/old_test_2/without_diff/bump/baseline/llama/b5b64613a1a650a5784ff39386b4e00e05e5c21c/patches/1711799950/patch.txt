@@ -1,0 +1,24 @@
+public void execute() throws Exception {
+        if (server == null) {
+            throw new IllegalStateException("Artifactory server must be configured");
+        }
+        if (StringUtils.isAllBlank(kanikoImageFile, jibImageFile) || StringUtils.isNoneBlank(kanikoImageFile, jibImageFile)) {
+            throw new IllegalStateException("Exactly one of 'kanikoImageFile' or 'jibImageFile' must be configured");
+        }
+        CommonDeployer deployer = new CommonDeployer();
+        deployer.setServer(server);
+        deployer.setRepo(sourceRepo);
+        FilePath tempDir = ExtractorUtils.createAndGetTempDir(ws);
+        EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile) {
+            @Override
+            public void extract() throws Exception {
+                super.extract();
+                // Add the following line to fix the error
+                BuildDockerCreator buildDockerCreator = new BuildDockerCreator(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+                buildDockerCreator.setOverwrite(true);
+                buildDockerCreator.setForce(true);
+                buildDockerCreator.execute();
+            }
+        };
+        super.execute("Create Docker Build", "org.jfrog.build.extractor.docker.extractor.BuildDockerCreator", envExtractor, tempDir);
+    }

@@ -1,0 +1,34 @@
+import com.jcabi.aspects.Tv;
+
+public class Ssh {
+    private static final Tv T = new Tv();
+
+    public static void main(String[] args) {
+        T.add(new com.jcabi.aspects.Tv.Advice() {
+            @Override
+            public void before(final JoinPoint joinPoint) {
+                System.out.println("Before: " + joinPoint);
+            }
+
+            @Override
+            public void after(final JoinPoint joinPoint) {
+                System.out.println("After: " + joinPoint);
+            }
+
+            @Override
+            public void afterReturning(final JoinPoint joinPoint) {
+                System.out.println("AfterReturning: " + joinPoint);
+            }
+
+            @Override
+            public void afterThrowing(final JoinPoint joinPoint) {
+                System.out.println("AfterThrowing: " + joinPoint);
+            }
+        });
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}

@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// Create a variable to hold the AlertDescription object
+AlertDescription alertDescription = null;
+
+// Check if the alertDescription object is not null before using it
+if (alertDescription != null) {
+    // Use the alertDescription object here
+}

@@ -1,7 +1,0 @@
-import com.jcabi.aspects.Tv;
-
-public class AwsOcketITCase {
-    private static final Tv TV = Tv.UNLIMITED;
-
-    // ...
-}

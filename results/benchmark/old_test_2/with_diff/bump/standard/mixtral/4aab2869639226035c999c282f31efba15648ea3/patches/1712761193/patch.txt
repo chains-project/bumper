@@ -1,0 +1,32 @@
+@Override
+public Policy<?> getPolicy(final PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storagesLoader = new StoragesLoader();
+        return new YamlPolicy(new BlockingStorage(storagesLoader.newObject(
+                sub.string("type"),
+                new YamlInput(sub.toString()).readYamlMapping()
+        )));
+    } catch (final IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}
+
+private static class YamlInput implements com.amihaiemil.eoyaml.YamlInput {
+    private final String input;
+
+    public YamlInput(String input) {
+        this.input = input;
+    }
+
+    @Override
+    public YamlSequence readSequence() {
+        // Implement this method if needed
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public YamlMapping readYamlMapping() {
+        return (YamlMapping) com.amihaiemil.eoyaml.Yaml.createYaml().load(input);
+    }
+}

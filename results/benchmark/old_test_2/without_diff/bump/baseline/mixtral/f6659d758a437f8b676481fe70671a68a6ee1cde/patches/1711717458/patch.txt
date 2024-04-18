@@ -1,0 +1,9 @@
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+protected Yaml createYaml() {
+    Yaml yaml = new Yaml();
+    // configure yaml here if necessary
+    return yaml;
+}

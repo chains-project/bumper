@@ -1,8 +1,0 @@
-import org.jasypt.util.text.BasicTextEncryptor;
-
-@Override
-@Autowired
-public void setPasswordEncoder(PBEPasswordEncoder passwordEncoder) {
-    this.passwordEncoder = new BasicTextEncryptor();
-    this.passwordEncoder.setPassword(passwordEncoder.getPassword());
-}

@@ -1,3 +1,0 @@
-1a2
-> import org.cactoos.scalar.UncheckedScalar;
-\ No newline at end of file

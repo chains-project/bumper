@@ -1,0 +1,21 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private final Storages storages;
+
+    public YamlPolicyFactory(Storages storages) {
+        this.storages = storages;
+    }
+
+    public YamlPolicyFactory(Storages storages, String file) {
+        this.storages = storages;
+    }
+
+    public YamlPolicyFactory(Storages storages, InputStream stream) {
+        this.storages = storages;
+    }
+
+    public YamlPolicyFactory(Storages storages, File file) {
+        this.storages = storages;
+    }
+}

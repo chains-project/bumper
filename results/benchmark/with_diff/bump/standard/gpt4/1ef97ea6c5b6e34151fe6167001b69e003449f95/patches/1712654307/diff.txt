@@ -1,6 +1,0 @@
-1,4d0
-< @Override
-<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
-<     return new Timestamp(super.between(from, to).getTime());
-<   }
-\ No newline at end of file

@@ -1,0 +1,24 @@
+import eu.europa.esig.dss.pades.PadesSigner;
+
+// ...
+
+@Override
+public void sign(InputStream inputStream, OutputStream outputStream) throws Exception {
+    PadesSigner signer = new PadesSigner(keystore, keystorePassword, certificateAlias, digestAlgorithm, signatureAlgorithm, signingCertificate);
+    signer.setSignatureLevel(SignatureLevel.CERTIFIED_NO_CHANGE_EXCL);
+    signer.setSignaturePolicy(signaturePolicy);
+    signer.setTsaClient(tsaClient);
+    signer.setOcspClient(ocspClient);
+    signer.setIncludeCertificate(true);
+    signer.setVisibleSignature(visibleSignature);
+    signer.setSigningDate(new Date());
+    signer.setApprovalSignatureField(approvalSignatureField);
+    signer.setReason(reason);
+    signer.setLocation(location);
+    signer.setExtraDataToSign(extraDataToSign);
+    signer.setBouncyCastleProvider();
+    signer.setTspSource(tspSource);
+    signer.setTimeStampToken(timeStampToken);
+
+    signer.sign(inputStream, outputStream);
+}

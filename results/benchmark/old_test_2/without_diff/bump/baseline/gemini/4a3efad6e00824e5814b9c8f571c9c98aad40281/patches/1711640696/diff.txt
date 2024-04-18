@@ -1,0 +1,10 @@
+1a2,9
+>   import eu.europa.esig.dss.pades.PadesSigner;
+> 
+>   public class Signer {
+>     public static void main(String[] args) {
+>       PadesSigner signer = new PadesSigner();
+>       signer.setCertificationPermission(CertificationPermission.SIGN);
+>     }
+>   }
+\ No newline at end of file

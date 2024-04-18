@@ -1,0 +1,39 @@
+1,4c1,4
+< @Override
+<         protected JFrogPlatformInstance run() throws Exception {
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+<                 throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+---
+> @java.lang.Override
+> protected org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance run() throws java.lang.Exception {
+>     if (step.url == null && step.artifactoryUrl == null && step.distributionUrl == null) {
+>         throw new java.lang.IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+6,14c6,13
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+<             String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+<             String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+< 
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+<             if (!isEmpty(step.credentialsId)) {
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>     java.lang.String urlWithoutSlash = org.apache.commons.lang3.StringUtils.removeEnd(step.url, "/");
+>     java.lang.String artifactoryUrl = org.apache.commons.lang3.StringUtils.defaultIfBlank(step.artifactoryUrl, (urlWithoutSlash + "/") + "artifactory");
+>     java.lang.String distributionUrl = org.apache.commons.lang3.StringUtils.defaultIfBlank(step.distributionUrl, (urlWithoutSlash + "/") + "distribution");
+>     org.jfrog.hudson.pipeline.common.types.ArtifactoryServer artifactoryServer;
+>     org.jfrog.hudson.pipeline.common.types.DistributionServer distributionServer;
+>     if (step.credentialsId != null && !step.credentialsId.isEmpty()) {
+>         artifactoryServer = new org.jfrog.hudson.pipeline.common.types.ArtifactoryServer(artifactoryUrl, step.credentialsId);
+>         distributionServer = new org.jfrog.hudson.pipeline.common.types.DistributionServer(distributionUrl, step.credentialsId);
+16,17c15,16
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryServer = new org.jfrog.hudson.pipeline.common.types.ArtifactoryServer(artifactoryUrl, step.username, step.password);
+>         distributionServer = new org.jfrog.hudson.pipeline.common.types.DistributionServer(distributionUrl, step.username, step.password);
+20c19
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     return new org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");

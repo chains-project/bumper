@@ -1,9 +1,0 @@
-import com.jcabi.github.Repos;
-import com.jcabi.github.RepoCreate;
-import org.apache.commons.lang3.RandomStringUtils;
-import java.io.IOException;
-
-public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
-    final int maxLength = 20; // Tv.TWENTY;
-    return this.repos().create(new RepoCreate(RandomStringUtils.randomAlphanumeric(maxLength), true));
-}

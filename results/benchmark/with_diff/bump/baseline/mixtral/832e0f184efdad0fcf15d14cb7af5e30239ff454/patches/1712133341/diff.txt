@@ -1,6 +1,0 @@
-18c18
-<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
----
->             pageMeta.addEnchant(Enchantment.getEnchantment(Enchantment.ARROW_DAMAGE), 1, false);
-23d22
-<                 

@@ -1,0 +1,11 @@
+import org.apache.commons.lang3.RandomUtils;
+
+// ...
+
+@Test
+@Override
+public void testRandomString() {
+    int length = 10;
+    String randomString = RandomStringUtils.randomAlphanumeric(length);
+    // ... (rest of the method remains unchanged)
+}

@@ -1,5 +1,0 @@
-8c8,9
-<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
----
->         double[] weightings = inputData.parallelStream().mapToDouble(input -> input.getWeightingValue()).toArray();
->         input(weightings);

@@ -1,0 +1,25 @@
+1c1,20
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.Bucket;
+> import com.jcabi.s3.IOps;
+> import com.jcabi.s3.S3;
+> import com.jcabi.s3.VerboseOps;
+> 
+> public class AwsOcketITCase {
+>     ...
+>     @Test
+>     @Override
+>     @ClassRule
+>     public static final S3 s3 = new S3("http://s3.amazonaws.com",
+>       new IOps() {
+>         @Override
+>         public Bucket getBucket(String bucketName) {
+>           return new VerboseOps(new AwsClient(awsId, awsKey))
+>             .bucket(bucketName);
+>         }
+>       });
+>     ...
+> }
+\ No newline at end of file

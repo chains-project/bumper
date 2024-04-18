@@ -1,0 +1,4 @@
+import org.apache.maven.project.MavenProject;
+
+// Replace the import with a new import that uses the updated package name
+import org.apache.maven.project. MavenProject;

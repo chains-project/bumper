@@ -1,0 +1,31 @@
+1c1,26
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.PasswordEncoder;
+> import org.jasypt.util.text.TextEncryptor;
+> 
+> public class GeoStorePBEPasswordEncoder {
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         passwordEncoder = new PasswordEncoder();
+>     }
+> 
+>     public String encodePassword(String password, Object salt) {
+>         return passwordEncoder.encodePassword(password, salt);
+>     }
+> 
+>     public boolean isPasswordValid(String password, String encodedPassword, Object salt) {
+>         return passwordEncoder.isPasswordValid(password, encodedPassword, salt);
+>     }
+> 
+>     public void setPasswordEncryptor(TextEncryptor textEncryptor) {
+>         passwordEncoder.setPasswordEncryptor(textEncryptor);
+>     }
+> 
+>     public void setStringDigester(StringDigester stringDigester) {
+>         passwordEncoder.setStringDigester(stringDigester);
+>     }
+> }
+\ No newline at end of file

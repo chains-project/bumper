@@ -1,6 +1,0 @@
-1d0
-< @Override
-7c6
-<                     new Storages().newStorage(
----
->                     new StoragesLoader().newObject(

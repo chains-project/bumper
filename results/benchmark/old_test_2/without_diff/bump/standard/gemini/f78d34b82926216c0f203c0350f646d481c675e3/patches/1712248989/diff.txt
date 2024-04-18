@@ -1,0 +1,70 @@
+1,15c1,9
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+> import ml.peya.plugins.Utils.RandomWordUtils;
+> import net.minecraft.server.v1_12_R1.EntityPlayer;
+> import net.minecraft.server.v1_12_R1.PlayerInteractManager;
+> import net.minecraft.server.v1_12_R1.WorldServer;
+> import org.apache.commons.lang.RandomStringUtils;
+> import org.apache.commons.lang3.tuple.Pair;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+17,21c11,12
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+<         }
+---
+> import java.util.Random;
+> import java.util.UUID;
+23c14,22
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+---
+> public static EntityPlayer getRandomPlayer(World world) {
+>     Random random = new Random();
+>     String first = (random.nextBoolean()) ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : RandomWordUtils.getRandomWord();
+>     String last = (random.nextBoolean()) ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : RandomWordUtils.getRandomWord();
+>     if (random.nextBoolean()) {
+>         first = first;
+>         last = last;
+>     }
+>     String name = ((first + (random.nextBoolean() ? "_" : "")) + last) + (random.nextBoolean() ? "19" + random.nextInt(120) : "");
+25c24
+<             name = random.nextBoolean() ? first: last;
+---
+>         name = (random.nextBoolean()) ? first : last;
+31,33c30
+< 
+<         Pair<String, String> skin = getRandomSkin();
+< 
+---
+>     Pair<String, String> skin = ml.peya.plugins.Utils.PlayerUtils.getRandomSkin();
+35,43c32,33
+< 
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+< 
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+---
+>     profile.getProperties().put("textures", new com.mojang.authlib.properties.Property("textures", skin.getLeft(), skin.getRight()));
+>     return new EntityPlayer(((CraftServer) org.bukkit.Bukkit.getServer()).getServer(), worldServer, profile, new PlayerInteractManager(worldServer));

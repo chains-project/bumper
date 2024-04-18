@@ -1,7 +1,0 @@
-import org.apache.thrift.transport.TSocket;
-
-// ...
-
-public static TTransport createTransport(String host, int port) throws TTransportException {
-    return new TSocket(host, port);
-}

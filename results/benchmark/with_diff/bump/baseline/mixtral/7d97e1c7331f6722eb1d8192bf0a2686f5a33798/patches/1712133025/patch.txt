@@ -1,6 +1,0 @@
-import com.jcabi.aspects.Loggable;
-
-@Loggable(Loggable.Log.INFO)
-public class RegionITCase {
-  // ...
-}

@@ -1,0 +1,8 @@
+import org.cactoos.func.ScalarOf;
+
+// ...
+
+@Override
+public InputStream walletStream(String name) throws IOException {
+  return new ScalarOf<InputStream>(() -> wallets.get(name).stream()).value();
+}

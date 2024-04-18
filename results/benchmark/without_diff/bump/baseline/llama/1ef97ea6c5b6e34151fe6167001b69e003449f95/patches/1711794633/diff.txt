@@ -1,5 +1,0 @@
-3c3,4
-<     return new Timestamp(super.between(from, to).getTime());
----
->     java.util.Date utilDate = super.between(from, to);
->     return new Timestamp(utilDate.getTime());

@@ -1,5 +1,0 @@
-import static java.util.Collections.emptyList;
-import static org.junit.Assume.assumeTrue;
-
-// Replace the failing line with:
-assumeTrue(emptyList());

@@ -1,0 +1,15 @@
+11,13c11,16
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+---
+>     JavaType zoneIdType = new JavaType(ZoneId.class, "ZoneId", new ConstructYaml(), TypeDescription.NO_DESC);
+>     JavaType localDateType = new JavaType(LocalDate.class, "LocalDate", new ConstructYaml(), TypeDescription.NO_DESC);
+> 
+>     Constructor constructor = new Constructor(clazz, loadingConfig) {{
+>         this.addTypeDescription(zoneIdType);
+>         this.addTypeDescription(localDateType);
+22c25
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+---
+>         return clazz.cast(yaml.load(new BufferedReader(new FileReader(path))));

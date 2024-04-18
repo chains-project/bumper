@@ -1,9 +1,0 @@
-import de.gwdg.metadataqa.api.json.JsonBranch;
-
-// add the following import statement
-import de.gwdg.metadataqa.marc.jaxb.MarcFactory;
-
-// replace the following line
-// MarcFactory marcFactory = new MarcFactory();
-// with the following line
-MarcFactory marcFactory = new MarcFactory<>();

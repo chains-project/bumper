@@ -1,0 +1,8 @@
+1a2,4
+>         Properties extraProperties = new Properties();
+>         extraProperties.putAll(globalConfig.extraProperties());
+> 
+5c8
+<                 .setExtraProperties(globalConfig.extraProperties())
+---
+>                 .setExtraProperties(extraProperties)

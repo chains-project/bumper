@@ -1,7 +1,0 @@
-import org.bouncycastle.crypto.tls.TlsFatalAlert;
-
-public class ChachaDecoder {
-    public static TlsFatalAlert getTlsFatalAlert(short alert) {
-        return TlsFatalAlert.getInstance(alert);
-    }
-}

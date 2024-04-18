@@ -1,2 +1,0 @@
-7a8
->                 .setLanguageSupportRepository(new LanguageSupportRepository(globalConfig.getLanguages()))

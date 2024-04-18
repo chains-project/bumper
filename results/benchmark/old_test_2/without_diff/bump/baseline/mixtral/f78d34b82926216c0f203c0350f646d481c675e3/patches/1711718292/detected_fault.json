@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1989335500,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Utils/PlayerUtils.java:[115,1] illegal start of type",
+        "client_file_path": "/PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Utils/PlayerUtils.java",
+        "client_line_position": "115"
+    },
+    "client_end_line_number": 115,
+    "client_line_number": 115,
+    "method_code": "import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;",
+    "qualified_code": "import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;",
+    "method_name": "import"
+}

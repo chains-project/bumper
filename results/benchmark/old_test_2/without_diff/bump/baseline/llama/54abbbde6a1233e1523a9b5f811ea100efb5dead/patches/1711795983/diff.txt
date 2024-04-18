@@ -1,0 +1,7 @@
+1d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+28c27,28
+<             session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+---
+>             final int timeout = 10 * 1000; // 10 seconds
+>             session.connect(timeout);

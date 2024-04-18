@@ -1,0 +1,5 @@
+private TFramedTransport createTransport(String host, int port) throws IOException {
+    TTransport transport = new TSocket(host, port);
+    TFramedTransport framedTransport = new TFramedTransport(transport);
+    return framedTransport;
+}

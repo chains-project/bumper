@@ -1,9 +1,0 @@
-10a11,14
->     ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory().enable(YAMLParser.Feature.FORGIVING);
->     JavaTimeModule javaTimeModule = new JavaTimeModule();
->     objectMapper.registerModule(javaTimeModule);
-> 
-19c23
-<         Yaml yaml = new Yaml(constructor, representer);
----
->     Yaml yaml = new Yaml(objectMapper);

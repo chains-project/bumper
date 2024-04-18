@@ -1,8 +1,0 @@
-0a1,2
->   private MavenProject project;
-> 
-2a5,8
->   }
-> 
->   public void setProject(MavenProject project) {
->     this.project = project;

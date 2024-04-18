@@ -1,6 +1,0 @@
-2a3
->     String mutatedClassName = data.getMutatedClass().getName();
-4c5
-<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
----
->         data.getMutations(), coverage.getClassInfo(Collections.singleton(mutatedClassName)));

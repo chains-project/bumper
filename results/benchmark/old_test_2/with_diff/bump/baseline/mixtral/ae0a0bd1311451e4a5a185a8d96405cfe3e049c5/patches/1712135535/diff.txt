@@ -1,0 +1,6 @@
+2a3
+>     StringContains stringContains = new StringContains("Unexpected path");
+10c11
+<             new StringContains(false, "Unexpected path")
+---
+>         stringContains

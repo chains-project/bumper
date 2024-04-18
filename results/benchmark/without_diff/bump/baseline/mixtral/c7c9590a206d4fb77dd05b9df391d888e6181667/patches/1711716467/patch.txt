@@ -1,8 +1,0 @@
-import org.apache.maven.doxia.sink.Sink;
-
-@Override
-public void generateReport(Locations locations, Sink sink) throws MojoFailureException, IOException {
-  RenderingContext renderingContext = new RendingContext();
-  renderingContext.setSink(sink);
-  // ... (rest of the method unchanged)
-}

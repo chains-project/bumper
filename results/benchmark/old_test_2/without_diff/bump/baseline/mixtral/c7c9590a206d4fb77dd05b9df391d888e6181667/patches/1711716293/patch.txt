@@ -1,0 +1,12 @@
+import org.apache.maven.doxia.siterenderer.Renderer;
+
+RenderingContext renderingContext;
+Renderer renderer;
+
+@Override
+public void executeReport( Locale locale )
+{
+    renderingContext = new RenderingContext();
+    renderer = new org.apache.maven.doxia.module.xhtml.XhtmlRenderer();
+    // existing code using renderingContext and renderer
+}

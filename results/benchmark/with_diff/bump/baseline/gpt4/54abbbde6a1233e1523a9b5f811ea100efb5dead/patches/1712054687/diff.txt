@@ -1,4 +1,0 @@
-4c4
-<         attempts = Tv.SEVEN,
----
->         attempts = 7,

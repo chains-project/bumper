@@ -1,0 +1,15 @@
+1d0
+< @Override
+4a4
+>       final StorageFactory storageFactory = new StoragesLoader().newObject(sub.string("type"), sub.toString());
+7,8c7,13
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>               storageFactory.newStorage(
+>                   new Config() {
+>                     @Override
+>                     public String get(final String key) {
+>                       return sub.string(key);
+>                     }
+>                   }

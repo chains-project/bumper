@@ -1,0 +1,8 @@
+import org.apache.commons.crypto.utils.PbesEncsignedAndDecoded;
+
+//...
+
+@Override
+public byte[] decode(byte[] data) throws CryptoFailedException {
+    return PbesEncsignedAndDecoded.decrypt(data, password.getBytes(StandardCharsets.UTF_8));
+}

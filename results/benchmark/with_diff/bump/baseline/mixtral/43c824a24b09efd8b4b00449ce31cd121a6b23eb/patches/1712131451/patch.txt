@@ -1,5 +1,0 @@
-import de.gwdg.metadataqa.api.branch.Branch;
-
-//...
-
-Branch jsonBranch = new JsonBranch();

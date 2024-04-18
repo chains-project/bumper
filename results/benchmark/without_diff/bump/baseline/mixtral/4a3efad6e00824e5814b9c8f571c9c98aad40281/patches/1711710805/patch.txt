@@ -1,5 +1,0 @@
-import eu.europa.esig.dss.pades.PadesSignature;
-
-//...
-
-CertificationPermission certificationPermission = new CertificationPermission.CertificationPermissionBuilder(new PadesSignature()).build();

@@ -1,9 +1,0 @@
-import org.jasypt.util.text.StrongPasswordEncoder;
-
-private PBEPasswordEncoder passwordEncoder;
-
-@Override
-@PostConstruct
-public void init() {
-    passwordEncoder = new PBEPasswordEncoder(new StrongPasswordEncoder().getSaltGenerator(), new SHA256MessageDigest());
-}

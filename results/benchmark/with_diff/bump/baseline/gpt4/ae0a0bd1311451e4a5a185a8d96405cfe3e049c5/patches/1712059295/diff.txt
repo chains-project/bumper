@@ -1,9 +1,0 @@
-8c8
-<             output,
----
->         output.toLowerCase(),
-10,11c10
-<                 false,
-<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
----
->             String.format("status: downloaded newer image for %s", this.image.remote().toLowerCase())

@@ -1,3 +1,0 @@
-1a2
-> import com.jcabi.log.Logger;
-\ No newline at end of file

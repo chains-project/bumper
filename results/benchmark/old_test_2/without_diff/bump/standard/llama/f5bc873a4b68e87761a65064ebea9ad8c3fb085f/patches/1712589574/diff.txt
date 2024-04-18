@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Create a new variable to hold the directory scanner instance
+> DirectoryScanner directoryScanner = new DirectoryScanner();
+> 
+> // Replace the failing line with a call to the constructor that takes a directory path
+> directoryScanner.setIncludedDirectories(new String[] {"src/main/java"});
+\ No newline at end of file

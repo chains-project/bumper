@@ -1,0 +1,10 @@
+1c1,5
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> -import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+> +import org.apache.maven.doxia.siterenderer.Renderer;
+> 
+> -RenderingContext renderingContext = new RenderingContext();
+> +Renderer renderer = new Renderer();
+\ No newline at end of file

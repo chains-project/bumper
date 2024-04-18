@@ -1,0 +1,7 @@
+2a3,4
+>     Set<ClassInfo> classInfoSet = new HashSet<>();
+>     classInfoSet.add(coverage.getClassInfo(data.getMutatedClass()));
+4c6
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoSet);

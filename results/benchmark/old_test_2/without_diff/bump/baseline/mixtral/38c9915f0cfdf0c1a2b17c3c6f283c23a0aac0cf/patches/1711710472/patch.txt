@@ -1,0 +1,8 @@
+import org.cactoos.scalar.Scalars;
+
+// ...
+
+@Override
+public Maybe<Wallet> wallet(String id) {
+  return Scalars.single(wallets().get(id));
+}

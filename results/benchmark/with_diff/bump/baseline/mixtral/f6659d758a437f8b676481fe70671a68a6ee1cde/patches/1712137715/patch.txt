@@ -1,5 +1,0 @@
-import org.yaml.snakeyaml.Yaml;
-
-// ...
-
-Yaml yaml = new Yaml(new CustomTagInspector());

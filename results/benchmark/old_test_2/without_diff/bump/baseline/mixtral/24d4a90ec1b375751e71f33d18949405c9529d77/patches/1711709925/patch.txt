@@ -1,0 +1,12 @@
+@Test
+@DisplayName("ensures Ocket works as expected")
+void testOcket() {
+  // Remove the problematic import statement
+  // import com.jcabi.aspects.Tv;
+
+  // Use a hard-coded value instead of the problematic Tv.class.getName()
+  String className = "com.jcabi.s3.internal. AmazonS3OkHttpClient";
+
+  // The rest of the method remains unchanged
+  ...
+}

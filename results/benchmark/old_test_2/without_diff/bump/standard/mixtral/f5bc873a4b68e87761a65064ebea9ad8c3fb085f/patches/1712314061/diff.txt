@@ -1,0 +1,16 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,14
+> import org.eclipse.tycho.core.tychoversion.TychoVersion;
+> 
+> // ...
+> 
+> protected MavenProject getMavenProject() {
+>     Model model = (Model) getProject().getOriginalModel();
+>     String groupId = model.getGroupId();
+>     String artifactId = model.getArtifactId();
+>     String version = TychoVersion.forCurrentProject().getMavenVersion();
+>     
+>     return new MavenProject(model, new File(getProject().getBasedir()), new DefaultArtifactHandler(), groupId, artifactId, version);
+> }
+\ No newline at end of file

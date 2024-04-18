@@ -1,2 +1,0 @@
-7a8
->                 .setWorkDir(globalConfig.getWorkDir())

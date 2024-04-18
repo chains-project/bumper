@@ -1,0 +1,8 @@
+1a2,6
+>     LanguageSupportRepository languageRepo = new LanguageSupportRepository();
+>     Set<Language> enabledLanguages = globalConfig.isInConnectedMode() ? 
+>         languageRepo.getEnabledLanguagesInConnectedMode() : 
+>         languageRepo.getEnabledLanguagesInStandaloneMode();
+>         
+3d7
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())

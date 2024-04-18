@@ -1,0 +1,17 @@
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+// RenderingContext is an interface, we can remove the import and use the interface directly
+import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+public class SCoverageReportMojo extends AbstractMojo {
+    private RenderingContext renderingContext;
+
+    public SCoverageReportMojo() {
+        this.renderingContext = new DefaultRenderingContext();
+    }
+
+    @Override
+    public void execute() throws MojoExecutionException {
+        // ...
+    }
+}

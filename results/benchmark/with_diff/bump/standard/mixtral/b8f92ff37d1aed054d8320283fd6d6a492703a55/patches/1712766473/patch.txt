@@ -1,9 +1,0 @@
-import org.apache.maven.plugin.surefire.booterclient.Commandline;
-import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProvider;
-
-static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
-    LazyTestProvider lazyTestProvider = new LazyTestProvider();
-    Commandline commandline = lazyTestProvider.createCommandLine(null, 0, null);
-    org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, commandline.getTests());
-    return directoryScanner.scan().getClasses();
-}

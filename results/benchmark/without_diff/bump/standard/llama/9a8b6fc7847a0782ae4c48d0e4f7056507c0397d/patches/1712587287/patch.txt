@@ -1,4 +1,0 @@
-import org.springframework.security.crypto.password.PBEPasswordEncoder;
-
-// Replace the failing line with the following code:
-import org.springframework.security.crypto.password.PBEPasswordEncoder;

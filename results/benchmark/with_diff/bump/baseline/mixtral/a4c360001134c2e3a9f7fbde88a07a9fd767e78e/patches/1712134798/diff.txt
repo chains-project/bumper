@@ -1,8 +1,0 @@
-4c4
-<             return new FilterBuilder().include(".+\\.class").apply(s);
----
->         return new FilterBuilder().include(e -> e.endsWith(".class")).test(s);
-9c9
-<             if (new FilterBuilder().include(regex).apply(s)) {
----
->         if (new FilterBuilder().include(e -> e.matches(regex)).test(s)) {

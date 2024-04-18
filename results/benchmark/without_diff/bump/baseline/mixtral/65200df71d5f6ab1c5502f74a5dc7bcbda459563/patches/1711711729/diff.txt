@@ -1,6 +1,0 @@
-1a2
->     FileWorkingDirProvider workDirProvider = new FileWorkingDirProvider();
-6c7
-<                 .setWorkDir(globalConfig.getWorkDir())
----
->             .setWorkDirProvider(workDirProvider)

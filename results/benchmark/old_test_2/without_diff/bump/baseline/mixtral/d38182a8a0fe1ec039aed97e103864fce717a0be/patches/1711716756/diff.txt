@@ -1,0 +1,21 @@
+0a1,10
+> class BearerAuthSchemeAdapter {
+>     private final com.artipie.docker.http.BearerAuthScheme delegate;
+> 
+>     BearerAuthSchemeAdapter(String token, Function<String, CompletableFuture<Optional<Authentication.User>>> authFunc) {
+>         this.delegate = new com.artipie.docker.http.BearerAuthScheme(token, authFunc);
+>     }
+> 
+>     // Add any other necessary methods from the BearerAuthScheme class here
+> }
+> 
+6c16,17
+<                 new BearerAuthScheme(
+---
+>         new BearerAuthSchemeAdapter(
+>             "",
+12,13c23
+<                     ),
+<                     ""
+---
+>             )

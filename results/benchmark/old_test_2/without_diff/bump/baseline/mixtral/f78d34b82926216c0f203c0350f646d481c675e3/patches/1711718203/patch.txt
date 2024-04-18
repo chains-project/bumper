@@ -1,0 +1,12 @@
+import java.util.Random;
+
+// ...
+
+private static final String randomAlphanumeric(int length) {
+    char[] randomChars = new char[length];
+    Random rand = new Random();
+    for (int i = 0; i < length; i++) {
+        randomChars[i] = (char) ('a' + rand.nextInt(26));
+    }
+    return new String(randomChars);
+}

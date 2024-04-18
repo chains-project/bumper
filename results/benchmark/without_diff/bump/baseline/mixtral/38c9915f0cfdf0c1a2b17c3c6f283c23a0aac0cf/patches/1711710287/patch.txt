@@ -1,8 +1,0 @@
-import org.cactoos.list.JoinedList;
-
-//...
-
-@Override
-public List<String> ids() throws IOException {
-  return new JoinedList<>("\n", urls()).asStrings();
-}

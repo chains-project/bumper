@@ -1,0 +1,8 @@
+9c9,13
+<                 textField.getLineBox().getPen().setLineWidth(border.getLineWidth());
+---
+>         Number lineWidth = border.getLineWidth();
+>         if (lineWidth instanceof Integer) {
+>             lineWidth = ((Number) lineWidth).floatValue();
+>         }
+>         textField.getLineBox().getPen().setLineWidth(lineWidth);

@@ -1,0 +1,32 @@
+1a2,31
+> 
+> public class YamlPolicyFactory {
+>     private final Storages storages;
+> 
+>     public YamlPolicyFactory(Storages storages) {
+>         this.storages = storages;
+>     }
+> 
+>     public Policy loadPolicy(String policyFile) {
+>         try {
+>             // Parse YAML policy file
+>             Yaml yaml = new Yaml();
+>             Map<String, Object> policyMap = yaml.loadAsMap(new File(policyFile));
+> 
+>             // Create policy instance
+>             Policy policy = new Policy();
+> 
+>             // Populate policy with YAML data
+>             policy.setName(policyMap.get("name").toString());
+>             policy.setDescription(policyMap.get("description").toString());
+> 
+>             // Add policy to storage
+>             storages.add(policy);
+> 
+>             return policy;
+>         } catch (IOException e) {
+>             throw new RuntimeException(e);
+>         }
+>     }
+> }
+\ No newline at end of file

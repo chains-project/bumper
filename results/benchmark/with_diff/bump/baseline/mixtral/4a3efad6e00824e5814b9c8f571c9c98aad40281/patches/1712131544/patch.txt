@@ -1,4 +1,0 @@
-@Override
-public void setCertificationPermission(CertificationPermission permission) {
-    // existing code here
-}

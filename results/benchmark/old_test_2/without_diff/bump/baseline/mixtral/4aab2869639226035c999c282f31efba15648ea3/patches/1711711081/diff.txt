@@ -1,0 +1,10 @@
+2c2
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+---
+> public Policy<?> getPolicy(PolicyConfig config) {
+3a4
+>     ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+8c9
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                     sub.string("type"), objectMapper.readValue(sub.toString(), Map.class)

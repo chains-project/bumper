@@ -1,0 +1,21 @@
+import com.artipie.asto.factory.StorageFactory;
+import com.artipie.asto.factory.Config;
+
+import java.util.Map;
+
+// ...
+
+StoragesLoader storagesLoader = new StoragesLoader(Map.of());
+Storage storage = storagesLoader.newObject("type", new Config() {
+    @Override
+    public String name() {
+        return "name";
+    }
+
+    @Override
+    public Map<String, String> asMap() {
+        return Map.of();
+    }
+});
+
+// ...

@@ -1,2 +1,0 @@
-7a8
->             .setDependencyVersion(DependencyVersion.fromMap(globalConfig.getDependencyVersions()))

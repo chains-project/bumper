@@ -1,1 +1,0 @@
-import static ai.onnxruntime.tools.trainedmodel.LearnMath.sigmoid;

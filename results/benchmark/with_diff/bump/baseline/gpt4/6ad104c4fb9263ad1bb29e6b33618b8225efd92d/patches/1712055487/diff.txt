@@ -1,6 +1,0 @@
-1c1
-< import org.bouncycastle.crypto.tls.TlsFatalAlert;
-\ No newline at end of file
----
-> // The import statement for TlsFatalAlert is removed as it no longer exists in the new library version
-\ No newline at end of file

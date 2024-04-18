@@ -1,8 +1,0 @@
-import eu.europa.esig.dss.model.x509.CertificateToken;
-
-//...
-
-@Override
-protected CertificateToken[] getCertificateChain() {
-    return certifier.getCertificateChain();
-}

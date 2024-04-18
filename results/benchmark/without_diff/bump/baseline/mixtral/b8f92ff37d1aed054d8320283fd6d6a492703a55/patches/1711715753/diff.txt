@@ -1,9 +1,0 @@
-3c3,8
-<         return directoryScanner.scan().getClasses();
----
->         Collection<String> classes = directoryScanner.scan().getClasses();
->         List<String> result = new ArrayList<>();
->         for (String clazz : classes) {
->             result.add(clazz.replaceAll("\\.", "/") + ".class");
->         }
->         return result;

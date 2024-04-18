@@ -1,4 +1,0 @@
-1a2,3
-> import com.jcabi.log.Logger;
-> import com.jcabi.log.Verbose;
-\ No newline at end of file

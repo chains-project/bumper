@@ -1,0 +1,5 @@
+import com.mojang.authlib.GameProfile;
+
+GameProfile createGameProfile(String name) {
+    return new GameProfile(UUID.nameUUIDFromBytes(name.getBytes()), name);
+}

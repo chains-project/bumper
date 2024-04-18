@@ -1,7 +1,0 @@
-import org.apache.maven.project.MavenProject;
-
-// Replace the failing import with an alternative import
-import org.apache.maven.project.MavenProjectBuilder;
-
-// Create a variable to hold the MavenProject instance
-MavenProject project = MavenProjectBuilder.build("myfaces-tobago", "tobago-tool", "tobago-theme-plugin").getProject();

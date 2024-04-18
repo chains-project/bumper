@@ -1,7 +1,0 @@
-1d0
-< @Override
-3c2,3
-<     return new Timestamp(super.between(from, to).getTime());
----
->     long millis = super.between(from, to).getTime();
->     return new Timestamp(millis);

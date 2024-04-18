@@ -1,7 +1,0 @@
-import com.mojang.authlib.GameProfile;
-
-// ...
-
-public static GameProfile createGameProfile(String name) {
-    return new GameProfile(UUID.nameUUIDFromString(name), name);
-}

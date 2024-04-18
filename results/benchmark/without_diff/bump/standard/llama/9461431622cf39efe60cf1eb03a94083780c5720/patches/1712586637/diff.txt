@@ -1,6 +1,0 @@
-15c15,17
-<             registry.set(server, reg);
----
->             // registry.set(server, reg); // Remove this line
->             // Replace with the following line
->             server.setRegistry(reg);

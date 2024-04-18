@@ -1,0 +1,10 @@
+1c1,5
+< import net.minecraft.server.v1_12_R1.GameProfile;
+\ No newline at end of file
+---
+> import com.mojang.authlib.GameProfile;
+> 
+> GameProfile createGameProfile(String name) {
+>     return new GameProfile(UUID.nameUUIDFromBytes(name.getBytes()), name);
+> }
+\ No newline at end of file

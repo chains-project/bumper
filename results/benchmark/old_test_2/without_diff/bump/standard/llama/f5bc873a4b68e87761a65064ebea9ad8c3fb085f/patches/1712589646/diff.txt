@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Create a new variable to hold the scanner
+> DirectoryScanner scanner = new DirectoryScanner();
+> 
+> // Modify the line that was causing the error
+> scanner.setIncludes("**/*.xhtml,**/*.js,**/*.css");
+\ No newline at end of file

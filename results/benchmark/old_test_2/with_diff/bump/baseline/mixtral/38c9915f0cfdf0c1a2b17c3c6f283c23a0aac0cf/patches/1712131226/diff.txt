@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Texts;
+> 
+> // ...
+> 
+> new JoinedText(Texts.wrap("some-text"))
+\ No newline at end of file

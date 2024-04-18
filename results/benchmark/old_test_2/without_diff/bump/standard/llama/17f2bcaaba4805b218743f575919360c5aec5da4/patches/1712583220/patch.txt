@@ -1,0 +1,14 @@
+import static org.junit.Assume.assumeTrue;
+
+// Add a variable to hold the result of assumeTrue
+boolean canRun = assumeTrue(true);
+
+// Replace the failing line with a call to a custom method
+// that wraps the assumeTrue method and handles the error
+void runTest() {
+    if (canRun) {
+        // Your test code here
+    } else {
+        // Handle the case where assumeTrue returned false
+    }
+}

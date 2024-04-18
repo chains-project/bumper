@@ -1,7 +1,0 @@
-import org.apache.maven.artifact.DependencyResolutionRequiredException;
-
-public class UnPackThemeMojo extends AbstractMojo {
-  public void execute() throws DependencyResolutionRequiredException {
-    // Your code here
-  }
-}

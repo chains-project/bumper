@@ -1,0 +1,7 @@
+15c15,18
+<             registry.set(server, reg);
+---
+>         // Fix for incompatible types: java.util.SortedMap<org.snmp4j.agent.MOScope, org.snmp4j.agent.ManagedObject<?>> cannot be converted to java.util.SortedMap<org.snmp4j.agent.MOScope, org.snmp4j.agent.ManagedObject>
+>         @SuppressWarnings("unchecked")
+>         SortedMap<MOScope, ManagedObject> castedRegistry = (SortedMap<MOScope, ManagedObject>) reg;
+>         registry.set(server, castedRegistry);

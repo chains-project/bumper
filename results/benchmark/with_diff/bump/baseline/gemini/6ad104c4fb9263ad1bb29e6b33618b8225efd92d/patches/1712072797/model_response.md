@@ -1,8 +1,0 @@
-```java
-import org.bouncycastle.crypto.tls.AlertDescription;
-import org.bouncycastle.crypto.tls.TlsFatalAlert;
-
-  public TlsFatalAlert ChachaDecoder(short alertDescription) {
-    return new TlsFatalAlert(alertDescription);
-  }
-```

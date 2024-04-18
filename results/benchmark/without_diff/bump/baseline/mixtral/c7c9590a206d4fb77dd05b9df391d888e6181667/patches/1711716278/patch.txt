@@ -1,7 +1,0 @@
-import org.apache.maven.doxia.siterenderer.RenderContext;
-
-// Change the type of the `renderingContext` parameter from
-// RenderingContext<XhtmlSiteRenderer> to RenderContext<T>
-public void someMethod(RenderContext<T> renderingContext) {
-  // Existing code that uses the renderingContext parameter
-}

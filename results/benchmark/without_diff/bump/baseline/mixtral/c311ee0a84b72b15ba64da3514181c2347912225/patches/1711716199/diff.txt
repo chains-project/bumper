@@ -1,8 +1,0 @@
-2,5c2,3
-<         return new StringContains(
-<             false,
-<             String.format("Status: Downloaded newer image for %s", image)
-<         );
----
->     String regex = String.format("Downloaded newer image for %s$", image);
->     return new StringMatches(Pattern.compile(regex));

@@ -1,0 +1,21 @@
+1c1,16
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextCollector;
+> import org.cactoos.text.Joined;
+> 
+> // ...
+> 
+> @Override
+> public TextWallets wallets(TextCursor cursor) throws IOException {
+>   return new Joined(
+>     "; ",
+>     new TextCollector(
+>       cursor.stream()
+>         .map(CursorIn::new)
+>         .toArray(CursorIn[]::new)
+>     )
+>   );
+> }
+\ No newline at end of file

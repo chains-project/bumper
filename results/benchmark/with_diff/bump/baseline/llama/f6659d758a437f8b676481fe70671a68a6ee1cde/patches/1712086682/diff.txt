@@ -1,8 +1,0 @@
-1a2,7
-> 
-> public class AbstractTest {
->     // ...
->     private static final TrustedTagInspector trustedTagInspector = new TrustedTagInspector();
->     // ...
-> }
-\ No newline at end of file

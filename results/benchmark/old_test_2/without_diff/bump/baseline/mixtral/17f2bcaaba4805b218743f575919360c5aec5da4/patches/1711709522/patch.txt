@@ -1,0 +1,10 @@
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.PrecisionModel;
+
+import static org.locationtech.jts.algorithm.RobustLineIntersector.isTurningPoint;
+
+//...
+
+GeometryFactory gf = new GeometryFactory(new PrecisionModel(), 4326);
+SegmentString ss = new SegmentString(new Coordinate[]{new Coordinate(0, 0), new Coordinate(10, 0)});
+boolean isTurningPoint = isTurningPoint(ss.getStartPoint(), ss.getEndPoint(), ss.getEndPoint());

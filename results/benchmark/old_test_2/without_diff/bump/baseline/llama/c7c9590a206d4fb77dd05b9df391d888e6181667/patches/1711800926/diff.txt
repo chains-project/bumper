@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Create a variable for the rendering context
+> RenderingContext renderingContext = new RenderingContext();
+> 
+> // Modify the import statement to use the updated package name
+> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+> 
+> // Replace the failing line with the updated import statement
+> renderingContext.setXhtmlModule(new XhtmlModule());
+\ No newline at end of file

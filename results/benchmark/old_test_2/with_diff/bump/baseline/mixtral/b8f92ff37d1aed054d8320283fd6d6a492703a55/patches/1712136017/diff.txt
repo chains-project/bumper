@@ -1,0 +1,7 @@
+0a1,2
+> import org.apache.maven.surefire.api.testset.TestRequest;
+> 
+2c4
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestRequest.getWildcard());

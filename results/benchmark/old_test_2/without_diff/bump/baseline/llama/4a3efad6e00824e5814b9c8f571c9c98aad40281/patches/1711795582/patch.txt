@@ -1,0 +1,15 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    // Create a variable for the certification permission
+    private CertificationPermission certificationPermission;
+
+    public Signer(CertificationPermission certificationPermission) {
+        this.certificationPermission = certificationPermission;
+    }
+
+    public void sign() {
+        // Use the certification permission to sign the document
+        certificationPermission.sign();
+    }
+}

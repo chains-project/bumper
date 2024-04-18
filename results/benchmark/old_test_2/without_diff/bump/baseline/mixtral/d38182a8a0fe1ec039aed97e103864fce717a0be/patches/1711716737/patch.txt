@@ -1,0 +1,15 @@
+  @Override
+  public Slice slice(final String action) {
+    Set<Authentication.User> users = Set.of(TestAuthentication.ALICE, TestAuthentication.BOB);
+    BiFunction<String, String, CompletableFuture<Optional<Authentication.User>>> tokenValidator = (token, tokenFromUser) ->
+      CompletableFuture.completedFuture(
+        users.stream()
+            .filter(user -> tokenFromUser.equals(token(user)))
+            .findFirst()
+      );
+    return new DockerSlice(
+        new AstoDocker(new InMemoryStorage()),
+        new Permissions.Single(TestAuthentication.ALICE.name(), action),
+        new BearerAuthScheme(tokenValidator, "")
+    );
+  }

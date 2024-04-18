@@ -1,0 +1,20 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+11,12c5
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>         if (!isBlank(step.credentialsId) && !isBlank(step.username)) {
+15c8,9
+<                 if (isNotBlank(step.password)) {
+---
+> 
+>         if (!isBlank(step.credentialsId) && !isBlank(step.password)) {
+19d12
+<         }
+\ No newline at end of file

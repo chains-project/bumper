@@ -1,9 +1,0 @@
-5a6
->         StringContains stringContains = new StringContains(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()));
-9,12c10
-<             new StringContains(
-<                 false,
-<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
-<             )
----
->                 stringContains

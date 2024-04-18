@@ -1,3 +1,0 @@
-1a2
-> import org.apache.thrift.transport.TTransportFactory;
-\ No newline at end of file

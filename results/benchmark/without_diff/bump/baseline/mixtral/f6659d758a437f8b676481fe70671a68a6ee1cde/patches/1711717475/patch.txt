@@ -1,4 +1,0 @@
-import org.yaml.snakeyaml.Yaml;
-
-TrustedTagInspector trustInspector = new TrustedTagInspector();
-Yaml yaml = new Yaml(trustInspector);

@@ -1,0 +1,5 @@
+12c12,13
+<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+---
+>             List<DistributionRule> distributionRules = Utils.createDistributionRules(countryCodes, siteName, cityName);
+>             request.setDistributionRules(distributionRules);

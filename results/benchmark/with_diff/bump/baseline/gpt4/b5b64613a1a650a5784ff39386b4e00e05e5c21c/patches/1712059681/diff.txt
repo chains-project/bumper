@@ -1,4 +1,0 @@
-5c5
-<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
----
->             if (!CollectionUtils.isEmpty(countryCodes) || StringUtils.isNotBlank(siteName) || StringUtils.isNotBlank(cityName)) {

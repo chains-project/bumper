@@ -1,8 +1,0 @@
-import org.bouncycastle.crypto.tls.TlsUtils;
-
-// ...
-
-@Override
-public void fail(String message) {
-    super.fail(TlsUtils.alertDescription(TlsFatalAlert.INTERNAL_ERROR, message));
-}

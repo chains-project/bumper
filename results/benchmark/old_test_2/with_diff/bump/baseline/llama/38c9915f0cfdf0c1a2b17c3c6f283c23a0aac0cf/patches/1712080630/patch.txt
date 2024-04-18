@@ -1,0 +1,13 @@
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    private final IoCheckedScalar<String> walletIds;
+
+    public WalletsIn(IoCheckedScalar<String> walletIds) {
+        this.walletIds = walletIds;
+    }
+
+    public void sendRequest() {
+        // Your code here
+    }
+}

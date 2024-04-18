@@ -1,5 +1,0 @@
-1,2c1
-< @Override
-<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
----
->   public Timestamp between(java.sql.Date from, java.sql.Date to) throws IllegalArgumentException {

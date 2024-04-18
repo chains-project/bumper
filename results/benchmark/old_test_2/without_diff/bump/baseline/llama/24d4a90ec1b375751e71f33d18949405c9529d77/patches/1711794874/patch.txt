@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv TV = new Tv();
+
+    @org.junit.Test
+    public void test() {
+        // Your test code here
+    }
+}

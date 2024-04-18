@@ -1,7 +1,0 @@
-import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
-
-public class SCoverageReportMojo {
-    private void generateReport(File outputDirectory, RenderingContext renderingContext) {
-        // ...
-    }
-}

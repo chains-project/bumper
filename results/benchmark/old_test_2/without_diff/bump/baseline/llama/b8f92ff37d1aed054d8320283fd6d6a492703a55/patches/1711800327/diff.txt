@@ -1,0 +1,8 @@
+3c3,7
+<         return directoryScanner.scan().getClasses();
+---
+>     List<String> classes = directoryScanner.scan().stream()
+>             .filter(file -> file.endsWith(".class"))
+>             .map(file -> file.substring(0, file.length() - 6))
+>             .collect(Collectors.toList());
+>     return classes;

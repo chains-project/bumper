@@ -1,7 +1,0 @@
-1c1,2
-< import com.jcabi.aspects.Tv;
-\ No newline at end of file
----
-> // Tv class was removed from the library, so we can't import it anymore.
-> // If Tv was used for time conversion, you may need to implement this functionality yourself or find another library that provides it.
-\ No newline at end of file

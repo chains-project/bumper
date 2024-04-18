@@ -1,0 +1,5 @@
+19a20,23
+>                 } else if (buttonType.equalsIgnoreCase("Close")) {
+>                         pageButton = XMaterial.BARRIER.parseItem();
+>                         pageMeta.setDisplayName(ChatColor.RED
+>                                         + CommonDefinitions.getMessage("wwcConfigGUICloseButton"));

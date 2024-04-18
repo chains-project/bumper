@@ -1,7 +1,0 @@
-import org.codehaus.plexus.util.DirectoryScanner;
-
-// Create a new variable to hold the scanner
-DirectoryScanner scanner = new DirectoryScanner();
-
-// Modify the line that was causing the error
-scanner.setIncludes("**/*.xhtml,**/*.js,**/*.css");

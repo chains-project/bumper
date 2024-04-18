@@ -1,0 +1,12 @@
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.ProjectBuilder;
+import org.apache.maven.project.ProjectConfigurator;
+import org.apache.maven.project.ProjectBuildingException;
+
+// ...
+
+private MavenProject getMavenProject() throws ProjectBuildingException {
+    ProjectBuilder projectBuilder = new ProjectBuilder();
+    ProjectConfigurator projectConfigurator = new ProjectConfigurator();
+    return projectBuilder.build(getModel(), projectConfigurator).getProject();
+}

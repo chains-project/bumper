@@ -1,0 +1,15 @@
+1,2c1
+< private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)
+<         {
+---
+> private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {
+4,5c3
+<                 if(border == null)
+<                 {
+---
+>         if (border == null) {
+8,9c6
+<                 
+<                 textField.getLineBox().getPen().setLineWidth(border.getLineWidth());
+---
+>         textField.getLineBox().getPen().setLineWidth((float)border.getLineWidth());

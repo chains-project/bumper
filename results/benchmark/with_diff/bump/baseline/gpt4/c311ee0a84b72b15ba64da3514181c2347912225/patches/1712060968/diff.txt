@@ -1,6 +1,0 @@
-22,23c22,23
-<                     new StringContains(true, "Invalid tag"),
-<                     new StringContains(false, original)
----
->                 new StringContains("Invalid tag"),
->                 new StringContains(original)

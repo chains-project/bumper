@@ -1,0 +1,12 @@
+import org.bouncycastle.tls.crypto.TlsCrypto;
+
+// ...
+
+private TlsCrypto crypto;
+
+// ...
+
+@Override
+public void init(TlsCrypto crypto) {
+    this.crypto = crypto;
+}

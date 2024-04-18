@@ -1,0 +1,25 @@
+import org.bouncycastle.tls.crypto.TlsCrypto;
+import org.bouncycastle.tls.crypto.TlsSecret;
+import org.bouncycastle.util.Arrays;
+
+import java.security.SecureRandom;
+
+public class ChachaDecoder {
+    // existing code
+
+    @Override
+    public byte[] decode(byte[] input) {
+        TlsCrypto tlsCrypto = new TlsCrypto() {
+            @Override
+            public TlsSecret generateSecret(int keySize, SecureRandom random) {
+                // use a constant seed for testing
+                byte[] seed = "test-seed".getBytes();
+                return new TlsSecret(Arrays.copyOf(seed, keySize));
+            }
+        };
+
+        // existing code that uses tlsCrypto
+    }
+
+    // existing code
+}

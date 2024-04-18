@@ -1,0 +1,10 @@
+2a3,7
+>     Set<ClassName> classes = Collections.singleton(data.getMutatedClass());
+>     ClassInfoBuilder infoBuilder = coverage.getClassInfoVisitor().getClassInfo(classes.iterator().next(), null, 0);
+>     for (ClassName c : classes) {
+>       infoBuilder.visit(c, coverage.getCoverageData(c).getCoverage());
+>     }
+4c9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), infoBuilder.build());

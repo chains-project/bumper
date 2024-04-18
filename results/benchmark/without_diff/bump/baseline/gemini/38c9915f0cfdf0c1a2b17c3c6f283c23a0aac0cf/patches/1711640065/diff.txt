@@ -1,3 +1,0 @@
-1a2
->   import org.cactoos.text.TextOf;
-\ No newline at end of file

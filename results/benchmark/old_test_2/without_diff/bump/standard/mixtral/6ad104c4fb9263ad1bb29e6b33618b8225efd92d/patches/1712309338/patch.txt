@@ -1,0 +1,19 @@
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.security.GeneralSecurityException;
+
+public class ChachaDecoder {
+    // ... other class code ...
+
+    public void decode(ByteBuffer src, ByteBuffer dst) throws IOException {
+        // ... other code ...
+
+        // Remove the problematic line that uses the missing package
+        // AlertDescription alertDescription = AlertDescription.unexpected_message;
+
+        // Use a constant value instead of the missing AlertDescription
+        int alertDescriptionValue = 10; // unexpected_message has the value 10
+
+        // ... other code ...
+    }
+}

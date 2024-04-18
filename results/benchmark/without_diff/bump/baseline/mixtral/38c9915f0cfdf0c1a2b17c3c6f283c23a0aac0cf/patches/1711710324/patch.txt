@@ -1,8 +1,0 @@
-import org.cactoos.text.Joined;
-
-// ...
-
-@Override
-public Text asText() throws IOException {
-  return new Joined(Files.filesIn(new File(path)), "\n");
-}

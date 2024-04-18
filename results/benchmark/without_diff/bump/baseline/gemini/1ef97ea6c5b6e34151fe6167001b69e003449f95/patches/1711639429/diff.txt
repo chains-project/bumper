@@ -1,6 +1,0 @@
-2,3c2,3
-<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
-<     return new Timestamp(super.between(from, to).getTime());
----
->   public Timestamp between(Date from, Date to) {
->     return new Timestamp(between(from, to).getTime());

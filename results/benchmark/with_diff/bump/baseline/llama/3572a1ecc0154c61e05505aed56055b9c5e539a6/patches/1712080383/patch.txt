@@ -1,8 +1,0 @@
-import org.apache.thrift.transport.TIOStreamTransport;
-import org.apache.thrift.transport.TTransport;
-
-public class AppenderUtils {
-    public static TTransport getTransport(TTransport transport) {
-        return new TIOStreamTransport(transport);
-    }
-}

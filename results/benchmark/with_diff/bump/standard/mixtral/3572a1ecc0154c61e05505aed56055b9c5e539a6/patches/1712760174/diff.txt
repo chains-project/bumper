@@ -1,8 +1,0 @@
-3a4
->     TConfiguration tConfig = new TConfiguration();
-7,8c8,9
-<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
-<           bufferCapacity);
----
->     TFramedTransportFactory factory = new TFramedTransportFactory(bufferCapacity);
->     framedTransport = factory.getTransport(new TIOStreamTransport(tConfig, os));

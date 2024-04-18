@@ -1,8 +1,0 @@
-8d7
-<         //@checkstyle LineLengthCheck (1 line)
-22,23c21,22
-<                     new StringContains(true, "Invalid tag"),
-<                     new StringContains(false, original)
----
->                 new StringContains("Invalid tag"),
->                 new StringContains(original)

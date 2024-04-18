@@ -1,9 +1,0 @@
-import org.apache.thrift.transport.TSocket;
-import org.apache.thrift.transport.TTransport;
-
-@Override
-public TTransport createTransport() throws TTransportException {
-  TTransport transport = new TSocket(host, port);
-  transport.setFramed(true);
-  return transport;
-}

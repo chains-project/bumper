@@ -1,0 +1,7 @@
+1a2
+>     StringContains stringContains = StringContains.containsString(image);
+4c5,6
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>             String.format("Status: Downloaded newer image for %s", image),
+>             stringContains

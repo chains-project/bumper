@@ -1,0 +1,120 @@
+1,2c1,52
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import org.apache.commons.io.output.Tee;
+> import org.apache.commons.lang3.time.Duration;
+> import org.slf4j.Logger;
+> import org.slf4j.LoggerFactory;
+> import com.google.common.base.CharMatcher;
+> import com.google.common.base.Function;
+> import com.google.common.base.Joiner;
+> import com.google.common.base.Throwables;
+> import com.google.common.io.Files;
+> import com.jcabi.ssh.JschLogger;
+> import com.jcabi.ssh.JschSession;
+> import com.jcabi.ssh.Key;
+> import com.jcabi.ssh.Key.Rsa;
+> import com.jcabi.ssh.Session;
+> import java.io.File;
+> import java.io.FileInputStream;
+> import java.io.FileNotFoundException;
+> import java.io.FileOutputStream;
+> import java.io.IOException;
+> import java.io.UncheckedIOException;
+> import java.nio.charset.StandardCharsets;
+> import java.nio.file.Files;
+> import java.nio.file.Path;
+> import java.nio.file.StandardOpenOption;
+> import java.security.GeneralSecurityException;
+> import java.util.concurrent.TimeUnit;
+> import javax.annotation.CheckForNull;
+> import javax.annotation.Nonnull;
+> import javax.annotation.ParametersAreNonnullByDefault;
+> import ma.jcabi.log.Der;
+> import net.schmizz.sshj.sftp.KeyExchange;
+> import net.schmizz.sshj.sftp.KeyExchange.Algorithm;
+> import net.schmizz.sshj.sftp.KeyExchange.Factory;
+> import net.schmizz.sshj.sshj.SSHClient;
+> import net.schmizz.sshj.sshj.transport.KeyPairProvider;
+> import net.schmizz.sshj.transport.TransportException;
+> import net.schmizz.sshj.transport.keyfile.KeyFiles;
+> import net.schmizz.sshj.userauth.UserAuth;
+> import net.schmizz.sshj.userauth.method.AuthPassword;
+> import net.schmizz.sshj.userauth.method.AuthPublickey;
+> import net.schmizz.sshj.userauth.method.UserAuthPublicKey;
+> import net.schmizz.sshj.xfer.FileSystemFile;
+> import static com.google.common.base.Preconditions.checkNotNull;
+> import static java.util.concurrent.TimeUnit.SECONDS;
+> import static net.schmizz.sshj.transport.Transport.DisconnectReason.HOST_KEY_NOT_VERIFIABLE;
+> import static net.schmizz.sshj.transport.Transport.DisconnectReason.PROTOCOL_ERROR;
+> 
+> @ParametersAreNonnullByDefault
+> public class Ssh {
+> 
+>     ...
+> 
+13,26c63,69
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+<             jsch.setHostKeyRepository(new EasyRepo());
+<             if (this.passphrase == null) {
+---
+>             JschLogger jschLogger = new JschLogger();
+>             JSch jsch = new JSch();
+>             jsch.setLogger(jschLogger);
+>             Rsa rsa = Rsa.generate(2048);
+>             final String publicKey = rsa.publicKey();
+>             final String privateKey = rsa.privateKey();
+>             Files.write(file.toPath(), privateKey.getBytes(StandardCharsets.UTF_8));
+28,34c71,84
+<             } else {
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+---
+>             jsch.setHostKeyRepository(new EasyRepo());
+>             Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+>             session.setConfig("StrictHostKeyChecking", "no");
+>             session.connect();
+>             UserAuth auth = session.getUserInfo().getAuthenticator();
+>             if (auth instanceof UserAuthPublicKey) {
+>                 UserAuthPublicKey authPublicKey = (UserAuthPublicKey) auth;
+>                 authPublicKey.addIdentity(publicKey, privateKey);
+>             } else if (auth instanceof AuthPublickey) {
+>                 AuthPublickey authPublickey = (AuthPublickey) auth;
+>                 authPublickey.addIdentity(publicKey, privateKey);
+>             } else if (auth instanceof AuthPassword) {
+>                 AuthPassword authPassword = (AuthPassword) auth;
+>                 authPassword.authenticate(this.getLogin(), this.getPassword());
+36,43c86,87
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );
+<             return this.session(jsch);
+<         } catch (final JSchException ex) {
+---
+>             return new JschSession(session);
+>         } catch (GeneralSecurityException | TransportException ex) {
+48a93,96
+> 
+>     ...
+> 
+> }
+\ No newline at end of file

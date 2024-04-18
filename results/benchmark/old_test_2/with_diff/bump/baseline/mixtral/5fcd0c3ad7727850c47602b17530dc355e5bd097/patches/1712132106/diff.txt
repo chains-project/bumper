@@ -1,0 +1,13 @@
+1,2c1,4
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+---
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+>     ClassInfoVisitor visitor = new ClassInfoVisitor();
+>     coverage.getRawCoverageData().visit(visitor);
+>     Map<ClassName, Resource coverageData> coverageMap = visitor.getResult();
+4c6,7
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(),
+>         coverageMap.get(data.getMutatedClass()).getFirstClassFileInfo());

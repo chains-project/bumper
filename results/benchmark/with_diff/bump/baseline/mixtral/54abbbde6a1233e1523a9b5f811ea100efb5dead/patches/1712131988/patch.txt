@@ -1,8 +1,0 @@
-import com.jcabi.ssh.Ssh;
-
-// ...
-
-@Tv({1, 2, 3})
-public Ssh ssh() {
-  return new SshByPassword(...);
-}

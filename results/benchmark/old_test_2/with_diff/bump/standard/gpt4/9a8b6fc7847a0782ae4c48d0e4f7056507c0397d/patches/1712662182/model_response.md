@@ -1,0 +1,1 @@
+Since the `org.jasypt.spring.security.PasswordEncoder` has been removed from the library, it's not possible to import and use it in the client code. Therefore, it's impossible to provide a patch without knowing the alternative methods or classes provided by the library to replace the removed `PasswordEncoder`.

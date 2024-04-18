@@ -1,0 +1,14 @@
+import com.jcabi.aspects.Tv;
+
+public class SshByPassword {
+    private static final Tv Tv = new Tv();
+
+    public static void main(String[] args) throws Exception {
+        Tv.addEventListener(new com.jcabi.aspects.Tv.Listener() {
+            @Override
+            public void onUpdate(Tv.Event event) {
+                // TO DO: handle event
+            }
+        });
+    }
+}

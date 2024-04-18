@@ -1,0 +1,13 @@
+import com.jcabi.aspects.Tv;
+
+public class SshByPassword {
+    private Tv tv;
+
+    public SshByPassword(Tv tv) {
+        this.tv = tv;
+    }
+
+    public void connect() throws Exception {
+        // ...
+    }
+}

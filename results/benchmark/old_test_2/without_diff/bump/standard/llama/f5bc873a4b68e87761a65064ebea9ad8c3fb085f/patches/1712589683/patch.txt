@@ -1,0 +1,10 @@
+import org.codehaus.plexus.util.DirectoryScanner;
+
+// Create a variable to hold the DirectoryScanner instance
+DirectoryScanner directoryScanner = new DirectoryScanner();
+
+// Modify the import statement to use the variable
+import org.codehaus.plexus.util.DirectoryScanner;
+
+// Replace the failing line with the variable
+directoryScanner.setIncludes("**/*.xhtml");

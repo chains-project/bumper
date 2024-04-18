@@ -1,9 +1,0 @@
-1,4c1,3
-< private MutationTestSummaryData createSummaryData(
-<       final CoverageDatabase coverage, final ClassMutationResults data) {
-<     return new MutationTestSummaryData(data.getFileName(),
-<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
----
-> private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
->     byte[] bytes = {}; // you may need to replace this with the actual bytecode of the class
->     return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), org.pitest.classinfo.ClassInfoVisitor.getClassInfo(data.getMutatedClass().asString(), bytes, data.getMutatedClass().getBytes().length));

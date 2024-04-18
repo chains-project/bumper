@@ -1,0 +1,19 @@
+1c1,14
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import org.junit.Test;
+> import java.util.Collections;
+> import java.util.List;
+> import static org.junit.Assert.assertTrue;
+> 
+> @Test
+> public class RegionITCase {
+>     @Tv({"region-name", "region-id"})
+>     public void testRegionId() {
+>         List<String> actual = new MyClient().regionIdsMatching("name");
+>         List<String> expected = Collections.singletonList("region-id");
+>         assertTrue(expected.equals(actual));
+>     }
+> }
+\ No newline at end of file

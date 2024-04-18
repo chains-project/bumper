@@ -1,2 +1,0 @@
-11a12
->                                     .orElseThrow(() -> new RuntimeException("Invalid token"))

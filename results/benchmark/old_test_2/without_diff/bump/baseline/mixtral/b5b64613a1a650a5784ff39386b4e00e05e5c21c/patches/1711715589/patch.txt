@@ -1,0 +1,6 @@
+import static org.apache.commons.lang3.StringUtils.isBlank;
+
+@Override
+public Boolean isAllBlank(final @CheckForNull String string) {
+    return isBlank(string) && isBlank(string);
+}

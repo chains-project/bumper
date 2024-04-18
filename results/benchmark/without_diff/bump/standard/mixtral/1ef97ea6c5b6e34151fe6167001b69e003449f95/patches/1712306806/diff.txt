@@ -1,4 +1,0 @@
-3c3
-<     return new Timestamp(super.between(from, to).getTime());
----
->     return new Timestamp(Math.max(from.getTime(), to.getTime()) - Math.min(from.getTime(), to.getTime()));

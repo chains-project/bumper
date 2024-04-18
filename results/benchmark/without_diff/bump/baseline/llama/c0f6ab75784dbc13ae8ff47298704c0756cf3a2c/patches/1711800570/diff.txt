@@ -1,2 +1,0 @@
-7a8
->             .setDependencyAnalyzer(new DependencyAnalyzer(globalConfig.getDependencyAnalyzer()))

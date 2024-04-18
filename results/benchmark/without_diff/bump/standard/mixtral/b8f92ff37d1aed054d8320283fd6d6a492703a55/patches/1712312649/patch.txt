@@ -1,4 +1,0 @@
-static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
-    org.apache.maven.shared.utils.io.DirectoryScanner directoryScanner = new org.apache.maven.shared.utils.io.DirectoryScanner(testSrcFolder, new org.apache.maven.shared.utils.StringUtils().wildcardMatch("**/*.class"));
-    return directoryScanner.scan();
-}

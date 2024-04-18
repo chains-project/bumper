@@ -1,7 +1,0 @@
-7,8c7,9
-<                     new Storages().newStorage(
-<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
----
->                     new StoragesLoader().newObject(
->                         sub.string("type"),
->                         Yaml.createYamlInput(sub.toString()).readYamlMapping()

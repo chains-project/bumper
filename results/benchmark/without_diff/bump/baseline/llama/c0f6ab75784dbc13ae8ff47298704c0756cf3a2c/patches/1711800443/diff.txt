@@ -1,8 +1,0 @@
-7a8,14
->             .setDependencyProvider(new DefaultDependencyProvider(
->                     Arrays.asList(new Module[]{
->                             new Module("org.sonar.squid.SonarPlugin"),
->                             new Module("org.sonar.squid.SonarPlugin"),
->                             new Module("org.sonar.squid.SonarPlugin")
->                     })
->             )

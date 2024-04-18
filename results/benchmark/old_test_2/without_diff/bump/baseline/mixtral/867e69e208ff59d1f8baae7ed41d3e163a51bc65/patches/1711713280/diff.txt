@@ -1,0 +1,18 @@
+1c1,13
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TSocket;
+> 
+> import java.io.IOException;
+> import java.util.concurrent.ExecutionException;
+> 
+> public class ThriftReader {
+>     public void readThriftData() throws IOException, ExecutionException, InterruptedException {
+>         TSocket transport = new TSocket("localhost", 9090);
+>         transport.open();
+>         // existing thrift code here
+>         transport.close();
+>     }
+> }
+\ No newline at end of file

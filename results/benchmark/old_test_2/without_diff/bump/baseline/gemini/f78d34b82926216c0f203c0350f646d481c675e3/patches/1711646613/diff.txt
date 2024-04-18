@@ -1,0 +1,23 @@
+0a1,13
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
+> import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
+> 
+> import net.minecraft.world.entity.player.EntityPlayer;
+> import net.minecraft.world.server.WorldServer;
+> import net.minecraft.world.level.World;
+> 
+> import java.util.Random;
+> import java.util.UUID;
+> 
+> public class PlayerUtils {
+> 
+19,20c32,33
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+44a58
+> }
+\ No newline at end of file

@@ -1,1 +1,0 @@
-import static ai.djl.ndarray.functions.MathFunctions.sigmoid;

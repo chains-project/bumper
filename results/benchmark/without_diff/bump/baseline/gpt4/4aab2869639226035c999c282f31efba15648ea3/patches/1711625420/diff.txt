@@ -1,4 +1,0 @@
-8c8
-<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
----
->                     sub.string("type"), Yaml.createYamlInput(sub.rawData()).readYamlMapping()

@@ -1,0 +1,25 @@
+1c1,20
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.ScalarEnvelope;
+> import static org.cactoos.input.FileInput.from;
+> 
+> // ...
+> 
+> @Override
+> public Money total() throws IOException {
+>   return new ScalarEnvelope<Long, Money>(
+>     Long::valueOf,
+>     new Sum<>(
+>       new Filtered<>(
+>         input -> input.has("amount"),
+>         new Mapped<>(
+>           json -> parseJson(from(json.value())),
+>           new Lazy<Iterable<JsonInput>>(() -> readFiles("input"))
+>         )
+>       )
+>     )
+>   ).value();
+> }
+\ No newline at end of file

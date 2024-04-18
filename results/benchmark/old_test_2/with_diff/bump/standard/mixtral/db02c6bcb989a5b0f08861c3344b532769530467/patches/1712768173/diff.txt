@@ -1,0 +1,108 @@
+0a1,19
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.notNullValue;
+> import java.nio.ByteBuffer;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import org.hamcrest.Matcher;
+> import org.junit.jupiter.api.Test;
+> import com.artipie.asto.Content;
+> import com.artipie.asto.Key;
+> import com.artipie.asto.Storage;
+> import com.artipie.asto.memory.InMemoryStorage;
+> import com.artipie.docker.Digest;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.CheckedBlobSource;
+> import com.artipie.docker.error.InvalidDigestException;
+> import com.artipie.docker.RepoName;
+> import com.artipie.docker.RepoName.Simple;
+> 
+3c22
+<         final InMemoryStorage storage = new InMemoryStorage();
+---
+>     final Storage storage = new InMemoryStorage();
+5c24,26
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+---
+>         storage,
+>         new DefaultLayout(),
+>         new Simple("any")
+7a29,33
+>     final Matcher<InvalidDigestException> isInvalidDigestException =
+>         new InstanceOf(InvalidDigestException.class);
+>     final Matcher<String> stringContains =
+>         new StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7");
+>     final Matcher<String> stringContainsDigest = new StringContains(digest);
+9,10c35,40
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+---
+>         new CheckedBlobSource(
+>             Content.From(ByteBuffer.wrap("data".getBytes(StandardCharsets.UTF_8))),
+>             new Digest.Sha256(digest)
+>         )
+>     ).toCompletableFuture()
+>         .handle(
+12,22c42,44
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat("Exception thrown", throwable, notNullValue());
+>                 assertThat("Exception is InvalidDigestException", throwable, isInvalidDigestException);
+>                 assertThat(
+24,28c46,47
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>                     getMessage(throwable),
+>                     stringContains
+30c49
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+32,33c51,52
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                     getMessage(throwable),
+>                     stringContainsDigest
+37c56,79
+<         ).join();
+---
+>         )
+>         .join();
+> }
+> 
+> private String getMessage(Throwable throwable) {
+>     return throwable.getMessage();
+> }
+> 
+> private static class InstanceOf<T> implements Matcher<T> {
+>     private final Class<T> clazz;
+> 
+>     private InstanceOf(Class<T> clazz) {
+>         this.clazz = clazz;
+>     }
+> 
+>     @Override
+>     public boolean matches(Object item) {
+>         return clazz.isInstance(item);
+>     }
+> 
+>     @Override
+>     public void describeTo(org.hamcrest.Description description) {
+>         description.appendText(clazz.getName());
+>     }

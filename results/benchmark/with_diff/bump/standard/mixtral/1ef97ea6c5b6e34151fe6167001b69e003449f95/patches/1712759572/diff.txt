@@ -1,9 +1,0 @@
-4a5,11
-> 
-> // If the above code still doesn't work due to type incompatibility, try the following:
-> 
-> @Override
-> public Timestamp between(Date from, Date to) throws IllegalArgumentException {
->     return new Timestamp(super.between(from, to).toInstant().toEpochMilli());
-> }
-\ No newline at end of file

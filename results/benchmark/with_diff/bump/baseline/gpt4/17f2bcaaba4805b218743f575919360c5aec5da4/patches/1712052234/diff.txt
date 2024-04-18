@@ -1,8 +1,0 @@
-1a2,7
->   public class PGS_MeshingTests {
->     @Test
->     public void testMethod() {
->       // Test logic here
->     }
->   }
-\ No newline at end of file

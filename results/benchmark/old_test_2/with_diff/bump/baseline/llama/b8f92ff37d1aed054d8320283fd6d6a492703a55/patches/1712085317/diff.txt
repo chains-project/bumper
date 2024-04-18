@@ -1,0 +1,21 @@
+3c3,20
+<         return directoryScanner.scan().getClasses();
+---
+>     List<String> classes = directoryScanner.scan();
+>     classes.addAll(getClassesFromManifest(testSrcFolder));
+>     return classes;
+> }
+> 
+> private static List<String> getClassesFromManifest(File testSrcFolder) {
+>     List<String> classes = new ArrayList<>();
+>     try {
+>         JarFile jarFile = new JarFile(testSrcFolder);
+>         Manifest manifest = jarFile.getManifest();
+>         String wildcard = TestListResolver.getWildcard();
+>         for (String className : manifest.getClasses(wildcard)) {
+>             classes.add(className);
+>         }
+>     } catch (IOException e) {
+>         e.printStackTrace();
+>     }
+>     return classes;

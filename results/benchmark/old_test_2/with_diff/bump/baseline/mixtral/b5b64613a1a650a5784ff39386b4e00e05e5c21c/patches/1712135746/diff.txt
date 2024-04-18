@@ -1,0 +1,18 @@
+3c3
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+6c6
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+---
+>     String urlWithoutSlash = urlWithoutSlash(step.url);
+12c12
+<             if (!isEmpty(step.credentialsId)) {
+---
+>     if (!StringUtils.isEmpty(step.credentialsId)) {
+21a22,25
+> 
+> private String urlWithoutSlash(String url) {
+>     return url != null ? url.endsWith("/") ? url.substring(0, url.length() - 1) : url : url;
+> }
+\ No newline at end of file

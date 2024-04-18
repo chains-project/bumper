@@ -1,5 +1,0 @@
-import org.springframework.security.crypto.password.PBEPasswordEncoder;
-
-// ...
-
-PasswordEncoder passwordEncoder = new PBEPasswordEncoder();

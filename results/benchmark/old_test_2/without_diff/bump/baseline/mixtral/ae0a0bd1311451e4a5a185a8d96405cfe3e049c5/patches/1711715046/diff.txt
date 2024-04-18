@@ -1,0 +1,7 @@
+4c4,7
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>         String.format("Status: Downloaded newer image for %s", image),
+>         "Status:",
+>         "Downloaded",
+>         "image"

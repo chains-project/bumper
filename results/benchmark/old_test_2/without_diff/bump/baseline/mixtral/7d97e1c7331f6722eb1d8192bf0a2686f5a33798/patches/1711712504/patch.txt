@@ -1,0 +1,7 @@
+@Tv({2, 1})
+@Test
+@Category(ValueCheckers.class)
+public void testRegion() {
+    final Region region = new Region.Simple("my-region");
+    Assert.assertFalse(region.isEmpty());
+}

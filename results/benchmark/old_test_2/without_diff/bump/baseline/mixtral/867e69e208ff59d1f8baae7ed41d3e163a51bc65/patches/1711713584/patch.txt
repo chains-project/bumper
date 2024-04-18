@@ -1,0 +1,3 @@
+import org.apache.thrift.transport.TTransport;
+
+TFramedTransport transport = new TFramedTransport(new TTransport.NullTransport(), 1024);

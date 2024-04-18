@@ -1,0 +1,16 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+
+// ...
+
+public class AppenderUtils {
+  // ...
+
+  @Override
+  public void start() {
+    Transport transport = new TIOStreamTransport(new TConfiguration(), new ByteArrayInputStream(new byte[0]));
+    this.protocol = new TBinaryProtocol(transport);
+    this.transport.open();
+  }
+
+  // ...
+}

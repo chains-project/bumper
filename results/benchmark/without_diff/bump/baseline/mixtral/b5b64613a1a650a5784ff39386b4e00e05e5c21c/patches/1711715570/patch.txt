@@ -1,8 +1,0 @@
-import static org.apache.commons.lang3.StringUtils.isBlank;
-
-@Override
-public CreateJFrogInstanceStepExtend newInstance(StepContext context) {
-    CreateJFrogInstanceStepExtend createJFrogInstanceStepExtend = new CreateJFrogInstanceStepExtend();
-    createJFrogInstanceStepExtend.setContext(context);
-    return createJFrogInstanceStepExtend;
-}

@@ -1,9 +1,0 @@
-```java
-import eu.europa.esig.dss.enumerations.CertificationPermission;
-
-// ...
-
-signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);
-
-// ...
-```

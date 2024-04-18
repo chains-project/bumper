@@ -1,0 +1,8 @@
+15c15,19
+<             registry.set(server, reg);
+---
+>         // Replace the following line with the following code:
+>         // registry.set(server, reg);
+>         Field modifiableRegistryField = server.getClass().getDeclaredField("modifiableRegistry");
+>         modifiableRegistryField.setAccessible(true);
+>         ((SortedMap) modifiableRegistryField.get(server)).putAll(reg);

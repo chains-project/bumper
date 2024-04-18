@@ -1,8 +1,0 @@
-1a2,6
->     LanguageSupportRepository languageSupportRepo = new LanguageSupportRepository();
->     Set<Language> enabledLanguages = globalConfig.getEnabledLanguages().stream()
->             .map(language -> languageSupportRepo.getEnabledLanguagesInConnectedMode())
->             .collect(Collectors.toSet());
-> 
-3d7
-<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())

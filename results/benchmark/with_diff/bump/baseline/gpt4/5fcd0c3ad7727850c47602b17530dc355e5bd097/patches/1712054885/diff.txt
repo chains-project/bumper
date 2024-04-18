@@ -1,9 +1,0 @@
-2a3,6
->     ClassName mutatedClassName = data.getMutatedClass();
->     byte[] bytes = new byte[0]; // replace with actual byte array if available
->     long timestamp = System.currentTimeMillis(); // replace with actual timestamp if available
->     ClassInfoBuilder classInfoBuilder = ClassInfoVisitor.getClassInfo(mutatedClassName, bytes, timestamp);
-4c8
-<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
----
->         data.getMutations(), classInfoBuilder.build());

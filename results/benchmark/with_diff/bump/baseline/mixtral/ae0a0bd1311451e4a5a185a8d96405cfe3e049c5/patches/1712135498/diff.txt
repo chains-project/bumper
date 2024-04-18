@@ -1,8 +1,0 @@
-2a3
->     boolean contains = true; // new variable
-9,10c10,11
-<             ).getMessage(),
-<             new StringContains(false, "Unexpected path")
----
->         ),
->         new StringContains(contains, "Unexpected path") // modified argument list

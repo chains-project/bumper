@@ -1,9 +1,0 @@
-15,16c15,19
-<             registry.set(server, reg);
-<         } catch (NoSuchFieldException | IllegalAccessException e) {
----
->         // Fix: Replace the line below with the following code
->         // registry.set(server, reg);
->         Method method = server.getClass().getMethod("setRegistry", SortedMap.class);
->         method.invoke(server, reg);
->     } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {

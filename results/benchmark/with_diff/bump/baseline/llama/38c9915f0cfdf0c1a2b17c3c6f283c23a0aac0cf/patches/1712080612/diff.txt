@@ -1,6 +1,0 @@
-1a2,5
-> 
-> // ...
-> 
-> IoCheckedScalar<String> scalar = IoCheckedScalar.of(" Failure message ");
-\ No newline at end of file

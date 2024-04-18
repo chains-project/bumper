@@ -1,6 +1,0 @@
-1c1,3
-< public MavenProject getProject() {
----
-> import org.apache.maven.project.MavenProject;
-> 
-> public org.apache.maven.project.MavenProject getProject() {

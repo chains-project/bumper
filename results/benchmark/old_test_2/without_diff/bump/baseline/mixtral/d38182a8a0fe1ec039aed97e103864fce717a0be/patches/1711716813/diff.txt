@@ -1,0 +1,11 @@
+2a3,4
+>     Set<Authentication.User> users = Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>         .collect(Collectors.toSet());
+7,8c9,10
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+>             token -> CompletableFuture.supplyAsync(() -> 
+>                 users.stream()
+11a14
+>                     .orElse(null)

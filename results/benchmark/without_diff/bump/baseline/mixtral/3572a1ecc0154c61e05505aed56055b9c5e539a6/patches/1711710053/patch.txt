@@ -1,5 +1,0 @@
-import org.apache.thrift.transport.TFramedTransport;
-
-// ...
-
-TFramedTransport transport = new TFramedTransport(new TSocket(host, port));

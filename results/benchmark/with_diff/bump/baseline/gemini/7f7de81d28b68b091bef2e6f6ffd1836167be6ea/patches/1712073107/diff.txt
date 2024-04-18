@@ -1,5 +1,0 @@
-13,14c13
-<             DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
-<             reg.put(contextScope, group);
----
->             reg.put(new DefaultMOContextScope(new OctetString(""), group.getScope()), group);

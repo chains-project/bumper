@@ -1,3 +1,0 @@
-  public Project getProject() {
-    return project;
-  }

@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+2a2,6
+>     boolean containsCorrectSubstring(String item) {
+>         String lookup = String.format("Status: Downloaded newer image for %s", image);
+>         return item.contains(lookup);
+>     }
+> 
+5,6c9,10
+<         protected booleanmatchesSafely(String item) {
+<             return item.contains(String.format("Status: Downloaded newer image for %s", image));
+---
+>         public boolean matchesSafely(String item) {
+>             return containsCorrectSubstring(item);

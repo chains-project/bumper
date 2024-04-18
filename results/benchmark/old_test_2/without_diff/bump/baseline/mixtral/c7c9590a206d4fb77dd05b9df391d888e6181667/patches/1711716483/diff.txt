@@ -1,0 +1,17 @@
+1c1,12
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> ...
+> 
+> @Override
+> public void executeReport(Locale locale) throws MojoExecutionException, MojoFailureException {
+>     try (Sink sink = new sink.XhtmlSink()) {
+>         RenderingContext renderingContext = new RenderingContext();
+>         renderingContext.setSink(sink);
+>         // existing code using renderingContext and sink
+>     }
+> }
+\ No newline at end of file

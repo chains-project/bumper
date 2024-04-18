@@ -1,0 +1,29 @@
+1c1,24
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.text.TextEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+> 
+> //...
+> 
+> private PasswordEncoder passwordEncoder;
+> 
+> //...
+> 
+> this.passwordEncoder = new Pbkdf2PasswordEncoder();
+> 
+> //...
+> 
+> public String encodePassword(String rawPassword, Object salt) {
+>     return passwordEncoder.encode(rawPassword);
+> }
+> 
+> //...
+> 
+> public boolean isPasswordValid(String encodedePassword, String rawPassword, Object salt) {
+>     return passwordEncoder.matches(rawPassword, encodedePassword);
+> }
+\ No newline at end of file

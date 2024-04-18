@@ -1,9 +1,0 @@
-3d2
-< 
-12c11,12
-<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
----
->             Workspace workspace = new Workspace(); // Assuming Workspace instance can be created like this
->             ClientHelper perforceClient = new ClientHelper(null, credentials, buildListener, workspace);
-26d25
-< 

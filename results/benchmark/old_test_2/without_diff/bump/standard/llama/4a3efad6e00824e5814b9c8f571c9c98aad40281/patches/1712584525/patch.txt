@@ -1,0 +1,5 @@
+import java.util.EnumSet;
+
+// ...
+
+signatureParameters.setPermission(EnumSet.of(CertificationPermission.class, MinimalChangesPermitted.class));

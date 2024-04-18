@@ -1,8 +1,0 @@
-import org.apache.maven.artifact.resolver.ArtifactResolutionException;
-
---
-
-@Override
-public void execute() throws MojoExecutionException, ArtifactResolutionException {
-  // existing code
-}

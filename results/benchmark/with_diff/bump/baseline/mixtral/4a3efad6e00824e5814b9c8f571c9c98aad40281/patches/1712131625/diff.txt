@@ -1,7 +1,0 @@
-1c1,2
-< import eu.europa.esig.dss.pades.CertificationPermission;
-\ No newline at end of file
----
-> // Remove the following import statement
-> // import eu.europa.esig.dss.pades.CertificationPermission;
-\ No newline at end of file

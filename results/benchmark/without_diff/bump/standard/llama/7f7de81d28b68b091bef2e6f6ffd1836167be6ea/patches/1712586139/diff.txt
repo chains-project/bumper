@@ -1,5 +1,0 @@
-15c15,16
-<             registry.set(server, reg);
----
->             // Fix: Use method reference to avoid incompatible types
->             registry.set(server, reg, SortedMap::new);

@@ -1,0 +1,11 @@
+import org.apache.thrift.transport.TSocket;
+
+// ...
+
+@Override
+public Reader<Event> createReader(String serverUri) throws TException {
+  TSocket transport = new TSocket(serverUri, 9090);
+  TFramedTransport.NullHeader extendedHttpClientHeader = null;
+  TFramedTransport framedTransport = new TFramedTransport(transport, extendedHttpClientHeader);
+  return new ThriftReader<>(framedTransport);
+}

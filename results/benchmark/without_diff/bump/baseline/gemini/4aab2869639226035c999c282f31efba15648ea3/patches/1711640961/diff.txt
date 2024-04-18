@@ -1,3 +1,0 @@
-1a2
->   import com.artipie.asto.misc.UncheckedStorage;
-\ No newline at end of file

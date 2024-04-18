@@ -1,0 +1,16 @@
+5,11c5,11
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>             Config cfg = new Config() {
+>                 @Override
+>                 public <T> T get(final Class<T> type) {
+>                     return (T) sub.toString();
+>                 }
+>             };
+>             return new YamlPolicy(new BlockingStorage(new StoragesLoader().newStorage("yaml", cfg)));

@@ -1,0 +1,24 @@
+1c1,19
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TFramedTransport;
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.TTransportException;
+> 
+> import java.io.Closeable;
+> import java.io.IOException;
+> 
+> public class AppenderUtils {
+>     public static TTransport createFramedTransport(Closeable closeable) throws TTransportException {
+>         TTransport transport = new TFramedTransport(new TTransport(closeable));
+>         try {
+>             // Attempt to upgrade to TFastFramedTransport
+>             return (TFastFramedTransport) transport;
+>         } catch (ClassCastException e) {
+>             // If the upgrade fails, return the original TFramedTransport
+>             return transport;
+>         }
+>     }
+> }
+\ No newline at end of file

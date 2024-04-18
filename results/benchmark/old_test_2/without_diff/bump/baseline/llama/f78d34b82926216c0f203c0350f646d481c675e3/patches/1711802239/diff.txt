@@ -1,0 +1,44 @@
+1,8c1
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>   public static EntityPlayer getRandomPlayer(World world) {
+10,15c3,4
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>         String first = random.nextBoolean() ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : RandomWordUtils.getRandomWord();
+>         String last = random.nextBoolean() ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : RandomWordUtils.getRandomWord();
+17,18c6
+<         if (random.nextBoolean())
+<         {
+---
+>         if (random.nextBoolean()) {
+24c12
+<         if (name.length() > 16)
+---
+>         if (name.length() > 16) {
+25a14
+>         }
+27c16
+<         if (name.length() > 16)
+---
+>         if (name.length() > 16) {
+28a18
+>         }
+31d20
+< 
+33d21
+< 
+35d22
+< 

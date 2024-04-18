@@ -1,9 +1,0 @@
-1c1
-< private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)
----
-> private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {
-11a12,15
->                 
->                 // Added the following line to convert int to Float
->                 Float lineWidth = Float.parseFloat(String.valueOf(border.getLineWidth()));
->                 textField.getLineBox().getPen().setLineWidth(lineWidth);

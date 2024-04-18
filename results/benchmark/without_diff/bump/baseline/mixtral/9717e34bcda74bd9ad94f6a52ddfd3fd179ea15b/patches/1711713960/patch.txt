@@ -1,8 +1,0 @@
-import com.jcabi.github.Github;
-import com.jcabi.github.mock.MkGithub;
-
-public class FixedMkGithub extends MkGithub {
-    public FixedMkGithub(Github github) {
-        super(github);
-    }
-}

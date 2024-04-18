@@ -1,0 +1,19 @@
+2,3c2,3
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+<         final PolicyConfig sub = config.config("storage");
+---
+> public Policy<?> getPolicy(PolicyConfig config) {
+>     PolicyConfig sub = config.config("storage");
+5,12c5,7
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+---
+>         StoragesLoader storages = new StoragesLoader();
+>         return new YamlPolicy(new BlockingStorage(storages.newStorage(sub.string("type"), com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping())));
+>     } catch (IOException err) {

@@ -1,0 +1,36 @@
+1c1,31
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.http.impl.client.CloseableHttpClient;
+> import org.apache.http.impl.client.HttpClients;
+> import org.apache.thrift.transport.TNonblockingTransport;
+> import org.apache.thrift.transport.TSocket;
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.TTransportException;
+> 
+> import java.io.Closeable;
+> import java.io.IOException;
+> 
+> public class AppenderUtils {
+>   // ... other methods ...
+> 
+>   @Override
+>   public TNonblockingTransport createTransport() {
+>     CloseableHttpClient httpClient = HttpClients.createDefault();
+>     Closeable httpClientWrapper = new Closeable() {
+>       @Override
+>       public void close() throws IOException {
+>         httpClient.close();
+>       }
+>     };
+>     TTransport socketTransport = new TSocket("localhost", 9090);
+>     try {
+>       socketTransport.open();
+>     } catch (TTransportException e) {
+>       throw new RuntimeException("Failed to open socket to thrift server", e);
+>     }
+>     return new TFastFramedTransport(socketTransport, httpClientWrapper, 100, 100);
+>   }
+> }
+\ No newline at end of file

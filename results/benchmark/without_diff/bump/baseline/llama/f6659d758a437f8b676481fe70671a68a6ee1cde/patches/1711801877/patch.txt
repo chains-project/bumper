@@ -1,9 +1,0 @@
-import org.yaml.snakeyaml.inspector.TrustedTagInspector;
-
-public class AbstractTest {
-    private static final TrustedTagInspector trustedTagInspector = new TrustedTagInspector();
-
-    public void testMethod() {
-        trustedTagInspector.checkTag("foo", "bar");
-    }
-}

@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> import org.apache.maven.artifact.ResolverException;
+> 
+> ...
+> 
+> @Override
+> public void execute() throws MojoExecutionException, MojoFailureException {
+>     try {
+>         // Existing code that depends on DependencyResolutionRequiredException should be updated
+>         // to handle ResolverException instead.
+>         getResolver().resolve(getProject().getArtifact(), getProject().getRemoteRepositories(), getLocalRepository(), getArtifactMetadataSource());
+> 
+>         // Rest of the method code remains unchanged.
+>     } catch (ResolverException e) {
+>         throw new MojoExecutionException("Unable to resolve artifact: " + e.getMessage(), e);
+>     }
+> }
+\ No newline at end of file

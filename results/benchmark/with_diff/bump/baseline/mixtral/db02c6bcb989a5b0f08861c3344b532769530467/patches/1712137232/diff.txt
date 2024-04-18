@@ -1,7 +1,0 @@
-8,11c8
-<             new StringContains(
-<                 false,
-<                 String.format("latest: digest: %s", original.digest())
-<             )
----
->         new StringContains("latest: digest: " + original.digest())

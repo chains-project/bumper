@@ -1,0 +1,11 @@
+2a3,8
+>     ClassInfoBuilder builder = new ClassInfoBuilder(data.getMutatedClass().getName(), data.getMutations());
+>     coverage.getRawCoverage(data.getMutatedClass()).ifPresent(rawData -> {
+>       for (CoverageInfo cInfo : rawData.getSegments()) {
+>         builder.add(cInfo.getMethodIdentifiers(), cInfo.getCounts());
+>       }
+>     });
+4c10
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), builder.build());

@@ -1,4 +1,0 @@
-3c3
-<         loadingConfig.setTagInspector(new TrustedTagInspector());
----
->         loadingConfig.setTagInspector(new LoaderOptions.TrustedTagInspector());

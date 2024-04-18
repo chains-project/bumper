@@ -1,0 +1,2 @@
+7a8
+>             .addModule(new JavaModule(JavaModule.getJavaModule()))

@@ -1,0 +1,31 @@
+0a1,11
+> import static com.jcabi.matchers.RegexMatchers.matchesPattern;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import static org.junit.jupiter.api.Assertions.assertThat;
+> 
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import com.jcabi.matchers.RegexMatchers;
+> import com.jcabi.simpledb.Domain;
+> import com.jcabi.ten.Ten;
+> import org.hamcrest.MatcherAssert;
+> import org.junit.jupiter.api.Test;
+> 
+4c15
+<     @Test
+---
+> @org.junit.jupiter.api.Test
+8c19
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+---
+>         for (int idx = 0; idx < Ten.TEN; ++idx) {
+11,18c22
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         MatcherAssert.assertThat(domain.select(new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), iterableWithSize(Ten.TEN));

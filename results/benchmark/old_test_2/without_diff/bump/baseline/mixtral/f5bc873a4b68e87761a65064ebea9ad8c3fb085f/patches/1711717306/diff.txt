@@ -1,0 +1,41 @@
+1c1,36
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+>     @Override
+>     public void execute() throws MojoExecutionException, DependencyResolutionRequiredException {
+>       try {
+>         getLog().info("Unpacking theme plugin...");
+>         File themePluginDir = getThemePluginDir();
+>         if (!themePluginDir.exists()) {
+>           if (!themePluginDir.mkdirs()) {
+>             throw new MojoExecutionException("Cannot create theme plugin directory: " + themePluginDir);
+>           }
+>         }
+>         URL url = getClass().getResource("/theme.zip");
+>         if (url == null) {
+>           throw new MojoExecutionException("Cannot find theme.zip in the classpath");
+>         }
+>         try (InputStream inputStream = url.openStream()) {
+>           Files.copy(inputStream, themePluginDir.toPath().resolve("theme.zip"), StandardCopyOption.REPLACE_EXISTING);
+>         }
+>         getLog().info("Unpacking theme.zip...");
+>         try (ZipFile zipFile = new ZipFile(themePluginDir + "/theme.zip")) {
+>           Enumeration<? extends ZipEntry> entries = zipFile.entries();
+>           while (entries.hasMoreElements()) {
+>             ZipEntry entry = entries.nextElement();
+>             if (!entry.isDirectory()) {
+>               try (InputStream inputStream = zipFile.getInputStream(entry)) {
+>                 Files.copy(inputStream, themePluginDir.toPath().resolve(entry.getName()), StandardCopyOption.REPLACE_EXISTING);
+>               }
+>             }
+>          }
+>         }
+>         getLog().info("Deleting theme.zip...");
+>         Files.delete(themePluginDir.toPath().resolve("theme.zip"));
+>         getLog().info("Theme plugin unpacked.");
+>       } catch (IOException e) {
+>         throw new MojoExecutionException("Error unpacking theme plugin", e);
+>       }
+>     }
+\ No newline at end of file

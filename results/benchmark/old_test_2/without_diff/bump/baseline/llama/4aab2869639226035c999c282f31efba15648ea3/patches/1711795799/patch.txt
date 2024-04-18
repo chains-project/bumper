@@ -1,0 +1,17 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private final Storages storages;
+
+    public YamlPolicyFactory(Storages storages) {
+        this.storages = storages;
+    }
+
+    public YamlPolicyFactory() {
+        this(Storages.defaultStorages());
+    }
+
+    public Policy loadPolicy(String policyFile) {
+        return YamlPolicy.load(policyFile, storages.get());
+    }
+}

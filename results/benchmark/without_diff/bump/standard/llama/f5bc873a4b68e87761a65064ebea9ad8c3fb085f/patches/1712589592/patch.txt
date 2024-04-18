@@ -1,7 +1,0 @@
-import org.codehaus.plexus.util.DirectoryScanner;
-
-// Create a variable to hold the DirectoryScanner instance
-DirectoryScanner directoryScanner = new DirectoryScanner();
-
-// Replace the failing line with the following code
-directoryScanner.scan(basedir, getIncludedFiles(), getExcludedFiles(), getIncludes(), getExcludes());

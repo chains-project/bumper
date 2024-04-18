@@ -1,0 +1,8 @@
+1c1,3
+< import static org.hamcrest.core.StringContains.containsString;
+\ No newline at end of file
+---
+> import org.hamcrest.Matcher;
+> import org.hamcrest.core.StringContains;
+> import static org.hamcrest.MatcherAssert.assertThat;
+\ No newline at end of file

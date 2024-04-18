@@ -1,0 +1,5 @@
+import org.cactoos.Scalar;
+
+Scalar<Iterable<String>> scalar() {
+    return () -> new SolidScalar<Iterable<String>>(new IoZoldWalletsEnvel(new IoZoldApiHttp())).value();
+}

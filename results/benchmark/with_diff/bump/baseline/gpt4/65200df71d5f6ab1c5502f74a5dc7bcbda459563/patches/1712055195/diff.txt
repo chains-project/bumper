@@ -1,5 +1,0 @@
-1a2,3
->     LanguageSupportRepository languageSupportRepository = new LanguageSupportRepository();
->     Set<Language> enabledLanguages = languageSupportRepository.getEnabledLanguagesInStandaloneMode();
-3d4
-<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())

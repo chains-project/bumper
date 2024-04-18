@@ -1,0 +1,20 @@
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PBEPasswordEncoder;
+
+public class GeoStorePBEPasswordEncoder implements PasswordEncoder {
+    private final PBEPasswordEncoder encoder;
+
+    public GeoStorePBEPasswordEncoder() {
+        this.encoder = new PBEPasswordEncoder();
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return encoder.encode(rawPassword);
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return encoder.matches(rawPassword, encodedPassword);
+    }
+}

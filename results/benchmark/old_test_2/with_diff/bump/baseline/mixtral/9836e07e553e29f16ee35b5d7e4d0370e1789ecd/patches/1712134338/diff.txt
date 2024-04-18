@@ -1,0 +1,12 @@
+26c26
+<                         true,
+---
+>                     new StringValue(
+28a29
+>                 )
+33c34,36
+<                     new StringContains(true, digest)
+---
+>                 new StringContains(
+>                     new StringValue(digest)
+>                 )

@@ -1,0 +1,27 @@
+import com.jcabi.s3.Bucket;
+import com.jcabi.s3.Ocket.Text;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.hamcrest.MatcherAssert;
+import org.junit.Rule;
+import org.junit.Test;
+import static org.hamcrest.Matchers.equalTo;
+import static com.jcabi.s3.tv.Tv.*;
+
+public class AwsOcketITCase {
+
+    @Rule
+    public com.jcabi.s3.Bucket bucket = new com.jcabi.s3.Bucket("my-bucket");
+
+    @Test
+    public void readsAndWritesLargeObjectContent() throws Exception {
+        final String name = "test-44.txt";
+        final Text ocket = new Text(bucket.ocket(name));
+        final String data = RandomStringUtils.random(HUNDRED * THOUSAND);
+        ocket.write(data);
+        try {
+            MatcherAssert.assertThat(ocket.read(), equalTo(data));
+        } finally {
+            bucket.remove(name);
+        }
+    }
+}

@@ -1,0 +1,14 @@
+4,11c4,7
+<         try {
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>     try (InputStream input = new ByteArrayInputStream(sub.toString().getBytes(StandardCharsets.UTF_8))) {
+>         Yaml yaml = new Yaml();
+>         Map<String, Object> yamlMap = yaml.load(input);
+>         return new YamlPolicy(new BlockingStorage(new StorageImpl(yamlMap)));

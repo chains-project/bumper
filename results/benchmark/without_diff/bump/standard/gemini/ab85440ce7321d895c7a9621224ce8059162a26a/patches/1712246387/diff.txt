@@ -1,9 +1,0 @@
-1,5c1,2
-< private static Matcher<String> imagePulled(final String image) {
-<         return new StringContains(
-<             false,
-<             String.format("Status: Downloaded newer image for %s", image)
-<         );
----
-> private static org.hamcrest.Matcher<java.lang.String> imagePulled(final java.lang.String image) {
->     return new org.hamcrest.core.StringContains(java.lang.String.format("Status: Downloaded newer image for %s", image));

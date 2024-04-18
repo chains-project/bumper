@@ -1,0 +1,19 @@
+1a2,18
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> ...
+> 
+> @Override
+> public void decode(ChannelBuffer buffer) throws TlsFatalAlert {
+>     short type = buffer.readUnsignedByte();
+>     short length = buffer.readUnsignedShort();
+>     if (length < 1) {
+>         throw new TlsFatalAlert(AlertDescription.decode(type));
+>     }
+>     byte[] payload = new byte[length - 1];
+>     buffer.readBytes(payload);
+>     // use the new method to get the alert description
+>     AlertDescription alertDescription = new TlsFatalAlert(type).getAlertDescription();
+>     // rest of the method implementation
+> }
+\ No newline at end of file

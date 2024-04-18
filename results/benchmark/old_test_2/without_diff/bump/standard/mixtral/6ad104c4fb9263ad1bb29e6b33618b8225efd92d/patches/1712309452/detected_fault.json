@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1260955583,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java:[8,35] package org.bouncycastle.crypto.tls does not exist",
+        "client_file_path": "/HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java",
+        "client_line_position": "8"
+    },
+    "client_end_line_number": 8,
+    "client_line_number": 8,
+    "method_code": "import org.bouncycastle.crypto.tls.AlertDescription;",
+    "qualified_code": "import org.bouncycastle.crypto.tls.AlertDescription;",
+    "method_name": "import"
+}

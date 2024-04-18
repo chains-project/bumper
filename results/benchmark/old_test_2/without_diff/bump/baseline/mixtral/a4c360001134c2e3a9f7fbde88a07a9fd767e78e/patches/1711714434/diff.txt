@@ -1,0 +1,8 @@
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>             return new FilterBuilder().include(".*\\.class").apply(s);
+8c8
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+---
+>             String regex = String.format(".*\\.?%s\\..+\\.class", packageToScan.replaceAll("\\.", "\\\\."));

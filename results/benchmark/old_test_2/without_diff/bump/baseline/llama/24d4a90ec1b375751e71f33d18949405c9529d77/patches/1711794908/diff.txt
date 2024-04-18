@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class AwsOcketITCase {
+>     private static final Tv TV = new Tv();
+> 
+>     @org.junit.Test
+>     public void test() {
+>         // Remove the import statement and use the fully qualified name instead
+>         com.jcabi.aspects.Tv tv = new com.jcabi.aspects.Tv();
+>         // ...
+>     }
+> }
+\ No newline at end of file

@@ -1,9 +1,0 @@
-5c5,10
-<         );
----
->     ) {
->         @Override
->         public boolean matches(String s) {
->             return s.contains("Downloaded newer image for " + image);
->         }
->     };

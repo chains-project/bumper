@@ -1,0 +1,21 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private final Storages storages;
+
+    public YamlPolicyFactory(Storages storages) {
+        this.storages = storages;
+    }
+
+    public Policy loadPolicy(String policyFile) {
+        try {
+            // Parse YAML policy file
+            Map<String, Object> policy = new Yaml().loadAsMap(new File(policyFile));
+
+            // Create policy instance
+            return new Policy(policy);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}

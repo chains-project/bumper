@@ -1,9 +1,0 @@
-2,5c2,4
-<         return new StringContains(
-<             false,
-<             String.format("Status: Downloaded newer image for %s", image)
-<         );
----
->         final boolean negative = false;
->         final String message = String.format("Status: Downloaded newer image for %s", image);
->         return new StringContains(negative, message);

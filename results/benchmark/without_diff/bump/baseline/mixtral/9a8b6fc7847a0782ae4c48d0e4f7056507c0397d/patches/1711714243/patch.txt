@@ -1,8 +1,0 @@
-import org.jasypt.util.text.BasicTextEncryptor;
-
-@Override
-public String encode(String rawPassword) {
-    BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
-    textEncryptor.setPassword(this.password);
-    return textEncryptor.encrypt(rawPassword);
-}

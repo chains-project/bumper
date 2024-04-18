@@ -1,3 +1,0 @@
-1a2
-> import com.jcabi.aspects.Loggable;
-\ No newline at end of file

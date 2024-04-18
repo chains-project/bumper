@@ -1,0 +1,6 @@
+1a2
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+3d3
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a8
+>                 .setEnabledLanguagesInStandaloneMode(enabledLanguages)

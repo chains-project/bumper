@@ -1,0 +1,18 @@
+1a2,17
+> 
+> public class YamlPolicyFactory {
+>     private final Storages storages;
+> 
+>     public YamlPolicyFactory(Storages storages) {
+>         this.storages = storages;
+>     }
+> 
+>     public YamlPolicyFactory() {
+>         this(Storages.defaultStorages());
+>     }
+> 
+>     public Policy loadPolicy(String policyFile) {
+>         return YamlPolicy.load(policyFile, storages.get());
+>     }
+> }
+\ No newline at end of file

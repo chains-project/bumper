@@ -1,0 +1,28 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+...
+
+@Override
+protected void decodeHandshakeMessage(InputStream input) throws IOException {
+    int type = readUint8(input);
+    if (type == HandshakeType.helloRetryRequest.getValue()) {
+        decodeHelloRetryRequest(input);
+    } else if (type == HandshakeType.newSessionTicket.getValue()) {
+        decodeNewSessionTicket(input);
+    } else if (type == HandshakeType.encryptedExtensions.getValue()) {
+        decodeEncryptedExtensions(input);
+    } else if (type == HandshakeType.certificate.getValue()) {
+        decodeCertificate(input);
+    } else if (type == HandshakeType.serverKeyExchange.getValue()) {
+        decodeServerKeyExchange(input);
+    } else if (type == HandshakeType.certificateVerify.getValue()) {
+        decodeCertificateVerify(input);
+    } else if (type == HandshakeType.finished.getValue()) {
+        decodeFinished(input);
+    } else if (type == HandshakeType.keyUpdate.getValue()) {
+        decodeKeyUpdate(input);
+    } else {
+        throw new TlsFatalAlert(AlertDescription.decode(type));
+    }
+}

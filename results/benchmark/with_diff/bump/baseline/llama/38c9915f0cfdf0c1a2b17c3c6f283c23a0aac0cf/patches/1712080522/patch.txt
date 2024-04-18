@@ -1,6 +1,0 @@
-import org.cactoos.scalar.IoCheckedScalar;
-
-// Keep the import statement as is
-
-// Replace the failing line with the following code
-IoCheckedScalar ioCheckedScalar = new IoCheckedScalar(new File("path/to/file.txt"));

@@ -1,9 +1,0 @@
-static List<String> getClassesLoc(File testSrcFolder) {
-    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver() {
-        @Override
-        protected String getWildcard() {
-            return TestListResolver.getWildcard();
-        }
-    });
-    return directoryScanner.scan().getClasses();
-}

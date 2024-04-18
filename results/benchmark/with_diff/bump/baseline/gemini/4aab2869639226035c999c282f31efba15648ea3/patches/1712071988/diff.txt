@@ -1,9 +1,0 @@
-4a5,6
->             final Config storageConfig = new Config(sub.toString());
->             final StorageFactory factory = new StoragesLoader().newObject(sub.string("type"), storageConfig);
-7,9c9
-<                     new Storages().newStorage(
-<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
-<                     )
----
->                     factory.newStorage(storageConfig)

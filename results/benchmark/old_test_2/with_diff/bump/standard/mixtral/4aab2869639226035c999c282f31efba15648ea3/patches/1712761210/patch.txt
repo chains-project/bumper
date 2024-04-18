@@ -1,0 +1,40 @@
+@Override
+public Policy<?> getPolicy(final PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storages = new StoragesLoader();
+        return new YamlPolicy(new BlockingStorage(storages.newObject(sub.string("type"), new Config() {
+            @Override
+            public String key(String string) {
+                return null;
+            }
+
+            @Override
+            public String value(String string) {
+                return sub.toString();
+            }
+
+            @Override
+            public String host() {
+                return null;
+            }
+
+            @Override
+            public int port() {
+                return 0;
+            }
+        })));
+    } catch (final IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}
+
+interface Config {
+    String key(String string);
+
+    String value(String string);
+
+    String host();
+
+    int port();
+}

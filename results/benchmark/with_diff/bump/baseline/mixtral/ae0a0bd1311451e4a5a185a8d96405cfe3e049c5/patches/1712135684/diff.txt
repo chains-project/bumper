@@ -1,4 +1,0 @@
-13c13
-<             new StringContains(false, "Unexpected query")
----
->         new StringStartsWith("Unexpected query") // use StringStartsWith instead of StringContains

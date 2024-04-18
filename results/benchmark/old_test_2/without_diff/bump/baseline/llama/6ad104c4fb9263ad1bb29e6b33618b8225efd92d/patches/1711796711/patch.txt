@@ -1,0 +1,8 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+public class ChachaDecoder {
+    public static void main(String[] args) {
+        AlertDescription alertDescription = AlertDescription.create("ChachaDecoder", "ChachaDecoder");
+        System.out.println(alertDescription);
+    }
+}

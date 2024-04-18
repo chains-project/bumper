@@ -1,0 +1,10 @@
+import static org.junit.jupiter.api.Assertions.ignore;
+
+// ...
+
+@Test
+public void testSomething() {
+    // ...
+    ignore("some message");
+    // ...
+}

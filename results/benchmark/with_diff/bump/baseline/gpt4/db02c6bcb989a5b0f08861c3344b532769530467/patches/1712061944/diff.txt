@@ -1,4 +1,0 @@
-2c2
-<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
----
->     return new StringContains(String.format("latest: digest: %s", this.image.digest()));

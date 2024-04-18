@@ -1,7 +1,0 @@
-0a1
-> import static java.util.Collections.emptyList;
-1a3,5
-> 
-> // Replace the failing line with:
-> assumeTrue(emptyList());
-\ No newline at end of file

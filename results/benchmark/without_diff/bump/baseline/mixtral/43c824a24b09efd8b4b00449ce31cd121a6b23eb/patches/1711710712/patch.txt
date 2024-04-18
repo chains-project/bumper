@@ -1,3 +1,0 @@
-import de.gwdg.metadataqa.jsonbroker.JsonBroker;
-
-JsonBranch branch = JsonBroker.instance().<JsonBranch>create("metadataqa");

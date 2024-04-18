@@ -1,0 +1,12 @@
+8c8
+<             ObjectMapper mapper = createMapper();
+---
+>             ObjectMapper mapper = new ObjectMapper(); // createMapper();
+12c12,16
+<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+---
+>             DistributionRules distRulesObj = new DistributionRules();
+>             distRulesObj.setCountryCodes(countryCodes);
+>             distRulesObj.setSiteName(siteName);
+>             distRulesObj.setCityName(cityName);
+>             request.setDistributionRules(distRulesObj);

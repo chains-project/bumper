@@ -1,7 +1,0 @@
-12c12,15
-<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
----
->             List<DistributionRule> distributionRules = Utils.createDistributionRules(countryCodes, siteName, cityName);
->             if (!distributionRules.isEmpty()) {
->                 request.setDistributionRules(distributionRules);
->             }

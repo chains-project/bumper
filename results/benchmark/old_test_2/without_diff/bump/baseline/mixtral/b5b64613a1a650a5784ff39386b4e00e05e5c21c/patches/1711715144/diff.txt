@@ -1,0 +1,16 @@
+11a12
+>       Credentials credentials;
+13,14c14
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>           credentials = new UsernamePasswordCredentialsImpl(Objects.requireNonNull(step.credentialsId));
+16,17c16
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>           credentials = new UsernamePasswordCredentialsImpl(Objects.requireNonNull(step.username), Objects.requireNonNull(step.password));
+18a18,20
+> 
+>       artifactoryServer = new ArtifactoryServer(artifactoryUrl, credentials);
+>       distributionServer = new DistributionServer(distributionUrl, credentials);
