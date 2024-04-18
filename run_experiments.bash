@@ -1,7 +1,7 @@
 #!/bin/bash
 
-pipelines=("baseline", "standard")
-models=("gpt4", "gemini", "mixtral", "llama")
+pipelines=("baseline" "standard")
+models=("gpt4" "gemini" "mixtral" "llama")
 
 # Without API Diff
 for pipeline in ${pipelines[@]}; do
