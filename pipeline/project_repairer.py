@@ -29,7 +29,8 @@ class ProjectRepairer:
         print(f"found {len(failures)} failures!")
 
         if len(failures) <= 0:
-            return ProjectRepairStatus(repaired=True)
+            result = self.check_for_project_validity(path=f"{base_path}/{self.project.project_name}")
+            return ProjectRepairStatus(repaired=self.is_success(result))
 
         failure = failures[0]
         patches = []
@@ -37,7 +38,7 @@ class ProjectRepairer:
         for trial_count in range(1, os.getenv("MAX_TRIES_TO_REPAIR", 10) + 1):
             try:
                 patch = self.generate_patch(failure=failure)
-                result = self.check_for_validity(patch=patch, failure=failure)
+                result = self.check_for_patch_validity(patch=patch, failure=failure)
 
                 if self.is_success(result):
                     print("Project patched!")
@@ -103,7 +104,7 @@ class ProjectRepairer:
             print("Failing to generate the patch.")
             raise
 
-    def check_for_validity(self, patch: Patch, failure: Failure) -> subprocess.CompletedProcess:
+    def check_for_patch_validity(self, patch: Patch, failure: Failure) -> subprocess.CompletedProcess:
         patch_applicator = PatchApplicator(self.project)
         patch_applicator.save_patched_code(patch, failure)
         print("File patched")
@@ -115,6 +116,25 @@ class ProjectRepairer:
                 'benchmarks/bump/scripts/test_patched_code.sh',
                 self.project.project_id,
                 patch_applicator.get_patched_code_path(patch, failure)
+            ], timeout=300, stdout=subprocess.PIPE)
+            return result
+        except subprocess.TimeoutExpired:
+            print("[ERROR] test_patched_code.sh timed out! Cleaning up before continuing...")
+            subprocess.run([
+                'bash',
+                'benchmarks/bump/scripts/cleanup_after_failure.sh',
+                self.project.project_id,
+            ], stdout=subprocess.PIPE)
+
+        return subprocess.CompletedProcess(returncode=1)
+
+    def check_for_project_validity(self, path: str) -> subprocess.CompletedProcess:
+        try:
+            result = subprocess.run([
+                'bash',
+                'benchmarks/bump/scripts/test_patched_code.sh',
+                self.project.project_id,
+                path
             ], timeout=300, stdout=subprocess.PIPE)
             return result
         except subprocess.TimeoutExpired:

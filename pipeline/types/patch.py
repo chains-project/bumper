@@ -12,10 +12,11 @@ class Patch:
     def __init__(
             self,
             value="",
-            force_validation = False
+            force_validation = False,
+            id=None
     ):
         self.value = value
-        self.id = int(time.time())
+        self.id = id or int(time.time())
         self.force_validation = force_validation
 
     @staticmethod
