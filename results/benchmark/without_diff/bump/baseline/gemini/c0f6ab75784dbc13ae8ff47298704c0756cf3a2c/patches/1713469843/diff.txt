@@ -1,0 +1,21 @@
+2c2,3
+<         return AnalysisEngineConfiguration.builder()
+---
+>     // Initialize the builder with the global configuration
+>     AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+5d5
+<                 .setExtraProperties(globalConfig.extraProperties())
+7,8c7,16
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>         .setModulesProvider(globalConfig.getModulesProvider());
+> 
+>     // Extract the extra properties from the global configuration
+>     Map<String, Object> extraProperties = globalConfig.extraProperties();
+> 
+>     // Add the extra properties to the builder
+>     builder.setExtraProperties(extraProperties);
+> 
+>     // Return the built AnalysisEngineConfiguration
+>     return builder.build();

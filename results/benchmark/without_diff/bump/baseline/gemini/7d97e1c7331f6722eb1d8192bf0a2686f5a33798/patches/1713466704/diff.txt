@@ -1,0 +1,15 @@
+1a2,14
+>   import com.jcabi.aspects.TvPlus;
+> 
+>   public class RegionITCase {
+>     @Tv
+>     public void testRegion() {
+>       // ...
+>     }
+> 
+>     @TvPlus
+>     public void testRegionPlus() {
+>       // ...
+>     }
+>   }
+\ No newline at end of file

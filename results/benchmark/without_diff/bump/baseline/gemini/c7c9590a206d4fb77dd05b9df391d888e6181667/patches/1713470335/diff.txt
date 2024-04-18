@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class SCoverageReportMojo {
+>     public void execute() {
+>         RenderingContext context = new RenderingContext();
+>         // ...
+>     }
+> }
+\ No newline at end of file

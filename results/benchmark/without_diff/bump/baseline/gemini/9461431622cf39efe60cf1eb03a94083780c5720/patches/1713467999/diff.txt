@@ -1,0 +1,5 @@
+14c14,15
+<             reg.put(contextScope, group);
+---
+>             // Fix the type mismatch by casting the value to the expected type.
+>             ((SortedMap<MOScope, ManagedObject<?>>) reg).put(contextScope, group);

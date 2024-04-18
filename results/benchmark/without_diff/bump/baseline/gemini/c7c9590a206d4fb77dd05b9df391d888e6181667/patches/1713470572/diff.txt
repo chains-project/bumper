@@ -1,0 +1,11 @@
+1a2,10
+> import org.scoverage.plugin.SCoverageReportMojo;
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() {
+>         RenderingContext context = new RenderingContext();
+>         // TODO: Implement the rest of the method.
+>     }
+> }
+\ No newline at end of file

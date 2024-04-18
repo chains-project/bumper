@@ -1,0 +1,16 @@
+2c2
+<         return AnalysisEngineConfiguration.builder()
+---
+>         AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+6,8c6,12
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>                 .setWorkDir(globalConfig.getWorkDir());
+> 
+>         if (globalConfig.getModulesProvider() != null) {
+>             builder.setModulesProvider(globalConfig.getModulesProvider());
+>         }
+> 
+>         return builder.build();

@@ -1,0 +1,51 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>   public void failsOnDigestMismatch() {
+4,6c4
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>     final AstoBlobs blobs = new AstoBlobs(storage, new DefaultLayout(), new RepoName.Simple("any"));
+8,10c6,9
+<         blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+---
+>     blobs
+>         .put(new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest)))
+>         .toCompletableFuture()
+>         .handle(
+13,16c12
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+---
+>                   "Exception thrown", throwable, new NotNullValue<>());
+20,21c16
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+---
+>                   instanceOf(InvalidDigestException.class));
+25,29c20,21
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+<                 );
+---
+>                   containsString(
+>                       "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"));
+33,34c25
+<                     new StringContains(true, digest)
+<                 );
+---
+>                   containsString(digest));
+36,37c27,28
+<             }
+<         ).join();
+---
+>             })
+>         .join();

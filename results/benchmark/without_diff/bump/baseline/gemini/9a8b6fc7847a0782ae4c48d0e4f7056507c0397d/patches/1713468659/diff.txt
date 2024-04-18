@@ -1,0 +1,7 @@
+16,17c16,18
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>                         encoder.setSalt(getSalt());
+>                         encoder.setIterations(getIterations());
+>                         encoder.setEncodingStrength(getEncodingStrength());

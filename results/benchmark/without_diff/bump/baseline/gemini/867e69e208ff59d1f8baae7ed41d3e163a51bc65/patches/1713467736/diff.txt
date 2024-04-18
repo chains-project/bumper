@@ -1,0 +1,19 @@
+1a2,18
+> 
+> public class ThriftReader {
+> 
+>     public ThriftReader(TFramedTransport transport) {
+>         this.transport = transport;
+>     }
+> 
+>     private final TFramedTransport transport;
+> 
+>     public void read() throws Exception {
+>         // Read data from the transport
+>         byte[] data = transport.readFrame();
+> 
+>         // Process the data
+>         // ...
+>     }
+> }
+\ No newline at end of file

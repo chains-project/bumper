@@ -1,0 +1,10 @@
+1a2,9
+> 
+> class MkGithub {
+> 
+>     public void a() {
+>         Tv tv = new Tv();
+>         tv.play();
+>     }
+> }
+\ No newline at end of file

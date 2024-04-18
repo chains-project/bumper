@@ -1,0 +1,19 @@
+1a2,18
+> 
+> public class WalletsIn {
+> 
+>     public WalletsIn(Wallets wallets) {
+>         this.wallets = wallets;
+>     }
+> 
+>     public String print() {
+>         String result = new JoinedText(
+>                 System.lineSeparator(),
+>                 wallets.stream().map(Wallet::toString).iterator()
+>         ).toString();
+>         return result;
+>     }
+> 
+>     private final Wallets wallets;
+> }
+\ No newline at end of file

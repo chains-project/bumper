@@ -1,0 +1,14 @@
+1a2,13
+> 
+>   import java.util.List;
+> 
+>   public class RegionITCase {
+> 
+>       private final Tv tv = new Tv();
+> 
+>       public void testRegions() {
+>           final List<String> regions = tv.regions();
+>           regions.forEach(System.out::println);
+>       }
+>   }
+\ No newline at end of file

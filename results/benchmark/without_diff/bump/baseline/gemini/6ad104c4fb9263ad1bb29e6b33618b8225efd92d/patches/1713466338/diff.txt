@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ChachaDecoder {
+> 
+>     public void decode(byte[] buf, int off, int len, int seqNo) {
+>         // TODO Auto-generated method stub
+>     }
+> 
+> }
+\ No newline at end of file

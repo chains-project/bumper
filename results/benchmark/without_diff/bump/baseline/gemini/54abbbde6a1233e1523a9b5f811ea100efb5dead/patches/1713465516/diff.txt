@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class SshByPassword {
+> 
+>     public static Tv newTv() {
+>         return new Tv();
+>     }
+> }
+\ No newline at end of file

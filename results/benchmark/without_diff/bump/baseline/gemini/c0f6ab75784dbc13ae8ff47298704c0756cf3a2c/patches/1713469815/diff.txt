@@ -1,0 +1,14 @@
+2c2
+<         return AnalysisEngineConfiguration.builder()
+---
+>         AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+7,8c7,12
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>                 .setModulesProvider(globalConfig.getModulesProvider());
+>         // Check if the configuration requires a specific class loader
+>         if (globalConfig.getClassLoader() != null) {
+>             builder.setClassLoader(globalConfig.getClassLoader());
+>         }
+>         return builder.build();

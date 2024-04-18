@@ -1,0 +1,11 @@
+1a2,10
+> 
+>   import java.io.IOException;
+> 
+>   public class AppenderUtils {
+> 
+>     public static TFastFramedTransport createTransport(String host, int port) throws IOException {
+>       return new TFastFramedTransport(host, port);
+>     }
+>   }
+\ No newline at end of file

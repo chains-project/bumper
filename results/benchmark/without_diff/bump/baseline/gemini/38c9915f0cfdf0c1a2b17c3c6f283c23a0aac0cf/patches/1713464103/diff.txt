@@ -1,0 +1,12 @@
+1a2,11
+>   import java.util.List;
+>   import java.util.ArrayList;
+> 
+>   public class WalletsIn {
+> 
+>     public List<Wallet> getWallets(String userId) {
+>       List<Wallet> wallets = new ArrayList<>();
+>       return wallets;
+>     }
+>   }
+\ No newline at end of file

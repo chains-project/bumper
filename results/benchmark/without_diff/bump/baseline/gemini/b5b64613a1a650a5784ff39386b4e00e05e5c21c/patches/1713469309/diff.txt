@@ -1,0 +1,20 @@
+10,11c10
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     JFrogPlatformInstance instance;
+13,14c12
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         instance = new JFrogPlatformInstance(artifactoryUrl, distributionUrl, step.credentialsId, step.url);
+16,17c14
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         instance = new JFrogPlatformInstance(artifactoryUrl, distributionUrl, step.username, step.password, step.url);
+19,20c16
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     return instance;

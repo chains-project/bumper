@@ -1,0 +1,12 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+14,15c14,17
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             // cast the registry to the correct type
+>             SortedMap<MOScope, ManagedObject> typedReg = (SortedMap<MOScope, ManagedObject>) reg;
+>             typedReg.put(contextScope, group);
+>             registry.set(server, typedReg);

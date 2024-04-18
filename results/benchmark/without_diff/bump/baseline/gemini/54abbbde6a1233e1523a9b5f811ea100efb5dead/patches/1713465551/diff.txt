@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class SshByPassword {
+> 
+>     public SshByPassword(String host, String user, String password) {
+>         Tv tv = new Tv();
+>         tv.play();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+1a2,9
+> import com.jcabi.aspects.TvImpl;
+> 
+> public class RegionITCase {
+> 
+>     private final Tv tv = new TvImpl();
+> 
+>     // ...
+> }
+\ No newline at end of file

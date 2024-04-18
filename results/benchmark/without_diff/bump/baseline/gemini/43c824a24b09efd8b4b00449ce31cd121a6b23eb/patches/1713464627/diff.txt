@@ -1,0 +1,12 @@
+1a2,11
+> 
+> import java.util.List;
+> 
+> public class MarcFactory {
+> 
+>     public static List<JsonBranch> createJsonBranches(String marcRecord) {
+>         // TODO: Implement logic to create JSON branches from MARC record
+>         return null;
+>     }
+> }
+\ No newline at end of file

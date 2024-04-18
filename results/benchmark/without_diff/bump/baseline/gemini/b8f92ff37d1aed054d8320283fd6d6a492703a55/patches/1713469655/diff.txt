@@ -1,0 +1,7 @@
+3c3,6
+<         return directoryScanner.scan().getClasses();
+---
+>     // ++ added library method to scan for java files
+>     directoryScanner.setIncludes(new String[]{"**/*.java"});
+>     directoryScanner.scan();
+>     return directoryScanner.getClasses();

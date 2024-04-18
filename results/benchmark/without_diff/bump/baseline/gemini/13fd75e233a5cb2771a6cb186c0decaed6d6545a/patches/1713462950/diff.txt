@@ -1,0 +1,7 @@
+2,3c2,4
+<         return new StringContains(
+<             false,
+---
+>     // -- StringContains(boolean, String) is removed in Hamcrest 2.2.
+>     // ++ StringContainsIgnoringCase(String) is added in Hamcrest 2.2.
+>     return StringContainsIgnoringCase.containsString(

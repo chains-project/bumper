@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class MkGithub {
+> 
+>     public MkGithub() {
+>         // Empty constructor
+>     }
+> 
+>     public Tv tv() {
+>         return new Tv();
+>     }
+> }
+\ No newline at end of file

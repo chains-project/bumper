@@ -1,0 +1,7 @@
+5c5,8
+<         );
+---
+>         ).and(new StringContains(
+>             false,
+>             String.format("Status: Image is up to date for %s", image)
+>         ));

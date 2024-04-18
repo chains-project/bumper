@@ -1,0 +1,8 @@
+2c2,3
+<         return new StringContains(
+---
+>     // Create a new matcher that checks if the string contains the expected substring.
+>     final Matcher<String> matcher = new StringContains(
+5a7,8
+>     // Return the created matcher.
+>     return matcher;

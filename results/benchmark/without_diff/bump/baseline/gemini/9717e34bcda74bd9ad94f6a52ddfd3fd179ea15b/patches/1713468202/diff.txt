@@ -1,0 +1,20 @@
+1a2,19
+> import org.mockito.Mockito;
+> 
+> public class MkGithub {
+> 
+>     private final Tv tv;
+> 
+>     public MkGithub() {
+>         this.tv = Mockito.mock(Tv.class);
+>     }
+> 
+>     public MkGithub(Tv tv) {
+>         this.tv = tv;
+>     }
+> 
+>     public Tv tv() {
+>         return tv;
+>     }
+> }
+\ No newline at end of file

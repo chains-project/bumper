@@ -1,0 +1,12 @@
+1c1,7
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+> import ml.peya.plugins.Learn.LearnMath;
+> 
+>   public class Neuron {
+>     public static double sigmoid(double x) {
+>       return LearnMath.sigmoid(x);
+>     }
+>   }
+\ No newline at end of file

@@ -1,0 +1,8 @@
+15a16,22
+>                         encoder.setSalt(getSalt());
+>                         encoder.setIterationCount(getIterationCount());
+>                         encoder.setDigestAlgorithm(getDigestAlgorithm());
+>                         encoder.setKeyLength(getKeyLength());
+>                         encoder.setEncodingStrength(getEncodingStrength());
+>                         encoder.setSaltSource(getSaltSource());
+>                         encoder.setRandom(getRandom());

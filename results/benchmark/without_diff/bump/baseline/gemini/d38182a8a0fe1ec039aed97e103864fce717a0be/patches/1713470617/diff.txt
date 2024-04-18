@@ -1,0 +1,19 @@
+5d4
+<         final AtomicReference<String> caction = new AtomicReference<>();
+6a6
+>     final AtomicReference<String> caction = new AtomicReference<>();
+24c24,29
+<             (headers, rline) -> CompletableFuture.completedFuture(
+---
+>         new AuthScheme.Async<AuthScopeSlice.Result>() {
+>             @Override
+>             public CompletableFuture<AuthScheme.Result> auth(
+>                 final Headers headers, final String rline
+>             ) {
+>                 return CompletableFuture.completedFuture(
+36c41,43
+<             ),
+---
+>                 );
+>             }
+>         },

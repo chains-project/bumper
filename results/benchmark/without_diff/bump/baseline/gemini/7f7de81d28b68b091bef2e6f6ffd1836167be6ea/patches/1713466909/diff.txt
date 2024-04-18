@@ -1,0 +1,15 @@
+0a1,8
+> import org.snmp4j.agent.MOScope;
+> import org.snmp4j.agent.ManagedObject;
+> import org.snmp4j.agent.mo.DefaultMOContextScope;
+> import org.snmp4j.agent.mo.MOContextScope;
+> 
+> import java.lang.reflect.Field;
+> import java.util.SortedMap;
+> 
+12,13c20,21
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+<             DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+---
+>         final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+>         MOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());

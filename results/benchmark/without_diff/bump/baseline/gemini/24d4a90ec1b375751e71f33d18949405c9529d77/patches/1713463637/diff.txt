@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class AwsOcketITCase {
+>     public void testOcket() throws Exception {
+>         Tv tv = new Tv();
+>         tv.play("https://s3.amazonaws.com/jcabi-s3/test.mp4");
+>     }
+> }
+\ No newline at end of file

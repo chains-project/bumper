@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class YamlPolicyFactory {
+> 
+>     public static YamlPolicyFactory from(String yaml) {
+>         // TODO: Implement logic to parse YAML and create a YamlPolicyFactory instance.
+>         return null;
+>     }
+> 
+> }
+\ No newline at end of file

@@ -1,0 +1,14 @@
+1a2,13
+> import org.junit.jupiter.api.Test;
+> 
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class MkGithubTest {
+> 
+>     @Test
+>     public void testCreateRepo() {
+>         Tv tv = new Tv();
+>         assertEquals("1234567890", tv.get());
+>     }
+> }
+\ No newline at end of file

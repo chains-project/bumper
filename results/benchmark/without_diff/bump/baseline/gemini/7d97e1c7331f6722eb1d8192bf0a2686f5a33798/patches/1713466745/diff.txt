@@ -1,0 +1,13 @@
+1a2,12
+> import org.junit.jupiter.api.Test;
+> 
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class RegionITCase {
+> 
+>     @Test
+>     void testRegion() {
+>         assertEquals("us-east-1", new Tv().region());
+>     }
+> }
+\ No newline at end of file

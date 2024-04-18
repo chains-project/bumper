@@ -1,0 +1,17 @@
+4a5
+> 
+7,8c8
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+11,12c11
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+15,16c14
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));

@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class AwsOcketITCase {
+> 
+>     private Tv tv;
+> 
+>     public void testOcket() throws Exception {
+>         // ...
+>     }
+> }
+\ No newline at end of file

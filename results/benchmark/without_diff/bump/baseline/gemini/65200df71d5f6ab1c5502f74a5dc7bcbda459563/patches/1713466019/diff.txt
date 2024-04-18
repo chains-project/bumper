@@ -1,0 +1,10 @@
+2c2
+<         return AnalysisEngineConfiguration.builder()
+---
+>         AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+7,8c7,8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>                 .setModulesProvider(globalConfig.getModulesProvider());
+>         return builder.build();

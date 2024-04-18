@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class RegionITCase {
+> 
+>     private final Tv tv = new Tv();
+> 
+>     @Test
+>     public void testRegion() throws Exception {
+>         // ...
+>         tv.region(region);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,6 @@
+1c1
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+>   import org.apache.commons.math3.analysis.function.Sigmoid;
+\ No newline at end of file

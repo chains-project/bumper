@@ -1,0 +1,13 @@
+1c1,8
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> 
+> public class AbstractTest {
+> 
+>     protected Yaml yaml = new Yaml(new TrustedTagInspector());
+> 
+>     // ... rest of the class code
+> }
+\ No newline at end of file

@@ -1,0 +1,12 @@
+13,14c13,14
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>                 artifactoryServer = new ArtifactoryServer(++getArtifactoryUrl(artifactoryUrl), step.credentialsId);
+>                 distributionServer = new DistributionServer(++getDistributionUrl(distributionUrl), step.credentialsId);
+16,17c16,17
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>                 artifactoryServer = new ArtifactoryServer(++getArtifactoryUrl(artifactoryUrl), step.username, step.password);
+>                 distributionServer = new DistributionServer(++getDistributionUrl(distributionUrl), step.username, step.password);

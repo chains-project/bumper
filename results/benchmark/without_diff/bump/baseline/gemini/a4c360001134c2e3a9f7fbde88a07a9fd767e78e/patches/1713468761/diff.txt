@@ -1,0 +1,4 @@
+8c8
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+---
+>         String regex = String.format("^%s\\..+\\.class$", packageToScan); // ++ changed to match full class names
