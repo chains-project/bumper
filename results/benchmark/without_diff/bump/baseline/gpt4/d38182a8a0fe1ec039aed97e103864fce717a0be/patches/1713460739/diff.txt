@@ -1,0 +1,18 @@
+8,14c8
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+---
+>         new Slice() {
+21c15,19
+<                     return StandardRs.OK;
+---
+>                 cline.set(line);
+>                 return new RsWithHeaders(
+>                     new RsWithStatus(RsStatus.OK),
+>                     new Header("WWW-Authenticate", String.format("Bearer realm=\"\",scope=\"%s\"", action))
+>                 );

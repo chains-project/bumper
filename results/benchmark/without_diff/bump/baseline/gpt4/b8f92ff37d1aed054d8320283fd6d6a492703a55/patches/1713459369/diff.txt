@@ -1,0 +1,10 @@
+2,3c2,7
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner();
+>     directoryScanner.setIncludes(new String[]{TestListResolver.getWildcard()});
+>     directoryScanner.setBasedir(testSrcFolder);
+>     directoryScanner.scan();
+>     String[] classes = directoryScanner.getIncludedFiles();
+>     return Arrays.asList(classes);

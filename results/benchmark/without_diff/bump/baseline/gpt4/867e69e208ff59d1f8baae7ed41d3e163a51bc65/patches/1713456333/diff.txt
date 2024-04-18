@@ -1,0 +1,6 @@
+0a1,2
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.TTransportException;
+1a4
+> import org.apache.thrift.transport.TSocket;
+\ No newline at end of file

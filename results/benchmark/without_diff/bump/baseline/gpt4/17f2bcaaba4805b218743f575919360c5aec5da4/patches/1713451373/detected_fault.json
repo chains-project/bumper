@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1312381159,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java:[14,1] class, interface, or enum expected",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java",
+        "client_line_position": "14"
+    },
+    "client_end_line_number": 14,
+    "client_line_number": 14,
+    "method_code": "import org.junit.jupiter.api.Test;",
+    "qualified_code": "import org.junit.jupiter.api.Test;",
+    "method_name": "import"
+}

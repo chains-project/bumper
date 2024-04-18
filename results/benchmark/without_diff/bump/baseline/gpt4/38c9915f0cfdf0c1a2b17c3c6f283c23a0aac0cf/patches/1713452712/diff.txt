@@ -1,0 +1,8 @@
+1c1,3
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.Text;
+> import org.cactoos.scalar.ItemAt;
+> import org.cactoos.list.ListOf;
+\ No newline at end of file

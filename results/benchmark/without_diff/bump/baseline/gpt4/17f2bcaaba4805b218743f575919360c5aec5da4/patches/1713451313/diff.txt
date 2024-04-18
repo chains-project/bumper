@@ -1,0 +1,12 @@
+0a1,2
+> package micycle.pgs;
+> 
+1a4,10
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     void testMethod() {
+>         // Your test code here
+>     }
+> }
+\ No newline at end of file

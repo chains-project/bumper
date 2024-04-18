@@ -1,0 +1,15 @@
+8,14c8
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+---
+>         new Slice() {
+21c15,16
+<                     return StandardRs.OK;
+---
+>                 cline.set(line);
+>                 return new RsWithStatus(RsStatus.OK);
