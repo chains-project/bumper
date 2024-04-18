@@ -1,0 +1,11 @@
+1c1,6
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> private void renderDecorations(RenderingContext renderingContext, Sink sink) {
+>     // Replace the original usage of renderingContext with sink
+>     // ... (rest of the method remains unchanged)
+> }
+\ No newline at end of file

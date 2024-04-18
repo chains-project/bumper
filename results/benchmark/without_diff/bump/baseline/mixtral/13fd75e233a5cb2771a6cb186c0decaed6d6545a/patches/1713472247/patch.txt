@@ -1,0 +1,3 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new StringAssert(String.format("Status: Downloaded newer image for %s", image)).containsString("Status: Downloaded newer image for");
+}

@@ -1,0 +1,66 @@
+2,4c2,5
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+<                 ItemMeta pageMeta = pageButton.getItemMeta();
+<                 pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>                 ItemStack pageButton = null;
+>                 Material buttonMaterial = null;
+>                 ItemMeta pageMeta = null;
+> 
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>                         buttonMaterial = Material.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>                         buttonMaterial = Material.GREEN_STAINED_GLASS;
+14,19c11
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+<                         if (args[0].equals("1")) {
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                         }
+---
+>                         buttonMaterial = Material.LILY_PAD;
+21c13,14
+<                         pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+---
+>                         buttonMaterial = Material.RED_STAINED_GLASS;
+>                         args = new String[]{"1"};
+23a17,21
+>                 pageButton = new ItemStack(buttonMaterial);
+>                 pageMeta = pageButton.getItemMeta();
+>                 pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+> 
+>                 pageMeta.setDisplayName(getDisplayName(buttonType, args));
+24a23,29
+> 
+>                 if (buttonType.equalsIgnoreCase("Page Number")) {
+>                         if (args[0].equals("1")) {
+>                                 addEnchant(pageMeta, "power", 1);
+>                         }
+>                 }
+> 
+25a31,46
+>         }
+> 
+>         private static String getDisplayName(String buttonType, String[] args) {
+>                 String displayName = ChatColor.RED + "Not a valid button! This is a bug, please report it.";
+>                 if (buttonType.equalsIgnoreCase("Previous")) {
+>                         displayName = ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton");
+>                 } else if (buttonType.equalsIgnoreCase("Next")) {
+>                         displayName = ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton");
+>                 } else if (buttonType.equalsIgnoreCase("Page Number")) {
+>                         displayName = ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args);
+>                 }
+>                 return displayName;
+>         }
+> 
+>         private static void addEnchant(ItemMeta itemMeta, String enchantName, int level) {
+>                 itemMeta.addEnchant(Enchantment.getByName(enchantName), level, true);

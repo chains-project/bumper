@@ -1,0 +1,56 @@
+0a1,11
+> import net.md_5.bungee.api.ChatColor;
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.ItemStack;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> import xyz.xenondevs.invui.XMaterial;
+> 
+> import java.util.Arrays;
+> import java.util.List;
+> 
+2,4c13
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+<                 ItemMeta pageMeta = pageButton.getItemMeta();
+<                 pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>     XMaterial material;
+6,8c15
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         material = XMaterial.RED_STAINED_GLASS;
+10,12c17
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         material = XMaterial.GREEN_STAINED_GLASS;
+14c19,27
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+---
+>         material = XMaterial.LILY_PAD;
+>     } else {
+>         material = XMaterial.WHITE_STAINED_GLASS;
+>     }
+>     ItemStack pageButton = material.parseItem();
+>     ItemMeta pageMeta = pageButton.getItemMeta();
+>     pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+> 
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+18c31,34
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             List<Enchantment> enchantments = pageMeta.getEnchants().keySet().stream().toList();
+>             if (!enchantments.contains(Enchantment.getByKey(new NamespacedKey(null, "power")))) {
+>                 pageMeta.addEnchant(Enchantment.getByKey(new NamespacedKey(null, "power")), 1, false);
+>             }
+21c37,38
+<                         pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+---
+>         pageMeta.setDisplayName(ChatColor.valueOf(buttonType.toUpperCase()).toString()
+>                 + CommonDefinitions.getMessage("wwcConfigGUIPageButton"));
+23d39
+<                 

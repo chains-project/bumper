@@ -1,0 +1,17 @@
+2,5c2,12
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return new AbstractMatcher<String>("Status: Downloaded newer image for " + image) {
+>         @Override
+>         public void describeTo(Description description) {
+>             description.appendText("string contains \"Status: Downloaded newer image for \" and ends with: ").appendValue(image);
+>         }
+> 
+>         @Override
+>         protected boolean matchesSafely(String item) {
+>             return item.contains("Status: Downloaded newer image for " + image) && item.endsWith(image);
+>         }
+>     };

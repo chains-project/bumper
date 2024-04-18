@@ -1,0 +1,19 @@
+1a2,18
+> 
+> // Add the following import statement
+> import de.gwdg.metadataqa.api.json.JsonPathUtils;
+> 
+> // Modify the following method
+> @Override
+> public MarcRecord createMarcRecord(String jsonString) {
+>     Object jsonNode = JsonPathUtils.parse(jsonString);
+>     if (jsonNode == null) {
+>         return null;
+>     }
+>     JsonBranch jsonBranch = JsonPathUtils.asJsonBranch(jsonNode);
+>     if (jsonBranch == null) {
+>         return null;
+>     }
+>     return createMarcRecord(jsonBranch);
+> }
+\ No newline at end of file

@@ -1,0 +1,19 @@
+1c1,14
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> @Tv({"0.15.2"})
+> public class SshByPassword {
+>     // existing code...
+> 
+>     @Override
+>     public Ssh connect(String host, String username, String password) throws IOException, AuthException, InternalException, InterruptedException {
+>         // use the new connection method
+>         return Ssh.create(host, username, password.toCharArray());
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

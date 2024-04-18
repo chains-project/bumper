@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.TTransportException;
+> 
+> public static TTransport createFastFramedTransport(InputStream inputStream) throws TTransportException {
+>     TFastFramedTransport transport = new TFastFramedTransport(inputStream, 65536, 65536);
+>     transport.open();
+>     return transport;
+> }
+\ No newline at end of file

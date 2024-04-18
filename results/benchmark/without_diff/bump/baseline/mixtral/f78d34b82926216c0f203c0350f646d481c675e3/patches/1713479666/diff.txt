@@ -1,0 +1,42 @@
+1,8c1,20
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.jetbrains.annotations.NotNull;
+> import org.jetbrains.annotations.Nullable;
+> 
+> import java.util.Properties;
+> import java.util.Random;
+> import java.util.UUID;
+> 
+> public class PlayerUtils {
+> 
+>     @NotNull
+>     public static EntityPlayer getRandomPlayer(@NotNull World world) {
+17,20c29,31
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+44a56
+> }
+\ No newline at end of file

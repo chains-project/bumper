@@ -1,0 +1,21 @@
+1c1,16
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.AlertDescription;
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> 
+> // ...
+> 
+> @Override
+> public void decode(InputStream in, ByteQueue queue) throws IOException {
+>     int tag = in.read();
+>     if (tag == TlsUtils.ApplicationData) {
+>         byte[] data = TlsUtils.readOpaque16(in);
+>         queue.advance(data.length);
+>         queue.putBytes(data, 0, data.length);
+>     } else {
+>         throw new TlsFatalAlert(AlertDescription.unexpected_message);
+>     }
+> }
+\ No newline at end of file

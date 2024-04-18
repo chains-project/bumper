@@ -1,0 +1,13 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public TextEnvelope<String> valuesOf(String name) throws IOException {
+  List<String> values = new ArrayList<>();
+  try (Stream<String> lines = Files.lines(Paths.get(dataPath(name)))) {
+    lines.forEach(values::add);
+  }
+  return new Joined<>("\n", values);
+}

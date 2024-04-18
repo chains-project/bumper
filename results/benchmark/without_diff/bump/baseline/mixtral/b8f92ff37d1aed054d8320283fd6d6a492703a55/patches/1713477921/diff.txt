@@ -1,0 +1,11 @@
+3c3,10
+<         return directoryScanner.scan().getClasses();
+---
+>     Collection<SpoonAPI> scannedElements = directoryScanner.scan();
+>     if (scannedElements instanceof Collection) {
+>         return ((Collection<SpoonAPI>) scannedElements).stream()
+>             .filter(SpoonAPI::isType)
+>             .map(SpoonAPI::getQualifiedName)
+>             .collect(Collectors.toList());
+>     }
+>     throw new IllegalStateException("scan() method did not return a Collection");

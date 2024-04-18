@@ -1,0 +1,32 @@
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
+import org.bukkit.plugin.Plugin;
+
+import java.util.Objects;
+
+public static ItemStack getCommonButton(String buttonType, String[] args) {
+    ItemStack pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.WHITE_STAINED_GLASS.name())).toItemStack(1);
+    ItemMeta pageMeta = pageButton.getItemMeta();
+    pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+    if (buttonType.equalsIgnoreCase("Previous")) {
+        pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.RED_STAINED_GLASS.name())).toItemStack(1);
+        pageMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+    } else if (buttonType.equalsIgnoreCase("Next")) {
+        pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.GREEN_STAINED_GLASS.name())).toItemStack(1);
+        pageMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+    } else if (buttonType.equalsIgnoreCase("Page Number")) {
+        pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.LILY_PAD.name())).toItemStack(1);
+        pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+        if (args[0].equals("1")) {
+            pageMeta.addEnchant(Objects.requireNonNull(Enchantment.getEnchantment(Plugin.getPlugin(WorldwideChat.class).getConfig().getString("enchant.name"))), 1, false);
+        }
+    } else {
+        pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+    }
+    pageButton.setItemMeta(pageMeta);
+    return pageButton;
+}

@@ -1,0 +1,17 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+import java.io.IOException;
+
+public class MarcFactory {
+    // ...
+
+    @Override
+    public boolean isJsonBranch(String jsonString) {
+        try {
+            JsonBranch.fromJson(jsonString);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+}

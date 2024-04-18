@@ -1,0 +1,107 @@
+0a1,19
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.PlayerInteractManager;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import org.bukkit.profile.GameProfile;
+> 
+> import java.util.Properties;
+> import java.util.Random;
+> import java.util.UUID;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> import static org.apache.commons.lang3.StringUtils.getRandomString;
+> 
+> public class PlayerUtils {
+> 
+7,8c26
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     public static CraftPlayer getRandomPlayer(org.bukkit.World world) {
+11,12c29,30
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>                 ? randomAlphanumeric(nextInt(13) + 1)
+>                 : getRandomString(nextInt(10) + 1);
+14,15c32,33
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>                 ? randomAlphanumeric(nextInt(13) + 1)
+>                 : getRandomString(nextInt(10) + 1);
+17,20c35,37
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = leetConvert(first);
+>             last = leetConvert(last);
+23c40
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+---
+>         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + nextInt(120): "");
+28c45
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>             name = randomAlphanumeric(random.nextInt(16));
+36c53,56
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+---
+>         profile.getProperties().put("textures", new Properties() {{
+>             setProperty("textures", skin.getLeft());
+>             setProperty("model", skin.getRight());
+>         }});
+38c58
+<         return new EntityPlayer(
+---
+>         return new CraftPlayer(
+44a65,104
+> 
+>     private static String leetConvert(String input) {
+>         StringBuilder sb = new StringBuilder();
+>         for (char c : input.toCharArray()) {
+>             switch (c) {
+>                 case 'A':
+>                 case 'a':
+>                     sb.append("4");
+>                     break;
+>                 case 'E':
+>                 case 'e':
+>                     sb.append("3");
+>                     break;
+>                 case 'G':
+>                 case 'g':
+>                     sb.append("6");
+>                     break;
+>                 case 'I':
+>                 case 'i':
+>                     sb.append("1");
+>                     break;
+>                 case 'O':
+>                 case 'o':
+>                     sb.append("0");
+>                     break;
+>                 case 'S':
+>                 case 's':
+>                     sb.append("5");
+>                     break;
+>                 case 'T':
+>                 case 't':
+>                     sb.append("7");
+>                     break;
+>                 default:
+>                     sb.append(c);
+>             }
+>         }
+>         return sb.toString();
+>     }
+> }
+\ No newline at end of file

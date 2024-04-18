@@ -1,0 +1,22 @@
+1a2,21
+> 
+> try {
+>     // try to use the old JsonBranch class
+>     // this may work if the external dependency is restored
+>     // or if the JsonBranch class has not changed significantly
+>     // in the new version of the external dependency
+>     // if this fails, the catch block will be executed
+>     // and the code will try to use the new JsonBranch class
+>     // instead
+> } catch (Exception e) {
+>     // if the old JsonBranch class cannot be used,
+>     // try to use the new JsonBranch class instead
+>     // this may work if the new version of the external dependency
+>     // has added new methods or classes that can be used
+>     // or if the old methods and classes still exist
+>     // but have changed in a way that breaks compatibility
+>     // with the old version of the external dependency
+>     de.gwdg.metadataqa.api.json.v2.JsonBranch v2JsonBranch = new de.gwdg.metadataqa.api.json.v2.JsonBranch();
+>     // use the new JsonBranch class here
+> }
+\ No newline at end of file

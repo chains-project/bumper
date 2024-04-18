@@ -1,0 +1,6 @@
+1a2
+>     PropertyNexus globalConfig = new PropertyNexus(); // create a mock PropertyNexus object
+7c8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setModulesProvider(globalConfig::getModulesProvider) // use a method reference instead

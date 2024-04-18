@@ -1,0 +1,12 @@
+1a2,8
+>     File workDir = null;
+>     if (globalConfig.getWorkDir() instanceof File) {
+>         workDir = (File) globalConfig.getWorkDir();
+>     } else {
+>         workDir = new File(globalConfig.getWorkDir().getPath());
+>     }
+> 
+6c13
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>             .setWorkDir(workDir)

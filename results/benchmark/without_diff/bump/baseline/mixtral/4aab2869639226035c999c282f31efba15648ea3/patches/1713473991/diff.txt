@@ -1,0 +1,21 @@
+1c1,16
+< import java.io.UncheckedIOException;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> 
+> import com.jayway.jsonpath.DocumentContext;
+> import com.jayway.jsonpath.JsonPath;
+> 
+> public DocumentContext jsonContext;
+> 
+> @Override
+> public Policy loadPolicy(String content) {
+>     try {
+>         jsonContext = JsonPath.parse(content);
+>     } catch (IOException e) {
+>         throw new UncheckedIOException(e);
+>     }
+>     return jsonContext;
+> }
+\ No newline at end of file

@@ -1,0 +1,22 @@
+1c1,17
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.fips.crypto.TlsDecoder;
+> 
+> // Replace the original import statement
+> // import org.bouncycastle.crypto.tls.AlertDescription;
+> 
+> // Replace the original org.bouncycastle.crypto.tls.TlsDecoder
+> // with the new org.bouncycastle.fips.crypto.TlsDecoder
+> public class ChachaDecoder {
+>     // ...
+> 
+>     @Override
+>     public void decode(TlsDecoder input, ByteQueue queue) throws IOException {
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

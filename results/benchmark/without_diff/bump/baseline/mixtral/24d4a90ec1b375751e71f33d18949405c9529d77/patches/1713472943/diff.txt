@@ -1,0 +1,23 @@
+1c1,18
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.S3;
+> import com.jcabi.s3.auth.AwsCredentials;
+> 
+> @Tv(42)
+> public class AwsOcketITCase {
+>     private final S3 s3 = new S3(new AwsCredentials() {
+>         @Override
+>         public String accessKey() {
+>             return "your_access_key";
+>         }
+> 
+>         @Override
+>         public String secretKey() {
+>             return "your_secret_key";
+>         }
+>     });
+>     // ...
+> }
+\ No newline at end of file

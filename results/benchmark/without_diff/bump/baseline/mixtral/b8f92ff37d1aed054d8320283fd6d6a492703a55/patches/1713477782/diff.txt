@@ -1,0 +1,8 @@
+3c3,7
+<         return directoryScanner.scan().getClasses();
+---
+>     List<String> classes = new ArrayList<>();
+>     for (File file : directoryScanner.scan().getMatchingFiles()) {
+>         classes.add(file.getAbsolutePath());
+>     }
+>     return classes;

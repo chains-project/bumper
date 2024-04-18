@@ -1,0 +1,18 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public List<String> asList(String pattern) {
+  List<String> result = new ArrayList<>();
+  try (TextReader reader = new TextReader(pattern)) {
+    for (String line : new LinesOf(reader)) {
+      if (!line.trim().isEmpty()) {
+        result.add(line);
+      }
+    }
+  } catch (IOException e) {
+    throw new RuntimeException(e);
+  }
+  return result;
+}

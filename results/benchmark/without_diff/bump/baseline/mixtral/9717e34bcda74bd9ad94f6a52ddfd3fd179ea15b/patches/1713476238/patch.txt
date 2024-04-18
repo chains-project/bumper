@@ -1,0 +1,11 @@
+import com.jcabi.github.Github;
+import okhttp3.OkHttpClient;
+
+@Tv(4)
+public class MkGithub {
+    private final Github github;
+
+    public MkGithub() {
+        this.github = new Github(new OkHttpClient());
+    }
+}

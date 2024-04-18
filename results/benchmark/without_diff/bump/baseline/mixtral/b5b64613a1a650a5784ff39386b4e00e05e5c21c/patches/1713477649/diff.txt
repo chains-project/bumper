@@ -1,0 +1,43 @@
+0a1,7
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerDetails;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerDetails;
+> import org.jfrog.hudson.pipeline.common.types.UsernamePasswordCredentials;
+> import org.jfrog.hudson.pipeline.scripted.steps.JFrogPlatformInstance;
+> 
+2a10,12
+>     ArtifactoryServerDetails artifactoryDetails = new ArtifactoryServerDetails();
+>     DistributionServerDetails distributionDetails = new DistributionServerDetails();
+> 
+10,11d19
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+13,14c21,25
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         artifactoryDetails.setUrl(artifactoryUrl);
+>         artifactoryDetails.setCredentials(new UsernamePasswordCredentials(step.credentialsId));
+> 
+>         distributionDetails.setUrl(distributionUrl);
+>         distributionDetails.setCredentials(new UsernamePasswordCredentials(step.credentialsId));
+16,17c27,33
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryDetails.setUrl(artifactoryUrl);
+>         artifactoryDetails.setUsername(step.username);
+>         artifactoryDetails.setPassword(step.password);
+> 
+>         distributionDetails.setUrl(distributionUrl);
+>         distributionDetails.setUsername(step.username);
+>         distributionDetails.setPassword(step.password);
+19c35,39
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+---
+>     artifactoryDetails.setPlatformUrl(urlWithoutSlash);
+> 
+>     ArtifactoryServer artifactoryServer = new ArtifactoryServer(artifactoryDetails);
+>     DistributionServer distributionServer = new DistributionServer(distributionDetails);
+> 

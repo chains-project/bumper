@@ -1,0 +1,42 @@
+0a1,10
+> import net.md_5.bungee.api.ChatColor;
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.ItemStack;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> import org.bukkit.plugin.Plugin;
+> 
+> import java.util.Objects;
+> 
+2c12
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>     ItemStack pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.WHITE_STAINED_GLASS.name())).toItemStack(1);
+6,8c16,17
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.RED_STAINED_GLASS.name())).toItemStack(1);
+>         pageMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+10,12c19,20
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.GREEN_STAINED_GLASS.name())).toItemStack(1);
+>         pageMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+14,16c22,23
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageButton = Objects.requireNonNull(MaterialData.matchMaterial(XMaterial.LILY_PAD.name())).toItemStack(1);
+>         pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+18c25
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             pageMeta.addEnchant(Objects.requireNonNull(Enchantment.getEnchantment(Plugin.getPlugin(WorldwideChat.class).getConfig().getString("enchant.name"))), 1, false);
+23d29
+<                 

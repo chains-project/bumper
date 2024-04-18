@@ -1,0 +1,30 @@
+1c1,25
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+>     protected void addDependency(Artifact artifact) throws MojoExecutionException {
+>       try {
+>         if (artifact.getFile() != null && artifact.getFile().isFile()) {
+>           getLog().debug("Adding dependency: " + artifact.getId());
+>           ArtifactRepository localRepository = getLocalRepository();
+>           ArtifactRequest request =
+>               new ArtifactRequest()
+>                   .setArtifact(artifact)
+>                   .setRepository(localRepository)
+>                   .setLocalRepository(localRepository)
+>                   .setResolveArtifact(true)
+>                   .setOffline(isOffline());
+>           ArtifactResult result = artifactResolver.resolve(request).getArtifactResult();
+>           File file = result.getArtifact().getFile();
+>           if (file != null && file.isFile()) {
+>             getLog().debug("Added dependency: " + artifact.getId());
+>             FileUtils.copyFile(file, getOutputDirectory());
+>           }
+>         }
+>       } catch (DependencyResolutionRequiredException e) {
+>         throw new MojoExecutionException("Dependency resolution failed for artifact: " + artifact.getId(), e);
+>       } catch (IOException e) {
+>         throw new MojoExecutionException("Failed to copy dependency: " + artifact.getId(), e);
+>       }
+>     }
+\ No newline at end of file

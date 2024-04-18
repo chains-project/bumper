@@ -1,0 +1,6 @@
+1a2
+>     DependencyManager dependencyManager = new DefaultDependencyManager();
+7c8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setModulesProvider(dependencyManager.createModulesProvider(globalConfig.getModulesProvider()))

@@ -1,0 +1,18 @@
+1c1,13
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.S3;
+> import com.jcabi.s3.acl.Acl;
+> 
+> @Tv(42)
+> public class AwsOcketITCase {
+>     private S3 s3;
+> 
+>     public void testAcl() {
+>         s3 = new S3("http://s3.amazonaws.com");
+>         Acl acl = s3.acl();
+>         // existing test code
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,52 @@
+0a1,12
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> import org.bukkit.plugin.java.JavaPlugin;
+> 
+> import java.util.Arrays;
+> 
+> public class WWCInventoryManager {
+> 
+>     // ... other code ...
+> 
+2c14
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>         MaterialData pageButton = XMaterial.WHITE_STAINED_GLASS.parseMaterial();
+6,8c18,19
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>             pageButton = XMaterial.RED_STAINED_GLASS.parseMaterial();
+>             pageMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+10,12c21,22
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>             pageButton = XMaterial.GREEN_STAINED_GLASS.parseMaterial();
+>             pageMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+14,16c24,25
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>             pageButton = XMaterial.LILY_PAD.parseMaterial();
+>             pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+18c27,28
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 Enchantment enchant = Bukkit.getServer().getPluginManager().getPlugin("WorldwideChat").getEnchantment("power");
+>                 pageMeta.addEnchant(enchant, 1, false);
+23d32
+<                 
+25c34,37
+<                 return pageButton;
+---
+>         return new ItemStack(pageButton);
+>     }
+> 
+>     // ... other code ...

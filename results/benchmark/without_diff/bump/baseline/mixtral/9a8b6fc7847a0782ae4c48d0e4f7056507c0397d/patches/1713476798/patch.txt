@@ -1,0 +1,11 @@
+import org.jasypt.util.password.PBEPasswordEncoder;
+
+// ...
+
+@Override
+public PBEPasswordEncoder passwordEncoder() {
+    if (pbePasswordEncoder == null) {
+        pbePasswordEncoder = new PBEPasswordEncoder(passwordEncodingAlgorithm, new StandardPBEKeyGenerator());
+    }
+    return pbePasswordEncoder;
+}

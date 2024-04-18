@@ -1,0 +1,6 @@
+import org.apache.maven.doxia.sink.Sink;
+
+private void renderDecorations(RenderingContext renderingContext, Sink sink) {
+    // Replace the original usage of renderingContext with sink
+    // ... (rest of the method remains unchanged)
+}

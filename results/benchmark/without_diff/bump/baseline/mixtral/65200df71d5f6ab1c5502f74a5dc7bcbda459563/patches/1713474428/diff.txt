@@ -1,0 +1,7 @@
+1a2,3
+>     Path workDir = globalConfig.getWorkDir();
+>     FileSystemWorkDirProvider workDirProvider = new FileSystemWorkDirProvider(workDir);
+6c8
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>             .setWorkDirProvider(workDirProvider)

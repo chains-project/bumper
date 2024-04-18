@@ -1,0 +1,18 @@
+1c1,13
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> @Tv({"0.15.1"})
+> public class SshByPassword {
+>     protected Ssh ssh() {
+>         return new Ssh(
+>             username(),
+>             host(),
+>             password()
+>         );
+>     }
+>     // ... rest of the class
+> }
+\ No newline at end of file

@@ -1,0 +1,6 @@
+1a2
+>     DependencyCheckConfiguration dependencyCheckConfig = new DependencyCheckConfiguration();
+7c8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setModulesProvider(dependencyCheckConfig::getModules)

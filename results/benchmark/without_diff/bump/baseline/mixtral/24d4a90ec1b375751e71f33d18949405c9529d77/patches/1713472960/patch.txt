@@ -1,0 +1,18 @@
+import com.jcabi.s3.S3;
+import com.jcabi.s3.acl.Acl;
+import org.apache.http.HttpHost;
+
+@Tv(5)
+public class AwsOcketITCase {
+    private static final String BUCKET_NAME = "jcabi-s3-test";
+    private static final String KEY = "test-key";
+    private static final String VALUE = "test-value";
+
+    @Override
+    public void testUpload() throws Exception {
+        S3 s3 = new S3(new HttpHost("s3.amazonaws.com"), "us-east-1");
+        s3.put(BUCKET_NAME, KEY, VALUE);
+        Acl acl = s3.acl(BUCKET_NAME);
+        acl.grantAll();
+    }
+}

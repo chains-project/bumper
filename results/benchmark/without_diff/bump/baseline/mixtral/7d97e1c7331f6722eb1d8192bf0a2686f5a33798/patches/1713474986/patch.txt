@@ -1,0 +1,6 @@
+import com.jcabi.aspects.Immutable;
+
+@Immutable
+public interface Region {
+    // existing methods
+}

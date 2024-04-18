@@ -1,0 +1,7 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+
+public static TTransport createFastFramedTransport(InputStream inputStream)
+        throws TTransportException {
+    return new TFastFramedTransport(inputStream, 65536, 65536);
+}

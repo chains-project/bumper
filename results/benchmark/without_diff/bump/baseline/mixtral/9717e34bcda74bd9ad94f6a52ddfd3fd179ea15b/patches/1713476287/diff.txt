@@ -1,0 +1,15 @@
+1c1,10
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.github.Github;
+> 
+> @Tv(40)
+> public class MkGithub {
+>     private final Github github;
+> 
+>     public MkGithub() {
+>         this.github = new Github();
+>     }
+> }
+\ No newline at end of file

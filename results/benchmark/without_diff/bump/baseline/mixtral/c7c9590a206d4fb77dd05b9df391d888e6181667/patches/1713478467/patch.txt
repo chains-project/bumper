@@ -1,0 +1,6 @@
+import org.apache.maven.doxia.sink.Sink;
+
+private void renderDecoration(RenderingContext renderingContext, Sink sink) {
+    // Implement the method body using the Sink object instead of the RenderingContext
+    // You may need to update the method implementation based on the new Sink object
+}

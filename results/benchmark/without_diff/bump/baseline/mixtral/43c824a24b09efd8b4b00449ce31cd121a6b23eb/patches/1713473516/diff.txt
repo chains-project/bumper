@@ -1,0 +1,18 @@
+1a2,17
+> import de.gwdg.metadataqa.marc.model.MarcRecord;
+> 
+> import java.io.IOException;
+> import java.util.List;
+> 
+> public class MarcFactory {
+>     public MarcRecord createMarcRecord(String marcRecordString) throws IOException {
+>         // Your implementation here
+>         return new MarcRecord();
+>     }
+> 
+>     public List<JsonBranch> getJsonBranches() {
+>         // Replace the following line with your implementation
+>         return null;
+>     }
+> }
+\ No newline at end of file

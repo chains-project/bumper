@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Add the following import statement
+> import de.gwdg.metadataqa.api.json.JsonPath;
+> 
+> // Replace the following line
+> // JsonBranch branch = JsonPath.compile(xPath).json(json);
+> // With the following lines
+> JsonNode jsonNode = JsonPath.parse(json).read(xPath);
+> JsonBranch branch = new JsonBranch(jsonNode);
+\ No newline at end of file

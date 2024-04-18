@@ -1,0 +1,28 @@
+import org.apache.thrift.transport.TTransport;
+
+// ...
+
+@Override
+public void start() {
+    try {
+        if (logger == null) {
+            logger = new SimpleThriftLogger();
+        }
+
+        if (transport == null) {
+            transport = new TTransport.Client(host, port);
+        }
+
+        if (protocol == null) {
+            protocol = new TBinaryProtocol(transport);
+        }
+
+        if (client == null) {
+            client = new MyThriftService.Client(protocol);
+        }
+
+        transport.open();
+    } catch (TTransportException e) {
+        throw new RuntimeException("Failed to open transport.", e);
+    }
+}

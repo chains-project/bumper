@@ -1,0 +1,24 @@
+1c1,19
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.AlertDescription;
+> 
+> import java.security.GeneralSecurityException;
+> import java.security.Provider;
+> import java.security.Security;
+> import java.util.Arrays;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     static {
+>         Provider provider = Security.getProvider("BC");
+>         if (provider == null) {
+>             Security.addProvider(new BouncyCastleProvider());
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

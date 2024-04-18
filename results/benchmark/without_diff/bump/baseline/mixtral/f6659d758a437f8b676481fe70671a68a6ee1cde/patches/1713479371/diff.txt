@@ -1,0 +1,14 @@
+1c1,9
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> 
+> // ...
+> 
+> protected void setUp() throws Exception {
+>     // ...
+>     Yaml yaml = new Yaml(new TrustedTagInspector());
+>     // ...
+> }
+\ No newline at end of file

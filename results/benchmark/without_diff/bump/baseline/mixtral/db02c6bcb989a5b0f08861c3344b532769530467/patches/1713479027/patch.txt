@@ -1,0 +1,13 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new AbstractMatcher<String>("Status: Downloaded newer image for " + image) {
+        @Override
+        public void describeTo(Description description) {
+            description.appendText("string contains \"Status: Downloaded newer image for \" and ends with: ").appendValue(image);
+        }
+
+        @Override
+        protected boolean matchesSafely(String item) {
+            return item.contains("Status: Downloaded newer image for " + image) && item.endsWith(image);
+        }
+    };
+}

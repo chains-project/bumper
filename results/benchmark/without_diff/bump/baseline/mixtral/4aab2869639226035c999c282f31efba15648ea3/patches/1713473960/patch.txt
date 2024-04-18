@@ -1,0 +1,21 @@
+import java.io.IOException;
+
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+
+public class YamlPolicyFactory {
+    @Override
+    public Policy createPolicy(String yaml) {
+        try {
+            DocumentContext jsonContext = JsonPath.parse(yaml);
+            String version = jsonContext.read("$.version");
+            if (version.equals("1.0.0")) {
+                return new PolicyV1();
+            } else {
+                throw new IOException("Unsupported policy version");
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+}

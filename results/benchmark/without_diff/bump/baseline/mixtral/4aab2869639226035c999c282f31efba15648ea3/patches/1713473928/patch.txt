@@ -1,0 +1,19 @@
+import java.io.IOException;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.yaml.snakeyaml.Yaml;
+
+public class YamlPolicyFactory {
+    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final Yaml yaml = new Yaml();
+
+    @Override
+    public Policy loadPolicy(String content) {
+        try {
+            return objectMapper.readValue(content, Policy.class);
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+}

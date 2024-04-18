@@ -1,0 +1,9 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+import de.gwdg.metadataqa.marc.utils.JsonPathUtils;
+
+// ...
+
+@Override
+public JsonBranch getJsonBranch(String jsonString, String jsonPath) {
+    return JsonPathUtils.getJsonBranch(jsonString, jsonPath);
+}

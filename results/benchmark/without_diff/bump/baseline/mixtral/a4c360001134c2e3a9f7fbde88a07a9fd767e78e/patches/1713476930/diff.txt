@@ -1,0 +1,7 @@
+6a7
+>     Pattern pattern = Pattern.compile("(?s).*");
+9c10,11
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         pattern = Pattern.compile(regex);
+>         if (pattern.matcher(s).find()) {

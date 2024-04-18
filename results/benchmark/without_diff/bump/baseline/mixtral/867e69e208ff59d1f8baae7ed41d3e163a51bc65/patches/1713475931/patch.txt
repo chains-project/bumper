@@ -1,0 +1,13 @@
+import org.apache.thrift.transport.TTransport;
+
+// ...
+
+public TFramedTransport getFramedTransport(TTransport transport) {
+  return new TFramedTransport(transport);
+}
+
+@Override
+public void startLogging(TTransport transport) {
+  TFramedTransport framedTransport = getFramedTransport(transport);
+  // ...
+}

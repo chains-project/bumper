@@ -1,0 +1,6 @@
+1a2
+>         String workDir = globalConfig.getWorkDir();
+6c7
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>                 .setWorkDir(workDir)

@@ -1,0 +1,15 @@
+1c1,10
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+> // ...
+> 
+> public void startLogging(TTransport transport) {
+>   if (transport instanceof TFramedTransport) {
+>     TFramedTransport framedTransport = (TFramedTransport) transport;
+>     // ...
+>   }
+> }
+\ No newline at end of file

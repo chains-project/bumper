@@ -1,0 +1,13 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static TFramedTransport newFramedTransport(Socket socket) {
+  TFramedTransport transport;
+  try {
+    transport = new TFastFramedTransport(socket);
+  } catch (TTransportException e) {
+    throw new RuntimeException("Failed to create TFastFramedTransport", e);
+  }
+  return transport;
+}

@@ -1,0 +1,21 @@
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.S3ObjectSummary;
+import org.apache.commons.lang3.StringUtils;
+
+import java.io.IOException;
+import java.util.stream.Stream;
+
+public class AwsOcketITCase {
+
+    private final AmazonS3 s3 = ... // initialize AmazonS3 object
+
+    @Tv(5)
+    @Test
+    public void testBucketListing() throws IOException {
+        Stream<S3ObjectSummary> summaries = s3.listObjectsV2("my-bucket").getObjectSummaries();
+        long count = summaries
+                .filter(s -> StringUtils.isNotBlank(s.getKey()))
+                .count();
+        assertEquals(5, count);
+    }
+}

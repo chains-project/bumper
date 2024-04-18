@@ -1,0 +1,18 @@
+1a2,17
+> 
+> import java.io.IOException;
+> 
+> public class MarcFactory {
+>     // ...
+> 
+>     @Override
+>     public boolean isJsonBranch(String jsonString) {
+>         try {
+>             JsonBranch.fromJson(jsonString);
+>             return true;
+>         } catch (IOException e) {
+>             return false;
+>         }
+>     }
+> }
+\ No newline at end of file

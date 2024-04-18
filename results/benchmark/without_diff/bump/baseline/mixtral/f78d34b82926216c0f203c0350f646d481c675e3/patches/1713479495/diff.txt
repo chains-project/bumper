@@ -1,0 +1,70 @@
+0a1,19
+> import net.minecraft.server.MinecraftServer;
+> import net.minecraft.server.management.GameProfile;
+> import net.minecraft.server.management.GameProfileRepository;
+> import net.minecraft.server.network.PlayerConnection;
+> import net.minecraft.server.world.ServerWorld;
+> import net.minecraft.util.Pair;
+> import net.minecraft.util.registry.DynamicRegistries;
+> import net.minecraft.world.GameMode;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.bukkit.plugin.Plugin;
+> import java.util.UUID;
+> import java.util.function.Function;
+> import static net.minecraft.util.registry.Registry.SKIN_LAYERS;
+> import static net.minecraft.util.registry.Registry.TEXTURE_SETS;
+> 
+7c26
+<     public static EntityPlayer getRandomPlayer(World world)
+---
+> public static Player getRandomPlayer(ServerWorld world)
+19,20c38,39
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+30c49
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+---
+>     ServerWorld serverWorld = ((CraftWorld) world).getHandle();
+35a55,60
+>     GameProfileRepository gameProfileRepository = ((CraftServer) Bukkit.getServer()).getServer().getProfileRepository();
+>     DynamicRegistries dynamicRegistries = ((CraftServer) Bukkit.getServer()).getServer().getRegistryManager();
+> 
+>     gameProfileRepository.addToPersistentProfiles(profile);
+>     gameProfileRepository.findByName(name).ifPresent(profile::clearProperties);
+> 
+38,43c63,83
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+---
+>     MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
+>     PlayerInteractManager playerInteractManager = new PlayerInteractManager(serverWorld);
+>     Player player = new CraftPlayer(server, new EntityPlayer(server, serverWorld, profile, playerInteractManager), true);
+> 
+>     PlayerConnection playerConnection = player.getPlayer().getPlayerConnection();
+>     playerConnection.sendInitialInventory(player.getInventory());
+>     playerConnection.sendResourcePacks(player.getResourcePacks());
+>     playerConnection.sendWorldInfo(serverWorld);
+>     playerConnection.sendPlayerAbilities(player.getAbilities());
+>     playerConnection.sendGameState(true);
+>     playerConnection.sendTabList(server.getPlayerList().getPlayers());
+>     playerConnection.sendPlayerListHeaderAndFooter(server.getPlayerList().getHeader(), server.getPlayerList().getFooter());
+>     playerConnection.sendLevelType(serverWorld.getLevelType());
+>     playerConnection.sendDifficulty(serverWorld.getDifficulty());
+>     playerConnection.sendGameRules(serverWorld.getGameRules());
+>     playerConnection.sendTimeUpdate(serverWorld.getTime());
+>     playerConnection.sendWeather(serverWorld.isRaining(), serverWorld.isThundering());
+>     playerConnection.sendServerMetadata(server.getMetadata());
+>     playerConnection.sendPing();
+> 
+>     return player;

@@ -1,0 +1,10 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static TTransport newFramedTransport(TTransport transport) {
+  if (transport instanceof TFramedTransport) {
+    return (TFramedTransport) transport;
+  }
+  return new TFramedTransport(transport);
+}

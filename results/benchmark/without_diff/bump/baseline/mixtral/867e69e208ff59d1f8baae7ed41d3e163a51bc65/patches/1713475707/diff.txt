@@ -1,0 +1,36 @@
+1c1,31
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache. thrift.transport.TIOStreamTransport;
+> import org.apache. thrift.transport.TTransport;
+> import org.apache. thrift.transport.TTransportException;
+> import org.apache. thrift.protocol.TCompactProtocol;
+> import org.apache. thrift.TServiceClient;
+> 
+> import java.io.ByteArrayOutputStream;
+> import java.io.ByteArrayInputStream;
+> import java.io.IOException;
+> 
+> public class SimpleThriftLogger {
+>     // ...
+> 
+>     @Override
+>     public void log(String message) {
+>         TTransport transport = new TFramedTransport(new TIOStreamTransport(System.out));
+>         TCompactProtocol protocol = new TCompactProtocol(transport);
+> 
+>         try {
+>             transport.open();
+> 
+>             // Your thrift client and method call here
+> 
+>             transport.close();
+>         } catch (TTransportException | IOException e) {
+>             // Handle exceptions
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

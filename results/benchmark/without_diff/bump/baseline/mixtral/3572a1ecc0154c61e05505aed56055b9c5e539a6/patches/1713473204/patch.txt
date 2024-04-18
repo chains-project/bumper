@@ -1,0 +1,13 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static TFramedTransport newFramedTransport(TTransport transport) {
+  if (transport instanceof TSocket) {
+    return new TFastFramedTransport((TSocket) transport);
+  } else if (transport instanceof TNonblockingSocket) {
+    return new TFastFramedTransport((TNonblockingSocket) transport);
+  } else {
+    throw new IllegalArgumentException("Unsupported transport type: " + transport.getClass().getName());
+  }
+}

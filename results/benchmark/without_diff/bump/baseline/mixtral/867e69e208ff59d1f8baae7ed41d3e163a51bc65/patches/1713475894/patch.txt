@@ -1,0 +1,22 @@
+import org.apache. thrift.transport.TTransport;
+import org.apache. thrift.transport.TTransportException;
+import org.apache. thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+    // ...
+    @Override
+    public void log(byte[] logLine) {
+        TTransport transport = new TFramedTransport(new TTransport.NullClient());
+        try {
+            transport.open();
+            protocol.writeMessageBegin(new TMessage("log", TMessageType.CALL, 0));
+            protocol.writeBinary(logLine);
+            protocol.writeMessageEnd();
+            protocol.getOutputProtocol().flush();
+            transport.close();
+        } catch (TTransportException e) {
+            // Handle exception
+        }
+    }
+    // ...
+}

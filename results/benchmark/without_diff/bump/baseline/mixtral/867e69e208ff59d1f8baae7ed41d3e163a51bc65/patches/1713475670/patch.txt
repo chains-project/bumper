@@ -1,0 +1,10 @@
+import org.apache.thrift.transport.TTransport;
+
+// ...
+
+public void startLogging(TTransport transport) {
+  if (transport instanceof TFramedTransport) {
+    TFramedTransport framedTransport = (TFramedTransport) transport;
+    // ...
+  }
+}

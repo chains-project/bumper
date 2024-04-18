@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache. thrift.transport.TTransport;
+> import org.apache. thrift.transport.TTransportException;
+> import org.apache. thrift.transport.TFramedTransport;
+> import org.apache. thrift.transport.TTransportFactory;
+> 
+> private static TTransportFactory createFastFramedTransportFactory() {
+>     return new TTransportFactory() {
+>         @Override
+>         public TTransport getTransport(TTransport trans) throws TTransportException {
+>             if (trans != null && trans instanceof TFramedTransport) {
+>                 return trans;
+>             }
+>             return new TFastFramedTransport(trans);
+>         }
+>     };
+> }
+\ No newline at end of file

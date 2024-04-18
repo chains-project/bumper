@@ -1,0 +1,54 @@
+0a1,19
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.Builder;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.Mode;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig.Builder as OkHttpBuilder;
+> import org.jfrog.artifactory.client.okhttp.OkHttpCredentialProvider;
+> import org.jfrog.artifactory.client.okhttp.OkHttpCredentialProvider.BasicCredentialProvider;
+> import org.jfrog.artifactory.client.okhttp.OkHttpFactory;
+> import org.jfrog.hudson.credentials.CredentialsConfig;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerContext;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerContext;
+> import org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep.Step;
+> 
+> import java.io.IOException;
+> import java.net.URL;
+> import java.util.Objects;
+> 
+10,11c29,30
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     ArtifactoryServerContext artifactoryServerContext;
+>     DistributionServerContext distributionServerContext;
+13,14c32,41
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         OkHttpBuilder okHttpBuilder = new OkHttpBuilder()
+>                 .credentialProvider(new BasicCredentialProvider(step.credentialsId));
+>         ArtifactoryServer artifactoryServer = OkHttpFactory.createArtifactoryServer(artifactoryUrl, okHttpBuilder);
+>         OkHttpClientConfig config = artifactoryServer.getClientConfig();
+>         DistributionServer.Builder distributionBuilder = new Builder()
+>                 .url(distributionUrl)
+>                 .mode(Mode.REMOTE)
+>                 .clientConfig(config);
+>         distributionServerContext = new DistributionServerContext(distributionBuilder);
+>         artifactoryServerContext = new ArtifactoryServerContext(artifactoryServer);
+16,17c43,46
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         ArtifactoryServer artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+>         DistributionServer distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+>         artifactoryServerContext = new ArtifactoryServerContext(artifactoryServer);
+>         distributionServerContext = new DistributionServerContext(distributionServer);
+19,20c48,49
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     artifactoryServerContext.setPlatformUrl(urlWithoutSlash);
+>     return new JFrogPlatformInstance(artifactoryServerContext, distributionServerContext, step.url, "");

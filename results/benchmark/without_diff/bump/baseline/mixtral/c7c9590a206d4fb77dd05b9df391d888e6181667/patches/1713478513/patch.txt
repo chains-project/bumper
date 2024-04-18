@@ -1,0 +1,5 @@
+import org.apache.maven.doxia.sink.Sink;
+
+private void renderDecoration(RenderingContext renderingContext, Sink sink) {
+    // Your existing decoration rendering code here
+}

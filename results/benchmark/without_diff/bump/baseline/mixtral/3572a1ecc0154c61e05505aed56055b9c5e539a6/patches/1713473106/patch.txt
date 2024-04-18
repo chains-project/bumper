@@ -1,0 +1,11 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static TFramedTransport createFramedTransport(InputStream input) {
+  if (input instanceof SeekableInputStream) {
+    return new TFastFramedTransport((SeekableInputStream) input);
+  } else {
+    return new TFramedTransport(input);
+  }
+}

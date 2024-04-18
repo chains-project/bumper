@@ -1,0 +1,14 @@
+private boolean shouldScan(String s) {
+    final String packagesToScan = System.getProperty("package.to.scan", "");
+    if (packagesToScan.isEmpty()) {
+        return new FilterBuilder().include(".+\\.class").apply(s);
+    }
+    final String[] packages = packagesToScan.split(",");
+    for (String packageToScan : packages) {
+        String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan.trim());
+        if (new FilterBuilder().include(regex).apply(s)) {
+            return true;
+        }
+    }
+    return false;
+}

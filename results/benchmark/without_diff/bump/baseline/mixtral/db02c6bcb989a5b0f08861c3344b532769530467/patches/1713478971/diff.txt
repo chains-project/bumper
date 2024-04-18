@@ -1,0 +1,4 @@
+2c2
+<         return new StringContains(
+---
+>     return new org.hamcrest.Matchers.StringContains(

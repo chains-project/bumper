@@ -1,0 +1,24 @@
+import org.apache.maven.doxia.sink.Sink;
+
+// ...
+
+@Override
+public void executeReport(Locale locale) throws MojoExecutionException {
+    try {
+        // ...
+        sink = createSink();
+
+        // ...
+
+        RenderingContext renderingContext = new RenderingContext();
+        renderingContext.setSink(sink);
+
+        // ...
+    } finally {
+        // ...
+    }
+}
+
+private Sink createSink() {
+    return new sinks.xhtml.XhtmlSink();
+}

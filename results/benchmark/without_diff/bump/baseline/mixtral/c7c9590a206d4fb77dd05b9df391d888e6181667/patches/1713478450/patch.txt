@@ -1,0 +1,19 @@
+import org.apache.maven.doxia.sink.Sink;
+
+import java.io.IOException;
+
+public class SCoverageReportMojo {
+    // ...
+
+    @Override
+    protected void renderHeadElement(RenderingContext renderingContext, String elementName) throws IOException {
+        Sink sink = renderingContext.getSink();
+        sink.head();
+        sink.title();
+        sink.text(getName());
+        sink.title_();
+        sink.head_();
+    }
+
+    // ...
+}

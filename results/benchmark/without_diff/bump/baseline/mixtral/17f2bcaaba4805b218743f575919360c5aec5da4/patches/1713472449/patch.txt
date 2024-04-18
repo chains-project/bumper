@@ -1,0 +1,13 @@
+import org.junit.Ignore;
+import static org.junit.Assert.assertEquals;
+
+@Ignore
+public class FastPolygonizerTests {
+    // existing test method(s)
+
+    // add the following test method
+    @org.junit.Test
+    public void testPolygonize() {
+        // add test code here
+    }
+}

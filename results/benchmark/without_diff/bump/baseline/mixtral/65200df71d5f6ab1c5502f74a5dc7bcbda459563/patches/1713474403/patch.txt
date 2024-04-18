@@ -1,0 +1,16 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    File workDir = null;
+    if (globalConfig.getWorkDir() instanceof File) {
+        workDir = (File) globalConfig.getWorkDir();
+    } else {
+        workDir = new File(globalConfig.getWorkDir().getPath());
+    }
+
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(workDir)
+            .setModulesProvider(globalConfig.getModulesProvider())
+            .build();
+}

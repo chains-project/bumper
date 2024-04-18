@@ -1,0 +1,10 @@
+import org.apache.maven.doxia.sink.Sink;
+
+// ...
+
+@Override
+public void executeReport(Locale locale) throws MojoExecutionException {
+    // ...
+    Sink sink = renderingContext.getRenderingMapper().getRenderingSink();
+    // ...
+}

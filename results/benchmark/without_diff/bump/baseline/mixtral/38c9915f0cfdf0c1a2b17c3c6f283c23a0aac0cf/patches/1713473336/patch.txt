@@ -1,0 +1,15 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public List<WalletDto> all() throws IOException {
+  List<WalletDto> result = new ArrayList<>();
+  try (Reader reader = new FileReader(file)) {
+    Iterable<String> lines = new IterableOf(new Scanner(reader));
+    for (String line : lines) {
+      result.add(new WalletDto(line));
+    }
+  }
+  return result;
+}

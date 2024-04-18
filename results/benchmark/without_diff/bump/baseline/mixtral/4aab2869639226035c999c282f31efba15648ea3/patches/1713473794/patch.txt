@@ -1,0 +1,9 @@
+import com.artipie.asto.factory.MappedStorages;
+
+// ...
+
+@Override
+public PolicyFactory policyFactory() {
+    return new YamlPolicyFactory(
+        MappedStorages.mapped(storage(), key -> new YamlPolicy(key, content(key))))
+}

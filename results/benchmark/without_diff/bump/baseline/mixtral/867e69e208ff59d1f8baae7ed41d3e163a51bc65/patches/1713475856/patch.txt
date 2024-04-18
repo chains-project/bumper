@@ -1,0 +1,9 @@
+import org.apache. thrift.transport.TTransport;
+import org.apache. thrift.transport.TFramedTransport;
+
+// ...
+
+private TTransport createFramedTransport(String transportAddress) {
+  TTransport transport = new org.apache.thrift.transport.TSocket(transportAddress);
+  return new TFramedTransport(transport);
+}

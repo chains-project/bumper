@@ -1,0 +1,10 @@
+1a2,4
+>     Path workDir = globalConfig.getWorkDir();
+>     Optional<ModulesProvider> modulesProvider = Optional.ofNullable(globalConfig.getModulesProvider());
+> 
+6,7c9,10
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setWorkDir(Objects.requireNonNullElse(workDir, Paths.get(".")))
+>             .setModulesProvider(modulesProvider.orElse(ModulesProvider.STANDARD))

@@ -1,0 +1,13 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+private static TFramedTransport getFramedTransport(String transportType) {
+  TFramedTransport transport;
+  if (transportType.equalsIgnoreCase("fast")) {
+    transport = new TFastFramedTransport.Factory().getTransport(new Socket());
+  } else {
+    transport = new TFramedTransport.Factory().getTransport(new Socket());
+  }
+  return transport;
+}

@@ -1,0 +1,10 @@
+import com.artipie.asto.factory.Stores;
+
+// ...
+
+@Override
+public Policy load(Resource resource) throws IOException {
+    try (ReadableByteChannel in = resource.content()) {
+        return new YamlPolicy(Yaml.defaultMapper().readValue(in, Policy.class));
+    }
+}

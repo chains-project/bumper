@@ -1,0 +1,12 @@
+6a7
+>     Pattern pattern = Pattern.compile("\\.?\\.??(.+)\\..+\\.class");
+8,9c9,12
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         Matcher matcher = pattern.matcher(s);
+>         while (matcher.find()) {
+>             String matchedPackage = matcher.group(1);
+>             if (matchedPackage.equals(packageToScan)) {
+12a16
+>     }

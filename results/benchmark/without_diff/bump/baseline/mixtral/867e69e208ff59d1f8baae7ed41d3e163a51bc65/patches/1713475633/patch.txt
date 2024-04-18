@@ -1,0 +1,22 @@
+import org.apache.thrift.transport.TNonblockingTransport;
+
+// ...
+
+public class SimpleThriftLogger implements ThriftLogger {
+  // ...
+
+  @Override
+  public void startLogging(ThriftLogHandler logHandler) {
+    try {
+      transport = new TNonblockingTransport(new Socket(host, port));
+      protocol = new TBinaryProtocol(transport);
+      client = new ThriftLogger.Client(protocol);
+      transport.open();
+      logHandler.onLoggingStarted();
+    } catch (TTransportException | IOException e) {
+      logHandler.onError(e);
+    }
+  }
+
+  // ...
+}

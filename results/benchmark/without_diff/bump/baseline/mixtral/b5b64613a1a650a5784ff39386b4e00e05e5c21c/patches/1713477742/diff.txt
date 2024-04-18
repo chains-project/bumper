@@ -1,0 +1,29 @@
+0a1,14
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.exception.ArtifactoryClientException;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfigurer;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerImpl;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerImpl;
+> import org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep;
+> import org.jfrog.hudson.pipeline.scripted.steps.utils.JFrogPlatformUtils;
+> 
+> import java.io.IOException;
+> import java.net.URL;
+> import java.util.Objects;
+> 
+13,14c27,30
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         OkHttpClientConfigurer configurer = new OkHttpClientConfigurer();
+>         configurer.withCredentialsId(step.credentialsId);
+>         artifactoryServer = new ArtifactoryServerImpl(new URL(artifactoryUrl), configurer);
+>         distributionServer = new DistributionServerImpl(new URL(distributionUrl), configurer);
+16,17c32,33
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryServer = new ArtifactoryServerImpl(new URL(artifactoryUrl), step.username, step.password);
+>         distributionServer = new DistributionServerImpl(new URL(distributionUrl), step.username, step.password);

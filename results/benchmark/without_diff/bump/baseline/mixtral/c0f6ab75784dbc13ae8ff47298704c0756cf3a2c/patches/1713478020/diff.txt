@@ -1,0 +1,8 @@
+2,4c2,4
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+---
+>     return new AnalysisEngineConfiguration.Builder()
+>             .setLanguages(globalConfig.getEnabledLanguages())
+>             .setClientProperty("clientPid", globalConfig.getClientPid())

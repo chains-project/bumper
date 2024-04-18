@@ -1,0 +1,13 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.1"})
+public class SshByPassword {
+    protected Ssh ssh() {
+        return new Ssh(
+            username(),
+            host(),
+            password()
+        );
+    }
+    // ... rest of the class
+}

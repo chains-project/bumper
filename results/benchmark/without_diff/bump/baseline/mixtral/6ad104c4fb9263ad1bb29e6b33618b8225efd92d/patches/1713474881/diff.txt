@@ -1,0 +1,33 @@
+1c1,28
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.TlsContext;
+> import org.bouncycastle.tls.crypto.TlsCrypto;
+> import org.bouncycastle.tls.crypto.TlsDecryptor;
+> import org.bouncycastle.tls.crypto.impl.TlsCryptoImpl;
+> import org.bouncycastle.tls.crypto.impl.jcajce.JcaTlsCrypto;
+> import org.bouncycastle.tls.crypto.impl.jcajce.JceTlsDecryptor;
+> 
+> import java.security.Security;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     @Override
+>     protected void engineInit(boolean forEncryption) throws Exception {
+>         // Update the dependency import
+>         Security.addProvider(new BouncyCastleProvider());
+> 
+>         TlsCrypto crypto = new JcaTlsCrypto();
+>         TlsContext context = crypto.createContext(forEncryption);
+> 
+>         TlsDecryptor decryptor = new JceTlsDecryptor(crypto, "ChaCha20Poly1305", 96, 12, 8, 16, 16, 16, 16, 16, 16, 16);
+>         context.setDecryptor(decryptor);
+> 
+>         this.context = context;
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

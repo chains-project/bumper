@@ -1,0 +1,8 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new PatternMatcher(
+        Pattern.compile(
+            String.format("Status: Downloaded newer image for %s", Pattern.quote(image))
+        ),
+        Pattern.LITERAL
+    );
+}

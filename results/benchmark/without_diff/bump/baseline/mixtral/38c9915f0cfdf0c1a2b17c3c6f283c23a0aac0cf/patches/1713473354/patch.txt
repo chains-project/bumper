@@ -1,0 +1,22 @@
+import org.cactoos.text.Joined;
+
+//...
+
+@Override
+public List<WalletDto> all() throws IOException {
+  List<String> ids = new ArrayList<>();
+  try (InputStream in = new URL(apiUrl + "/wallets").openStream()) {
+    try (Scanner scanner = new Scanner(in)) {
+      while (scanner.hasNextLine()) {
+        ids.add(scanner.nextLine());
+      }
+    }
+  }
+  List<WalletDto> result = new ArrayList<>();
+  for (String id : ids) {
+    try (InputStream in = new URL(apiUrl + "/wallets/" + id).openStream()) {
+      result.add(new GsonBuilder().create().fromJson(new InputStreamReader(in), WalletDto.class));
+    }
+  }
+  return result;
+}

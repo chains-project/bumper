@@ -1,0 +1,4 @@
+2a3,5
+>     if (step == null) {
+>         throw new IllegalArgumentException("'step' object cannot be null");
+>     }

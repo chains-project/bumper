@@ -1,0 +1,47 @@
+0a1,20
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.jetbrains.annotations.NotNull;
+> import org.jetbrains.annotations.Nullable;
+> 
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> import java.util.Random;
+> import java.util.Base64;
+> import javax.crypto.Cipher;
+> import javax.crypto.spec.IvParameterSpec;
+> import javax.crypto.spec.SecretKeySpec;
+> 
+19,20c39,40
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = obfuscate(first);
+>         last = obfuscate(last);
+44a65,82
+> 
+> @Nullable
+> private static String obfuscate(String input) {
+>     try {
+>         SecretKeySpec keySpec = new SecretKeySpec("1234567890123456".getBytes(), "AES");
+>         IvParameterSpec ivSpec = new IvParameterSpec("1234567890123456".getBytes());
+> 
+>         Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+>         cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
+> 
+>         byte[] encrypted = cipher.doFinal(input.getBytes());
+> 
+>         return Base64.getEncoder().encodeToString(encrypted);
+>     } catch (Exception e) {
+>         e.printStackTrace();
+>         return input;
+>     }
+> }
+\ No newline at end of file

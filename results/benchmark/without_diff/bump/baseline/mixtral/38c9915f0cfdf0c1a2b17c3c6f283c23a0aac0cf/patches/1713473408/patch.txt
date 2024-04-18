@@ -1,0 +1,19 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public List<WalletDto> all() throws IOException {
+  List<WalletDto> result = new ArrayList<>();
+  try (
+    InputStream in = connection().input();
+    Reader reader = new InputStreamReader(in, StandardCharsets.UTF_8);
+    JsonReader json = Json.createReader(reader)
+  ) {
+    JsonArray jsonArray = json.readArray();
+    for (JsonValue jsonValue : jsonArray) {
+      result.add(new WalletDto(jsonValue.asObject()));
+    }
+  }
+  return result;
+}

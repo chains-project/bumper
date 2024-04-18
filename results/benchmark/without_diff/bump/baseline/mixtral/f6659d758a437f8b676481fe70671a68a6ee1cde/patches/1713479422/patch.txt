@@ -1,0 +1,8 @@
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+protected void setUp() throws Exception {
+    Yaml yaml = new Yaml(new TrustedTagInspector());
+    // ...
+}

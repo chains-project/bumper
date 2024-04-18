@@ -1,0 +1,2 @@
+1a2
+>     DependencyCheckConfiguration globalConfig = DependencyCheckConfiguration.getInstance();

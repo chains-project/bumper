@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TFramedTransport;
+> 
+> // ...
+> 
+> public static TFramedTransport createFramedTransport(InputStream input) {
+>   if (input instanceof SeekableInputStream) {
+>     return new TFastFramedTransport((SeekableInputStream) input);
+>   } else {
+>     return new TFramedTransport(input);
+>   }
+> }
+\ No newline at end of file

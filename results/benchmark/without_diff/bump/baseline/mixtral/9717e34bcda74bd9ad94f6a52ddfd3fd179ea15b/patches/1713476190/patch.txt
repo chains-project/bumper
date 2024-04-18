@@ -1,0 +1,8 @@
+import com.jcabi.github.Github;
+import org.mockito.Mockito;
+
+public class MkGithub {
+    public Github github() {
+        return Mockito.mock(Github.class);
+    }
+}

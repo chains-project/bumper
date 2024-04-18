@@ -1,0 +1,41 @@
+0a1,7
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> 
+> import java.util.List;
+> 
+2,4c9
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+<                 ItemMeta pageMeta = pageButton.getItemMeta();
+<                 pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>     MaterialData pageButtonData = MaterialData.WHITE_STAINED_GLASS;
+6,8c11
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageButtonData = MaterialData.RED_STAINED_GLASS;
+10,12c13
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageButtonData = MaterialData.GREEN_STAINED_GLASS;
+14c15,22
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+---
+>         pageButtonData = MaterialData.LILY_PAD;
+>     }
+> 
+>     ItemStack pageButton = new ItemStack(pageButtonData);
+>     ItemMeta pageMeta = pageButton.getItemMeta();
+>     pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+> 
+>     if (buttonType.equalsIgnoreCase("Page Number")) {
+18c26
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             pageMeta.addEnchant(Enchantment.getByName("DAMAGE_ALL"), 1, false);

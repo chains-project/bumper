@@ -1,0 +1,10 @@
+1a2,9
+> 
+> // Add the following import statement
+> import de.gwdg.metadataqa.marc21.utils.MarcLoader;
+> 
+> // Modify the following line
+> // JsonBranch jsonBranch = new JsonBranch(marcLoader.getJson());
+> // to
+> JsonBranch jsonBranch = new JsonBranch(MarcLoader.getJson(marcLoader));
+\ No newline at end of file

@@ -1,0 +1,13 @@
+1c1,8
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.github.Github;
+> import org.mockito.Mockito;
+> 
+> public class MkGithub {
+>     public Github github() {
+>         return Mockito.mock(Github.class);
+>     }
+> }
+\ No newline at end of file

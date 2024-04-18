@@ -1,0 +1,10 @@
+2,3c2,3
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+---
+>     final String packagesToScan = System.getProperty("package.to.scan", "");
+>     if (packagesToScan.isEmpty()) {
+8c8
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+---
+>         String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan.trim());

@@ -1,0 +1,6 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new PatternMatcher(
+        "Status: Downloaded newer image for " + image,
+        Pattern.LITERAL
+    );
+}

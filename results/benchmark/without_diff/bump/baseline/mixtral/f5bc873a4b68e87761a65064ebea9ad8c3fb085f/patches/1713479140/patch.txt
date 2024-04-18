@@ -1,0 +1,21 @@
+import org.apache.maven.artifact.handler.ArtifactHandler;
+import org.eclipse.aether.artifact.DefaultArtifact;
+import org.eclipse.aether.graph.Dependency;
+
+// ...
+
+@Override
+public void unpack(Dependency dependency) throws DependencyResolutionRequiredException {
+    ArtifactHandler artifactHandler = dependency.getArtifact().getArtifactHandler();
+    String classifier = artifactHandler.getExtension();
+
+    DefaultArtifact artifact = new DefaultArtifact(
+            dependency.getArtifact().getGroupId(),
+            dependency.getArtifact().getArtifactId(),
+            classifier,
+            dependency.getArtifact().getVersion(),
+            artifactHandler
+    );
+
+    // ...
+}

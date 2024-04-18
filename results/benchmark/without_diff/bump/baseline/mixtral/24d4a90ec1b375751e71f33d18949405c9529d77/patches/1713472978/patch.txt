@@ -1,0 +1,28 @@
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+
+@Tv(42)
+public class AwsOcketITCase {
+    // existing code...
+
+    @Override
+    public void testUpload() throws Exception {
+        // create an S3 client
+        AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
+
+        // create a bucket and a key for the object
+        String bucketName = "my-bucket";
+        String key = "my-object-key";
+
+        // create an object metadata
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType("application/octet-stream");
+
+        // create a put object request
+        PutObjectRequest putRequest = new PutObjectRequest(bucketName, key, new ByteArrayInputStream(new byte[0]), metadata);
+
+        // put the object
+        s3Client.putObject(putRequest);
+    }
+}

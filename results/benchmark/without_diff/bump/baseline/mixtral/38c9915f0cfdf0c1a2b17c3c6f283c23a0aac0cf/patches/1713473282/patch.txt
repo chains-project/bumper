@@ -1,0 +1,13 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String asString() throws IOException {
+  return new JoinedText(
+    Texts.wrap(","),
+    this.wallets.stream()
+      .map(WalletIn::asString)
+      .toArray(String[]::new)
+  ).asString();
+}

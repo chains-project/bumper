@@ -1,0 +1,30 @@
+import com.jcabi.s3.S3;
+import com.jcabi.s3.acl.CanonicalGrantee;
+import com.jcabi.s3.acl.Grantee;
+import com.jcabi.s3.acl.Permission;
+
+import java.io.IOException;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+public class AwsOcketITCase {
+    // ...
+
+    @Test
+    @Override
+    public void testBucketACL() throws IOException {
+        S3 s3 = getS3();
+        String bucketName = getBucketName();
+        s3.createBucket(bucketName);
+        Set<Grantee> grantees = new HashSet<>();
+        grantees.add(CanonicalGrantee.anonymous());
+        s3.setBucketAcl(bucketName, Collections.singleton(new Grantee.Builder(grantees)
+            .permission(Permission.FULL_CONTROL)
+            .build()
+        ));
+        // ...
+    }
+
+    // ...
+}

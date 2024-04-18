@@ -1,0 +1,64 @@
+1c1,59
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.AlertDescription;
+> 
+> import java.security.GeneralSecurityException;
+> import java.security.Provider;
+> import java.security.Security;
+> import java.util.Objects;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     static {
+>         Provider bcProvider = Security.getProvider("BC");
+>         if (bcProvider == null) {
+>             Security.addProvider(new BouncyCastleProvider());
+>         }
+>     }
+> 
+>     // ...
+> 
+>     @Override
+>     public void decode(ByteBuffer byteBuffer) throws IOException, GeneralSecurityException {
+>         // ...
+> 
+>         int tag = byteBuffer.get() & 0xFF;
+>         if (tag == TAG_AEAD) {
+>             int aadLength = byteBuffer.getInt();
+>             byte[] aad = new byte[aadLength];
+>             byteBuffer.get(aad);
+> 
+>             int ciphertextLength = byteBuffer.getInt();
+>             byte[] ciphertext = new byte[ciphertextLength];
+>             byteBuffer.get(ciphertext);
+> 
+>             AlertDescription alertDescription = decodeAead(aad, ciphertext);
+>             if (alertDescription != null) {
+>                 throw new TlsFatalAlert(alertDescription);
+>             }
+> 
+>             // ...
+>         }
+> 
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     private AlertDescription decodeAead(byte[] aad, byte[] ciphertext) {
+>         try {
+>             Cipher cipher = Cipher.getInstance("ChaCha20-Poly1305", "BC");
+>             cipher.init(Cipher.DECRYPT_MODE, null, new GCMParameterSpec(128, aad));
+>             cipher.doFinal(ciphertext);
+>             return null;
+>         } catch (Exception e) {
+>             return AlertDescription.internal_error;
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

@@ -1,0 +1,20 @@
+1c1,15
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Joined;
+> 
+> // ...
+> 
+> @Override
+> public List<WalletDto> getAll() throws IOException {
+>   List<WalletDto> result = new ArrayList<>();
+>   try (InputStream is = url.openStream()) {
+>     List<String> strings = new JsonInput(is).jsonArray();
+>     for (String string : strings) {
+>       result.add(new WalletDto(new JsonMap(new JsonInput(new StringReader(string)))));
+>     }
+>   }
+>   return result;
+> }
+\ No newline at end of file

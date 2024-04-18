@@ -1,0 +1,9 @@
+0a1
+> try {
+1a3,7
+> } catch (Exception e) {
+>     // Handle the missing dependency here
+>     // For example, you can log an error message or use a different implementation
+>     System.err.println("Error importing org.bouncycastle.crypto.tls.AlertDescription: " + e.getMessage());
+> }
+\ No newline at end of file

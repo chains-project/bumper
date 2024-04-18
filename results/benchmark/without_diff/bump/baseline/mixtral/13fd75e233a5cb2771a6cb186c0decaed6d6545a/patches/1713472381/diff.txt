@@ -1,0 +1,10 @@
+2,4c2,6
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>     return new PatternMatcher(
+>         Pattern.compile(
+>             String.format("Status: Downloaded newer image for %s", Pattern.quote(image))
+>         ),
+>         Pattern.LITERAL

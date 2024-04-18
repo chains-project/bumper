@@ -1,0 +1,30 @@
+0a1,10
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientProvider;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientSettings;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientSettings.Builder;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientSettings.SSLVersion;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerConfig;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerConfig;
+> import org.jfrog.hudson.pipeline.common.types.UsernamePasswordCredentialsConfig;
+> 
+9a20,24
+>     Builder settingsBuilder = OkHttpClientSettings.builder();
+>     settingsBuilder.sslVersion(SSLVersion.TLS_1_2);
+>     OkHttpClientSettings settings = settingsBuilder.build();
+>     OkHttpClientProvider clientProvider = new OkHttpClientProvider(settings);
+> 
+13,14c28,30
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         UsernamePasswordCredentialsConfig credentials = getCredentialsById(step.credentialsId);
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, new ArtifactoryServerConfig(clientProvider, credentials));
+>         distributionServer = new DistributionServer(distributionUrl, new DistributionServerConfig(clientProvider, credentials));
+16,17c32,33
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password, clientProvider);
+>         distributionServer = new DistributionServer(distributionUrl, step.username, step.password, clientProvider);

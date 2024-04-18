@@ -1,0 +1,17 @@
+1c1,12
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> @Tv({1.12})
+> public class SshByPassword {
+>     private final Ssh ssh;
+> 
+>     public SshByPassword(String host, int port, String login, String password) {
+>         this.ssh = Ssh.create(host, port, login, password);
+>     }
+> 
+>     // existing methods...
+> }
+\ No newline at end of file

@@ -1,0 +1,57 @@
+0a1,33
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.PlayerInteractManager;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import org.bukkit.profile.GameProfile;
+> import org.bukkit.scoreboard.Scoreboard;
+> import org.bukkit.scoreboard.Team;
+> 
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+> public class PlayerUtils {
+> 
+>     // Added method to convert a string to leet-speak
+>     private static String toLeetSpeak(String input) {
+>         StringBuilder output = new StringBuilder();
+>         for (char c : input.toCharArray()) {
+>             if (Character.isLetter(c)) {
+>                 int offset = Character.isUpperCase(c) ? 'A' : 'a';
+>                 int index = (c - offset) % 3 + offset;
+>                 output.append((char) index);
+>             } else {
+>                 output.append(c);
+>             }
+>         }
+>         return output.toString();
+>     }
+> 
+7,8c40
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     public static CraftPlayer getRandomPlayer(World world) {
+17,20c49,51
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = toLeetSpeak(first);
+>             last = toLeetSpeak(last);
+38c69
+<         return new EntityPlayer(
+---
+>         return new CraftPlayer(
+44a76,78
+> 
+>     // Rest of the class...
+> }
+\ No newline at end of file

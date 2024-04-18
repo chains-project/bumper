@@ -1,0 +1,4 @@
+private static Matcher<String> imagePulled(final String image) {
+    String imageDownloaded = String.format("Downloaded newer image for %s", image);
+    return new CoreMatchers.<String>containsString(imageDownloaded);
+}

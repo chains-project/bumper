@@ -1,0 +1,10 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    DependencyCheckConfiguration dependencyCheckConfig = new DependencyCheckConfiguration();
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(dependencyCheckConfig::getModules)
+            .build();
+}

@@ -1,0 +1,10 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String one(String id) throws IOException {
+  List<String> urls = new ArrayList<>();
+  // ... populate urls with the desired URLs
+  return new JoinedText(Texts.length(urls), url -> new HttpText(url, id)).asString();
+}

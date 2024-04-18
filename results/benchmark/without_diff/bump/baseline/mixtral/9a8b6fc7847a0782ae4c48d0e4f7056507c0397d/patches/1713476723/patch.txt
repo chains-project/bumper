@@ -1,0 +1,8 @@
+import org.jasypt.util.text.StrongTextEncryptor;
+
+@Override
+public String encode(String rawPass) {
+    StrongTextEncryptor encryptor = new StrongTextEncryptor();
+    encryptor.setPassword(this.salt);
+    return encryptor.encrypt(rawPass);
+}

@@ -1,0 +1,17 @@
+import com.jcabi.github.Github;
+
+@Tv(40)
+public class MkGithub {
+    private Github github;
+
+    public MkGithub(Github github) {
+        this.github = github;
+    }
+
+    @Override
+    public String toString() {
+        return "MkGithub{" +
+                "github=" + github.toString() +
+                '}';
+    }
+}
