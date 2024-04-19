@@ -1,0 +1,18 @@
+0a1,3
+> import org.bouncycastle.crypto.engines.ChaCha20Engine;
+> import org.bouncycastle.crypto.modes.ChaCha20Mode;
+> import org.bouncycastle.crypto.paddings.Padding ScheMe;
+1a5,16
+> 
+> public class ChachaDecoder {
+>     private static final ChaCha20Engine ENGINE = new ChaCha20Engine();
+>     private static final ChaCha20Mode MODE = new ChaCha20Mode(ENGINE);
+>     private static final Padding ScheMe = new Padding ScheMe();
+> 
+>     public static void decode(byte[] input) {
+>         byte[] output = new byte[input.length];
+>         MODE. encrypt(input, 0, input.length, output, 0);
+>         return output;
+>     }
+> }
+\ No newline at end of file

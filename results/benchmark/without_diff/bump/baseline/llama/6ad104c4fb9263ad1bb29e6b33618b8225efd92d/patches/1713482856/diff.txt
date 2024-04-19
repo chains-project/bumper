@@ -1,0 +1,11 @@
+1a2,10
+> 
+> // Create a variable to hold the TlsFatalAlert object
+> TlsFatalAlert fatalAlert = null;
+> 
+> // Replace the import statement with a local variable
+> TlsFatalAlert localFatalAlert = new TlsFatalAlert();
+> 
+> // Modify the code to use the local variable
+> localFatalAlert.fatalAlert(null, "test");
+\ No newline at end of file

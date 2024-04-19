@@ -1,0 +1,12 @@
+4c4,12
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+>         @Override
+>             protected void encryptPassword(CharSequence password, String algorithm, int iterationCount) {
+>                 // Remove the line that causes the error
+>                 // encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+>                 // Add the following line instead
+>                 encoder.setPasswordEncryptor(new DelegatingPasswordEncryptor(algorithm, iterationCount));
+>             }
+>         });

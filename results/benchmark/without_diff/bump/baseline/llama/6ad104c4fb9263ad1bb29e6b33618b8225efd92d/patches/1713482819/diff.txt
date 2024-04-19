@@ -1,0 +1,14 @@
+1a2,13
+> 
+> // Create a variable to hold the TlsFatalAlert object
+> TlsFatalAlert fatalAlert = null;
+> 
+> // Check if the fatalAlert object is null
+> if (fatalAlert == null) {
+>   // Create a new TlsFatalAlert object
+>   fatalAlert = new TlsFatalAlert();
+> }
+> 
+> // Use the fatalAlert object
+> fatalAlert.printStackTrace();
+\ No newline at end of file

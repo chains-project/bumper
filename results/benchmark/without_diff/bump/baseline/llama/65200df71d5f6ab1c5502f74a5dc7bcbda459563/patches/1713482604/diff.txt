@@ -1,0 +1,2 @@
+7a8
+>             .setDependencyVersion(DependencyVersion.create(JavaVersion.VERSION_1_8, "1.8"))

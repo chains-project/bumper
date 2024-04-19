@@ -1,0 +1,20 @@
+1a2,19
+> 
+> public class SimpleThriftLogger {
+>     private final TFramedTransport.Factory transportFactory;
+> 
+>     public SimpleThriftLogger(TFramedTransport.Factory transportFactory) {
+>         this.transportFactory = transportFactory;
+>     }
+> 
+>     public void log(String message) {
+>         try (TFramedTransport transport = transportFactory.getTransport()) {
+>             transport.open();
+>             transport.write(message);
+>             transport.close();
+>         } catch (Exception e) {
+>             e.printStackTrace();
+>         }
+>     }
+> }
+\ No newline at end of file

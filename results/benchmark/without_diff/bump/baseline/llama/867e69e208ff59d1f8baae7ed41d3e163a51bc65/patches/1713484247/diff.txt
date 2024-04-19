@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class ThriftReader {
+>     private TFramedTransport.TFramedInputTransport framedTransport;
+> 
+>     public ThriftReader() {
+>         this.framedTransport = new TFramedTransport.TFramedInputTransport();
+>     }
+> 
+>     public void read() {
+>         // Your code here
+>     }
+> }
+\ No newline at end of file

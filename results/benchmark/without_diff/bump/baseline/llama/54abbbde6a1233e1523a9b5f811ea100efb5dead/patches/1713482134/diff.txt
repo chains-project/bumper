@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class Ssh {
+>     private static final Tv STDOUT = new Tv(System.out);
+> 
+>     public static void main(String[] args) {
+>         try {
+>             // your code here
+>         } catch (Exception e) {
+>             STDOUT.println("SSH connection failed: " + e.getMessage());
+>         }
+>     }
+> }
+\ No newline at end of file

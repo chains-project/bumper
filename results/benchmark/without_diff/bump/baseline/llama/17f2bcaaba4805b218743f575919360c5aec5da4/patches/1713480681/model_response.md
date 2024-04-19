@@ -1,0 +1,10 @@
+Here's a possible patch to fix the error:
+```java
+@Test
+void test_PGS_Morphology_buffer() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1, true);
+    assertEquals(2, out.getChildCount());
+}
+```
+The patch adds a third `true` argument to the `PGS_Morphology.buffer()` method, which fixes the error by providing the correct signature for the method call.

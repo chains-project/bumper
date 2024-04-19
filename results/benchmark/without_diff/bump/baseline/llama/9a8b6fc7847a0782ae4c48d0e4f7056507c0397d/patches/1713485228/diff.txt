@@ -1,0 +1,14 @@
+4c4,14
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+>         @Override
+>             public String encrypt(CharSequence password) {
+>                 return EncryptionUtil.encrypt(password);
+>             }
+> 
+>             @Override
+>             public String decrypt(CharSequence encryptedPassword) {
+>                 return EncryptionUtil.decrypt(encryptedPassword);
+>             }
+>         });

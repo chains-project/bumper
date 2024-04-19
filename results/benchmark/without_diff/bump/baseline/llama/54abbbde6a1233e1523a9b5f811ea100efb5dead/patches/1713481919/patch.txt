@@ -1,0 +1,13 @@
+import com.jcabi.aspects.Tv;
+
+public class SshByPassword {
+    private static final Tv HIDE = Tv.create(SshByPassword.class);
+
+    public static void main(String[] args) {
+        try {
+            // Your code here
+        } catch (Exception e) {
+            HIDE.debug(e);
+        }
+    }
+}

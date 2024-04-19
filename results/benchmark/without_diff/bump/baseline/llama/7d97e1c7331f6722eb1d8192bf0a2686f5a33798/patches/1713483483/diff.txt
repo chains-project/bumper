@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class RegionITCase {
+>     private static final Tv T = new Tv();
+> 
+>     public void testSomething() {
+>         T.add(new com.jcabi.aspects.Tv.Jdbc(new com.jcabi.aspects.Tv.Jdbc.PostgreSql()));
+>     }
+> }
+\ No newline at end of file

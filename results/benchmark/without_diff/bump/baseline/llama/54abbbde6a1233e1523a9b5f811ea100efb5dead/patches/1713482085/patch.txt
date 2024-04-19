@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class Ssh {
+    private static final Tv T = new Tv(Ssh.class);
+
+    public static void main(String[] args) {
+        T.println("Hello, world!");
+    }
+}

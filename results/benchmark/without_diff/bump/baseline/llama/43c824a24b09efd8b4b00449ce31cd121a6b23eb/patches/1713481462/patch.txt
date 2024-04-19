@@ -1,0 +1,12 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+public class MarcFactory {
+    private static final JsonBranch jsonBranch = new JsonBranch();
+
+    public static Marc createMarc() {
+        JsonBranch jsonBranch = new JsonBranch();
+        Marc marc = new Marc();
+        // ...
+        return marc;
+    }
+}

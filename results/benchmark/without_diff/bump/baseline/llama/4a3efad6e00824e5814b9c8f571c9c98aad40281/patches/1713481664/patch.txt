@@ -1,0 +1,29 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    private static final String PadesLongName = "PadesLongName";
+    private static final String PadesShortName = "PadesShortName";
+
+    public static void main(String[] args) {
+        try {
+            // Create a new PDF document
+            Document pdfDoc = new Document();
+            PdfWriter pdfWriter = PdfWriter.getInstance(pdfDoc, new FileOutputStream("output.pdf"));
+            pdfDoc.addDocumentListener(new PdfDocumentListener());
+
+            // Create a new signature
+            PdfSignature pdfSignature = pdfWriter.getPdfSignature(PadesLongName, PadesShortName, CertificationPermission.getCertificationPermission());
+            pdfSignature.setCreationDate(new Date());
+            pdfSignature.setReason("Signature created by OpenPDFSign");
+            pdfSignature.setLocation("OpenPDFSign");
+
+            // Add the signature to the document
+            pdfDoc.addSignature(pdfSignature);
+
+            // Save the document
+            pdfWriter.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

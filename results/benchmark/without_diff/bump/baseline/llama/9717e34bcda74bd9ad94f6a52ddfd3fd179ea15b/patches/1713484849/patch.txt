@@ -1,0 +1,16 @@
+import com.jcabi.aspects.Tv;
+
+public class MkGithub {
+    private static final Tv T = new Tv();
+
+    public static void main(String[] args) {
+        T.add(MkGithub.class);
+        T.add(MkGithub.class.getMethod("mockGithub"));
+        T.add(MkGithub.class.getMethod("main", String[].class));
+        T.invoke(null);
+    }
+
+    public static void mockGithub() {
+        // Your code here
+    }
+}

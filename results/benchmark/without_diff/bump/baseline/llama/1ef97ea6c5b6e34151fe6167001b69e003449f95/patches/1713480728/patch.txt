@@ -1,0 +1,5 @@
+@Override
+public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    java.sql.Date sqlDate = new java.sql.Date(super.between(from, to).getTime());
+    return new Timestamp(sqlDate.getTime());
+}

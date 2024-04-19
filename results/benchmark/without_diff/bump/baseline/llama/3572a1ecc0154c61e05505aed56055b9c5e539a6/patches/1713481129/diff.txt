@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class AppenderUtils {
+>     public static TFastFramedTransport getTFastFramedTransport() {
+>         // Create a new TFastFramedTransport instance
+>         TFastFramedTransport transport = new TFastFramedTransport();
+>         return transport;
+>     }
+> }
+\ No newline at end of file

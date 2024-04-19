@@ -1,0 +1,22 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+20a15,27
+> 
+> boolean isAllBlank(String... strings) {
+>     for (String string : strings) {
+>         if (string != null && !string.isEmpty()) {
+>             return false;
+>         }
+>     }
+>     return true;
+> }
+> 
+> boolean isNotBlank(String string) {
+>     return string != null && !string.isEmpty();
+> }
+\ No newline at end of file

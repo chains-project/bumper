@@ -1,0 +1,13 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+    private final TFramedTransport framedTransport;
+
+    public SimpleThriftLogger(TFramedTransport framedTransport) {
+        this.framedTransport = framedTransport;
+    }
+
+    public void log(String message) {
+        framedTransport.write(message);
+    }
+}

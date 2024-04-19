@@ -1,0 +1,13 @@
+import org.cactoos.text.JoinedText;
+
+public class WalletsIn {
+    private final JoinedText joinedText;
+
+    public WalletsIn(JoinedText joinedText) {
+        this.joinedText = joinedText;
+    }
+
+    public String getWalletAddress() {
+        return joinedText.asString();
+    }
+}

@@ -1,0 +1,35 @@
+import org.bouncycastle.util.Arrays;
+
+public class ChachaDecoder {
+    private static final int CHACHA_IV_SIZE = 8;
+    private static final int CHACHA_KEY_SIZE = 32;
+    private static final int CHACHA_BLOCK_SIZE = 64;
+    private static final int CHACHA_STATE_SIZE = 64;
+    private static final int CHACHA_KEY_ITERATIONS = 2;
+
+    private byte[] key;
+    private byte[] iv;
+    private int[] state;
+
+    public ChachaDecoder(byte[] key, byte[] iv) {
+        this.key = key;
+        this.iv = iv;
+        this.state = new int[CHACHA_STATE_SIZE];
+    }
+
+    public void decode(byte[] input, int offset, int length) {
+        int[] state = this.state;
+        byte[] key = this.key;
+        byte[] iv = this.iv;
+
+        for (int i = 0; i < length; i += CHACHA_BLOCK_SIZE) {
+            int blockSize = Math.min(CHACHA_BLOCK_SIZE, length - i);
+            int[] block = new int[blockSize];
+            Arrays.copyOfRange(input, offset + i, block, 0, blockSize);
+            offset += blockSize;
+
+            state = Arrays.concat(state, block, 0, blockSize);
+            state = ChaCha.process(state, key, iv, blockSize);
+        }
+    }
+}

@@ -1,0 +1,10 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    private static final String PERMISSION_NAME = "permissions";
+
+    public void sign() {
+        CertificationPermission permission = new CertificationPermission(PERMISSION_NAME);
+        // ...
+    }
+}

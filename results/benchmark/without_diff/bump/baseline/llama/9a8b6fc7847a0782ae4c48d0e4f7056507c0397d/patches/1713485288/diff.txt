@@ -1,0 +1,11 @@
+4c4,11
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+>         @Override
+>             protected void encrypt(CharSequence password, String salt, int hashIterations) {
+>                 // Fix for missing method
+>                 hashIterations = hashIterations == 0 ? 1 : hashIterations;
+>                 super.encrypt(password, salt, hashIterations);
+>             }
+>         });

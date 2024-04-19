@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MarcFactory {
+>     private static final JsonBranch jsonBranch = new JsonBranch();
+> 
+>     public static JsonBranch getJsonBranch() {
+>         return jsonBranch;
+>     }
+> }
+\ No newline at end of file

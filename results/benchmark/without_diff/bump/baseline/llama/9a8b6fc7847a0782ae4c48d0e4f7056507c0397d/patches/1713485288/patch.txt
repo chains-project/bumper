@@ -1,0 +1,13 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder();
+    encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+        @Override
+            protected void encrypt(CharSequence password, String salt, int hashIterations) {
+                // Fix for missing method
+                hashIterations = hashIterations == 0 ? 1 : hashIterations;
+                super.encrypt(password, salt, hashIterations);
+            }
+        });
+        return encoder;
+    }

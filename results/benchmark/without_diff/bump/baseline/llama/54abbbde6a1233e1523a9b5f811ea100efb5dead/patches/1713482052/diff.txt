@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class Ssh {
+>     private static final Tv T = new Tv(Ssh.class);
+> 
+>     public static void main(String[] args) {
+>         T.add(new com.jcabi.aspects.Aspect());
+>         // Your code here
+>     }
+> }
+\ No newline at end of file

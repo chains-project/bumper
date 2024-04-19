@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class ChachaDecoder {
+>     public static void main(String[] args) {
+>         TlsFatalAlert alert = new TlsFatalAlert(TlsFatalAlert.decode(new byte[] {(byte) 0x15, (byte) 0x15, (byte) 0x15, (byte) 0x15}, 0, 0, 0));
+>         System.out.println(alert.getMessage());
+>     }
+> }
+\ No newline at end of file

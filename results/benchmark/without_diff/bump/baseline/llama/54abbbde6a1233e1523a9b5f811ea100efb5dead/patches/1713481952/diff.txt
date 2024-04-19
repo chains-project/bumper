@@ -1,0 +1,27 @@
+1a2,26
+> 
+> public class SshByPassword {
+>     private static final Tv DEFAULT_TV = Tv.UNLIMITED;
+> 
+>     public static void main(String[] args) {
+>         try {
+>             // Create a new SSH client
+>             SshClient ssh = new SshClient();
+> 
+>             // Connect to the server
+>             ssh.connect("localhost");
+> 
+>             // Authenticate using a password
+>             ssh.authenticate("root", "password");
+> 
+>             // Execute a command
+>             ssh.exec("ls -l");
+> 
+>             // Disconnect from the server
+>             ssh.disconnect();
+>         } catch (Exception e) {
+>             e.printStackTrace();
+>         }
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,16 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder();
+    encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+        @Override
+            public String encrypt(CharSequence password) {
+                return EncryptionUtil.encrypt(password);
+            }
+
+            @Override
+            public String decrypt(CharSequence encryptedPassword) {
+                return EncryptionUtil.decrypt(encryptedPassword);
+            }
+        });
+    return encoder;
+}

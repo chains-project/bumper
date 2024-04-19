@@ -1,0 +1,12 @@
+12c12,17
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+---
+>         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile) {
+>             @Override
+>             public void extract(FilePath filePath) throws Exception {
+>                 // Remove the following line as it's not needed and causes the error
+>                 //super.execute("Create Docker Build", "org.jfrog.build.extractor.docker.extractor.BuildDockerCreator", envExtractor, tempDir);
+>                 // Call the original super method to keep the original behavior
+13a19,20
+>             }
+>         };

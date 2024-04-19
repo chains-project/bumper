@@ -1,0 +1,14 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+public class ThriftReader {
+    private TFramedTransport.Factory transportFactory;
+
+    public ThriftReader(TFramedTransport.Factory transportFactory) {
+        this.transportFactory = transportFactory;
+    }
+
+    public void read() {
+        TFramedTransport transport = transportFactory.getTransport();
+        // Your code here
+    }
+}

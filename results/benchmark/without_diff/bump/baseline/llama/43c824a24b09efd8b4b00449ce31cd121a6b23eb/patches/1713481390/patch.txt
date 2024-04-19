@@ -1,0 +1,17 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+public class MarcFactory {
+    private JsonBranch jsonBranch;
+
+    public MarcFactory(JsonBranch jsonBranch) {
+        this.jsonBranch = jsonBranch;
+    }
+
+    public MarcFactory() {
+        this(new JsonBranch());
+    }
+
+    public Marc createMarc() {
+        return new Marc(jsonBranch);
+    }
+}

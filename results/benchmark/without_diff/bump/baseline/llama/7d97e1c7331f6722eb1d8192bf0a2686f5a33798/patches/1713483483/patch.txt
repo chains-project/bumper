@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class RegionITCase {
+    private static final Tv T = new Tv();
+
+    public void testSomething() {
+        T.add(new com.jcabi.aspects.Tv.Jdbc(new com.jcabi.aspects.Tv.Jdbc.PostgreSql()));
+    }
+}

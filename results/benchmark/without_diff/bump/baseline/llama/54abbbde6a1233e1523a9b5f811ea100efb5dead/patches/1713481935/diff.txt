@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class SshByPassword {
+>     private static final Tv TREE = new Tv(new Tv.Rule[] {
+>         new Tv.Rule.Method(Tv.class, "get", new String[] {"name"}),
+>         new Tv.Rule.Method(Tv.class, "set", new String[] {"name"})
+>     });
+> 
+>     public static void main(String[] args) {
+>         Tv tree = TREE; // Replace the import with the static final variable
+>     }
+> }
+\ No newline at end of file

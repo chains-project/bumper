@@ -1,0 +1,11 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    // ...
+    @Override
+    public void sign() {
+        // ...
+        CertificationPermission certificationPermission = new CertificationPermission();
+        // ...
+    }
+}

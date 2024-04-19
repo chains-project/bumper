@@ -1,0 +1,16 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder();
+    encoder.setPasswordEncryptor(new StrongPasswordEncryptor() {
+        @Override
+            protected void encrypt(final char[] password, final byte[] salt, final int hashAlgorithm, final int iterations) {
+                // Remove sensitive data
+            }
+
+            @Override
+            protected void encode(final char[] password, final byte[] salt, final int hashAlgorithm, final int iterations, final boolean encodePlaintext) {
+                // Remove sensitive data
+            }
+        });
+    return encoder;
+}

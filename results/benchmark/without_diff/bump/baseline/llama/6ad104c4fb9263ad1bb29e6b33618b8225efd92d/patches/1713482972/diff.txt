@@ -1,0 +1,31 @@
+1c1,26
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.engines.ChaCha20Engine;
+> import org.bouncycastle.crypto.modes.ChaCha20Mode;
+> import org.bouncycastle.crypto.paddings.PaddingException;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> 
+> public class ChaChaDecoder {
+>     private final ChaCha20Engine engine;
+>     private final ChaCha20Mode mode;
+> 
+>     public ChaChaDecoder(KeyParameter key) {
+>         this.engine = new ChaCha20Engine();
+>         this.mode = new ChaCha20Mode(engine);
+>     }
+> 
+>     public void decrypt(byte[] input, int offset, int len) throws PaddingException {
+>         engine.init(true, new KeyParameter(key));
+>         mode.init(engine);
+>         byte[] output = new byte[len];
+>         int padding = mode.getPadding();
+>         int result = mode.decrypt(input, offset, len, output, padding);
+>         if (result < 0) {
+>             throw new PaddingException("invalid padding");
+>         }
+>         return output;
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class RegionITCase {
+>     private static final Tv Tv = new Tv();
+> 
+>     public void testSomething() {
+>         Tv.set(Tv. television(Tv.Category.INFO));
+>     }
+> }
+\ No newline at end of file

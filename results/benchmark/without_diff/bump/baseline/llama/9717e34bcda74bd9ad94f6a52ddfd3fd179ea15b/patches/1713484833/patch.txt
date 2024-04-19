@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class MkGithub {
+    private static final Tv TV = new Tv("jcabi-github", "github");
+
+    public static void main(String[] args) {
+        TV.use(MkGithub.class);
+    }
+}

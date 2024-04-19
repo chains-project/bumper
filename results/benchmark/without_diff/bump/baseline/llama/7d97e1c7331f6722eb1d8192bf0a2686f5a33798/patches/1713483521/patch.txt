@@ -1,0 +1,13 @@
+import com.jcabi.aspects.Tv;
+
+public class RegionITCase {
+    private static final Tv TV = Tv.VOID;
+
+    public void testRegion() {
+        // Remove the following line, as it's not needed
+        // Tv.set(Tv.VOID);
+        // Add the following line to use the static final variable we created
+        Tv.set(TV);
+        // Rest of the code...
+    }
+}

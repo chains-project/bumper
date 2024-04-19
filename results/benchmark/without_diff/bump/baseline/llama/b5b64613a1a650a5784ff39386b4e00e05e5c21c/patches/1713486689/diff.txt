@@ -1,0 +1,11 @@
+12c12,19
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+---
+>         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile) {
+>             @Override
+>             public void createEnvironmentVariables() throws Exception {
+>                 super.createEnvironmentVariables();
+>                 // Add the following line to fix the error
+>                 this.launcher.setEnvironmentVariable("DOCKER_IMAGE", kanikoImageFile);
+>             }
+>         };

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class Ssh {
+>     private static final Tv TV = new Tv();
+> 
+>     public static void main(String[] args) {
+>         TV.println("Hello, world!");
+>     }
+> }
+\ No newline at end of file

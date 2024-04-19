@@ -1,0 +1,19 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+    private final TFramedTransport.Factory transportFactory;
+
+    public SimpleThriftLogger(TFramedTransport.Factory transportFactory) {
+        this.transportFactory = transportFactory;
+    }
+
+    public void log(String message) {
+        try (TFramedTransport transport = transportFactory.getTransport()) {
+            transport.open();
+            transport.write(message);
+            transport.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

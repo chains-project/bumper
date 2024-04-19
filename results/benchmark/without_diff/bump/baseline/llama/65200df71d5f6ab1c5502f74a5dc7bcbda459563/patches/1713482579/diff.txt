@@ -1,0 +1,2 @@
+7a8
+>                 .setDependencyVersion(DependencyVersion.fromString("2.12.0")) // Add this line
