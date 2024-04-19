@@ -1,0 +1,15 @@
+1a2,14
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> 
+> // ...
+> 
+> File file = new File("path/to/file");
+> try {
+>     // Use NIO.2 to read the file
+>     String content = new String(Files.readAllBytes(Paths.get(file.getPath())));
+>     // ...
+> } catch (IOException e) {
+>     // Handle exception
+> }
+\ No newline at end of file

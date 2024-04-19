@@ -1,0 +1,20 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// Add the following import statement
+import org.bouncycastle.crypto.TlsUtilities;
+
+public class ChachaDecoder {
+    // Existing code...
+
+    private AlertDescription decodeAlertLevel(byte b) {
+        // Existing code...
+
+        // Replace the following line:
+        // return AlertDescription.decode(b);
+
+        // With the following code:
+        return TlsUtilities.alertDescriptionForLevel(b);
+    }
+
+    // Existing code...
+}

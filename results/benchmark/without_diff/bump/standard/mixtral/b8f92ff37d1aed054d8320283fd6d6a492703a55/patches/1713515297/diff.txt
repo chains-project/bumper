@@ -1,0 +1,14 @@
+0a1,4
+> import org.apache.maven.shared.utils.io.DirectoryScanner;
+> import java.io.File;
+> import java.util.List;
+> 
+2,3c6,10
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner();
+>     directoryScanner.setBasedir(testSrcFolder.getAbsolutePath());
+>     directoryScanner.setIncludes(new String[]{"**/*.class"});
+>     directoryScanner.scan();
+>     return directoryScanner.getIncludedFiles();

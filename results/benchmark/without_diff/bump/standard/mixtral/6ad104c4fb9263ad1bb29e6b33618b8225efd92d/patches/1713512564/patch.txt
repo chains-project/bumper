@@ -1,0 +1,6 @@
+import org.bouncycastle.crypto.engines.ChaChaEngine;
+
+// Replace any usage of AlertDescription with a custom enum or constant
+public class ChachaDecoder {
+    // ...
+}

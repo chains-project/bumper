@@ -1,0 +1,28 @@
+1a2,27
+> import org.codehaus.plexus.components.io.filemanipulator.FileManipulator;
+> 
+> public class AbstractThemeMojo {
+>     // ...
+> 
+>     private FileManipulator fileManipulator;
+> 
+>     // ...
+> 
+>     @Parameter(defaultValue = "${project.build.directory}/tobago-theme-plugin/theme/")
+>     private File outputDirectory;
+> 
+>     // ...
+> 
+>     protected void deleteDirectory(File directory) throws MojoExecutionException {
+>         try {
+>             if (directory.exists()) {
+>                 fileManipulator.removeAll(directory);
+>             }
+>         } catch (IOException e) {
+>             throw new MojoExecutionException("Error deleting directory: " + directory, e);
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

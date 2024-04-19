@@ -1,0 +1,11 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+// ...
+
+Path filePath = Paths.get(file.getPath());
+if (!Files.exists(filePath)) {
+    throw new MojoFailureException("File does not exist: " + filePath);
+}

@@ -1,0 +1,13 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,11
+> import org.eclipse.tycho.core. TychoProject;
+> 
+> // ...
+> 
+> protected MavenProject getProject() {
+>     TychoProject tychoProject = (TychoProject) project;
+>     Model model = tychoProject.getModel();
+>     return new MavenProject(model);
+> }
+\ No newline at end of file

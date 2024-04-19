@@ -1,0 +1,13 @@
+import java.io.File;
+import org.codehaus.plexus.util.FileUtils;
+
+// ...
+
+File targetDir = new File(basedir, "target/generated-sources/theme");
+File themeDir = new File(basedir, "src/main/resources/META-INF/resources/theme");
+
+try {
+    FileUtils.copyDirectoryStructure(themeDir, targetDir);
+} catch (IOException e) {
+    throw new MojoExecutionException("Failed to copy theme directory", e);
+}

@@ -1,0 +1,15 @@
+1a2,14
+> 
+> // Add the following import statement
+> import org.bouncycastle.crypto.TlsUtilities;
+> 
+> // Replace the following line of code
+> // TlsUtilities.checkUint16(in, 2, "handshake messages", "version");
+> 
+> // With the following lines of code
+> int major = TlsUtilities.readUint8(in);
+> int minor = TlsUtilities.readUint8(in);
+> if (major > 3 || (major == 3 && minor > 1)) {
+>     throw new TlsFatalAlert(AlertDescription.unsupported_version);
+> }
+\ No newline at end of file

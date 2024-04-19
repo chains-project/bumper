@@ -1,0 +1,21 @@
+1c1,16
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.engines.ChaChaEngine;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.crypto.params.ParametersWithIV;
+> 
+> public class ChachaDecoder {
+>     // existing code...
+> 
+>     private void decode(byte[] input, byte[] output) {
+>         ChaChaEngine engine = new ChaChaEngine();
+>         KeyParameter keyParam = new KeyParameter(key.getBytes());
+>         engine.init(false, keyParam, nonce);
+>         engine.processBytes(input, 0, input.length, output, 0);
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

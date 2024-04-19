@@ -1,0 +1,15 @@
+1a2,14
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> 
+> //...
+> 
+> private void deleteDirectory(File directory) throws IOException {
+>     if (directory.exists()) {
+>         Files.walk(Paths.get(directory.getAbsolutePath()))
+>             .sorted(Comparator.reverseOrder())
+>             .map(Path::toFile)
+>             .forEach(File::delete);
+>     }
+> }
+\ No newline at end of file

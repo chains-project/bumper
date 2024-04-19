@@ -1,0 +1,34 @@
+0a1,2
+> import org.jasypt.properties.PropertyValueEncryptionUtils;
+> 
+2c4
+<         protected PasswordEncoder createStringEncoder() {
+---
+> protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+4,5c6
+< 
+<                 char[] chars = toChars(password);
+---
+>     char[] chars = it.geosolutions.geostore.core.security.password.SecurityUtils.toChars(password);
+7c8
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+9,10c10
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+---
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+14,15c14
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         it.geosolutions.geostore.core.security.password.PBEPasswordEncoder encoder = new it.geosolutions.geostore.core.security.password.PBEPasswordEncoder();
+17d15
+< 
+20,21c18,19
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(password);
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(chars);

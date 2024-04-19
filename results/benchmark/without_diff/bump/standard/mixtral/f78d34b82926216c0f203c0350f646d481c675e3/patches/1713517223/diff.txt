@@ -1,0 +1,63 @@
+1,15c1,5
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+> import java.util.Random;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.tuple.Pair;
+> import com.mojang.authlib.GameProfile;
+> import com.mojang.authlib.properties.Property;
+17,20c7,13
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+> public static net.minecraft.server.v1_12_R1.EntityPlayer getRandomPlayer(org.bukkit.World world) {
+>     Random random = new Random();
+>     String first = (random.nextBoolean()) ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : getRandomWord();
+>     String last = (random.nextBoolean()) ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : getRandomWord();
+>     if (random.nextBoolean()) {
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+22,23c15
+< 
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+---
+>     String name = ((first + (random.nextBoolean() ? "_" : "")) + last) + (random.nextBoolean() ? "19" + random.nextInt(120) : "");
+25c17
+<             name = random.nextBoolean() ? first: last;
+---
+>         name = (random.nextBoolean()) ? first : last;
+30,31c22
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+< 
+---
+>     net.minecraft.server.v1_12_R1.WorldServer worldServer = ((org.bukkit.craftbukkit.v1_12_R1.CraftWorld) (world)).getHandle();
+33d23
+< 
+35d24
+< 
+37,43c26
+< 
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+---
+>     return new net.minecraft.server.v1_12_R1.EntityPlayer(((org.bukkit.craftbukkit.v1_12_R1.CraftServer) (org.bukkit.Bukkit.getServer())).getServer(), worldServer, profile, new net.minecraft.server.v1_12_R1.PlayerInteractManager(worldServer));

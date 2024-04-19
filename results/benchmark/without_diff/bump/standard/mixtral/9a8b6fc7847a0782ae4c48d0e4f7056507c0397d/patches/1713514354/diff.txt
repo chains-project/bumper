@@ -1,0 +1,40 @@
+2c2
+<         protected PasswordEncoder createStringEncoder() {
+---
+> protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+4d3
+< 
+7,10c6,8
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+<                         stringEncrypter.setPasswordCharArray(chars);
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+---
+>         stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+>         ((org.jasypt.encryption.pbe.StandardPBEStringEncryptor) stringEncrypter).setPasswordCharArray(chars);
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+14,15c12
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         it.geosolutions.geostore.core.security.password.PBEPasswordEncoder encoder = new it.geosolutions.geostore.core.security.password.PBEPasswordEncoder();
+17d13
+< 
+23a20,35
+> 
+> private char[] toChars(byte[] password) {
+>     return new String(password).toCharArray();
+> }
+> 
+> private void scramble(char[] chars) {
+>     for (int i = 0; i < chars.length; i++) {
+>         chars[i] = (char) (chars[i] ^ 0xFF);
+>     }
+> }
+> 
+> private void scramble(byte[] bytes) {
+>     for (int i = 0; i < bytes.length; i++) {
+>         bytes[i] = (byte) (bytes[i] ^ 0xFF);
+>     }
+> }
+\ No newline at end of file

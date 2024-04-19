@@ -1,0 +1,7 @@
+@Override
+public void init(OutputStream os) {
+    this.os = os;
+    int bufferCapacity = 10;
+    TFramedTransport framedTransport = new TFramedTransport(new TIOStreamTransport(os), bufferCapacity);
+    TProtocol protocol = new TBinaryProtocol(framedTransport);
+}

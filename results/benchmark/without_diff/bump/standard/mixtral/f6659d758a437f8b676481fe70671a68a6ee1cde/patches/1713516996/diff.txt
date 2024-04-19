@@ -1,0 +1,57 @@
+1c1,17
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+---
+> import com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct;
+> import com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct;
+> import org.yaml.snakeyaml.*;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.nodes.Node;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.representer.Representer;
+> 
+> import java.io.BufferedReader;
+> import java.io.FileNotFoundException;
+> import java.io.FileReader;
+> import java.io.IOException;
+> import java.lang.reflect.TypeDescription;
+> import java.time.LocalDate;
+> import java.time.ZoneId;
+> 
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+4d19
+< 
+10,18c25,32
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+---
+>     final Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+>             addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+>             addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+>             yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+>             yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+>         }
+>     };
+20d33
+< 
+22c35
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+---
+>         return clazz.cast(yaml.load(new BufferedReader(new FileReader(path))));
+24a38,46
+>     } catch (ClassCastException | IOException e) {
+>         throw new RuntimeException(e);
+>     }
+> }
+> 
+> private static class TrustedTagInspector extends SafeConstructor.SafeLoaderOptions {
+>     @Override
+>     public boolean checkData(Mark startMark, Node node) {
+>         return true;

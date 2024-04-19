@@ -1,0 +1,13 @@
+5,11c5,8
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         return new YamlPolicy(new BlockingStorage(new artipie.asto.Storage.Default().newStorage(
+>             sub.string("type"),
+>             com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping()
+>         )));

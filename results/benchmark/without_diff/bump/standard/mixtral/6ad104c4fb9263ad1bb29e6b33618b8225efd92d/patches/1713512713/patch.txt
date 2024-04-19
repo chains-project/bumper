@@ -1,0 +1,11 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// Add the following import statement
+import org.bouncycastle.crypto.TlsUtilities;
+
+// Replace the following line of code
+// AlertDescription description = AlertDescription.decode(exchange.getAlertLevel(), input.readByte());
+
+// With the following lines of code
+byte[] decoded = TlsUtilities.ensureEnoughData(input, 2);
+AlertDescription description = AlertDescription.forCode(decoded[1] & 0xFF);

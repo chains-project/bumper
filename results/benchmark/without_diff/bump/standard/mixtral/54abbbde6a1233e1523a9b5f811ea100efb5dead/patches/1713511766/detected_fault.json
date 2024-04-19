@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1637061418,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class Tv\n  location: package com.jcabi.aspects\n",
+        "error_message": "[ERROR] /jcabi-ssh/src/main/java/com/jcabi/ssh/Ssh.java:[33,25] cannot find symbol",
+        "client_file_path": "/jcabi-ssh/src/main/java/com/jcabi/ssh/Ssh.java",
+        "client_line_position": "33"
+    },
+    "client_end_line_number": 33,
+    "client_line_number": 33,
+    "method_code": "import com.jcabi.aspects.Tv;",
+    "qualified_code": "import com.jcabi.aspects.Tv;",
+    "method_name": "import"
+}

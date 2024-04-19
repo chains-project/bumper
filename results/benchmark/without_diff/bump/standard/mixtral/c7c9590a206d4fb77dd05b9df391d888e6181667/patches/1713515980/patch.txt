@@ -1,0 +1,16 @@
+@Override
+public void execute() throws MojoExecutionException {
+    if (!canGenerateReport()) {
+        getLog().info("Skipping SCoverage report generation");
+        return;
+    }
+    try {
+        org.scoverage.reporting.RenderingContext context = new org.scoverage.reporting.RenderingContext(outputDirectory, getOutputName() + ".html");
+        org.apache.maven.doxia.sink.Sink sink = new org.apache.maven.doxia.sink.impl.SinkCrawlerSink();
+        java.util.Locale locale = java.util.Locale.getDefault();
+        generate(new org.scoverage.plugin.DoxiaRenderer(sink), locale);
+    } catch (org.apache.maven.reporting.MavenReportException e) {
+        java.lang.String prefix = ("An error has occurred in " + getName(java.util.Locale.ENGLISH)) + " report generation";
+        throw new org.apache.maven.plugin.MojoExecutionException((prefix + ": ") + e.getMessage(), e);
+    }
+}

@@ -1,0 +1,10 @@
+5,11c5
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         return new YamlPolicy(new BlockingStorage(new com.artipie.asto.Storage<>(com.artipie.asto.memory.InMemoryKeyValueService.single().memStorage(sub.string("type")), com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping()))){};

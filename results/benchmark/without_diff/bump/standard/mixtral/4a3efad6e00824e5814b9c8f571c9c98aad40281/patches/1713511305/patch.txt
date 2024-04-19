@@ -1,0 +1,20 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+// ...
+
+public void signPdf(java.nio.file.Path pdfFile, java.nio.file.Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws java.io.IOException {
+    boolean visibleSignature = params.getPage() != null;
+    // ...
+    eu.europa.esig.dss.pades.PAdESSignatureParameters signatureParameters = new eu.europa.esig.dss.pades.PAdESSignatureParameters();
+    // ...
+    CertificationPermission certificationPermission;
+    if (params.getPermission() == SignatureParameters.CertificationPermission.MINIMAL_CHANGES_PERMITTED) {
+        certificationPermission = CertificationPermission.MINIMAL_CHANGES_PERMITTED;
+    } else if (params.getPermission() == SignatureParameters.CertificationPermission.NO_CHANGES_PERMITTED) {
+        certificationPermission = CertificationPermission.NO_CHANGES_PERMITTED;
+    } else {
+        certificationPermission = CertificationPermission.DO_NOT_CERTIFY;
+    }
+    signatureParameters.setPermission(certificationPermission);
+    // ...
+}

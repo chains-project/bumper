@@ -1,0 +1,10 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+// ...
+
+try (InputStream input = new FileInputStream(file)) {
+    // Use Files.copy instead of deprecated NIO.2 transferTo
+    Files.copy(input, Paths.get(destination));
+}

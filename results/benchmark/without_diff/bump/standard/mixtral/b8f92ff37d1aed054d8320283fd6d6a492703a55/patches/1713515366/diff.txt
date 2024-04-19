@@ -1,0 +1,32 @@
+0a1,6
+> import org.apache.maven.shared.utils.os.PathUtil;
+> import java.io.File;
+> import java.util.ArrayList;
+> import java.util.List;
+> import java.util.stream.Collectors;
+> 
+2,3c8,28
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     File[] files = testSrcFolder.listFiles();
+>     List<File> matchingFiles = new ArrayList<>();
+>     for (File file : files) {
+>         if (file.isDirectory() && file.getName().startsWith("**")) {
+>             matchingFiles.add(file);
+>         }
+>     }
+>     List<String> classNames = new ArrayList<>();
+>     for (File file : matchingFiles) {
+>         classNames.addAll(getClasses(file));
+>     }
+>     return classNames;
+> }
+> 
+> static List<String> getClasses(File dir) {
+>     return PathUtil.getFiles(dir, "**", null, false, true).stream()
+>         .filter(File::isFile)
+>         .filter(file -> file.getAbsolutePath().endsWith(".class"))
+>         .map(File::getAbsolutePath)
+>         .map(path -> path.substring(path.lastIndexOf('/') + 1, path.length() - 6))
+>         .collect(Collectors.toList());

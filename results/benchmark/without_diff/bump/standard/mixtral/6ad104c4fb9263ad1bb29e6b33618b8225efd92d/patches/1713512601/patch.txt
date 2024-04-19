@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// Add the following import statement
+import org.bouncycastle.crypto.TlsDecryptor;
+
+// Replace the following line of code
+// TlsDecryptor decryptor = tlsContext.getServerTlsDecryptor();
+
+// With the following lines of code
+TlsDecryptor decryptor = null;
+try {
+    Class<?> tlsDecryptorClass = Class.forName("org.bouncycastle.crypto.tls.TlsDecryptor");
+    decryptor = (TlsDecryptor) tlsDecryptorClass.getDeclaredConstructor().newInstance();
+} catch (Exception e) {
+    throw new RuntimeException("Failed to create TlsDecryptor instance", e);
+}

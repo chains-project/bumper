@@ -1,0 +1,21 @@
+1a2,20
+> 
+> // Add the following import statement
+> import org.bouncycastle.crypto.TlsUtilities;
+> 
+> public class ChachaDecoder {
+>     // Existing code...
+> 
+>     private AlertDescription decodeAlertLevel(byte b) {
+>         // Existing code...
+> 
+>         // Replace the following line:
+>         // return AlertDescription.decode(b);
+> 
+>         // With the following code:
+>         return TlsUtilities.alertDescriptionForLevel(b);
+>     }
+> 
+>     // Existing code...
+> }
+\ No newline at end of file

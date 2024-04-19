@@ -1,0 +1,14 @@
+1a2,13
+> import java.nio.file.Files;
+> import java.nio.file.Path;
+> import java.nio.file.Paths;
+> 
+> // ...
+> 
+> private void copyResourceBundle(File targetDir, String sourcePath) throws IOException {
+>     Path source = Paths.get(sourcePath);
+>     String fileName = source.getFileName().toString();
+>     Path target = Paths.get(targetDir.getPath(), fileName);
+>     Files.copy(source, target);
+> }
+\ No newline at end of file

@@ -1,0 +1,28 @@
+1c1,23
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> 
+> public class MockAlertDescription {
+>     public static final int UNKNOWN_CA = 48;
+> }
+> 
+> // ...
+> 
+> import java.io.IOException;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private void handleAlert(byte alertLevel, byte alertDescription) throws IOException {
+>         if (alertLevel == (byte) 2) {
+>             if (alertDescription == MockAlertDescription.UNKNOWN_CA) {
+>                 throw new IOException("Received unknown CA certificate");
+>             }
+>             // ...
+>         }
+>         // ...
+>     }
+> }
+\ No newline at end of file
