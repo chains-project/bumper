@@ -1,0 +1,8 @@
+import com.jcabi.ssh.SshByPassword;
+
+// ...
+
+@Tv(42)
+public class SshByPasswordExample {
+    // ...
+}

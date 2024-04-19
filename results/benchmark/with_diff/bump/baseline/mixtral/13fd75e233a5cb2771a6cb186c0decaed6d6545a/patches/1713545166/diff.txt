@@ -1,0 +1,49 @@
+14c14
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     final InvalidTagNameException e = Assertions.assertThrows(
+19,24c19,22
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+---
+>         e.getMessage(),
+>         new AllOf(
+>             new ArgumentMatcher<>("Invalid tag", message -> message.contains("Invalid tag")),
+>             new ArgumentMatcher<>("original", message -> !message.contains(original))
+27a26,56
+> 
+> private static class ArgumentMatcher<T, U> implements ArgumentMatcher<String> {
+>     private final T value;
+>     private final U condition;
+>     private final BiPredicate<T, U> matcher;
+> 
+>     public ArgumentMatcher(T value, BiPredicate<T, U> matcher) {
+>         this.value = value;
+>         this.matcher = matcher;
+>         this.condition = null;
+>     }
+> 
+>     public ArgumentMatcher(String description, BiPredicate<T, U> matcher) {
+>         this.value = null;
+>         this.matcher = matcher;
+>         this.condition = description;
+>     }
+> 
+>     @Override
+>     public boolean matches(String s) {
+>         return matcher.test(value, condition != null ? condition : value);
+>     }
+> 
+>     @Override
+>     public String toString() {
+>         if (condition == null) {
+>             return String.valueOf(value);
+>         }
+>         return String.format("%s %s", condition, value);
+>     }
+> }
+\ No newline at end of file

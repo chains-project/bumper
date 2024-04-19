@@ -1,0 +1,13 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+    return directoryScanner.scan().getClasses();
+}
+
+private static TestListResolver getTestListResolver() {
+    return new TestListResolver() {
+        @Override
+        protected Commandline createCommandLine(StartupConfiguration config, int forkNumber, File workDir) {
+            return DefaultForkConfiguration.this.createCommandLine(config, forkNumber, workDir);
+        }
+    };
+}

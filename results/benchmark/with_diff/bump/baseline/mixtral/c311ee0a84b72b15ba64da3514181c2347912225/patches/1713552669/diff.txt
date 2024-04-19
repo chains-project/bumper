@@ -1,0 +1,20 @@
+7a8,14
+>     final HamcrestMatcher<String> stringContains =
+>             new StringContains<>(string);
+>     final HamcrestMatcher<IllegalStateException> illegalStateExceptionMatcher =
+>             new AllOf<>(Arrays.asList(
+>                     new StringContains<>(true, "Unsupported reference"),
+>                     stringContains
+>             ));
+12,20c19
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+<         );
+---
+>     MatcherAssert.assertThat(throwable, illegalStateExceptionMatcher);

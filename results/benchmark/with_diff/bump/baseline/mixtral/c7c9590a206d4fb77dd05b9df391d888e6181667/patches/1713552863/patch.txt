@@ -1,0 +1,16 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+public class SCoverageReportMojo {
+    // ...
+
+    @Override
+    protected void renderSite(SiteRenderingContext siteContext) throws SiteRendererException {
+        // ...
+        RenderingContext renderingContext = new RenderingContext();
+        // ...
+    }
+
+    // ...
+}

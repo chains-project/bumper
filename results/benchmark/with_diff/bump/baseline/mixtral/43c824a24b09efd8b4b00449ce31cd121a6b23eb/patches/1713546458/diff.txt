@@ -1,0 +1,13 @@
+1c1,8
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+> import de.gwdg.metadataqa.api.schema.json.JsonBranch;
+> 
+> // ...
+> 
+> @Override
+> public MarcRecord createMarcRecord(JsonBranch jsonBranch) {
+>     // ...
+> }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+1a2
+>     StringStartsWith startsWith = new StringStartsWith("/v2/test/blobs/uploads/");
+4,7c5
+<             new IsHeader(
+<                 "Location",
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+<             ),
+---
+>         new IsHeader("Location", startsWith),

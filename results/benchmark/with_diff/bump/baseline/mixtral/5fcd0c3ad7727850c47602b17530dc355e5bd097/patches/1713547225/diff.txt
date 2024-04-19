@@ -1,0 +1,12 @@
+1,2c1,4
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+---
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+>     ClassName mutatedClass = data.getMutatedClass();
+>     byte[] classFile = coverage.getClassFile(mutatedClass);
+>     long timestamp = coverage.getClassTime(mutatedClass);
+4c6
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), ClassInfoBuilder.getClassInfo(mutatedClass, classFile, timestamp));

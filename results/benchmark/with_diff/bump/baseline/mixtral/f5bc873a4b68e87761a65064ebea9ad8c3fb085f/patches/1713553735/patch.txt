@@ -1,0 +1,6 @@
+import org.eclipse.aether.collection.DependencyResolutionException;
+
+@Override
+public void unpackTheme(Theme theme, File outputDirectory) throws MojoExecutionException {
+    // ...
+}

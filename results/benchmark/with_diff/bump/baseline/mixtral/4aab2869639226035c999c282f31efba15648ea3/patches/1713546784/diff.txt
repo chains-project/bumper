@@ -1,0 +1,39 @@
+1c1,34
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.factory.Config;
+> import com.artipie.asto.factory.StorageFactory;
+> import com.artipie.asto.factory.StoragesLoader;
+> 
+> import java.util.Map;
+> import java.util.Set;
+> 
+> public class YamlPolicyFactory {
+>     // ...
+> 
+>     private StoragesLoader storages() {
+>         return new StoragesLoader(Map.of());
+>     }
+> 
+>     private StorageFactory.Config config(String name) {
+>         return new Config() {
+>             @Override
+>             public String type() {
+>                 return name;
+>             }
+> 
+>             @Override
+>             public Map<String, String> asMap() {
+>                 return Map.of();
+>             }
+>         };
+>     }
+> 
+>     private Storage newStorage(String name) {
+>         return storages().newObject(name, config(name));
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

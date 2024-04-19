@@ -1,0 +1,17 @@
+1c1,12
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.pades.PadesCertificationLevel;
+> 
+> // ...
+> 
+> public void sign(InputStream inputStream, OutputStream outputStream,
+>                  String signatureFieldName, String certificationLevel) throws Exception {
+>     PadesSigner signer = new PadesSigner(certificationLevel);
+>     // ...
+>     signer.setSignatureFieldName(signatureFieldName);
+>     // ...
+>     signer.sign(inputStream, outputStream);
+> }
+\ No newline at end of file

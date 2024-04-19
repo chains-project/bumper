@@ -1,0 +1,18 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+@Override
+public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+    try {
+        // ...
+
+        short alertDescription = in.readShort();
+        AlertDescription alert = new TlsFatalAlert(alertDescription).getAlertDescription();
+
+        // ...
+    } catch (TlsFatalAlert ex) {
+        // ...
+    }
+}

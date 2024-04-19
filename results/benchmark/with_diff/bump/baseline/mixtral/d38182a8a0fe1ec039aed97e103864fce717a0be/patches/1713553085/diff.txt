@@ -1,0 +1,65 @@
+0a1,20
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.SimpleAuthUser;
+> import com.artipie.http.auth.UserPermissions;
+> import com.artipie.http.slice.AuthScheme;
+> import com.artipie.http.slice.AuthScheme.Result;
+> import com.artipie.http.slice.Slice;
+> import com.artipie.http.ssl.SslConfigs;
+> import io.reactivex.CompletableFuture;
+> import java.util.Collections;
+> import java.util.concurrent.ExecutionException;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import org.junit.jupiter.api.Test;
+> import reactor.core.publisher.Mono;
+> import reactor.core.publisher.MonoProcessor;
+> import reactor.core.publisher.Sinks;
+> 
+2c22
+<     void testScope() {
+---
+> void testScope() throws ExecutionException, InterruptedException {
+6a27,31
+>     final UserPermissions userPermissions = new UserPermissions(
+>         () -> new SimpleAuthUser("alice"),
+>         perms -> Collections.singleton("user")
+>     );
+>     final AuthUser authUser = new SimpleAuthUser("alice");
+8,14c33
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+---
+>         new Slice.Root() {
+16,20c35
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+---
+>             public Response response(final String line, final Iterable<Map.Entry<String, String>> headers, final Publisher<ByteBuffer> body) {
+25c40
+<                 new AuthScheme.Result() {
+---
+>             new Result() {
+27,28c42,43
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                 public Optional<AuthUser> user() {
+>                     return Optional.of(authUser);
+42,43c57,58
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>         (status, headers, body) -> Mono.fromRunnable(() -> {})
+>     ).block();

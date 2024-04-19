@@ -1,0 +1,4 @@
+3c3
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {

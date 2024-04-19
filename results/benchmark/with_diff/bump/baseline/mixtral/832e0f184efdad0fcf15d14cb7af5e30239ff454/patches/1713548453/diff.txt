@@ -1,0 +1,6 @@
+18c18
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             pageMeta.addEnchant(Enchantment.getByName("DAMAGE_ALL").setConflicting(true), 1, true);
+23d22
+<                 

@@ -1,0 +1,49 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+
+import java.io.Closeable;
+import java.io.IOException;
+
+public class SimpleThriftLogger implements ThriftLogger, Closeable {
+    // ...
+
+    private TTransport transport;
+
+    // ...
+
+    @Override
+    public void setTransport(TTransport transport) {
+        this.transport = transport;
+    }
+
+    // ...
+
+    @Override
+    public void log(String message) {
+        try {
+            if (transport.isOpen()) {
+                protocol.writeMessageBegin(new Message());
+                protocol.writeString(message);
+                protocol.writeMessageEnd();
+                protocol.getOutputProtocol().flush();
+            } else {
+                openTransport();
+                log(message);
+            }
+        } catch (TTransportException | IOException e) {
+            // ...
+        }
+    }
+
+    // ...
+
+    private void openTransport() throws TTransportException, IOException {
+        if (transport instanceof TFramedTransport) {
+            ((TFramedTransport) transport).open();
+        } else {
+            transport.open();
+        }
+    }
+
+    // ...
+}

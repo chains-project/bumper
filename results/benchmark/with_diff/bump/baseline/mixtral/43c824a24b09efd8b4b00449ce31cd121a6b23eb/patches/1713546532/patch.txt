@@ -1,0 +1,6 @@
+import de.gwdg.metadataqa.json.JsonBranch;
+
+// ...
+
+// Replace any usage of `de.gwdg.metadataqa.api.json.JsonBranch`
+// with `de.gwdg.metadataqa.json.JsonBranch`

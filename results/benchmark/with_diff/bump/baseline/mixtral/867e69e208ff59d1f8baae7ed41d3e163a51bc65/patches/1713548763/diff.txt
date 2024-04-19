@@ -1,0 +1,21 @@
+0a1
+> import org.apache. thrift.transport.TTransport;
+1a3,19
+> 
+> public class SimpleThriftLogger {
+>   // existing code...
+> 
+>   @Override
+>   public void startLogging(TTransport transport) {
+>     if (transport != null && transport instanceof TFramedTransport) {
+>       TFramedTransport framedTransport = (TFramedTransport) transport;
+>       framedTransport.open();
+>       logger.info("Starting logging");
+>     } else {
+>       logger.error("Transport is not a TFramedTransport or is null");
+>     }
+>   }
+> 
+>   // existing code...
+> }
+\ No newline at end of file

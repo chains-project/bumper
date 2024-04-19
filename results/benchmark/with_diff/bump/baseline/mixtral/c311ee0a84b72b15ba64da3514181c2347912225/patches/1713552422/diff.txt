@@ -1,0 +1,8 @@
+2,5c2,3
+<         return new StringContains(
+<             false,
+<             String.format("%s: Layer already exists", this.image.layer())
+<         );
+---
+>     String prefix = "%s: Layer already exists";
+>     return new StringContains(String.format(prefix, this.image.layer()));

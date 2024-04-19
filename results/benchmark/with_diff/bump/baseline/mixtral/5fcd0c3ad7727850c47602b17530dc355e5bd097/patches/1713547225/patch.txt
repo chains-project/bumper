@@ -1,0 +1,7 @@
+private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+    ClassName mutatedClass = data.getMutatedClass();
+    byte[] classFile = coverage.getClassFile(mutatedClass);
+    long timestamp = coverage.getClassTime(mutatedClass);
+    return new MutationTestSummaryData(data.getFileName(),
+        data.getMutations(), ClassInfoBuilder.getClassInfo(mutatedClass, classFile, timestamp));
+}

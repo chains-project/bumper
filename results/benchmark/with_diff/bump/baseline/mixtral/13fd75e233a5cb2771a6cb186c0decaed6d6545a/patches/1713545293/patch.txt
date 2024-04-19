@@ -1,0 +1,4 @@
+@Override
+public boolean matches(final Object actual) {
+    return this.delegate.matches(actual);
+}

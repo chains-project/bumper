@@ -1,0 +1,26 @@
+3,10c3,5
+<         PasswordEncoder passwordEncoder = new PasswordEncoder() {
+<             private final TextEncryptor textEncryptor;
+<             private final PasswordEncryptor passwordEncryptor;
+< 
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+<                 this.textEncryptor = textEncryptor;
+<                 this.passwordEncryptor = passwordEncryptor;
+<             }
+---
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     textEncryptor.setPassword(passwordEncryptor.getPassword());
+11a7
+>     return new PasswordEncoder() {
+14c10
+<                 return passwordEncryptor.encryptPassword(rawPassword.toString());
+---
+>             return passwordEncoder.encodePassword(rawPassword.toString(), passwordEncryptor);
+19c15
+<                 return passwordEncryptor.checkPassword(rawPassword.toString(), encodedPassword);
+---
+>             return passwordEncoder.isPasswordValid(encodedPassword, rawPassword.toString(), passwordEncryptor);
+22,23d17
+< 
+<         return passwordEncoder;

@@ -1,0 +1,22 @@
+1c1,17
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TIOStreamTransport;
+> import org.apache.thrift.transport.TTransport;
+> import java.io.ByteArrayOutputStream;
+> import java.io.ByteArrayInputStream;
+> 
+> // ...
+> 
+> private static TTransport createFastFramedTransport(TTransport transport) {
+>     TIOStreamTransport iostreamTransport = new TIOStreamTransport(new TConfiguration(), new ByteArrayOutputStream());
+>     iostreamTransport.setInputTransport(transport);
+>     return iostreamTransport;
+> }
+> 
+> // Replace the following line:
+> // TFastFramedTransport transport = new TFastFramedTransport(new TFramedTransport(new TSocket(host, port)));
+> 
+> TFastFramedTransport transport = new TFastFramedTransport(createFastFramedTransport(new TSocket(host, port)));
+\ No newline at end of file

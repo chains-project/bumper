@@ -1,0 +1,13 @@
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+Yaml yaml = new Yaml(new CustomTagInspector());
+// ...
+
+private static class CustomTagInspector extends org.yaml.snakeyaml.inspector.BaseInspector {
+    @Override
+    public boolean isGlobalTagAllowed(Tag tag) {
+        // Implement the logic you need here
+    }
+}

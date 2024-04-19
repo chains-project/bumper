@@ -1,0 +1,97 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  @Override
+        protected JFrogPlatformInstance run() throws Exception {
+            if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+                throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+            }
+            String urlWithoutSlash = removeEnd(step.url, "/");
+            String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+            String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+
+            ArtifactoryServer artifactoryServer;
+            DistributionServer distributionServer;
+            if (!isEmpty(step.credentialsId)) {
+                artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+                distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+            } else {
+                artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+                distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+            }
+            artifactoryServer.setPlatformUrl(urlWithoutSlash);
+            return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+        }
+```
+
+with the following error message:
+[ERROR] /artifactory-plugin/src/main/java/org/jfrog/hudson/pipeline/scripted/steps/CreateJFrogPlatformInstanceStep.java:[73,17] cannot find symbol
+  symbol:   method isAllBlank(java.lang.String,java.lang.String,java.lang.String)
+  location: class org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep.Execution
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ public final java.lang.String org.jenkinsci.plugins.p4.browsers.P4Browser.getUrl()
+++ public org.jenkinsci.plugins.p4.changes.P4ChangeEntry org.jenkinsci.plugins.p4.changes.P4ChangeRef.getChangeEntry(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public java.lang.String org.jenkinsci.plugins.p4.changes.P4ChangeRef.toString()
+++ public org.jenkinsci.plugins.p4.changes.P4ChangeEntry org.jenkinsci.plugins.p4.changes.P4GraphRef.getChangeEntry(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public java.lang.String org.jenkinsci.plugins.p4.changes.P4GraphRef.toString()
+++ public org.jenkinsci.plugins.p4.changes.P4ChangeEntry org.jenkinsci.plugins.p4.changes.P4LabelRef.getChangeEntry(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public java.lang.String org.jenkinsci.plugins.p4.changes.P4LabelRef.toString()
+++ public abstract org.jenkinsci.plugins.p4.changes.P4ChangeEntry org.jenkinsci.plugins.p4.changes.P4Ref.getChangeEntry(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public abstract java.lang.String org.jenkinsci.plugins.p4.changes.P4Ref.toString()
+++ protected ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(hudson.model.Item,java.lang.String,hudson.model.TaskListener)
+++ public ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(hudson.model.Item,java.lang.String,hudson.model.TaskListener,org.jenkinsci.plugins.p4.workspace.Workspace)
+++ public ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(hudson.model.ItemGroup,java.lang.String,hudson.model.TaskListener,org.jenkinsci.plugins.p4.workspace.Workspace)
+-- public ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(java.lang.String,hudson.model.TaskListener,java.lang.String,java.lang.String)
+-- public ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(org.jenkinsci.plugins.p4.credentials.P4BaseCredentials,hudson.model.TaskListener,java.lang.String,java.lang.String)
+++ public ClientHelper org.jenkinsci.plugins.p4.client.ClientHelper(org.jenkinsci.plugins.p4.credentials.P4BaseCredentials,hudson.model.TaskListener,org.jenkinsci.plugins.p4.workspace.Workspace)
+-- public bool org.jenkinsci.plugins.p4.client.ClientHelper.buildChange()
+++ public bool org.jenkinsci.plugins.p4.client.ClientHelper.buildChange(org.jenkinsci.plugins.p4.publish.Publish)
+++ protected void org.jenkinsci.plugins.p4.client.ClientHelper.clientLogin(org.jenkinsci.plugins.p4.workspace.Workspace)
+++ public int org.jenkinsci.plugins.p4.client.ClientHelper.findPendingChangelistIDByDesc(java.lang.String,java.lang.String)
+++ public com.perforce.p4java.impl.generic.core.Changelist org.jenkinsci.plugins.p4.client.ClientHelper.getChange(long)
+-- public int org.jenkinsci.plugins.p4.client.ClientHelper.getClientHead()
+++ public J org.jenkinsci.plugins.p4.client.ClientHelper.getClientHead()
+++ public J org.jenkinsci.plugins.p4.client.ClientHelper.getClientHead(org.jenkinsci.plugins.p4.changes.P4Ref,org.jenkinsci.plugins.p4.changes.P4Ref)
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.getPendingChangelists(boolean,java.lang.String)
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listChanges(java.util.List,org.jenkinsci.plugins.p4.changes.P4Ref)
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listChanges(org.jenkinsci.plugins.p4.changes.P4Ref)
+-- public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listChanges(org.jenkinsci.plugins.p4.changes.P4Revision)
+-- public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listChanges(org.jenkinsci.plugins.p4.changes.P4Revision,org.jenkinsci.plugins.p4.changes.P4Revision)
+-- public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listHaveChanges()
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listHaveChanges(java.util.List)
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listHaveChanges(java.util.List,org.jenkinsci.plugins.p4.changes.P4Ref)
+-- public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listHaveChanges(org.jenkinsci.plugins.p4.changes.P4Revision)
+++ public java.util.List org.jenkinsci.plugins.p4.client.ClientHelper.listRepos()
+++ public java.lang.String org.jenkinsci.plugins.p4.client.ClientHelper.publishChange(org.jenkinsci.plugins.p4.publish.Publish)
+-- public void org.jenkinsci.plugins.p4.client.ClientHelper.publishChange(org.jenkinsci.plugins.p4.publish.Publish)
+++ public void org.jenkinsci.plugins.p4.client.ClientHelper.revertAllFiles(boolean)
+-- public void org.jenkinsci.plugins.p4.client.ClientHelper.setClient(org.jenkinsci.plugins.p4.workspace.Workspace)
+++ public void org.jenkinsci.plugins.p4.client.ClientHelper.syncFiles(org.jenkinsci.plugins.p4.changes.P4Ref,org.jenkinsci.plugins.p4.populate.Populate)
+-- public void org.jenkinsci.plugins.p4.client.ClientHelper.syncFiles(org.jenkinsci.plugins.p4.changes.P4Revision,org.jenkinsci.plugins.p4.populate.Populate)
+-- public void org.jenkinsci.plugins.p4.client.ClientHelper.unshelveFiles(int)
+++ public void org.jenkinsci.plugins.p4.client.ClientHelper.unshelveFiles(long)
+-- public void org.jenkinsci.plugins.p4.client.ClientHelper.versionFile(java.lang.String,java.lang.String)
+++ public void org.jenkinsci.plugins.p4.client.ClientHelper.versionFile(java.lang.String,org.jenkinsci.plugins.p4.publish.Publish,int,boolean)
+++ public java.lang.String org.jenkinsci.plugins.p4.client.ClientHelper.where(java.lang.String)
+++ public java.lang.Object org.jenkinsci.plugins.p4.groovy.P4GroovyTask.task(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public java.lang.String org.jenkinsci.plugins.p4.scm.P4Path.toString()
+++ public java.lang.String org.jenkinsci.plugins.p4.scm.P4SCMHead.toString()
+++ public java.lang.String org.jenkinsci.plugins.p4.scm.P4SCMRevision.toString()
+++ public java.lang.String org.jenkinsci.plugins.p4.swarmAPI.SwarmQueryAction.getUrlName()
+-- protected org.jenkinsci.plugins.p4.client.ClientHelper org.jenkinsci.plugins.p4.tasks.AbstractTask.getConnection()
+++ public java.lang.Object org.jenkinsci.plugins.p4.tasks.RemoveClientTask.task(org.jenkinsci.plugins.p4.client.ClientHelper)
+++ public java.lang.Object org.jenkinsci.plugins.p4.tasks.WhereTask.task(org.jenkinsci.plugins.p4.client.ClientHelper)
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

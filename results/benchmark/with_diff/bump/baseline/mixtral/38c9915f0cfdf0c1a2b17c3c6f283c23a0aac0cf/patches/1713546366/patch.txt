@@ -1,0 +1,14 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.TextJoined;
+
+// ...
+
+@Override
+public String join(List<String> ids) throws IOException {
+  return new TextJoined(",", new TextEnvelope<String>() {
+    @Override
+    protected String textOf(String id) {
+      return id;
+    }
+  }).asString(ids);
+}

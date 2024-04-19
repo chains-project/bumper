@@ -1,0 +1,19 @@
+import org.apache. thrift.transport.TTransport;
+import org.apache. thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+  // existing code...
+
+  @Override
+  public void startLogging(TTransport transport) {
+    if (transport != null && transport instanceof TFramedTransport) {
+      TFramedTransport framedTransport = (TFramedTransport) transport;
+      framedTransport.open();
+      logger.info("Starting logging");
+    } else {
+      logger.error("Transport is not a TFramedTransport or is null");
+    }
+  }
+
+  // existing code...
+}

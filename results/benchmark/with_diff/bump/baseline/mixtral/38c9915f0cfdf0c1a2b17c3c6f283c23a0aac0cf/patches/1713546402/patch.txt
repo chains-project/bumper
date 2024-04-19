@@ -1,0 +1,6 @@
+import org.cactoos.text.Joined;
+
+@Override
+public String ids() throws IOException {
+    return new Joined(",", wallets()).asString();
+}

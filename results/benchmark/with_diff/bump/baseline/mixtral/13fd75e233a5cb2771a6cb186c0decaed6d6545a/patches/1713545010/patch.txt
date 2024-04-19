@@ -1,0 +1,8 @@
+@Test
+void shouldPush() throws Exception {
+    final Image original = new Image.ForOs();
+    final String image = this.copy(original);
+    final String output = this.cli.run("push", image);
+    HamcrestMatcher matcher = new StringContains(original.digest());
+    MatcherAssert.assertThat(output, matcher);
+}

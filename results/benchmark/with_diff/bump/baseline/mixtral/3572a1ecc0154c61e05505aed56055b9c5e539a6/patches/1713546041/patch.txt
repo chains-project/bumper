@@ -1,0 +1,8 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+
+// ...
+
+public static TFastFramedTransport getFastFramedTransport(TTransport transport) {
+    TIOStreamTransport iostreamTransport = new TIOStreamTransport(new TConfiguration(), transport);
+    return new TFastFramedTransport(iostreamTransport);
+}

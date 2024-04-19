@@ -1,0 +1,16 @@
+5c5
+<             private final PasswordEncryptor passwordEncryptor;
+---
+>         private final org.jasypt.spring.security.PasswordEncoder passwordEncryptor;
+7c7
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+---
+>         public PasswordEncoder(TextEncryptor textEncryptor, org.jasypt.spring.security.PasswordEncoder passwordEncryptor) {
+14c14
+<                 return passwordEncryptor.encryptPassword(rawPassword.toString());
+---
+>             return passwordEncryptor.encodePassword(rawPassword.toString(), null);
+19c19
+<                 return passwordEncryptor.checkPassword(rawPassword.toString(), encodedPassword);
+---
+>             return passwordEncryptor.isPasswordValid(encodedPassword, rawPassword.toString(), null);

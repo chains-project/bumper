@@ -1,0 +1,22 @@
+1a2,21
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> @Override
+> public void decode(InputStream in, byte[] buf, int off, int len) throws IOException {
+>     try {
+>         int decoded = in.read(buf, off, len);
+>         if (decoded < 0) {
+>             throw new EOFException("Unexpected end of input");
+>         }
+>         if (decoded != len) {
+>             throw new TlsFatalAlert(TlsFatalAlert.DECODE_ERROR, AlertDescription.decodeError());
+>         }
+>     } catch (TlsFatalAlert ex) {
+>         throw ex;
+>     } catch (IOException ex) {
+>         throw new TlsFatalAlert(TlsFatalAlert.DECODE_ERROR, AlertDescription.decodeError());
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,37 @@
+3,5c3,13
+<         PasswordEncoder passwordEncoder = new PasswordEncoder() {
+<             private final TextEncryptor textEncryptor;
+<             private final PasswordEncryptor passwordEncryptor;
+---
+>     TextEncryptor textEncryptor = new TextEncryptor() {
+>         @Override
+>         public String encrypt(String text) {
+>             return null; // You should implement this method based on your requirements
+>         }
+> 
+>         @Override
+>         public boolean matches(String encryptedText, String unencryptedText) {
+>             return false; // You should implement this method based on your requirements
+>         }
+>     };
+7,9c15,23
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+<                 this.textEncryptor = textEncryptor;
+<                 this.passwordEncryptor = passwordEncryptor;
+---
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor() {
+>         @Override
+>         public String encryptPassword(String password) {
+>             return null; // You should implement this method based on your requirements
+>         }
+> 
+>         @Override
+>         public boolean checkPassword(String password, String encryptedPassword) {
+>             return false; // You should implement this method based on your requirements
+10a25
+>     };
+11a27
+>     return new PasswordEncoder() {
+22,23d37
+< 
+<         return passwordEncoder;

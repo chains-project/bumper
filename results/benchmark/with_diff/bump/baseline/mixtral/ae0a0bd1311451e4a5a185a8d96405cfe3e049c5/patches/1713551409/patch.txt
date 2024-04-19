@@ -1,0 +1,16 @@
+@ParameterizedTest
+@ValueSource(strings = {
+        "",
+        "a:b:c",
+        ".123"
+})
+void failsToResolveInvalid(final String string) {
+    final HamcrestMatcher unsupportedReferenceMatcher = new StringContains("Unsupported reference");
+    final HamcrestMatcher notContainingMatcher = new StringContains(string);
+    final HamcrestMatcher allOfMatcher = new AllOf<>(Arrays.asList(unsupportedReferenceMatcher, notContainingMatcher));
+    final Throwable throwable = Assertions.assertThrows(
+            IllegalStateException.class,
+            () -> new ManifestRef.FromString(string).link().string()
+    );
+    MatcherAssert.assertThat(throwable.getMessage(), allOfMatcher);
+}

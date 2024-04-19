@@ -1,0 +1,10 @@
+14c14
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     final InvalidTagNameException exception = Assertions.assertThrows(
+19c19
+<             throwable.getMessage(),
+---
+>         exception.getMessage(),
+21a22
+>                 new InstanceOf<>(String.class),

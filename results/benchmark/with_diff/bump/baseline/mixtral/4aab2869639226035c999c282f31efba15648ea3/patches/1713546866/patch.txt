@@ -1,0 +1,15 @@
+import com.artipie.asto.factory.StorageFactory;
+import com.artipie.asto.factory.Config;
+
+import java.util.Map;
+
+import static java.util.Collections.singletonMap;
+
+// ...
+
+Storage storage = StorageFactory.newStorage(new Config() {
+    @Override
+    public Map<String, Object> asMap() {
+        return singletonMap("type", "in-memory");
+    }
+});

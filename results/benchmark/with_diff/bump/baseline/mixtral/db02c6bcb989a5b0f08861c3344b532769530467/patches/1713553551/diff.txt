@@ -1,0 +1,15 @@
+14c14
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     final InvalidTagNameException e = Assertions.assertThrows(
+19c19
+<             throwable.getMessage(),
+---
+>         e.getMessage(),
+22,23c22,24
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                 new StringContains("Invalid tag"),
+>                 new StringStartsWith<>("Invalid tag"),
+>                 new StringContainsIgnoringCase(original)

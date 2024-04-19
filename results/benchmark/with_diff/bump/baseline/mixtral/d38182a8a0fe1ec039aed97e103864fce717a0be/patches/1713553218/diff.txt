@@ -1,0 +1,10 @@
+27,28c27,28
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                 public Optional<AuthUser> user() {
+>                     return Optional.of(new AuthUser("alice", ""));
+54a55,56
+> 
+> record AuthUser(String name, String authContext) { }
+\ No newline at end of file

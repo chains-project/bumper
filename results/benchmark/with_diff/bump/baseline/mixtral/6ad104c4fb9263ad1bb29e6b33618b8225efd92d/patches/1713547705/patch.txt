@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+@Override
+public void decode(InputStream in, byte[] buf, int off, int len) throws IOException {
+    int alertLevel = in.read();
+    int alertDescription = in.read();
+
+    if (alertLevel == TlsFatalAlert.BAD_RECORD_MAC.alertLevel) {
+        throw new TlsFatalAlert(TlsFatalAlert.DECODE_ERROR, AlertDescription.internalError());
+    }
+
+    // ...
+}

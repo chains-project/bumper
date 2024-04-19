@@ -1,0 +1,4 @@
+private Matcher<String> manifestPushed() {
+    boolean isNegated = false;
+    return new StringContains(isNegated, String.format("latest: digest: %s", this.image.digest()));
+}

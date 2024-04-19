@@ -1,0 +1,93 @@
+0a1,30
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.Single;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.OperationControl;
+> import com.artipie.http.auth.JoinedPermissions;
+> import com.artipie.http.auth.UserPermissions;
+> import com.artipie.http.auth.User;
+> import com.artipie.http.auth.User$Simple;
+> import com.artipie.http.auth.Roles;
+> import com.artipie.http.Slice;
+> import com.artipie.http.rq.RequestLine;
+> import com.artipie.http.rs.RsStatus;
+> import com.artipie.http.rs.StandardRs;
+> import com.artipie.http.rs.Rs;
+> import com.artipie.http.Header;
+> import com.artipie.http.Headers;
+> import com.artipie.http.rt.ByFunction;
+> import com.artipie.http.rt.RsHandler;
+> import com.artipie.http.rt.RsOp;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.concurrent.Executor;
+> import java.util.function.Function;
+> import java.util.function.Supplier;
+> import java.util.stream.Stream;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import reactor.core.publisher.Mono;
+> 
+6a37,43
+>     final User alice = new User$Simple(Roles.of("user"), Permissions.of());
+>     final OperationControl opControl = new OperationControl(new JoinedPermissions(Stream.of(
+>         new Permission.All(),
+>         new Permission.ByName("foo"),
+>         new Permission.ByName("bar"),
+>         new Permission.ByName("baz")
+>     )));
+8,35c45,50
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+<                     }
+< 
+<                     @Override
+<                     public String challenge() {
+<                         return "";
+<                     }
+<                 }
+---
+>         new Slice.Simple(requestLine -> {
+>             cline.set(requestLine.toString());
+>             return new Rs.Response(RsStatus.OK);
+>         }),
+>         (headers, requestLine) -> CompletableFuture.completedFuture(
+>             new Single(alice, "")
+39c54
+<                 return true;
+---
+>             return opControl.allowed(user);
+42,43c57,58
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>         (status, headers, body) -> Mono.fromRunnable(() -> {})
+>     ).block();
+47c62
+<             new IsEqual<>(line)
+---
+>         new Matchers.IsEqual<>(line)
+52c67
+<             new IsEqual<>(action)
+---
+>         new Matchers.IsEqual<>(action)

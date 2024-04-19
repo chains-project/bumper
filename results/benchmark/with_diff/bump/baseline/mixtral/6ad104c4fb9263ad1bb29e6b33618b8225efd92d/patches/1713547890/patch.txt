@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public AlertDescription decode(byte[] input) {
+    try {
+        return new TlsFatalAlert(AlertDescription.decode(input)).getAlertDescription();
+    } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("Failed to decode alert description", e);
+    }
+}

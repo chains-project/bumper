@@ -1,0 +1,6 @@
+import com.artipie.asto.factory.StoragesLoader;
+
+// ...
+
+StoragesLoader storagesLoader = new StoragesLoader();
+// use storagesLoader to create Storages as needed

@@ -1,0 +1,16 @@
+7a8,10
+>     final HamcrestMatcher unsupportedReference = new StringContains("Unsupported reference");
+>     final HamcrestMatcher notContainingString = new StringContains(string);
+>     final HamcrestMatcher allOfMatcher = new AllOf<>(Arrays.asList(unsupportedReference, notContainingString));
+12,20c15
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+<         );
+---
+>     MatcherAssert.assertThat(throwable.getMessage(), allOfMatcher);

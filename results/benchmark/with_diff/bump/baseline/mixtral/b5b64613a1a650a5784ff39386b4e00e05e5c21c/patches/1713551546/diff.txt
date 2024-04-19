@@ -1,0 +1,10 @@
+1d0
+< @Override
+3c2
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+12c11
+<             if (!isEmpty(step.credentialsId)) {
+---
+>     if (!StringUtils.isEmpty(step.credentialsId)) {

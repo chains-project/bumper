@@ -1,0 +1,22 @@
+1c1,17
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import org.junit.runner.JUnitCore;
+> import org.junit.runner.Result;
+> import org.junit.runner.notification.Failure;
+> 
+> public class FastPolygonizerTests {
+>     // ...
+> 
+>     @org.junit.Test
+>     public void testSomething() {
+>         Result result = JUnitCore.runClasses(FastPolygonizerTests.class);
+>         for (Failure failure : result.getFailures()) {
+>             System.out.println(failure.toString());
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

@@ -1,0 +1,24 @@
+@Bean
+public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder = new PasswordEncoder() {
+        private final TextEncryptor textEncryptor;
+        private final org.jasypt.spring.security.PasswordEncoder passwordEncryptor;
+
+        public PasswordEncoder(TextEncryptor textEncryptor, org.jasypt.spring.security.PasswordEncoder passwordEncryptor) {
+            this.textEncryptor = textEncryptor;
+            this.passwordEncryptor = passwordEncryptor;
+        }
+
+        @Override
+        public String encode(CharSequence rawPassword) {
+            return passwordEncryptor.encodePassword(rawPassword.toString(), null);
+        }
+
+        @Override
+        public boolean matches(CharSequence rawPassword, String encodedPassword) {
+            return passwordEncryptor.isPasswordValid(encodedPassword, rawPassword.toString(), null);
+        }
+    };
+
+    return passwordEncoder;
+}

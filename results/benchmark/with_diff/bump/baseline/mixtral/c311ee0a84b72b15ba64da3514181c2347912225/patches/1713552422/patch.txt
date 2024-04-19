@@ -1,0 +1,4 @@
+private Matcher<String> layersAlreadyExist() {
+    String prefix = "%s: Layer already exists";
+    return new StringContains(String.format(prefix, this.image.layer()));
+}

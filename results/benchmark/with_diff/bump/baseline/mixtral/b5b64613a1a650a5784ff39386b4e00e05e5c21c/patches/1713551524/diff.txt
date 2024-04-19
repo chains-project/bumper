@@ -1,0 +1,3 @@
+9a10,11
+>     ClientHelper clientHelper = new ClientHelper(null, null, null, null); // create a new ClientHelper instance
+> 

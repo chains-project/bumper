@@ -1,0 +1,78 @@
+0a1,19
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.Single;
+> import com.artipie.http.auth.JoinedPermissions;
+> import com.artipie.http.auth.OperationControl;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.Permissions.Wrap;
+> import com.artipie.http.auth.UserPermissions;
+> import com.artipie.http.auth.UserPermissions.Simple;
+> import com.artipie.http.slice.Slice;
+> import java.util.Collections;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.function.Function;
+> import org.hamcrest.MatcherAssert;
+> import static org.hamcrest.Matchers.equalTo;
+> import static org.mockito.Mockito.mock;
+> import static org.mockito.Mockito.when;
+> 
+6a26,35
+>     final Slice slice = mock(Slice.class);
+>     final JoinedPermissions permissions = new JoinedPermissions(
+>         Collections.singletonList(
+>             new Wrap(new OperationControl(new Permission.All()))
+>         )
+>     );
+>     when(slice.response(line, Headers.EMPTY, Content.EMPTY))
+>         .thenReturn(CompletableFuture.completedFuture(
+>             new Single(new AuthUser("alice"), "")
+>         ));
+8,23c37
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+---
+>         slice,
+25,35c39,45
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+<                     }
+< 
+<                     @Override
+<                     public String challenge() {
+<                         return "";
+<                     }
+<                 }
+---
+>             new UserPermissions(
+>                 () -> new Simple(Collections.emptySet(), mock(PermissionCollection.class)),
+>                 authUser -> new Simple(
+>                     Collections.singleton("user"),
+>                     mock(PermissionCollection.class)
+>                 )
+>             )
+47c57
+<             new IsEqual<>(line)
+---
+>         equalTo(line)
+52c62
+<             new IsEqual<>(action)
+---
+>         equalTo(action)

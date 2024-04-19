@@ -1,0 +1,64 @@
+import com.artipie.http.auth.AuthUser;
+import com.artipie.http.auth.Authentication;
+import com.artipie.http.auth.Authentication.Single;
+import com.artipie.http.auth.JoinedPermissions;
+import com.artipie.http.auth.OperationControl;
+import com.artipie.http.auth.Permission;
+import com.artipie.http.auth.Permissions;
+import com.artipie.http.auth.Permissions.Wrap;
+import com.artipie.http.auth.UserPermissions;
+import com.artipie.http.auth.UserPermissions.Simple;
+import com.artipie.http.slice.Slice;
+import java.util.Collections;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Function;
+import org.hamcrest.MatcherAssert;
+import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+@Test
+void testScope() {
+    final String line = "GET /resource.txt HTTP/1.1";
+    final String action = "foo:bar:baz";
+    final AtomicReference<String> caction = new AtomicReference<>();
+    final AtomicReference<String> cline = new AtomicReference<>();
+    final Slice slice = mock(Slice.class);
+    final JoinedPermissions permissions = new JoinedPermissions(
+        Collections.singletonList(
+            new Wrap(new OperationControl(new Permission.All()))
+        )
+    );
+    when(slice.response(line, Headers.EMPTY, Content.EMPTY))
+        .thenReturn(CompletableFuture.completedFuture(
+            new Single(new AuthUser("alice"), "")
+        ));
+    new AuthScopeSlice(
+        slice,
+        (headers, rline) -> CompletableFuture.completedFuture(
+            new UserPermissions(
+                () -> new Simple(Collections.emptySet(), mock(PermissionCollection.class)),
+                authUser -> new Simple(
+                    Collections.singleton("user"),
+                    mock(PermissionCollection.class)
+                )
+            )
+        ),
+        (user, act) -> {
+            caction.set(act);
+            return true;
+        }
+    ).response(line, Headers.EMPTY, Content.EMPTY).send(
+        (status, headers, body) -> CompletableFuture.allOf()
+    ).toCompletableFuture().join();
+    MatcherAssert.assertThat(
+        "Request line passed to slice",
+        cline.get(),
+        equalTo(line)
+    );
+    MatcherAssert.assertThat(
+        "Scope passed as action to permissions",
+        caction.get(),
+        equalTo(action)
+    );
+}

@@ -1,0 +1,6 @@
+1a2
+>     LanguageSupportRepository languageSupportRepository = GlobalRepositoryStorage.instance().get(GlobalRepositoryStorage.Type.LANGUAGE_SUPPORT);
+3d3
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a8
+>             .setEnabledLanguages(languageSupportRepository.getEnabledLanguagesInConnectedMode())

@@ -1,0 +1,14 @@
+import eu.europa.esig.dss.pades.PadesCertificationLevel;
+
+// ...
+
+public class Signer {
+    // ...
+
+    @Override
+    protected CertificationLevel getCertificationLevel() {
+        return PadesCertificationLevel.CERTIFY_DETACHED;
+    }
+
+    // ...
+}

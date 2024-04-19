@@ -1,0 +1,15 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public List<WalletDto> apply(List<String> ids) throws IOException {
+  List<WalletDto> dtos = new ArrayList<>();
+  for (String id : ids) {
+    WalletDto dto = new WalletDto();
+    dto.setId(id);
+    dto.setAddress(String.join("", Texts.of(WALLET_ADDRESS_PREFIX, id)));
+    dtos.add(dto);
+  }
+  return dtos;
+}

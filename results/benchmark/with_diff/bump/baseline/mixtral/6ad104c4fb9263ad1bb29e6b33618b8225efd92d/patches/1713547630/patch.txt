@@ -1,0 +1,14 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+@Override
+public void decode(ChannelBuffer channelBuffer) throws IOException {
+    short type = channelBuffer.readShort();
+    short length = channelBuffer.readShort();
+    if (length < 0) {
+        throw new TlsFatalAlert(AlertDescription.decode(type));
+    }
+    // ...
+}

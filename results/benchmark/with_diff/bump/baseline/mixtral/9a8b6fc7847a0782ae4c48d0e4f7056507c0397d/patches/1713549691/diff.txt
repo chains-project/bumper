@@ -1,0 +1,20 @@
+3,5c3,4
+<         PasswordEncoder passwordEncoder = new PasswordEncoder() {
+<             private final TextEncryptor textEncryptor;
+<             private final PasswordEncryptor passwordEncryptor;
+---
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     TextEncryptor textEncryptor = new TextEncryptor();
+7,10c6,7
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+<                 this.textEncryptor = textEncryptor;
+<                 this.passwordEncryptor = passwordEncryptor;
+<             }
+---
+>     passwordEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>     textEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+11a9
+>     return new PasswordEncoder() {
+22,23d19
+< 
+<         return passwordEncoder;

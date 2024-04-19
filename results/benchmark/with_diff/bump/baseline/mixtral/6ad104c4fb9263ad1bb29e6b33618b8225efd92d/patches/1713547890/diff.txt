@@ -1,0 +1,11 @@
+1a2,10
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> public AlertDescription decode(byte[] input) {
+>     try {
+>         return new TlsFatalAlert(AlertDescription.decode(input)).getAlertDescription();
+>     } catch (IllegalArgumentException e) {
+>         throw new IllegalArgumentException("Failed to decode alert description", e);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,26 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+
+import java.io.IOException;
+import java.nio.channels.SocketChannel;
+import java.nio.channels.ClosedChannelException;
+
+public class SimpleThriftLogger {
+    // ...
+
+    @Override
+    public void connect() throws TTransportException {
+        try {
+            SocketChannel socket = SocketChannel.open(new InetSocketAddress(host, port));
+            socket.configureBlocking(false);
+            transport = new TFramedTransport(new TTransportSocketChannel(socket));
+            // ...
+        } catch (ClosedChannelException e) {
+            throw new TTransportException(e.getMessage());
+        } catch (IOException e) {
+            throw new TTransportException(e.getMessage());
+        }
+    }
+
+    // ...
+}

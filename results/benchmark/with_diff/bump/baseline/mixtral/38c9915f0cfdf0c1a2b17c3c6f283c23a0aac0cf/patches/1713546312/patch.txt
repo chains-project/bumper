@@ -1,0 +1,12 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.TextOf;
+
+@Override
+public String asString() throws IOException {
+    return new TextEnvelope(
+        new JoinedText(
+            this.wallets.stream().map(Wallet::asString).toArray(String[]::new)
+        ),
+        new TextOf("[\n  %s\n]")
+    ).asString();
+}

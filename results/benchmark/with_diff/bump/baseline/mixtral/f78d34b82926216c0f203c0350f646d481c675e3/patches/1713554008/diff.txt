@@ -1,0 +1,26 @@
+1,6c1,3
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+---
+> import tokyo.peya.lib.LeetConverter;
+> import tokyo.peya.lib.bukkit.exception.SelectorInvalidException;
+> 
+19,20c16,17
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+35a33,34
+>     try
+>     {
+36a36,40
+>     }
+>     catch (SelectorInvalidException e)
+>     {
+>         e.printStackTrace();
+>     }

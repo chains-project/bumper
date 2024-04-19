@@ -1,0 +1,42 @@
+3,5c3,7
+<         PasswordEncoder passwordEncoder = new PasswordEncoder() {
+<             private final TextEncryptor textEncryptor;
+<             private final PasswordEncryptor passwordEncryptor;
+---
+>     TextEncryptor textEncryptor = new TextEncryptor() {
+>         @Override
+>         public String encryptText(String text) {
+>             return passwordEncoder.encodePassword(text, null);
+>         }
+7,9c9,11
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+<                 this.textEncryptor = textEncryptor;
+<                 this.passwordEncryptor = passwordEncryptor;
+---
+>         @Override
+>         public boolean isTextEncrypted(String text) {
+>             return true;
+12a15,33
+>         public String decryptText(String encryptedText) {
+>             return passwordEncoder.decryptPassword(encryptedText, null);
+>         }
+>     };
+> 
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor() {
+>         @Override
+>         public String encryptPassword(String password) {
+>             return passwordEncoder.encodePassword(password, null);
+>         }
+> 
+>         @Override
+>         public boolean checkPassword(String password, String encryptedPassword) {
+>             return passwordEncoder.isPasswordValid(password, encryptedPassword, null);
+>         }
+>     };
+> 
+>     PasswordEncoder passwordEncoder = new PasswordEncoder() {
+>         @Override
+22a44,46
+>     textEncryptor.setTextEncryptor(passwordEncryptor);
+>     passwordEncoder.setPasswordEncryptor(passwordEncryptor);
+> 

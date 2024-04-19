@@ -1,0 +1,19 @@
+1c1,14
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> import org.yaml.snakeyaml.nodes.Tag;
+> 
+> public class TrustedTagInspector {
+>     private final Yaml yaml;
+> 
+>     public TrustedTagInspector() {
+>         this.yaml = new Yaml();
+>     }
+> 
+>     public boolean isGlobalTagAllowed(Tag tag) {
+>         return yaml.getTag(tag.getValue()).isGlobalTag();
+>     }
+> }
+\ No newline at end of file

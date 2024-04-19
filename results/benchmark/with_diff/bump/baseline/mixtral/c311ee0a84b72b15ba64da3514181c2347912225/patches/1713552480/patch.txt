@@ -1,0 +1,10 @@
+@Test
+void shouldThrowExceptionOnInvalidPath() {
+    boolean contains = Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> new UploadEntity.Request(
+                    new RequestLine(RqMethod.PUT, "/one/two").toString()
+            ).name()
+    ).getMessage().contains("Unexpected path");
+    assertTrue(contains);
+}

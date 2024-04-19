@@ -1,0 +1,11 @@
+6,12c6,7
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+<         );
+---
+>     HamcrestMatcher matcher = new StringContains(original.digest());
+>     MatcherAssert.assertThat(output, matcher);

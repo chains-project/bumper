@@ -1,0 +1,19 @@
+3,10c3,6
+<         PasswordEncoder passwordEncoder = new PasswordEncoder() {
+<             private final TextEncryptor textEncryptor;
+<             private final PasswordEncryptor passwordEncryptor;
+< 
+<             public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+<                 this.textEncryptor = textEncryptor;
+<                 this.passwordEncryptor = passwordEncryptor;
+<             }
+---
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     passwordEncryptor.setPasswordEncryptor(new org.jasypt.util.password.StandardPBEStringEncryptor());
+>     textEncryptor.setPasswordEncryptor(new org.jasypt.util.password.StandardPBEStringEncryptor());
+11a8
+>     return new PasswordEncoder() {
+22,23d18
+< 
+<         return passwordEncoder;

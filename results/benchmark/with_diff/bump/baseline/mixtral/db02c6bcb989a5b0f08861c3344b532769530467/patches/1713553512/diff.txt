@@ -1,0 +1,21 @@
+14c14
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     final InvalidTagNameException exception = Assertions.assertThrows(
+18,20c18
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+---
+>     MatcherAssert.assertThat(exception.getMessage(), new AllOf(
+22,23c20,21
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>             new StringStartsWith("Invalid tag"),
+>             new StringContains(original)
+25,26c23
+<             )
+<         );
+---
+>     ));

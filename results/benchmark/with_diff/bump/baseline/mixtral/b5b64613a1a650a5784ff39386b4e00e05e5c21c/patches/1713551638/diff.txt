@@ -1,0 +1,5 @@
+3c3,4
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>       String[] urls = new String[]{step.url, step.artifactoryUrl, step.distributionUrl};
+>       if (Arrays.stream(urls).allMatch(String::isBlank)) {

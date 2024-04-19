@@ -1,0 +1,8 @@
+import com.jcabi.ssh.SshByPassword;
+
+public class MyClass {
+    @Override
+    public SshByPassword createSsh() {
+        return new SshByPassword("user", "password", new Tv());
+    }
+}

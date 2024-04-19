@@ -1,0 +1,10 @@
+2c2
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a5,8
+> 
+> private static TestListResolver getTestListResolver() {
+>     return new DefaultSurefireTestSetFactory().createTestSetManagerProvider(null).createTestSetFactory(null).getTestListResolver();
+> }
+\ No newline at end of file

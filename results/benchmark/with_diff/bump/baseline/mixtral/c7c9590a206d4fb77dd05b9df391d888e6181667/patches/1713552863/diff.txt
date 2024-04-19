@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> 
+> // ...
+> 
+> public class SCoverageReportMojo {
+>     // ...
+> 
+>     @Override
+>     protected void renderSite(SiteRenderingContext siteContext) throws SiteRendererException {
+>         // ...
+>         RenderingContext renderingContext = new RenderingContext();
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

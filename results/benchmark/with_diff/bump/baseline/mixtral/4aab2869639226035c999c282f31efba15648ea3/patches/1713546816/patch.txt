@@ -1,0 +1,9 @@
+import com.artipie.asto.factory.StorageFactory;
+import com.artipie.asto.factory.Config;
+import java.util.Map;
+
+// ...
+
+Storage storage = StorageFactory.newStorage(
+    new Config(Map.of("type", "in-memory"))
+);

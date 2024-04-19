@@ -1,0 +1,17 @@
+0a1,5
+> import org.pitest.classinfo.ClassInfo;
+> import org.pitest.classinfo.ClassInfoBuilder;
+> import org.pitest.classinfo.ClassName;
+> import org.pitest.coverage.CoverageDatabase;
+> 
+2a8,13
+>     ClassName className = data.getMutatedClass();
+>     byte[] classBytecode = // fetch the bytecode for the mutated class
+>     long timestamp = // fetch the timestamp for the mutated class
+> 
+>     ClassInfo classInfo = ClassInfoVisitor.getClassInfo(className, classBytecode, timestamp);
+> 
+4c15
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

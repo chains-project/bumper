@@ -1,0 +1,15 @@
+1,4c1,9
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+>     Collection<ClassInfo> classInfos = coverage.getClassInfo(singleton(data.getMutatedClass()));
+>     return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfos.stream()
+>         .map(classInfo -> ClassInfoVisitor.getClassInfo(classInfo.getName(), classInfo.getRawClass(), classInfo.getNumberOfMethods()))
+>         .collect(Collectors.toList()));
+> }
+> 
+> private <T> Set<T> singleton(T element) {
+>     return new HashSet<>(Collections.singletonList(element));

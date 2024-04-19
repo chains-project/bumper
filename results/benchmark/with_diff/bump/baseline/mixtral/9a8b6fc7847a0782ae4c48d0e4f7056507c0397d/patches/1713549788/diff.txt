@@ -1,0 +1,7 @@
+20a21,26
+> 
+>         @Override
+>         public boolean upgradeEncoding(String encodedPassword) {
+>             // you can implement this method if needed
+>             return false;
+>         }

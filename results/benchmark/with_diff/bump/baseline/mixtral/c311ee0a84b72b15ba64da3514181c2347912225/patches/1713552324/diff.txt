@@ -1,0 +1,11 @@
+6c6
+<         final String output = this.client.run("pull", this.image.remote());
+---
+>     String output = this.client.run("pull", this.image.remote());
+9,12c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+---
+>         new StringContains(String.format("Status: Downloaded newer image for %s", this.image.remote()))

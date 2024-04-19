@@ -1,0 +1,14 @@
+import org.yaml.snakeyaml.nodes.Tag;
+import org.yaml.snakeyaml.Yaml;
+
+// ...
+
+public TrustedTagInspector trustedTagInspector = new TrustedTagInspector();
+
+// ...
+
+@Override
+public void testSomething() {
+    Yaml yaml = new Yaml(trustedTagInspector);
+    // ...
+}

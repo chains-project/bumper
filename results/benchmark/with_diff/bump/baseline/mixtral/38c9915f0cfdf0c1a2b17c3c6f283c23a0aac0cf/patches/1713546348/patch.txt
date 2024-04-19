@@ -1,0 +1,13 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String asString() throws IOException {
+  return new JoinedText(
+    Texts.lengthOf(wallets.values()),
+    Texts.sequenceOf(
+      wallet -> String.format("{\"%s\":%d}", wallet.id(), wallet.balance())
+    )
+  ).asString();
+}

@@ -1,0 +1,8 @@
+import de.gwdg.metadataqa.api.schema.json.JsonBranch;
+
+// ...
+
+@Override
+public MarcRecord createMarcRecord(JsonBranch jsonBranch) {
+    // ...
+}

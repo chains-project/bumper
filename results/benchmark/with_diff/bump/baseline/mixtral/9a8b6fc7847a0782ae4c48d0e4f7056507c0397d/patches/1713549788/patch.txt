@@ -1,0 +1,30 @@
+@Bean
+public PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder = new PasswordEncoder() {
+        private final TextEncryptor textEncryptor;
+        private final PasswordEncryptor passwordEncryptor;
+
+        public PasswordEncoder(TextEncryptor textEncryptor, PasswordEncryptor passwordEncryptor) {
+            this.textEncryptor = textEncryptor;
+            this.passwordEncryptor = passwordEncryptor;
+        }
+
+        @Override
+        public String encode(CharSequence rawPassword) {
+            return passwordEncryptor.encryptPassword(rawPassword.toString());
+        }
+
+        @Override
+        public boolean matches(CharSequence rawPassword, String encodedPassword) {
+            return passwordEncryptor.checkPassword(rawPassword.toString(), encodedPassword);
+        }
+
+        @Override
+        public boolean upgradeEncoding(String encodedPassword) {
+            // you can implement this method if needed
+            return false;
+        }
+    };
+
+    return passwordEncoder;
+}

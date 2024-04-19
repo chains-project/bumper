@@ -1,0 +1,20 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+public class SCoverageReportMojo extends AbstractScoverageMojo {
+    // ...
+
+    @Override
+    protected void generateReport(SiteRenderingContext siteRenderingContext, File outputDirectory) throws MojoExecutionException {
+        try (Writer writer = new FileWriter(new File(outputDirectory, "coverage.html"))) {
+            RenderingContext renderingContext = siteRenderingContext.createRenderingContext();
+            getLog().debug("Rendering report with context: " + renderingContext);
+            super.generateReport(writer, renderingContext, siteRenderingContext);
+        } catch (IOException e) {
+            throw new MojoExecutionException("Error generating report", e);
+        }
+    }
+
+    // ...
+}

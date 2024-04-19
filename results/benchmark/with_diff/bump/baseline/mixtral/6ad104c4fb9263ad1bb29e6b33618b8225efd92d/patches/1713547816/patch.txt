@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+//...
+
+@Override
+public void decodeMessage(ByteBuffer buffer, int length) throws IOException {
+    //...
+    try {
+        TlsFatalAlert fatalAlert = new TlsFatalAlert(AlertDescription.decode(buffer));
+        //...
+    } catch (TlsFatalAlert fatalAlert) {
+        //...
+    }
+    //...
+}

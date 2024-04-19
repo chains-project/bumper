@@ -1,0 +1,15 @@
+import com.artipie.asto.factory.Config;
+import com.artipie.asto.factory.StoragesLoader;
+
+import java.util.Map;
+
+public class MyClass {
+    // ...
+
+    // Replace the usage of Storages with StoragesLoader
+    StoragesLoader storages = new StoragesLoader();
+    Config config = Config.of(Map.of()); // Initialize Config with appropriate values
+    com.artipie.asto.Storage storage = storages.newObject("type", config);
+
+    // ...
+}

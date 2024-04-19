@@ -1,0 +1,11 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String asString() {
+  return new JoinedText(
+    Texts.wrap(wallets.values()),
+    "\n"
+  ).asString();
+}

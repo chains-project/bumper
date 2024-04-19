@@ -1,0 +1,12 @@
+import org.cactoos.text.Texts;
+
+//...
+
+@Override
+public String asJson(WalletId id) throws IOException {
+  List<String> parts = new ArrayList<>();
+  for (Wallet wallet : wallets(id)) {
+    parts.add(asJson(wallet));
+  }
+  return new JoinedText(Texts.splitBy("\n"), parts).asString();
+}

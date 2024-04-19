@@ -1,0 +1,18 @@
+2c2
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a5,16
+> 
+> private static TestListResolver getTestListResolver() {
+>     ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+>     try {
+>         return classLoader.loadClass("org.apache.maven.surefire.api.testset.TestListResolver")
+>             .asSubclass(TestListResolver.class)
+>             .getDeclaredConstructor()
+>             .newInstance();
+>     } catch (ReflectiveOperationException e) {
+>         throw new RuntimeException("Failed to create TestListResolver instance", e);
+>     }
+> }
+\ No newline at end of file

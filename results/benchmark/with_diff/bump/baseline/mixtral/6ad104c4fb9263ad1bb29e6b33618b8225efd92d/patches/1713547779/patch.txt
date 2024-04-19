@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public AlertDescription decode(byte[] input) throws IOException {
+    try {
+        return new AlertDescription(TlsFatalAlert.valueOf(input[0]));
+    } catch (IllegalArgumentException e) {
+        throw new TlsFatalAlert(AlertDescription.unexpected_message);
+    }
+}

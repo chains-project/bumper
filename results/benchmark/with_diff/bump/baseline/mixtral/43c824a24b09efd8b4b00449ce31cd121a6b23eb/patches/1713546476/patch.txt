@@ -1,0 +1,8 @@
+import de.gwdg.metadataqa.api.json.JsonPath;
+
+// ...
+
+@Override
+public JsonBranch getBranch(String path) {
+    return JsonPath.compile(path).read(jsonNode);
+}

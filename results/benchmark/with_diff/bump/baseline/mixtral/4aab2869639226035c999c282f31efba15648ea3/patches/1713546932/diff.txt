@@ -1,0 +1,14 @@
+1c1,9
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.factory.StorageFactory;
+> import com.artipie.asto.factory.Config;
+> import java.util.Map;
+> 
+> // ...
+> 
+> Storage storage = StorageFactory.newStorage(
+>     new Config(Map.of("type", "local"))
+> );
+\ No newline at end of file

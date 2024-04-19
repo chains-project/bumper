@@ -1,0 +1,19 @@
+@Bean
+public PasswordEncoder passwordEncoder() {
+    PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+    TextEncryptor textEncryptor = new TextEncryptor();
+    passwordEncryptor.setPasswordEncryptor(new org.jasypt.util.password.StandardPBEStringEncryptor());
+    textEncryptor.setPasswordEncryptor(new org.jasypt.util.password.StandardPBEStringEncryptor());
+
+    return new PasswordEncoder() {
+        @Override
+        public String encode(CharSequence rawPassword) {
+            return passwordEncryptor.encryptPassword(rawPassword.toString());
+        }
+
+        @Override
+        public boolean matches(CharSequence rawPassword, String encodedPassword) {
+            return passwordEncryptor.checkPassword(rawPassword.toString(), encodedPassword);
+        }
+    };
+}

@@ -1,0 +1,150 @@
+0a1,43
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.SimpleAuthUser;
+> import com.artipie.http.slice.AuthScheme;
+> import com.artipie.http.slice.AuthScheme.Result;
+> import com.artipie.http.slice.OperationControl;
+> import com.artipie.http.slice.PermissionControl;
+> import com.artipie.http.slice.Slice;
+> import io.reactivex.CompletableFuture;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import java.util.Collections;
+> import java.util.HashMap;
+> import java.util.Map;
+> import java.util.concurrent.Executor;
+> import static com.artipie.http.auth.Permissions.allowAll;
+> import static com.artipie.http.auth.Permissions.allowNone;
+> import static com.artipie.http.auth.Permissions.single;
+> import static com.artipie.http.auth.Permissions.wrap;
+> import static com.artipie.http.auth.Role.of;
+> import static com.artipie.http.auth.Role.roles;
+> import static com.artipie.http.auth.Role.user;
+> import static com.artipie.http.auth.User.*;
+> import static com.artipie.http.slice.AuthScheme.scheme;
+> import static com.artipie.http.slice.AuthScheme.schemeFrom;
+> import static com.artipie.http.slice.OperationControl.operationControl;
+> import static com.artipie.http.slice.PermissionControl.permissionControl;
+> import static com.artipie.http.slice.PermissionControl.permissionControlFrom;
+> import static com.artipie.http.slice.PermissionControl.permissionControlFrom;
+> import static com.artipie.http.slice.RoleControl.roleControl;
+> import static com.artipie.http.slice.RoleControl.roleControlFrom;
+> import static com.artipie.http.slice.RoleControl.roleControlFrom;
+> import static com.artipie.http.slice.Roles.rolesFrom;
+> import static com.artipie.http.slice.Users.userFrom;
+> import static com.artipie.http.slice.Users.usersFrom;
+> import static com.artipie.http.auth.Authentication.User.token;
+> import static java.util.Collections.singletonMap;
+> import static java.util.Collections.singleton;
+> import static java.util.concurrent.CompletableFuture.completedFuture;
+> import static java.util.concurrent.Executors.newSingleThreadExecutor;
+> 
+7,22c50,57
+<         new AuthScopeSlice(
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+---
+>     Slice authScopeSlice = new Slice.Simple(
+>         request -> {
+>             cline.set(request.line());
+>             Map<String, String> headers = new HashMap<>(request.headers());
+>             headers.put("Authorization", "Basic " + token("alice", ""));
+>             return CompletableFuture.completedFuture(
+>                 new Response.ResponseStatus(Status.OK)
+>             );
+24,28c59,63
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>         new OperationControl.Simple(
+>             request -> true,
+>             request -> {
+>                 caction.set(request.action());
+>                 return true;
+30,33c65,99
+< 
+<                     @Override
+<                     public String challenge() {
+<                         return "";
+---
+>         ),
+>         new PermissionControl.Simple(
+>             new Permission.Simple(
+>                 allowAll(
+>                     single(user("alice"), "foo:bar:baz"),
+>                     allowNone()
+>                 )
+>             )
+>         )
+>     );
+>     Executor executor = newSingleThreadExecutor();
+>     authScopeSlice.execute(
+>         executor,
+>         request -> {
+>             AuthScheme authScheme = schemeFrom(request);
+>             return authScheme.authenticate(request.headers())
+>                 .flatMap(auth -> {
+>                     AuthUser authUser = new SimpleAuthUser(
+>                         auth.user().name(),
+>                         Collections.singletonList(of(user(auth.user().name())))
+>                     );
+>                     return authScheme.authorize(
+>                         authUser,
+>                         request.action(),
+>                         request.headers()
+>                     )
+>                         .flatMap(permission -> {
+>                             if (permission.allowed()) {
+>                                 return CompletableFuture.completedFuture(
+>                                     request
+>                                 );
+>                             } else {
+>                                 return CompletableFuture.completedFuture(
+>                                     new Response.ResponseStatus(Status.FORBIDDEN)
+>                                 );
+34a101,110
+>                         });
+>                 });
+>         },
+>         response -> {
+>             if (response.status().code() == Status.OK.code()) {
+>                 return completedFuture(response);
+>             } else {
+>                 return completedFuture(
+>                     new Response.ResponseStatus(Status.INTERNAL_ERROR)
+>                 );
+36,39d111
+<             ),
+<             (user, act) -> {
+<                 caction.set(act);
+<                 return true;
+41,42d112
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+47c117
+<             new IsEqual<>(line)
+---
+>         Matchers.equalTo(line)
+52c122
+<             new IsEqual<>(action)
+---
+>         Matchers.equalTo(action)

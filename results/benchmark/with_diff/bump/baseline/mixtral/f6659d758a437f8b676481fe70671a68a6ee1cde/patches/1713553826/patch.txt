@@ -1,0 +1,13 @@
+import org.yaml.snakeyaml.nodes.Tag;
+import org.yaml.snakeyaml.inspector.TagInspector;
+
+public class TrustedTagInspectorImpl implements TagInspector {
+    @Override
+    public boolean isGlobalTagAllowed(Tag tag) {
+        // Implement your logic here
+        return true;
+    }
+}
+
+// Usage
+TagInspector inspector = new TrustedTagInspectorImpl();

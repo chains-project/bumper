@@ -1,0 +1,4 @@
+1d0
+< @Override
+9a9
+>     ClientHelper clientHelper = new ClientHelper(new P4BaseCredentials("", ""), new TaskListener(), new Workspace());

@@ -1,0 +1,38 @@
+1c1,33
+< import org.locationtech.jts.noding.SegmentString;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public int getNumPoints() {
+>     int numPoints = 0;
+>     numPoints += new PointIndexMMWrapper().size();
+>     numPoints += new PHTreeMMP().size();
+>     MinHeap heap = new MinHeap(10);
+>     numPoints += heap.size();
+>     MinHeapI heapI = new MinHeapI() {
+>         @Override
+>         public int size() {
+>             return 0;
+>         }
+>     };
+>     numPoints += heapI.size();
+>     MinMaxHeap minMaxHeap = new MinMaxHeap(10);
+>     numPoints += minMaxHeap.size();
+>     MinMaxHeapI minMaxHeapI = new MinMaxHeapI() {
+>         @Override
+>         public int size() {
+>             return 0;
+>         }
+>     };
+>     numPoints += minMaxHeapI.size();
+>     return numPoints;
+> }
+\ No newline at end of file

@@ -1,0 +1,19 @@
+0a1,3
+> import org.apache.maven.plugin.surefire.api.testset.TestListResolver;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline;
+> 
+2c5
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a8,16
+> 
+> private static TestListResolver getTestListResolver() {
+>     return new TestListResolver() {
+>         @Override
+>         public String getWildcard() {
+>             return "**/*Test.java";
+>         }
+>     };
+> }
+\ No newline at end of file
