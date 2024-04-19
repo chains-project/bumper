@@ -1,0 +1,4 @@
+import static org.junit.Assume.assumeTrue;
+
+// static import only from classes and interfaces
+import static java.lang.Math.abs;

@@ -1,0 +1,7 @@
+import static org.junit.Assume.assumeTrue;
+
+// Add a variable to store the result of assumeTrue()
+boolean canRun = assumeTrue();
+
+// Replace the static import with a regular method call
+canRun = org.junit.Assume.assumeTrue();

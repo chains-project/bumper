@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Add a variable to hold the result of assumeTrue
+> boolean canRun = assumeTrue();
+> 
+> // Modify the import statement to use the variable
+> import static org.junit.Assume.assumeTrue(canRun);
+\ No newline at end of file

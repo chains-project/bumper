@@ -1,0 +1,5 @@
+1a2,4
+> 
+> // static import only from classes and interfaces
+> import static java.lang.Math.abs;
+\ No newline at end of file

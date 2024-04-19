@@ -1,0 +1,10 @@
+1a2,9
+> 
+> // Add a variable to store the result of assumeTrue
+> boolean canRun = assumeTrue(true);
+> 
+> // Use the variable instead of calling assumeTrue directly
+> if (canRun) {
+>     // Your code that uses assumeTrue here
+> }
+\ No newline at end of file

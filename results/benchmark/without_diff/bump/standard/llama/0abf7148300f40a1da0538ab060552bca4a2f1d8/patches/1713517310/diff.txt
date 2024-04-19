@@ -1,0 +1,11 @@
+1,2c1
+< private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)
+<         {
+---
+> private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {
+11a11,15
+>                 
+>                 // Added null check for getLineStyleEnum()
+>                 if (border.getLineStyle() != null) {
+>                         textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+>                 }
