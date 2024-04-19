@@ -1,0 +1,6 @@
+15,17c15
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>         PasswordEncoder encoder = new BCryptPasswordEncoder();

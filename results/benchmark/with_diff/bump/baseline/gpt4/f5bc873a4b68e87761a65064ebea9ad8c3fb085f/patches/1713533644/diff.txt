@@ -1,0 +1,7 @@
+1c1,2
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> import org.apache.maven.shared.dependency.tree.DependencyNode;
+> import org.apache.maven.shared.dependency.tree.DependencyTreeResolutionException;
+\ No newline at end of file

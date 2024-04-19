@@ -1,0 +1,6 @@
+1c1
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+>   // The import statement has been removed as the package does not exist in the new version of the library.
+\ No newline at end of file

@@ -1,0 +1,9 @@
+2a3,6
+>     ClassInfoBuilder classInfoBuilder = new ClassInfoBuilder();
+>     byte[] placeholderBytes = new byte[0];
+>     long placeholderLong = 0L;
+>     ClassInfo classInfo = classInfoBuilder.getClassInfo(data.getMutatedClass(), placeholderBytes, placeholderLong);
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

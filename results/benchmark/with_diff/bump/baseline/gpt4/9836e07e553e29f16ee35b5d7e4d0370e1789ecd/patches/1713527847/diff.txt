@@ -1,0 +1,11 @@
+18,19c18
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+---
+>     MatcherAssert.assertThat(throwable.getMessage(), 
+22,23c21,22
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                 new StringContains("Invalid tag"),
+>                 new StringContains(original)

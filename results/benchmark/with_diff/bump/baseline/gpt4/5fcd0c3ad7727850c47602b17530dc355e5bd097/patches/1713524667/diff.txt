@@ -1,0 +1,7 @@
+2a3,4
+>     ClassInfoBuilder classInfoBuilder = new ClassInfoVisitor();
+>     ClassInfo classInfo = classInfoBuilder.getClassInfo(data.getMutatedClass(), null, 0);
+4c6
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

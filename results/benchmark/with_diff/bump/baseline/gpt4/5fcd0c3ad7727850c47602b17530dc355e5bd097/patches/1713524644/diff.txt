@@ -1,0 +1,9 @@
+2a3,6
+>     final ClassName mutatedClass = data.getMutatedClass();
+>     final byte[] classBytes = null; // Replace with actual class bytes if available
+>     final long classHash = 0L; // Replace with actual class hash if available
+>     final ClassInfoBuilder classInfoBuilder = ClassInfoVisitor.getClassInfo(mutatedClass, classBytes, classHash);
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), Collections.singleton(classInfoBuilder.build()));

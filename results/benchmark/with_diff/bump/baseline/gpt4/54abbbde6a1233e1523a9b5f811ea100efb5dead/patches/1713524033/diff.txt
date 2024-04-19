@@ -1,0 +1,17 @@
+1c1,12
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> // The Tv class was removed from the com.jcabi.aspects package
+> // You need to replace it with the corresponding functionality
+> // Here is a possible solution:
+> 
+> import com.jcabi.aspects.Timed;
+> 
+> public class SshByPassword {
+>     @Timed
+>     public void someMethod() {
+>         // Your code here
+>     }
+> }
+\ No newline at end of file

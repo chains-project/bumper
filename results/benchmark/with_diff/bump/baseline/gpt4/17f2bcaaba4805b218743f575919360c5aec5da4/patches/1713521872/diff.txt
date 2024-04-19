@@ -1,0 +1,41 @@
+1a2,40
+>   import org.tinspin.index.PointIndexMMWrapper;
+>   import org.tinspin.index.phtree.PHTreeMMP;
+>   import org.tinspin.index.util.MinHeap;
+>   import org.tinspin.index.util.MinHeapI;
+>   import org.tinspin.index.util.MinMaxHeap;
+>   import org.tinspin.index.util.MinMaxHeapI;
+> 
+>   public class PGS_MeshingTests {
+>     @Test
+>     public void testSize() {
+>       PointIndexMMWrapper pointIndexMMWrapper = new PointIndexMMWrapper();
+>       int size1 = pointIndexMMWrapper.size();
+> 
+>       PHTreeMMP phtreeMMP = new PHTreeMMP();
+>       int size2 = phtreeMMP.size();
+> 
+>       MinHeap minHeap = new MinHeap();
+>       int size3 = minHeap.size();
+> 
+>       MinHeapI minHeapI = new MinHeapI() {
+>         @Override
+>         public int size() {
+>           return 0;
+>         }
+>       };
+>       int size4 = minHeapI.size();
+> 
+>       MinMaxHeap minMaxHeap = new MinMaxHeap();
+>       int size5 = minMaxHeap.size();
+> 
+>       MinMaxHeapI minMaxHeapI = new MinMaxHeapI() {
+>         @Override
+>         public int size() {
+>           return 0;
+>         }
+>       };
+>       int size6 = minMaxHeapI.size();
+>     }
+>   }
+\ No newline at end of file
