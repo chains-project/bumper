@@ -1,0 +1,37 @@
+8,34c8,15
+<     new com.artipie.docker.http.AuthScopeSlice(new com.artipie.docker.http.ScopeSlice() {
+<         @java.lang.Override
+<         public com.artipie.docker.http.Scope scope(final java.lang.String rqline) {
+<             cline.set(rqline);
+<             return new com.artipie.docker.http.Scope.FromString(action);
+<         }
+< 
+<         @java.lang.Override
+<         public com.artipie.http.Response response(final java.lang.String line, final java.lang.Iterable<java.util.Map.Entry<java.lang.String, java.lang.String>> headers, final org.reactivestreams.Publisher<java.nio.ByteBuffer> body) {
+<             return com.artipie.http.rs.StandardRs.OK;
+<         }
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.AuthScheme.Result() {
+<         @java.lang.Override
+<         public ++Optional<com.artipie.http.auth.Authentication.User> user() {
+<             return ++Optional.of(new com.artipie.http.auth.Authentication.User("alice"));
+<         }
+< 
+<         @java.lang.Override
+<         public java.lang.String challenge() {
+<             return "";
+<         }
+<     }), ( user, act) -> {
+<         caction.set(act);
+<         return true;
+<     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> java.util.concurrent.CompletableFuture.allOf()).toCompletableFuture().join();
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>     final java.util.concurrent.atomic.AtomicReference<java.util.Optional<java.util.List<java.util.Optional<com.github.dockerjava.api.command.AuthConfig>>>> authConfigOpt = new java.util.concurrent.atomic.AtomicReference<>();
+>     authConfigOpt.set(java.util.Optional.empty());
+>     caction.set(action);
+>     cline.set(line);
+>     org.mockito.stubbing.Answer<java.util.List<java.util.Optional<com.github.dockerjava.api.command.AuthConfig>>> answer = invocation -> authConfigOpt.get().stream().collect(java.util.stream.Collectors.toList());
+>     org.mockito.Mockito.when(docker.authConfig(action, line)).thenAnswer(answer);
+>     new com.artipie.docker.http.AuthScopeSlice(docker, caction::set).accept(cline::set);
+>     org.junit.jupiter.api.Assertions.assertTrue(caction.get().equals("foo:bar:baz"));

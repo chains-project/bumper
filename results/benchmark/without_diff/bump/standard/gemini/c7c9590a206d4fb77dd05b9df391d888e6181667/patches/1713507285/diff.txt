@@ -1,0 +1,12 @@
+1a2,11
+> 
+> import java.util.Map;
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() {
+>         RenderingContext context = new RenderingContext();
+>         // ...
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class AbstractThemeMojo {
+> 
+>     public void execute() {
+>         MavenProject project = (MavenProject) getPluginContext().get("project");
+>         // ...
+>     }
+> }
+\ No newline at end of file

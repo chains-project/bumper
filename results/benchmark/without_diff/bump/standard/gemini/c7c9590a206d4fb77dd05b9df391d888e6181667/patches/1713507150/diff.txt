@@ -1,0 +1,11 @@
+1a2,10
+> import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext__;
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() {
+>         RenderingContext renderingContext = new RenderingContext__();
+>         // ...
+>     }
+> }
+\ No newline at end of file
