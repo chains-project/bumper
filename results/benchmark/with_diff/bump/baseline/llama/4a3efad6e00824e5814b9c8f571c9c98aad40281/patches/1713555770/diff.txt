@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class Signer {
+>     // ...
+>     private void signPdf(File pdfFile, String username, String password) throws Exception {
+>         // ...
+>         CertificationPermission certificationPermission = new CertificationPermission();
+>         // ...
+>     }
+> }
+\ No newline at end of file

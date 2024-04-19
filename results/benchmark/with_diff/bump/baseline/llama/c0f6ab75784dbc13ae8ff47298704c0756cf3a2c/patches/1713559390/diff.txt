@@ -1,0 +1,4 @@
+3d2
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a7
+>             .addEnabledLanguages(LanguageSupportRepository.getEnabledLanguagesInConnectedMode())

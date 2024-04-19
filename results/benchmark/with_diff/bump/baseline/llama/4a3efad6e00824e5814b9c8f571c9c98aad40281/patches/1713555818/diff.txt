@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class Signer {
+>     // ...
+>     private void signPdf(File pdfFile, File signedPdfFile) throws Exception {
+>         // ...
+>         CertificationPermission permission = new CertificationPermission();
+>         // ...
+>     }
+> }
+\ No newline at end of file

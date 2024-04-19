@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv TV = Tv.NULL;
+
+    public void test(AmazonS3 s3) {
+        // ...
+    }
+}

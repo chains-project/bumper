@@ -1,0 +1,13 @@
+import org.cactoos.text.Text;
+
+public class WalletsIn {
+    private final Text joinedText;
+
+    public WalletsIn(String... texts) {
+        this.joinedText = Text.join(texts);
+    }
+
+    public String getJoinedText() {
+        return joinedText.toString();
+    }
+}

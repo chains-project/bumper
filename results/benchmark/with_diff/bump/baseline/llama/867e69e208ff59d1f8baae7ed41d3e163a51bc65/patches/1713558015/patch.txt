@@ -1,0 +1,3 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+TFramedTransport framedTransport = new TFramedTransport();

@@ -1,0 +1,10 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+public class Signer {
+    // ...
+    private void signPdf(File pdfFile, String username, String password) throws Exception {
+        // ...
+        CertificationPermission certificationPermission = new CertificationPermission();
+        // ...
+    }
+}

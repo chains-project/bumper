@@ -1,0 +1,29 @@
+import org.jasypt.spring.security.PasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+    private PasswordEncoder passwordEncoder;
+
+    public GeoStoreDigestPasswordEncoder() {
+        passwordEncoder = new org.jasypt.spring.security.PBEPasswordEncoder();
+    }
+
+    @Override
+    public String encodePassword(String rawPassword, Object salt) {
+        return passwordEncoder.encodePassword(rawPassword, salt);
+    }
+
+    @Override
+    public boolean isPasswordValid(String encodedPassword, String rawPassword, Object salt) {
+        return passwordEncoder.isPasswordValid(encodedPassword, rawPassword, salt);
+    }
+
+    @Override
+    public void setPasswordEncryptor(PasswordEncryptor passwordEncryptor) {
+        passwordEncoder.setPasswordEncryptor(passwordEncryptor);
+    }
+
+    @Override
+    public void setStringDigester(StringDigester stringDigester) {
+        passwordEncoder.setStringDigester(stringDigester);
+    }
+}

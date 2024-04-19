@@ -1,0 +1,16 @@
+7a8
+>             .setLanguageSupportRepository(new LanguageSupportRepositoryImpl()) // Add this line
+9a11,22
+> 
+> class LanguageSupportRepositoryImpl implements org.sonarsource.sonarlint.core.languages.LanguageSupportRepository {
+>     @Override
+>     public Set<org.sonarsource.sonarlint.core.languages.Language> getEnabledLanguagesInConnectedMode() {
+>         return Collections.unmodifiableSet(globalConfig.getEnabledLanguages());
+>     }
+> 
+>     @Override
+>     public Set<org.sonarsource.sonarlint.core.languages.Language> getEnabledLanguagesInStandaloneMode() {
+>         return Collections.unmodifiableSet(globalConfig.getEnabledLanguages());
+>     }
+> }
+\ No newline at end of file

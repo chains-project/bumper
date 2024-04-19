@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv Tv = new Tv();
+
+    public void testSocket() {
+        Tv.attach(new MockSocket());
+        // ...
+    }
+}

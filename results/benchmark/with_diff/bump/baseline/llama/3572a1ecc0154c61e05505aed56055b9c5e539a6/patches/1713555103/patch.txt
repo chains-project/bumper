@@ -1,0 +1,16 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+import org.apache.thrift.transport.TFastFramedTransport;
+
+public class AppenderUtils {
+    public static TFastFramedTransport getTFastFramedTransport(TTransport transport) {
+        return new TFastFramedTransport(transport);
+    }
+
+    public static TFastFramedTransport getTFastFramedTransport(TTransport transport, int bufferSize) {
+        return new TFastFramedTransport(transport, bufferSize);
+    }
+
+    public static TFastFramedTransport getTFastFramedTransport(TTransport transport, int bufferSize, int maxFrameSize) {
+        return new TFastFramedTransport(transport, bufferSize, maxFrameSize);
+    }
+}

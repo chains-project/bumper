@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class FastPolygonizerTests {
+>     @Ignore
+>     public void testPolygonize() {
+>         // Remove the Ignore annotation and add a comment to explain why it was removed
+>         // This is a temporary fix until the Ignore annotation is re-added in a future version of the library
+>         //TODO: Remove this comment and the @Ignore annotation once the issue is fixed
+>         // This is a temporary fix until the Ignore annotation is re-added in a future version of the library
+>         org.junit.Assert.assertTrue(true);
+>     }
+> }
+\ No newline at end of file

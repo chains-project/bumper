@@ -1,0 +1,41 @@
+1,14c1,2
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+<             getLog().info( "Skipping SCoverage report generation" );
+<             return;
+<         }
+---
+>     // RenderingContext is now a class in org.apache.maven.doxia.module.xhtml.decoration.render package
+>     import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+16,17c4,7
+<         try
+<         {
+---
+>     // ...
+> 
+>     try {
+>         // Create a new RenderingContext instance
+18a9
+>         // Use the new SiteRendererSink(context) constructor
+20,27c11,13
+<             Locale locale = Locale.getDefault();
+<             generate( sink, locale );
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+<         }
+---
+>         // ...
+>     } catch (MavenReportException e) {
+>         // ...

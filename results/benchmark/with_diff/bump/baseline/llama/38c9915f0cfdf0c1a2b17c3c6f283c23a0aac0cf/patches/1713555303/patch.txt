@@ -1,0 +1,8 @@
+import org.cactoos.text.Text;
+
+public class WalletsIn {
+    public static void main(String[] args) {
+        Text joinedText = new JoinedText();
+        // Your code that uses joinedText here
+    }
+}

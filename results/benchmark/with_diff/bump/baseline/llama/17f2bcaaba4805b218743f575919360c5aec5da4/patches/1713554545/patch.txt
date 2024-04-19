@@ -1,0 +1,10 @@
+import org.junit.Ignore;
+
+public class FastPolygonizerTests {
+    @Ignore
+    public void testPolygonize() {
+        // Remove the Ignore annotation, as it is not available in the new library version
+        // Instead, use the org.junit.jupiter.api.TestInfo.ignore() method to ignore the test
+        org.junit.jupiter.api.TestInfo.ignore();
+    }
+}

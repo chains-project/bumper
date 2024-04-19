@@ -1,0 +1,6 @@
+3c3,5
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     java.sql.Timestamp tsFrom = new Timestamp(from.getTime());
+>     java.sql.Timestamp tsTo = new Timestamp(to.getTime());
+>     return net.datafaker.DateAndTime.between(tsFrom, tsTo);

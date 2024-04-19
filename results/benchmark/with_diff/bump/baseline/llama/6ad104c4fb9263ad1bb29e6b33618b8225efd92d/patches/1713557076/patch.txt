@@ -1,0 +1,5 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public TlsFatalAlert getAlertDescription() {
+    return TlsFatalAlert.getInstance(getAlertDescription().getMessage());
+}

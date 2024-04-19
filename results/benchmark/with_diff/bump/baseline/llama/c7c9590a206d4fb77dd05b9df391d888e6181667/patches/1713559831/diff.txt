@@ -1,0 +1,35 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+10,15c5
+<         if ( !canGenerateReport() )
+<         {
+<             getLog().info( "Skipping SCoverage report generation" );
+<             return;
+<         }
+< 
+---
+>         // ...
+18,28c8,12
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+<             Locale locale = Locale.getDefault();
+<             generate( sink, locale );
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+<         }
+<     }
+\ No newline at end of file
+---
+>             // RenderingContext is removed, use DoxiaDocumentRenderer instead
+>             DoxiaDocumentRenderer renderer = new DoxiaDocumentRenderer(outputDirectory, getOutputName() + ".html");
+>             renderer.setRenderingContext(new RenderingContext(outputDirectory, getOutputName() + ".html"));
+>             SiteRendererSink sink = new SiteRendererSink(renderer);
+>             // ...
+\ No newline at end of file

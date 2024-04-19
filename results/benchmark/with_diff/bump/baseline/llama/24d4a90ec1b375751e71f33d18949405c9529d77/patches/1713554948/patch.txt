@@ -1,0 +1,10 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv TV = Tv.builder().setPrefix("s3").build();
+
+    @org.junit.Test
+    public void testListObjects() {
+        // ...
+    }
+}

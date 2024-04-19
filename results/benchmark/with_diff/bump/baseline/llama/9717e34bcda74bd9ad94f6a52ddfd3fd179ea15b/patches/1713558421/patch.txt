@@ -1,0 +1,22 @@
+import com.jcabi.aspects.Tv;
+
+public class MkGithub {
+    private static final Tv TV = Tv.NONE;
+
+    public MkGithub() {
+        super();
+    }
+
+    public MkGithub(Tv tv) {
+        super();
+        this.TV = tv;
+    }
+
+    public void method(Tv tv) {
+        this.TV = tv;
+    }
+
+    public Tv tv() {
+        return TV;
+    }
+}

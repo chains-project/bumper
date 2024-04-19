@@ -1,0 +1,12 @@
+1a2,11
+> 
+> public class AbstractTest {
+>     // ...
+>     private void testTrustedTagInspector() {
+>         // Create a new TrustedTagInspector instance
+>         TrustedTagInspector inspector = new TrustedTagInspector();
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file

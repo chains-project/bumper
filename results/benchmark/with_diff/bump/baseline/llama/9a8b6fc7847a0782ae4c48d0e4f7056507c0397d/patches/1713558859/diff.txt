@@ -1,0 +1,30 @@
+1a2,29
+> 
+> public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStoreDigestPasswordEncoder() {
+>         passwordEncoder = new org.jasypt.spring.security.PBEPasswordEncoder();
+>     }
+> 
+>     @Override
+>     public String encodePassword(String rawPassword, Object salt) {
+>         return passwordEncoder.encodePassword(rawPassword, salt);
+>     }
+> 
+>     @Override
+>     public boolean isPasswordValid(String rawPassword, String encodedPassword, Object salt) {
+>         return passwordEncoder.isPasswordValid(rawPassword, encodedPassword, salt);
+>     }
+> 
+>     @Override
+>     public void setPasswordEncryptor(PasswordEncryptor passwordEncryptor) {
+>         passwordEncoder.setPasswordEncryptor(passwordEncryptor);
+>     }
+> 
+>     @Override
+>     public void setStringDigester(StringDigester stringDigester) {
+>         passwordEncoder.setStringDigester(stringDigester);
+>     }
+> }
+\ No newline at end of file

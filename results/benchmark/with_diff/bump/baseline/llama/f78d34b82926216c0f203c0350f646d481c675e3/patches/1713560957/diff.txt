@@ -1,0 +1,47 @@
+1,8c1,8
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import tokyo.peya.lib.WaveCreator;
+> import tokyo.peya.lib.FileConfiguration;
+> import tokyo.peya.lib.LearnMath;
+> import tokyo.peya.lib.LeetConverter;
+> import tokyo.peya.lib.TimeParser;
+> 
+> public class Decorations {
+>     public static void magic(Player player, int seconds) {
+12,13c12
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+---
+>         BukkitRunnable runnable = new BukkitRunnable() {
+15,18c14,15
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>             public void run() {
+>                 for (double i = 0; i < Math.PI * 2; i++) {
+30d26
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+50,51c46
+<         new BukkitRunnable()
+<         {
+---
+>         new BukkitRunnable() {
+53,54c48
+<             public void run()
+<             {
+---
+>             public void run() {
+58c52
+< 
+---
+>     }

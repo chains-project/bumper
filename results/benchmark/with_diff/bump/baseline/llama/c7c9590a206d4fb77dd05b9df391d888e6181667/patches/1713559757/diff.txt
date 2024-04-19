@@ -1,0 +1,19 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+21c16,19
+<             generate( sink, locale );
+---
+>             // generate( sink, locale );
+>             // replaced with:
+>             String outputName = sink.getRenderingContext().getOutputName();
+>             generate(sink, outputName, locale);
+27a26,30
+>     }
+> 
+>     private void generate( SiteRendererSink sink, String outputName, Locale locale )
+>     {
+>         // ...

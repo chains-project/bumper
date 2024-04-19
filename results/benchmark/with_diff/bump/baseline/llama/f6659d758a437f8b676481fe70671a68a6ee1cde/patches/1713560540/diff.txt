@@ -1,0 +1,9 @@
+3c3,8
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+>         loadingConfig.setTagInspector(new TrustedTagInspector() {
+>             @Override
+>             public boolean isGlobalTagAllowed(Tag tag) {
+>                 return true;
+>             }
+>         });

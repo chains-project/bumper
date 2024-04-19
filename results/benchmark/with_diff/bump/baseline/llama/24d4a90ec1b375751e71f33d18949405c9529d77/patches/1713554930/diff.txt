@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class AwsOcketITCase {
+>     private static final Tv Tv = new Tv();
+> 
+>     public void testSocket() {
+>         Tv.attach(new MockSocket());
+>         // ...
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class YamlPolicyFactory {
+>     private static final Storages STORAGES = new StoragesLoader().load();
+> 
+>     public static Policy loadPolicy(YamlMapping yaml) {
+>         return new YamlPolicy(yaml, STORAGES.newStorage(new StorageConfig()));
+>     }
+> }
+\ No newline at end of file

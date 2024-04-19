@@ -1,0 +1,18 @@
+0a1
+> import org.apache.thrift.transport.TIOStreamTransport;
+1a3,16
+> 
+> public class AppenderUtils {
+>     public static TFastFramedTransport getTFastFramedTransport(TTransport transport) {
+>         return new TFastFramedTransport(transport);
+>     }
+> 
+>     public static TFastFramedTransport getTFastFramedTransport(TTransport transport, int bufferSize) {
+>         return new TFastFramedTransport(transport, bufferSize);
+>     }
+> 
+>     public static TFastFramedTransport getTFastFramedTransport(TTransport transport, int bufferSize, int maxFrameSize) {
+>         return new TFastFramedTransport(transport, bufferSize, maxFrameSize);
+>     }
+> }
+\ No newline at end of file

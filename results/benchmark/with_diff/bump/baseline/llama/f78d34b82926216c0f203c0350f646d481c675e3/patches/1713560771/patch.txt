@@ -1,0 +1,16 @@
+import tokyo.peya.lib.WaveCreator;
+import tokyo.peya.lib.FileConfiguration;
+import tokyo.peya.lib.LearnMath;
+import tokyo.peya.lib.LeetConverter;
+import tokyo.peya.lib.TimeParser;
+
+public class Decorations {
+    // ...
+
+    public static void magic(Player player, int seconds) {
+        // ...
+
+        WaveCreator wave = new WaveCreator(0.8, 1.8, 0.1);
+        // ...
+    }
+}

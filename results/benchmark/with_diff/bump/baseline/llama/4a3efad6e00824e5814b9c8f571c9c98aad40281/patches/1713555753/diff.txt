@@ -1,0 +1,13 @@
+1a2,12
+> 
+> // Keep the import statement as it is
+> 
+> public class Signer {
+>     // ...
+> 
+>     // Replace the failing line with the following code
+>     CertificationPermission permission = new CertificationPermission(null, null, null, null, null);
+> 
+>     // ...
+> }
+\ No newline at end of file

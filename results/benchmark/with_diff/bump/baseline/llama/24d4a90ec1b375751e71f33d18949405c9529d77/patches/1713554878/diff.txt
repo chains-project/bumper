@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class AwsOcketITCase {
+>     private static final Tv TV = Tv.getInstance();
+> 
+>     public void testAwsOcket() {
+>         TV.execute(new Tv.Action() {
+>             @Override
+>             public void execute() {
+>                 //TODO: Add your code here
+>             }
+>         });
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+
+public class AbstractTest {
+    // ...
+    private void testTrustedTagInspector() {
+        // Create a new TrustedTagInspector instance
+        TrustedTagInspector inspector = new TrustedTagInspector();
+        // ...
+    }
+    // ...
+}

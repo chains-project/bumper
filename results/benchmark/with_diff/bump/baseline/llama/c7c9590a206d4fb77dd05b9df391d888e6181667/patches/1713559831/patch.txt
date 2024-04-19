@@ -1,0 +1,12 @@
+@Override
+public void execute()
+    throws MojoExecutionException
+{
+        // ...
+        try
+        {
+            // RenderingContext is removed, use DoxiaDocumentRenderer instead
+            DoxiaDocumentRenderer renderer = new DoxiaDocumentRenderer(outputDirectory, getOutputName() + ".html");
+            renderer.setRenderingContext(new RenderingContext(outputDirectory, getOutputName() + ".html"));
+            SiteRendererSink sink = new SiteRendererSink(renderer);
+            // ...

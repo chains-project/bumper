@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class SshByPassword {
+>     private static final Tv Tv = new Tv();
+> 
+>     public static void main(String[] args) {
+>         Tv.aspect(SshByPassword.class);
+>         // ...
+>     }
+> }
+\ No newline at end of file

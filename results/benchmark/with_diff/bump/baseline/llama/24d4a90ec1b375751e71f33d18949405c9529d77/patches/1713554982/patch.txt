@@ -1,0 +1,9 @@
+import com.jcabi.aspects.Tv;
+
+public class AwsOcketITCase {
+    private static final Tv Tv = new Tv();
+
+    public void test() {
+        Tv.set(Tv.WARNING, "S3 bucket name is not specified");
+    }
+}

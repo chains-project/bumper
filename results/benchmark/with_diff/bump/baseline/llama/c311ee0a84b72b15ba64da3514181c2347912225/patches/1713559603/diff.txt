@@ -1,0 +1,9 @@
+5c5,10
+<         );
+---
+>     ) {
+>         @Override
+>         public boolean matches(final String actual) {
+>             return super.matches(actual) && !actual.contains("pull");
+>         }
+>     };

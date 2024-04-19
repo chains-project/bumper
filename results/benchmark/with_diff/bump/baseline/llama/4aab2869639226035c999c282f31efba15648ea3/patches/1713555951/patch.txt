@@ -1,0 +1,9 @@
+import com.artipie.asto.factory.Storages;
+
+public class YamlPolicyFactory {
+    private static final Storages STORAGES = new StoragesLoader().load();
+
+    public static com.artipie.asto.Storage newStorage(com.artipie.asto.factory.Config config) {
+        return STORAGES.newStorage(config);
+    }
+}

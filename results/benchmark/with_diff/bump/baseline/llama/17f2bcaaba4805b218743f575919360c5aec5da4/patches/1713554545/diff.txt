@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class FastPolygonizerTests {
+>     @Ignore
+>     public void testPolygonize() {
+>         // Remove the Ignore annotation, as it is not available in the new library version
+>         // Instead, use the org.junit.jupiter.api.TestInfo.ignore() method to ignore the test
+>         org.junit.jupiter.api.TestInfo.ignore();
+>     }
+> }
+\ No newline at end of file

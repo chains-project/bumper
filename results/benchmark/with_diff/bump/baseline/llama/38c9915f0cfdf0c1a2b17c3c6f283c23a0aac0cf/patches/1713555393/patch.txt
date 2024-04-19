@@ -1,0 +1,5 @@
+import org.cactoos.text.Text;
+
+public class WalletsIn {
+    private final JoinedText joinedText = new JoinedText(Text.of("Wallets"), Text.of("In"));
+}

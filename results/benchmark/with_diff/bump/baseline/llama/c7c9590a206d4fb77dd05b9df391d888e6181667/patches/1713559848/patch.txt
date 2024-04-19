@@ -1,0 +1,14 @@
+    // RenderingContext is now a class in org.apache.maven.doxia.module.xhtml.decoration.render package
+    import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+
+    // ...
+
+    try {
+        // Create a new RenderingContext instance
+        RenderingContext context = new RenderingContext(outputDirectory, getOutputName() + ".html");
+        // Use the new SiteRendererSink(context) constructor
+        SiteRendererSink sink = new SiteRendererSink(context);
+        // ...
+    } catch (MavenReportException e) {
+        // ...
+    }

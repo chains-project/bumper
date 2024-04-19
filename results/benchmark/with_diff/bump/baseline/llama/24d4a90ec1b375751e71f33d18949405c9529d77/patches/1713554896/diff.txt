@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class AwsOcketITCase {
+>     private static final Tv TV = Tv.getInstance();
+> 
+>     @org.junit.Test
+>     public void test() {
+>         TV.println("Hello, world!");
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,22 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(globalConfig.extraProperties())
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(globalConfig.getModulesProvider())
+            .setLanguageSupportRepository(new LanguageSupportRepositoryImpl()) // Add this line
+            .build();
+}
+
+class LanguageSupportRepositoryImpl implements org.sonarsource.sonarlint.core.languages.LanguageSupportRepository {
+    @Override
+    public Set<org.sonarsource.sonarlint.core.languages.Language> getEnabledLanguagesInConnectedMode() {
+        return Collections.unmodifiableSet(globalConfig.getEnabledLanguages());
+    }
+
+    @Override
+    public Set<org.sonarsource.sonarlint.core.languages.Language> getEnabledLanguagesInStandaloneMode() {
+        return Collections.unmodifiableSet(globalConfig.getEnabledLanguages());
+    }
+}

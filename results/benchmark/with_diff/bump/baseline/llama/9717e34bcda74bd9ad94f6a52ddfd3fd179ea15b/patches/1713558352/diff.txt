@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MkGithub {
+>     private static final Tv Tv = new Tv();
+> 
+>     public static void mockGithub(MkGithub mock) {
+>         Tv.mock(mock);
+>     }
+> }
+\ No newline at end of file

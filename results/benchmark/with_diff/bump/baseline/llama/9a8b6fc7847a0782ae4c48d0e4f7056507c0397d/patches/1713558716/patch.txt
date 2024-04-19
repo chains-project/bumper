@@ -1,0 +1,25 @@
+import org.jasypt.spring.security.PBEPasswordEncoder;
+
+public class GeoStorePBEPasswordEncoder {
+    private PBEPasswordEncoder passwordEncoder;
+
+    public GeoStorePBEPasswordEncoder() {
+        passwordEncoder = new PBEPasswordEncoder();
+    }
+
+    public String encodePassword(String password, Object salt) {
+        return passwordEncoder.encodePassword(password, salt);
+    }
+
+    public boolean isPasswordValid(String encodedPassword, String plainPassword, Object salt) {
+        return passwordEncoder.isPasswordValid(encodedPassword, plainPassword, salt);
+    }
+
+    public void setPbeStringEncryptor(PBEStringEncryptor pbeStringEncryptor) {
+        passwordEncoder.setPbeStringEncryptor(pbeStringEncryptor);
+    }
+
+    public void setTextEncryptor(TextEncryptor textEncryptor) {
+        passwordEncoder.setTextEncryptor(textEncryptor);
+    }
+}

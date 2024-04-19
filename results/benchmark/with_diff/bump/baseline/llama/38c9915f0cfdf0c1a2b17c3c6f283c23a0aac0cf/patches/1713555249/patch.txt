@@ -1,0 +1,8 @@
+import org.cactoos.text.Text;
+
+public class WalletsIn {
+    private final JoinedText joinedText = new JoinedText( // Replace with Text.join
+            Text.join("", "walletsIn"), // Replace with Text.join
+            "walletsIn"
+    );
+}

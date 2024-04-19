@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class SshByPassword {
+>     private static final Tv TV = Tv.getInstance();
+> 
+>     public static void main(String[] args) throws Exception {
+>         TV.println("Connecting to server...");
+>         // ...
+>     }
+> }
+\ No newline at end of file
