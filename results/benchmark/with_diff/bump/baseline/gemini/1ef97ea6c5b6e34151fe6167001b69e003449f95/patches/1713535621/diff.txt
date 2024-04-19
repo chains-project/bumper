@@ -1,0 +1,10 @@
+1d0
+< @Override
+3c2,6
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     if (from instanceof Timestamp && to instanceof Timestamp) {
+>       return new Timestamp(((Timestamp) from).getTime() - ((Timestamp) to).getTime());
+>     } else {
+>       throw new IllegalArgumentException("Both from and to must be Timestamps");
+>     }

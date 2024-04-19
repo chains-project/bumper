@@ -1,0 +1,18 @@
+29c29
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>           currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantments()[0], 1, false);
+32c32
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>           currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantments()[0], 1, false);
+78c78
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>           skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantments()[0], 1, false);
+81c81
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>           skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantments()[0], 1, false);
+95d94
+<                                 ;

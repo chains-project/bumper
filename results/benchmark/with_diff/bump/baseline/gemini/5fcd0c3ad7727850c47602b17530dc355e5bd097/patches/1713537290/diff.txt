@@ -1,0 +1,12 @@
+2a3,9
+>     final Set<ClassName> classNames = Collections.singleton(data.getMutatedClass());
+>     final Map<ClassName, ClassInfo> classInfoMap = new HashMap<>();
+>     for (ClassName className : classNames) {
+>       byte[] classBytes = coverage.getClassByteSource().getBytes(className);
+>       long classModifiedTime = coverage.getClassByteSource().getClassInfo(className).getLastModifiedTime();
+>       classInfoMap.put(className, ClassInfoVisitor.getClassInfo(className, classBytes, classModifiedTime));
+>     }
+4c11
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoMap);

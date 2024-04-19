@@ -1,0 +1,23 @@
+0a1
+> import org.apache.maven.execution.MavenSession;
+1a3,21
+> 
+> public abstract class AbstractThemeMojo extends AbstractMojo {
+> 
+>   /**
+>    * @parameter default-value="${session}"
+>    * @required
+>    * @readonly
+>    */
+>   protected MavenSession session;
+> 
+>   /**
+>    * The current Maven project.
+>    *
+>    * @parameter default-value="${project}"
+>    * @required
+>    * @readonly
+>    */
+>   protected MavenProject project;
+> }
+\ No newline at end of file

@@ -1,0 +1,5 @@
+12c12,13
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>                 // Use a constructor that takes a Workspace argument instead of the String, String arguments.
+>                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, server.getWorkspace(clientString));

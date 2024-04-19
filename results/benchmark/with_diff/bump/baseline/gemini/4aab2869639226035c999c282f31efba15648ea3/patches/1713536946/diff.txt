@@ -1,0 +1,9 @@
+4a5,6
+>             final Config storageConfig = new Config.Simple(sub.toString());
+>             final StorageFactory storageFactory = new StoragesLoader().newObject(sub.string("type"), storageConfig);
+7,9c9
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                     storageFactory.newStorage(storageConfig)

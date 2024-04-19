@@ -1,0 +1,24 @@
+1c1,19
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+>   import org.yaml.snakeyaml.DumperOptions;
+>   import org.yaml.snakeyaml.Yaml;
+>   import org.yaml.snakeyaml.constructor.SafeConstructor;
+>   import org.yaml.snakeyaml.nodes.Tag;
+> 
+>   public class TrustedTagInspector {
+> 
+>     private final DumperOptions options;
+> 
+>     public TrustedTagInspector() {
+>       this.options = new DumperOptions();
+>       this.options.setAllowUnicode(true);
+>       this.options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+>     }
+> 
+>     public boolean isGlobalTagAllowed(Tag tag) {
+>       return this.options.getAllowUnicode() && tag.startsWith("!");
+>     }
+>   }
+\ No newline at end of file

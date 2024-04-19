@@ -1,0 +1,15 @@
+1c1,10
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+> import com.pinterest.singer.thrift.transport.TFramedTransport;
+> 
+> public class SimpleThriftLogger {
+> 
+>     public static TTransport getFramedTransport(TTransport underlyingTransport) {
+>         return new TFramedTransport(underlyingTransport);
+>     }
+> }
+\ No newline at end of file

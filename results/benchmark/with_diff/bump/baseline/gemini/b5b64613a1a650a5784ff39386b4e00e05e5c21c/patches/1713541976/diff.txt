@@ -1,0 +1,4 @@
+12c12
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>                 ClientHelper perforceClient = new ClientHelper(perforceScm.getItem(), clientString, buildListener, perforceScm.getWorkspace());

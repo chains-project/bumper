@@ -1,0 +1,16 @@
+1c1,11
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+> import de.gwdg.metadataqa.api.json.JsonDocument;
+> 
+> // -- import de.gwdg.metadataqa.api.json.JsonBranch;
+> 
+> public class MarcFactory {
+> 
+>     public static JsonDocument createJsonDocument(String marcString) {
+>         // TODO implement logic to create a JsonDocument from a MARC string
+>         return null;
+>     }
+> }
+\ No newline at end of file

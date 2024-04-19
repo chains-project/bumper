@@ -1,0 +1,10 @@
+78c78,79
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ use XEnchantments methods to add enchantments
+>                                         skipSourceMeta.addEnchant(XEnchantments.POWER.getEnchant(), 1, false);
+81c82,83
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ use XEnchantments methods to add enchantments
+>                                         skipSourceMeta.addEnchant(XEnchantments.POWER.getEnchant(), 1, false);

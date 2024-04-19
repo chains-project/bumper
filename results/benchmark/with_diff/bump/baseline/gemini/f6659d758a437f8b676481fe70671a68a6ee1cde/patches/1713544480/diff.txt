@@ -1,0 +1,23 @@
+1c1,18
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.Yaml;
+> 
+> import java.io.InputStream;
+> import java.util.Properties;
+> 
+> public class AbstractTest {
+> 
+>     protected Properties loadProperties(String filename) throws Exception {
+>         Properties properties = new Properties();
+>         InputStream inputStream = getClass().getResourceAsStream(filename);
+>         properties.load(inputStream);
+>         return properties;
+>     }
+> 
+>     protected Yaml createYaml() {
+>         return new Yaml();
+>     }
+> }
+\ No newline at end of file

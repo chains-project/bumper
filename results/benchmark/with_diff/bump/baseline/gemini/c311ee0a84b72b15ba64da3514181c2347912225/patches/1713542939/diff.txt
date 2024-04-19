@@ -1,0 +1,11 @@
+7,13c7,8
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+<             )
+<         );
+---
+>         final boolean contains = output.contains(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()));
+>         MatcherAssert.assertThat(contains, is(true));

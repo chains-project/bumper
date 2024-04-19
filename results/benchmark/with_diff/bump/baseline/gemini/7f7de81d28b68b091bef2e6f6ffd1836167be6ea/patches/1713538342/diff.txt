@@ -1,0 +1,8 @@
+14,15c14,17
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             // Cast to the new type
+>             SortedMap<MOScope, ManagedObject<?>> newReg = (SortedMap<MOScope, ManagedObject<?>>) reg;
+>             newReg.put(contextScope, group);
+>             registry.set(server, newReg);

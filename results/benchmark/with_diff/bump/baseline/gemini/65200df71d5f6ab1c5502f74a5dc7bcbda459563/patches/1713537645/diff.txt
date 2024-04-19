@@ -1,0 +1,8 @@
+1a2,4
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         LanguageSupportRepository languageSupportRepository = globalConfig.getModulesProvider().getLanguageSupportRepository();
+>         
+3d5
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a10
+>                 .addEnabledLanguages(languageSupportRepository.getEnabledLanguagesInConnectedMode(enabledLanguages))

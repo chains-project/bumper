@@ -1,0 +1,14 @@
+0a1
+> import org.apache.maven.plugin.Mojo;
+1a3,12
+> 
+> public abstract class AbstractThemeMojo extends Mojo {
+> 
+>     protected MavenProject project;
+> 
+>     public void setProject(MavenProject project) {
+>         this.project = project;
+>     }
+> 
+> }
+\ No newline at end of file

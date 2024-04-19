@@ -1,0 +1,6 @@
+1d0
+< @Override
+10c9
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new AuthUser(user.name(), "")) // Use AuthUser instead of Authentication$User

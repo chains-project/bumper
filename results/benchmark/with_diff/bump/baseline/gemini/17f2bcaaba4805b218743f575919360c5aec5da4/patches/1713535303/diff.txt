@@ -1,0 +1,181 @@
+1c1,176
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Assume;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     public void testMorphologyGroupShape() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptions() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMask() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOrigin() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackground() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterations() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequential() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8Connectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExact() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlace() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloat() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMask() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackground() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOrigin() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterations() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptions() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOrigin() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackground() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterations() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForce() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequential() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlace() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExact() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloat() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlace() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExact() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8Connectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorder() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorderAndForceNoOptionsForceConnectivity() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorderAndForceNoOptionsForceConnectivityAndForceNoOptionsForceOrigin() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorderAndForceNoOptionsForceConnectivityAndForceNoOptionsForceOriginAndForceNoOptionsForceBackground() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorderAndForceNoOptionsForceConnectivityAndForceNoOptionsForceOriginAndForceNoOptionsForceBackgroundAndForceNoOptionsForceIterations() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> 
+>     public void testMorphologyGroupShapeWithOptionsAndMaskAndBorderAndConnectivityAndOriginAndBackgroundAndIterationsAndForceSequentialAndForceBorderAndForce8ConnectivityAndForceExactAndForceInPlaceAndForceFloatAndForceNoMaskAndForceNoBackgroundAndForceNoOriginAndForceNoConnectivityAndForceNoBorderAndForceNoIterationsAndForceNoOptionsAndForceNoMaskBorderAndForceNoBackgroundBorderAndForceNoIterationsBorderAndForceNoOptionsBorderAndForceNoOptionsConnectivityAndForceNoOptionsOriginAndForceNoOptionsBackgroundAndForceNoOptionsIterationsAndForceNoOptionsForceAndForceNoOptionsSequentialAndForceNoOptionsInPlaceAndForceNoOptionsExactAndForceNoOptionsFloatAndForceNoOptionsForceInPlaceAndForceNoOptionsForceExactAndForceNoOptionsForce8ConnectivityAndForceNoOptionsForceBorderAndForceNoOptionsForceConnectivityAndForceNoOptionsForceOriginAndForceNoOptionsForceBackgroundAndForceNoOptionsForceIterationsAndForceNoOptionsForceMask() {
+>         Assume.assumeTrue(false); // Replace with your actual test logic
+>     }
+> }
+\ No newline at end of file

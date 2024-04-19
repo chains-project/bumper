@@ -1,0 +1,10 @@
+21a22,26
+>                 final String expectedMessage = String.format(
+>                     "Calculated digest %s does not match expected digest %s",
+>                     Throwables.getRootCause(throwable).getMessage(),
+>                     digest
+>                 );
+33c38
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(true, expectedMessage)

@@ -1,0 +1,8 @@
+3a4
+>     final StoragesLoader loader = new StoragesLoader();
+7,9c8
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                 loader.newObject(sub.string("type"), sub)

@@ -1,0 +1,9 @@
+2a3,6
+>     final String className = data.getMutatedClass();
+>     final byte[] classBytes = coverage.getBytes(className);
+>     final long classModifiedTime = coverage.getLastModifiedTime(className);
+>     final ClassInfoBuilder classInfoBuilder = ClassInfoVisitor.getClassInfo(ClassName.fromString(className), classBytes, classModifiedTime);
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoBuilder.build());

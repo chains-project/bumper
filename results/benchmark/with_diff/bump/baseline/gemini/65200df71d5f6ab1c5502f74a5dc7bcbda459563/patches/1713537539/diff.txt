@@ -1,0 +1,11 @@
+1a2,7
+>         Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = new HashSet<>();
+>         if (globalConfig.getConnectedMode()) {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInConnectedMode());
+>         } else {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInStandaloneMode());
+>         }
+3c9
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+---
+>                 .addEnabledLanguages(enabledLanguages)

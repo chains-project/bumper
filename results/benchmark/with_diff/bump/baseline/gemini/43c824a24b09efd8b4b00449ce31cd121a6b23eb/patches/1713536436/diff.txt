@@ -1,0 +1,14 @@
+1c1,9
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+> import de.gwdg.metadataqa.api.json.JsonElement;
+> 
+>   public class MarcFactory {
+> 
+>     public static JsonElement createJsonElement(String json) {
+>       return JsonElement.parse(json);
+>     }
+> 
+>   }
+\ No newline at end of file

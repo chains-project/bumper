@@ -1,0 +1,8 @@
+1c1,3
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.pades.CertificationPermissions;
+> 
+> CertificationPermissions permissions = new CertificationPermissions();
+\ No newline at end of file

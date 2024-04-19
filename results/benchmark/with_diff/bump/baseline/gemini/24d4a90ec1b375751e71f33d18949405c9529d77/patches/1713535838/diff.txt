@@ -1,0 +1,16 @@
+1c1,11
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+>   import org.junit.jupiter.api.Test;
+> 
+>   import static org.mockito.Mockito.mock;
+>   import static org.mockito.Mockito.verify;
+> 
+>   @Test
+>   void test() {
+>     final Tv tv = mock(Tv.class);
+>     tv.turnOn();
+>     verify(tv).turnOn();
+>   }
+\ No newline at end of file

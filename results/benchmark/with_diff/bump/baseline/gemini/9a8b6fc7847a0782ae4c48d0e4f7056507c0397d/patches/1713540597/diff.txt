@@ -1,0 +1,10 @@
+4c4
+<         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+---
+>         StringEncryptor passwordEncryptor = new StringEncryptor();
+15c15,17
+<         passwordEncryptor.setPasswordEncoder(encryptor);
+---
+>         passwordEncryptor.setAlgorithm("PBEWithMD5AndDES");
+>         passwordEncryptor.setStringOutputType("base64");
+>         passwordEncryptor.setPassword(encryptorPassword);

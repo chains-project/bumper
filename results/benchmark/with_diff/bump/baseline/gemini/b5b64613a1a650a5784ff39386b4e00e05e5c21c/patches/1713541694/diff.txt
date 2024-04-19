@@ -1,0 +1,6 @@
+1d0
+< @Override
+3c2
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (isEmpty(step.url) && isEmpty(step.artifactoryUrl) && isEmpty(step.distributionUrl)) {

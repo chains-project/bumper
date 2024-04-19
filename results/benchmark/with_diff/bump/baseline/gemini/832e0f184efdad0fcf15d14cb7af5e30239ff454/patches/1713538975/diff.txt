@@ -1,0 +1,20 @@
+29c29,30
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ Add Glow Effect
+>                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("glow").get().parseEnchantment(), 1, false);
+32c33,34
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ Add Glow Effect
+>                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("glow").get().parseEnchantment(), 1, false);
+78c80,81
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ Add Glow Effect
+>                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("glow").get().parseEnchantment(), 1, false);
+81c84,85
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         //++ Add Glow Effect
+>                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("glow").get().parseEnchantment(), 1, false);

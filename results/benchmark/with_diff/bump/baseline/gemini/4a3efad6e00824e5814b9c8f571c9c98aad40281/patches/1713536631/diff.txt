@@ -1,0 +1,11 @@
+1a2,10
+> 
+> import java.util.List;
+> 
+> public class Signer {
+> 
+>     public void sign(byte[] data, List<CertificationPermission> permissions) {
+>         // TODO: Implement the signing logic here
+>     }
+> }
+\ No newline at end of file

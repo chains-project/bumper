@@ -1,0 +1,22 @@
+2,4c2,12
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+---
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder();
+>         if (globalConfig.isStandaloneMode()) {
+>             builder.addEnabledLanguages(LanguageSupportRepository.getEnabledLanguagesInStandaloneMode());
+>         } else {
+>             builder.addEnabledLanguages(LanguageSupportRepository.getEnabledLanguagesInConnectedMode());
+>         }
+>         for (Language language : enabledLanguages) {
+>             builder.addEnabledLanguage(language);
+>         }
+>         builder.setClientPid(globalConfig.getClientPid())
+7,8c15,16
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>                 .setModulesProvider(globalConfig.getModulesProvider());
+>         return builder.build();

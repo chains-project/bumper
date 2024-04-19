@@ -1,0 +1,10 @@
+21a22
+>                 final String calculatedDigest = Throwables.getRootCause(throwable).getMessage().split(" ")[4];
+24c25
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     calculatedDigest,
+32c33
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     calculatedDigest,

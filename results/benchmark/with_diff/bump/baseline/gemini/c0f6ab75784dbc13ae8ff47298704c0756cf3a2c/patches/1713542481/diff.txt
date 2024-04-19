@@ -1,0 +1,15 @@
+2,3c2,3
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+---
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+7,8c7,11
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>                 .setModulesProvider(globalConfig.getModulesProvider());
+>         if (enabledLanguages != null) {
+>             builder.setEnabledLanguages(enabledLanguages);
+>         }
+>         return builder.build();

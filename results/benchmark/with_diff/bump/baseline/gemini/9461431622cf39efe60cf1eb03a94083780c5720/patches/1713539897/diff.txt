@@ -1,0 +1,7 @@
+15c15,18
+<             registry.set(server, reg);
+---
+>             // ++ new line
+>             SortedMap<MOScope, ManagedObject<?>> newReg = Collections.unmodifiableSortedMap(reg);
+>             // ++ new line
+>             registry.set(server, newReg);

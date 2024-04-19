@@ -1,0 +1,11 @@
+6a7
+>         final boolean contains = output.contains(String.format("Status: Downloaded newer image for %s", image));
+8,12c9,10
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+---
+>             contains,
+>             new IsTrue()

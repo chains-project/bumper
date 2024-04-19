@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ChachaDecoder {
+> 
+>     public AlertDescription decode(byte[] data) {
+>         // TODO: Implement the decoder logic using the new library methods
+>         return new AlertDescription(AlertDescription.internal_error);
+>     }
+> }
+\ No newline at end of file

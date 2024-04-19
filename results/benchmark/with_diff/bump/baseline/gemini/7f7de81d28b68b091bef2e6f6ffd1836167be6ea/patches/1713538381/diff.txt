@@ -1,0 +1,5 @@
+15c15,16
+<             registry.set(server, reg);
+---
+>             //++
+>             registry.set(server, Collections.unmodifiableSortedMap(reg));

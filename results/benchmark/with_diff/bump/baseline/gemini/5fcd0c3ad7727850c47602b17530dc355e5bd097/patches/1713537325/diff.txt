@@ -1,0 +1,8 @@
+2a3,5
+>     final ClassName className = new ClassName(data.getMutatedClass());
+>     final byte[] bytecode = coverage.getBytes(className);
+>     final long time = coverage.getLastModifiedTime(className);
+4c7
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), ClassInfoBuilder.getClassInfo(className, bytecode, time));

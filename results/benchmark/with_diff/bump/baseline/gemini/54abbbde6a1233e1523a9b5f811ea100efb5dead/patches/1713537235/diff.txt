@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class MyClientCode {
+> 
+>     public void myMethod() {
+>         Tv tv = new Tv();
+>         // Use tv here
+>     }
+> }
+\ No newline at end of file

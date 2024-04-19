@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.IoChecked;
+> 
+> import java.io.IOException;
+> 
+> public interface WalletsIn {
+> 
+>     IoChecked<String> walletsIn(String hash) throws IOException;
+> }
+\ No newline at end of file

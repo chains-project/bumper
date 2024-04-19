@@ -1,0 +1,7 @@
+14,15c14,16
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             SortedMap<MOScope, ManagedObject<?>> newReg = new TreeMap<>(reg); // ++ new TreeMap to avoid incompatible types
+>             newReg.put(contextScope, group);
+>             registry.set(server, newReg);

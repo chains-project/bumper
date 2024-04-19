@@ -1,0 +1,6 @@
+27,28c27,28
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                 public Optional<AuthUser> user() { // Use AuthUser instead of Authentication.User
+>                     return Optional.of(new AuthUser("alice", "")); // Use AuthUser constructor

@@ -1,0 +1,11 @@
+3a4,7
+>     final String type = sub.string("type");
+>     final Config storageConfig = new Config.Builder()
+>         .add(sub)
+>         .build();
+7,9c11
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                 new StoragesLoader().newObject(type, storageConfig)

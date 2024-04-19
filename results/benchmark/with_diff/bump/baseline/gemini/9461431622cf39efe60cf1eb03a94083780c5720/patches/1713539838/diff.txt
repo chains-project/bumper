@@ -1,0 +1,12 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+13a14,15
+>             ManagedObject<?> managedObject = reg.get(contextScope);
+>             if (managedObject == null) {
+14a17,20
+>             } else {
+>                 // Update the existing ManagedObject with the new group
+>                 managedObject.addMOGroup(group);
+>             }

@@ -1,0 +1,14 @@
+2a3,11
+>     final Set<ClassName> classSet = Collections.singleton(data.getMutatedClass());
+>     final List<ClassInfo> classInfoList = new ArrayList<>();
+>     for (ClassName className : classSet) {
+>       final byte[] bytecode = coverage.getBytecode(className);
+>       final long checksum = coverage.getChecksum(className);
+>       if (bytecode != null) {
+>         classInfoList.add(ClassInfoVisitor.getClassInfo(className, bytecode, checksum));
+>       }
+>     }
+4c13
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoList);

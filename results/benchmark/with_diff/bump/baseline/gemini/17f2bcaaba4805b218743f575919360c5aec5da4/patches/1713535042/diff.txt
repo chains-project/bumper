@@ -1,0 +1,16 @@
+2d1
+<         @Ignore
+37a37,48
+> 
+> private PShape polygonize(Collection<PEdge> nodedEdgesSet) {
+>     int size = nodedEdgesSet.size(); // Using the new library method size()
+>     PShape shape = new PShape(PShape.POLYGON);
+>     for (PEdge edge : nodedEdgesSet) {
+>         shape.beginShape();
+>         shape.vertex(edge.a.x, edge.a.y);
+>         shape.vertex(edge.b.x, edge.b.y);
+>         shape.endShape();
+>     }
+>     return shape;
+> }
+\ No newline at end of file

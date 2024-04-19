@@ -1,0 +1,7 @@
+1d0
+< @Override
+12c11,12
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>                 Workspace workspace = new Workspace(clientString, StandardCharsets.UTF_8.toString());
+>                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, workspace);

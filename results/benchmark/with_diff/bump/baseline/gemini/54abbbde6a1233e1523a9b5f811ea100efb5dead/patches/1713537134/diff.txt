@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class SshByPassword {
+>     public static void main(String[] args) {
+>         Tv tv = new Tv();
+>         tv.turnOn();
+>     }
+> }
+\ No newline at end of file

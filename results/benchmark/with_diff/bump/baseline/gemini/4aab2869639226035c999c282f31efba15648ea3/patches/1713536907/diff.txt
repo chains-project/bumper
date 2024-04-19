@@ -1,0 +1,11 @@
+1d0
+< @Override
+3a3,4
+>     final String type = sub.string("type");
+>     final YamlMapping mapping = Yaml.createYamlInput(sub.toString()).readYamlMapping();
+7,9c8
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>           new StoragesLoader().newObject(type, new Config(mapping))

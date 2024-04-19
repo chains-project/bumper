@@ -1,0 +1,26 @@
+2,3c2,6
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+---
+>     // Get the enabled languages from the global config.
+>     Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+> 
+>     // Create a builder for the AnalysisEngineConfiguration.
+>     AnalysisEngineConfiguration.Builder builder = AnalysisEngineConfiguration.builder()
+7,8c10,22
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>             .setModulesProvider(globalConfig.getModulesProvider());
+> 
+>     // Check if the enabled languages set is empty.
+>     if (enabledLanguages.isEmpty()) {
+>         // If the enabled languages set is empty, use the default language support repository.
+>         builder.setLanguageSupportRepository(LanguageSupportRepository.getDefault());
+>     } else {
+>         // If the enabled languages set is not empty, use the language support repository that supports the enabled languages.
+>         builder.setLanguageSupportRepository(LanguageSupportRepository.create(enabledLanguages));
+>     }
+> 
+>     // Return the built AnalysisEngineConfiguration.
+>     return builder.build();

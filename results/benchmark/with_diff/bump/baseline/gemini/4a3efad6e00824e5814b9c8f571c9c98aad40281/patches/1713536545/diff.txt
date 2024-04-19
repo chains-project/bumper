@@ -1,0 +1,16 @@
+1c1,11
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.pades.Certification;
+> 
+> import java.util.List;
+> 
+> public class Signer {
+> 
+>     public List<Certification> getCertifications() {
+>         return null;
+>     }
+> 
+> }
+\ No newline at end of file
