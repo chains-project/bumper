@@ -1,0 +1,1 @@
+It seems like the library `org.jasypt.spring.security` has been removed or deprecated, and the `PasswordEncoder` class no longer exists in that package. Unfortunately, without knowing the changes in the new library version, it's impossible to provide a fix. Please provide the new methods or classes that have been added to the library in the new version.

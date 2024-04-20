@@ -1,0 +1,1 @@
+Unfortunately, without the new library version changes, it's impossible to provide a patch. Please provide the added methods and classes in the new library version.
