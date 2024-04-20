@@ -1,0 +1,8 @@
+5c5
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>         new Single(new AuthUser(TestAuthentication.ALICE.name(), ""), action),
+10c10
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new AuthUser(user.name(), user.authContext()))

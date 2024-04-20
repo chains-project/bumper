@@ -1,0 +1,28 @@
+import org.bouncycastle.crypto.tls.TlsAlert;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+private void decodeRecord(InputStream input, OutputStream output) throws IOException {
+    // ...
+
+    try {
+        // ...
+
+        switch (type) {
+            case 20:
+                // ...
+                break;
+            case 21:
+                // ...
+                break;
+            case 23:
+                // ...
+                break;
+            default:
+                throw new TlsFatalAlert(AlertDescription.unexpected_message);
+        }
+    } catch (TlsFatalAlert ex) {
+        // ...
+    }
+}

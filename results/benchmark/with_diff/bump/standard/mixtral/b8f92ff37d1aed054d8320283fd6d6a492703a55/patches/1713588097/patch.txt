@@ -1,0 +1,15 @@
+import org.apache.maven.plugin.surefire.booterclient.Commandline;
+import org.apache.maven.plugin.surefire.booter.StartupConfiguration;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProvider;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.CommandlineFactory;
+import org.apache.maven.plugin.surefire.api.testset.TestRequest;
+
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    TestRequest testRequest = new TestRequest();
+    CommandlineFactory commandLineFactory = new CommandlineFactory();
+    Commandline commandLine = commandLineFactory.createCommandLine(testRequest);
+    LazyTestProvider testProvider = commandLine.getTestProvider();
+    testProvider.setTestClasspathElements(testSrcFolder.getAbsolutePath());
+    testProvider.setTestRequest(testRequest);
+    return testProvider.getIncludes();
+}

@@ -1,0 +1,10 @@
+@java.lang.Override
+public void init(java.io.OutputStream os) {
+    this.os = os;
+    TConfiguration configuration = new TConfiguration();
+    TIOStreamTransport transport = new TIOStreamTransport(configuration, os);
+    final int bufferCapacity = 10;
+    TFastFramedTransport$Factory factory = new TFastFramedTransport$Factory(bufferCapacity);
+    framedTransport = factory.getTransport(transport);
+    protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
+}

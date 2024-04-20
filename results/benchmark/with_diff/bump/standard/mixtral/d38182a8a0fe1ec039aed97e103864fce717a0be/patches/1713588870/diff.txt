@@ -1,0 +1,12 @@
+2c2
+<         public Slice slice(final String action) {
+---
+> public Slice slice(String action) {
+5c5
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>         new Single(new AuthUser(TestAuthentication.ALICE.name(), action), action),
+10c10
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new AuthUser(user.name()))

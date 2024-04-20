@@ -1,0 +1,14 @@
+5,11c5,9
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         StoragesLoader storagesLoader = new StoragesLoader();
+>         return new YamlPolicy(new BlockingStorage(storagesLoader.newObject(
+>             sub.string("type"),
+>             new Yaml().createYamlInput(sub.toString()).readYamlMapping()
+>         )));

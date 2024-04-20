@@ -1,0 +1,18 @@
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.ProjectBuilder;
+import org.apache.maven.project.ProjectConfigurator;
+import org.apache.maven.project.ProjectBuildingException;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.classworlds.realm.ClassRealm;
+import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
+
+// ...
+
+private MavenProject getMavenProject() throws ProjectBuildingException, ComponentLookupException {
+    PlexusContainer container = getContainer();
+    ProjectBuilder projectBuilder = (ProjectBuilder) container.lookup(ProjectBuilder.ROLE);
+    ProjectConfigurator projectConfigurator = (ProjectConfigurator) container.lookup(ProjectConfigurator.ROLE);
+    ClassRealm classRealm = container.getClassRealm();
+
+    return projectBuilder.build(getModel(), projectConfigurator, null, classRealm);
+}

@@ -1,0 +1,13 @@
+private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
+    org.pitest.classinfo.ClassInfoBuilder builder = org.pitest.classinfo.ClassInfo.forName(data.getMutatedClass());
+    coverage.accept(new org.pitest.coverage.CoverageVisitor() {
+        @Override
+        public void visit(org.pitest.classinfo.ClassInfo classInfo, org.pitest.coverage.CoverageVisitor.Measurement measurement) {
+            if (classInfo.getName().equals(data.getMutatedClass())) {
+                builder.withMeasurement(measurement);
+            }
+        }
+    });
+    org.pitest.classinfo.ClassInfo classInfo = builder.build();
+    return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
+}

@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2,6
+<     return new org.hamcrest.core.StringContains(org.hamcrest.core.StringContains.containsString(java.lang.String.format("Status: Downloaded newer image for %s", image))));
+---
+>     return org.hamcrest.Matcherators.hasItem(
+>         org.hamcrest.core.StringStartingWith.startingWith(
+>             java.lang.String.format("Status: Downloaded newer image for %s", image)
+>         )
+>     );

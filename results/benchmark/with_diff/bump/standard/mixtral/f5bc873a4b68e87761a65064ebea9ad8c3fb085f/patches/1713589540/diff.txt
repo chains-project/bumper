@@ -1,0 +1,36 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,34
+> import org.eclipse.aether.RepositorySystem;
+> import org.eclipse.aether.RepositorySystemSession;
+> import org.eclipse.aether.collection.CollectRequest;
+> import org.eclipse.aether.collection.DependencyCollectionException;
+> import org.eclipse.aether.collection.DependencyResolver;
+> import org.eclipse.aether.graph.Dependency;
+> import org.eclipse.aether.graph.DependencyNode;
+> import org.eclipse.aether.repository.RemoteRepository;
+> import org.eclipse.aether.resolution.ArtifactRequest;
+> import org.eclipse.aether.resolution.ArtifactResolutionException;
+> import org.eclipse.aether.resolution.ArtifactResult;
+> import org.eclipse.aether.util.graph.visitor.PreorderDepthFirstVisitor;
+> 
+> import java.io.File;
+> import java.util.Collection;
+> import java.util.List;
+> 
+> // ...
+> 
+> private MavenProject getProject(File pomFile, RepositorySystem repoSystem, RepositorySystemSession repoSession) throws DependencyCollectionException, ArtifactResolutionException {
+>     Model model = readModel(pomFile);
+> 
+>     CollectRequest collectRequest = new CollectRequest();
+>     collectRequest.setRoot(new Dependency(model.getGroupId(), model.getArtifactId(), model.getVersion(), null));
+>     collectRequest.setRepositories(repositories);
+> 
+>     DependencyNode root = repoSystem.collectDependencies(repoSession, collectRequest).getRoot();
+> 
+>     // ...
+> }
+> 
+> // ...
+\ No newline at end of file

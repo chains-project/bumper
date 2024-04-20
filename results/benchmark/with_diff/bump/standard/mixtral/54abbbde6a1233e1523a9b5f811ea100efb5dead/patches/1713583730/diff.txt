@@ -1,0 +1,73 @@
+1c1,22
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+---
+> import static java.util.concurrent.TimeUnit.MINUTES;
+> import static java.util.concurrent.TimeUnit.SECONDS;
+> 
+> import java.io.File;
+> import java.io.IOException;
+> import java.nio.charset.StandardCharsets;
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> import java.security.GeneralSecurityException;
+> import java.util.concurrent.ExecutionException;
+> import java.util.concurrent.TimeoutException;
+> import java.util.function.Supplier;
+> 
+> import com.google.common.base.CharMatcher;
+> import com.google.common.base.Throwables;
+> import com.jcraft.jsch.JSch;
+> import com.jcraft.jsch.JSchException;
+> import com.jcraft.jsch.Session;
+> import org.cactoos.scalar.Unchecked;
+> import org.cactoos.scalar.LengthOf;
+> import org.cactoos.io.TeeInput;
+> 
+3,9d23
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+15,20c29,30
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+---
+>         new Unchecked<>(new LengthOf(new TeeInput(
+>             CharMatcher.is('\r').replaceFrom(this.key, ""),
+22,24c32
+<                     )
+<                 )
+<             ).value();
+---
+>         ))).value();
+29,34c37
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+---
+>             jsch.addIdentity(this.getLogin(), this.key.getBytes(StandardCharsets.UTF_8), null, this.passphrase.getBytes(StandardCharsets.UTF_8));
+36,41c39
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );
+---
+>         com.jcabi.log.Logger.debug(this, "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...", this.getLogin(), this.getAddr(), this.getPort(), file.length());
+45a44
+>         try {
+46a46,48
+>         } catch (final Exception e) {
+>             // Suppress any exception here as we want to fail-fast in the main session method
+>         }

@@ -1,0 +1,14 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.io.StringWriter;
+
+// ...
+
+RenderingContext renderingContext = new RenderingContext() {
+    @Override
+    public String getOutputName() {
+        return "xhtml";
+    }
+};
+
+StringWriter writer = new StringWriter();
+renderer.renderDocument(writer, renderingContext, siteRenderingContext);

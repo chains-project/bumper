@@ -1,0 +1,7 @@
+private static org.hamcrest.Matcher<java.lang.String> imagePulled(final java.lang.String image) {
+    return org.hamcrest.Matcherators.hasItem(
+        org.hamcrest.core.StringStartingWith.startingWith(
+            java.lang.String.format("Status: Downloaded newer image for %s", image)
+        )
+    );
+}

@@ -1,0 +1,1 @@
+signatureParameters.setPermission(new eu.europa.esig.dss.pades.PAdESSignatureParameters.Permission(eu.europa.esig.dss.pades.PAdESObjectIdentifiers.PAdES_PERMIT_MINIMAL_CHANGES));

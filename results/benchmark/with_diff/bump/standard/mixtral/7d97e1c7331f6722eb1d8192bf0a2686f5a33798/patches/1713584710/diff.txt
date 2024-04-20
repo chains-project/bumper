@@ -1,0 +1,30 @@
+1c1
+< @Test
+---
+> @org.junit.jupiter.api.Test
+3c3,5
+<         final Domain domain = this.domain();
+---
+>     final int TEN = 10;
+>     final int EIGHT = 8;
+>     final com.jcabi.simpledb.Domain domain = this.domain();
+5,7c7,9
+<             final String name = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+<             final String attr = RandomStringUtils.randomAlphabetic(Tv.EIGHT);
+<             final String value = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+---
+>         final java.lang.String name = org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(TEN);
+>         final java.lang.String attr = org.apache.commons.lang3.RandomStringUtils.randomAlphabetic(EIGHT);
+>         final java.lang.String value = org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(TEN);
+10,12c12
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.hasKey(attr)
+<                 );
+---
+>             org.hamcrest.MatcherAssert.assertThat(domain.item(name), org.hamcrest.Matchers.hasKey(attr));
+14,16c14
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.not(Matchers.hasKey(attr))
+<                 );
+---
+>             org.hamcrest.MatcherAssert.assertThat(domain.item(name), org.hamcrest.Matchers.not(org.hamcrest.Matchers.hasKey(attr)));

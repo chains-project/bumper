@@ -1,0 +1,17 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.tycho.core.typhon.TychoProject;
+
+// Use the new type for the project
+private TychoProject project;
+
+// Change the method signature to use the new project type
+protected MavenProject getMavenProject() {
+    if (project == null) {
+        // Initialize the project
+        project = new TychoProject();
+        Model model = project.getModel();
+        // Migrate any necessary data from the old model to the new one
+    }
+    return project;
+}

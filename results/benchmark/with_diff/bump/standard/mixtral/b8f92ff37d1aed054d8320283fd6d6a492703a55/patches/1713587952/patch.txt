@@ -1,0 +1,36 @@
+import org.apache.maven.plugin.surefire.booterclient.Commandline;
+import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProvider;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.CommandlineFactory;
+import org.apache.maven.surefire.api.testset.TestListResolver;
+import org.apache.maven.surefire.api.testset.TestSetFailedException;
+import org.apache.maven.surefire.api.util.SurefireReflectionUtil;
+
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
+static List<String> getClassesLoc(File testSrcFolder) {
+    DefaultForkConfiguration forConfig = new DefaultForkConfiguration();
+    Commandline cmdLine = forConfig.createCommandLine(null, 0, testSrcFolder);
+    LazyTestProvider testProvider = new LazyTestProvider(cmdLine);
+    CommandlineFactory cmdFactory = testProvider.getCommandlineFactory();
+    TestListResolver testListResolver = testProvider.getTestListResolver();
+    List<String> classes = new LinkedList<>();
+    try {
+        Collection<File> files = testListResolver.resolveTestSets(testSrcFolder, null);
+        for (File file : files) {
+            classes.addAll(getClasses(cmdFactory, testListResolver, file));
+        }
+    } catch (TestSetFailedException e) {
+        SurefireReflectionUtil.throwException(e);
+    }
+    return classes;
+}
+
+private static List<String> getClasses(CommandlineFactory cmdFactory, TestListResolver testListResolver, File file) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(file, testListResolver.getWildcard());
+    directoryScanner.scan();
+    return directoryScanner.getClasses();
+}

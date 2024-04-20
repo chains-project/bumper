@@ -1,0 +1,73 @@
+Here's the patched code:
+
+```java
+@java.lang.Override
+public void init(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+    try {
+        /* Default white stained glass borders for inactive */
+        org.bukkit.inventory.ItemStack customDefaultBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+        if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+            customDefaultBorders = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+        }
+        org.bukkit.inventory.meta.ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+        defaultBorderMeta.setDisplayName(" ");
+        customDefaultBorders.setItemMeta(defaultBorderMeta);
+        contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customDefaultBorders));
+        /* New translation button */
+        org.bukkit.inventory.ItemStack translationButton = com.cryptomorin.xseries.XMaterial.COMPASS.parseItem();
+        org.bukkit.inventory.meta.ItemMeta translationMeta = translationButton.getItemMeta();
+        translationMeta.setDisplayName(com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUITranslationButton"));
+        translationButton.setItemMeta(translationMeta);
+        contents.set(2, 4, fr.minuskube.inv.ClickableItem.of(translationButton, ( e) -> {
+            com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUISourceLanguage.getSourceLanguageInventory("", targetPlayerUUID).open(player);
+        }));
+        /* Set active translator to our current target */
+        com.expl0itz.worldwidechat.util.ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+        if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+            /* Make compass enchanted */
+            translationMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+            translationMeta.addEnchant(getEnchantmentFromString("power"), 1, false);
+            translationMeta.setDisplayName(com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIExistingTranslationButton"));
+            java.util.List<java.lang.String> outLore = new java.util.ArrayList<>();
+            outLore.add(org.bukkit.ChatColor.LIGHT_PURPLE + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIExistingTranslationInput", new java.lang.String[]{ ((org.bukkit.ChatColor.LIGHT_PURPLE + "") + org.bukkit.ChatColor.BOLD) + targetTranslator.getInLangCode() }));
+            outLore.add(org.bukkit.ChatColor.LIGHT_PURPLE + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIExistingTranslationOutput", new java.lang.String[]{ ((org.bukkit.ChatColor.LIGHT_PURPLE + "") + org.bukkit.ChatColor.BOLD) + targetTranslator.getOutLangCode() }));
+            translationMeta.setLore(outLore);
+            translationButton.setItemMeta(translationMeta);
+            /* Stop Button: Stop translation if active */
+            org.bukkit.inventory.ItemStack stopButton = com.cryptomorin.xseries.XMaterial.BARRIER.parseItem();
+            org.bukkit.inventory.meta.ItemMeta stopMeta = stopButton.getItemMeta();
+            stopMeta.setDisplayName(org.bukkit.ChatColor.RED + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIStopButton"));
+            stopButton.setItemMeta(stopMeta);
+            contents.set(1, 4, fr.minuskube.inv.ClickableItem.of(stopButton, ( e) -> {
+                java.lang.String[] args;
+                if (!targetPlayerUUID.equals("GLOBAL-TRANSLATE-ENABLED")) {
+                    args = new java.lang.String[]{ main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName(), "stop" };
+                } else {
+                    args = new java.lang.String[]{ "stop" };
+                }
+                if (targetPlayerUUID.equals("GLOBAL-TRANSLATE-ENABLED")) {
+                    com.expl0itz.worldwidechat.commands.WWCTranslate translate = new com.expl0itz.worldwidechat.commands.WWCGlobal(((org.bukkit.command.CommandSender) (player)), null, null, args);
+                    translate.processCommand();
+                } else {
+                    com.expl0itz.worldwidechat.commands.WWCTranslate translate = new com.expl0itz.worldwidechat.commands.WWCTranslate(((org.bukkit.command.CommandSender) (player)), null, null, args);
+                    translate.processCommand();
+                }
+                getTranslateMainMenu(targetPlayerUUID).open(player);
+            }));
+        }
+    } catch (java.lang.Exception e) {
+        com.expl0itz.worldwidechat.inventory.WWCInventoryManager.inventoryError(player, e);
+    }
+}
+
+private org.bukkit.enchantments.Enchantment getEnchantmentFromString(String enchantmentName) {
+    for (org.bukkit.enchantments.Enchantment enchantment : org.bukkit.enchantments.Enchantment.values()) {
+        if (enchantment.getName().equalsIgnoreCase(enchantmentName)) {
+            return enchantment;
+        }
+    }
+    return null;
+}
+```
+
+The patch involves replacing the `parseEnchantment()` method from `com.cryptomorin.xseries.XEnchantment` (which has been removed) with a custom method `getEnchantmentFromString()` that retrieves the `org.bukkit.enchantments.Enchantment` object by its name. This method is used instead of `parseEnchantment()` to set the enchantment for the translation button.

@@ -1,0 +1,17 @@
+import static java.lang.Integer.valueOf;
+import static java.util.Arrays.stream;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.iterableWithSize;
+import java.util.stream.IntStream;
+
+@org.junit.jupiter.api.Test
+void selectsManyItems() {
+    final com.jcabi.simpledb.Domain domain = this.domain();
+    try {
+        final int ten = 10;
+        IntStream.range(0, ten).forEach(idx -> domain.item(String.format("i-%d", idx)).put("hey", ""));
+        assertThat(domain.select(new com.amazonaws.services.simpledb.model.SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), iterableWithSize(ten));
+    } finally {
+        domain.drop();
+    }
+}

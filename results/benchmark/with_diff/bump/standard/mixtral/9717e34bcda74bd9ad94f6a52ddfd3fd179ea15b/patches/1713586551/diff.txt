@@ -1,0 +1,24 @@
+0a1,4
+> import com.jcabi.github.Repos;
+> import com.jcabi.github.RepoCreate;
+> import org.apache.commons.lang3.RandomStringUtils;
+> 
+2a7
+>  *
+4c9,10
+<      * @throws IOException If fails
+---
+>  * @throws IOException
+>  *              If fails
+6,12c12,14
+<     public Repo randomRepo() throws IOException {
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+---
+> public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+>     final int randomLength = 20; // Tv.TWENTY;
+>     return this.repos().create(new com.jcabi.github.Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(randomLength), true));

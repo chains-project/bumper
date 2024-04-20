@@ -1,0 +1,36 @@
+1c1,31
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import java.io.File;
+> import java.util.List;
+> import java.util.Properties;
+> 
+> import org.apache.maven.plugin.AbstractMojo;
+> import org.apache.maven.plugins.annotations.Parameter;
+> import org.apache.myfaces.tobago.maven.plugin.ThemePluginUtils;
+> import org.codehaus.plexus.util.FileUtils;
+> 
+> public class AbstractThemeMojo extends AbstractMojo {
+>     
+>     // existing fields and methods omitted for brevity
+> 
+>     @Parameter(defaultValue = "${project}", required = true, readonly = true)
+>     private MavenProject project;
+>     
+>     // patch starts here
+>     @Parameter(defaultValue = "${project.basedir}", required = true, readonly = true)
+>     private File basedir;
+>     
+>     @Override
+>     public void execute() throws Exception {
+>         // patch starts here
+>         Properties properties = ThemePluginUtils.loadProperties(new File(basedir, "src/main/resources/META-INF/resources/tobago/theme.properties"));
+>         String themeName = properties.getProperty("theme.name");
+> 
+>         // rest of the method omitted for brevity
+>     }
+>     
+>     // patch ends here
+> }
+\ No newline at end of file

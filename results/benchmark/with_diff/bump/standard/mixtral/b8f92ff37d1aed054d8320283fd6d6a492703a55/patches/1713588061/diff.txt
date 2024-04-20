@@ -1,0 +1,13 @@
+1,3c1,8
+< static List<String> getClassesLoc(File testSrcFolder) {
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+> static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+>     org.apache.maven.plugin.surefire.booterclient.ForkConfiguration surefireForkConfiguration = new org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration(new org.apache.maven.plugin.surefire.booterclient.lazytestprovider.ClasspathSettings(new java.util.ArrayList<>(), new java.util.ArrayList<>(), new java.util.ArrayList<>()));
+>     org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline commandLine = surefireForkConfiguration.createCommandLine(new org.apache.maven.surefire.booter.SurefireBooterFactory.Surefirebooter30Configuration(), 0, testSrcFolder);
+>     org.apache.maven.plugin.surefire.booterclient.lazytestprovider.TestRequest testRequest = new org.apache.maven.plugin.surefire.booterclient.lazytestprovider.TestRequest();
+>     commandLine.addTestRequest(testRequest);
+>     org.apache.maven.plugin.surefire.booterclient.lazytestprovider.TestRequestResult testRequestResult = commandLine.execute();
+>     org.apache.maven.plugin.surefire.report.ReportEntry reportEntry = testRequestResult.getReportEntry();
+>     return reportEntry.getClasses();

@@ -1,0 +1,34 @@
+1c1,29
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+> import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+> import org.springframework.security.authentication.encoding.PasswordEncoder;
+> 
+> //...
+> 
+> private PasswordEncoder passwordEncoder = new PasswordEncoder() {
+>     private TextEncryptor textEncryptor = new StandardPBEStringEncryptor();
+>     private ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+> 
+>     {
+>         textEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>         textEncryptor.setPassword(geostoreProperties.getEncryptionPassword());
+> 
+>         passwordEncryptor.setAlgorithm(textEncryptor.getAlgorithm());
+>         passwordEncryptor.setPassword(textEncryptor.getPassword());
+>     }
+> 
+>     @Override
+>     public String encodePassword(String rawPass, Object salt) {
+>         return textEncryptor.encrypt(rawPass);
+>     }
+> 
+>     @Override
+>     public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+>         return passwordEncryptor.checkPassword(rawPass, encPass);
+>     }
+> };
+\ No newline at end of file

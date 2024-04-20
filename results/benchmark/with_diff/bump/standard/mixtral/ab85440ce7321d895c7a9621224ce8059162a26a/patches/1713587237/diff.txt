@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2,3
+<     return new org.hamcrest.core.StringContains(org.hamcrest.core.StringContains.containsString(java.lang.String.format("Status: Downloaded newer image for %s", image))));
+---
+>     final String message = String.format("Status: Downloaded newer image for %s", image);
+>     return new org.hamcrest.core.StringContains(org.hamcrest.core.StringContains.containsString(message));

@@ -1,0 +1,16 @@
+3,15c3
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+<                             .findFirst()
+<                     ),
+<                     ""
+<                 )
+<             );
+---
+>     return new DockerSlice(new AstoDocker(new InMemoryStorage()), new Authentication.Single(new AuthUser(TestAuthentication.ALICE.name(), ""), action), new BearerAuthScheme((token) -> CompletableFuture.completedFuture(Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter((user) -> token.equals(token(user))).map((user) -> new AuthUser(user.name())).findFirst()), ""));

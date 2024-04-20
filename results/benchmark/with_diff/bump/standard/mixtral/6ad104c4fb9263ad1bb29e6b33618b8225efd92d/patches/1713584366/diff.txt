@@ -1,0 +1,25 @@
+1a2,24
+> 
+> import java.io.IOException;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private void decode(TlsContext context, InputStream input) throws IOException {
+>         // ...
+> 
+>         try {
+>             // ...
+> 
+>             short alertDescriptionValue = input.readShort();
+>             AlertDescription alertDescription = AlertDescription.forValue(alertDescriptionValue);
+> 
+>             throw new TlsFatalAlert(alertDescription);
+>         } catch (TlsFatalAlert ex) {
+>             // ...
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

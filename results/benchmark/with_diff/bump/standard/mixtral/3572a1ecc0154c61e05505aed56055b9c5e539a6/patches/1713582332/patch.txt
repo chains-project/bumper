@@ -1,0 +1,9 @@
+@java.lang.Override
+public void init(java.io.OutputStream os) {
+    this.os = os;
+    int bufferCapacity = 10;
+    TConfiguration tConfiguration = new TConfiguration();
+    TIOStreamTransport tIoStreamTransport = new TIOStreamTransport(tConfiguration, os);
+    framedTransport = new TFastFramedTransport(tIoStreamTransport, bufferCapacity);
+    protocol = new TBinaryProtocol(framedTransport);
+}

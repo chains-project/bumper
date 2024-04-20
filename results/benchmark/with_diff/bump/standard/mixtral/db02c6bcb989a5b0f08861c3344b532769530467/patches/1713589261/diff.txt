@@ -1,0 +1,22 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6,15
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle(( blob, throwable) -> {
+---
+>     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest)))
+>          .thenAccept(blob -> {
+>              try {
+>                  blob.close();
+>              } catch (Exception e) {
+>                  throw new RuntimeException(e);
+>              }
+>          })
+>          .toCompletableFuture()
+>          .handle(( blob, throwable) -> {
+10c18,19
+<         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", new org.hamcrest.core.StringContains(com.google.common.base.Throwables.getRootCause(throwable).getMessage()), "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"));
+---
+>              org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", new org.hamcrest.core.StringContains(com.google.common.base.Throwables.getRootCause(throwable).getMessage()), "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7");
+>          });
+13d21
+<     }).join();

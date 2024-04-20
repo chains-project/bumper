@@ -1,0 +1,24 @@
+1a2,23
+> import org.apache.maven.project.ProjectBuilder;
+> import org.apache.maven.project.ProjectConfigurator;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> //...
+> 
+> @Override
+> protected MavenProject getProject() throws MojoExecutionException {
+>     if (project == null) {
+>         ProjectBuilder builder = (ProjectBuilder) lookup(ProjectBuilder.ROLE);
+>         try {
+>             project = builder.build(model, projectBuildingRequest).getProject();
+>         } catch (ProjectBuildingException e) {
+>             throw new MojoExecutionException("Error while building project", e);
+>         }
+> 
+>         ProjectConfigurator configurator = (ProjectConfigurator) lookup(ProjectConfigurator.ROLE);
+>         configurator.configure(project, model, projectBuildingRequest);
+>     }
+> 
+>     return project;
+> }
+\ No newline at end of file

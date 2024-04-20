@@ -1,0 +1,17 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.io.StringWriter;
+
+// ...
+
+RenderingContext renderingContext = new RenderingContext() {
+    @Override
+    public String getOutputName() {
+        // Implement based on the original usage of RenderingContext
+        // in the client code.
+    }
+};
+
+StringWriter stringWriter = new StringWriter();
+
+// Use the new renderingContext and stringWriter objects
+// in place of the original RenderingContext and Writer objects.

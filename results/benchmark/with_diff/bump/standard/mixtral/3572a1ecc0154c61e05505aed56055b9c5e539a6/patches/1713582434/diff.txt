@@ -1,0 +1,13 @@
+1,2c1,2
+< @Override
+<     public void init(OutputStream os) {
+---
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+7,8c7,9
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>     TConfiguration tConfig = new TConfiguration();
+>     TIOStreamTransport tTransport = new TIOStreamTransport(tConfig, os);
+>     framedTransport = new TFastFramedTransport(tTransport, bufferCapacity);

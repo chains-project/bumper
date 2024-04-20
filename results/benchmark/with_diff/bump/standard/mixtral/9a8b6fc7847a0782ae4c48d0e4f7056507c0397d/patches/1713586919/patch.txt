@@ -1,0 +1,40 @@
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+//...
+
+private PasswordEncoder passwordEncoder = new PasswordEncoder() {
+    private TextEncryptor textEncryptor = new TextEncryptor() {
+        private PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor() {
+            {
+                setAlgorithm("PBEWithMD5AndTripleDES");
+                setKeyObtentionIterations("1000");
+                setPoolSize("1");
+                setProvider("SunJCE");
+                setSaltGenerator(new RandomSaltGenerator());
+            }
+        };
+
+        @Override
+        public String encryptText(String text) {
+            return pbeStringEncryptor.encrypt(text);
+        }
+
+        @Override
+        public boolean matches(String encryptedText, String plainText) {
+            return pbeStringEncryptor.checkText(plainText, encryptedText);
+        }
+    };
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return textEncryptor.encryptText(rawPassword.toString());
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return textEncryptor.matches(encodedPassword, rawPassword.toString());
+    }
+};

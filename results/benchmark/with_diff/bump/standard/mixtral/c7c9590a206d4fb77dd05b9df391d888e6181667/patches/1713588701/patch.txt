@@ -1,0 +1,13 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.io.StringWriter;
+
+// ...
+
+String outputName = renderingContext.getOutputName();
+StringWriter stringWriter = new StringWriter();
+renderingContext.setOutput(stringWriter);
+
+// ... (use renderingContext and stringWriter as needed)
+
+// Get the rendered content
+String renderedContent = stringWriter.toString();

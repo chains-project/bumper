@@ -1,0 +1,7 @@
+4a5,9
+> 
+> // Add the following method
+> public Timestamp between(Timestamp from, Timestamp to) throws IllegalArgumentException {
+>     return new Timestamp(super.between(from, to).getTime());
+> }
+\ No newline at end of file

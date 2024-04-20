@@ -1,0 +1,31 @@
+1c1,26
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import java.util.EnumSet;
+> import java.util.Set;
+> 
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private void decodeChacha20Poly1305Trailer(ByteQueue queue) throws IOException {
+>         // ...
+> 
+>         int alertDescription = queue.read(2);
+>         Set<AlertDescription> alertDescriptions = EnumSet.noneOf(AlertDescription.class);
+>         try {
+>             alertDescriptions.add(AlertDescription.valueOf(alertDescription));
+>         } catch (IllegalArgumentException e) {
+>             throw new TlsFatalAlert(TlsUtils.decodeAlertLevel(alertDescription));
+>         }
+>         if (alertDescriptions.contains(AlertDescription.decrypt_error)) {
+>             throw new TlsFatalAlert(AlertDescription.decrypt_error);
+>         }
+>         if (!alertDescriptions.isEmpty()) {
+>             throw new TlsFatalAlert(AlertDescription.internal_error);
+>         }
+>     }
+> }
+\ No newline at end of file
