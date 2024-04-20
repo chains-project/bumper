@@ -1,0 +1,12 @@
+1,3c1,3
+< @Bean
+<     public PasswordEncoder passwordEncoder() {
+<         ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();
+---
+> @org.springframework.context.annotation.Bean
+> public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {
+>     org.jasypt.util.password.ConfigurablePasswordEncryptor passwordEncoder = new org.jasypt.util.password.ConfigurablePasswordEncryptor();
+6c6
+<         return passwordEncoder;
+---
+>     return new org.acegisecurity.providers.encoding.ShaPasswordEncoder(passwordEncoder);

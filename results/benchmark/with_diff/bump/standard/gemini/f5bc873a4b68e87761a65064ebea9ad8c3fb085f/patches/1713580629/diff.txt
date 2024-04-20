@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> 
+> public abstract class AbstractThemeMojo extends AbstractMyfacesMojo {
+> 
+>     /**
+>      * @parameter expression="${session}"
+>      * @required
+>      * @since 2.0.1
+>      */
+>     protected MavenSession session;
+> 
+>     protected MavenProject getProject() {
+>         return session.getCurrentProject();
+>     }
+> 
+> }
+\ No newline at end of file

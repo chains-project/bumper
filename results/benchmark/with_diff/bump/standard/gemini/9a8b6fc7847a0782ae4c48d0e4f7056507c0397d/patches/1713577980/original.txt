@@ -1,0 +1,7 @@
+@Bean
+    public PasswordEncoder passwordEncoder() {
+        ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();
+        passwordEncoder.setEncryptor(encryptor);
+        passwordEncoder.setPassword(password);
+        return passwordEncoder;
+    }

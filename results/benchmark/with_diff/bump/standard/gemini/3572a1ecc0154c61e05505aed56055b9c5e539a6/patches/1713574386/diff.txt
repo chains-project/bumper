@@ -1,0 +1,16 @@
+1,2c1,2
+< @Override
+<     public void init(OutputStream os) {
+---
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+7,9c7,11
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>     TConfiguration conf = new TConfiguration();
+>     // Use the newly added constructor with TConfiguration for TIOStreamTransport
+>     TIOStreamTransport transport = new TIOStreamTransport(conf, os);
+>     framedTransport = new com.pinterest.singer.client.logback.TFlushingFastFramedTransport(transport, bufferCapacity);
+>     protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);

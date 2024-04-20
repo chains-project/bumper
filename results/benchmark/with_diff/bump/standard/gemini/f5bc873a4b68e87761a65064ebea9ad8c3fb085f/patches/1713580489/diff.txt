@@ -1,0 +1,15 @@
+0a1
+> import org.apache.maven.execution.MavenSession;
+1a3,13
+> 
+> public abstract class AbstractThemeMojo extends AbstractMojo {
+> 
+>   protected MavenSession session;
+> 
+>   public void execute() throws MojoExecutionException, MojoFailureException {
+>     session = (MavenSession) getPluginContext().get("session");
+>     MavenProject project = session.getCurrentProject();
+>     // ...
+>   }
+> }
+\ No newline at end of file

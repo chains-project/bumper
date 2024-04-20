@@ -1,0 +1,21 @@
+1,7c1,12
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+> private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+>     Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+>     boolean connectedMode = sorald.sonar.SonarLintEngine.globalConfig.isSonarQubeConnectedMode();
+>     Set<org.sonarsource.sonarlint.core.commons.Language> languages = connectedMode
+>             ? org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInConnectedMode()
+>             : org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInStandaloneMode();
+>     return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder()
+>             .addEnabledLanguages(languages)
+>             .setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid())
+>             .setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties())
+>             .setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir())
+>             .setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider())

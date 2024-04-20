@@ -1,0 +1,5 @@
+16c16,17
+<             ++ org.bukkit.enchantments.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(new org.bukkit.NamespacedKey("minecraft", "power"));
+---
+>             org.bukkit.enchantments.Enchantment enchantment = null;
+>             enchantment = org.bukkit.enchantments.Enchantment.getByKey(new org.bukkit.NamespacedKey("minecraft", "power"));

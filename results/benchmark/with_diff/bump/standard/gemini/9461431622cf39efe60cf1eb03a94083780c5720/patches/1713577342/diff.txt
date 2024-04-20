@@ -1,0 +1,7 @@
+14c14,17
+<             reg.put(contextScope, group);
+---
+>             ManagedObject managedObject = reg.put(contextScope, group);
+>             if (managedObject != null) {
+>                 reg.put(contextScope, managedObject);
+>             }

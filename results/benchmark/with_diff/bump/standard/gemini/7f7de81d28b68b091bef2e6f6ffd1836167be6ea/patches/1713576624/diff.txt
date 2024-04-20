@@ -1,0 +1,4 @@
+15c15
+<             registry.set(server, reg);
+---
+>             registry.set(server, new TreeMap<>(reg));

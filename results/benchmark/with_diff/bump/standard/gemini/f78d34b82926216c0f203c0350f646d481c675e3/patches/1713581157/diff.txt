@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class Decorations {
+> 
+>     public static WaveCreator waveCreator;
+> 
+>     public Decorations() {
+>         waveCreator = new WaveCreator(44100, 1.0, 0.0);
+>     }
+> 
+>     public static WaveCreator getWaveCreator() {
+>         return waveCreator;
+>     }
+> }
+\ No newline at end of file

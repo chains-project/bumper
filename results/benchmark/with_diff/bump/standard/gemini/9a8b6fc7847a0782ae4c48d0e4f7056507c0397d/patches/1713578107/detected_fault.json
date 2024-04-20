@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 2127036371,
+    "in_class_code": "@Configuration\npublic class PasswordEncoderConfig {\n    @Value(\"${password.encryptor.password}\")\n    private String password;\n\n    @Autowired\n    private StandardPBEStringEncryptor encryptor;\n\n    @Bean\n    public PasswordEncoder passwordEncoder() {\n        ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();\n        passwordEncoder.setEncryptor(encryptor);\n        passwordEncoder.setPassword(password);\n        return passwordEncoder;\n    }\n}",
+    "qualified_in_class_code": "@org.springframework.context.annotation.Configuration\npublic class PasswordEncoderConfig {\n    @org.springframework.beans.factory.annotation.Value(\"${password.encryptor.password}\")\n    private java.lang.String password;\n\n    @org.springframework.beans.factory.annotation.Autowired\n    private org.jasypt.encryption.pbe.StandardPBEStringEncryptor encryptor;\n\n    @org.springframework.context.annotation.Bean\n    public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {\n        org.jasypt.util.password.ConfigurablePasswordEncryptor passwordEncoder = new org.jasypt.util.password.ConfigurablePasswordEncryptor();\n        passwordEncoder.setEncryptor(encryptor);\n        passwordEncoder.setPassword(password);\n        return passwordEncoder;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStorePBEPasswordEncoder.java:[55,23] error: cannot find symbol",
+        "client_file_path": "/geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStorePBEPasswordEncoder.java",
+        "client_line_position": "55"
+    },
+    "client_end_line_number": 57,
+    "client_line_number": 51,
+    "method_code": "@Bean\n    public PasswordEncoder passwordEncoder() {\n        ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();\n        passwordEncoder.setEncryptor(encryptor);\n        passwordEncoder.setPassword(password);\n        return passwordEncoder;\n    }",
+    "qualified_code": "@org.springframework.context.annotation.Bean\npublic org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {\n    org.jasypt.util.password.ConfigurablePasswordEncryptor passwordEncoder = new org.jasypt.util.password.ConfigurablePasswordEncryptor();\n    passwordEncoder.setEncryptor(encryptor);\n    passwordEncoder.setPassword(password);\n    return passwordEncoder;\n}",
+    "method_name": "passwordEncoder"
+}

@@ -1,0 +1,11 @@
+1,4c1,5
+< @Bean
+<     public PasswordEncoder passwordEncoder() {
+<         ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();
+<         passwordEncoder.setEncryptor(encryptor);
+---
+> @org.springframework.context.annotation.Bean
+> public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {
+>     org.jasypt.util.password.ConfigurablePasswordEncryptor passwordEncoder = new org.jasypt.util.password.ConfigurablePasswordEncryptor();
+>     passwordEncoder.setAlgorithm("PBEWithMD5AndDES");
+>     passwordEncoder.setPlainDigest(true);

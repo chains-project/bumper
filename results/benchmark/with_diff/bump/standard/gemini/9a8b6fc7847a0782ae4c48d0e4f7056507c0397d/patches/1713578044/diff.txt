@@ -1,0 +1,15 @@
+1,5c1,8
+< @Bean
+<     public PasswordEncoder passwordEncoder() {
+<         ConfigurablePasswordEncryptor passwordEncoder = new ConfigurablePasswordEncryptor();
+<         passwordEncoder.setEncryptor(encryptor);
+<         passwordEncoder.setPassword(password);
+---
+> @org.springframework.context.annotation.Bean
+> public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {
+>     org.jasypt.util.password.ConfigurablePasswordEncryptor passwordEncoder = new org.jasypt.util.password.ConfigurablePasswordEncryptor();
+>     passwordEncoder.setAlgorithm("PBEWITHSHA256AND128BITAES-CBC-BC");
+>     passwordEncoder.setPoolSize(4);
+>     passwordEncoder.setProviderName("SunJCE");
+>     passwordEncoder.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
+>     passwordEncoder.setStringOutputType("base64");
