@@ -4,7 +4,11 @@ from pipeline.types.failure import Failure
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
-
+"""
+For the baseline pipeline we use the same prompt for all the different
+error types, we combine the different data that we have extracted before 
+and use a specific template based on a env flag.
+"""
 class BaselinePatchGenerator(LLMPatchGenerator):
     def get_prompt_template(self) -> str:
         if os.getenv("WITHOUT_APIDIFF") == "True":

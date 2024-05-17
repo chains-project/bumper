@@ -5,7 +5,10 @@ from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
 from pipeline.types.prompt import Prompt
 
-
+"""
+We use this generator also to find suitable replacement for the broken usage of the
+dependency.
+"""
 class TypingPatchGenerator(LLMPatchGenerator):
     def __init__(self, failure: Failure, project: Project, model: LLMType, use_fully_qualified: bool = False) -> None:
         super().__init__(failure, project, model)
