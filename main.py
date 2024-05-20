@@ -7,6 +7,7 @@ from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
 from pipeline.patch_generator_service import PatchGenerator
 from pipeline.project_repairer import ProjectRepairer
+from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
 from dotenv import load_dotenv
 
@@ -20,21 +21,19 @@ def main(project_id: str):
         bump_folder=os.getenv("BUMP_PATH"),
         project_id=project_id
     )
-    metadata = project.get_metadata()
 
-    if metadata.get("repaired") is True:
-        print(f"PROJECT {project.project_id} IS ALREADY REPAIRED!")
-        exit(0)
+    print(f"\n\n###### RUNNING PROJECT {project.project_name} ######")
 
+    subprocess.call(f"rm -rf {project.path}/patches", shell=True)
+    subprocess.call(f"rm -rf {project.path}/patched_code", shell=True)
     subprocess.run([
         'bash',
         'benchmarks/bump/scripts/clone_client_code.sh',
         project.project_id,
     ])
 
-    repairer = ProjectRepairer(project=project)
+    repairer = ProjectRepairer(project=project, model=LLMType.GPT4)
     result = repairer.repair()
-    project.save_metadata(meta=result.__dict__)
 
     if result.repaired:
         print(f"PROJECT {project.project_id} REPAIRED!")

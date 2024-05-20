@@ -17,13 +17,11 @@ public class MavenLogAnalyzer {
     }
 
     public MavenErrorLog analyzeCompilationErrors() throws IOException {
-
         return extractLineNumbersWithPaths(logFile.getAbsolutePath());
     }
 
 
     private MavenErrorLog extractLineNumbersWithPaths(String logFilePath) throws IOException {
-
         MavenErrorLog mavenErrorLogs = new MavenErrorLog();
 
         try {

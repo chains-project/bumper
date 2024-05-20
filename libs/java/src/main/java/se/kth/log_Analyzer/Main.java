@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        String path = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236/flink-faker/1ef97ea6c5b6e34151fe6167001b69e003449f95.log";
+        String path = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/old_clients/38c9915f0cfdf0c1a2b17c3c6f283c23a0aac0cf/patched_code/test/java-api/38c9915f0cfdf0c1a2b17c3c6f283c23a0aac0cf.log";
         MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File(path));
 
         try {

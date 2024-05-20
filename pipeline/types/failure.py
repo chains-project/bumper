@@ -26,7 +26,7 @@ class Failure:
 
         plausible_changes = filter(
             lambda x: any(
-                element in x.value for element in BreakingElementsExtractor.extract(project_id)
+                element in x.value for element in BreakingElementsExtractor.extract(project_id, self.detected_fault)
             ),
             self.api_changes
         )

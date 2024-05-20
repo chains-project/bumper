@@ -14,7 +14,9 @@ import spoon.reflect.declaration.CtImport;
 import spoon.reflect.declaration.CtMethod;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.visitor.filter.TypeFilter;
+import spoon.support.reflect.declaration.CtFieldImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
+import spoon.support.reflect.declaration.CtParameterImpl;
 
 public class FaultDetector {
     private Set<MavenErrorLog.ErrorInfo> mavenErrorLog;
@@ -32,8 +34,9 @@ public class FaultDetector {
         CtModel model = spoon.getModel();
         List<DetectedFault> result = new ArrayList<DetectedFault>();
 
-        // Order is very important as you tipically want to fix from the first error
+        // Order is very important as you tipically want to fix from the first erro
         result.addAll(getImportFaults(model));
+        result.addAll(getFieldFaults(model));
         result.addAll(getMethodFaults(model));
 
         return result;
@@ -81,6 +84,27 @@ public class FaultDetector {
                     result.add(
                         new DetectedFault()
                             .setMethodName("import")
+                            .setMethodCode(element.toString())
+                            .setClientLineNumber(element.getPosition().getLine())
+                            .setClientEndLineNumber(element.getPosition().getEndLine())
+                            .setErrorInfo(getMavenErrorLog(element))
+                    );
+                }
+            });
+
+        return result;
+    }
+
+    private List<DetectedFault> getFieldFaults(CtModel model) {
+        CtType<?> mainClass = model.getAllTypes().iterator().next();
+        List<DetectedFault> result = new ArrayList<DetectedFault>();
+
+        mainClass.getElements(new TypeFilter<>(CtFieldImpl.class)).stream()
+            .forEach((CtElement element) -> {
+                if(this.containsAnError(element)) {
+                    result.add(
+                        new DetectedFault()
+                            .setMethodName("field")
                             .setMethodCode(element.toString())
                             .setClientLineNumber(element.getPosition().getLine())
                             .setClientEndLineNumber(element.getPosition().getEndLine())

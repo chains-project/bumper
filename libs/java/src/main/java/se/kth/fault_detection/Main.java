@@ -13,20 +13,24 @@ public class Main {
     // static String project_folder = "docker-adapter";
     // static String dependency_group_id = "com.artipie";
 
-    static String client_id = "24d4a90ec1b375751e71f33d18949405c9529d77";
-    static String project_folder = "jcabi-s3";
+    // static String client_id = "24d4a90ec1b375751e71f33d18949405c9529d77";
+    // static String project_folder = "jcabi-s3";
+    // static String dependency_group_id = "";
+    
+    static String client_id = "38c9915f0cfdf0c1a2b17c3c6f283c23a0aac0cf";
+    static String project_folder = "java-api";
     static String dependency_group_id = "";
     
     // static String dependency_group_id = "net.datafaker";
 
     public static void main(String[] args) {
 
-        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
+        MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/old_clients/" + client_id + "/" + project_folder + "/" + client_id + ".log"));
         // MavenLogAnalyzer mavenLog = new MavenLogAnalyzer(new File("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/1ef97ea6c5b6e34151fe6167001b69e003449f95/patched_code/1709041236/flink-faker/1ef97ea6c5b6e34151fe6167001b69e003449f95.log"));
 
         try {
             MavenErrorLog log = mavenLog.analyzeCompilationErrors();
-            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id;
+            String project = "/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/old_clients/" + client_id;
 
             log.getErrorInfo().forEach((k, v) -> {
                 System.out.println("Fault: " + k);
@@ -35,7 +39,7 @@ public class Main {
 
                 results.forEach(r -> {
                     System.out.println("ERROR #" + r.getIdentifier());
-                    System.out.println("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/clients/" + client_id + r.errorInfo.getClientFilePath());
+                    System.out.println("/Users/federicobono/Documents/IT/UNI/thesis/code/certa/benchmarks/bump/old_clients/" + client_id + r.errorInfo.getClientFilePath());
                     System.out.println(r.errorInfo.getClientLinePosition());
                     System.out.println(r.clientLineNumber + ":" + r.clientEndLineNumber);
                 });

@@ -1,5 +1,6 @@
 package se.kth.log_Analyzer;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 @lombok.Getter
