@@ -15,7 +15,6 @@ class TypingPatchGenerator(LLMPatchGenerator):
         self.use_fully_qualified = use_fully_qualified
 
     def get_prompt(self) -> Prompt:
-
         return Prompt(
                 template=self.get_template(),
                 values=self.get_params()

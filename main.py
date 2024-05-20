@@ -5,7 +5,7 @@ import sys
 from pipeline.breaking_elements_extractor import BreakingElementsExtractor
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
-from pipeline.patch_generator_service import PatchGenerator
+from pipeline.patch_generator_service import PatchGenerator, PipelineRunningMode
 from pipeline.project_repairer import ProjectRepairer
 from pipeline.types.llm import LLMType
 from pipeline.types.project import Project
@@ -32,7 +32,7 @@ def main(project_id: str):
         project.project_id,
     ])
 
-    repairer = ProjectRepairer(project=project, model=LLMType.GPT4)
+    repairer = ProjectRepairer(project=project, model=LLMType.GPT4, pipeline=PipelineRunningMode.ADVANCED)
     result = repairer.repair()
 
     if result.repaired:

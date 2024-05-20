@@ -1,0 +1,5 @@
+Act as an automatic tool, return only the result in text format.
+Return the list of suitable replacement for element "{{ old_element }}" from the following list of replacement:
+{{ api_diff }}
+
+Return 25 rows maximum, in text format.

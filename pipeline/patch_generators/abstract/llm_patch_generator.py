@@ -50,5 +50,5 @@ class LLMPatchGenerator(PatchGenerator):
             f.close()
 
     @abstractmethod
-    def get_prompt() -> Prompt:
+    def get_prompt(self) -> Prompt:
         pass
