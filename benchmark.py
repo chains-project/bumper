@@ -163,7 +163,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--name", help="Name of the benchmark execution", type=str, required=True)
     parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)
-    parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE]", type=PipelineRunningMode,
+    parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE, ADVANCED]", type=PipelineRunningMode,
                         choices=list(PipelineRunningMode), required=True)
 
     options = parser.parse_args()

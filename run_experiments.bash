@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pipelines=("baseline" "standard")
+pipelines=("baseline" "standard", "advanced")
 models=("gpt4" "gemini" "mixtral" "llama")
 
 # Without API Diff
