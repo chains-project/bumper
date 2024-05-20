@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 615634843,
+    "in_class_code": "public abstract class AbstractThemeMojo extends AbstractMojo {\n    /**\n     * The Maven project.\n     */\n    @Parameter(defaultValue = \"${project}\", readonly = true, required = true)\n    private MavenProject project;\n\n    private static final String[] INCLUDES = new String[]{ \"**\" };\n\n    private static final String[] EXCLUDES = new String[]{ \"META-INF/**/*\", \"**/*.properties\", \"**/*.xml\", \"**/*.class\" };\n\n    public MavenProject getProject() {\n        return project;\n    }\n}",
+    "qualified_in_class_code": "public abstract class AbstractThemeMojo extends org.apache.maven.plugin.AbstractMojo {\n    /**\n     * The Maven project.\n     */\n    @org.apache.maven.plugins.annotations.Parameter(defaultValue = \"${project}\", readonly = true, required = true)\n    private org.apache.myfaces.tobago.maven.plugin.MavenProject project;\n\n    private static final java.lang.String[] INCLUDES = new java.lang.String[]{ \"**\" };\n\n    private static final java.lang.String[] EXCLUDES = new java.lang.String[]{ \"META-INF/**/*\", \"**/*.properties\", \"**/*.xml\", \"**/*.class\" };\n\n    public org.apache.myfaces.tobago.maven.plugin.MavenProject getProject() {\n        return project;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class MavenProject\n  location: class org.apache.myfaces.tobago.maven.plugin.AbstractThemeMojo\n",
+        "error_message": "[ERROR] /myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/AbstractThemeMojo.java:[50,10] cannot find symbol",
+        "client_file_path": "/myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/AbstractThemeMojo.java",
+        "client_line_position": "50"
+    },
+    "client_end_line_number": 52,
+    "client_line_number": 50,
+    "method_code": "public MavenProject getProject() {\n    return project;\n  }",
+    "qualified_code": "public org.apache.myfaces.tobago.maven.plugin.MavenProject getProject() {\n    return project;\n}",
+    "method_name": "getProject"
+}
