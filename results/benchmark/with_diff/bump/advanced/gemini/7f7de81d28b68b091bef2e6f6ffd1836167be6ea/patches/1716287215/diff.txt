@@ -1,0 +1,12 @@
+6c6,7
+<      * @param group {@link ManagedObject} to register.
+---
+>      * @param group
+>      *          {@link ManagedObject} to register.
+14,15c15,17
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             SortedMap<MOScope, ManagedObject> newReg = new TreeMap<>(reg);
+>             newReg.put(contextScope, group);
+>             registry.set(server, newReg);

@@ -1,0 +1,12 @@
+1a2,11
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void generateReport(RenderingContext renderingContext) {
+>         // Use the RenderingContext to get the output name
+>         String outputName = renderingContext.getOutputName();
+>         // ...
+>     }
+> 
+> }
+\ No newline at end of file

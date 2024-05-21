@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class Main {
+> 
+>     public static void main(String[] args) {
+>         RenderingContext renderingContext = new RenderingContext();
+>         renderingContext.setOutputName("output.html");
+>     }
+> }
+\ No newline at end of file
