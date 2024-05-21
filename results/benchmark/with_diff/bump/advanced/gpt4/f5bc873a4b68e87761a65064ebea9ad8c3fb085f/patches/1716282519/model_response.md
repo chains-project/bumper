@@ -1,0 +1,1 @@
+There is no information provided about the changes in the new library version. Without this information, it's impossible to propose a patch to fix the error.

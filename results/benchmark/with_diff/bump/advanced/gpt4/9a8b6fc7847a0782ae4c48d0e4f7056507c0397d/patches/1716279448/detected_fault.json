@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1496355635,
+    "in_class_code": "/**\n * This Encoder provide encription and check of password using a digest\n *\n * @author Lorenzo Natali (lorenzo.natali at geo-solutions.it)\n */\npublic class GeoStoreDigestPasswordEncoder extends AbstractGeoStorePasswordEncoder {\n    /**\n     * The digest is not reversible\n     */\n    public GeoStoreDigestPasswordEncoder() {\n        setReversible(false);\n    }\n\n    @Override\n    protected PasswordEncoder createStringEncoder() {\n        PasswordEncoder encoder = new PasswordEncoder();\n        encoder.setPasswordEncryptor(new StrongPasswordEncryptor());\n        return encoder;\n    }\n}",
+    "qualified_in_class_code": "/**\n * This Encoder provide encription and check of password using a digest\n *\n * @author Lorenzo Natali (lorenzo.natali at geo-solutions.it)\n */\npublic class GeoStoreDigestPasswordEncoder extends it.geosolutions.geostore.core.security.password.AbstractGeoStorePasswordEncoder {\n    /**\n     * The digest is not reversible\n     */\n    public GeoStoreDigestPasswordEncoder() {\n        setReversible(false);\n    }\n\n    @java.lang.Override\n    protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {\n        org.springframework.security.crypto.password.PasswordEncoder encoder = new org.springframework.security.crypto.password.PasswordEncoder();\n        encoder.setPasswordEncryptor(new org.jasypt.util.password.StrongPasswordEncryptor());\n        return encoder;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStoreDigestPasswordEncoder.java:[47,16] error: cannot find symbol",
+        "client_file_path": "/geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStoreDigestPasswordEncoder.java",
+        "client_line_position": "47"
+    },
+    "client_end_line_number": 49,
+    "client_line_number": 44,
+    "method_code": "@Override\n\t    protected PasswordEncoder createStringEncoder() {\n\t        PasswordEncoder encoder = new PasswordEncoder();\n\t        encoder.setPasswordEncryptor(new StrongPasswordEncryptor());\n\t        return encoder;\n\t    }",
+    "qualified_code": "@java.lang.Override\nprotected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {\n    org.springframework.security.crypto.password.PasswordEncoder encoder = new org.springframework.security.crypto.password.PasswordEncoder();\n    encoder.setPasswordEncryptor(new org.jasypt.util.password.StrongPasswordEncryptor());\n    return encoder;\n}",
+    "method_name": "createStringEncoder"
+}

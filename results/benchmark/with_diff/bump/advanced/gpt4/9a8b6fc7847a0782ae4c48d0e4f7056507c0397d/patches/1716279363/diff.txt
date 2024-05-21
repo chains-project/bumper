@@ -1,0 +1,9 @@
+1,4c1,3
+< @Override
+<             protected PasswordEncoder createStringEncoder() {
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+> @java.lang.Override
+> protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {
+>     org.springframework.security.crypto.password.Pbkdf2PasswordEncoder encoder = new org.springframework.security.crypto.password.Pbkdf2PasswordEncoder();

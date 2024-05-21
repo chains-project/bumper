@@ -1,0 +1,7 @@
+3,4d2
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+12c10
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();

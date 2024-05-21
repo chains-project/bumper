@@ -1,0 +1,6 @@
+1c1
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> // No replacement for the import statement as the class TlsFatalAlert does not exist in the updated library
+\ No newline at end of file
