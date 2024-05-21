@@ -1,0 +1,16 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.lang.String;
+
+// ...
+
+public void someMethod() {
+  RenderingContext renderingContext = new RenderingContext() {
+    @Override
+    public String getOutputName() {
+      // Implement the method according to your needs
+      return null;
+    }
+  };
+
+  // Use the 'renderingContext' object in your code
+}

@@ -1,0 +1,22 @@
+@Override
+public Policy<?> getPolicy(final PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storagesLoader = new StoragesLoader();
+        return new YamlPolicy(storagesLoader.newObject(
+            sub.string("type"),
+            new Config() {
+                @Override
+                public <T> T attribute(String name) {
+                    return (T) sub.toString();
+                }
+            }
+        ));
+    } catch (IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}
+
+interface Config {
+    <T> T attribute(String name);
+}

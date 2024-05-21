@@ -1,0 +1,19 @@
+0a1,8
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+> import org.apache.maven.surefire.api.testset.TestListResolver;
+> import org.apache.maven.surefire.booter.StartupConfiguration;
+> 
+> import java.io.File;
+> import java.util.List;
+> 
+2,3c10,15
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     StartupConfiguration config = new StartupConfiguration();
+>     Commandline commandLine = new DefaultForkConfiguration().createCommandLine(config, 0, testSrcFolder);
+>     TestListResolver testListResolver = new TestListResolver();
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, testListResolver.getWildcard());
+>     directoryScanner.scan();
+>     return directoryScanner.getClasses();

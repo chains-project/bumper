@@ -1,0 +1,16 @@
+import com.artipie.asto.factory.StoragesLoader;
+import com.artipie.asto.fs.FileStorageFactory;
+import java.util.Map;
+import java.util.function.Function;
+
+@Override
+public com.artipie.security.policy.Policy<?> getPolicy(final com.artipie.security.policy.PolicyConfig config) {
+    final com.artipie.security.policy.PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storagesLoader = new StoragesLoader();
+        Function<String, Storage> newObject = storagesLoader.newObject(storagesLoader.defPackage(), Map::of);
+        return new com.artipie.security.policy.YamlPolicy(new com.artipie.asto.blocking.BlockingStorage(newObject.apply(sub.string("type")), com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping())));
+    } catch (final java.io.IOException err) {
+        throw new java.io.UncheckedIOException(err);
+    }
+}

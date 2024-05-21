@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+16c15
+<         public com.artipie.http.Response response(final java.lang.String line, final java.lang.Iterable<java.util.Map.Entry<java.lang.String, java.lang.String>> headers, final org.reactivestreams.Publisher<java.nio.ByteBuffer> body) {
+---
+>         public com.artipie.http.Response response(final java.lang.String line, final java.util.Iterator<java.util.Map.Entry<java.lang.String, java.lang.String>> headers, final org.reactivestreams.Publisher<java.nio.ByteBuffer> body) {
+19c18
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.Single(new com.artipie.http.auth.AuthUser("alice"), "")), ( user, act) -> {
+---
+>     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.Single(new com.artipie.http.auth.AuthUser("alice", ""), "")), ( user, act) -> {
+23,24c22,23
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual(line));
+>     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual(action));

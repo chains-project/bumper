@@ -1,0 +1,13 @@
+@Override
+public Policy<?> getPolicy(PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storagesLoader = new StoragesLoader();
+        return new YamlPolicy(new BlockingStorage(storagesLoader.newObject(
+            sub.string("type"),
+            new Yaml().loadYamlMapping(sub.toString())
+        )));
+    } catch (IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}

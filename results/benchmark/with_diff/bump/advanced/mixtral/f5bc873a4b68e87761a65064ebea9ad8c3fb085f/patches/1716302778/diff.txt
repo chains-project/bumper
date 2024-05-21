@@ -1,0 +1,24 @@
+1a2,23
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.project.ProjectBuilderConfiguration;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> import java.io.File;
+> 
+> // ...
+> 
+> public MavenProject getProject() {
+>     if (project == null) {
+>         File pomFile = new File(basedir, "pom.xml");
+>         ProjectBuilderConfiguration config = new ProjectBuilderConfiguration();
+>         try {
+>             project = MavenProjectBuilder.builder()
+>                 .build(pomFile, config)
+>                 .getProject();
+>         } catch (ProjectBuildingException e) {
+>             throw new RuntimeException("Failed to build Maven project", e);
+>         }
+>     }
+>     return project;
+> }
+\ No newline at end of file

@@ -1,0 +1,22 @@
+1a2,21
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> private void decodeHandshakeMessage() {
+>     // ...
+> 
+>     try {
+>         // ...
+> 
+>         if (contentType != ContentType.handshake) {
+>             throw new TlsFatalAlert(AlertDescription.unexpected_message);
+>         }
+> 
+>         // ...
+> 
+>     } catch (IOException e) {
+>         throw new TlsFatalAlert(AlertDescription.decode_error);
+>     }
+> }
+\ No newline at end of file

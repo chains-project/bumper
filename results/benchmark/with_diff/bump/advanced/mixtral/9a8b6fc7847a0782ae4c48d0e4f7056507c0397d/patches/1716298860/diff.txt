@@ -1,0 +1,48 @@
+1c1,43
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.util.password.PasswordEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.stereotype.Component;
+> 
+> import it.geosolutions.geostore.core.security.password.GeoStorePasswordEncoder;
+> 
+> @Component
+> public class GeoStorePBEPasswordEncoder extends GeoStorePasswordEncoder {
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         super();
+>         // configure the encryptors here
+>         PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>         pbeStringEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>         pbeStringEncryptor.setPassword("myPassword");
+> 
+>         TextEncryptor textEncryptor = new TextEncryptor();
+>         textEncryptor.setPassword("myPassword");
+> 
+>         PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>         passwordEncryptor.setAlgorithm("SHA-1");
+>         passwordEncryptor.setPlainDigest(false);
+> 
+>         setPbeStringEncryptor(pbeStringEncryptor);
+>         setTextEncryptor(textEncryptor);
+>         setPasswordEncryptor(passwordEncryptor);
+> 
+>         setEncoder(new PasswordEncoder() {
+> 
+>             @Override
+>             public String encode(CharSequence rawPassword) {
+>                 return passwordEncryptor.encryptPassword(rawPassword.toString());
+>             }
+> 
+>             @Override
+>             public boolean matches(CharSequence rawPassword, String encodedPassword) {
+>                 return passwordEncryptor.checkPassword(rawPassword.toString(), encodedPassword);
+>             }
+>         });
+>     }
+> }
+\ No newline at end of file

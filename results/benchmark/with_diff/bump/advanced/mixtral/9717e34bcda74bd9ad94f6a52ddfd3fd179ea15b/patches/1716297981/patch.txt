@@ -1,0 +1,8 @@
+import static java.lang.String.format;
+
+// ...
+
+public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+    final int randomLength = 20;
+    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(randomLength), true));
+}

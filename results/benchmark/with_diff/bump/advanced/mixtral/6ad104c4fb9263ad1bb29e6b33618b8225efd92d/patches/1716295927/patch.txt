@@ -1,0 +1,13 @@
+import java.util.EnumSet;
+import java.util.Set;
+
+public class ChachaDecoder {
+    // existing code...
+
+    private void fail(short alert) {
+        Set<AlertDescription> descriptions = EnumSet.of(AlertDescription.decode(alert));
+        throw new TlsFatalAlert(AlertDescription.INTERNAL_ERROR, descriptions);
+    }
+
+    // existing code...
+}

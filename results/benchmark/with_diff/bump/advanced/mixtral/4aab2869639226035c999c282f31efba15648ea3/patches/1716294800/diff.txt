@@ -1,0 +1,20 @@
+2c2
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+---
+> public Policy<?> getPolicy(PolicyConfig config) {
+5,12c5,10
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+---
+>         StoragesLoader storagesLoader = new StoragesLoader();
+>         return new YamlPolicy(new BlockingStorage(storagesLoader.newObject(
+>             sub.string("type"),
+>             new Yaml().loadYamlMapping(sub.toString())
+>         )));
+>     } catch (IOException err) {

@@ -1,0 +1,23 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+// ...
+
+private PasswordEncoder passwordEncoder;
+
+// ...
+
+public void setPasswordEncoder(TextEncryptor encryptor) {
+    PBEStringEncryptor pbeEncryptor = (PBEStringEncryptor) encryptor;
+    this.passwordEncoder = new Pbkdf2PasswordEncoder(pbeEncryptor.getAlgorithm(), pbeEncryptor.getPasswordSalt(), pbeEncryptor.getIterationCount());
+}
+
+public String encodePassword(String rawPass, Object salt) {
+    return passwordEncoder.encode(rawPass);
+}
+
+public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+    return passwordEncoder.matches(rawPass, encPass);
+}

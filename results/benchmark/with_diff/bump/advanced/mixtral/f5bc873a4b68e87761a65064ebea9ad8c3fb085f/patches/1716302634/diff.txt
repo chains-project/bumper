@@ -1,0 +1,9 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,7
+> 
+> // Change the type of project to Model, which is a superinterface of MavenProject
+> public void someMethod(Model project) {
+>     // Existing code using project
+> }
+\ No newline at end of file

@@ -1,0 +1,24 @@
+4c4
+<     @Test
+---
+> @org.junit.jupiter.api.Test
+6c6,7
+<         final Domain domain = this.domain();
+---
+>     final int TEN = 10; // Added this line
+>     final com.jcabi.simpledb.Domain domain = this.domain();
+9c10
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>             domain.item(java.lang.String.format("i-%d", idx)).put("hey", "");
+11,18c12
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         org.hamcrest.MatcherAssert.assertThat(domain.select(new com.amazonaws.services.simpledb.model.SelectRequest().withSelectExpression(java.lang.String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), org.hamcrest.Matchers.iterableWithSize(Tv.TEN));

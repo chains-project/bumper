@@ -1,0 +1,11 @@
+@Override
+public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    return new Timestamp(super.between(from, to).getTime());
+}
+
+// If the above code doesn't work, try the following:
+
+@Override
+public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    return new Timestamp(new Date(super.between(from, to).getTime()).getTime());
+}

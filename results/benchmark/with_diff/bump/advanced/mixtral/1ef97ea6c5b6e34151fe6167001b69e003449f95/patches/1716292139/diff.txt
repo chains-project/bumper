@@ -1,0 +1,11 @@
+4a5,13
+> 
+> private Timestamp adaptDateToTimestamp(Date date) {
+>     return date != null ? new Timestamp(date.getTime()) : null;
+> }
+> 
+> @Override
+> public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+>     return adaptDateToTimestamp(super.between(adaptDateToTimestamp(from), adaptDateToTimestamp(to)));
+> }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+4a5,11
+> 
+> // If the above code doesn't work, try the following:
+> 
+> @Override
+> public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+>     return new Timestamp(new Date(super.between(from, to).getTime()).getTime());
+> }
+\ No newline at end of file

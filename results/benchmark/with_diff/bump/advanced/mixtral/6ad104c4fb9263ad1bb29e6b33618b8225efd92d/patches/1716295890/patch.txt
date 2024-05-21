@@ -1,0 +1,31 @@
+import java.util.EnumSet;
+import java.util.Set;
+
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    private void decodeHandshakeMessage(ByteBuffer byteBuffer) {
+        // ...
+
+        int handshakeType = decodeHandshakeType(byteBuffer);
+        if (handshakeType == HandshakeType.hello_retry_request.getValue()) {
+            // ...
+
+            int alertDescription = decodeUnsignedShort(byteBuffer);
+            AlertDescription description = AlertDescription.forCode(alertDescription);
+            Set<TlsAlert.AlertLevel> levels = EnumSet.of(TlsAlert.AlertLevel.warning, TlsAlert.AlertLevel.fatal);
+            if (!levels.contains(description.getLevel())) {
+                throw new TlsFatalAlert(AlertDescription.internal_error);
+            }
+
+            // ...
+        }
+
+        // ...
+    }
+
+    // ...
+}

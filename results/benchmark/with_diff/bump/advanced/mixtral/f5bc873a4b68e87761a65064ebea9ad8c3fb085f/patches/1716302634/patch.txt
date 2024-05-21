@@ -1,0 +1,7 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+
+// Change the type of project to Model, which is a superinterface of MavenProject
+public void someMethod(Model project) {
+    // Existing code using project
+}

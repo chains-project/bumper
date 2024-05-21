@@ -1,0 +1,10 @@
+Here's the proposed patch for the failing client code:
+
+```java
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, new org.apache.maven.surefire.api.testset.TestListResolver().getWildcard());
+    return directoryScanner.scan().getClasses();
+}
+```
+
+The patch creates a new instance of `TestListResolver` and calls the `getWildcard()` method on it. This way, the code does not depend on the static method `getWildcard()` of the `TestListResolver` class, which was removed in the updated library version.

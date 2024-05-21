@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.project.ProjectBuilderConfiguration;
+> import org.apache.maven.project.ProjectBuildingException;
+> 
+> // ...
+> 
+> private MavenProject getMavenProject() throws ProjectBuildingException {
+>     ProjectBuilderConfiguration config = new ProjectBuilderConfiguration();
+>     MavenProjectBuilder builder = new MavenProjectBuilder();
+>     return builder.build(this.getBasedir(), this.getProject().getBasedir(), config);
+> }
+\ No newline at end of file

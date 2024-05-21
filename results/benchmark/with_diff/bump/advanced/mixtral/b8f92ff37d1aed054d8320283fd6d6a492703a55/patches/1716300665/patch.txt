@@ -1,0 +1,27 @@
+import org.apache.maven.plugin.surefire.booterclient.Commandline;
+import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProviderFactory;
+import org.apache.maven.surefire.api.testset.TestListResolver;
+import org.apache.maven.surefire.api.testset.TestSetFailedException;
+import org.apache.maven.surefire.util.DirectoryScanner;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+static List<String> getClassesLoc(File testSrcFolder) {
+    DefaultForkConfiguration forConfig = new DefaultForkConfiguration(LazyTestProviderFactory.create());
+    Commandline commandLine = forConfig.createCommandLine(new StartupConfiguration(), 0, testSrcFolder);
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+    directoryScanner.setIncludes(commandLine.getIncludes());
+    directoryScanner.setExcludes(commandLine.getExcludes());
+    try {
+        directoryScanner.scan();
+    } catch (TestSetFailedException e) {
+        throw new RuntimeException("Failed to scan directory: " + testSrcFolder, e);
+    }
+    return directoryScanner.getIncludedFiles();
+}
+
+static class StartupConfiguration {}

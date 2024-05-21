@@ -1,0 +1,31 @@
+import java.io.IOException;
+import java.util.logging.Logger;
+
+import org.bouncycastle.crypto.tls.TlsUtils;
+
+public class ChachaDecoder {
+    // existing code...
+
+    private void decode(ByteBuffer input, ByteBuffer output) throws IOException {
+        try {
+            //...
+            short alertDescription = TlsUtils.readUint8(input);
+            if (alertDescription != 0) {
+                throw new TlsFatalAlert(alertDescription);
+            }
+            //...
+        } catch (TlsFatalAlert ex) {
+            //...
+            LOGGER.log(Level.SEVERE, "decryption failed or decryption_failed alert received", ex);
+            throw new TlsFatalAlert((short) 2);
+        }
+    }
+}
+
+class TlsFatalAlert extends Alert {
+    private static final long serialVersionUID = 1L;
+
+    private TlsFatalAlert(short major) {
+        super(major, AlertDescription.decode(major));
+    }
+}

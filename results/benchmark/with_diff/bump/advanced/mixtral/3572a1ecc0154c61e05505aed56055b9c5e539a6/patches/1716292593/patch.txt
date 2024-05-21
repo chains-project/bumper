@@ -1,0 +1,7 @@
+@Override
+public void init(OutputStream os) {
+    this.os = os;
+    TFramedTransport.Factory factory = new TFastFramedTransport.Factory();
+    TFramedTransport framedTransport = factory.getTransport(new TIOStreamTransport(os));
+    protocol = new TBinaryProtocol(framedTransport);
+}

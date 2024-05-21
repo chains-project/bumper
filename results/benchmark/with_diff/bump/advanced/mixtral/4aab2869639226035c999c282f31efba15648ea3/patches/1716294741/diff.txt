@@ -1,0 +1,27 @@
+5,12c5,15
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+---
+>         StoragesLoader storagesLoader = new StoragesLoader();
+>         return new YamlPolicy(storagesLoader.newObject(
+>             sub.string("type"),
+>             new Config() {
+>                 @Override
+>                 public <T> T attribute(String name) {
+>                     return (T) sub.toString();
+>                 }
+>             }
+>         ));
+>     } catch (IOException err) {
+15a19,22
+> 
+> interface Config {
+>     <T> T attribute(String name);
+> }
+\ No newline at end of file

@@ -1,0 +1,6 @@
+3c3,5
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     java.sql.Timestamp sqlFrom = new Timestamp(from.getTime());
+>     java.sql.Timestamp sqlTo = new Timestamp(to.getTime());
+>     return super.between(sqlFrom, sqlTo);

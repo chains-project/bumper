@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> 
+> // ...
+> 
+> RenderingContext renderingContext = siteRenderer.getRenderingContext();
+> String outputName = renderingContext.getOutputName();
+> 
+> // Use outputName as needed in your code
+\ No newline at end of file

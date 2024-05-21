@@ -1,0 +1,12 @@
+1,4c1,6
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+> private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
+>     return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), getClassInfo(coverage, data.getMutatedClass()));
+> }
+> 
+> private org.pitest.classinfo.ClassInfo getClassInfo(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.classinfo.ClassName className) {
+>     return org.pitest.classinfo.ClassInfoVisitor.getClassInfo(className, coverage.getRawCoverageData(className), coverage.getTimeOfLastCoverage());

@@ -1,0 +1,22 @@
+1c1,17
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> import java.lang.String;
+> 
+> // ...
+> 
+> public class SCoverageReportMojo {
+>   // ...
+> 
+>   private void someMethod() {
+>     // ...
+>     RenderingContext renderingContext = // initialize rendering context
+>     String outputName = renderingContext.getOutputName();
+>     // ...
+>   }
+> 
+>   // ...
+> }
+\ No newline at end of file

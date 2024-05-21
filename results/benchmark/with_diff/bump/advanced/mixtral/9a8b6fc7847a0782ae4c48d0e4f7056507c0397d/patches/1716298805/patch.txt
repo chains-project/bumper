@@ -1,0 +1,31 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+public class GeoStorePBEPasswordEncoder {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        ConfigurablePasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+        passwordEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+        passwordEncryptor.setKeyObtentionIterations(1000);
+
+        TextEncryptor textEncryptor = new TextEncryptor();
+        textEncryptor.setPasswordEncryptor(passwordEncryptor);
+
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return textEncryptor.encrypt(rawPassword.toString());
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return textEncryptor.decrypt(encodedPassword).equals(rawPassword.toString());
+            }
+        };
+    }
+}
