@@ -1,0 +1,44 @@
+private boolean shouldScan(java.lang.String s) {
+    final java.lang.String packagesToScan = java.lang.System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+    if ((packagesToScan == null) || packagesToScan.isEmpty()) {
+        return new org.reflections.util.FilterBuilder().include(new org.reflections.util.ConfigurationBuilder.FilterDescriptor() {
+            @Override
+            public boolean match(java.lang.reflect.Constructor<?> constructor) {
+                return constructor.getName().endsWith(".class");
+            }
+
+            @Override
+            public boolean match(java.lang.reflect.Method method) {
+                return false;
+            }
+
+            @Override
+            public boolean match(java.lang.reflect.Field field) {
+                return false;
+            }
+        }).match(s);
+    }
+    final java.lang.String[] packages = packagesToScan.split(",");
+    for (java.lang.String packageToScan : packages) {
+        java.lang.String regex = java.lang.String.format(".?\\.??%s\\..+\\.class", packageToScan);
+        if (new org.reflections.util.FilterBuilder().include(new org.reflections.util.ConfigurationBuilder.FilterDescriptor() {
+            @Override
+            public boolean match(java.lang.reflect.Constructor<?> constructor) {
+                return constructor.getName().matches(regex);
+            }
+
+            @Override
+            public boolean match(java.lang.reflect.Method method) {
+                return false;
+            }
+
+            @Override
+            public boolean match(java.lang.reflect.Field field) {
+                return false;
+            }
+        }).match(s)) {
+            return true;
+        }
+    }
+    return false;
+}

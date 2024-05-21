@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.project.ProjectBuilderConfiguration;
+> import org.apache.maven.project.ProjectBuildingRequest;
+> 
+> // ...
+> 
+> MavenProject mavenProject = null;
+> try {
+>     ProjectBuildingRequest buildingRequest = new DefaultProjectBuilderRequest();
+>     ProjectBuilderConfiguration config = new DefaultProjectBuilderConfiguration();
+>     buildingRequest.setProjectBuilderConfig(config);
+>     MavenProjectBuilder projectBuilder = new DefaultProjectBuilderFactory().createProjectBuilder();
+>     mavenProject = projectBuilder.build(null, new String[]{"."}, buildingRequest).get(0);
+> } catch (Exception e) {
+>     // handle exception
+> }
+\ No newline at end of file

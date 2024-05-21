@@ -1,0 +1,42 @@
+import static java.lang.Integer.valueOf;
+import static java.lang.String.format;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.iterableWithSize;
+import java.util.function.Supplier;
+import org.junit.jupiter.api.Test;
+import com.amazonaws.services.simpledb.AmazonSimpleDB;
+import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
+import com.amazonaws.services.simpledb.model.Domain;
+import com.amazonaws.services.simpledb.model.PutAttributesRequest;
+import com.amazonaws.services.simpledb.model.SelectRequest;
+import com.amazonaws.services.simpledb.model.SelectResult;
+
+/**
+ * Region.Simple can select many items.
+ */
+@Test
+void selectsManyItems() {
+    final AmazonSimpleDB client = // initialize your AmazonSimpleDB client
+    final Supplier<Domain> domainSupplier = () -> client.createDomain(new CreateDomainRequest().withDomainName(randomName()));
+    try (final Domain domain = domainSupplier.get()) {
+        for (int idx = 0; idx < 10; ++idx) {
+            domain.putAttributes(new PutAttributesRequest()
+                .withDomainName(domain.getName())
+                .withItemName(format("i-%d", idx))
+                .withAttributes(map("hey", "")));
+        }
+        final SelectRequest selectRequest = new SelectRequest()
+            .withSelectExpression(format("SELECT * FROM `%s`", domain.getName()))
+            .withConsistentRead(true);
+        final SelectResult selectResult = client.select(selectRequest);
+        assertThat(selectResult.getItems(), iterableWithSize(10));
+    }
+}
+
+private static java.util.Map<String, String> map(final String key, final String value) {
+    return java.util.Collections.singletonMap(key, value);
+}
+
+private static String randomName() {
+    // Implement a method to generate a random name for your domain
+}

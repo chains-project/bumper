@@ -1,0 +1,34 @@
+0a1,7
+> import static java.lang.Integer.valueOf;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import java.util.Iterator;
+> import org.junit.jupiter.api.Test;
+> 
+6c13
+<         final Domain domain = this.domain();
+---
+>     final com.jcabi.simpledb.Domain domain = this.domain();
+8c15
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+---
+>         for (int idx = 0; idx < 10; ++idx) {
+11,18c18,25
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         final SelectRequest request = new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true);
+>         final Iterator<com.amazonaws.services.simpledb.model.Item> items = domain.select(request).getItems().iterator();
+>         int count = 0;
+>         while (items.hasNext()) {
+>             items.next();
+>             count++;
+>         }
+>         assertThat(count, iterableWithSize(10));

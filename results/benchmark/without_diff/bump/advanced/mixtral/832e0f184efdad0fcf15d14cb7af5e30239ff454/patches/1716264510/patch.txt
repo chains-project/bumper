@@ -1,0 +1,1 @@
+outgoingChatMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.matchXEnchantment("power").get().getEnchantment(), 1, false);

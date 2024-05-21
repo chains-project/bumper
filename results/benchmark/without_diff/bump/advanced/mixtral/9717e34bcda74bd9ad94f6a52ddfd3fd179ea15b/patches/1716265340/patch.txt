@@ -1,0 +1,9 @@
+import com.jcabi.github.Repos;
+import com.jcabi.github.RepoCreate;
+import org.apache.commons.lang3.RandomStringUtils;
+import static java.lang.Math.min;
+
+public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+    final int maxLength = 20; // Tv.TWENTY;
+    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(min(10, maxLength)), true));
+}

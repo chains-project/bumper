@@ -1,0 +1,24 @@
+1a2,23
+> import org.eclipse.aether.RepositorySystem;
+> import org.eclipse.aether.RepositorySystemSession;
+> import org.eclipse.aether.collection.CollectRequest;
+> import org.eclipse.aether.collection.DependencyCollectionException;
+> import org.eclipse.aether.collection.DependencyResolver;
+> import org.eclipse.aether.graph.Dependency;
+> import org.eclipse.aether.repository.RemoteRepository;
+> import org.eclipse.aether.util.graph.transformer.ConflictResolver;
+> import org.eclipse.aether.util.graph.transformer.SimpleTransformerContext;
+> 
+> // ...
+> 
+> private MavenProject getDependencyProject(Dependency dependency, RepositorySystem repositorySystem, RepositorySystemSession repositorySystemSession, List<RemoteRepository> repositories) {
+>     CollectRequest collectRequest = new CollectRequest();
+>     collectRequest.setRoot(new Dependency(dependency.getGroupId(), dependency.getArtifactId(), dependency.getVersion(), dependency.getType(), dependency.getClassifier()));
+>     DependencyResolver resolver = repositorySystem.newDependencyResolver();
+>     try {
+>         return (MavenProject) resolver.resolve(collectRequest, repositorySystemSession, repositories).getRoot();
+>     } catch (DependencyCollectionException e) {
+>         throw new RuntimeException("Failed to resolve dependency: " + dependency, e);
+>     }
+> }
+\ No newline at end of file

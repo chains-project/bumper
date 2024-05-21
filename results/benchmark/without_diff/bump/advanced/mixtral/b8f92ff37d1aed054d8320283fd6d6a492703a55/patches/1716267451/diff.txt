@@ -1,0 +1,14 @@
+0a1,7
+> import org.apache.maven.surefire.api.util.DefaultScanResult;
+> import org.apache.maven.surefire.api.util.ScanResult;
+> import org.apache.maven.surefire.api.util.SurefireReflectionUtil;
+> 
+> import java.io.File;
+> import java.util.List;
+> 
+2,3c9,10
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, SurefireReflectionUtil.forName("org.apache.maven.surefire.api.testset.TestListResolver", SurefireReflectionUtil.class.getClassLoader()).getMethod("getWildcard", new Class[0]));
+>     return new DefaultScanResult(directoryScanner.scan()).getClasses();

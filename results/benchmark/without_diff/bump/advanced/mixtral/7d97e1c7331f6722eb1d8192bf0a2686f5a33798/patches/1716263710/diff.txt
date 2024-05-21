@@ -1,0 +1,48 @@
+1,3c1,13
+< /**
+<      * Region.Simple can select many items.
+<      */
+---
+> import static java.lang.Integer.valueOf;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import java.util.Iterator;
+> import org.junit.jupiter.api.Test;
+> import com.amazonaws.services.simpledb.AmazonSimpleDB;
+> import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import com.amazonaws.services.simpledb.model.SelectResult;
+> import com.jcabi.simpledb.Domain;
+> 
+> public class RegionITCase {
+> 
+8,9c18,19
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>             for (int idx = 0; idx < 10; ++idx) {
+>                 domain.item(String.format("i-%d", valueOf(idx))).put("hey", "");
+11,18c21,29
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>             final SelectRequest request = new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true);
+>             final SelectResult result = ((AmazonSimpleDB) domain.getBackend()).select(request);
+>             final Iterator<String> iterator = result.getSelectResult().getItems().iterator();
+>             int count = 0;
+>             while (iterator.hasNext()) {
+>                 iterator.next();
+>                 count++;
+>             }
+>             assertThat(count, iterableWithSize(10));
+20c31,32
+<             domain.drop();
+---
+>             domain.getBackend().deleteDomain(new DeleteDomainRequest(domain.name()));
+>         }

@@ -1,0 +1,29 @@
+0a1,8
+> import org.apache.maven.shared.utils.StringUtils;
+> import org.apache.maven.shared.utils.reflection.ReflectionUtils;
+> 
+> import java.io.File;
+> import java.lang.reflect.Method;
+> import java.util.List;
+> import java.util.regex.Pattern;
+> 
+2c10
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getWildcardPattern());
+4a13,26
+> 
+> private static Pattern getWildcardPattern() {
+>     try {
+>         Method getWildcardMethod = ReflectionUtils.findMethod(TestListResolver.class, "getWildcard");
+>         if (getWildcardMethod != null) {
+>             return (Pattern) getWildcardMethod.invoke(null);
+>         }
+>     } catch (Exception e) {
+>         // Handle exceptions if necessary
+>     }
+> 
+>     // Fallback to a default pattern in case the method cannot be found
+>     return Pattern.compile("**/*.class");
+> }
+\ No newline at end of file

@@ -1,0 +1,75 @@
+0a1,15
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.notNullValue;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import org.junit.jupiter.api.Test;
+> import com.artipie.asto.Content;
+> import com.artipie.asto.CheckedBlobSource;
+> import com.artipie.asto.memory.InMemoryStorage;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.DefaultLayout;
+> import com.artipie.docker.Digest;
+> import com.artipie.docker.RepoName;
+> import com.artipie.docker.error.InvalidDigestException;
+> 
+5c20,22
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+---
+>         storage,
+>         new DefaultLayout(),
+>         new RepoName.Simple("any")
+9c26,29
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>         new CheckedBlobSource(
+>             Content.From("data".getBytes(StandardCharsets.UTF_8)),
+>             new Digest.Sha256(digest)
+>         )
+12,17c32,33
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+---
+>             assertThat("Exception thrown", throwable, notNullValue());
+>             assertThat(
+19,20c35,36
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                 throwable,
+>                 instanceOf(InvalidDigestException.class)
+22c38,39
+<                 MatcherAssert.assertThat(
+---
+>             final InvalidDigestException ex = (InvalidDigestException) throwable;
+>             assertThat(
+24,28c41,42
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>                 ex.message(),
+>                 new StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+30c44
+<                 MatcherAssert.assertThat(
+---
+>             assertThat(
+32,33c46,47
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                 ex.message(),
+>                 new StringContains(digest)
+38a53,56
+> 
+> interface StringContains extends org.hamcrest.Matcher<String> {
+>     StringContains contains(boolean ignoreCase, String substring);
+> }
+\ No newline at end of file

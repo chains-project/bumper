@@ -1,0 +1,27 @@
+1,4c1,4
+< private boolean shouldScan(String s) {
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+> private boolean shouldScan(java.lang.String s) {
+>     final java.lang.String packagesToScan = java.lang.System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+>     if ((packagesToScan == null) || packagesToScan.isEmpty()) {
+>         return new org.reflections.Reflections(new org.reflections.util.ConfigurationBuilder().setUrls(ClasspathHelper.forClasspath()).filterInputsBy(new org.reflections.util.FilterBuilder().include(".+\\.class"))).getTypesAnnotatedWith(com.thoughtworks.gauge.TableTransformer.class).stream().anyMatch(aClass -> aClass.getName().equals(s));
+6,9c6,9
+<         final String[] packages = packagesToScan.split(",");
+<         for (String packageToScan : packages) {
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>     final java.lang.String[] packages = packagesToScan.split(",");
+>     for (java.lang.String packageToScan : packages) {
+>         java.lang.String regex = java.lang.String.format(".?\\.??%s\\..+\\.class", packageToScan);
+>         if (new org.reflections.Reflections(new org.reflections.util.ConfigurationBuilder().setUrls(ClasspathHelper.forClasspath()).filterInputsBy(new org.reflections.util.FilterBuilder().include(regex))).getTypesAnnotatedWith(com.thoughtworks.gauge.TableTransformer.class).stream().anyMatch(aClass -> aClass.getName().equals(s))) {
+14a15,19
+> 
+> // Add this method to the org.reflections.util.FilterBuilder class
+> public boolean match(String className) {
+>     return includePatterns.stream().anyMatch(pattern -> pattern.matcher(className).matches());
+> }
+\ No newline at end of file

@@ -1,0 +1,42 @@
+0a1,11
+> import static java.lang.Integer.valueOf;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import java.util.concurrent.ExecutionException;
+> import org.junit.jupiter.api.Test;
+> import com.amazonaws.services.simpledb.AmazonSimpleDB;
+> import com.amazonaws.services.simpledb.AmazonSimpleDBClientBuilder;
+> import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import com.amazonaws.services.simpledb.model.SelectResult;
+> 
+5,6c16,19
+<     void selectsManyItems() {
+<         final Domain domain = this.domain();
+---
+> void selectsManyItems() throws InterruptedException, ExecutionException {
+>     final AmazonSimpleDB domain = AmazonSimpleDBClientBuilder.defaultClient();
+>     final String domainName = "test-domain-" + System.currentTimeMillis();
+>     domain.createDomain(new CreateDomainRequest().withDomainName(domainName));
+8,9c21,22
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>         for (int idx = 0; idx < 10; ++idx) {
+>             domain.putAttributes(new PutAttributesRequest(domainName, "i-" + idx, "hey", "").withReturnValues(ReturnValues.NONE));
+11,18c24,25
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         final SelectResult result = domain.select(new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domainName)).withConsistentRead(true));
+>         assertThat(result.getItems(), iterableWithSize(10));
+20c27
+<             domain.drop();
+---
+>         domain.deleteDomain(new DeleteDomainRequest().withDomainName(domainName));

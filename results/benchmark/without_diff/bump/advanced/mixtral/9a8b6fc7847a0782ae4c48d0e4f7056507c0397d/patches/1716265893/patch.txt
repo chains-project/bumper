@@ -1,0 +1,15 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+// Change the class level variable
+private BasicTextEncryptor encryptor = new BasicTextEncryptor();
+
+// Change the initialization method
+@PostConstruct
+public void init() {
+    encryptor.setPassword(password);
+}
+
+// Change the encode method
+public String encode(String clearText) {
+    return encryptor.encrypt(clearText);
+}

@@ -1,0 +1,25 @@
+1c1,20
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.project.MavenProjectHelper;
+> import org.codehaus.plexus.components.interactivity.Prompter;
+> 
+> // ...
+> 
+> private MavenProject mavenProject;
+> private MavenProjectHelper mavenProjectHelper;
+> private Prompter prompter;
+> 
+> // ...
+> 
+> @Parameter(defaultValue = "${project}", required = true, readonly = true)
+> public void setMavenProject(MavenProject mavenProject) {
+>     this.mavenProject = mavenProject;
+>     this.mavenProjectHelper = (MavenProjectHelper) mavenProject.getHelper();
+> }
+> 
+> // Use mavenProjectHelper instead of mavenProject
+> // ...
+> mavenProjectHelper.addProject(parent, project);
+\ No newline at end of file

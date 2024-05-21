@@ -1,0 +1,52 @@
+1c1,4
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+---
+> import static java.util.concurrent.TimeUnit.*;
+> 
+> // ...
+> 
+3,10c6,7
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+<     protected Session session() throws IOException {
+---
+> @com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = MINUTES, verbose = false, types = IOException.class)
+> protected com.jcraft.jsch.Session session() throws java.io.IOException {
+12,21c9,12
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+<             final Session session = jsch.getSession(
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+---
+>         com.jcraft.jsch.JSch.setLogger(new com.jcabi.ssh.JschLogger());
+>         final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+>         com.jcabi.log.Logger.debug(this, "Opening SSH session to %s@%s:%s (auth with password)...", this.getLogin(), this.getAddr(), this.getPort());
+>         final com.jcraft.jsch.Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+24,28c15,18
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+<             session.setServerAliveCountMax(Tv.MILLION);
+<             session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+---
+>         long serverAliveInterval = SECONDS.toMillis(10);
+>         session.setServerAliveInterval(serverAliveInterval);
+>         session.setServerAliveCountMax(1_000_000);
+>         session.connect((int) SECONDS.toMillis(10L));
+30,31c20,21
+<         } catch (final JSchException ex) {
+<             throw new IOException(ex);
+---
+>     } catch (final com.jcraft.jsch.JSchException ex) {
+>         throw new java.io.IOException(ex);

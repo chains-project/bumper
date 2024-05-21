@@ -1,0 +1,54 @@
+1c1,10
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+---
+> import com.jcraft.jsch.*;
+> import java.io.*;
+> import java.nio.charset.StandardCharsets;
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> import java.util.concurrent.TimeUnit;
+> import org.cactoos.scalar.Unchecked;
+> import org.cactoos.scalar.LengthOf;
+> import org.cactoos.io.TeeInput;
+> 
+3,9c12
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+---
+> @com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = TimeUnit.MINUTES, verbose = false, types = IOException.class)
+15,24c18
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+---
+>         new Unchecked<>(new LengthOf(new TeeInput(this.key.replaceAll("\r", "").replaceAll("\n\\s+|\n{2,}", "\n").trim(), file))).value();
+29,34c23
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+---
+>             jsch.addIdentity(this.getLogin(), this.key.getBytes(StandardCharsets.UTF_8), null, this.passphrase.getBytes(StandardCharsets.UTF_8));
+36,41c25
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );
+---
+>         com.jcabi.log.Logger.debug(this, "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...", this.getLogin(), this.getAddr(), this.getPort(), file.length());
