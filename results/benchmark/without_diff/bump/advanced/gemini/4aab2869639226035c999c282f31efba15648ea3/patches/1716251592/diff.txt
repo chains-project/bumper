@@ -1,0 +1,22 @@
+1,3c1,3
+< @Override
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+<         final PolicyConfig sub = config.config("storage");
+---
+> @java.lang.Override
+> public com.artipie.security.policy.Policy<?> getPolicy(final com.artipie.security.policy.PolicyConfig config) {
+>     final com.artipie.security.policy.PolicyConfig sub = config.config("storage");
+5,13c5,7
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+<             throw new UncheckedIOException(err);
+---
+>         return new com.artipie.security.policy.YamlPolicy(new com.artipie.asto.blocking.BlockingStorage(new com.artipie.security.policy.FileStorage(sub.string("type"), com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping())));
+>     } catch (final java.io.IOException err) {
+>         throw new java.io.UncheckedIOException(err);

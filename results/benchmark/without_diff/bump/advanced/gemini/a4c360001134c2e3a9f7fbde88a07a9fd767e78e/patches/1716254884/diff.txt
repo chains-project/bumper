@@ -1,0 +1,8 @@
+2c2
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+---
+>     String packagesToScan = System.getenv(GaugeConstant.PACKAGE_TO_SCAN);
+6c6
+<         final String[] packages = packagesToScan.split(",");
+---
+>     String[] packages = packagesToScan.split(",");

@@ -1,0 +1,15 @@
+1c1,10
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+> import org.apache.commons.math3.analysis.function.Sigmoid;
+> 
+> public class Neuron {
+> 
+>     private final Sigmoid sigmoidFunction = new Sigmoid();
+> 
+>     public double output(double input) {
+>         return sigmoidFunction.value(input);
+>     }
+> }
+\ No newline at end of file

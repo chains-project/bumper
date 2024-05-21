@@ -1,0 +1,15 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+14,15c7,9
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>         final SortedMap<MOScope, ManagedObject> newReg = new TreeMap<>(reg);
+>         newReg.put(contextScope, group);
+>         registry.set(server, newReg);

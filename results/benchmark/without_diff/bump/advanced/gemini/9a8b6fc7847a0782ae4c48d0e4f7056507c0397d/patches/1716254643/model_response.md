@@ -1,0 +1,22 @@
+```java
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
+public class GeoStorePBEPasswordEncoder {
+
+    private StandardPBEStringEncryptor encryptor;
+
+    public GeoStorePBEPasswordEncoder(String password, String salt) {
+        encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPassword(password);
+        encryptor.setSalt(salt);
+    }
+
+    public String encode(String password) {
+        return encryptor.encrypt(password);
+    }
+
+    public boolean matches(String rawPassword, String encodedPassword) {
+        return encryptor.checkPassword(rawPassword, encodedPassword);
+    }
+}
+```

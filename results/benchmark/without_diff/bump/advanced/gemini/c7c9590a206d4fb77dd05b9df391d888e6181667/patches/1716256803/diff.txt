@@ -1,0 +1,13 @@
+1a2,12
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> public class SCoverageReportMojo {
+> 
+>     private RenderingContext context;
+> 
+>     public void execute() {
+>         Sink sink = context.getSink();
+>         // ...
+>     }
+> }
+\ No newline at end of file
