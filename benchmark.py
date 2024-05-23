@@ -118,7 +118,7 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
                     update_metadata(project=project, report=report)
                     time.sleep(0.2)
             except KeyboardInterrupt:
-                exit(1)
+                sys.exit(1)
             except Exception as error:
                 print(f"Skipping {project.project_id} because is failing to run:")
                 print(error)

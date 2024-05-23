@@ -1,6 +1,7 @@
 import copy
 import os
 import subprocess
+import sys
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
@@ -81,7 +82,7 @@ class ProjectRepairer:
                         else:
                             print("Failure not fixed, trying to generate new patch")
                 except KeyboardInterrupt:
-                    exit(1)
+                    sys.exit(1)
                 except:
                     print("Failure in running the last repair round, skipping.")
             print(f"Repair failed for this failure (#{failure.detected_fault.identifier}), trying the next one")
@@ -106,7 +107,7 @@ class ProjectRepairer:
             print("Patch generated")
             return patch
         except KeyboardInterrupt:
-            exit(1)
+            sys.exit(1)
         except:
             print("Failing to generate the patch.")
             raise
