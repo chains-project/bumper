@@ -23,7 +23,7 @@ run_benchmark() {
 
 for pipeline in ${pipelines[@]}; do
   run_benchmark $1 $pipeline "True" "without_diff"
-#  git add . && git commit -m "[Benchmark $1] update results" && git push
-#  run_benchmark $1 $pipeline "False" "with_diff"
-#  git add . && git commit -m "[Benchmark $1] update results" && git push
+  git add . && git commit -m "[Benchmark $1] update results" && git push
+  run_benchmark $1 $pipeline "False" "with_diff"
+  git add . && git commit -m "[Benchmark $1] update results" && git push
 done
