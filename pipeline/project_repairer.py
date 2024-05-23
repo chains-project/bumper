@@ -119,12 +119,14 @@ class ProjectRepairer:
         print("File patched")
         print("Checking for validity...")
 
+        container_id = uuid.uuid4().hex
         try:
             result = subprocess.run([
                 'bash',
                 'benchmarks/bump/scripts/test_patched_code.sh',
                 self.project.project_id,
-                patch_applicator.get_patched_code_path(patch, failure)
+                patch_applicator.get_patched_code_path(patch, failure),
+                container_id
             ], timeout=300, stdout=subprocess.PIPE)
             return result
         except subprocess.TimeoutExpired:
@@ -132,7 +134,7 @@ class ProjectRepairer:
             subprocess.run([
                 'bash',
                 'benchmarks/bump/scripts/cleanup_after_failure.sh',
-                self.project.project_id,
+                container_id
             ], stdout=subprocess.PIPE)
 
         return subprocess.CompletedProcess(returncode=1)
