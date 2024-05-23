@@ -2,6 +2,7 @@
 benchmarks/**/repository
 benchmarks/**/filtered_data
 benchmarks/bump/*clients
+benchmarks/**/runs
 .DS_Store
 
 .vscode
