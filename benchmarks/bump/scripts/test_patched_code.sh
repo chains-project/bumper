@@ -5,9 +5,9 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 cd ../
 
-if [ "$#" -ne 2 ]; then
+if [ "$#" -ne 3 ]; then
     echo "ERROR: not enough parameters."
-    echo "use test_patched_code.sh :BreakingUpdateID :PatchedCodePath"
+    echo "use test_patched_code.sh :BreakingUpdateID :PatchedCodePath :containerID"
     exit 1
 fi
 
@@ -16,17 +16,13 @@ if ! [ -f "filtered_data/$1.json" ]; then
     exit 1
 fi
 
-mkdir -p clients/$1
-
-# Saving old dependency version .jar file
-project_id=$(cat filtered_data/$1.json | tr { '\n' | tr , '\n' | tr } '\n' | grep '"project"' | awk  -F'"' '{print $4}')
 patched_version_path=$2
 
-docker run --name "$1" --platform linux/amd64 -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking"
-docker cp $patched_version_path $1:/
-docker exec -it $1 mvn clean test -B | tee $patched_version_path/$1.log
-docker stop $1
-docker remove $1
+docker run --name "$3" --platform linux/amd64 -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking"
+docker cp $patched_version_path $3:/
+docker exec -it $3 mvn clean test -B | tee $patched_version_path/$1.log
+docker stop $3
+docker remove $3
 
 if [ "$(cat $patched_version_path/$1.log | grep -c "BUILD SUCCESS")" -gt 0 ]; then
   exit 0

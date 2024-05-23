@@ -2,6 +2,7 @@ import copy
 import os
 import subprocess
 import sys
+import uuid
 
 from pipeline.failure_extractor import FailureExtractor
 from pipeline.patch_applicator import PatchApplicator
@@ -137,12 +138,14 @@ class ProjectRepairer:
         return subprocess.CompletedProcess(returncode=1)
 
     def check_for_project_validity(self, path: str) -> subprocess.CompletedProcess:
+        container_id = uuid.uuid4().hex
         try:
             result = subprocess.run([
                 'bash',
                 'benchmarks/bump/scripts/test_patched_code.sh',
                 self.project.project_id,
-                path
+                path,
+                container_id
             ], timeout=300, stdout=subprocess.PIPE)
             return result
         except subprocess.TimeoutExpired:
@@ -150,7 +153,7 @@ class ProjectRepairer:
             subprocess.run([
                 'bash',
                 'benchmarks/bump/scripts/cleanup_after_failure.sh',
-                self.project.project_id,
+                container_id
             ], stdout=subprocess.PIPE)
 
         return subprocess.CompletedProcess(returncode=1)

@@ -14,10 +14,12 @@ class Project:
     def from_bump(bump_folder: str, project_id: str):
         with open(f"{bump_folder}/filtered_data/{project_id}.json", "r") as f:
             data = json.load(f)
+            run_identifier = os.getenv("RUN_ID")
+            base_path = f"{bump_folder}/runs/{run_identifier}" if run_identifier else f"{bump_folder}"
             return Project(
                 project_id,
                 project_name=data["project"],
-                path=f"{bump_folder}/clients/{project_id}",
+                path=f"{base_path}/clients/{project_id}",
                 library_name=data["updatedDependency"]["dependencyArtifactID"],
                 library_group_id=data["updatedDependency"]["dependencyGroupID"],
                 old_library_version=data["updatedDependency"]["previousVersion"],

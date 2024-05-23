@@ -5,8 +5,8 @@ parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 cd "$parent_path"
 cd ../
 
-if [ "$#" -ne 1 ]; then
-    echo "Breaking update ID is missing"
+if [ "$#" -ne 2 ]; then
+    echo ":breakingUpdateID :path are missing"
     exit 1
 fi
 
@@ -15,11 +15,11 @@ if ! [ -f "filtered_data/$1.json" ]; then
     exit 1
 fi
 
-if [ -d "clients/$1" ]; then
+if [ -d "$2" ]; then
     exit 0
 fi
 
-mkdir -p clients/$1
+mkdir -p $2
 
 # Saving old dependency version .jar file
 
@@ -29,10 +29,10 @@ dependencyArtifactID=$(cat filtered_data/$1.json | tr { '\n' | tr , '\n' | tr } 
 previousVersion=$(cat filtered_data/$1.json | tr { '\n' | tr , '\n' | tr } '\n' | grep '"previousVersion"' | awk  -F'"' '{print $4}')
 dependency_path=$(echo "$dependencyGroupID" | tr . /)/$dependencyArtifactID/$previousVersion/$dependencyArtifactID-$previousVersion.jar
 
-docker run --name "$1" -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-pre" 
-docker cp $1:/root/.m2/repository/$dependency_path clients/$1
-docker stop $1
-docker remove $1
+container_id=$(docker run -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-pre")
+docker cp $container_id:/root/.m2/repository/$dependency_path $2
+docker stop $container_id
+docker remove $container_id
 
 
 # Saving new dependency version .jar file and client code
@@ -40,8 +40,8 @@ docker remove $1
 newVersion=$(cat filtered_data/$1.json | tr { '\n' | tr , '\n' | tr } '\n' | grep '"newVersion"' | awk  -F'"' '{print $4}')
 dependency_path=$(echo "$dependencyGroupID" | tr . /)/$dependencyArtifactID/$newVersion/$dependencyArtifactID-$newVersion.jar
 
-docker run --name "$1" -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking" 
-docker cp $1:/$project_id clients/$1
-docker cp $1:/root/.m2/repository/$dependency_path clients/$1
-docker stop $1
-docker remove $1
+container_id=$(docker run -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking")
+docker cp $container_id:/$project_id $2
+docker cp $container_id:/root/.m2/repository/$dependency_path $2
+docker stop $container_id
+docker remove $container_id

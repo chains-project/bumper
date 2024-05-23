@@ -98,8 +98,8 @@ def update_metadata(project: Project, report: BenchmarkReport):
 def run_benchmark(key: str, name: str, projects: List[Project], pipeline: PipelineRunningMode, model: LLMType):
     path = f"results/benchmark/{name}/{key}/{pipeline}/{model}"
     report = BenchmarkReport.load(from_path=f"{path}/report.json")
-
-    progress = tqdm(projects, desc=f"Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout,
+    run_id = os.getenv("RUN_ID")
+    progress = tqdm(projects, desc=f"<{run_id}> Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout,
                     miniters=1)
     for project in progress:
         with nostdout():
@@ -151,6 +151,7 @@ def get_bump() -> List[Project]:
                 'bash',
                 'benchmarks/bump/scripts/clone_client_code.sh',
                 project.project_id,
+                project.path
             ])
             result.append(project)
 

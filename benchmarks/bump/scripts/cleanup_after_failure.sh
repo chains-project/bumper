@@ -7,7 +7,7 @@ cd ../
 
 if [ "$#" -ne 2 ]; then
     echo "ERROR: not enough parameters."
-    echo "use cleanup_after_failure.sh :BreakingUpdateID"
+    echo "use cleanup_after_failure.sh :containerID"
     exit 1
 fi
 
