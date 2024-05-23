@@ -18,9 +18,9 @@ fi
 
 patched_version_path=$2
 
-docker run --name "$3" --platform linux/amd64 -it --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking"
+docker run --name "$3" --platform linux/amd64 -i --entrypoint /bin/sh -d "ghcr.io/chains-project/breaking-updates:$1-breaking"
 docker cp $patched_version_path $3:/
-docker exec -it $3 mvn clean test -B | tee $patched_version_path/$1.log
+docker exec -i $3 mvn clean test -B | tee $patched_version_path/$1.log
 docker stop $3
 docker remove $3
 
