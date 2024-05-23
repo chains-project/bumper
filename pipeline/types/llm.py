@@ -53,7 +53,7 @@ class LLMResolver:
     @staticmethod
     def init_llama() -> BaseChatModel:
         return ChatGroq(
-            model_name="llama2-70b-8192",
+            model_name="llama3-70b-8192",
             temperature=os.getenv("LLM_TEMPERATURE", 0.5),
             model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)}
         )
