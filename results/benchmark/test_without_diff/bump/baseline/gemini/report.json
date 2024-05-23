@@ -1,0 +1,11 @@
+{
+    "0abf7148300f40a1da0538ab060552bca4a2f1d8": {
+        "py/object": "pipeline.types.project_repair_status.ProjectRepairStatus",
+        "initial_errors_count": 1,
+        "final_errors_count": 1,
+        "fixed_errors_count": 0,
+        "generated_patch_count": 0,
+        "repaired": false,
+        "patches": []
+    }
+}
