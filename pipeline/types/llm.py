@@ -20,6 +20,7 @@ class LLMType(Enum):
     def get_model(self) -> BaseChatModel:
         return LLMResolver.get_model(self)
 
+
 class LLMResolver:
     @staticmethod
     def get_model(for_type: LLMType) -> BaseChatModel:
@@ -31,7 +32,6 @@ class LLMResolver:
         }
 
         return (definitions[for_type]())
-        
 
     @staticmethod
     def init_gemini() -> BaseChatModel:
@@ -47,17 +47,17 @@ class LLMResolver:
         return ChatOpenAI(
             model_name="gpt-4",
             temperature=os.getenv("LLM_TEMPERATURE", 0.5),
-            model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)}
+            model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)},
         )
 
     @staticmethod
     def init_llama() -> BaseChatModel:
         return ChatGroq(
-            model_name="llama2-70b-4096",
+            model_name="llama2-70b-8192",
             temperature=os.getenv("LLM_TEMPERATURE", 0.5),
             model_kwargs={"top_p": os.getenv("LLM_TOP_P", 1.0)}
         )
-    
+
     @staticmethod
     def init_mixtral() -> BaseChatModel:
         return ChatGroq(

@@ -23,7 +23,8 @@ from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
 from benchmark import BenchmarkReport
 
-def main(model: LLMType, pipeline: PipelineRunningMode, name: str, benchmark: str, project_id: str):
+
+def main(model: LLMType, pipeline: PipelineRunningMode, name: str, benchmark: str, project_id: str, full_run: bool):
     bump_folder = os.getenv("BUMP_PATH")
     path = f"results/benchmark/{name}/{benchmark}/{pipeline}/{model}"
     report = BenchmarkReport.load(from_path=f"{path}/report.json")
@@ -64,27 +65,37 @@ def main(model: LLMType, pipeline: PipelineRunningMode, name: str, benchmark: st
         patch_applicator = PatchApplicator(project)
         patch_applicator.save_patched_code(patch, failure)
         project.path = f"{project.path}/patched_code/{id}"
-    
-    # project.path = original_project_path
+        if full_run:
+            print(f"Running patch {id} version")
+            test_patched_code(project)
 
     print("Running final version")
+    test_patched_code(project)
+    extractor = FailureExtractor(project)
+    failures = extractor.get_failures(base_path=project.path)
+    if len(failures) == 0:
+        print(f"Project {project_id} fully repaired!")
+    else:
+        print(f"Project {project_id} has {len(failures)} failures at completion.")
+
+    print(f"\n\nFinal version path: {project.path}\n\n")
+
+
+def test_patched_code(project: Project):
     try:
-        result = subprocess.run([
+        subprocess.run([
             'bash',
             'benchmarks/bump/scripts/test_patched_code.sh',
             project.project_id,
             f"{project.path}/{project.project_name}",
         ], timeout=300, stdout=subprocess.PIPE)
-        print (f"Result: {result}")
     except subprocess.TimeoutExpired:
-        print("[ERROR] test_patched_code.sh timed out! Cleaning up before continuing...")
         subprocess.run([
             'bash',
             'benchmarks/bump/scripts/cleanup_after_failure.sh',
             project.project_id,
-        ], stdout=subprocess.PIPE)    
-    
-    print(f"Final version path: {project.path}")
+        ], stdout=subprocess.PIPE)
+
 
 if __name__ == "__main__":
     load_dotenv(override=True)
@@ -96,6 +107,7 @@ if __name__ == "__main__":
     parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)
     parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE]", type=PipelineRunningMode,
                         choices=list(PipelineRunningMode), required=True)
+    parser.add_argument("--full", help="Run the oracle after each patch", type=bool, required=False, default=False)
 
     options = parser.parse_args()
     main(
@@ -103,5 +115,6 @@ if __name__ == "__main__":
         pipeline=options.pipeline,
         model=options.model,
         benchmark=options.benchmark or "bump",
-        project_id=options.project
+        project_id=options.project,
+        full_run=options.full
     )

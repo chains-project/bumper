@@ -9,8 +9,10 @@ class ProjectRepairStatus:
             patches=[],
             repaired: bool = False,
             initial_errors_count=0,
+            final_errors_count=0,
     ) -> None:
         self.initial_errors_count = initial_errors_count
+        self.final_errors_count = final_errors_count
         self.fixed_errors_count = fixed_errors_count
         self.generated_patch_count = generated_patch_count
         self.repaired = repaired
@@ -21,4 +23,5 @@ class ProjectRepairStatus:
         self.fixed_errors_count += status.fixed_errors_count
         self.patches = self.patches + status.patches
         self.repaired = True if self.repaired and status.repaired else False
+        self.final_errors_count = status.final_errors_count
         return self
