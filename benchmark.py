@@ -19,6 +19,7 @@ from pipeline.types.project import Project
 from dotenv import load_dotenv
 from pipeline.types.project_repair_status import ProjectRepairStatus
 
+
 class DummyFile(object):
     file = None
 
@@ -99,7 +100,11 @@ def run_benchmark(key: str, name: str, projects: List[Project], pipeline: Pipeli
     path = f"results/benchmark/{name}/{key}/{pipeline}/{model}"
     report = BenchmarkReport.load(from_path=f"{path}/report.json")
     run_id = os.getenv("RUN_ID")
-    progress = tqdm(projects, desc=f"<{run_id}> Running projects for [{name}/{key}/{pipeline}/{model}]...", file=sys.stdout,
+    without_apidiff = os.getenv("WITHOUT_APIDIFF") == "True"
+
+    progress = tqdm(projects,
+                    desc=f"<{run_id} | {without_apidiff}> Running projects for [{name}/{key}/{pipeline}/{model}]...",
+                    file=sys.stdout,
                     miniters=1)
     for project in progress:
         with nostdout():

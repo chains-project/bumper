@@ -6,6 +6,7 @@ import subprocess
 import sys
 import time
 from typing import List
+import uuid
 
 import jsonpickle
 from tqdm import tqdm
@@ -40,6 +41,7 @@ def main(model: LLMType, pipeline: PipelineRunningMode, name: str, benchmark: st
         'bash',
         'benchmarks/bump/scripts/clone_client_code.sh',
         project.project_id,
+        project.path
     ])
     subprocess.call(f"rm -rf {project.path}/patches", shell=True)
     subprocess.call(f"rm -rf {project.path}/patched_code", shell=True)
@@ -82,18 +84,20 @@ def main(model: LLMType, pipeline: PipelineRunningMode, name: str, benchmark: st
 
 
 def test_patched_code(project: Project):
+    container_id = uuid.uuid4().hex
     try:
         subprocess.run([
             'bash',
             'benchmarks/bump/scripts/test_patched_code.sh',
             project.project_id,
             f"{project.path}/{project.project_name}",
+            container_id    
         ], timeout=300, stdout=subprocess.PIPE)
     except subprocess.TimeoutExpired:
         subprocess.run([
             'bash',
             'benchmarks/bump/scripts/cleanup_after_failure.sh',
-            project.project_id,
+            container_id,
         ], stdout=subprocess.PIPE)
 
 
