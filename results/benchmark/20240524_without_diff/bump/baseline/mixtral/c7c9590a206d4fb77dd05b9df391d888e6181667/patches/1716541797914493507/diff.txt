@@ -1,0 +1,18 @@
+1,5c1,5
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import org.apache.maven.doxia.siterenderer.DocumentContent;
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
+> import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+> 
+21a22,26
+> 
+>         SiteRenderingContext siteContext = sink.getRenderingContext();
+>         siteContext.setSiteLocales( siteLocales );
+>         siteContext.setSkin( skinArtifact );
+>         siteContext.setSkinModel( skinModel );

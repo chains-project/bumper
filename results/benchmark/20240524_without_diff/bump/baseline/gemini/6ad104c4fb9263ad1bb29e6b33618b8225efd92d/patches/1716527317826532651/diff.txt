@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class ChachaDecoder {
+> 
+>     public ChachaDecoder(TlsFatalAlert fatalAlert) {
+>         if (fatalAlert.getAlertDescription() != AlertDescription.close_notify) {
+>             throw fatalAlert;
+>         }
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,8 @@
+import org.yaml.snakeyaml.inspector.TrustedPrefixesTagInspector;
+
+// ...
+
+@Override
+protected TrustedTagInspector createTagInspector() {
+    return new TrustedPrefixesTagInspector(Collections.emptyList());
+}

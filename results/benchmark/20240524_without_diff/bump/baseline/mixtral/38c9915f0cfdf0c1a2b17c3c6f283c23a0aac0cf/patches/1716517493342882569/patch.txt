@@ -1,0 +1,6 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+//...
+
+IoCheckedScalar<String> scalar = new IoCheckedScalar<>(() -> new IoCheckedBytes(new BytesOf("some value")).asBytes());
+String value = scalar.value();

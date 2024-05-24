@@ -1,0 +1,9 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public RtTransaction(RtTransactionContext context, RtTransactionParent parent, TextEnvelope title) {
+    super(context, parent, new UncheckedText(new TrimmedText(title).asString()));
+    // ...
+}

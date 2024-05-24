@@ -1,0 +1,10 @@
+4a5,7
+>             final Config cfg = new Config.Simple();
+>             cfg.setString("type", sub.string("type"));
+>             cfg.set("config", sub.toString());
+7,8c10,11
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                     new StoragesLoader().newObject(
+>                         sub.string("type"), cfg

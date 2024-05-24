@@ -1,0 +1,6 @@
+29a30
+>                 final String expectedDigestMessage = "Expected digest: " + digest;
+33c34
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(true, expectedDigestMessage)

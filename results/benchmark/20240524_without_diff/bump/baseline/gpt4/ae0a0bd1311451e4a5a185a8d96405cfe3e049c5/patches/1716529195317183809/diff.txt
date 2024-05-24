@@ -1,0 +1,9 @@
+7c7
+<             output,
+---
+>         output.toLowerCase(),
+9,10c9
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+---
+>             String.format("latest: digest: %s", original.digest().toLowerCase())

@@ -1,0 +1,6 @@
+17a18
+>         final String message = throwable.getMessage();
+19c20
+<             throwable.getMessage(),
+---
+>             message,

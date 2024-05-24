@@ -1,0 +1,10 @@
+2a3
+>     String wildcard = "*";
+4c5
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+---
+>         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), wildcard);
+9c10
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+---
+>             DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), wildcard);

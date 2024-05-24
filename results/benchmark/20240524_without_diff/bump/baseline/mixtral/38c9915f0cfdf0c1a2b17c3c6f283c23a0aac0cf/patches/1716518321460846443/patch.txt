@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(String hash) {
+  this.hash = hash;
+  this.length = new LengthOf<>(inputOf(hash));
+}

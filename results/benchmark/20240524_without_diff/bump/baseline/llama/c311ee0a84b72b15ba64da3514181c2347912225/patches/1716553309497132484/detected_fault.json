@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 369049246,
+    "in_class_code": "/**\n * Test case for {@link ManifestRef}.\n *\n * @since 0.1\n */\npublic final class ManifestRefTest {\n    @ParameterizedTest\n    @ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\n    void failsToResolveInvalid(final String string) {\n        final Throwable throwable = Assertions.assertThrows(IllegalStateException.class, () -> new ManifestRef.FromString(string).link().string());\n        MatcherAssert.assertThat(throwable.getMessage(), new AllOf<>(Arrays.asList(new StringContains(true, \"Unsupported reference\"), new StringContains(false, string))));\n    }\n}",
+    "qualified_in_class_code": "/**\n * Test case for {@link ManifestRef}.\n *\n * @since 0.1\n */\npublic final class ManifestRefTest {\n    @org.junit.jupiter.params.ParameterizedTest\n    @org.junit.jupiter.params.provider.ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\n    void failsToResolveInvalid(final java.lang.String string) {\n        final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());\n        org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.AllOf<>(java.util.Arrays.asList(new org.hamcrest.core.StringContains(true, \"Unsupported reference\"), new org.hamcrest.core.StringContains(false, string))));\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  required: java.lang.String\n  found: boolean,java.lang.String\n  reason: actual and formal argument lists differ in length\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/ref/ManifestRefTest.java:[58,21] constructor StringContains in class org.hamcrest.core.StringContains cannot be applied to given types;",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/ref/ManifestRefTest.java",
+        "client_line_position": "58"
+    },
+    "client_end_line_number": 62,
+    "client_line_number": 42,
+    "method_code": "@ParameterizedTest\n    @ValueSource(strings = {\n        \"\",\n        \"a:b:c\",\n        \".123\"\n    })\n    void failsToResolveInvalid(final String string) {\n        final Throwable throwable = Assertions.assertThrows(\n            IllegalStateException.class,\n            () -> new ManifestRef.FromString(string).link().string()\n        );\n        MatcherAssert.assertThat(\n            throwable.getMessage(),\n            new AllOf<>(\n                Arrays.asList(\n                    new StringContains(true, \"Unsupported reference\"),\n                    new StringContains(false, string)\n                )\n            )\n        );\n    }",
+    "qualified_code": "@org.junit.jupiter.params.ParameterizedTest\n@org.junit.jupiter.params.provider.ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\nvoid failsToResolveInvalid(final java.lang.String string) {\n    final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());\n    org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.AllOf<>(java.util.Arrays.asList(new org.hamcrest.core.StringContains(true, \"Unsupported reference\"), new org.hamcrest.core.StringContains(false, string))));\n}",
+    "method_name": "failsToResolveInvalid"
+}

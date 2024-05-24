@@ -1,0 +1,8 @@
+1c1,3
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+>   // The library org.jasypt.spring.security.PasswordEncoder has been removed, 
+>   // please replace with an alternative password encoding library
+>   import org.springframework.security.crypto.password.PasswordEncoder;
+\ No newline at end of file

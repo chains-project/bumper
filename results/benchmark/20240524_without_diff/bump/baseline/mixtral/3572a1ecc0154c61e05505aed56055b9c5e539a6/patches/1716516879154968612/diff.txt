@@ -1,0 +1,23 @@
+1c1,18
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TIOStreamTransport;
+> 
+> import java.io.InputStream;
+> import java.io.OutputStream;
+> 
+> public class AppenderUtils {
+>     // ...
+> 
+>     private static TTransport createTransport(TConfiguration conf, InputStream in, OutputStream out) {
+>         return new TIOStreamTransport(conf, in, out);
+>     }
+> 
+>     private static TTransport createTransport(TConfiguration conf, OutputStream out) {
+>         return new TIOStreamTransport(conf, out);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

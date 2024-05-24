@@ -1,0 +1,9 @@
+import org.cactoos.text.TextOf;
+import org.cactoos.text.Trimmed;
+
+// ...
+
+public RtTransaction(String raw) {
+  this.raw = new Trimmed(new TextOf(raw));
+  // ...
+}

@@ -1,0 +1,10 @@
+1d0
+< @Override
+3a3
+>         final Config cfg = new Config.Simple(sub.asMap());
+7,8c7,8
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                     new StoragesLoader().newObject(
+>                         sub.string("type"), cfg

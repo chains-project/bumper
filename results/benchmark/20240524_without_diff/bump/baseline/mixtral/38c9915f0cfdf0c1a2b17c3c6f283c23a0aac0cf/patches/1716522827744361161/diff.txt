@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.collection.Filtered;
+\ No newline at end of file
+---
+> import org.cactoos.iterable.Filtered;
+> 
+> // ...
+> 
+> @Override
+> public InputStream balanceStream() throws IOException {
+>   return new Filtered<>(
+>     inputs -> Iterables.size(inputs) > 0,
+>     this::balanceStreams
+>   ).stream();
+> }
+\ No newline at end of file

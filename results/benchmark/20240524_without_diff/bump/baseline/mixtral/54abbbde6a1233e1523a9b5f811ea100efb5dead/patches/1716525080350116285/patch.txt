@@ -1,0 +1,9 @@
+import com.jcabi.ssh.SshByPassword;
+
+public class MyClass {
+    public void myMethod() {
+        SshByPassword ssh = new SshByPassword("user", "password");
+        // use the new added method 'execute' instead of 'exec'
+        ssh.execute("echo 'Hello, World!'");
+    }
+}

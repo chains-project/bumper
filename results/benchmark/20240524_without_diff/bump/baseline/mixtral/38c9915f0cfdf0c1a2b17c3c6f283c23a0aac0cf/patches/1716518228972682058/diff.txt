@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtStore store, RtUser user, RtAmount amount, RtProof proof, RtComment comment) {
+>   this.store = store;
+>   this.user = user;
+>   this.amount = amount;
+>   this.proof = proof;
+>   this.comment = comment;
+>   this.id = new LengthOf<RtProof>(proof).intValue();
+> }
+\ No newline at end of file

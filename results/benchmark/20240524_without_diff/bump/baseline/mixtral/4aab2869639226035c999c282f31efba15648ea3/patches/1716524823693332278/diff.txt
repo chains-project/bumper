@@ -1,0 +1,31 @@
+4a5
+>       Configasto configAsto = Configasto.create(sub.toString());
+7,9c8,9
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>               new StoragesLoader()
+>                   .newObject(configAsto.type(), configAsto.yamlMapping())
+15a16,35
+> 
+>   static class Configasto {
+>     private Configasto(final String yamlMapping) {
+>       this.yamlMapping = yamlMapping;
+>     }
+> 
+>     static Configasto create(final String config) {
+>       return new Configasto(Yaml.createYamlInput(config).readYamlMapping());
+>     }
+> 
+>     String type() {
+>       return yamlMapping.string("type");
+>     }
+> 
+>     YamlMapping yamlMapping() {
+>       return yamlMapping;
+>     }
+> 
+>     private final YamlMapping yamlMapping;
+>   }
+\ No newline at end of file

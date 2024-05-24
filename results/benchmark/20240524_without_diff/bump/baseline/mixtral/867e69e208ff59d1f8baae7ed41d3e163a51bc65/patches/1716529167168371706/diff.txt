@@ -1,0 +1,8 @@
+1a2,7
+> import org.apache.thrift.transport.TNonblockingTransport;
+> import org.apache.thrift.transport.layered.TFramedTransport$Factory;
+> 
+> // ...
+> 
+> TFramedTransport transport = new TFramedTransport(new TNonblockingTransport(new TFramedTransport.Factory()));
+\ No newline at end of file

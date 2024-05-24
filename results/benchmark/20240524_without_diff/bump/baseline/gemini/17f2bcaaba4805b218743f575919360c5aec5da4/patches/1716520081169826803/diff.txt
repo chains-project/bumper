@@ -1,0 +1,8 @@
+11c11,15
+<                 assertEquals(PGS_ShapePredicates.area(mesh), PGS_ShapePredicates.area(mergedMesh), 1e-6);
+---
+>                 double areaMergedMesh = 0;
+>                 for (PShape face : PGS_Conversion.getChildren(mergedMesh)) {
+>                         areaMergedMesh += PGS_ShapePredicates.area(face);
+>                 }
+>                 assertEquals(PGS_ShapePredicates.area(mesh), areaMergedMesh, 1e-6);

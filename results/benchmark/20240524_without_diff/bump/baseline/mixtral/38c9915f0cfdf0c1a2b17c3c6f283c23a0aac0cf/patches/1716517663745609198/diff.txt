@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double rtScore(String input) throws ApiException {
+>     InputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+>     return new LengthOf(new IterableOf(in)).longValue();
+> }
+\ No newline at end of file

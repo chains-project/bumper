@@ -1,0 +1,15 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+// ...
+
+public int getNumPoints() {
+  int numPoints = 0;
+  numPoints += new PointIndexMMWrapper().size();
+  numPoints += new PHTreeMMP().size();
+  numPoints += new MinHeap().size();
+  numPoints += new MinMaxHeap().size();
+  return numPoints;
+}

@@ -1,0 +1,4 @@
+2c2
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, "**/*.java");

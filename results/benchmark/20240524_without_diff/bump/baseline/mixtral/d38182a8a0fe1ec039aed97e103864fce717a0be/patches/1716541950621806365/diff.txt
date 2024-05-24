@@ -1,0 +1,44 @@
+27,28c27,28
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                         public Optional<AuthUser> user() {
+>                             return Optional.of(new AuthUser("alice"));
+54a55,90
+> 
+> class AuthUser implements com.artipie.http.auth.AuthUser {
+>     private final String name;
+> 
+>     AuthUser(String name) {
+>         this.name = name;
+>     }
+> 
+>     @Override
+>     public String authContext() {
+>         return null;
+>     }
+> 
+>     @Override
+>     public boolean equals(Object o) {
+>         if (this == o) return true;
+>         if (!(o instanceof AuthUser)) return false;
+>         AuthUser authUser = (AuthUser) o;
+>         return Objects.equals(name, authUser.name);
+>     }
+> 
+>     @Override
+>     public int hashCode() {
+>         return Objects.hash(name);
+>     }
+> 
+>     @Override
+>     public String name() {
+>         return name;
+>     }
+> 
+>     @Override
+>     public String toString() {
+>         return name;
+>     }
+> }
+\ No newline at end of file

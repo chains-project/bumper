@@ -1,0 +1,19 @@
+import org.tinspin.index.util.MinHeap;
+
+import java.util.Collections;
+import java.util.List;
+
+public class FastPolygonizerTests {
+    // ...
+
+    @Override
+    public void testNoding() {
+        List<SegmentString> lines = createLines();
+        MinHeap<SegmentString> nodingHeap = new MinHeap<>(lines);
+        Collections.sort(lines);
+
+        // ...
+    }
+
+    // ...
+}

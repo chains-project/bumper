@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+//...
+
+public double rtScore(String url) throws IOException {
+    //...
+    int length = new LengthOf<Iterable<Token>>(tokens).intValue();
+    //...
+}

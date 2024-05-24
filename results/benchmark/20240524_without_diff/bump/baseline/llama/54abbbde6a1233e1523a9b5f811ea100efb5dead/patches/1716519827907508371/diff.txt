@@ -1,0 +1,9 @@
+1c1,4
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aoc.annotation.Annotations;
+> import com.jcabi.aoc.annotation.Tv;
+> 
+> // rest of the code remains the same
+\ No newline at end of file

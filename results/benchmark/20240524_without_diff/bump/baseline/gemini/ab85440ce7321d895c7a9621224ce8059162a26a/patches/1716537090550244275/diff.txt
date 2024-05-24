@@ -1,0 +1,20 @@
+22,26c22,24
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains calculated digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+---
+>                 final String expectedMessage = String.format(
+>                     "Digest mismatch. Expected: %s, actual: %s",
+>                     digest,
+28d25
+<                     )
+31c28
+<                     "Exception message contains expected digest",
+---
+>                     "Exception message contains expected message",
+33c30
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(true, expectedMessage)

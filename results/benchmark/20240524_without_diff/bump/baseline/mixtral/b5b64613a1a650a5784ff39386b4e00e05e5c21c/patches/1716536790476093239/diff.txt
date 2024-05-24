@@ -1,0 +1,11 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8c2
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>     if (isAllBlank(server.getUrl(), Objects.requireNonNull(server.getArtifactory()).getUrl(), Objects.requireNonNull(server.getDistribution()).getUrl(),

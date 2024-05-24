@@ -1,0 +1,4 @@
+private Matcher<String> manifestPushed() {
+    String digest = this.image.digest();
+    return new StringContains(String.format("latest: digest: %s", digest));
+}

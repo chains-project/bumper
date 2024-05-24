@@ -1,0 +1,6 @@
+1a2
+>     StringStartsWith startsWith = new StringStartsWith("/v2/test/blobs/uploads/");
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             startsWith

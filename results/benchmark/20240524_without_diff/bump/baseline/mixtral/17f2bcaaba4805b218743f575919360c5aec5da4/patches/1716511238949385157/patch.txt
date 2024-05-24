@@ -1,0 +1,20 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+// ...
+
+XoRoShiRo128PlusRandom rnd = new XoRoShiRo128PlusRandom();
+
+// ...
+
+public int getSize() {
+    int size = PointIndexMMWrapper.size();
+    size += PHTreeMMP.size();
+    MinHeap minHeap = new MinHeap(10);
+    size += minHeap.size();
+    MinMaxHeap minMaxHeap = new MinMaxHeap(10);
+    size += minMaxHeap.size();
+    return size;
+}

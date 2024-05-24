@@ -1,0 +1,5 @@
+3c3,4
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+>     TrustedTagInspector trustedTagInspector = new TrustedTagInspector();
+>     loadingConfig.setTagInspector(trustedTagInspector);

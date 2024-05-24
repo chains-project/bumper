@@ -1,0 +1,23 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinHeapI;
+import org.tinspin.index.util.MinMaxHeap;
+import org.tinspin.index.util.MinMaxHeapI;
+
+// ...
+
+public class FastPolygonizerTests {
+    // ...
+
+    @Test
+    void testPolygonizer() {
+        XoRoShiRo128PlusRandom rnd = new XoRoShiRo128PlusRandom();
+        PointIndexMMWrapper index = new PointIndexMMWrapper();
+        // ...
+        int size = index.size();
+        // ...
+    }
+
+    // ...
+}

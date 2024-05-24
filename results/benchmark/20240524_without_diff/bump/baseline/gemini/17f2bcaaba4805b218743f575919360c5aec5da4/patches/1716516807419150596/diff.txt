@@ -1,0 +1,14 @@
+1c1,9
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.Assert.assertNotNull;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @org.junit.Test
+>     public void test() {
+>         assertNotNull(null);
+>     }
+> }
+\ No newline at end of file

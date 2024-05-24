@@ -1,0 +1,14 @@
+import org.cactoos.Scalar;
+import org.cactoos.io.IoCheckedBytes;
+import org.cactoos.text.TextOfScalar;
+
+// ...
+
+public class RtNetwork {
+    // ...
+
+    @Override
+    protected Scalar<byte[]> body() throws IOException {
+        return new IoCheckedBytes(new TextOfScalar(super.body()));
+    }
+}

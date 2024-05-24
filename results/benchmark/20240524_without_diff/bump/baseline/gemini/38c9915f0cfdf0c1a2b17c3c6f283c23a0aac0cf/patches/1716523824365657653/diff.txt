@@ -1,0 +1,22 @@
+1c1,17
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+>   import org.cactoos.bytes.BytesOf;
+>   import org.cactoos.text.Joined;
+> 
+>   import java.nio.charset.StandardCharsets;
+> 
+>   public class WalletsIn {
+> 
+>       public WalletsIn(String url, String apiKey, String walletId) {
+>           BytesOf body = new BytesOf(new Joined(
+>                   "{\"walletId\": \"",
+>                   walletId,
+>                   "\"}"
+>           ).asString(), StandardCharsets.UTF_8);
+> 
+>           // ...
+>       }
+>   }
+\ No newline at end of file

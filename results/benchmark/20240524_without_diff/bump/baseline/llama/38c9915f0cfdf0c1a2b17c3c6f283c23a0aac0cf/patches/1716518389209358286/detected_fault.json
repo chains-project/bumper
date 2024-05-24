@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1910438136,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /java-api/src/main/java/io/zold/api/RtNetwork.java:[33,1] class, interface, or enum expected",
+        "client_file_path": "/java-api/src/main/java/io/zold/api/RtNetwork.java",
+        "client_line_position": "33"
+    },
+    "client_end_line_number": 34,
+    "client_line_number": 34,
+    "method_code": "import org.cactoos.scalar.Reduced;",
+    "qualified_code": "import org.cactoos.scalar.Reduced;",
+    "method_name": "import"
+}

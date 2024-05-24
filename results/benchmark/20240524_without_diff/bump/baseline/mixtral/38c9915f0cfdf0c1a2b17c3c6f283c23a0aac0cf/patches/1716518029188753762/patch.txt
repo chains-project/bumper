@@ -1,0 +1,14 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public RtTransaction(String hash, String data, UserApi userApi) {
+  super(
+    new TextEnvelope(
+      new UncheckedText(data),
+      new Trimmed(new TextOfScalar(userApi::currentUserId))
+    ),
+    hash
+  );
+}

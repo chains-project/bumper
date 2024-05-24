@@ -1,0 +1,15 @@
+21a22,23
+>                 final String expectedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+>                 final String actualDigest = Throwables.getRootCause(throwable).getMessage();
+24c26
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,
+27c29
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         expectedDigest
+32c34
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,

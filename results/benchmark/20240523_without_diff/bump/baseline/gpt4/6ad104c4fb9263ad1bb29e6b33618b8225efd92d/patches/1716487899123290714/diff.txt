@@ -1,0 +1,4 @@
+8c8
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+---
+>   if (!java.security.MessageDigest.isEqual(calculatedMAC, receivedMAC)) {

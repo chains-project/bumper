@@ -1,0 +1,30 @@
+1c1,25
+< import org.locationtech.jts.geom.Polygon;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+> 
+>     // ...
+> 
+>     @Test
+>     public void testPolygonize() {
+>         // ...
+>         MinHeap minHeap = new MinHeap(10);
+>         // ...
+>         int size = minHeap.size();
+>         // ...
+>     }
+> 
+>     // ...
+> 
+> }
+\ No newline at end of file

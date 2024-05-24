@@ -1,0 +1,9 @@
+import com.jcabi.ssh.SshByPassword;
+
+public class MyClass {
+    @Tv
+    public void myMethod() {
+        SshByPassword ssh = new SshByPassword("user", "password", "host");
+        // use ssh object here
+    }
+}

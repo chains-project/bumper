@@ -1,0 +1,4 @@
+10c10
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                             .map(user -> new Authentication.AuthUser(user.name(), ""))

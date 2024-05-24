@@ -1,0 +1,21 @@
+1c1,16
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Joined;
+> 
+> // ...
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     @Override
+>     protected Text asText() {
+>         return new Joined(" ", new Text[] {
+>             new BytesOf(new TextOf("Name")),
+>             new BytesOf(new TextOf("Balance")),
+>             new BytesOf(new TextOf("Status"))
+>         });
+>     }
+> }
+\ No newline at end of file

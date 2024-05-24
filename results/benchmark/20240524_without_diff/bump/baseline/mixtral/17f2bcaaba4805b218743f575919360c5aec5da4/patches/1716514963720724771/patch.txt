@@ -1,0 +1,14 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+// ...
+
+int sizeOrgJtsLineString = new LineString(new Coordinate[0]).getNumPoints();
+int sizePointIndexMMWrapper = new PointIndexMMWrapper().size();
+int sizePHTreeMMP = new PHTreeMMP().size();
+int sizeMinHeap = new MinHeap().size();
+int sizeMinMaxHeap = new MinMaxHeap().size();
+
+// Use the appropriate size variable based on your needs

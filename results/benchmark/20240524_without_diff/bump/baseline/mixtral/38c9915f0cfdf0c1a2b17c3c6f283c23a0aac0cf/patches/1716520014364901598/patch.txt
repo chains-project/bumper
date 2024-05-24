@@ -1,0 +1,9 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.NoNulls;
+
+// ...
+
+public RtTransaction(String id, Scalar<Transaction> tx) {
+  this.id = id;
+  this.tx = new NoNulls<>(tx); // use NoNulls instead of UncheckedScalar
+}

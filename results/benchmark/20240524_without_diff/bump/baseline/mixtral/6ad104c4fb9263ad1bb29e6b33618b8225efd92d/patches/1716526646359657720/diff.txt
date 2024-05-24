@@ -1,0 +1,15 @@
+0a1
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+1a3,13
+> 
+> // ...
+> 
+> @Override
+> public void decode(InputStream input, ByteQueue queue) throws IOException {
+>     int tag = input.read();
+>     if (tag != TAG_APPLICATION_DATA) {
+>         throw new TlsFatalAlert(AlertDescription.decode(input));
+>     }
+>     // ...
+> }
+\ No newline at end of file

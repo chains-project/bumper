@@ -1,0 +1,14 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.TextOf;
+
+...
+
+public RtTransaction(String id, TextEnvelope<String> title, TextEnvelope<String> description, TextEnvelope<String> from, TextEnvelope<String> to, TextEnvelope<String> amount, TextEnvelope<String> fee, TextEnvelope<String> timestamp) {
+    super(
+        id,
+        new TextOf(title.asString() + ": " + description.asString()),
+        new TextOf(from.asString() + " -> " + to.asString()),
+        new TextOf(amount.asString() + " (" + fee.asString() + ")"),
+        new TextOf(new Date(Long.parseLong(timestamp.asString())).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+    );
+}

@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+11c10,11
+<             new IsHeader("Docker-Upload-UUID", Matchers::not(Matchers.isEmptyString()))
+---
+>             new IsHeader("Docker-Upload-UUID", Matchers::not(Matchers.isEmptyString())),
+>             new IsHeader("X-Docker-Upload-UUID", Matchers::not(Matchers.isEmptyString()))

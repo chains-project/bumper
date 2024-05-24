@@ -1,0 +1,18 @@
+import org.cactoos.scalar.Solid;
+
+// ...
+
+public class WalletsIn implements In<Wallet> {
+  // ...
+
+  @Override
+  protected Wallet valueOf(final String code) throws IOException {
+    try (InputStream is = new URL(url(code)).openStream()) {
+      return new JsonInput(is).input(new Solid<Wallet>(
+        new ScalarOf<Wallet>(() -> Wallet.fromJson(new JsonReader(is)))
+      ));
+    }
+  }
+
+  // ...
+}

@@ -1,0 +1,20 @@
+1d0
+< // TODO: review this AI generated patch!
+4d2
+<     try {
+7d4
+<         /* White stained glass borders as default, Green stained glass borders for active */
+22,23d18
+<         /* Outgoing Chat Button */
+<         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers")) {
+25a21
+> 
+43d38
+<         }
+45,46d39
+<         /* Incoming Chat Button */
+<         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers")) {
+48a42
+> 
+64a59
+>     }));

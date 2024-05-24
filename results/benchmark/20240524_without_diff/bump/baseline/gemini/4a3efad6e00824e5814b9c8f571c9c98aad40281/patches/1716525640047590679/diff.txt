@@ -1,0 +1,13 @@
+1c1,8
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.enumerations.CertificationPermission;
+> import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+> 
+> public class Signer {
+>   public void sign(PAdESSignatureParameters parameters) {
+>     parameters.setPermission(CertificationPermission.SIGNING);
+>   }
+> }
+\ No newline at end of file

@@ -1,0 +1,73 @@
+Here is a potential patch for the failing code:
+```java
+@Override
+public void init(Player player, InventoryContents contents) {
+    ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+
+    /* White stained glass borders as default, Green stained glass borders for active */
+    ItemStack customBorders = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+    ItemMeta borderMeta = customBorders.getItemMeta();
+    borderMeta.setDisplayName(" ");
+    customBorders.setItemMeta(borderMeta);
+    contents.fillBorders(ClickableItem.empty(customBorders));
+
+    if (targetTranslator.getTranslatingChatOutgoing() || targetTranslator.getTranslatingChatIncoming()) {
+        ItemStack customBordersActive = XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+        ItemMeta borderMetaActive = customBordersActive.getItemMeta();
+        borderMetaActive.setDisplayName(" ");
+        customBordersActive.setItemMeta(borderMetaActive);
+        contents.fillBorders(ClickableItem.empty(customBordersActive));
+    }
+
+    /* Outgoing Chat Button */
+    ItemStack outgoingChatButton;
+    ItemMeta outgoingChatMeta;
+    if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers")) {
+        outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+        outgoingChatMeta = outgoingChatButton.getItemMeta();
+        if (targetTranslator.getTranslatingChatOutgoing()) {
+            outgoingChatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+            outgoingChatMeta.addEnchant(powerEnchantment, 1, false);
+            outgoingChatMeta.setDisplayName(ChatColor.GREEN
+                    + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+        } else {
+            outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+                    + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+        }
+        outgoingChatButton.setItemMeta(outgoingChatMeta);
+        contents.set(1, 3, ClickableItem.of(outgoingChatButton, e -> {
+            String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+            WWCTranslateChatOutgoing translateChatOutgoing = new WWCTranslateChatOutgoing((CommandSender) player, null, null, args);
+            translateChatOutgoing.processCommand();
+            getTranslateChatMenu(targetPlayerUUID).open(player);
+        }));
+    }
+
+    /* Incoming Chat Button */
+    ItemStack incomingChatButton;
+    ItemMeta incomingChatMeta;
+    if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || (!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers")) {
+        incomingChatButton = XMaterial.MAP.parseItem();
+        incomingChatMeta = incomingChatButton.getItemMeta();
+        if (targetTranslator.getTranslatingChatIncoming()) {
+            incomingChatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+            Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+            incomingChatMeta.addEnchant(powerEnchantment, 1, false);
+            incomingChatMeta.setDisplayName(ChatColor.GREEN
+                    + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+        } else {
+            incomingChatMeta.setDisplayName(ChatColor.YELLOW
+                    + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+        }
+        incomingChatButton.setItemMeta(incomingChatMeta);
+        contents.set(1, 5, ClickableItem.of(incomingChatButton, e -> {
+            String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+            WWCTranslateChatIncoming translateChatIncoming = new WWCTranslateChatIncoming((CommandSender) player, null, null, args);
+            translateChatIncoming.processCommand();
+            getTranslateChatMenu(targetPlayerUUID).open(player);
+        }));
+    }
+}
+```
+The main change is that the `try` block has been removed and the code has been reorganized so that the `ItemStack` and `ItemMeta` objects are declared and initialized before being used. This eliminates the need for the `try` block and fixes the error.

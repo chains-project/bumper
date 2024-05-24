@@ -1,0 +1,15 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public class TaxBeneficiaries {
+    // ...
+
+    @Override
+    public int tax(final Beneficiary beneficiary) {
+        final Iterable<Transaction> transactions = transactionsOf(beneficiary);
+        return new LengthOf(transactions).intValue();
+    }
+
+    // ...
+}

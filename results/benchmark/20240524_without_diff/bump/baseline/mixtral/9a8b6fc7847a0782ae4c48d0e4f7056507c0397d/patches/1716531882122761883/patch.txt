@@ -1,0 +1,12 @@
+import org.jasypt.spring.security.PasswordEncoder;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.text.AesTextEncryptor;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    TextEncryptor textEncryptor = new AesTextEncryptor();
+    textEncryptor.setPassword("your-secret-password");
+    PasswordEncoder encoder = new PasswordEncoder();
+    encoder.setTextEncryptor(textEncryptor);
+    return encoder;
+}

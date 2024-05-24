@@ -1,0 +1,6 @@
+29a30
+>                 final String message = Throwables.getRootCause(throwable).getMessage();
+32c33
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     message,

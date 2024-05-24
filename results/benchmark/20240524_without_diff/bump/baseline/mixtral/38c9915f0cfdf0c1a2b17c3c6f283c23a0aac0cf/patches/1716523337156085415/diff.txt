@@ -1,0 +1,36 @@
+1c1,31
+< import org.cactoos.scalar.CheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.CheckedBytes;
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.proc.CheckedProc;
+> import org.cactoos.proc.IoCheckedProc;
+> import org.cactoos.text.IoCheckedText;
+> import org.cactoos.text.TextOfScalar;
+> 
+> // ...
+> 
+> public class Wallet {
+>     // ...
+> 
+>     private void checkBalance(final String id) {
+>         // ...
+>         final IoCheckedText balance = IoCheckedText.of(balanceText);
+>         final TextOfScalar balanceScalar = new TextOfScalar(balance);
+>         // ...
+>         final IoCheckedBytes bytes = IoCheckedBytes.of(bytesSupplier.get());
+>         final CheckedBytes checkedBytes = new CheckedBytes(bytes, new FuncOfBytes());
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     private static class FuncOfBytes implements Func<Bytes, Byte[]> {
+>         @Override
+>         public Byte[] apply(final Bytes bytes) {
+>             return bytes.asBytes();
+>         }
+>     }
+> }
+\ No newline at end of file

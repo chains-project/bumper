@@ -1,0 +1,6 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({1, 2, 3})
+public class MyClass extends Ssh {
+  // ...
+}

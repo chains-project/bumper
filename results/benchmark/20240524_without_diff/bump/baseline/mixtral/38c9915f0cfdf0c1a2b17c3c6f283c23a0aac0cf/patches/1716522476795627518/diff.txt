@@ -1,0 +1,27 @@
+1c1,22
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.proc.IoCheckedProc;
+> import org.cactoos.text.IoCheckedText;
+> 
+> public class RtNetwork {
+>   // ...
+>   private static Scalar<String> getEnv(final String name) {
+>     return new IoCheckedScalar<>(
+>       new IoCheckedScalar<>(
+>         new IoCheckedScalar<>(
+>           () -> System.getenv(name)
+>         ),
+>         s -> s != null && !s.isEmpty()
+>           ? s
+>           : ""
+>       ),
+>       String::trim
+>     );
+>   }
+>   // ...
+> }
+\ No newline at end of file

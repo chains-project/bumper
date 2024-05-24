@@ -1,0 +1,25 @@
+1c1,20
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> public class SshByPassword {
+>     @Override
+>     public Ssh ssh(String host, int port) {
+>         return new Ssh0(host, port);
+>     }
+> }
+> 
+> class Ssh0 implements Ssh {
+>     private final String host;
+>     private final int port;
+> 
+>     public Ssh0(String host, int port) {
+>         this.host = host;
+>         this.port = port;
+>     }
+> 
+>     // Implement the required methods from the Ssh interface
+> }
+\ No newline at end of file

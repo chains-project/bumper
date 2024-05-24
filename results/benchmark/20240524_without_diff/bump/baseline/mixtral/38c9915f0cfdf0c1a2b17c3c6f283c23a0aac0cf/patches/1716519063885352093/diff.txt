@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.collection.CollectionOf;
+\ No newline at end of file
+---
+> import org.cactoos.collection.Immutable;
+> import org.cactoos.collection.NoNulls;
+> 
+> public CollectionOf<Bytes> copies(Collection<String> ids) {
+>     return new NoNulls<>(
+>         new Immutable<>(
+>             ids.stream().map(id -> new BytesOf(zdb().load(id))).collect(Collectors.toList())
+>         )
+>     );
+> }
+\ No newline at end of file

@@ -1,0 +1,6 @@
+29a30,31
+>                 // ++
+>                 if (Throwables.getRootCause(throwable).getMessage().contains(digest)) {
+34a37,38
+>                 }
+>                 // ++

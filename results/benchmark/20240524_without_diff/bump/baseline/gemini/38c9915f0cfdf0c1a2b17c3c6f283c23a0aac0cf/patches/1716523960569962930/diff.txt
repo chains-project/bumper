@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.Solid;
+> 
+> public class WalletsIn {
+>     public static void main(String[] args) {
+>         Solid<String> wallets = new Solid<>(args[0]);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,4 @@
+34c34
+<                                         currentEntryMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 currentEntryMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parse(), 1, false);

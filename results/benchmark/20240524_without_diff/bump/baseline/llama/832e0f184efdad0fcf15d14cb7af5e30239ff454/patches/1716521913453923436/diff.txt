@@ -1,0 +1,20 @@
+7,8c7
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+11,12c10
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+15,16c13
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+18c15,16
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             Enchantment enchantment = Enchantment.getByKey(EnchantmentWrapper.getByName("power").getKey());
+>             pageMeta.addEnchant(enchantment, 1, false);

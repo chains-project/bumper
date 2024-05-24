@@ -1,0 +1,8 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.Scalar;
+
+// ...
+
+Scalar<ByteArrayResource> resource = // your original code here ...
+IoCheckedBytes checkedResource = new IoCheckedBytes(resource);
+byte[] bytes = checkedResource.asBytes();

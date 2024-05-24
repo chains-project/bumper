@@ -1,0 +1,14 @@
+import org.cactoos.text.BytesOf;
+import org.cactoos.text.UncheckedText;
+
+...
+
+public class RtTransaction {
+  ...
+  @Override
+  public Transaction fromBytes(byte[] bytes) throws IOException {
+    Text of = new BytesOf(new UncheckedText(new String(bytes, UTF_8)));
+    ...
+  }
+  ...
+}

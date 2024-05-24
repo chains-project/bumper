@@ -1,0 +1,49 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  import eu.europa.esig.dss.pades.CertificationPermission;
+```
+
+with the following error message:
+[ERROR] /open-pdf-sign/src/main/java/org/openpdfsign/Signer.java:[7,32] cannot find symbol
+  symbol:   class CertificationPermission
+  location: package eu.europa.esig.dss.pades
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public int eu.europa.esig.dss.pades.CertificationPermission.getCode()
+-- public static eu.europa.esig.dss.pades.CertificationPermission eu.europa.esig.dss.pades.CertificationPermission.valueOf(java.lang.String)
+-- public static eu.europa.esig.dss.pades.CertificationPermission eu.europa.esig.dss.pades.CertificationPermission.values()
+-- public eu.europa.esig.dss.pades.CertificationPermission eu.europa.esig.dss.pades.PAdESSignatureParameters.getPermission()
+++ public eu.europa.esig.dss.enumerations.CertificationPermission eu.europa.esig.dss.pades.PAdESSignatureParameters.getPermission()
+++ public void eu.europa.esig.dss.pades.PAdESSignatureParameters.setPermission(eu.europa.esig.dss.enumerations.CertificationPermission)
+-- public void eu.europa.esig.dss.pades.PAdESSignatureParameters.setPermission(eu.europa.esig.dss.pades.CertificationPermission)
+++ public static eu.europa.esig.dss.pdf.SigFieldPermissions eu.europa.esig.dss.pades.PAdESUtils.extractPermissionsDictionary(eu.europa.esig.dss.pdf.PdfDict)
+++ public abstract eu.europa.esig.dss.enumerations.CertificationPermission eu.europa.esig.dss.pades.validation.PdfSignatureDictionary.getDocMDP()
+++ public abstract eu.europa.esig.dss.pdf.SigFieldPermissions eu.europa.esig.dss.pades.validation.PdfSignatureDictionary.getFieldMDP()
+++ public eu.europa.esig.dss.pdf.SigFieldPermissions eu.europa.esig.dss.pades.validation.PdfSignatureField.getLockDictionary()
+-- protected abstract void eu.europa.esig.dss.pdf.AbstractPDFSignatureService.checkDocumentPermissions(eu.europa.esig.dss.model.DSSDocument,java.lang.String)
+++ protected void eu.europa.esig.dss.pdf.AbstractPDFSignatureService.checkDocumentPermissions(eu.europa.esig.dss.pdf.PdfDocumentReader)
+++ public abstract void eu.europa.esig.dss.pdf.PdfDocumentReader.checkDocumentPermissions()
+++ public abstract eu.europa.esig.dss.enumerations.CertificationPermission eu.europa.esig.dss.pdf.PdfDocumentReader.getCertificationPermission()
+++ public eu.europa.esig.dss.enumerations.CertificationPermission eu.europa.esig.dss.pdf.PdfSigDictWrapper.getDocMDP()
+++ public eu.europa.esig.dss.pdf.SigFieldPermissions eu.europa.esig.dss.pdf.PdfSigDictWrapper.getFieldMDP()
+++ public SigFieldPermissions eu.europa.esig.dss.pdf.SigFieldPermissions()
+++ public eu.europa.esig.dss.enumerations.PdfLockAction eu.europa.esig.dss.pdf.SigFieldPermissions.getAction()
+++ public eu.europa.esig.dss.enumerations.CertificationPermission eu.europa.esig.dss.pdf.SigFieldPermissions.getCertificationPermission()
+++ public java.util.List eu.europa.esig.dss.pdf.SigFieldPermissions.getFields()
+++ public void eu.europa.esig.dss.pdf.SigFieldPermissions.setAction(eu.europa.esig.dss.enumerations.PdfLockAction)
+++ public void eu.europa.esig.dss.pdf.SigFieldPermissions.setCertificationPermission(eu.europa.esig.dss.enumerations.CertificationPermission)
+++ public void eu.europa.esig.dss.pdf.SigFieldPermissions.setFields(java.util.List)
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

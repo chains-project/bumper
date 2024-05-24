@@ -1,0 +1,18 @@
+1a2,17
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     @Override
+>     public void decode(InputStream in, OutputStream out) throws IOException {
+>         try {
+>             short alertDescription = in.read();
+>             throw new TlsFatalAlert(alertDescription);
+>         } catch (IOException e) {
+>             // Handle exception
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

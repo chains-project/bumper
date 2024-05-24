@@ -1,0 +1,7 @@
+1a2,6
+> 
+> public class WalletsIn {
+>     public WalletsIn(JoinedText wallets) {
+>     }
+> }
+\ No newline at end of file

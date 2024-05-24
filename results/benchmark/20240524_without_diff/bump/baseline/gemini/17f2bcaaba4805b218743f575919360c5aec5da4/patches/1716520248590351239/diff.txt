@@ -1,0 +1,7 @@
+11c11,14
+<                 assertEquals(PGS_ShapePredicates.area(mesh), PGS_ShapePredicates.area(mergedMesh), 1e-6);
+---
+> 
+>                 double epsilon = 1e-6;
+>                 double areaDiff = Math.abs(PGS_ShapePredicates.area(mesh) - PGS_ShapePredicates.area(mergedMesh));
+>                 assertTrue(areaDiff <= epsilon);

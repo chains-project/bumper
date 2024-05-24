@@ -1,0 +1,18 @@
+1c1,13
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.TlsFatalAlertReason;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     @Override
+>     public void onTlsFatalAlertReceived(short alertDescription) {
+>         TlsFatalAlertReason reason = TlsFatalAlertReason.get(alertDescription);
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

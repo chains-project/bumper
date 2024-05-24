@@ -1,0 +1,9 @@
+0a1,2
+> import com.artipie.http.auth.AuthUser;
+> 
+2,3c4,5
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+---
+> public Optional<AuthUser> user() {
+>     return Optional.of(new AuthUser("alice"));

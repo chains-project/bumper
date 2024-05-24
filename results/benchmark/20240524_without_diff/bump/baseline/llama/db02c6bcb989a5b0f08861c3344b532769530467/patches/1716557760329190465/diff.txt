@@ -1,0 +1,10 @@
+1a2
+>     String startsWithPattern = "/v2/test/blobs/uploads/";
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             startsWith(startsWithPattern)
+10c11
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+---
+>         new IsHeader("Docker-Upload-UUID", not(isEmptyString()))

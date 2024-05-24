@@ -1,0 +1,22 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class AppenderUtils {
+    // ...
+
+    private static TTransport createFramedTransport(TTransport transport) {
+        return new TFramedTransport(transport);
+    }
+
+    private static TTransport createFastFramedTransport(TTransport transport, int frameSize, int bufferSize) {
+        return new TFastFramedTransport(transport, frameSize, bufferSize);
+    }
+
+    private static TTransport createTIOStreamTransport(TConfiguration conf, InputStream in, OutputStream out) {
+        return new TIOStreamTransport(conf, in, out);
+    }
+
+    // ...
+}

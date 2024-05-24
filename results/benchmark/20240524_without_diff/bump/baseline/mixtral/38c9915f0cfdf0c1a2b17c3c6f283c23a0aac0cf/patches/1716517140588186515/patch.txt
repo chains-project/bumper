@@ -1,0 +1,9 @@
+import org.cactoos.text.Joined;
+
+...
+
+public class WalletsIn implements In<Wallet> {
+    ...
+    private Joined<Text> joined = new Joined<>("\n");
+    ...
+}

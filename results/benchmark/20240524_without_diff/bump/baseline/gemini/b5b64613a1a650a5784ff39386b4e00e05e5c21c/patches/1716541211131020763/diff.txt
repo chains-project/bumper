@@ -1,0 +1,18 @@
+1d0
+< @Override
+3c2
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>             if (StringUtils.isBlank(step.url) && StringUtils.isBlank(step.artifactoryUrl) && StringUtils.isBlank(step.distributionUrl)) {
+6,8c5,7
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+<             String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+<             String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+---
+>             String urlWithoutSlash = StringUtils.removeEnd(step.url, "/");
+>             String artifactoryUrl = StringUtils.defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+>             String distributionUrl = StringUtils.defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+12c11
+<             if (!isEmpty(step.credentialsId)) {
+---
+>             if (!StringUtils.isBlank(step.credentialsId)) {

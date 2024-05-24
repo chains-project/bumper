@@ -1,0 +1,14 @@
+0a1,2
+> import de.gwdg.metadataqa.api.json.DataElement;
+> 
+1a4,12
+> 
+> public class MarcFactory {
+> 
+>     public static JsonBranch getMarcBranch(String identifier) {
+>         JsonBranch branch = new JsonBranch(identifier);
+>         branch.setIdentifier(new DataElement(identifier));
+>         return branch;
+>     }
+> }
+\ No newline at end of file

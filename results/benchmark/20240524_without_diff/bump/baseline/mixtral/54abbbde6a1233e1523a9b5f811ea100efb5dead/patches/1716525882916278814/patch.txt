@@ -1,0 +1,8 @@
+import com.jcabi.ssh.Ssh;
+
+public class MyClass {
+    @Override
+    public Ssh ssh() {
+        return new Ssh.Smart("my-host.com");
+    }
+}

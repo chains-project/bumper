@@ -1,0 +1,10 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+Filtered<Spendee> filteredSpendees = Filtered.with(new Func<Spendee>() {
+    @Override
+    public boolean check(Spendee spendee) throws Exception {
+        return spendee.amount().value() > 100;
+    }
+}, spendees);

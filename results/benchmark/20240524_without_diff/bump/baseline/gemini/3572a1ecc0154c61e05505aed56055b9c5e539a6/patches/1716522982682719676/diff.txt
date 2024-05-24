@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.TConfiguration;
+> import org.apache.thrift.transport.*;
+> 
+> public class AppenderUtils {
+> 
+>     public static TTransport createTransport(String host, int port) {
+>         TConfiguration configuration = new TConfiguration();
+>         configuration.setSocketTimeout(30000);
+>         return new TFramedTransport(new TSocket(host, port, configuration));
+>     }
+> }
+\ No newline at end of file

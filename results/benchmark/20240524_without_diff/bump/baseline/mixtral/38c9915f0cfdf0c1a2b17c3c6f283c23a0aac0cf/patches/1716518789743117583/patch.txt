@@ -1,0 +1,5 @@
+import org.cactoos.Bytes;
+import org.cactoos.input.IoCheckedBytes;
+
+Bytes bytes = ...; // initialize your bytes here
+IoCheckedBytes ioCheckedBytes = new IoCheckedBytes(bytes);

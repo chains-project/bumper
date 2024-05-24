@@ -1,0 +1,56 @@
+1d0
+< @Override
+29c28
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.LUCK, 1, false);
+32c31
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.LUCK, 1, false);
+43,46c42
+<                                 listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+<                                         WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID)
+<                                                         .open(player);
+<                                 });
+---
+>             listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID).open(player));
+56,59c52
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.previous().getPage());
+<                                 }));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage())));
+61,63c54
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+<                                 }));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player)));
+71,72c62
+<                                 skipSourceMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+---
+>             skipSourceMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+78c68
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.LUCK, 1, false);
+81c71
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.LUCK, 1, false);
+85,86c75
+<                                 contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage
+<                                                 .getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage.getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+91,95c80
+<                                 contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.next().getPage());
+<                                 }));
+<                                 ;
+---
+>             contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage())));

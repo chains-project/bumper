@@ -1,0 +1,18 @@
+import org.cactoos.iterable.Filtered;
+
+//...
+
+public class Wallet {
+    //...
+
+    @Override
+    public void deposit(final Money money) {
+        this.balance = new Filtered<>(
+            this::isValid,
+            this.balance.stream()
+        ).stream();
+        this.balance = this.balance.andThen(amount -> amount.add(money));
+    }
+
+    //...
+}

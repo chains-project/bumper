@@ -1,0 +1,11 @@
+13a14
+>         final String message = "Invalid tag: " + original;
+20,25c21
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>             new IsEqual<>(message)

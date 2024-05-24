@@ -1,0 +1,6 @@
+1d0
+< @Override
+4c3
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>   // Use the TFastFramedTransport to be compatible with singer_thrift

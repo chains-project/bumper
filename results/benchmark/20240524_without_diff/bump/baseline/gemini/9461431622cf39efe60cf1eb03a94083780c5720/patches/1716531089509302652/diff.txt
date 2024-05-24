@@ -1,0 +1,8 @@
+15c15,19
+<             registry.set(server, reg);
+---
+> 
+>             // Cast the registry to the correct type
+>             SortedMap<MOScope, ManagedObject<?>> castedRegistry = (SortedMap<MOScope, ManagedObject<?>>) reg;
+> 
+>             registry.set(server, castedRegistry);

@@ -1,0 +1,13 @@
+3,4c3
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+---
+>     IllegalStateException exception = Assertions.assertThrows(
+12,13c11,14
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+---
+>     );
+>     MatcherAssert.assertThat(
+>         exception.getMessage(),
+>         CoreMatchers.containsString("Unexpected query")

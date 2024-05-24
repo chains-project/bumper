@@ -1,0 +1,4 @@
+31c31
+<                                 translationMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+---
+>                                 translationMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);

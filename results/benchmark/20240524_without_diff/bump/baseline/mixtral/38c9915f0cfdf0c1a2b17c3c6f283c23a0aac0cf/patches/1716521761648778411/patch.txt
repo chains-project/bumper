@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtTxId id, RtTxData data) {
+  this.env = env;
+  this.id = id;
+  this.data = data;
+  this.length = new LengthOf(data.asIterable());
+}

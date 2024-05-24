@@ -1,0 +1,19 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+29c19
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>         DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), "**/*");
+35c25
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>         DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), "**/*");

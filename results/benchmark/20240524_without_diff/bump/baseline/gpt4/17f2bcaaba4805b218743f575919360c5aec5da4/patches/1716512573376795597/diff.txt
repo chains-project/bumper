@@ -1,0 +1,7 @@
+3c3,6
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     boolean condition = GROUP_SHAPE.getChildCount() == 2;
+>     if (!condition) {
+>         throw new AssumptionViolatedException("Assumption failed");
+>     }

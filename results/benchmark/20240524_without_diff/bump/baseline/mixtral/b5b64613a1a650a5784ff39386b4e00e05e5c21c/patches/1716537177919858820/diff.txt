@@ -1,0 +1,24 @@
+1,6c1,2
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+---
+> import org.apache.commons.lang3.StringUtils;
+> 
+8c4
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>     if (StringUtils.isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+12,13c8,9
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>     if (StringUtils.isNotBlank(step.credentialsId)) {
+>         if (StringUtils.isNotBlank(step.username)) {
+16c12
+<                 if (isNotBlank(step.password)) {
+---
+>         if (StringUtils.isNotBlank(step.password)) {

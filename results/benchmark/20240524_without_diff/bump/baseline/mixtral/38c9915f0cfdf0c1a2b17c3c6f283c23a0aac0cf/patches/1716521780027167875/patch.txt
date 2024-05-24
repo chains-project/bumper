@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtTxIn txIn, RtTxOut txOut, RtTxOut[] txOuts,
+    RtTxOut[] vin, byte[] witness, String lockTime) {
+  // ...
+  int length = new LengthOf(vin).intValue();
+  // ...
+}

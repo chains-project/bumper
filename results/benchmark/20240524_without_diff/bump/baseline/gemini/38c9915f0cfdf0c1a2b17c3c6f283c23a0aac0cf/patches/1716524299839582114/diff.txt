@@ -1,0 +1,15 @@
+1a2,14
+> 
+> import java.util.List;
+> 
+> public class WalletsIn {
+> 
+>     public List<Wallet> wallets(String address) {
+>         return new JoinedText(
+>                 "https://",
+>                 address,
+>                 "/api/v1/wallets"
+>         ).toString();
+>     }
+> }
+\ No newline at end of file

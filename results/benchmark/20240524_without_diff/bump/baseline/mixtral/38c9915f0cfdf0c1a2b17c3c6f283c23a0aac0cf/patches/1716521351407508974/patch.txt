@@ -1,0 +1,6 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Long> id = new ScalarEnvelope<>(() -> System.currentTimeMillis());

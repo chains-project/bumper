@@ -1,0 +1,8 @@
+1c1,3
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+> import de.gwdg.metadataqa.api.json.DataElement;
+> 
+> DataElement dataElement = new DataElement();
+\ No newline at end of file

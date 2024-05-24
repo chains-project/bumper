@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double score(String id) throws IOException {
+>   try (Input in = api().input(id)) {
+>     return new LengthOf(in).intValue();
+>   }
+> }
+\ No newline at end of file

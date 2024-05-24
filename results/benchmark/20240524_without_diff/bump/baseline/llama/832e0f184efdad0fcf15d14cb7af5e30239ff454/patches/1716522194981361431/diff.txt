@@ -1,0 +1,45 @@
+1d0
+< @Override
+29c28
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.GLOW, 1, false);
+32c31
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.GLOW, 1, false);
+44,45c43
+<                                         WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID)
+<                                                         .open(player);
+---
+>                 WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID).open(player);
+57,58c55
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.previous().getPage());
+---
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage());
+71,72c68
+<                                 skipSourceMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+---
+>             skipSourceMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+78c74
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.GLOW, 1, false);
+81c77
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.GLOW, 1, false);
+85,86c81
+<                                 contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage
+<                                                 .getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage.getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+92,93c87
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.next().getPage());
+---
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage());
+95d88
+<                                 ;

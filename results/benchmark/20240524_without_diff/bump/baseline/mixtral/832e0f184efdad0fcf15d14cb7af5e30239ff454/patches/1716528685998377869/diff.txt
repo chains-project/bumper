@@ -1,0 +1,18 @@
+27a28
+>                         Enchantment powerEnchantment = Enchantment.getByName("POWER");
+29c30
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 currentLangMeta.addEnchant(powerEnchantment, 1, false);
+32c33
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 currentLangMeta.addEnchant(powerEnchantment, 1, false);
+78d78
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+79a80
+>                                 skipSourceMeta.addEnchant(powerEnchantment, 1, false);
+81d81
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+82a83
+>                                 skipSourceMeta.addEnchant(powerEnchantment, 1, false);

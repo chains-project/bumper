@@ -1,0 +1,9 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+@Override
+protected void renderDocument(Writer writer, RenderingContext renderingContext, SiteRenderingContext siteRenderingContext) throws SiteRendererException {
+    String outputName = renderingContext.getOutputName();
+    // ... (rest of the method)
+}

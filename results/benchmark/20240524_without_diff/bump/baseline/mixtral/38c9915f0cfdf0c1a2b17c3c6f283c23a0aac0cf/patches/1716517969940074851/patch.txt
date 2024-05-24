@@ -1,0 +1,5 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+Scalar<Bytes> bytes = ...;
+Scalar<Integer> size = new ScalarEnvelope<>(() -> bytes.asBytes().length);

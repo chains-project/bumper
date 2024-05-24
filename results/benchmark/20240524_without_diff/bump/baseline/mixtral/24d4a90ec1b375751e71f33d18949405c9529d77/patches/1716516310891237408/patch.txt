@@ -1,0 +1,11 @@
+import com.jcabi.aspects.Immutable;
+
+@Immutable
+public class MyClass {
+  // existing code...
+
+  // replace the failing import statement with the following line:
+  import static com.jcabi.aspects.Immutable.Value;
+
+  // existing code...
+}

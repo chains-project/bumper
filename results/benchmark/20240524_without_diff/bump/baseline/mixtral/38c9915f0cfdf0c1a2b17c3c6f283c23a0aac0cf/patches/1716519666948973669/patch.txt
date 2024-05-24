@@ -1,0 +1,15 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoCheckedScalar;
+import org.cactoos.text.IoCheckedText;
+import org.cactoos.text.TextOfScalar;
+
+public class WalletsIn {
+    ...
+    private Scalar<String> getWalletsFile() {
+        return new IoCheckedScalar<>(
+            () -> new TextOfScalar(new IoCheckedText(new File("/wallets.txt"))).asString(),
+            Throwable::printStackTrace
+        );
+    }
+    ...
+}

@@ -1,0 +1,9 @@
+private org.apache.maven.plugin.surefire.api.testset.TestListResolver getTestListResolver() {
+    import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline;
+    return new TestListResolver(new DefaultForkConfiguration() {
+        @Override
+        protected void resolveClasspath(Commandline commandline, String arg, StartupConfiguration config, File file) {
+            // original implementation
+        }
+    });
+}

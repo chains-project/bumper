@@ -1,0 +1,16 @@
+7a8,13
+>     final HamcrestMatcher<String> matcher = new AllOf<>(
+>             Arrays.asList(
+>                     new StringContains("Unsupported reference"),
+>                     new StringStartsWithIgnoringCase(string)
+>             )
+>     );
+14,19c20
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+---
+>             matcher

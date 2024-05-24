@@ -1,0 +1,8 @@
+11c11
+<                 ).digest()
+---
+>             )
+13c13
+<             new StringContains(false, "Unexpected query")
+---
+>         new StringStartsWith("Unexpected query") // modified

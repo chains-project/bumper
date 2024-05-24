@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double score(Exchange exchange) throws IOException {
+  long sum = new LengthOf<Exchange>(exchange).value();
+  // ...
+}

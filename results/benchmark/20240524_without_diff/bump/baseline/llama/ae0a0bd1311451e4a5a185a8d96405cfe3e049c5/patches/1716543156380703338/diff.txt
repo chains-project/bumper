@@ -1,0 +1,15 @@
+8d7
+<         //@checkstyle LineLengthCheck (1 line)
+20,25c19,23
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>         CoreMatchers.containsString("Invalid tag")
+>     );
+>     MatcherAssert.assertThat(
+>         throwable.getMessage(),
+>         CoreMatchers.containsString(original)

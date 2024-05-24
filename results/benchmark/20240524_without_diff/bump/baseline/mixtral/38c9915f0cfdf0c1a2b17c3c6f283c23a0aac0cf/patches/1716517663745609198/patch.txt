@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String input) throws ApiException {
+    InputStream in = new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8));
+    return new LengthOf(new IterableOf(in)).longValue();
+}

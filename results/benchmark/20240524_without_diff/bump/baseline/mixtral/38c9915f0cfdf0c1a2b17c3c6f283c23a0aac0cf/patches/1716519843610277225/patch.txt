@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+@Override
+public double scoreOf(RtValue value) {
+  return new LengthOf(value.asIterable()).value();
+}

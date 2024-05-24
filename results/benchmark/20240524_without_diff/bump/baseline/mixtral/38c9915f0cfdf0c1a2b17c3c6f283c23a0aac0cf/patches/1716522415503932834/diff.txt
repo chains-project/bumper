@@ -1,0 +1,23 @@
+1c1,18
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.IoCheckedBytes;
+> 
+> // ...
+> 
+> public class RtNetwork {
+>   // ...
+>   private IoCheckedScalar<Bytes> bytes;
+> 
+>   // ...
+> 
+>   @Override
+>   public void connect() throws IOException {
+>     // ...
+>     this.bytes = new IoCheckedBytes(this.socket.getInputStream(), this::toBytes);
+>     // ...
+>   }
+>   // ...
+> }
+\ No newline at end of file

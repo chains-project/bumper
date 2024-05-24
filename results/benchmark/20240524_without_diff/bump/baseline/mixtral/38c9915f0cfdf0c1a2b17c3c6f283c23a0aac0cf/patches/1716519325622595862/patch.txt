@@ -1,0 +1,5 @@
+import org.cactoos.text.Joined;
+
+//...
+
+new Joined(", ", wallets.values());

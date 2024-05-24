@@ -1,0 +1,11 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double score(User user) throws IOException {
+  double result = 0;
+  try (InputStream input = new URL(user.url()).openStream()) {
+    result = new LengthOf(input).intValue();
+  }
+  return result;
+}

@@ -1,0 +1,9 @@
+import org.cactoos.text.Joined;
+import org.cactoos.text.Text;
+
+...
+
+Text joined = new Joined(
+  "Failed to create wallet: ",
+  new TextOf(ex.getMessage())
+);

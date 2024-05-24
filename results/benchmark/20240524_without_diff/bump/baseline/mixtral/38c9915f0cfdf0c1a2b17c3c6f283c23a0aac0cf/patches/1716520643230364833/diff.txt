@@ -1,0 +1,110 @@
+1c1,105
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.FormattedText;
+> import org.cactoos.text.Joined;
+> import org.cactoos.text.Split;
+> import org.cactoos.text.TextEnvelope;
+> import org.cactoos.text.TextOf;
+> import org.cactoos.text.TextOfScalar;
+> import org.cactoos.text.TextOfString;
+> import org.cactoos.text.UncheckedText;
+> 
+> ...
+> 
+> public class RtTransaction {
+>   ...
+>   private static final TextEnvelope TX_TEMPLATE = new TextEnvelope(
+>     new Joined(
+>       new TextOfString("{"),
+>       new TextOfScalar(Transaction::id),
+>       new TextOfString("}"),
+>       new TextOfString(" ")
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_ID_TEMPLATE = new TextEnvelope(
+>     new Joined(
+>       new TextOfString("{"),
+>       new TextOfScalar(Transaction::id),
+>       new TextOfString("}"),
+>       new TextOfString(":")
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_AMOUNT_TEMPLATE = new TextEnvelope(
+>     new Joined(
+>       new TextOfScalar(Transaction::id),
+>       new TextOfString(": "),
+>       new BytesOf(new TextOfScalar(Transaction::amount)),
+>       new TextOfString(" ")
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_TIMESTAMP_TEMPLATE = new TextEnvelope(
+>     new Joined(
+>       new TextOfScalar(Transaction::id),
+>       new TextOfString(": "),
+>       new TextOfScalar(Transaction::timestamp),
+>       new TextOfString(" ")
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_SPLIT_TEMPLATE = new TextEnvelope(
+>     new Split(
+>       new TextOfString("\n"),
+>       new TextOfString("\t"),
+>       new UncheckedText(transaction.toString())
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_SPLIT_ID_TEMPLATE = new TextEnvelope(
+>     new Split(
+>       new TextOfString("\n"),
+>       new TextOfString("\t"),
+>       new Split(
+>         new TextOfString(":"),
+>         new TextOfString(" "),
+>         new TextOfScalar(transaction.id())
+>       )
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_SPLIT_AMOUNT_TEMPLATE = new TextEnvelope(
+>     new Split(
+>       new TextOfString("\n"),
+>       new TextOfString("\t"),
+>       new Split(
+>         new TextOfString(":"),
+>         new TextOfString(" "),
+>         new BytesOf(new TextOfScalar(transaction.amount()))
+>       )
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_SPLIT_TIMESTAMP_TEMPLATE = new TextEnvelope(
+>     new Split(
+>       new TextOfString("\n"),
+>       new TextOfString("\t"),
+>       new Split(
+>         new TextOfString(":"),
+>         new TextOfString(" "),
+>         new TextOfScalar(transaction.timestamp())
+>       )
+>     )
+>   );
+> 
+>   private static final TextEnvelope TX_FORMATTED_TEMPLATE = new TextEnvelope(
+>     new FormattedText(
+>       "{0}: {1} {2} {3}",
+>       new TextOfScalar(Transaction::id),
+>       new BytesOf(new TextOfScalar(Transaction::amount)),
+>       new TextOfScalar(Transaction::timestamp),
+>       new TextOfScalar(Transaction::toString)
+>     )
+>   );
+>   ...
+> }
+\ No newline at end of file

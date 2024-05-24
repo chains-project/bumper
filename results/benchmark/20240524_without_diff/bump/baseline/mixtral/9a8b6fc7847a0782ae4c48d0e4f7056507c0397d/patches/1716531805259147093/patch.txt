@@ -1,0 +1,27 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.password.PasswordEncryptor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        TextEncryptor textEncryptor = new TextEncryptor();
+        PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+        textEncryptor.setPasswordEncryptor(passwordEncryptor);
+        return new PasswordEncoder() {
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return textEncryptor.encrypt(rawPassword.toString());
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return textEncryptor.decrypt(encodedPassword).equals(rawPassword.toString());
+            }
+        };
+    }
+}

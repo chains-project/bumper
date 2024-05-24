@@ -1,0 +1,12 @@
+0a1,3
+> import tokyo.peya.lib.LeetConverter;
+> import tokyo.peya.lib.FileConfiguration;
+> 
+19,20c22,23
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+33a37
+>     FileConfiguration config = new FileConfiguration();

@@ -1,0 +1,7 @@
+import org.cactoos.scalar.Scalar;
+import org.cactoos.scalar.Sticky;
+
+// ...
+
+Scalar<String> value = // ...;
+Sticky<String> sticky = new Sticky<>(value);

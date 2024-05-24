@@ -1,0 +1,6 @@
+import org.cactoos.text.TextOf;
+import java.time.LocalDateTime;
+
+// ...
+
+Text randomText = new TextOf(LocalDateTime::now);

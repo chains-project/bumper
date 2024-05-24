@@ -1,0 +1,6 @@
+9,10c9,10
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected path")
+---
+>         ),
+>         new StringContains("Unexpected path") // removed 'false' argument

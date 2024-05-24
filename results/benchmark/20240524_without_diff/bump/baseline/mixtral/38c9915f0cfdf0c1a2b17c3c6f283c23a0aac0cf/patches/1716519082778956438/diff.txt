@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.collection.CollectionOf;
+\ No newline at end of file
+---
+> import org.cactoos.collection.Immutable;
+\ No newline at end of file

@@ -1,0 +1,23 @@
+import org.cactoos.text.BytesOf;
+import org.cactoos.text.UncheckedText;
+
+...
+
+public RtTransaction(String id, String hash, String data, Long nonce,
+  TransactionType type, Long amount, Long fee, Long timestamp,
+  PublicKey sender, PublicKey receiver, Signature signature)
+    throws IOException, CryptoException
+{
+  this.id = new UncheckedText(id);
+  this.hash = new UncheckedText(hash);
+  this.data = new BytesOf(new UncheckedText(data));
+  this.nonce = nonce;
+  this.type = type;
+  this.amount = amount;
+  this.fee = fee;
+  this.timestamp = timestamp;
+  this.sender = sender;
+  this.receiver = receiver;
+  this.signature = signature;
+  this.validate();
+}

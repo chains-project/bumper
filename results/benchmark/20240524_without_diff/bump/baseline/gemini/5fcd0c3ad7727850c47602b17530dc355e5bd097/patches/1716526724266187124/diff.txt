@@ -1,0 +1,10 @@
+2a3,7
+>     final ClassName mutatedClass = data.getMutatedClass();
+>     final byte[] bytecode = data.getBytecode();
+>     final long checksum = data.getChecksum();
+>     final ClassInfoBuilder classInfoBuilder = coverage.getClassInfoBuilder();
+>     final ClassInfo classInfo = classInfoBuilder.getClassInfo(mutatedClass, bytecode, checksum);
+4c9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

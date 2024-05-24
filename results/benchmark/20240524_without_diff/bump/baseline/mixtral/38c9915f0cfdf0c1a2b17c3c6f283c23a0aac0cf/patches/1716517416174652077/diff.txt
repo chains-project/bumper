@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.UncheckedScalar;
+> 
+> ...
+> 
+> Scalar<Bytes> bytes = ... ; // get the scalar of bytes
+> IoCheckedBytes ioCheckedBytes = new IoCheckedBytes(bytes);
+> InputStream inputStream = ioCheckedBytes.asBytes();
+\ No newline at end of file

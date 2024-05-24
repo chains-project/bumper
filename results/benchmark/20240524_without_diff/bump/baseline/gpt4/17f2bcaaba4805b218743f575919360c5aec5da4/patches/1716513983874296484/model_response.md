@@ -1,0 +1,1 @@
+The provided code doesn't contain a method or a class, it's just an import statement. The error message indicates that a class, interface, or enum is expected. Therefore, the error is not related to the changes in the library version. It seems like the provided code is incomplete. Please provide the complete code for proper assistance.

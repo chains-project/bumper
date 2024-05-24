@@ -1,0 +1,11 @@
+1c1,6
+< import org.cactoos.text.RandomText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextOf;
+> import java.time.LocalDateTime;
+> 
+> // ...
+> 
+> Text randomText = new TextOf(LocalDateTime::now);
+\ No newline at end of file

@@ -1,0 +1,5 @@
+15c15,16
+<             registry.set(server, reg);
+---
+>             // ++ the new library version allows to cast the map to the desired type
+>             registry.set(server, (SortedMap<MOScope, ManagedObject>) reg);

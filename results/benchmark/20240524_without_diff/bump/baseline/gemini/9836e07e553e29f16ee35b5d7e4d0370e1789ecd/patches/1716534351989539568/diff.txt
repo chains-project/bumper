@@ -1,0 +1,6 @@
+2a3
+>     final String dockerUploadUUID = Matchers.not(Matchers.isEmptyString()).toString();
+11c12
+<             new IsHeader("Docker-Upload-UUID", Matchers::not(Matchers.isEmptyString()))
+---
+>         new IsHeader("Docker-Upload-UUID", dockerUploadUUID)

@@ -1,0 +1,13 @@
+3a4,9
+> 
+>         final String type = sub.string("type");
+>         final YamlMapping yaml = Yaml.createYamlInput(sub.toString()).readYamlMapping();
+> 
+>         final StorageFactory factory = new StoragesLoader().newObject(type, new Config(yaml));
+> 
+7,9c13
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                     factory.newStorage(new Config(yaml))

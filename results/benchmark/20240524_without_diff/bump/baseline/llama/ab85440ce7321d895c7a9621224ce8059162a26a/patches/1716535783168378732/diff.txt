@@ -1,0 +1,15 @@
+8d7
+<         //@checkstyle LineLengthCheck (1 line)
+13c12
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+---
+>     MatcherAssert.assertThat(tag.valid(), Matchers.is(false));
+20,25c19
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>         Matchers.containsString("Invalid tag")

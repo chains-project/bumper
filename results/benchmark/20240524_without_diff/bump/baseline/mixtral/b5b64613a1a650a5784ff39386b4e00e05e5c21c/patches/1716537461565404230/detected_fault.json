@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1525409936,
+    "in_class_code": "public static class Execution extends ArtifactorySynchronousStepExecution<Void> {\n    protected static final long serialVersionUID = 1L;\n\n    private transient final CreateJFrogInstanceStep step;\n\n    @Inject\n    public Execution(CreateJFrogInstanceStep step, StepContext context) throws IOException, InterruptedException {\n        super(context);\n        this.step = step;\n    }\n\n    private String getUrlFromClientHelper(ClientHelper clientHelper) {\n        return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();\n    }\n}",
+    "qualified_in_class_code": "public static class Execution extends org.jfrog.hudson.pipeline.ArtifactorySynchronousStepExecution<java.lang.Void> {\n    protected static final long serialVersionUID = 1L;\n\n    private transient final org.jfrog.hudson.pipeline.declarative.steps.CreateJFrogInstanceStep step;\n\n    @com.google.inject.Inject\n    public Execution(org.jfrog.hudson.pipeline.declarative.steps.CreateJFrogInstanceStep step, org.jenkinsci.plugins.workflow.steps.StepContext context) throws java.io.IOException, java.lang.InterruptedException {\n        super(context);\n        this.step = step;\n    }\n\n    private java.lang.String getUrlFromClientHelper(org.jfrog.hudson.pipeline.declarative.steps.ClientHelper clientHelper) {\n        return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class ClientHelper\n  location: class org.jfrog.hudson.pipeline.declarative.steps.CreateJFrogInstanceStep.Execution\n",
+        "error_message": "[ERROR] /artifactory-plugin/src/main/java/org/jfrog/hudson/pipeline/declarative/steps/CreateJFrogInstanceStep.java:[153,39] cannot find symbol",
+        "client_file_path": "/artifactory-plugin/src/main/java/org/jfrog/hudson/pipeline/declarative/steps/CreateJFrogInstanceStep.java",
+        "client_line_position": "153"
+    },
+    "client_end_line_number": 155,
+    "client_line_number": 153,
+    "method_code": "private String getUrlFromClientHelper(ClientHelper clientHelper) {\n    return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();\n}",
+    "qualified_code": "private java.lang.String getUrlFromClientHelper(org.jfrog.hudson.pipeline.declarative.steps.ClientHelper clientHelper) {\n    return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();\n}",
+    "method_name": "getUrlFromClientHelper"
+}

@@ -1,0 +1,39 @@
+1c1,34
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.text.IoCheckedText;
+> 
+> import java.nio.file.Files;
+> import java.nio.file.Path;
+> 
+> public class RtTransaction {
+>     private final Scalar<Path> path;
+> 
+>     public RtTransaction(final Path path) {
+>         this.path = new ScalarOf<>(
+>             () -> path
+>         );
+>     }
+> 
+>     public byte[] value() throws Exception {
+>         return new IoCheckedBytes(
+>             new IoCheckedScalar<>(
+>                 this.path.value(),
+>                 Files::readAllBytes
+>             )
+>         ).asBytes();
+>     }
+> 
+>     public String toString() {
+>         return new IoCheckedText(
+>             new IoCheckedScalar<>(
+>                 this.path.value(),
+>                 Files::readString
+>             )
+>         ).asString();
+>     }
+> }
+\ No newline at end of file

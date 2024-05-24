@@ -1,0 +1,11 @@
+@Test
+void largeImageUploadWorks() throws Exception {
+    final boolean contains = false;
+    try {
+        this.buildImage();
+        final String output = this.client.run("push", this.remote());
+        MatcherAssert.assertThat(output, new StringContains(contains, "Pushed"));
+    } finally {
+        this.client.run("rmi", this.remote());
+    }
+}

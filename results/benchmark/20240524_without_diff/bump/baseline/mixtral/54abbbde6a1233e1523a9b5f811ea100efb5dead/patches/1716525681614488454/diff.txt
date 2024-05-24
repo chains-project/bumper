@@ -1,0 +1,13 @@
+1c1,8
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> // ...
+> 
+> @Tv(42)
+> public Ssh ssh() {
+>   return new SshByPassword(this.host(), this.username(), this.password());
+> }
+\ No newline at end of file

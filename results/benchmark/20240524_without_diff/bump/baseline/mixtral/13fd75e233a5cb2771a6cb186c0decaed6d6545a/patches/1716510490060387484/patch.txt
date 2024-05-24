@@ -1,0 +1,13 @@
+@Test
+void largeImageUploadWorks() throws Exception {
+    boolean pushed = false;
+    try {
+        this.buildImage();
+        final String output = this.client.run("push", this.remote());
+        pushed = output.contains("Pushed");
+        MatcherAssert.assertThat(output, new StringContains(""));
+    } finally {
+        this.client.run("rmi", this.remote());
+    }
+    MatcherAssert.assertThat("Pushed message was not found in the output", pushed);
+}

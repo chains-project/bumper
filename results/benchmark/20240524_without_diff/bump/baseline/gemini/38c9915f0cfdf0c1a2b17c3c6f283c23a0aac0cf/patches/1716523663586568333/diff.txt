@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.IoChecked;
+> 
+> public class WalletsIn {
+> 
+>     public WalletsIn(IoChecked<String> walletIds) {
+>         // do nothing
+>     }
+> }
+\ No newline at end of file

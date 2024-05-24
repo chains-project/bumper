@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+@Override
+protected void decode(ChannelBuffer buffer) throws IOException {
+    short alertDescription = buffer.readShort();
+    AlertDescription desc = AlertDescription.getAlertDescription(alertDescription);
+    // ...
+}

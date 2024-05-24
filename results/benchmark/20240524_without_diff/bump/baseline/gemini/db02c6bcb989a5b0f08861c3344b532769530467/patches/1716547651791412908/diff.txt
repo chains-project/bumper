@@ -1,0 +1,8 @@
+10c10
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+---
+>                         "/v2/my-repo/blobs/uploads/123-abc"
+13c13
+<             new StringContains(false, "Unexpected query")
+---
+>             new StringContains(false, "Digest header is required")

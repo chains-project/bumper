@@ -1,0 +1,5 @@
+import org.cactoos.text.BytesOf;
+
+//...
+
+BytesOf splitText = new BytesOf(new SplitText(input, "\n"));

@@ -1,0 +1,9 @@
+2c2
+<     void shouldPullPushedByTag() throws Exception {
+---
+> public void shouldPullPushedByTag() throws Exception {
+11c11,12
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+---
+>             String.format("Status: Downloaded newer image for %s", this.image.remote()),
+>             String.format("Status: Image is up to date for %s", this.image.remote())

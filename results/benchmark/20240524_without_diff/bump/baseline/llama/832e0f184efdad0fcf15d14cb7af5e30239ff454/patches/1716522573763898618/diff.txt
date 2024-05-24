@@ -1,0 +1,10 @@
+1d0
+< @Override
+27c26
+<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().toEnchantment(), 1, false);
+49c48
+<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().toEnchantment(), 1, false);

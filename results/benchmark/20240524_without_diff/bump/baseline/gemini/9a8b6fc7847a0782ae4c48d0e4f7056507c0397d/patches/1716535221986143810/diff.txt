@@ -1,0 +1,4 @@
+4c4
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>                 encoder.setStringDigester(new StrongPasswordEncryptor());

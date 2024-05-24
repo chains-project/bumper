@@ -1,0 +1,4 @@
+3c3
+<         ++ String layer = this.image.layer();
+---
+>         String layer = this.image.layer();

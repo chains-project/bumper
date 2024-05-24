@@ -1,0 +1,6 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+IoCheckedBytes bytes = new IoCheckedBytes(new BytesOf("some bytes"));
+byte[] result = bytes.asBytes();

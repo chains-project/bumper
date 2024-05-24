@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 954702563,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/FastPolygonizerTests.java:[33,1] class, interface, or enum expected",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/FastPolygonizerTests.java",
+        "client_line_position": "33"
+    },
+    "client_end_line_number": 33,
+    "client_line_number": 33,
+    "method_code": "import processing.core.PShape;",
+    "qualified_code": "import processing.core.PShape;",
+    "method_name": "import"
+}

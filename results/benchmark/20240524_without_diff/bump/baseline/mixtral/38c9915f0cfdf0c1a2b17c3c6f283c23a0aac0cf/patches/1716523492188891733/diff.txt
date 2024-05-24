@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> @Override
+> public Beneficiary tax(Beneficiary beneficiary) throws IOException {
+>   long length = new LengthOf(new IterableOf(new BeneficiaryToBytes(beneficiary))).longValue();
+>   // ...
+> }
+\ No newline at end of file

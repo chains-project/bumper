@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtTxIn in, RtTxOut out, RtTxLog log) {
+  this.env = env;
+  this.in = new LengthOf<>(in);
+  this.out = out;
+  this.log = log;
+}

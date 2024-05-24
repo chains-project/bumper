@@ -1,0 +1,14 @@
+0a1,5
+> import org.apache.thrift.transport.TFastFramedTransport;
+> import org.apache.thrift.transport.TFramedTransport;
+> import org.apache.thrift.transport.TIOStreamTransport;
+> import org.apache.thrift.protocol.TBinaryProtocol;
+> 
+4c9
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>   // Use the TFramedTransport to be compatible with singer_thrift
+7c12
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+---
+>   TFramedTransport framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),

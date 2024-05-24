@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.IoChecked;
+> 
+> import java.io.IOException;
+> 
+> public class RtTransaction {
+>     // ...
+>     private Scalar<Bytes> bytes() throws IOException {
+>         return new IoChecked<>(
+>             () -> new ByteArrayResource(this.repository.load(this.id))
+>         );
+>     }
+>     // ...
+> }
+\ No newline at end of file

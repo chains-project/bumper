@@ -1,0 +1,13 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlertReason;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    public void onTlsFatalAlertReceived(short alertDescription) {
+        TlsFatalAlertReason reason = TlsFatalAlertReason.get(alertDescription);
+        // ...
+    }
+
+    // ...
+}

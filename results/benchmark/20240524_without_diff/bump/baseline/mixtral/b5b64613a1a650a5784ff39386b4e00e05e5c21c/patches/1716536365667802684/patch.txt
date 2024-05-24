@@ -1,0 +1,7 @@
+import static org.apache.commons.lang3.StringUtils.isAnyBlank;
+
+// ...
+
+if (isAnyBlank(dep1, dep2, dep3)) {
+    // ...
+}

@@ -1,0 +1,21 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8c2
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>     if (isAllBlank(server.getUrl(), getArtifactoryUrl(server), getDistributionUrl(server),
+20a15,22
+> 
+> private String getArtifactoryUrl(JFrogPlatformInstance server) {
+>     return server.getArtifactory() == null ? "" : server.getArtifactory().getUrl();
+> }
+> 
+> private String getDistributionUrl(JFrogPlatformInstance server) {
+>     return server.getDistribution() == null ? "" : server.getDistribution().getUrl();
+> }
+\ No newline at end of file

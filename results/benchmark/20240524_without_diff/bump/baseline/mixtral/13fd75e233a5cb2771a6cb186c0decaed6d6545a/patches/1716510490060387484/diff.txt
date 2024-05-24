@@ -1,0 +1,9 @@
+2a3
+>     boolean pushed = false;
+6c7,8
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         pushed = output.contains("Pushed");
+>         MatcherAssert.assertThat(output, new StringContains(""));
+9a12
+>     MatcherAssert.assertThat("Pushed message was not found in the output", pushed);

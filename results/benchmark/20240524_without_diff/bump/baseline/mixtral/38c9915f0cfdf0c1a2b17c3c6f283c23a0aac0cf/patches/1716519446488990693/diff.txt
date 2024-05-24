@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.Sticky;
+> 
+> // ...
+> 
+> Scalar<Boolean> isValid = new Sticky<>(() -> someCondition());
+> 
+> // ...
+> 
+> if (isValid.value()) {
+>   // ...
+> }
+\ No newline at end of file

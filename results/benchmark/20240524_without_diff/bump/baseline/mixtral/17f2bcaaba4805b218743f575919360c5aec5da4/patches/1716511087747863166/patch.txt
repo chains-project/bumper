@@ -1,0 +1,29 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinHeapI;
+import org.tinspin.index.util.MinMaxHeap;
+import org.tinspin.index.util.MinMaxHeapI;
+
+// ...
+
+public class FastPolygonizerTests {
+
+    // ...
+
+    @Test
+    public void testIntersection() {
+        SegmentString segStr1 = new SegmentString(new Coordinate[]{
+                new Coordinate(0, 0),
+                new Coordinate(10, 10)
+        });
+
+        PointIndexMMWrapper index = new PointIndexMMWrapper();
+        index.insert(new Coordinate(5, 5));
+
+        // ...
+    }
+
+    // ...
+
+}

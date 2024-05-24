@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+//...
+
+public RtTransaction(RtAccount src, RtAccount dst, byte[] data) {
+    this.src = src;
+    this.dst = dst;
+    this.data = data;
+    this.len = new LengthOf<>(Arrays.asList(data));
+}

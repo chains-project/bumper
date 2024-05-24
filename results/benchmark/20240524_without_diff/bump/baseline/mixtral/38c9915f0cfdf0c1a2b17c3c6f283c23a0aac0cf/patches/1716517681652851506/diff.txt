@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double score(String id) throws IOException {
+>   double result = 0;
+>   try (Input input = new UrlInput(baseUrl + id)) {
+>     result = new LengthOf(input).intValue();
+>   }
+>   return result;
+> }
+\ No newline at end of file

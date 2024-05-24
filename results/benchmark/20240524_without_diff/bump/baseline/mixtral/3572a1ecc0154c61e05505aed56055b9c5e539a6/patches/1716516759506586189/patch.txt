@@ -1,0 +1,15 @@
+import org.apache.thrift.transport.TFastFramedTransport;
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TIOStreamTransport;
+import org.apache.thrift.protocol.TBinaryProtocol;
+
+@Override
+public void init(OutputStream os) {
+  this.os = os;
+  // Use the TFramedTransport to be compatible with singer_thrift
+  // log.
+  final int bufferCapacity = 10;
+  TFramedTransport framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+      bufferCapacity);
+  protocol = new TBinaryProtocol(framedTransport);
+}

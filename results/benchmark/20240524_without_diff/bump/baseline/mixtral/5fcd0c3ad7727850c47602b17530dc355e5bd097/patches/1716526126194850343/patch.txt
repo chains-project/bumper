@@ -1,0 +1,9 @@
+private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+    return new MutationTestSummaryData(data.getFileName(),
+        data.getMutations(),
+        getClassInfoFromCoverageDatabase(coverage, data.getMutatedClass()));
+}
+
+private Collection<ClassInfo> getClassInfoFromCoverageDatabase(CoverageDatabase coverage, ClassName className) {
+    return coverage.getClassInfo(className).getUniqueClassInfo();
+}

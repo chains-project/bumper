@@ -1,0 +1,21 @@
+27c27,28
+<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+>                 outgoingChatMeta.addEnchant(powerEnchantment, 1, false);
+49c50,51
+<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+>                 incomingChatMeta.addEnchant(powerEnchantment, 1, false);
+62,71d63
+<                         }));    
+<                         }
+<                         
+<                         /* Bottom Left Option: Previous Page */
+<                         contents.set(2, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                 WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+<                         }));
+<                 } catch (Exception e) {
+<                         WWCInventoryManager.inventoryError(player, e);
+<                 }

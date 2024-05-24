@@ -1,0 +1,8 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder();
+    PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+    encryptor.setPassword("requiredPassword");
+    encoder.setPasswordEncryptor(encryptor);
+    return encoder;
+}

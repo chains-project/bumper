@@ -1,0 +1,6 @@
+1,2c1,2
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+<     List<String> list = extractList(cache, branch);
+---
+>   private static String extractFirst(JsonPathCache cache, DataElement element) {
+>     List<String> list = extractList(cache, element);

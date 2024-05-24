@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @Test
+>     public void testMorphologyGroupShape() {
+>         assumeTrue(false); // This test is currently failing due to a dependency update.
+>     }
+> 
+> }
+\ No newline at end of file

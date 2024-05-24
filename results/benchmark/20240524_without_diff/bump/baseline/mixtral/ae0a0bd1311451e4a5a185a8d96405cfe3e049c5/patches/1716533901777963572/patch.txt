@@ -1,0 +1,4 @@
+private Matcher<String> manifestPushed() {
+    boolean ignoreCase = false;
+    return new StringContains(ignoreCase, String.format("latest: digest: %s", this.image.digest()));
+}

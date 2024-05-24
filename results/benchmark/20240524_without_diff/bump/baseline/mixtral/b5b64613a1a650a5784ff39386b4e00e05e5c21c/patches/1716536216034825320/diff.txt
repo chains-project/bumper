@@ -1,0 +1,6 @@
+0a1,2
+> import org.jenkinsci.plugins.p4.client.ClientHelper;
+> 
+2a5,6
+>     ClientHelper helper = new ClientHelper(null, null, null, null); // initialize ClientHelper
+> 

@@ -1,0 +1,7 @@
+11,13c11,12
+<                 ).digest()
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+---
+>             ).digest(),
+>             new StringContains("Unexpected query")

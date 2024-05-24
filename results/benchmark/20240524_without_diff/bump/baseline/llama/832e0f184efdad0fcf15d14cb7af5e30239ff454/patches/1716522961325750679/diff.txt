@@ -1,0 +1,46 @@
+1d0
+< @Override
+30c29
+<                                 translationMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             translationMeta.addEnchant(Enchantment.getByName("power"), 1);
+60c59
+<                                 }));
+---
+>             });
+71c70
+<                                                 rateMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                     rateMeta.addEnchant(Enchantment.getByName("power"), 1);
+93c92
+<                                                 bookMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                     bookMeta.addEnchant(Enchantment.getByName("power"), 1);
+105d103
+<                                 }
+117c115
+<                                                 signMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                         signMeta.addEnchant(Enchantment.getByName("power"), 1);
+129d126
+<                                 }
+140c137
+<                                                 itemMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                             itemMeta.addEnchant(Enchantment.getByName("power"), 1);
+152d148
+<                                 }
+161c157
+<                                                 entityMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 entityMeta.addEnchant(Enchantment.getByName("power"), 1);
+175d170
+<                                 }
+185c180
+<                                                 chatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                     chatMeta.addEnchant(Enchantment.getByName("power"), 1);
+201a197,199
+>                     }
+>                 }
+>             }

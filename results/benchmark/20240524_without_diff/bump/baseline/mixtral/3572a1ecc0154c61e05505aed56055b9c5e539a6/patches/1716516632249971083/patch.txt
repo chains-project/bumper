@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TFastFramedTransport;
+import org.apache.thrift.transport.TFastFramedTransport.Factory;
+
+// ...
+
+TFastFramedTransport transport = Factory.getTransport(new TFramedTransport(new TSocket(host, port)));

@@ -1,0 +1,9 @@
+2,5c2,4
+<         return new StringContains(
+<             false,
+<             String.format("%s: Layer already exists", this.image.layer())
+<         );
+---
+>     String layer = this.image.layer();
+>     String message = String.format("%s: Layer already exists", layer);
+>     return new StringContains(false, message);

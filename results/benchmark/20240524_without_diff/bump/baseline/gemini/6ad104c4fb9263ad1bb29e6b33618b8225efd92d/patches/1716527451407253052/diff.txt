@@ -1,0 +1,19 @@
+1c1,14
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> public class ChachaDecoder {
+> 
+>     public ChachaDecoder(byte[] key, byte[] nonce) {
+>         // TODO Auto-generated constructor stub
+>     }
+> 
+>     public byte[] decode(byte[] in, int inOff, int len) {
+>         // TODO Auto-generated method stub
+>         return null;
+>     }
+> 
+> }
+\ No newline at end of file

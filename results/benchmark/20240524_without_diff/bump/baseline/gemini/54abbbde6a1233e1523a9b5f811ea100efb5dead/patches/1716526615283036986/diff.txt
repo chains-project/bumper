@@ -1,0 +1,16 @@
+1a2,15
+> import com.jcabi.ssh.Ssh;
+> 
+> public class Ssh {
+> 
+>     public Ssh(Tv tv) {
+>         this.tv = tv;
+>     }
+> 
+>     private final Tv tv;
+> 
+>     public void exec(String command) {
+>         tv.watch(command);
+>     }
+> }
+\ No newline at end of file

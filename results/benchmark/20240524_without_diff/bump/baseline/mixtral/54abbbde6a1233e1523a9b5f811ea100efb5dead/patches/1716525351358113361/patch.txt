@@ -1,0 +1,22 @@
+import com.jcabi.ssh.Ssh;
+
+public class SshByPassword {
+    @Override
+    public Ssh ssh(String host, String username, String password) {
+        return new SshByPassword0(host, username, password);
+    }
+}
+
+class SshByPassword0 implements Ssh {
+    private final String host;
+    private final String username;
+    private final String password;
+
+    public SshByPassword0(String host, String username, String password) {
+        this.host = host;
+        this.username = username;
+        this.password = password;
+    }
+
+    // Implement the Ssh interface methods here
+}

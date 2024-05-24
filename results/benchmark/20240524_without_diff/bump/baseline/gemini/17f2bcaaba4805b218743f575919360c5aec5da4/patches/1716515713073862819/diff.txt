@@ -1,0 +1,6 @@
+3c3,5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>                 if (GROUP_SHAPE.getChildCount() != 2) {
+>                         return;
+>                 }

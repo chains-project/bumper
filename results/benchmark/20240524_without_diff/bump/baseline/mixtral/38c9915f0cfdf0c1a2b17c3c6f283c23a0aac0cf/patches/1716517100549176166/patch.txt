@@ -1,0 +1,5 @@
+import org.cactoos.io.Joined;
+
+//...
+
+JoinedText joined = new JoinedText(", ", new Joined(input));

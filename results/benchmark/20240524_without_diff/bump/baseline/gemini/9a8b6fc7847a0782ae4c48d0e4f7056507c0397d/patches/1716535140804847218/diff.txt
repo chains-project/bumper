@@ -1,0 +1,9 @@
+1d0
+< @Override
+4c3,6
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>                 StringDigester digester = new StringDigester();
+>                 digester.setAlgorithm("SHA-1");
+>                 digester.setIterations(1024);
+>                 encoder.setStringDigester(digester);

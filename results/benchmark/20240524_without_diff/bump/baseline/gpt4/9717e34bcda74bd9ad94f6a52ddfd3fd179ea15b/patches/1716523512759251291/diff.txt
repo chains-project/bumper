@@ -1,0 +1,7 @@
+1c1,2
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> //Tv class is no longer available in the new version of the library
+> //You should remove the import statement
+\ No newline at end of file

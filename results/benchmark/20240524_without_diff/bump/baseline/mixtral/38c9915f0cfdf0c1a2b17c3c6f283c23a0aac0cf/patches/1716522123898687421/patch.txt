@@ -1,0 +1,12 @@
+import org.cactoos.scalar.Sticky;
+import org.cactoos.Input;
+
+public class RtTransaction {
+    // ...
+    private Sticky<Input> input = Sticky.with(this::inputSupplier);
+
+    private Input inputSupplier() {
+        // ...
+    }
+    // ...
+}

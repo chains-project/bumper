@@ -1,0 +1,8 @@
+2c2
+<     void shouldThrowExceptionWhenDigestIsAbsent() {
+---
+> public void shouldThrowExceptionWhenDigestIsAbsent() {
+13c13
+<             new StringContains(false, "Unexpected query")
+---
+>         new StringContains(false, "Digest is required")

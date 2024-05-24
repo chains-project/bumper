@@ -1,0 +1,15 @@
+import org.cactoos.scalar.Sticky;
+
+// ...
+
+private Sticky<Transaction> stickyTransaction;
+
+// ...
+
+@Override
+public Transaction transaction() {
+    if (stickyTransaction == null) {
+        stickyTransaction = new Sticky<>(() -> transactionPool.get());
+    }
+    return stickyTransaction.value();
+}

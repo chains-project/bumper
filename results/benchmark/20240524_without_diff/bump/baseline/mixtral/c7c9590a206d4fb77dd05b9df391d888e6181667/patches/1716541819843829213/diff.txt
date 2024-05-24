@@ -1,0 +1,18 @@
+1,5c1,5
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import org.apache.maven.doxia.siterenderer.DocumentContent;
+> import org.apache.maven.doxia.siterenderer.Renderer;
+> import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
+> import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+> 
+21c21,23
+<             generate( sink, locale );
+---
+>         Renderer renderer = new DefaultSiteRenderer(); // Create a DefaultSiteRenderer instance
+>         DocumentContent documentContent = renderer.render( sink, locale );
+>         renderer.mergeDocumentIntoSite( System.out, documentContent, context );

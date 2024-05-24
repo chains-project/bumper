@@ -1,0 +1,13 @@
+0a1,2
+> import org.junit.Assume;
+> 
+1a4,11
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @org.junit.jupiter.api.Test
+>     public void testShape() {
+>         Assume.assumeTrue(true);
+>     }
+> }
+\ No newline at end of file

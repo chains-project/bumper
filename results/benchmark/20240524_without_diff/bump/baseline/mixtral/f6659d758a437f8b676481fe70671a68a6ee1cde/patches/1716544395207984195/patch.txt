@@ -1,0 +1,7 @@
+import org.yaml.snakeyaml.inspector.TrustedPrefixesTagInspector;
+
+// Create a trusted tag inspector
+TrustedPrefixesTagInspector trustedTagInspector = new TrustedPrefixesTagInspector(/* empty list */);
+
+// Use the trusted tag inspector
+// ...

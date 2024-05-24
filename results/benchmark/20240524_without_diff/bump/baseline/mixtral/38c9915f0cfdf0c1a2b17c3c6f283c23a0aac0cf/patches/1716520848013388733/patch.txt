@@ -1,0 +1,7 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+Scalar<Integer> scalar = new ScalarOf<>(() -> 42);
+// Use 'scalar' instead of 'SolidScalar'

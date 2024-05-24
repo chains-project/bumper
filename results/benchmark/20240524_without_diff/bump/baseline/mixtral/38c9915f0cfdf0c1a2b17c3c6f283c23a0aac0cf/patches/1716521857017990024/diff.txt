@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtEnv env, byte[] data, RtUser user) {
+>   this.env = env;
+>   this.data = data;
+>   this.user = user;
+>   this.len = new LengthOf<byte[]>(data).intValue();
+> }
+\ No newline at end of file

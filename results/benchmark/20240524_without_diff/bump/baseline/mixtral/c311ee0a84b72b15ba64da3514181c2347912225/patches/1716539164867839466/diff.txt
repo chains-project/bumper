@@ -1,0 +1,14 @@
+24,26c24
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+---
+>                 new StringContains(Throwables.getRootCause(throwable).getMessage()),
+28d25
+<                     )
+32,33c29,30
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                 new StringContains(Throwables.getRootCause(throwable).getMessage()),
+>                 digest

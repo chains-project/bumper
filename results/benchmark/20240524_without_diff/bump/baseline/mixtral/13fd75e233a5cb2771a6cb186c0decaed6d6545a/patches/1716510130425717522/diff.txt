@@ -1,0 +1,13 @@
+7a8,10
+>     final HamcrestMatcher unsupportedReferenceMatcher = new StringContains("Unsupported reference");
+>     final HamcrestMatcher notContainingMatcher = new StringContains(string);
+>     final HamcrestMatcher allOfMatcher = AllOf.allOf(unsupportedReferenceMatcher, notContainingMatcher);
+14,19c17
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+---
+>             allOfMatcher

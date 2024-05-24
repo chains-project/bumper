@@ -1,0 +1,4 @@
+@Override
+public java.sql.Timestamp between(java.sql.Timestamp from, java.sql.Timestamp to) throws IllegalArgumentException {
+    return new java.sql.Timestamp(super.between(from, to).getTime());
+}

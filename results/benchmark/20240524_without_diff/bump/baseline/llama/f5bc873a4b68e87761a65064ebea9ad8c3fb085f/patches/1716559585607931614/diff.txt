@@ -1,0 +1,15 @@
+1c1,10
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> import org.apache.maven.execution.ProjectDependencyGraph;
+> 
+> public class AbstractThemeMojo {
+>     public void execute() {
+>         MavenSession session = null; // Initialize with a valid session
+>         ProjectDependencyGraph graph = session.getProjectDependencyGraph();
+>         // Use graph instead of MavenProject
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+import com.jcabi.ssh.Ssh;
+
+public class MyClass {
+    @Tv
+    public void myMethod() {
+        Ssh ssh = new Ssh("user", "password", "host");
+        // rest of the method code
+    }
+}

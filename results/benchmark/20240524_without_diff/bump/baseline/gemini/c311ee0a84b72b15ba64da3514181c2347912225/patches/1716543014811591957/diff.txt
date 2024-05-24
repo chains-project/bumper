@@ -1,0 +1,15 @@
+2c2
+<     void shouldPull() throws Exception {
+---
+>     public void shouldPull() throws Exception {
+7c7
+<         MatcherAssert.assertThat(
+---
+>         assertThat(
+9,12c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+---
+>             containsString(String.format("Status: Downloaded newer image for %s", image))

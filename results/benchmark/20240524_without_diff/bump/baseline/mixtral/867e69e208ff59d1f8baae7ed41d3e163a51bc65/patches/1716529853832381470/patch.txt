@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TNonblockingTransport;
+import org.apache.thrift.transport.layered.TFastFramedTransport;
+import org.apache.thrift.transport.layered.TFastFramedTransport$Factory;
+
+TNonblockingTransport transport = new TFastFramedTransport.Factory().getTransport(new TFramedTransport(new TNonblockingTransport()));

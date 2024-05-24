@@ -1,0 +1,15 @@
+0a1
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+1a3,13
+> 
+> public class ChachaDecoder {
+> 
+>   public ChachaDecoder(byte[] key, byte[] nonce) {
+>     // ...
+>   }
+> 
+>   public byte[] decode(byte[] in, int inOff, int len) {
+>     // ...
+>   }
+> }
+\ No newline at end of file

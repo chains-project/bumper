@@ -1,0 +1,5 @@
+12c12,13
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>             hudson.model.ItemGroup context = Jenkins.get(); // Assuming Jenkins as the context
+>             ClientHelper perforceClient = new ClientHelper(context, credentials, buildListener, null);

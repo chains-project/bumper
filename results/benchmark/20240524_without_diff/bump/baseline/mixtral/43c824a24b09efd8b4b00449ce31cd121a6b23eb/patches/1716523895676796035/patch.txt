@@ -1,0 +1,7 @@
+import de.gwdg.metadataqa.api.json.DataElement;
+
+// replace all occurrences of JsonBranch with DataElement
+// for example, replace:
+// JsonBranch jsonBranch = ...;
+// with:
+DataElement jsonBranch = ...;

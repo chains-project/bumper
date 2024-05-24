@@ -1,0 +1,23 @@
+import org.cactoos.text.TextOf;
+
+import java.util.Iterator;
+
+public class Remote {
+    ...
+    @Override
+    protected Text createText() {
+        Iterator<Character> chars = new Iterator<Character>() {
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public Character next() {
+                return (char) (Math.random() * 256);
+            }
+        };
+        return new TextOf(chars);
+    }
+    ...
+}

@@ -1,0 +1,15 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public class RtNetwork {
+  // ...
+
+  private static byte[] getBytes(Scalar<URL> url) throws IOException {
+    try (InputStream is = url.value().openStream()) {
+      return new IoCheckedBytes(new BytesOf(is)).asBytes();
+    }
+  }
+
+  // ...
+}

@@ -1,0 +1,8 @@
+1a2
+>     boolean startsWith = false;
+6c7,9
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             new StringStartsWith(new StringStartsWith.StringStartsWithBuilder()
+>                 .prefix("/v2/test/blobs/uploads/")
+>                 .build())

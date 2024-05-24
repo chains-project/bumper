@@ -1,0 +1,14 @@
+import org.cactoos.bytes.CheckedBytes;
+import java.util.function.Function;
+
+// ...
+
+CheckedScalar<Double> balance = new CheckedScalar<>(
+  () -> new CheckedBytes(
+    () -> new IoCheckedBytes(
+      () -> new IoCheckedText(wallet.balance())
+    ),
+    s -> s.getBytes()
+  ).asBytes(),
+  Function.identity()
+).value();

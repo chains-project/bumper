@@ -1,0 +1,11 @@
+6c6
+<         final String output = this.client.run("pull", this.image.remoteByDigest());
+---
+>     String output = this.client.run("pull", this.image.remoteByDigest());
+9,12c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+<             )
+---
+>         new StringContains(this.image.remoteByDigest())

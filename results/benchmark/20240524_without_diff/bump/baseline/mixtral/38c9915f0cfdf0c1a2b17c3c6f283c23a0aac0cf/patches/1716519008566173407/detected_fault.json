@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1207608476,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class CollectionOf\n  location: package org.cactoos.collection\n",
+        "error_message": "[ERROR] /java-api/src/main/java/io/zold/api/Copies.java:[30,30] cannot find symbol",
+        "client_file_path": "/java-api/src/main/java/io/zold/api/Copies.java",
+        "client_line_position": "30"
+    },
+    "client_end_line_number": 30,
+    "client_line_number": 30,
+    "method_code": "import org.cactoos.collection.CollectionOf;",
+    "qualified_code": "import org.cactoos.collection.CollectionOf;",
+    "method_name": "import"
+}

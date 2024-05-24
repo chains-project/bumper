@@ -1,0 +1,5 @@
+2c2,3
+<     return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();
+---
+>     ConnectionHelper connectionHelper = clientHelper.getConnection();
+>     return connectionHelper.getUrl();

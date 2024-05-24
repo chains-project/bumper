@@ -1,0 +1,8 @@
+import com.jcabi.ssh.Ssh;
+
+// ...
+
+@Tv(42)
+public Ssh ssh() {
+  return new SshByPassword(this.host(), this.username(), this.password());
+}

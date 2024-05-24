@@ -1,0 +1,10 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+@Override
+protected void generateReport(Locations locations, File outputDirectory) throws MojoExecutionException, IOException {
+    // ...
+    RenderingContext renderingContext = new RenderingContext();
+    // ...
+}

@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.collection.Filtered;
+\ No newline at end of file
+---
+> import org.cactoos.iterable.Filtered;
+> 
+> // ...
+> 
+> public Iterable<Entry> entries() throws IOException {
+>   return new Filtered<>(
+>     new IterableOf<>(
+>       api().entries()
+>     ),
+>     new EntryFilter()
+>   );
+> }
+\ No newline at end of file

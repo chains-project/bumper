@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     @Override
+>     protected void fatal(short alert) {
+>         throw new TlsFatalAlert(alert);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

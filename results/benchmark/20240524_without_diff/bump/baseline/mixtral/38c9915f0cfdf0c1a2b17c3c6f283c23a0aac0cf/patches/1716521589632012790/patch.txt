@@ -1,0 +1,9 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public RtTransaction(TransactionInput input, TransactionOutput output) {
+  this.input = new UncheckedText(input::asString);
+  this.output = new UncheckedText(output::asString);
+  // ...
+}

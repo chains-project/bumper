@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 369049246,
+    "in_class_code": "/**\n * Integration test for {@link DockerSlice}.\n *\n * @since 0.2\n */\n@SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\n@DockerClientSupport\nfinal class DockerSliceITCase {\n    /**\n     * Example docker image to use in tests.\n     */\n    private Image image;\n\n    /**\n     * Docker client.\n     */\n    private DockerClient client;\n\n    /**\n     * Docker repository.\n     */\n    private DockerRepository repository;\n\n    private Matcher<String> manifestPushed() {\n        return new StringContains(false, String.format(\"latest: digest: %s\", this.image.digest()));\n    }\n}",
+    "qualified_in_class_code": "/**\n * Integration test for {@link DockerSlice}.\n *\n * @since 0.2\n */\n@java.lang.SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\n@com.artipie.docker.junit.DockerClientSupport\nfinal class DockerSliceITCase {\n    /**\n     * Example docker image to use in tests.\n     */\n    private com.artipie.docker.http.Image image;\n\n    /**\n     * Docker client.\n     */\n    private com.artipie.docker.junit.DockerClient client;\n\n    /**\n     * Docker repository.\n     */\n    private com.artipie.docker.junit.DockerRepository repository;\n\n    private org.hamcrest.Matcher<java.lang.String> manifestPushed() {\n        return new org.hamcrest.core.StringContains(false, java.lang.String.format(\"latest: digest: %s\", this.image.digest()));\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  required: java.lang.String\n  found: boolean,java.lang.String\n  reason: actual and formal argument lists differ in length\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/DockerSliceITCase.java:[123,16] constructor StringContains in class org.hamcrest.core.StringContains cannot be applied to given types;",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/DockerSliceITCase.java",
+        "client_line_position": "123"
+    },
+    "client_end_line_number": 124,
+    "client_line_number": 122,
+    "method_code": "private Matcher<String> manifestPushed() {\n        return new StringContains(false, String.format(\"latest: digest: %s\", this.image.digest()));\n    }",
+    "qualified_code": "private org.hamcrest.Matcher<java.lang.String> manifestPushed() {\n    return new org.hamcrest.core.StringContains(false, java.lang.String.format(\"latest: digest: %s\", this.image.digest()));\n}",
+    "method_name": "manifestPushed"
+}

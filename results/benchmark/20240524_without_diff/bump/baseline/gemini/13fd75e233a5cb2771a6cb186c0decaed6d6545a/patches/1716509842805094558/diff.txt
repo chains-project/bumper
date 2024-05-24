@@ -1,0 +1,9 @@
+21a22,25
+>                 final String expectedMessage = String.format(
+>                     "Invalid digest: expected <%s> but was <3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7>",
+>                     digest
+>                 );
+33c37
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(true, expectedMessage)

@@ -1,0 +1,27 @@
+1c1,22
+< import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> XoRoShiRo128PlusRandom random = new XoRoShiRo128PlusRandom();
+> 
+> // ...
+> 
+> public int getSize() {
+>     int size = PointIndexMMWrapper.size();
+>     size += PHTreeMMP.size();
+>     size += MinHeap.size();
+>     size += MinHeapI.size();
+>     size += MinMaxHeap.size();
+>     size += MinMaxHeapI.size();
+>     return size;
+> }
+\ No newline at end of file

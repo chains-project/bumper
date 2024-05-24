@@ -1,0 +1,46 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  import develop.p2p.lib.WaveCreator;
+```
+
+with the following error message:
+[ERROR] /PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Objects/Decorations.java:[3,23] package develop.p2p.lib does not exist
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public java.lang.Object develop.p2p.lib.FileConfiguration.get(java.lang.String)
+-- public java.util.Map develop.p2p.lib.FileConfiguration.getConfig()
+-- public java.lang.String develop.p2p.lib.FileConfiguration.getString(java.lang.String)
+-- public static D develop.p2p.lib.LearnMath.sigmoid(double)
+-- public static D develop.p2p.lib.LearnMath.sigmoidDef(double)
+-- public static java.lang.String develop.p2p.lib.LeetConverter.convert(java.lang.String)
+-- public static transient java.util.Date develop.p2p.lib.TimeParser.convert(java.lang.String[])
+-- public static java.lang.String develop.p2p.lib.TimeParser.convertFromDate(java.util.Date)
+-- public WaveCreator develop.p2p.lib.WaveCreator(double,double,double)
+-- public D develop.p2p.lib.WaveCreator.get(double,boolean)
+-- public D develop.p2p.lib.WaveCreator.getStatic()
+++ public java.lang.Object tokyo.peya.lib.FileConfiguration.get(java.lang.String)
+++ public java.util.Map tokyo.peya.lib.FileConfiguration.getConfig()
+++ public java.lang.String tokyo.peya.lib.FileConfiguration.getString(java.lang.String)
+++ public static D tokyo.peya.lib.LearnMath.sigmoid(double)
+++ public static D tokyo.peya.lib.LearnMath.sigmoidDef(double)
+++ public static java.lang.String tokyo.peya.lib.LeetConverter.convert(java.lang.String)
+++ public static transient java.util.Date tokyo.peya.lib.TimeParser.convert(java.lang.String[])
+++ public static java.lang.String tokyo.peya.lib.TimeParser.convertFromDate(java.util.Date)
+++ public WaveCreator tokyo.peya.lib.WaveCreator(double,double,double)
+++ public D tokyo.peya.lib.WaveCreator.get(double,boolean)
+++ public D tokyo.peya.lib.WaveCreator.getStatic()
+++ public java.util.Map tokyo.peya.lib.bukkit.exception.SelectorInvalidException.getInvalidKeys()
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

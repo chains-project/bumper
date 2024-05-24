@@ -1,0 +1,6 @@
+2c2,4
+<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
+---
+>         String layer = this.image.layer();
+>         boolean contains = false;
+>         return new StringContains(contains, String.format("%s: Pushed", layer));

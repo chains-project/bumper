@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.NoNulls;
+> 
+> // ...
+> 
+> private Scalar<Transaction> scalar(String hash) {
+>   return new NoNulls<>(() -> db().transaction(hash));
+> }
+\ No newline at end of file

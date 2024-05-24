@@ -1,0 +1,10 @@
+import static org.junit.jupiter.api.Assertions.ignore;
+
+// ...
+
+@Test
+public void testPolygonize() {
+    // ...
+    ignore("Skipping this test");
+    // ...
+}

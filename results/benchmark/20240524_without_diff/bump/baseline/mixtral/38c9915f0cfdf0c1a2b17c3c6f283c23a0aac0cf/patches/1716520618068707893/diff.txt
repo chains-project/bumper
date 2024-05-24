@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.UncheckedText;
+> 
+> // ...
+> 
+> public RtTransaction(String id, TransactionType type, Amount amount, String... tags) {
+>   super(
+>     id,
+>     type,
+>     amount,
+>     new UncheckedText(tags)
+>   );
+> }
+\ No newline at end of file

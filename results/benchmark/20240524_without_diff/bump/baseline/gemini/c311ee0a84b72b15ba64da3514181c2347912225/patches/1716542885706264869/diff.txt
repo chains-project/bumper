@@ -1,0 +1,10 @@
+21a22
+>                 final String actualDigest = ((InvalidDigestException)Throwables.getRootCause(throwable)).getActualDigest();
+24c25
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,
+32c33
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,

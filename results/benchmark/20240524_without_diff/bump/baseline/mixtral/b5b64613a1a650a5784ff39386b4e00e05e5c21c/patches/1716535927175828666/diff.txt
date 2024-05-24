@@ -1,0 +1,3 @@
+9a10,11
+>     ClientHelper clientHelper = new ClientHelper(hudson.model.Hudson.getInstance(), "", jenkinsLogger, null);
+> 

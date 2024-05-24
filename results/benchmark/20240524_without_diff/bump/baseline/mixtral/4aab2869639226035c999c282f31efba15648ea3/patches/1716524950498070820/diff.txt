@@ -1,0 +1,10 @@
+4a5,7
+>       Config cfg = new Config()
+>         .with(Sub Configs.single("type", sub.string("type")))
+>         .with(Sub Configs.single("params", Yaml.createYamlInput(sub.toString()).readYamlMapping()));
+7,9c10
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>               new StorageFactory().newStorage(cfg)

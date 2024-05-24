@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+>   import org.cactoos.bytes.IoCheckedBytes;
+>   import org.cactoos.text.IoCheckedText;
+> 
+>   import java.io.IOException;
+> 
+>   public class WalletsIn {
+> 
+>       public WalletsIn(final IoCheckedText wallets) {
+>           new IoCheckedBytes(wallets).asBytes();
+>       }
+>   }
+\ No newline at end of file

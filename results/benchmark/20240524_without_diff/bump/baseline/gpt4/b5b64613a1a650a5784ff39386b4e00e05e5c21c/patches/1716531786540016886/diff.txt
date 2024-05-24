@@ -1,0 +1,21 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8c2
+<             if (isAllBlank(server.getUrl(), step.url)) {
+---
+>     if (server.getUrl() == null || server.getUrl().isEmpty() || step.url == null || step.url.isEmpty()) {
+11,12c5,6
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>     if (step.credentialsId != null && !step.credentialsId.isEmpty()) {
+>         if (step.username != null && !step.username.isEmpty()) {
+15c9
+<                 if (isNotBlank(step.password)) {
+---
+>         if (step.password != null && !step.password.isEmpty()) {

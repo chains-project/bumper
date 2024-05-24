@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.io.CheckedBytes;
+> 
+> public class WalletsIn {
+>     // ...
+>     public void getWallets(String url, String apiKey) {
+>         // ...
+>         byte[] data = new IoCheckedBytes(new CheckedBytes(response.body(), this::validateResponse)).asBytes();
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file

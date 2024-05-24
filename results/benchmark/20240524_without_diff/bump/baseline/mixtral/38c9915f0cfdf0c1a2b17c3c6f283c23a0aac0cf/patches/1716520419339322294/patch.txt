@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtTransactions parent, String id) {
+  this.parent = parent;
+  this.id = id;
+  this.length = new LengthOf(parent.list(id));
+}

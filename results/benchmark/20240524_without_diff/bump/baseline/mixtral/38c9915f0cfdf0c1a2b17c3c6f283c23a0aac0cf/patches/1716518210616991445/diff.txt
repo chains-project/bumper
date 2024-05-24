@@ -1,0 +1,18 @@
+1c1,13
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtDb db, RtApi api, RtUser user, RtAmount amount, RtProof proof) {
+>   this.db = db;
+>   this.api = api;
+>   this.user = user;
+>   this.amount = amount;
+>   this.proof = proof;
+>   this.id = new LengthOf<>(db.list(user.id())).intValue();
+>   this.created = new LengthOf<>(db.list(user.id(), Timestamp.format())).intValue();
+> }
+\ No newline at end of file

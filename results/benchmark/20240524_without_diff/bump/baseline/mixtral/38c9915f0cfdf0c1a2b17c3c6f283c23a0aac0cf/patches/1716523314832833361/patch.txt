@@ -1,0 +1,23 @@
+import org.cactoos.Bytes;
+import org.cactoos.IoCheckedBytes;
+import org.cactoos.input.BytesOf;
+
+// ...
+
+private static final Bytes bytes(String resource) {
+  return new IoCheckedBytes(new BytesOf(resource));
+}
+
+// ...
+
+  import org.cactoos.scalar.CheckedScalar;
+  import java.io.IOException;
+
+  // ...
+
+  @Override
+  public String value() throws IOException {
+    return new CheckedScalar<>(
+      () -> new String(bytes("value.txt").asBytes())
+    ).value();
+  }

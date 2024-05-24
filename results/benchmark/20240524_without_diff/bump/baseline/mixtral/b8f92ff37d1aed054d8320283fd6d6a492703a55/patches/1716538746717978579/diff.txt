@@ -1,0 +1,4 @@
+2c2
+<     return new TestListResolver();
+---
+>     return new org.apache.maven.plugin.surefire.provider.TestClassExtensionTestListResolver();

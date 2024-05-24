@@ -1,0 +1,16 @@
+0a1,2
+> import org.junit.Assume;
+> 
+1a4,14
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGroupShape_Grouped() {
+>         assumeTrue(Assume.assumeTrue(false)); // replace with your actual assumption
+>         // ...
+>     }
+> }
+\ No newline at end of file

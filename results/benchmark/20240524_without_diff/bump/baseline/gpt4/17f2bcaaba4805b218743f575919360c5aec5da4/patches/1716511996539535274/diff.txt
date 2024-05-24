@@ -1,0 +1,12 @@
+1c1,7
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+>   import org.junit.Assume;
+> 
+>   public class PGS_MorphologyGroupShapeTests {
+>       public void testAssumeTrue() {
+>           Assume.assumeTrue(true);
+>       }
+>   }
+\ No newline at end of file

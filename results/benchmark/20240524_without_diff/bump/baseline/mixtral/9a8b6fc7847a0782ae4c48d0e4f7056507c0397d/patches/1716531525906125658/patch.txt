@@ -1,0 +1,23 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    try {
+        PBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPasswordCharArray(chars);
+
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            encryptor.setProviderName(getProviderName());
+        }
+        encryptor.setAlgorithm(getAlgorithm());
+
+        PasswordEncoder passwordEncoder = new PasswordEncoder();
+        passwordEncoder.setPasswordEncryptor(encryptor);
+
+        return passwordEncoder;
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

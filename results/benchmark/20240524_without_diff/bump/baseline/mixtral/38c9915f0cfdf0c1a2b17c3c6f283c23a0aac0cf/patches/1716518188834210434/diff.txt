@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextEnvelope;
+> 
+> // ...
+> 
+> public RtTransaction(String id, TextEnvelope amount, TextEnvelope fee, TextEnvelope timestamp) {
+>   this.id = id;
+>   this.amount = amount;
+>   this.fee = fee;
+>   this.timestamp = timestamp;
+> }
+> 
+> // ...
+\ No newline at end of file

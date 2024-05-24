@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> @Override
+> public String taxBeneficiaries() throws IOException {
+>   return new LengthOf(beneficiaries()).toString();
+> }
+\ No newline at end of file

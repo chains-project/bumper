@@ -1,0 +1,14 @@
+import org.cactoos.collection.Immutable;
+import java.util.Collections;
+
+// ...
+
+public class Copies {
+    // ...
+
+    private static Immutable<Path> paths(final Iterable<Path> paths) {
+        return new Immutable<>(Collections.unmodifiableCollection(paths));
+    }
+
+    // ...
+}

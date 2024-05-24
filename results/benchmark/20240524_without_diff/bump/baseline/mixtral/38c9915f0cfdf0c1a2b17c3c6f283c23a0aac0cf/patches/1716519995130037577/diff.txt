@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double rtScore(String... args) throws IOException {
+>   Iterable<Double> doubles = // your code to get an iterable of doubles
+>   return new LengthOf(doubles).longValue();
+> }
+\ No newline at end of file

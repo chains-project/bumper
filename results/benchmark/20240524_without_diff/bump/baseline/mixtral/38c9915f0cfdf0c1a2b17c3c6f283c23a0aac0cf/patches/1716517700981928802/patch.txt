@@ -1,0 +1,7 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String input) throws IOException {
+    return new LengthOf<String>(input).longValue();
+}

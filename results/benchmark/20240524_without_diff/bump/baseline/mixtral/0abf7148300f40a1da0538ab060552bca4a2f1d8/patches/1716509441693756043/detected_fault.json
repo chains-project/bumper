@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 257268852,
+    "in_class_code": "/**\n * The {@link ReportBuilder} generates a {@link JasperReport} based on the\n * information of the {@link TemplateConfig}.\n *\n * @author XDEV Software (FHAE)\n * @see TemplateConfig\n * @see ReportExporter\n */\npublic class ReportBuilder {\n    private final TemplateConfig config;\n\n    private final Set<JRDesignField> fieldSet = new HashSet<>();\n\n    public ReportBuilder(final TemplateConfig tempConfig) {\n        this.config = tempConfig;\n    }\n\n    private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {\n        final ColumnBorder border = style.getColBorder();\n        if (border == null) {\n            return;\n        }\n        textField.getLineBox().getPen().setLineWidth(border.getLineWidth());\n        textField.getLineBox().getPen().setLineColor(border.getLineColor());\n        textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());\n    }\n}",
+    "qualified_in_class_code": "/**\n * The {@link ReportBuilder} generates a {@link JasperReport} based on the\n * information of the {@link TemplateConfig}.\n *\n * @author XDEV Software (FHAE)\n * @see TemplateConfig\n * @see ReportExporter\n */\npublic class ReportBuilder {\n    private final xdev.tableexport.config.TemplateConfig config;\n\n    private final java.util.Set<net.sf.jasperreports.engine.design.JRDesignField> fieldSet = new java.util.HashSet<>();\n\n    public ReportBuilder(final xdev.tableexport.config.TemplateConfig tempConfig) {\n        this.config = tempConfig;\n    }\n\n    private void prepareTextfieldWithBorder(final net.sf.jasperreports.engine.design.JRDesignTextElement textField, final xdev.tableexport.config.ColumnStyle style) {\n        final xdev.tableexport.config.ColumnBorder border = style.getColBorder();\n        if (border == null) {\n            return;\n        }\n        textField.getLineBox().getPen().setLineWidth(border.getLineWidth());\n        textField.getLineBox().getPen().setLineColor(border.getLineColor());\n        textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /biapi/src/main/java/xdev/tableexport/export/ReportBuilder.java:[369,81] incompatible types: int cannot be converted to java.lang.Float",
+        "client_file_path": "/biapi/src/main/java/xdev/tableexport/export/ReportBuilder.java",
+        "client_line_position": "369"
+    },
+    "client_end_line_number": 372,
+    "client_line_number": 361,
+    "method_code": "private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)\n\t{\n\t\tfinal ColumnBorder border = style.getColBorder();\n\t\tif(border == null)\n\t\t{\n\t\t\treturn;\n\t\t}\n\t\t\n\t\ttextField.getLineBox().getPen().setLineWidth(border.getLineWidth());\n\t\ttextField.getLineBox().getPen().setLineColor(border.getLineColor());\n\t\ttextField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());\n\t}",
+    "qualified_code": "private void prepareTextfieldWithBorder(final net.sf.jasperreports.engine.design.JRDesignTextElement textField, final xdev.tableexport.config.ColumnStyle style) {\n    final xdev.tableexport.config.ColumnBorder border = style.getColBorder();\n    if (border == null) {\n        return;\n    }\n    textField.getLineBox().getPen().setLineWidth(border.getLineWidth());\n    textField.getLineBox().getPen().setLineColor(border.getLineColor());\n    textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());\n}",
+    "method_name": "prepareTextfieldWithBorder"
+}

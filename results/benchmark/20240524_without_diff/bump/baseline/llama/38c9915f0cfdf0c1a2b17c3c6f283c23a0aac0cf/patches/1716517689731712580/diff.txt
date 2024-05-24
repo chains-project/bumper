@@ -1,0 +1,8 @@
+1c1,3
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.Unchecked;
+> 
+> UncheckedScalar uncheckedScalar = new Unchecked(new ScalarOf("unchecked scalar"));
+\ No newline at end of file

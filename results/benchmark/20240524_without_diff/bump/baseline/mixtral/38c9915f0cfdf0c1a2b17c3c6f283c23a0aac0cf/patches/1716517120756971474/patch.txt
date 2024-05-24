@@ -1,0 +1,10 @@
+import org.cactoos.io.Joined;
+
+...
+
+public Iterable<Byte[]> walletsBytes(Iterable<Wallet> wallets) throws IOException {
+  return new IterableOfBytes(new Joined<>(
+    wallet -> new BytesOf(wallet.title()),
+    wallets
+  ));
+}

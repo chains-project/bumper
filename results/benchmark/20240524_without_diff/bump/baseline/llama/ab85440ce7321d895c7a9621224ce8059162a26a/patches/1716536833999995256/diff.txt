@@ -1,0 +1,11 @@
+3,4c3,4
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+---
+>     String expectedMessage = "Unexpected query";
+>     Throwable throwable = Assertions.assertThrows(
+12,13d11
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+14a13
+>     MatcherAssert.assertThat(throwable.getMessage(), CoreMatchers.containsString(expectedMessage));

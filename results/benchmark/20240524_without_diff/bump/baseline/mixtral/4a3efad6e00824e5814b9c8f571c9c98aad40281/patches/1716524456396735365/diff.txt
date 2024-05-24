@@ -1,0 +1,26 @@
+1c1,21
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.enumerations.CertificationPermission;
+> 
+> import eu.europa.esig.dss.pdf.PdfDocumentReader;
+> import eu.europa.esig.dss.pdf.SigFieldPermissions;
+> 
+> // ...
+> 
+> public class Signer {
+> 
+>     // ...
+> 
+>     private void checkDocumentPermissions(DSSDocument document) {
+>         PdfDocumentReader pdfDocumentReader = new PdfDocumentReader(document);
+>         pdfDocumentReader.checkDocumentPermissions();
+>         CertificationPermission permission = pdfDocumentReader.getCertificationPermission();
+>         // ...
+>     }
+> 
+>     // ...
+> 
+> }
+\ No newline at end of file

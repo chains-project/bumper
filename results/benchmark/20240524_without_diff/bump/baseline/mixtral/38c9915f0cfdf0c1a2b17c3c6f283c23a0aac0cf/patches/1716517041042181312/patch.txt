@@ -1,0 +1,19 @@
+import org.cactoos.io.Joined;
+import org.cactoos.Text;
+
+public class WalletsIn {
+    // ...
+
+    private Text joined(Iterable<Text> parts) {
+        return new Joined(
+            " ",
+            IterableOf.<Text>of(
+                new TextOf("balance: "),
+                new FormattedText("%.2f", parts),
+                new TextOf("\n")
+            )
+        );
+    }
+
+    // ...
+}

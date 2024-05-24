@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoChecked;
+import org.cactoos.scalar.ScalarEnvelope;
+
+...
+
+Scalar<InputStream> scalar = ... ; // your original code here
+InputStream inputStream = new ScalarEnvelope<>(scalar).value();

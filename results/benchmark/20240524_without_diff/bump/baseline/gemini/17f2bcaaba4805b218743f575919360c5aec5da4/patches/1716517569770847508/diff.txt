@@ -1,0 +1,23 @@
+0a1,2
+> import org.junit.Assume;
+> 
+1a4,21
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @org.junit.Before
+>     public void setUp() throws Exception {
+>         Assume.assumeTrue(false);
+>     }
+> 
+>     @org.junit.Test
+>     public void test() {
+>         Assume.assumeTrue(false);
+>     }
+> 
+>     @org.junit.After
+>     public void tearDown() throws Exception {
+>     }
+> 
+> }
+\ No newline at end of file

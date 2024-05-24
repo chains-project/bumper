@@ -1,0 +1,13 @@
+1c1,8
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> import org.yaml.snakeyaml.inspector.TrustedPrefixesTagInspector;
+> 
+> // ...
+> 
+> @Override
+> protected TrustedTagInspector createTagInspector() {
+>     return new TrustedPrefixesTagInspector(Collections.emptyList());
+> }
+\ No newline at end of file

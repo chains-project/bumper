@@ -1,0 +1,15 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+18c13
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+---
+>         RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html", Locale.getDefault() );
+20,21c15
+<             Locale locale = Locale.getDefault();
+<             generate( sink, locale );
+---
+>         generate( sink, context );

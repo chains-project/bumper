@@ -1,0 +1,19 @@
+1a2,18
+> import java.util.List;
+> 
+> public class WalletsIn {
+> 
+>     public static String walletsIn(String url, String token, List<String> walletIds) {
+>         return new JoinedText(
+>                 "GET ",
+>                 url,
+>                 "/wallets?ids=",
+>                 String.join(",", walletIds),
+>                 " HTTP/1.1\r\n",
+>                 "Authorization: Bearer ",
+>                 token,
+>                 "\r\n\r\n"
+>         ).asString();
+>     }
+> }
+\ No newline at end of file

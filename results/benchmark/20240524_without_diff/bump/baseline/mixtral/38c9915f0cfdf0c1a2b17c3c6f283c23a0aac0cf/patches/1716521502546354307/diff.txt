@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.UncheckedBytes;
+> 
+> // ...
+> 
+> public RtTransaction(DbApi db, Scalar<Transaction> tx, Scalar<Block> blk) {
+>   this.db = db;
+>   this.tx = tx;
+>   this.blk = blk;
+>   this.bytes = new UncheckedBytes(
+>     new BytesOf(() -> tx.value().payload().getBytes(StandardCharsets.UTF_8))
+>   );
+> }
+\ No newline at end of file

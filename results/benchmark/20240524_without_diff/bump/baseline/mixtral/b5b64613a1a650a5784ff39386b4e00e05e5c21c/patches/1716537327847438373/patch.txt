@@ -1,0 +1,6 @@
+import org.jenkinsci.plugins.p4.client.ConnectionHelper;
+
+private String getUrlFromClientHelper(ClientHelper clientHelper) {
+    ConnectionHelper connectionHelper = clientHelper.getConnectionHelper();
+    return connectionHelper.getChange(connectionHelper.getClientHead()).getAction().getDepotPath();
+}

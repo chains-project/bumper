@@ -1,0 +1,19 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.input.InputOf;
+import org.cactoos.text.TextOf;
+
+// ...
+
+public RtTransaction(File file, RtDb db, RtApi api) {
+  super(file, db, api);
+  this.data = IoCheckedBytes.bytesOf(
+    new InputOf(
+      new TextOfScalar(
+        new ScalarOf(
+          () -> new String(
+            Files.readAllBytes(file.toPath()))
+        )
+      )
+    )
+  );
+}

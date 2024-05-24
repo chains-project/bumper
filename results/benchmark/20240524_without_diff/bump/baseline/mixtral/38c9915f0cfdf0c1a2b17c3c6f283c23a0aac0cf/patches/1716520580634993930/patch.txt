@@ -1,0 +1,11 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtApi api, RtDb db, RtUser user, String hash) {
+  this.api = api;
+  this.db = db;
+  this.user = user;
+  this.hash = hash;
+  this.len = new LengthOf<RtObject>(db.objects());
+}

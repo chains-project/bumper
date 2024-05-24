@@ -1,0 +1,28 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+// ...
+
+Polygonizer polygonizer = new Polygonizer() {
+    @Override
+    public void add(org.locationtech.jts.operation.polygonize.Polygonizer.PolygonBuilder builder) {
+        // Implement the logic for adding a polygon builder
+    }
+
+    @Override
+    public org.locationtech.jts.geom.Geometry getPolygon() {
+        // Implement the logic for getting the resulting polygon
+        return null;
+    }
+
+    @Override
+    public int size() {
+        // Use the new size() method from the updated library
+        return new PointIndexMMWrapper().size()
+            + new PHTreeMMP().size()
+            + new MinHeap().size()
+            + new MinMaxHeap().size();
+    }
+};

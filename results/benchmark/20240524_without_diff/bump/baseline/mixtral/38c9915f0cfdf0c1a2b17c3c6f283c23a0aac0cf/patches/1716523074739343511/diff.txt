@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.Split;
+> 
+> ...
+> 
+> public class Wallet {
+>     ...
+>     @Override
+>     public Text title() {
+>         Text title = new BytesOf(new Split(new TextOf(" "), " ")).asString();
+>         return new Capitalized(new Trimmed(title));
+>     }
+>     ...
+> }
+\ No newline at end of file

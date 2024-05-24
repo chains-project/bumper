@@ -1,0 +1,23 @@
+1c1,18
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtEnv env, RtId id, RtItem item, int amount, RtCredit credit,
+>     RtDebit debit, RtDelta delta, RtHash hash, RtTimestamp timestamp, RtSign sign) {
+>   this.env = env;
+>   this.id = id;
+>   this.item = item;
+>   this.amount = amount;
+>   this.credit = credit;
+>   this.debit = debit;
+>   this.delta = delta;
+>   this.hash = hash;
+>   this.timestamp = timestamp;
+>   this.sign = sign;
+>   this.length = new LengthOf<RtItem>(item); // use the new LengthOf method
+> }
+\ No newline at end of file

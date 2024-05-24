@@ -1,0 +1,12 @@
+7a8
+>     final HamcrestMatcher stringContains = StringContains.stringContains(string);
+14,18c15,17
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+---
+>             AllOf.allOf(
+>                     new StringContains("Unsupported reference"),
+>                     stringContains

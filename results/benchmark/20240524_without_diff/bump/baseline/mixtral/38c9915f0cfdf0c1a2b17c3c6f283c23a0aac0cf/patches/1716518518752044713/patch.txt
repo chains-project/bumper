@@ -1,0 +1,14 @@
+import org.cactoos.text.Joined;
+import org.cactoos.text.TextOf;
+
+...
+
+public RtTransaction(String raw, Repo repo) {
+    super(raw, repo);
+    this.parts = new Joined(",", new TextOf(
+        new Split(
+            ",",
+            new TextOf(raw)
+        )
+    ).asString().split("\\s"));
+}

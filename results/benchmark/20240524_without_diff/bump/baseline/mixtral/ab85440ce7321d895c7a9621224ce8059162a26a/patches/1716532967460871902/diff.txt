@@ -1,0 +1,6 @@
+7a8
+>     final HamcrestMatcher stringContains = StringContains.containsString(string);
+17c18
+<                     new StringContains(false, string)
+---
+>                             stringContains

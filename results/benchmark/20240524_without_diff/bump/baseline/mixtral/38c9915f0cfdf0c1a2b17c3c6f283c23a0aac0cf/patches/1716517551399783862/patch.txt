@@ -1,0 +1,22 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    ...
+    private Scalar<Bytes> bytes(final String path) {
+        return new IoCheckedScalar<>(
+            new IoCheckedBytes(
+                new File(path)
+            ),
+            new ScalarOf<Bytes>(() -> {
+                try (final InputStream is = new FileInputStream(path)) {
+                    return Bytes.of(is);
+                } catch (final IOException e) {
+                    throw new UncheckedIOException(e);
+                }
+            })
+        );
+    }
+    ...
+}

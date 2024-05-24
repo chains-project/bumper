@@ -1,0 +1,13 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String url) throws IOException {
+  double sum = 0.0;
+  try (InputStream input = new URL(url).openStream()) {
+    for (byte b : new IterableOf(new InputStreamToBytes(input))) {
+      sum += new LengthOf<>(new IterableOf(b)).doubleValue();
+    }
+  }
+  return sum;
+}

@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class WalletsIn {
+> 
+>     public String execute(String wallets) {
+>         String[] split = wallets.split(",");
+>         JoinedText joinedText = new JoinedText(",", split);
+>         return joinedText.asString();
+>     }
+> }
+\ No newline at end of file

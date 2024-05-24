@@ -1,0 +1,27 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoCheckedScalar;
+import org.cactoos.text.IoCheckedText;
+import org.cactoos.text.TextOfScalar;
+
+public class WalletsIn {
+    ...
+    private Scalar<Iterable<Wallet>> wallets() {
+        return () -> {
+            try {
+                return new IoCheckedScalar<>(
+                    new IoCheckedText(
+                        new TextOfScalar(
+                            new Http(
+                                new Url(URL)
+                            ).asString()
+                        )
+                    )
+                    .asBytes()
+                ).value();
+            } catch (final IOException e) {
+                throw new UncheckedIOException(e);
+            }
+        };
+    }
+    ...
+}

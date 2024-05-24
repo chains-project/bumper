@@ -1,0 +1,6 @@
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+Scalar<Integer> scalar = new ScalarOf<Integer>(() -> 42);
+Sticky<Integer> sticky = new Sticky<>(scalar);

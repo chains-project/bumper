@@ -1,0 +1,6 @@
+12c12,14
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>             hudson.model.Item item = null; // You should replace this with the actual item
+>             org.jenkinsci.plugins.p4.workspace.Workspace workspace = null; // You should replace this with the actual workspace
+>             ClientHelper perforceClient = new ClientHelper(item, credentials, buildListener, workspace);

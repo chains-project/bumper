@@ -1,0 +1,17 @@
+4,5c4
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>         includes.append(":").append(getClasses(directory));
+9,10c8
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>             includes.append(":").append(getClasses(directory));
+14a13,17
+> 
+> private String getClasses(String directory) {
+>     DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), "**/*.class");
+>     return directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse("");
+> }
+\ No newline at end of file

@@ -1,0 +1,12 @@
+1c1,7
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.factory.StoragesLoader;
+> 
+> public class YamlPolicyFactory {
+>     public YamlPolicyFactory(StoragesLoader storagesLoader) {
+>         // ...
+>     }
+> }
+\ No newline at end of file

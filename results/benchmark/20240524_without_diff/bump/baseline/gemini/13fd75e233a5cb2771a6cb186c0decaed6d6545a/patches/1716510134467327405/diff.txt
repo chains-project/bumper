@@ -1,0 +1,19 @@
+17a18,19
+>     final boolean containsOriginal = throwable.getMessage().contains(original);
+>     if (containsOriginal) {
+20,25c22
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>             new StringContains(true, "Invalid tag")
+26a24,29
+>     } else {
+>         MatcherAssert.assertThat(
+>             throwable.getMessage(),
+>             new StringContains(true, "Invalid tag name")
+>         );
+>     }

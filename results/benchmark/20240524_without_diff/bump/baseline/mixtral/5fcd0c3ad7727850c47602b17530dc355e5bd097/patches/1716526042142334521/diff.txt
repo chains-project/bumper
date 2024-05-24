@@ -1,0 +1,35 @@
+1,2c1,26
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+---
+> import org.pitest.classinfo.ClassInfo;
+> import org.pitest.classinfo.ClassInfoBuilder;
+> import org.pitest.classinfo.ClassName;
+> import org.pitest.coverage.CoverageDatabase;
+> import org.pitest.coverage.CoverageInfo;
+> import org.pitest.coverage.CoverageResult;
+> import org.pitest.coverage.ReportCoverage;
+> import org.pitest.mutationtest.MutationResult;
+> import org.pitest.mutationtest.engine.gregor.MutationResultCode;
+> import org.pitest.util.Pair;
+> 
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final MutationResult data) {
+>     ClassName className = data.getMutatedClass();
+>     byte[] classBytecode = data.getMutatedClassBytecode();
+>     long timestamp = data.getMutationResultCode() == MutationResultCode.MUTATION_SURVIVED ? data.getTimestamp() : -1;
+> 
+>     ClassInfo classInfo = ClassInfoBuilder.forClass(className).addClassname(className.toString()).addClassFile(classBytecode).build();
+>     CoverageInfo coverageInfo = coverage.getCoverage(className);
+>     CoverageResult coverageResult = new CoverageResult(coverageInfo, className);
+>     ReportCoverage reportCoverage = new ReportCoverage() {
+>         @Override
+>         public CoverageResult getCoverage(ClassName className) {
+>             return coverageResult;
+>         }
+>     };
+> 
+4c28,29
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(),
+>         ClassInfoVisitor.getClassInfo(className, classBytecode, timestamp, reportCoverage));

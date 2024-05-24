@@ -1,0 +1,12 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.layered.TFastFramedTransport;
+import org.apache.thrift.transport.TConfiguration;
+
+public class SimpleThriftLogger {
+    // ...
+    private TFramedTransport createFramedTransport(TTransport transport) {
+        return new TFastFramedTransport(new TFramedTransport.Factory().getTransport(transport), 1024, 1024);
+    }
+    // ...
+}

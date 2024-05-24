@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.RandomText;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.BytesOf;
+> import org.cactoos.text.TextOf;
+> 
+> // ...
+> 
+> @Override
+> public Text text() {
+>   return new TextOf(BytesOf.bytes(password.getBytes()));
+> }
+\ No newline at end of file

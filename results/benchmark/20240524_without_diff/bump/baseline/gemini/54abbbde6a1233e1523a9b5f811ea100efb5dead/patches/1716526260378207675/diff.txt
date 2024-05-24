@@ -1,0 +1,12 @@
+4c4
+<         attempts = Tv.SEVEN,
+---
+>         attempts = 7,
+25c25
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+---
+>                 (int) TimeUnit.SECONDS.toMillis(10)
+27c27
+<             session.setServerAliveCountMax(Tv.MILLION);
+---
+>             session.setServerAliveCountMax(1000000);

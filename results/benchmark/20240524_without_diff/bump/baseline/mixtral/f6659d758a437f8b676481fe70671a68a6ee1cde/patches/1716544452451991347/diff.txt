@@ -1,0 +1,11 @@
+19c19,26
+<         Yaml yaml = new Yaml(constructor, representer);
+---
+>     Yaml yaml = new Yaml(constructor, representer) {
+>         private static final long serialVersionUID = 1L;
+> 
+>         @Override
+>         protected TrustedTagInspector getTagInspector() {
+>             return new TrustedTagInspector();
+>         }
+>     };

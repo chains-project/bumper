@@ -1,0 +1,19 @@
+1c1,14
+< import org.locationtech.jts.geom.Polygon;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> Polygon polygon = new Polygon();
+> // Use the polygon object as needed
+> 
+> int sizeOfPointIndexMMWrapper = new PointIndexMMWrapper().size();
+> int sizeOfPHTreeMMP = new PHTreeMMP().size();
+> int sizeOfMinHeap = new MinHeap().size();
+> int sizeOfMinMaxHeap = new MinMaxHeap().size();
+\ No newline at end of file

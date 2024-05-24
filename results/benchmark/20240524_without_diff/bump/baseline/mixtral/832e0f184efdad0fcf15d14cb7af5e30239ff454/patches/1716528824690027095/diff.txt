@@ -1,0 +1,29 @@
+1d0
+< // TODO: review this AI generated patch!
+4d2
+<     try {
+22c20,21
+<         /* Outgoing Chat Button */
+---
+>     ItemStack outgoingChatButton;
+>     ItemMeta outgoingChatMeta;
+24,25c23,24
+<             ItemStack outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+<             ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+---
+>         outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+>         outgoingChatMeta = outgoingChatButton.getItemMeta();
+45c44,45
+<         /* Incoming Chat Button */
+---
+>     ItemStack incomingChatButton;
+>     ItemMeta incomingChatMeta;
+47,48c47,48
+<             ItemStack incomingChatButton = XMaterial.MAP.parseItem();
+<             ItemMeta incomingChatMeta = incomingChatButton.getItemMeta();
+---
+>         incomingChatButton = XMaterial.MAP.parseItem();
+>         incomingChatMeta = incomingChatButton.getItemMeta();
+64a65,66
+>         });
+>     }

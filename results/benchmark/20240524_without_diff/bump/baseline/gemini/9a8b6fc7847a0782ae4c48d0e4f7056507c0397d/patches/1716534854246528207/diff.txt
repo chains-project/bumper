@@ -1,0 +1,10 @@
+1d0
+< @Override
+7c6
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>                         StandardPBEStringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+16c15
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>                         encoder.setStringEncryptor(stringEncrypter);

@@ -1,0 +1,29 @@
+8,14c8
+<         final Throwable throwable = Assertions.assertThrows(
+<             IllegalStateException.class,
+<             () -> new ManifestRef.FromString(string).link().string()
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+---
+>         final Matcher<String> matcher = new AllOf<>(
+16,18c10,11
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+---
+>                         new StringContains("Unsupported reference"),
+>                         new StringContains(string)
+19a13,23
+>         );
+>         final Throwable throwable = Assertions.assertThrows(
+>                 IllegalStateException.class,
+>                 () -> {
+>                     try {
+>                         new ManifestRef.FromString(string).link().string();
+>                     } catch (IllegalStateException e) {
+>                         Assertions.assertThat(e.getMessage(), matcher);
+>                         throw e;
+>                     }
+>                 }

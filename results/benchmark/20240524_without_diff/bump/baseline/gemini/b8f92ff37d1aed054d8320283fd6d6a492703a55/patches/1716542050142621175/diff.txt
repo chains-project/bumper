@@ -1,0 +1,5 @@
+3c3,4
+<         return directoryScanner.scan().getClasses();
+---
+>         directoryScanner.scan();
+>         return Arrays.stream(directoryScanner.getIncludedFiles()).map(file -> file.substring(0, file.length() - 5)).collect(Collectors.toList());

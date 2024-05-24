@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> //...
+> 
+> public RtTransaction(User user, String[] args) {
+>   super(user);
+>   this.amount = new LengthOf<String>(Arrays.asList(args)).longValue();
+>   //...
+> }
+\ No newline at end of file

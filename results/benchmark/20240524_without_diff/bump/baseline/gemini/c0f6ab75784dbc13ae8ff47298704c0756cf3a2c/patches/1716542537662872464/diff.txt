@@ -1,0 +1,17 @@
+1a2,3
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         if (globalConfig.isStandaloneMode()) {
+3d4
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a9
+>                     .addEnabledLanguages(LanguageSupportRepository.getEnabledLanguagesInStandaloneMode(enabledLanguages))
+8a11,19
+>         } else {
+>             return AnalysisEngineConfiguration.builder()
+>                     .setClientPid(globalConfig.getClientPid())
+>                     .setExtraProperties(globalConfig.extraProperties())
+>                     .setWorkDir(globalConfig.getWorkDir())
+>                     .setModulesProvider(globalConfig.getModulesProvider())
+>                     .addEnabledLanguages(LanguageSupportRepository.getEnabledLanguagesInConnectedMode(enabledLanguages))
+>                     .build();
+>         }

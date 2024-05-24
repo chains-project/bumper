@@ -1,0 +1,11 @@
+2c2
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+---
+>     List<?> instances = cache.get(branch.getJsonPath());
+5,6c5,7
+<       for (XmlFieldInstance instance : instances)
+<         values.add(instance.getValue());
+---
+>       for (Object instance : instances)
+>         if (instance instanceof XmlFieldInstance)
+>             values.add(((XmlFieldInstance) instance).getValue());

@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.io.Joined;
+> 
+> // ...
+> 
+> JoinedText joined = new JoinedText(", ", new Joined<>(
+>     inputStream -> new String(inputStream.readAllBytes()),
+>     files
+> ));
+\ No newline at end of file

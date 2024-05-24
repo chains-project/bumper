@@ -1,0 +1,7 @@
+1c1,2
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+>   // The import org.jasypt.spring.security.PBEPasswordEncoder has been removed
+>   // No replacement available, so removed the import statement
+\ No newline at end of file

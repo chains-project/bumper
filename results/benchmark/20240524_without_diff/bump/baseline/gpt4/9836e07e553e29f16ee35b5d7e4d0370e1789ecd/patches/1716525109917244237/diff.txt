@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+4,5c3
+<     MatcherAssert.assertThat(
+<         Assertions.assertThrows(
+---
+>     IllegalStateException exception = Assertions.assertThrows(
+12c10,13
+<             ).digest().getMessage(),
+---
+>         ).digest()
+>     );
+>     MatcherAssert.assertThat(
+>         exception.getMessage(),

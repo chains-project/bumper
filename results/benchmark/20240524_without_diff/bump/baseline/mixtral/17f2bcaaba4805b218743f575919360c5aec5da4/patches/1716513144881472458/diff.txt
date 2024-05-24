@@ -1,0 +1,23 @@
+1c1,18
+< import org.locationtech.jts.operation.polygonize.Polygonizer;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> Polygonizer polygonizer = new Polygonizer();
+> // ...
+> int size = new PointIndexMMWrapper().size();
+> // ...
+> int size2 = new PHTreeMMP().size();
+> // ...
+> MinHeap minHeap = new MinHeap();
+> int size3 = minHeap.size();
+> // ...
+> MinMaxHeap minMaxHeap = new MinMaxHeap();
+> int size4 = minMaxHeap.size();
+\ No newline at end of file

@@ -1,0 +1,36 @@
+1c1,31
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.springframework.security.authentication.encoding.PasswordEncoder;
+> import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+> 
+> // ...
+> 
+> @Override
+> public PBEPasswordEncoder getPasswordEncoder() {
+>     TextEncryptor textEncryptor = new StandardPBEStringEncryptor();
+>     ((StandardPBEStringEncryptor) textEncryptor).setAlgorithm("PBEWithMD5AndTripleDES");
+>     ((StandardPBEStringEncryptor) textEncryptor).setPassword(password);
+> 
+>     PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>     pbeStringEncryptor.setAlgorithm(algorithm);
+>     pbeStringEncryptor.setPassword(password);
+>     pbeStringEncryptor.setProviderName(providerName);
+>     pbeStringEncryptor.setStringOutputType("base64");
+>     pbeStringEncryptor.setKeyObtentionIterations(keyObtentionIterations);
+>     pbeStringEncryptor.setProvider(provider);
+> 
+>     textEncryptor.setIvGenerator(new RandomIvGenerator());
+>     pbeStringEncryptor.setIvGenerator(new RandomIvGenerator());
+> 
+>     textEncryptor.setEncryptor(pbeStringEncryptor);
+> 
+>     PasswordEncoder passwordEncoder = new PlaintextPasswordEncoder();
+>     passwordEncoder.setEncodeHashAsBase64(true);
+> 
+>     return new PBEPasswordEncoder(textEncryptor, passwordEncoder);
+> }
+\ No newline at end of file

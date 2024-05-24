@@ -1,0 +1,33 @@
+1c1,28
+< import org.locationtech.jts.geom.Coordinate;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetEnvelope() {
+>     // ...
+>     int size = new PointIndexMMWrapper().size(); // use PointIndexMMWrapper.size()
+>     assertTrue(size > 0);
+>     size = new PHTreeMMP().size(); // use PHTreeMMP.size()
+>     assertTrue(size > 0);
+>     size = new MinHeap(10).size(); // use MinHeap.size()
+>     assertTrue(size == 10);
+>     size = new MinMaxHeap(10).size(); // use MinMaxHeap.size()
+>     assertTrue(size == 10);
+>     // ...
+>   }
+> 
+>   // ...
+> 
+> }
+\ No newline at end of file

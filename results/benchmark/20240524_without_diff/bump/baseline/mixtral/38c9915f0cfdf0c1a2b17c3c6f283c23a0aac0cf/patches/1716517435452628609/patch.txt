@@ -1,0 +1,15 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public class WalletsIn {
+    // ...
+
+    private IoCheckedBytes loadWallets() throws IOException {
+        try (InputStream is = new FileInputStream(new File(this.dir, "wallets.txt"))) {
+            return new IoCheckedBytes(is);
+        }
+    }
+
+    // ...
+}

@@ -1,0 +1,24 @@
+import org.cactoos.text.TextOf;
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public class RtTransaction {
+  // ...
+  @Override
+  protected String value() {
+    return new TextOf(
+      new UncheckedText(
+        new TextOf(
+          new TextOf(
+            new TextOf(new Trimmed(new TextOf(super.value())))
+          )
+          .asString()
+        )
+        .asBytes()
+      )
+      .asString()
+    ).asString();
+  }
+  // ...
+}

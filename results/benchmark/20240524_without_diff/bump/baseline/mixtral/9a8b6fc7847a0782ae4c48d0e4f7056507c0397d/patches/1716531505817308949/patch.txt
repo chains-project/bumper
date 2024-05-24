@@ -1,0 +1,31 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    try {
+        PBEStringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+        stringEncrypter.setPasswordCharArray(chars);
+
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            stringEncrypter.setProviderName(getProviderName());
+        }
+        stringEncrypter.setAlgorithm(getAlgorithm());
+
+        TextEncryptor textEncryptor = new org.jasypt.encryption.pbe.PBEStringEncryptor();
+        ((PBEStringEncryptor) textEncryptor).setPasswordCharArray(chars);
+        textEncryptor.setAlgorithm(getAlgorithm());
+
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            textEncryptor.setProviderName(getProviderName());
+        }
+
+        PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
+        encoder.setTextEncryptor(textEncryptor);
+
+        return encoder;
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

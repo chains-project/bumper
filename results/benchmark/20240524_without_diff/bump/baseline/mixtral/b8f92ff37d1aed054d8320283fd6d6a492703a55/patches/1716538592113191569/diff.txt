@@ -1,0 +1,6 @@
+1,2c1,2
+< private org.apache.maven.plugin.surefire.api.testset.TestListResolver getTestListResolver() {
+<     return new TestListResolver();
+---
+> private TestListResolver getTestListResolver() {
+>     return new TestListResolver(new DefaultSurefireForkFactory(), new ClasspathExplorer(), new RunOrder(), new ConfigurationParameters());

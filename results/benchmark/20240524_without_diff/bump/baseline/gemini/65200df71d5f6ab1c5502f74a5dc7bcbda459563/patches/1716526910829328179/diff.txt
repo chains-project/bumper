@@ -1,0 +1,9 @@
+1a2,5
+>         Set<Language> enabledLanguages = globalConfig.getEnabledLanguages().stream()
+>                 .map(Language::fromCode)
+>                 .collect(Collectors.toSet());
+> 
+3d6
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a11
+>                 .addEnabledLanguages(enabledLanguages)

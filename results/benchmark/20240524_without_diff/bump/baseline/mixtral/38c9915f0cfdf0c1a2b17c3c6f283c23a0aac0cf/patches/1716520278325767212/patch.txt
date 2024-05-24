@@ -1,0 +1,12 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+@Override
+public Transaction create(String raw) throws IOException {
+    TextEnvelope envelope = new TextEnvelope(
+        new UncheckedText(raw)
+    );
+    // ... continue with the rest of the method
+}

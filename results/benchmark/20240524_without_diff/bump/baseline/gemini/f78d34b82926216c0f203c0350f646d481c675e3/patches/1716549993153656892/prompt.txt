@@ -1,0 +1,106 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  /**
+     * まほーじん！！
+     *
+     * @param player  餌食
+     * @param seconds 秒数
+     */
+    public static void magic(Player player, int seconds)
+    {
+        final int[] count = {0};
+        WaveCreator wave = new WaveCreator(0.8, 1.8, 0.1);
+
+        BukkitRunnable runnable = new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                for (double i = 0; i < Math.PI * 2; i++)
+                {
+                    Location center = player.getLocation();
+
+                    circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+
+                    circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+
+                    circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+
+                    circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+                    circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+                    circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+                    circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+
+                    circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+
+                    count[0]++;
+                }
+
+                Location center = player.getLocation();
+
+                line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+                line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+                line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+
+                line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+                line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+                line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+            }
+        };
+
+        runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+        new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                runnable.cancel();
+            }
+        }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+
+    }
+```
+
+with the following error message:
+[ERROR] /PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Objects/Decorations.java:[185,32] cannot find symbol
+  symbol:   class WaveCreator
+  location: class ml.peya.plugins.Objects.Decorations
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public java.lang.Object develop.p2p.lib.FileConfiguration.get(java.lang.String)
+-- public java.util.Map develop.p2p.lib.FileConfiguration.getConfig()
+-- public java.lang.String develop.p2p.lib.FileConfiguration.getString(java.lang.String)
+-- public static D develop.p2p.lib.LearnMath.sigmoid(double)
+-- public static D develop.p2p.lib.LearnMath.sigmoidDef(double)
+-- public static java.lang.String develop.p2p.lib.LeetConverter.convert(java.lang.String)
+-- public static transient java.util.Date develop.p2p.lib.TimeParser.convert(java.lang.String[])
+-- public static java.lang.String develop.p2p.lib.TimeParser.convertFromDate(java.util.Date)
+-- public WaveCreator develop.p2p.lib.WaveCreator(double,double,double)
+-- public D develop.p2p.lib.WaveCreator.get(double,boolean)
+-- public D develop.p2p.lib.WaveCreator.getStatic()
+++ public java.lang.Object tokyo.peya.lib.FileConfiguration.get(java.lang.String)
+++ public java.util.Map tokyo.peya.lib.FileConfiguration.getConfig()
+++ public java.lang.String tokyo.peya.lib.FileConfiguration.getString(java.lang.String)
+++ public static D tokyo.peya.lib.LearnMath.sigmoid(double)
+++ public static D tokyo.peya.lib.LearnMath.sigmoidDef(double)
+++ public static java.lang.String tokyo.peya.lib.LeetConverter.convert(java.lang.String)
+++ public static transient java.util.Date tokyo.peya.lib.TimeParser.convert(java.lang.String[])
+++ public static java.lang.String tokyo.peya.lib.TimeParser.convertFromDate(java.util.Date)
+++ public WaveCreator tokyo.peya.lib.WaveCreator(double,double,double)
+++ public D tokyo.peya.lib.WaveCreator.get(double,boolean)
+++ public D tokyo.peya.lib.WaveCreator.getStatic()
+++ public java.util.Map tokyo.peya.lib.bukkit.exception.SelectorInvalidException.getInvalidKeys()
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

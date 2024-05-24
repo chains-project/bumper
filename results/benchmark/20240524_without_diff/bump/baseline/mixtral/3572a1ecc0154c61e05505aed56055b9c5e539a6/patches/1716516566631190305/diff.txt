@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TFramedTransport;
+> import org.apache.thrift.transport.TTransportFactory;
+> 
+> // ...
+> 
+> TFastFramedTransport.Factory factory = new TFastFramedTransport.Factory();
+> TTransport transport = factory.getTransport(new TSocket(host, port));
+> TFramedTransport framedTransport = new TFramedTransport(transport);
+\ No newline at end of file

@@ -1,0 +1,30 @@
+private boolean classToInclude(String className) {
+    // False if it matches an excludes pattern
+    for (String pattern : config.getJacocoExcludes()) {
+        WildcardMatcher matcher = new WildcardMatcher(pattern);
+        if (matcher.matches(className)) {
+            return false;
+        }
+    }
+    // True if it matches an includes pattern and doesn't match any excludes pattern
+    for (String pattern : config.getJacocoIncludes()) {
+        WildcardMatcher matcher = new WildcardMatcher(pattern);
+        if (matcher.matches(className)) {
+            return true;
+        }
+    }
+
+    // True if it is present in the available binaries
+    DirectoryScanner directoryScanner = new DirectoryScanner(new File(""), "");
+    Set<String> classes = directoryScanner.scan().getClasses();
+    for (String dir : config.getBinJavaDir()) {
+        directoryScanner = new DirectoryScanner(new File(dir), "");
+        classes.addAll(directoryScanner.scan().getClasses());
+    }
+    for (String dir : config.getBinTestDir()) {
+        directoryScanner = new DirectoryScanner(new File(dir), "");
+        classes.addAll(directoryScanner.scan().getClasses());
+    }
+
+    return classes.contains(className);
+}

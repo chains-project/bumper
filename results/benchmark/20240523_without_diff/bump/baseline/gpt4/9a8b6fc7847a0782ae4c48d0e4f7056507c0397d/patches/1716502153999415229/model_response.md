@@ -1,0 +1,7 @@
+```java
+@Override
+protected PasswordEncoder createStringEncoder() {
+    StandardPasswordEncoder encoder = new StandardPasswordEncoder();
+    return encoder;
+}
+```

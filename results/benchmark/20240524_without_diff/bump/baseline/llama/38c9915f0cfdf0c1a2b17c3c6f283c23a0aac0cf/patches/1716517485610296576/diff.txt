@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.Solid;
+> 
+> SolidScalar scalar = new Solid(new ScalarOf(new Runnable() {
+>     public void run() {
+>         // no-op
+>     }
+> }));
+\ No newline at end of file

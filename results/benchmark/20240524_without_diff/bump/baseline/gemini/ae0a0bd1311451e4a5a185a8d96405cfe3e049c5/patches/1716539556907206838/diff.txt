@@ -1,0 +1,19 @@
+23c23
+<                     "Exception message contains calculated digest",
+---
+>                     "Exception message contains expected digest",
+27c27
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         digest
+31c31
+<                     "Exception message contains expected digest",
+---
+>                     "Exception message contains calculated digest",
+33c33,36
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(
+>                         true,
+>                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+>                     )

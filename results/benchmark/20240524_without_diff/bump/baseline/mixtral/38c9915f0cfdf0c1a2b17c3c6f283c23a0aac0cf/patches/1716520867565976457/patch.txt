@@ -1,0 +1,14 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Sticky;
+
+//...
+
+Scalar<Double> balance = new Sticky<>(() -> {
+    // Your code to calculate the balance
+});
+
+//...
+
+public Double getBalance() {
+    return balance.value();
+}

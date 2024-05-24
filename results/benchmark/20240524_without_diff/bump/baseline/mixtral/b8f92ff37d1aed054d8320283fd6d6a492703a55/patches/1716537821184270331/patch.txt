@@ -1,0 +1,14 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+    return directoryScanner.scan().getClasses();
+}
+
+private static TestListResolver getTestListResolver() {
+    CommandLineConfigurationFactory commandLineConfigurationFactory = new CommandLineConfigurationFactory();
+    commandLineConfigurationFactory.getClasspathForkConfiguration().getForkOptions().setBootClassPath(getBootClassPath());
+    return commandLineConfigurationFactory.createTestListResolver();
+}
+
+private static String getBootClassPath() {
+    return System.getProperty("sun.boot.class.path");
+}

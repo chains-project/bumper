@@ -1,0 +1,9 @@
+1a2,8
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.transport.layered.TFastFramedTransport;
+> import org.apache.thrift.transport.layered.TFastFramedTransport$Factory;
+> 
+> // ...
+> 
+> TFramedTransport transport = new TFastFramedTransport.Factory().getTransport(new TTransport());
+\ No newline at end of file

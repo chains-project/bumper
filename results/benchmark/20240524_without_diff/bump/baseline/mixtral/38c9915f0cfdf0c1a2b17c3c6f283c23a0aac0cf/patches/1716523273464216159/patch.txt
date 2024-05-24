@@ -1,0 +1,7 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Bytes> bytes = new ScalarEnvelope<>(() -> ...);
+Bytes b = new CheckedBytes(bytes, input -> ...);

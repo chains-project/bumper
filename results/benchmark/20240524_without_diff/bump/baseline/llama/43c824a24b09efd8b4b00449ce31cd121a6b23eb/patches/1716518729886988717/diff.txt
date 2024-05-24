@@ -1,0 +1,6 @@
+1,2c1,2
+< private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+---
+> private static List<String> extractList(JsonPathCache cache, DataElement branch) {
+>     List<XmlFieldInstance> instances = cache.get(branch);

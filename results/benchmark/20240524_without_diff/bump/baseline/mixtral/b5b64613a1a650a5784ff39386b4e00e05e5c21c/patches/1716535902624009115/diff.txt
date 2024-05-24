@@ -1,0 +1,2 @@
+9a10
+>     ClientHelper clientHelper = new ClientHelper(step.credentialsId, getContext().getListener(), getWorkspace());

@@ -1,0 +1,20 @@
+import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new PasswordEncoder() {
+        private final StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+
+        @Override
+        public String encode(CharSequence rawPassword) {
+            return encryptor.encryptPassword(rawPassword.toString());
+        }
+
+        @Override
+        public boolean matches(CharSequence rawPassword, String encodedPassword) {
+            return encryptor.checkPassword(rawPassword.toString(), encodedPassword);
+        }
+    };
+    return encoder;
+}

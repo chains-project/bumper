@@ -1,0 +1,6 @@
+2a3
+>     StringContains contains = new StringContains("Unexpected query");
+13c14
+<             new StringContains(false, "Unexpected query")
+---
+>         contains

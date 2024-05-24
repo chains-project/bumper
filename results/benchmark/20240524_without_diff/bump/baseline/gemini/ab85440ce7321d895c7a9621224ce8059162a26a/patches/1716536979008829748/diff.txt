@@ -1,0 +1,14 @@
+18,26c18,20
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+<         );
+---
+>         final String message = throwable.getMessage();
+>         assertThat(message.contains("Invalid tag"), is(true));
+>         assertThat(message.contains(original), is(false));

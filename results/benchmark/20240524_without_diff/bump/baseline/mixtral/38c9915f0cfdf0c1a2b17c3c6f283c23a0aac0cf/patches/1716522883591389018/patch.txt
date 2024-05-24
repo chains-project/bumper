@@ -1,0 +1,15 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+public Iterable<String> addresses() throws IOException {
+  return new Filtered<String>(
+    new Predicate<String>() {
+      @Override
+      public boolean check(String item) throws IOException {
+        return !item.isEmpty();
+      }
+    },
+    this.list()
+  );
+}

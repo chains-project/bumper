@@ -1,0 +1,14 @@
+2c2
+<     void shouldPullPushedByTag() throws Exception {
+---
+>     public void shouldPullPushedByTag() throws Exception {
+7,13c7
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+<         );
+---
+>         assertThat(output, not(containsString(String.format("Status: Downloaded newer image for %s", this.image.remote()))));

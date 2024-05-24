@@ -1,0 +1,3 @@
+private org.apache.maven.plugin.surefire.api.testset.TestListResolver getTestListResolver() {
+    return new org.apache.maven.plugin.surefire.booterclient.lazytestprovider.TestSetFactory().createTestListResolver(true);
+}

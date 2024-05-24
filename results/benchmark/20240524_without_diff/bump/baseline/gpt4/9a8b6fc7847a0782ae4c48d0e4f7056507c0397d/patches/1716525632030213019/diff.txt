@@ -1,0 +1,8 @@
+4d3
+< 
+15,17c14
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>                 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

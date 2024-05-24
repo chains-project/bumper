@@ -1,0 +1,12 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public class Remote {
+  // ...
+  @Override
+  protected Text randomText() {
+    return new UncheckedText("");
+  }
+  // ...
+}

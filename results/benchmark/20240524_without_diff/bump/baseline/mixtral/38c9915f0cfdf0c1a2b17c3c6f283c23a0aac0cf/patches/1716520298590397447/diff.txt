@@ -1,0 +1,11 @@
+1c1,6
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextOf;
+> import org.cactoos.text.Trimmed;
+> 
+> // ...
+> 
+> new Trimmed(new TextOf(new String(originalBytes)));
+\ No newline at end of file

@@ -1,0 +1,5 @@
+11c11,12
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+---
+>                 String.format("Status: Downloaded newer image for %s", this.image.remote()),
+>                 false

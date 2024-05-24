@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double score(String input) throws IOException {
+>   // Use the new method in the updated library
+>   LengthOf length = new LengthOf(input);
+>   return length.intValue();
+> }
+\ No newline at end of file

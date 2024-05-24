@@ -1,0 +1,23 @@
+1d0
+< // TODO: review this AI generated patch!
+4,8c3
+<     MatcherAssert.assertThat(
+<         Assertions.assertThrows(
+<             IllegalStateException.class,
+<             () -> new UploadEntity.Request(
+<                 new RequestLine(
+---
+>     String requestLine = new RequestLine(
+11,12c6,14
+<                 ).toString()
+<             ).digest().getMessage(),
+---
+>     ).toString();
+> 
+>     IllegalStateException exception = Assertions.assertThrows(
+>         IllegalStateException.class,
+>         () -> new UploadEntity.Request(requestLine).digest()
+>     );
+> 
+>     MatcherAssert.assertThat(
+>         exception.getMessage(),

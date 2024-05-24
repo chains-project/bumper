@@ -1,0 +1,79 @@
+1c1,74
+< import org.locationtech.jts.noding.SegmentString;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor() {
+>         PointIndex index = new PointIndexMM();
+>         // ...
+>         int size = new PointIndexMMWrapper(index).size(); // use PointIndexMMWrapper.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor2() {
+>         PointIndex index = new PointIndexMM();
+>         // ...
+>         int size = new PHTreeMMP(index).size(); // use PHTreeMMP.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor3() {
+>         MinHeap<Node> minHeap = new MinHeap<>();
+>         // ...
+>         int size = minHeap.size(); // use MinHeap.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor4() {
+>         MinHeapI<Node> minHeap = new MinHeap<>();
+>         // ...
+>         int size = minHeap.size(); // use MinHeapI.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor5() {
+>         MinMaxHeap<Node> minMaxHeap = new MinMaxHeap<>();
+>         // ...
+>         int size = minMaxHeap.size(); // use MinMaxHeap.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetNearestNeighbor6() {
+>         MinMaxHeapI<Node> minMaxHeap = new MinMaxHeap<>();
+>         // ...
+>         int size = minMaxHeap.size(); // use MinMaxHeapI.size()
+>         // ...
+>     }
+> 
+>     // ...
+> 
+> }
+\ No newline at end of file

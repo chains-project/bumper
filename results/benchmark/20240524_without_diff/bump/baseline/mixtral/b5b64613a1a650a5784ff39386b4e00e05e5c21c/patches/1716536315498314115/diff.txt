@@ -1,0 +1,38 @@
+1c1,33
+< import static org.apache.commons.lang3.StringUtils.isAllBlank;
+\ No newline at end of file
+---
+> import static org.apache.commons.lang3.StringUtils.isEmpty;
+> import static org.apache.commons.lang3.StringUtils.isNotBlank;
+> 
+> // ...
+> 
+> if (isAllBlank(someString)) {
+>     // ...
+> }
+> 
+> // Change to:
+> if (isAllBlank(someString)) {
+>     // ...
+> } else if (isNotBlank(someString)) {
+>     // ...
+> } else {
+>     // ...
+> }
+> 
+> // or
+> 
+> if (isEmpty(someString)) {
+>     // ...
+> } else {
+>     // ...
+> }
+> 
+> // or
+> 
+> if (isBlank(someString)) {
+>     // ...
+> } else {
+>     // ...
+> }
+\ No newline at end of file

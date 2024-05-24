@@ -1,0 +1,17 @@
+1a2,16
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> @Override
+> public void decode(ByteBuffer buffer, int length) throws TlsFatalAlert {
+>     try {
+>         // ...
+>     } catch (TlsFatalAlert ex) {
+>         throw ex;
+>     } catch (Exception ex) {
+>         AlertDescription description = AlertDescription.internal_error;
+>         throw new TlsFatalAlert(description);
+>     }
+> }
+\ No newline at end of file

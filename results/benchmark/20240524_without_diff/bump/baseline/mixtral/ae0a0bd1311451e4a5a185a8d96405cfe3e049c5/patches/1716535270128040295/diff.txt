@@ -1,0 +1,9 @@
+1a2
+>     boolean startsWith = "/v2/test/blobs/uploads/".contains(Matcher.ANY_CHARACTER);
+4,7c5
+<             new IsHeader(
+<                 "Location",
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+<             ),
+---
+>         new IsHeader("Location", new StringStartsWith(Matcher.ANY_CHARACTER, "/v2/test/blobs/uploads/")),

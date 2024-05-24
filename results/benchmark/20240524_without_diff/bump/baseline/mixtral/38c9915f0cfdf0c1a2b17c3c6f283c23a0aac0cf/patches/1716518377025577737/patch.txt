@@ -1,0 +1,12 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtUser user, RtItem item, long amount, byte[] data) {
+  this.env = env;
+  this.user = user;
+  this.item = item;
+  this.amount = amount;
+  this.data = data;
+  this.id = new LengthOf<RtItem>(item).intValue();
+}

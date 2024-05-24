@@ -1,0 +1,5 @@
+1,3d0
+< private Matcher<String> layersPushed() {
+<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
+<     }
+\ No newline at end of file

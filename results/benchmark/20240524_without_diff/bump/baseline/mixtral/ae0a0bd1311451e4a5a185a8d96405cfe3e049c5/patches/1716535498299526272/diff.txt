@@ -1,0 +1,16 @@
+6c6,8
+<                 () -> new UploadEntity.Request(
+---
+>                 () -> {
+>                     StringContains stringContains = new StringContains("Unexpected query");
+>                     new UploadEntity.Request(
+11c13,15
+<                 ).digest()
+---
+>                     ).digest();
+>                     return null;
+>                 }
+13c17
+<             new StringContains(false, "Unexpected query")
+---
+>             stringContains

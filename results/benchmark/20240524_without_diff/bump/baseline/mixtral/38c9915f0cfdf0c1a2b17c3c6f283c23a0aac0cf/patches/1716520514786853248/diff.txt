@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(TransactionDao dao, Iterable<Transaction> txs) {
+>   this.dao = Objects.requireNonNull(dao);
+>   this.txs = Objects.requireNonNull(txs);
+>   this.len = new LengthOf<Transaction>(txs);
+> }
+\ No newline at end of file

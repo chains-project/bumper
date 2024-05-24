@@ -1,0 +1,18 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8c2,3
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>     ClientHelper clientHelper = new ClientHelper(server, server.getTaskListener(), null, new Workspace());
+>     if (isAllBlank(server.getUrl(), getUrlFromClientHelper(clientHelper), server.getDistribution().getUrl(),
+20a16,19
+> 
+> private String getUrlFromClientHelper(ClientHelper clientHelper) {
+>     return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();
+> }
+\ No newline at end of file

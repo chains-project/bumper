@@ -1,0 +1,14 @@
+import org.cactoos.bytes.CheckedBytes;
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public class Wallet {
+    // ...
+
+    private CheckedBytes bytes(final Bytes source) {
+        return new IoCheckedBytes(source);
+    }
+
+    // ...
+}

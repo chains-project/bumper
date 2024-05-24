@@ -1,0 +1,29 @@
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinMaxHeap;
+
+// ...
+
+public class FastPolygonizerTests {
+    // ...
+
+    @Test
+    public void testPolygonize() {
+        PointIndexMMWrapper index = new PointIndexMMWrapper();
+        PHTreeMMP phtree = new PHTreeMMP();
+        MinHeap minHeap = new MinHeap();
+        MinMaxHeap minMaxHeap = new MinMaxHeap();
+
+        // ...
+
+        int indexSize = index.size();
+        int phtreeSize = phtree.size();
+        int minHeapSize = minHeap.size();
+        int minMaxHeapSize = minMaxHeap.size();
+
+        // ...
+    }
+
+    // ...
+}

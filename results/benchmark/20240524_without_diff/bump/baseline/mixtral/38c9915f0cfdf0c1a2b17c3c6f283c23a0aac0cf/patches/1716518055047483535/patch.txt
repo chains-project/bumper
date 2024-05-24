@@ -1,0 +1,7 @@
+import org.cactoos.text.TextEnvelope;
+
+// ...
+
+public RtTransaction(String hash, TextEnvelope title, TextEnvelope amount, TextEnvelope fee, TextEnvelope timestamp) {
+  // ...
+}

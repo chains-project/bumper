@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.ScalarEnvelope;
+> 
+> // ...
+> 
+> Scalar<Double> balance = new ScalarEnvelope<>(() -> {
+>     // balance calculation here
+> });
+\ No newline at end of file

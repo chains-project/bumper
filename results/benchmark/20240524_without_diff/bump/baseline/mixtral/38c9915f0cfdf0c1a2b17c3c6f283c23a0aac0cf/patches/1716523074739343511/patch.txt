@@ -1,0 +1,14 @@
+import org.cactoos.text.BytesOf;
+import org.cactoos.text.Split;
+
+...
+
+public class Wallet {
+    ...
+    @Override
+    public Text title() {
+        Text title = new BytesOf(new Split(new TextOf(" "), " ")).asString();
+        return new Capitalized(new Trimmed(title));
+    }
+    ...
+}

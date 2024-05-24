@@ -1,0 +1,6 @@
+1c1
+< import org.yaml.snakeyaml.inspector.TrustedTagInspector;
+\ No newline at end of file
+---
+> // The TrustedTagInspector class has been removed, so it can't be imported anymore.
+\ No newline at end of file

@@ -1,0 +1,19 @@
+8,9c8,12
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     boolean isAllBlank = server.getUrl().isEmpty() && server.getArtifactory().getUrl().isEmpty() &&
+>             server.getDistribution().getUrl().isEmpty() && step.url.isEmpty() && step.artifactoryUrl.isEmpty() &&
+>             step.distributionUrl.isEmpty();
+> 
+>     if (isAllBlank) {
+12,13c15,16
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>     if (!step.credentialsId.isEmpty()) {
+>         if (!step.username.isEmpty()) {
+16c19
+<                 if (isNotBlank(step.password)) {
+---
+>         if (!step.password.isEmpty()) {

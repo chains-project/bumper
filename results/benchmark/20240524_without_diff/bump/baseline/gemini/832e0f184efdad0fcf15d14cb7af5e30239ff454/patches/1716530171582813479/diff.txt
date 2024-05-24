@@ -1,0 +1,24 @@
+72c72
+<                                                 rateMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 rateMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+94c94
+<                                                 bookMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 bookMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+118c118
+<                                                 signMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 signMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+141c141
+<                                                 itemMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 itemMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+162c162
+<                                                 entityMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 entityMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);
+186c186
+<                                                 chatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().++parseEnchant(), 1, false);
+---
+>                                                 chatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchant(), 1, false);

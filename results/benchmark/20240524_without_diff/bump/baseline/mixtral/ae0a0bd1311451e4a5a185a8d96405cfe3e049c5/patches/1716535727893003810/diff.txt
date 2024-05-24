@@ -1,0 +1,6 @@
+1a2
+>     boolean startsWith = "/v2/test/blobs/uploads/".contains(Matcher.ANY_CHAR);
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             new StringStartsWith(Matcher.ANY_CHAR, "/v2/test/blobs/uploads/")

@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.UncheckedText;
+> 
+> ...
+> 
+> public RtTransaction(String hash, String from, String to, Long amount) {
+>   this.hash = new UncheckedText(hash);
+>   this.from = new UncheckedText(from);
+>   this.to = new UncheckedText(to);
+>   this.amount = new BytesOf(new UncheckedText(amount));
+> }
+\ No newline at end of file

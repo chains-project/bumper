@@ -1,0 +1,8 @@
+37c37
+<                                         WWCTranslateChatOutgoing translateChatOutgoing = new WWCTranslateChatOutgoing((CommandSender) player, null, null, args);
+---
+>                                 WWCTranslateChatOutgoing translateChatOutgoing = new WWCTranslateChatOutgoing(player, null, null, args);
+59c59
+<                                 WWCTranslateChatIncoming translateChatIncoming = new WWCTranslateChatIncoming((CommandSender) player, null, null, args);
+---
+>                                 WWCTranslateChatIncoming translateChatIncoming = new WWCTranslateChatIncoming(player, null, null, args);

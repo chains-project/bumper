@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextEnvelope;
+> import org.cactoos.text.UncheckedText;
+> 
+> // ...
+> 
+> public RtTransaction(String id, TextEnvelope<String> envelope) {
+>   super(id, new UncheckedText(new Trimmed(envelope.asString())));
+> }
+\ No newline at end of file

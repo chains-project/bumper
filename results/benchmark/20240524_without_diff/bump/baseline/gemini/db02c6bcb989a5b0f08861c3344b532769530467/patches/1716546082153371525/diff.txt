@@ -1,0 +1,17 @@
+16,17c16,19
+<             tag::value
+<         );
+---
+>             () -> {
+>                 try {
+>                     tag.value();
+>                 } catch (final InvalidTagNameException e) {
+19c21
+<             throwable.getMessage(),
+---
+>                         e.getMessage(),
+25a28,31
+>                     );
+>                     throw e;
+>                 }
+>             }

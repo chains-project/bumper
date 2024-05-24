@@ -1,0 +1,8 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+@Override
+public Text of(String text) {
+    return new UncheckedText(text);
+}

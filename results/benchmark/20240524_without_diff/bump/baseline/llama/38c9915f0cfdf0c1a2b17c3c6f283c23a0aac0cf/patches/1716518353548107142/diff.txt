@@ -1,0 +1,8 @@
+1c1,3
+< import org.cactoos.scalar.Reduced;
+\ No newline at end of file
+---
+> import io.cactoos.Scalar;
+> 
+> Scalar scalar = new Scalar("some string");
+\ No newline at end of file

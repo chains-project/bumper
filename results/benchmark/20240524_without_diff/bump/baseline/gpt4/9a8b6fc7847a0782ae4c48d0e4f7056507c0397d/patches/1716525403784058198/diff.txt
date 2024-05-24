@@ -1,0 +1,11 @@
+15,16c15,21
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         StringDigester digester = new PooledStringDigester();
+>         digester.setAlgorithm(getAlgorithm());
+>         digester.setPoolSize(4);
+>         digester.setSaltSizeBytes(16);
+>         digester.setStringOutputType("hexadecimal");
+> 
+>         PasswordEncoder encoder = new DigesterPasswordEncoder(digester);

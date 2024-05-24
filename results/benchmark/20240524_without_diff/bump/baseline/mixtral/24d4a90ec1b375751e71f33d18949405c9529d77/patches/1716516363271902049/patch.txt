@@ -1,0 +1,8 @@
+import com.jcabi.aspects.Loggable;
+
+// ...
+
+@Loggable(Loggable.DEBUG)
+public class BucketRule {
+    // ...
+}

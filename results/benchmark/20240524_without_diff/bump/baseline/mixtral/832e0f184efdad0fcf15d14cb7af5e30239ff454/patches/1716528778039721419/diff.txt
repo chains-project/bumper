@@ -1,0 +1,39 @@
+1d0
+< // TODO: review this AI generated patch!
+4d2
+<     try {
+7d4
+<         /* White stained glass borders as default, Green stained glass borders for active */
+22c19,20
+<         /* Outgoing Chat Button */
+---
+>     ItemStack outgoingChatButton;
+>     ItemMeta outgoingChatMeta;
+24,25c22,23
+<             ItemStack outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+<             ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+---
+>         outgoingChatButton = XMaterial.CHEST_MINECART.parseItem();
+>         outgoingChatMeta = outgoingChatButton.getItemMeta();
+28c26
+<                 Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+---
+>             Enchantment powerEnchantment = Enchantment.getById(16);
+45c43,44
+<         /* Incoming Chat Button */
+---
+>     ItemStack incomingChatButton;
+>     ItemMeta incomingChatMeta;
+47,48c46,47
+<             ItemStack incomingChatButton = XMaterial.MAP.parseItem();
+<             ItemMeta incomingChatMeta = incomingChatButton.getItemMeta();
+---
+>         incomingChatButton = XMaterial.MAP.parseItem();
+>         incomingChatMeta = incomingChatButton.getItemMeta();
+51c50
+<                 Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+---
+>             Enchantment powerEnchantment = Enchantment.getById(16);
+64a64,65
+>         }));
+>     }

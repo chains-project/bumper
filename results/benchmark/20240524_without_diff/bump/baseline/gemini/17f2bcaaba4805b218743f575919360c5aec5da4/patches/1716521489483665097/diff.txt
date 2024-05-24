@@ -1,0 +1,6 @@
+8a9
+>                 int size = PGS_Conversion.getChildren(mergedMesh).size();
+10c11
+<                 assertTrue(faces.size() >= mergedMesh.getChildCount());
+---
+>                 assertTrue(faces.size() >= size);

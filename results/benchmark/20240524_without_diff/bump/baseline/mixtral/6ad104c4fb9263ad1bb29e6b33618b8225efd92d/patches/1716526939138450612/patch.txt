@@ -1,0 +1,23 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+@Override
+public void decode(InputStream in, ByteQueue queue) throws IOException {
+    try {
+        int type = in.read();
+        if (type < 0) {
+            throw new EOFException("EOF while reading non-empty CHACHA20/POLY1305 record");
+        }
+
+        int length = in.readShort();
+        if (length < 0 || length > 214748363) {
+            throw new TlsFatalAlert(AlertDescription.decode(type), "invalid record length: " + length);
+        }
+
+        // ...
+    } catch (TlsFatalAlert ex) {
+        // ...
+    }
+}

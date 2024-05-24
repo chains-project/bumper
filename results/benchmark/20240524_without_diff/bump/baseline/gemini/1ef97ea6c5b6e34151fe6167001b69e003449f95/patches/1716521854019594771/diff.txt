@@ -1,0 +1,11 @@
+1,3c1,6
+< @Override
+<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>   public Timestamp between(Date from, Date to) {
+>     if (from instanceof Timestamp && to instanceof Timestamp) {
+>       return new Timestamp(((Timestamp) from).getTime() - ((Timestamp) to).getTime());
+>     } else {
+>       throw new IllegalArgumentException("Both arguments must be Timestamps");
+>     }

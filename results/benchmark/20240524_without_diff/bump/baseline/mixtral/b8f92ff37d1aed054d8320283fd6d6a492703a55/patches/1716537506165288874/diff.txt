@@ -1,0 +1,11 @@
+2c2
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a5,9
+> 
+> private static TestListResolver getTestListResolver() {
+>     CommandLineBuilder commandLineBuilder = new CommandLineBuilder();
+>     return new TestListResolver(commandLineBuilder);
+> }
+\ No newline at end of file

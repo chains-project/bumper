@@ -1,0 +1,6 @@
+4a5
+>         StoragesLoader loader = new StoragesLoader();
+7c8
+<                     new Storages().newStorage(
+---
+>                 loader.newStorage(

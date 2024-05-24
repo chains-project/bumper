@@ -1,0 +1,11 @@
+1a2,7
+>         Set<Language> enabledLanguages = new HashSet<>();
+>         if (globalConfig.isStandaloneMode()) {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInStandaloneMode());
+>         } else {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInConnectedMode());
+>         }
+3d8
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a13
+>                 .setLanguages(enabledLanguages)

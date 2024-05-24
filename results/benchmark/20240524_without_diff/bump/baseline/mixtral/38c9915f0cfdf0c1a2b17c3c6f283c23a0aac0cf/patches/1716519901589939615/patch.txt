@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+@Override
+public double score(User user) throws IOException {
+  return new LengthOf(user.feed()).value();
+}

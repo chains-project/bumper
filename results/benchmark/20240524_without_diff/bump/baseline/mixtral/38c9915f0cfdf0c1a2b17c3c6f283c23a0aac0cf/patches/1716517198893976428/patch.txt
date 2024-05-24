@@ -1,0 +1,8 @@
+import org.cactoos.io.Joined;
+
+//...
+
+JoinedText joined = new JoinedText(", ", new Joined<>(
+    input -> new TextOf(input),
+    iterable
+));

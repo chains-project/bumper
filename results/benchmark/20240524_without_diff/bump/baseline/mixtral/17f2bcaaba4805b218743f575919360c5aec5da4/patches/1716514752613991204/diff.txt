@@ -1,0 +1,25 @@
+1c1,20
+< import org.junit.jupiter.api.Test;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> @Test
+> void testFastPolygonizer() {
+>     PointIndexMMWrapper indexMMWrapper = new PointIndexMMWrapper();
+>     PHTreeMMP pTreeMMP = new PHTreeMMP();
+>     MinHeap minHeap = new MinHeap();
+>     MinHeapI minHeapI = new MinHeap();
+>     MinMaxHeap minMaxHeap = new MinMaxHeap();
+>     MinMaxHeapI minMaxHeapI = new MinMaxHeap();
+> 
+>     // Assertions and other test code
+> }
+\ No newline at end of file

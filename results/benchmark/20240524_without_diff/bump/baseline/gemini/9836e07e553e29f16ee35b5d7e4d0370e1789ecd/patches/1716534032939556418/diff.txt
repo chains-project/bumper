@@ -1,0 +1,4 @@
+7c7
+<     void failsToResolveInvalid(final String string) {
+---
+>     public void failsToResolveInvalid(final String string) {

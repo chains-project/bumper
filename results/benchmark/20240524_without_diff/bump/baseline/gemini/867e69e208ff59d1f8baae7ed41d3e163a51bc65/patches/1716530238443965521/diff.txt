@@ -1,0 +1,17 @@
+1c1,12
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TConfiguration;
+> import org.apache.thrift.transport.TEndpointTransport;
+> 
+> public class SimpleThriftLogger {
+> 
+>     public void log(String message) {
+>         TConfiguration config = new TConfiguration();
+>         TEndpointTransport transport = new TEndpointTransport(config);
+>         // Use the transport to send the log message
+>         // ...
+>     }
+> }
+\ No newline at end of file

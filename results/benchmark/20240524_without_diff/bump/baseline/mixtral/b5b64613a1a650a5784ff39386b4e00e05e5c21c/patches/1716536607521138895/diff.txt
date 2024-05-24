@@ -1,0 +1,14 @@
+3c3
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (isBlank(step.url) || isBlank(step.artifactoryUrl) || isBlank(step.distributionUrl)) {
+21a22,29
+> 
+> private boolean isBlank(String str) {
+>     return str == null || str.isEmpty();
+> }
+> 
+> private boolean isEmpty(String str) {
+>     return str == null || str.length() == 0;
+> }
+\ No newline at end of file

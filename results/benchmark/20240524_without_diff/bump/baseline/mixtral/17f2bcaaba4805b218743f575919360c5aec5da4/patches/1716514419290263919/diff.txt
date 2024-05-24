@@ -1,0 +1,16 @@
+1c1,11
+< import org.locationtech.jts.geom.Coordinate;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> int sizeOfPointIndexMMWrapper = new PointIndexMMWrapper().size();
+> int sizeOfPHTreeMMP = new PHTreeMMP().size();
+> int sizeOfMinHeap = new MinHeap().size();
+> int sizeOfMinMaxHeap = new MinMaxHeap().size();
+\ No newline at end of file

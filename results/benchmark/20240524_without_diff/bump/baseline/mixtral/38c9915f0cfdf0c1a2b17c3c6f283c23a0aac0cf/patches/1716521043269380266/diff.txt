@@ -1,0 +1,27 @@
+1c1,22
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.IoCheckedBytes;
+> import org.cactoos.input.InputOf;
+> 
+> ...
+> 
+> public class WalletsIn extends ScalarEnvelope {
+> ...
+>     @Override
+>     protected Scalar<byte[]> value() throws IOException {
+>         final IoCheckedBytes input = IoCheckedBytes. swallow(
+>             new InputOf(new File(path))
+>         );
+>         return new ScalarOf<byte[]>() {
+>             @Override
+>             public byte[] value() throws IOException {
+>                 return input.asBytes();
+>             }
+>         };
+>     }
+> ...
+> }
+\ No newline at end of file

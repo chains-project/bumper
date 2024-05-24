@@ -1,0 +1,17 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportFactory;
+
+public class YourClass {
+    // ...
+
+    TFramedTransport framedTransport;
+    TTransport transport;
+
+    public void initializeTransport() {
+        transport = new TTransportFactory().getTransport(new TSocket("localhost", 9090));
+        framedTransport = new TFramedTransport(transport);
+    }
+
+    // ...
+}

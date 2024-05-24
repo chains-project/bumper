@@ -1,0 +1,12 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.input.IoSupplier;
+import org.cactoos.text.IoCheckedText;
+
+// ...
+
+public IoCheckedScalar<Transaction> load(String id) throws IOException {
+  IoSupplier<InputStream> supplier = () -> new FileInputStream(file(id));
+  IoCheckedBytes checkedBytes = new IoCheckedBytes(supplier, Throwables::propagate);
+  IoCheckedText checkedText = new IoCheckedText(checkedBytes::asBytes, String::new);
+  return new IoCheckedScalar<>(checkedText::asString, Throwables::propagate);
+}

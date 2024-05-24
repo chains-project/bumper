@@ -1,0 +1,17 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+public class Wallet {
+    // ...
+
+    private Scalar<Double> balance() {
+        Scalar<Double> balance = new ScalarEnvelope<>(
+            () -> api.balance(account())
+        );
+        return balance;
+    }
+
+    // ...
+}

@@ -1,0 +1,8 @@
+4,5d3
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+<       // log.
+7,8c5
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>   framedTransport = new org.apache.thrift.transport.layered.TFastFramedTransport(new TIOStreamTransport(os), bufferCapacity);

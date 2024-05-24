@@ -1,0 +1,37 @@
+1c1,32
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.FormattedText;
+> import org.cactoos.text.Joined;
+> import org.cactoos.text.Split;
+> import org.cactoos.text.TextEnvelope;
+> 
+> // ...
+> 
+> public class RtTransaction {
+>   // ...
+> 
+>   private static String format(final Transaction transaction) {
+>     return new FormattedText(
+>       "Transaction {id: %s, amount: %s, timestamp: %s}",
+>       new TextEnvelope<>(transaction.id()),
+>       new TextEnvelope<>(transaction.amount()),
+>       new TextEnvelope<>(transaction.timestamp())
+>     ).asString();
+>   }
+> 
+>   private static String[] split(final String text) {
+>     return new Split(
+>       ",",
+>       new Split(
+>         ": ",
+>         new BytesOf(text)
+>       )
+>     ).asStringArray();
+>   }
+> 
+>   // ...
+> }
+\ No newline at end of file

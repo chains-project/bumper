@@ -1,0 +1,13 @@
+1c1,8
+< import static org.apache.commons.lang3.StringUtils.isNotBlank;
+\ No newline at end of file
+---
+> import org.apache.commons.lang3.StringUtils;
+> 
+> public class Main {
+>     public static void main(String[] args) {
+>         boolean result = StringUtils.isNotBlank("");
+>         System.out.println(result);
+>     }
+> }
+\ No newline at end of file

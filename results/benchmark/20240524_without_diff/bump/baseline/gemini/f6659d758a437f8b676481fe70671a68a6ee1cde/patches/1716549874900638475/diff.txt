@@ -1,0 +1,7 @@
+4c4,7
+<         loadingConfig.setTagInspector(new ++TrustedTagInspector());
+---
+>         final ++TagInspector tagInspector = new ++TagInspector();
+>         tagInspector.setGlobalTag(new Tag("!ZoneId"));
+>         tagInspector.setGlobalTag(new Tag("!LocalDate"));
+>         loadingConfig.setTagInspector(tagInspector);

@@ -1,0 +1,7 @@
+14,15c14,16
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             //++ reg.put(contextScope, group);
+>             //++ registry.set(server, reg);
+>             ((SortedMap<MOScope, ManagedObject<?>>) reg).put(contextScope, group);

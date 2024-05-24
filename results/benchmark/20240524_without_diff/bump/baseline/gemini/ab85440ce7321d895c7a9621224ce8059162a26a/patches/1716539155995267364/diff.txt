@@ -1,0 +1,8 @@
+11,13c11,13
+<                 ).digest()
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+---
+>                 ).digest(),
+>                 exception -> exception.getMessage().equals("Digest must be provided")
+>             )

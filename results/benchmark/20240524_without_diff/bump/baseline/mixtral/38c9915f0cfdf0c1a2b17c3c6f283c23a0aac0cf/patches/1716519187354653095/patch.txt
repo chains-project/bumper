@@ -1,0 +1,8 @@
+import org.cactoos.io.Joined;
+
+//...
+
+JoinedText joinedText = new JoinedText(", ", new Joined<>(
+    input -> new UncheckedText(input),
+    iterable
+));

@@ -1,0 +1,37 @@
+8c8,9
+<         blobs.put(
+---
+> 
+>         final CompletableFuture<Blob> put = blobs.put(
+10,11c11,14
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+---
+>         );
+> 
+>         final CompletableFuture<Void> future = put.thenAccept(
+>             blob -> {
+14c17
+<                     throwable,
+---
+>                     put.exceptionally(e -> e),
+19c22
+<                     Throwables.getRootCause(throwable),
+---
+>                     Throwables.getRootCause(put.exceptionally(e -> e)),
+24c27
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     Throwables.getRootCause(put.exceptionally(e -> e)).getMessage(),
+32c35
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     Throwables.getRootCause(put.exceptionally(e -> e)).getMessage(),
+35d37
+<                 return CompletableFuture.allOf();
+37c39,41
+<         ).join();
+---
+>         );
+> 
+>         future.join();

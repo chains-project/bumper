@@ -1,0 +1,12 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+public Iterable<Entry> entries() throws IOException {
+  return new Filtered<>(
+    new IterableOf<>(
+      api().entries()
+    ),
+    new EntryFilter()
+  );
+}

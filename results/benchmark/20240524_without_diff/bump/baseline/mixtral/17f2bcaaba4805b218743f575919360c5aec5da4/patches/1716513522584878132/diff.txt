@@ -1,0 +1,23 @@
+1c1,18
+< import org.locationtech.jts.noding.SegmentString;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+>   // ...
+> 
+>   @Test
+>   public void testPolygonize() {
+>     SegmentString segmentString = new SegmentString();
+>     // ...
+>   }
+> 
+>   // ...
+> }
+\ No newline at end of file

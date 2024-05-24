@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double score(String id) throws IOException {
+  try (Input in = new UrlInput(url(id))) {
+    return new LengthOf(in).longValue();
+  }
+}

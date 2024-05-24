@@ -1,0 +1,7 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+//...
+
+IoCheckedScalar<String> ioCheckedScalar = new IoCheckedScalar<>(
+  new IoCheckedBytes(new BytesOf("some string"))
+);

@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+108d106
+<                         /* Init item, ensure pre-1.14 compatibility */
+200a199
+>         }
+203d201
+<         }

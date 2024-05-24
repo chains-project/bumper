@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+@Override
+public Beneficiary tax(Beneficiary beneficiary) throws IOException {
+  long length = new LengthOf(new IterableOf(new BeneficiaryToBytes(beneficiary))).longValue();
+  // ...
+}

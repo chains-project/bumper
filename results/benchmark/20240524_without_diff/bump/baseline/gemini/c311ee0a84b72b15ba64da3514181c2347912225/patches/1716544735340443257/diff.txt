@@ -1,0 +1,15 @@
+7,8c7,8
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+---
+>                 () -> {
+>                     RequestLine requestLine = new RequestLine(
+10,12c10,13
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+<                     ).toString()
+<                 ).digest(),
+---
+>                         "/v2/my-repo/blobs/uploads/123-abc"
+>                     );
+>                     return new UploadEntity.Request(requestLine.toString()).digest();
+>                 }),

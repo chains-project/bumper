@@ -1,0 +1,11 @@
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline;
+
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver() {
+        @Override
+        protected String getWildcard() {
+            return "";
+        }
+    });
+    return directoryScanner.scan().getClasses();
+}

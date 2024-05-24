@@ -1,0 +1,7 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+IoCheckedScalar<String> scalar = new IoCheckedScalar<>(() -> "Hello, world!");
+IoCheckedBytes<String> bytes = new IoCheckedBytes<>(scalar::value);
+String value = bytes.asBytes();

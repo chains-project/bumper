@@ -1,0 +1,8 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public RtTransaction(String hash) {
+  this.hash = new UncheckedText(hash);
+  // ...
+}

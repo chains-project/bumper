@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class Ssh {
+> 
+>     public static void main(String[] args) {
+>         Tv tv = new Tv();
+>         tv.on();
+>     }
+> }
+\ No newline at end of file

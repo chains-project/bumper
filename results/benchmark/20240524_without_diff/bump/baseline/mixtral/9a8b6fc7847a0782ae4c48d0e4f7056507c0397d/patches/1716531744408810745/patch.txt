@@ -1,0 +1,17 @@
+import org.jasypt.util.password.PasswordEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+// ...
+
+@Override
+public PasswordEncoder passwordEncoder() {
+    PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+    TextEncryptor textEncryptor = new TextEncryptor();
+    textEncryptor.setPasswordEncryptor(passwordEncryptor);
+
+    Pbkdf2PasswordEncoder encoder = new Pbkdf2PasswordEncoder();
+    encoder.setEncryptor(passwordEncryptor);
+    return encoder;
+}

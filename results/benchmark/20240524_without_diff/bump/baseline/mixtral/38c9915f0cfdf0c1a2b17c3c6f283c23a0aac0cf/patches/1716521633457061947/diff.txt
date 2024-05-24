@@ -1,0 +1,31 @@
+1c1,26
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextOf;
+> import org.cactoos.text.UncheckedText;
+> 
+> // ...
+> 
+> public RtTransaction(RtUser user, RtAmount amount, RtTimestamp timestamp,
+>     RtSignature signature, RtHash hash, RtProof proof) {
+>   this.user = user;
+>   this.amount = amount;
+>   this.timestamp = timestamp;
+>   this.signature = signature;
+>   this.hash = hash;
+>   this.proof = proof;
+>   this.id = new TextOf(
+>       new UncheckedText(
+>           String.format("%s:%s:%s:%s:%s:%s",
+>               user.asString(),
+>               amount.asString(),
+>               timestamp.asString(),
+>               signature.asString(),
+>               hash.asString(),
+>               proof.asString()
+>           )
+>       )
+>   ).asString();
+> }
+\ No newline at end of file

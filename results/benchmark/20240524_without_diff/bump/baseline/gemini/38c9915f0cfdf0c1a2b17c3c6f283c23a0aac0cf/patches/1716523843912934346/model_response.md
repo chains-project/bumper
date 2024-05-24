@@ -1,0 +1,13 @@
+```java
+import org.cactoos.bytes.BytesOf;
+
+public class WalletsIn {
+  // ...
+  public void main(String[] args) {
+    // ...
+    BytesOf bytesOf = new BytesOf(new JoinedText("a", "b", "c"));
+    // ...
+  }
+  // ...
+}
+```

@@ -1,0 +1,26 @@
+1c1,21
+< import micycle.pgs.commons.PEdge;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> int edgeSize = 0;
+> 
+> if (edge instanceof PEdge) {
+>     PointIndexMMWrapper index = ((PEdge) edge).getIndex();
+>     if (index instanceof PHTreeMMP) {
+>         edgeSize = ((PHTreeMMP) index).size();
+>     } else if (index instanceof MinHeap || index instanceof MinHeapI) {
+>         edgeSize = index.size();
+>     } else if (index instanceof MinMaxHeap || index instanceof MinMaxHeapI) {
+>         edgeSize = index.size();
+>     }
+> }
+\ No newline at end of file

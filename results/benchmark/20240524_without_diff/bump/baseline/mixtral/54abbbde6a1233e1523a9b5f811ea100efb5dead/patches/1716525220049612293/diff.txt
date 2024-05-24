@@ -1,0 +1,20 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+10a9,10
+>     final int tenMillis = 10;
+>     final int million = 1_000_000;
+24,28c24,26
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+<             session.setServerAliveCountMax(Tv.MILLION);
+<             session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+---
+>         session.setServerAliveInterval(tenMillis);
+>         session.setServerAliveCountMax(million);
+>         session.connect(tenMillis * 1000L);

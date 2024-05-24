@@ -1,0 +1,14 @@
+18c18,28
+<                         return encoder;
+---
+>                 return new PasswordEncoder() {
+>                         @Override
+>                         public String encode(CharSequence rawPassword) {
+>                                 return encoder.encodePassword(rawPassword.toString(), null);
+>                         }
+> 
+>                         @Override
+>                         public boolean matches(CharSequence rawPassword, String encodedPassword) {
+>                                 return encoder.isPasswordValid(encodedPassword, rawPassword.toString(), null);
+>                         }
+>                 };

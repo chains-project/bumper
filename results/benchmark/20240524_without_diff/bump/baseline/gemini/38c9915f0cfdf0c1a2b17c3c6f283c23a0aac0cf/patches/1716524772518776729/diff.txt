@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class WalletsIn {
+> 
+>     public WalletsIn(UncheckedText body) {
+>         // TODO: Implement the body of the constructor
+>     }
+> 
+> }
+\ No newline at end of file

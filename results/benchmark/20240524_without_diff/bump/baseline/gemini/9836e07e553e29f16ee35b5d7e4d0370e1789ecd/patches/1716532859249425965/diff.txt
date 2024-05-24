@@ -1,0 +1,6 @@
+1a2
+>         boolean layerExists = this.image.layer().exists();
+4c5
+<             String.format("%s: Layer already exists", this.image.layer())
+---
+>             String.format("%s: Layer already exists: %s", this.image.layer(), layerExists)

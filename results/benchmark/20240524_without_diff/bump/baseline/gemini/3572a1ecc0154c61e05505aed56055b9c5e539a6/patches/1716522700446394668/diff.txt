@@ -1,0 +1,4 @@
+4c4
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>       // Use the TFastFramedTransport to be compatible with singer_thrift

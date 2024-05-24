@@ -1,0 +1,55 @@
+1c1,50
+< import org.locationtech.jts.geom.LineString;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinMaxHeap;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+>     // ...
+> 
+>     @Test
+>     public void testGetPolygons() {
+>         PointIndexMMWrapper index = new PointIndexMMWrapper();
+>         // ...
+>         int size = index.size(); // use the new size() method
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetPolygons2() {
+>         PHTreeMMP index = new PHTreeMMP();
+>         // ...
+>         int size = index.size(); // use the new size() method
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetPolygons3() {
+>         MinHeap<Point> index = new MinHeap<>(10);
+>         // ...
+>         int size = index.size(); // use the new size() method
+>         // ...
+>     }
+> 
+>     // ...
+> 
+>     @Test
+>     public void testGetPolygons4() {
+>         MinMaxHeap<Point> index = new MinMaxHeap<>(10);
+>         // ...
+>         int size = index.size(); // use the new size() method
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

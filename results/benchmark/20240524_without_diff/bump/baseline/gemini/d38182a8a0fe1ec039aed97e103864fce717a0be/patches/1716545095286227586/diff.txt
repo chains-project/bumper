@@ -1,0 +1,12 @@
+1d0
+< @Override
+2a2
+>     final var authUser = new AuthUser(TestAuthentication.ALICE.name(), "");
+5c5
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>         new Permissions.Single(authUser, action),
+10c10
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new AuthUser(user.name(), ""))

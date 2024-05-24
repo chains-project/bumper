@@ -1,0 +1,9 @@
+2a3
+>         final StringContains stringContains = new StringContains(String.format("Status: Downloaded newer image for %s", this.remote()));
+10,13c11
+<                 new StringContains(
+<                     false,
+<                     String.format("Status: Downloaded newer image for %s", this.remote())
+<                 )
+---
+>                 stringContains

@@ -1,0 +1,4 @@
+3c3
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     return new Timestamp(from.getTime() + (to.getTime() - from.getTime())/2);

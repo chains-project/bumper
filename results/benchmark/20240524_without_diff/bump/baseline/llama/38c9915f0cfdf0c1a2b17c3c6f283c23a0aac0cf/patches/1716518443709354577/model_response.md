@@ -1,0 +1,3 @@
+```
+import io.cactoos.Scalar;
+```

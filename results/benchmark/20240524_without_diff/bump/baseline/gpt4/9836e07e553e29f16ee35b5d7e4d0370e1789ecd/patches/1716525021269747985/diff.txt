@@ -1,0 +1,13 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6,7
+<             () -> new UploadEntity.Request(
+---
+>             () -> {
+>                 new UploadEntity.Request(
+12c12,14
+<             ).digest().getMessage(),
+---
+>                 ).digest();
+>             }
+>         ).getMessage(),

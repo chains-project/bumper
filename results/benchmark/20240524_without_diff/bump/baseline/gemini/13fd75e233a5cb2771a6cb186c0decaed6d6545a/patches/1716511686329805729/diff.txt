@@ -1,0 +1,15 @@
+1d0
+< // TODO: review this AI generated patch!
+7,8c6,7
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+---
+>                 () -> {
+>                     RequestLine requestLine = new RequestLine(
+11,12c10,12
+<                     ).toString()
+<                 ).digest(),
+---
+>                     );
+>                     return new UploadEntity.Request(requestLine.toString()).digest();
+>                 },

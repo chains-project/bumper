@@ -1,0 +1,23 @@
+4d3
+<                         /* Default white stained glass borders for inactive, yellow if player has existing translation session */
+14d12
+<                         /* Init current active translator */
+17d14
+<                         /* Pagination: Lets you generate pages rather than set defined ones */
+21d17
+<                         /* Add each supported language from each respective translator */
+30d25
+<                                 /* Add Glow Effect */
+45d39
+<                                         /* Send to /wwct */
+57d50
+<                         /* 28 langs per page, start at 1, 1 */
+62d54
+<                         /* Bottom Left Option: Previous Page */
+74d65
+<                         /* Bottom Right Option: Next Page */
+82,83c73
+<                         /* Last Option: Page Number */
+<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+---
+>                 contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {String.valueOf(pagination.getPage() + 1)}), e -> {}));

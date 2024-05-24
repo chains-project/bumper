@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.UncheckedText;
+> 
+> // ...
+> 
+> public RtTransaction(String hash, TextTpl tpl, TextDao dao) {
+>   super(hash, new UncheckedText(tpl.asString()), dao);
+> }
+> 
+> // ...
+\ No newline at end of file

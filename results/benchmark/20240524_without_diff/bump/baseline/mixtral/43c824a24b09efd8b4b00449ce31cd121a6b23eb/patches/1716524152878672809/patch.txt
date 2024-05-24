@@ -1,0 +1,13 @@
+import de.gwdg.metadataqa.api.json.DataElement;
+
+private static String extractFirst(JsonPathCache cache, DataElement branch) {
+  List<String> list = extractList(cache, branch);
+  if (!list.isEmpty())
+    return list.get(0);
+  return null;
+}
+
+private static List<String> extractList(JsonPathCache cache, DataElement branch) {
+  // Implement this method to extract a list of strings from the given DataElement
+  // You can use the JsonPathCache to help you with this
+}

@@ -1,0 +1,6 @@
+13,17d12
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(

@@ -1,0 +1,37 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+import static org.cactoos.Text.isEmpty;
+
+// ...
+
+@Override
+public Transaction fromJson(final JsonElement json) throws IOException {
+  requireNonNull(json, "JSON element can't be null");
+  requireTrue(json.isJsonObject(), "JSON element must be an object");
+  requireTrue(json.getAsJsonObject().has("id"), "JSON element must have 'id' field");
+  requireTrue(json.getAsJsonObject().has("type"), "JSON element must have 'type' field");
+  requireTrue(json.getAsJsonObject().has("amount"), "JSON element must have 'amount' field");
+  requireTrue(json.getAsJsonObject().has("time"), "JSON element must have 'time' field");
+  requireTrue(json.getAsJsonObject().has("owner"), "JSON element must have 'owner' field");
+  requireTrue(json.getAsJsonObject().has("spender"), "JSON element must have 'spender' field");
+  requireTrue(json.getAsJsonObject().has("status"), "JSON element must have 'status' field");
+  final String id = getString(json, "id");
+  final String type = getString(json, "type");
+  final BigDecimal amount = getDecimal(json, "amount");
+  final Instant time = getInstant(json, "time");
+  final String owner = getString(json, "owner");
+  final String spender = getString(json, "spender");
+  final TransactionStatus status = TransactionStatus.valueOf(getString(json, "status"));
+  return new Transaction(
+      id,
+      type,
+      amount,
+      time,
+      owner,
+      spender,
+      status,
+      new UncheckedText(getString(json, "data"))
+  );
+}

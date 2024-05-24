@@ -1,0 +1,8 @@
+7a8
+>         final HamcrestMatcher<String> matcher = new StringContains(string);
+16,17c17,18
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+---
+>                     new StringContains("Unsupported reference"),
+>                     matcher

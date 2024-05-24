@@ -1,0 +1,34 @@
+1c1,29
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.password.PasswordEncryptor;
+> import org.jasypt.digest.StringDigester;
+> import org.springframework.security.authentication.encoding.PasswordEncoder;
+> 
+> // ...
+> 
+> @Override
+> public PasswordEncoder passwordEncoder() {
+>     TextEncryptor textEncryptor = new TextEncryptor();
+>     PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>     PasswordEncryptor passwordEncryptor = new PasswordEncryptor();
+>     StringDigester stringDigester = new StringDigester();
+> 
+>     // configure the encryptors and digester as needed
+> 
+>     return new PasswordEncoder() {
+>         @Override
+>         public String encodePassword(String rawPass, Object salt) {
+>             return passwordEncoder.encodePassword(rawPass, (String) salt);
+>         }
+> 
+>         @Override
+>         public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+>             return passwordEncoder.isPasswordValid(encPass, rawPass, (String) salt);
+>         }
+>     };
+> }
+\ No newline at end of file

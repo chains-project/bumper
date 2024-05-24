@@ -1,0 +1,15 @@
+1a2,11
+>         Set<Language> enabledLanguages = new HashSet<>();
+>         if (globalConfig.getEnabledLanguages() != null) {
+>             enabledLanguages.addAll(globalConfig.getEnabledLanguages());
+>         }
+>         if (globalConfig.isStandaloneMode()) {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInStandaloneMode());
+>         } else {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getLanguageSupportRepository().getEnabledLanguagesInConnectedMode());
+>         }
+> 
+3d12
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a17
+>                 .addEnabledLanguages(enabledLanguages)

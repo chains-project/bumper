@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+> 
+>   // ...
+> 
+>   try {
+>     // ...
+>   } catch (ArtifactResolutionException e) {
+>     throw new DependencyResolutionRequiredException(e.getMessage(), e);
+>   }
+> 
+>   // ...
+\ No newline at end of file

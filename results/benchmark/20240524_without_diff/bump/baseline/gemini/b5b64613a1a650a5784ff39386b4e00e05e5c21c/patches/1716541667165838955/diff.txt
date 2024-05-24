@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class CreateJFrogInstanceStep {
+> 
+>     public void step(Map<String, Object> binding) {
+>         // ...
+> 
+>         if (isNotBlank(artifactoryUrl)) {
+>             // ...
+>         }
+> 
+>         // ...
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TNonblockingTransport;
+> 
+> public class AppenderUtils {
+> 
+>     public static TNonblockingTransport createNonblockingTransport(TNonblockingTransport transport) {
+>         return transport;
+>     }
+> }
+\ No newline at end of file

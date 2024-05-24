@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(String id, Input input) {
+  this.id = id;
+  this.input = new LengthOf(input);
+  // ...
+}

@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+@Override
+public String taxBeneficiaries() throws IOException {
+  return new LengthOf(beneficiaries()).toString();
+}

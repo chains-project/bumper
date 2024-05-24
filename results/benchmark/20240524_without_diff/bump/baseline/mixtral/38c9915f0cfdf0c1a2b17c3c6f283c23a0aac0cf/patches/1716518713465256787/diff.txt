@@ -1,0 +1,20 @@
+1c1,15
+< import org.cactoos.scalar.StickyScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.Sticky;
+> 
+> // ...
+> 
+> private Sticky<Transaction> stickyTransaction;
+> 
+> // ...
+> 
+> @Override
+> public Transaction transaction() {
+>     if (stickyTransaction == null) {
+>         stickyTransaction = new Sticky<>(() -> transactionPool.get());
+>     }
+>     return stickyTransaction.value();
+> }
+\ No newline at end of file

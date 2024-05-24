@@ -1,0 +1,18 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public class WalletsIn {
+  // ...
+
+  private IoCheckedBytes content;
+
+  // ...
+
+  @Override
+  public InputStream inputStream() throws IOException {
+    return new ByteArrayInputStream(content.asBytes());
+  }
+
+  // ...
+}

@@ -1,0 +1,6 @@
+import com.jcabi.aspects.Loggable;
+
+@Loggable(Loggable.Info.class)
+public class MkGithub {
+    // existing code...
+}

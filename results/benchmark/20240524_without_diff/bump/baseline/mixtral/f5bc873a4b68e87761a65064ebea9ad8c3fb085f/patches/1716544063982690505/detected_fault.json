@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 388043093,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/UnPackThemeMojo.java:[25,68] ';' expected",
+        "client_file_path": "/myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/UnPackThemeMojo.java",
+        "client_line_position": "25"
+    },
+    "client_end_line_number": 25,
+    "client_line_number": 25,
+    "method_code": "import org.apache.maven.artifact.resolver.ArtifactResolverException;",
+    "qualified_code": "import org.apache.maven.artifact.resolver.ArtifactResolverException;",
+    "method_name": "import"
+}

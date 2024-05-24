@@ -1,0 +1,3 @@
+import static org.apache.commons.lang3.StringUtils.isAnyBlank;
+
+// replace all occurrences of 'isAllBlank' with 'isAnyBlank'

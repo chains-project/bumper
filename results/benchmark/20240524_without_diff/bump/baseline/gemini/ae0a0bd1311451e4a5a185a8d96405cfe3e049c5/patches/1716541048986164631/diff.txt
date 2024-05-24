@@ -1,0 +1,6 @@
+3,4c3,4
+<         ++ String layer = this.image.layer();
+<         return new StringContains(false, String.format("%s: Pushed", layer));
+---
+>         String layer = this.image.layer();
+>         return new StringContains(false, layer + ": Pushed");

@@ -1,0 +1,11 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtId id, RtAmount amount, RtProof proof) {
+  this.env = env;
+  this.id = id;
+  this.amount = amount;
+  this.proof = proof;
+  this.len = new LengthOf<>(id.asIterable());
+}

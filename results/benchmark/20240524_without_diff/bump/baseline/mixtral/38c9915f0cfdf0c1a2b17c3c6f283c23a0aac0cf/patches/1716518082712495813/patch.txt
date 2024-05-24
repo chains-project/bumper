@@ -1,0 +1,8 @@
+import org.cactoos.text.TextOf;
+
+// ...
+
+public RtTransaction(String raw) {
+  this.raw = new TextOf(raw).asString();
+  // ...
+}

@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> 
+> // ...
+> 
+> public InputStream inputStream(final String url) throws IOException {
+>   return new IoCheckedBytes(client.bytes(url), this::asInput).asBytes();
+> }
+\ No newline at end of file

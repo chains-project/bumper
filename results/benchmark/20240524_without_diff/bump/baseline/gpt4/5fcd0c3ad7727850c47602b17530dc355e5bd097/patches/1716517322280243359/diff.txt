@@ -1,0 +1,6 @@
+2a3
+>     ClassInfoBuilder builder = new ClassInfoVisitor();
+4c5
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), builder.getClassInfo(data.getMutatedClass(), null, 0L));

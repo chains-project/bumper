@@ -1,0 +1,16 @@
+1,6c1,2
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+---
+> import static org.jenkinsci.plugins.p4.util.StringUtils.isAllBlank;
+> 
+20a17,20
+> 
+> static boolean isAllBlank(String... strings) {
+>     return Arrays.stream(strings).allMatch(String::isBlank);
+> }
+\ No newline at end of file

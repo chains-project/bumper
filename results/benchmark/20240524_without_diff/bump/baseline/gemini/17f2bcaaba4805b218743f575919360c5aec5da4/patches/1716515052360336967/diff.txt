@@ -1,0 +1,6 @@
+2,3c2,3
+<         void test_PGS_Morphology_minkDifference() {
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>         public void test_PGS_Morphology_minkDifference() {
+>                 assertTrue(GROUP_SHAPE.getChildCount() == 2);

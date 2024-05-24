@@ -1,0 +1,12 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public class TaxBeneficiaries {
+	// ...
+
+	@Override
+	public int length() {
+		return new LengthOf<>(beneficiaries).intValue();
+	}
+}

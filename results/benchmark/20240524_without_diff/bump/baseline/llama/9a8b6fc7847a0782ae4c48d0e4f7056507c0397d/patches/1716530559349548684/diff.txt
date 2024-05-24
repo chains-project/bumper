@@ -1,0 +1,19 @@
+1c1,14
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.spring.security.PasswordEncoder;
+> 
+> public class GeoStorePBEPasswordEncoder extends PasswordEncoder {
+> 
+>     @Override
+>     public String encodePassword(String rawPass, Object salt) {
+>         return super.encodePassword(rawPass, salt);
+>     }
+> 
+>     @Override
+>     public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+>         return super.isPasswordValid(encPass, rawPass, salt);
+>     }
+> }
+\ No newline at end of file

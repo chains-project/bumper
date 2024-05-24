@@ -1,0 +1,16 @@
+11a12
+>     ClientHelper clientHelper;
+13,14c14,16
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         clientHelper = new ClientHelper(step.credentialsId, getContext().getListener(), "");
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, clientHelper);
+>         distributionServer = new DistributionServer(distributionUrl, clientHelper);
+16,17c18,20
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         clientHelper = new ClientHelper(step.username, getContext().getListener(), step.password, "");
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, clientHelper);
+>         distributionServer = new DistributionServer(distributionUrl, clientHelper);

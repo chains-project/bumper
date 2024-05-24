@@ -1,0 +1,6 @@
+9,10c9,10
+<                 assertTrue(PGS_Conversion.getChildren(mergedMesh).stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold));
+<                 assertTrue(faces.size() >= mergedMesh.getChildCount());
+---
+>                 int mergedMeshSize = mergedMesh.getChildCount();
+>                 assertTrue(faces.size() >= mergedMeshSize);

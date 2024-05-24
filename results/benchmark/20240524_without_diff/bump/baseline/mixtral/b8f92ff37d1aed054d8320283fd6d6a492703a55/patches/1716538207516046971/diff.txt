@@ -1,0 +1,38 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+11a2
+>     WildcardMatcher matcher = new WildcardMatcher("");
+14c5
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>         matcher.setPattern(pattern);
+21c12
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>         matcher.setPattern(pattern);
+27,29c18,19
+<         // True if it is present in the available binaries
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     Commandline commandLine = DefaultForkConfiguration.createCommandLine(StartupConfiguration.get(), 1, new File("target/surefire-reports"));
+>     DirectoryScanner directoryScanner = new DirectoryScanner(new File("target/classes"), commandLine);
+33,35c23,25
+<         }
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+> 
+>     commandLine = DefaultForkConfiguration.createCommandLine(StartupConfiguration.get(), 1, new File("target/test-classes"));
+>     directoryScanner = new DirectoryScanner(new File("target/test-classes"), commandLine);
+39d28
+<         }

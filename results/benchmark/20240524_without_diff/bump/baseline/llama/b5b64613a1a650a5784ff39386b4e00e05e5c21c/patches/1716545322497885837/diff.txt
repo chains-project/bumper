@@ -1,0 +1,12 @@
+1c1,7
+< import static org.apache.commons.lang3.StringUtils.isNotBlank;
+\ No newline at end of file
+---
+> import org.apache.commons.lang3.StringUtils;
+> 
+> public class Fix {
+>     public static boolean isNotBlank(String str) {
+>         return StringUtils.isNotBlank(str);
+>     }
+> }
+\ No newline at end of file

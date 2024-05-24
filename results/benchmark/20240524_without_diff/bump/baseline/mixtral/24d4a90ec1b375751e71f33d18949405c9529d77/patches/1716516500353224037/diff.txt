@@ -1,0 +1,13 @@
+1c1,8
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aspects.Loggable;
+> 
+> // ...
+> 
+> @Loggable(Loggable.DEBUG)
+> public class BucketRule {
+>     // ...
+> }
+\ No newline at end of file

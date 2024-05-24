@@ -1,0 +1,25 @@
+1c1,20
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.IoChecked;
+> import org.cactoos.scalar.UncheckedScalar;
+> 
+> import java.io.IOException;
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     private Scalar<Bytes> bytesOf(final Wallet wallet) throws IOException {
+>         return new IoChecked<>(
+>             new UncheckedScalar<>(
+>                 () -> wallet.bytes()
+>             ),
+>             new FuncOfCheckedBytes()
+>         );
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

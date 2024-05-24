@@ -1,0 +1,11 @@
+1c1,6
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import org.junit.internal.AssumptionViolatedException;
+> import org.junit.internal.runners.model.MultipleFailureException;
+> 
+> public class FastPolygonizerTests {
+>     // ...
+> }
+\ No newline at end of file

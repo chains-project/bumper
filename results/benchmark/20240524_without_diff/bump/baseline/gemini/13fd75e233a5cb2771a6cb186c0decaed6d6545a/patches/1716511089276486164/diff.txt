@@ -1,0 +1,6 @@
+2c2,4
+<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
+---
+>         boolean isNegative = false;
+>         String expectedMessage = String.format("%s: Pushed", this.image.layer());
+>         return new StringContains(isNegative, expectedMessage);

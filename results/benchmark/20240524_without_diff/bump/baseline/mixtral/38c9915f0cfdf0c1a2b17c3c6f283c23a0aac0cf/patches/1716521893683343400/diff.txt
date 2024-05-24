@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtInput input) {
+>   this.input = new LengthOf(input.stream());
+>   // ...
+> }
+\ No newline at end of file

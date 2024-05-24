@@ -1,0 +1,6 @@
+2c2
+<     void shouldPull() throws Exception {
+---
+>     public void shouldPull() throws Exception {
+10d9
+<                 false,

@@ -1,0 +1,8 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public RtTransaction(final Bytes source, final Bytes destination) {
+  this.source = new IoCheckedBytes(source);
+  this.destination = new IoCheckedBytes(destination);
+}

@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtWallet from, RtWallet to, RtAmount amount, RtCode code) {
+>   this.from = from;
+>   this.to = to;
+>   this.amount = amount;
+>   this.code = code;
+>   this.id = new LengthOf<>(Iterables.iterate(txs, tx -> tx.id())).intValue();
+> }
+\ No newline at end of file

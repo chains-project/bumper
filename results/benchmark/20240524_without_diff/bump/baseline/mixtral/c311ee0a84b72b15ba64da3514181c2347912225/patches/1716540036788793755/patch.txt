@@ -1,0 +1,32 @@
+private static ResponseMatcher isUploadStarted() {
+    boolean startsWith = "/v2/test/blobs/uploads/".contains(Matcher.anyOf(headerValue("Location"))) ;
+    return new ResponseMatcher(
+        RsStatus.ACCEPTED,
+        new IsHeader("Location", headerValue("Location")),
+        new IsHeader("Range", "0-0"),
+        new IsHeader("Content-Length", "0"),
+        new IsHeader("Docker-Upload-UUID", not(emptyString()))
+    );
+}
+
+private Matcher<String> headerValue(String headerName) {
+    return new HeaderMatcher(headerName);
+}
+
+private static class HeaderMatcher extends TypeSafeMatcher<String> {
+    private final String headerName;
+
+    private HeaderMatcher(String headerName) {
+        this.headerName = headerName;
+    }
+
+    @Override
+    protected boolean matchesSafely(String item) {
+        return HttpHeader.parseHeader(headerName, item).isPresent();
+    }
+
+    @Override
+    public void describeTo(Description description) {
+        description.appendText("header ").appendValue(headerName);
+    }
+}

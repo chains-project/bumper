@@ -1,0 +1,4 @@
+13c13
+<             new StringContains(false, "Unexpected query")
+---
+>             new StringContains("Unexpected query")

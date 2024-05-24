@@ -1,0 +1,6 @@
+try {
+    Artifact artifact = resolver.resolveArtifact(repositorySystemSession, artifactRequest);
+    artifact.getFile();
+} catch (ArtifactResolutionException e) {
+    throw new MojoExecutionException("Unable to resolve artifact", e);
+}

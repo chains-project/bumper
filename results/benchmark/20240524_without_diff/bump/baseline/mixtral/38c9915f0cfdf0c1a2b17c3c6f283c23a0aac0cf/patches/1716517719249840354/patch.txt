@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+...
+
+public Double rtScore(String user) throws IOException {
+    ...
+    long itemsLength = new LengthOf<Iterable<Transaction>>(txs).value();
+    ...
+}

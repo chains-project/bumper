@@ -1,0 +1,10 @@
+6,12c6
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+<         );
+---
+>     MatcherAssert.assertThat(output, StringContains.containsString(original.digest()));

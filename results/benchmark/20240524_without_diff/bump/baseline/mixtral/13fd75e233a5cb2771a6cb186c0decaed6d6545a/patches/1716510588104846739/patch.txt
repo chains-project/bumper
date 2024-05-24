@@ -1,0 +1,29 @@
+@Test
+void largeImageUploadWorks() throws Exception {
+    try {
+        this.buildImage();
+        final String output = this.client.run("push", this.remote());
+        MatcherAssert.assertThat(output, new StringContains("Pushed"));
+    } finally {
+        this.client.run("rmi", this.remote());
+    }
+}
+
+// Added method to replace the failing assertion
+private static class StringContains extends TypeSafeMatcher<String> {
+    private final String contains;
+
+    StringContains(boolean contains, String value) {
+        this.contains = value;
+    }
+
+    @Override
+    protected boolean matchesSafely(String item) {
+        return item.contains(contains);
+    }
+
+    @Override
+    public void describeTo(Description description) {
+        description.appendText("a string containing ").appendValue(contains);
+    }
+}

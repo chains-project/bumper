@@ -1,0 +1,13 @@
+```java
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+
+  public void execute() throws MojoExecutionException {
+    // ...
+    try {
+      // ...
+    } catch (ArtifactResolutionException e) {
+      // ...
+    }
+    // ...
+  }
+```

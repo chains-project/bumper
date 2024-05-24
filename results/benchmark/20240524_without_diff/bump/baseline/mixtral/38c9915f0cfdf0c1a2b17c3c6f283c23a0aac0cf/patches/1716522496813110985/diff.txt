@@ -1,0 +1,26 @@
+1c1,21
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.io.IoCheckedBytes;
+> import org.cactoos.io.InputOf;
+> import org.cactoos.text.TextOf;
+> 
+> // ...
+> 
+> public class RtNetwork {
+>   // ...
+> 
+>   @Override
+>   protected String name() throws IOException {
+>     Scalar<String> scalar = () -> new TextOf(
+>       new IoCheckedBytes(
+>         new InputOf(new URL(url())),
+>         IoCheckedBytes::asBytes
+>       )
+>     ).asString();
+>     return scalar.value();
+>   }
+> }
+\ No newline at end of file

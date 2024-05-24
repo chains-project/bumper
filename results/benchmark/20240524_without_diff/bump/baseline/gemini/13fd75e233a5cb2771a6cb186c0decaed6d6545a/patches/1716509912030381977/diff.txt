@@ -1,0 +1,9 @@
+29a30,31
+>                 final String message = Throwables.getRootCause(throwable).getMessage();
+>                 final boolean containsDigest = message.contains(digest);
+32,33c34,35
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                     containsDigest,
+>                     new IsEqual<>(true)

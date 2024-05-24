@@ -1,0 +1,13 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+import static java.util.Arrays.stream;
+
+// ...
+
+Scalar<Iterable<String>> scalars = new ScalarOf<>(() -> stream(wallets.values())
+  .map(Wallet::id)
+  .toArray(String[]::new)
+);

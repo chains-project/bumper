@@ -1,0 +1,19 @@
+7a8,13
+>     final HamcrestMatcher<String> matcher = new AllOf<>(
+>         Arrays.asList(
+>             new StringContains<>(string),
+>             new StringContains<>("Unsupported reference")
+>         )
+>     );
+12,20c18
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+<         );
+---
+>     MatcherAssert.assertThat(throwable.getMessage(), matcher);

@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+28c27
+<             Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+---
+>             Enchantment powerEnchantment = Enchantments.getById(16); // Increase this number if the power enchantment ID changes
+52c51
+<             Enchantment powerEnchantment = Enchantment.getById(16); // Increase this number if the power enchantment ID changes
+---
+>             Enchantment powerEnchantment = Enchantments.getById(16); // Increase this number if the power enchantment ID changes

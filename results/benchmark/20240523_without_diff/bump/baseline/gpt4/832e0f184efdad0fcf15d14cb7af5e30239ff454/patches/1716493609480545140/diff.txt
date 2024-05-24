@@ -1,0 +1,12 @@
+42c42
+<                                                         .withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings, entry.getKey()));
+---
+>                                                 .withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.this.overrideNewMessageSettings, entry.getKey()));
+56c56
+<                                         overrideNewMessageSettings.open(player,
+---
+>                                 ConfigurationMessagesOverridePossibleListGUI.this.overrideNewMessageSettings.open(player,
+71c71
+<                                         overrideNewMessageSettings.open(player,
+---
+>                                 ConfigurationMessagesOverridePossibleListGUI.this.overrideNewMessageSettings.open(player,

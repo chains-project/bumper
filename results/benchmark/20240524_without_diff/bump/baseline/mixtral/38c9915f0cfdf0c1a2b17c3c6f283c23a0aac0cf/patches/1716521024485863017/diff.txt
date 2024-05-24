@@ -1,0 +1,20 @@
+0a1
+> import org.cactoos.Scalar;
+1a3,18
+> import org.cactoos.text.IoCheckedText;
+> import org.cactoos.text.TextOfScalar;
+> 
+> public class WalletsIn {
+>     ...
+>     private Scalar<String> getFileContent(final String path) {
+>         return new IoCheckedScalar<>(
+>             new IoCheckedText(
+>                 new TextOfScalar(
+>                     new ScalarOf(() -> new String(Files.readAllBytes(Paths.get(path))))
+>                 )
+>             )
+>         );
+>     }
+>     ...
+> }
+\ No newline at end of file

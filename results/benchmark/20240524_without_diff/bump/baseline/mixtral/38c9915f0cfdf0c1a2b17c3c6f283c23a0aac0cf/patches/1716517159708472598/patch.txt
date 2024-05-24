@@ -1,0 +1,8 @@
+import org.cactoos.text.Joined;
+
+...
+
+public void someMethod() {
+  String text = new Joined(", ", new TextOf("Hello"), new TextOf("World")).asString();
+  ...
+}

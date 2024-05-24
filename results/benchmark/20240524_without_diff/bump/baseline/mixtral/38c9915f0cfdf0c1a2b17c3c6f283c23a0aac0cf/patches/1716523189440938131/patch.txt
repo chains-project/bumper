@@ -1,0 +1,15 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.UncheckedScalar;
+import org.cactoos.text.TextOfScalar;
+
+// ...
+
+Scalar<Double> balance = () -> 123.45;
+Scalar<String> currency = () -> "USD";
+
+// Use TextOfScalar instead of CheckedScalar
+Text textBalance = new TextOfScalar(balance);
+Text textCurrency = new TextOfScalar(currency);
+
+// Combine the text values using concatenation
+Text text = new Text(textBalance.asString() + " " + textCurrency.asString());

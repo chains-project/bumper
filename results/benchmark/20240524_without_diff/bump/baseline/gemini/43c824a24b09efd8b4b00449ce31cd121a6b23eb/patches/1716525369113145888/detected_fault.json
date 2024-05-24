@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1785507932,
+    "in_class_code": "/**\n * Factory class to create MarcRecord from JsonPathCache\n */\npublic class MarcFactory {\n    private static final Logger logger = Logger.getLogger(MarcFactory.class.getCanonicalName());\n\n    private static final List<String> fixableControlFields = Arrays.asList(\"006\", \"007\", \"008\");\n\n    private static Schema schema = new MarcJsonSchema();\n\n    private MarcFactory() {\n        throw new IllegalStateException(\"This is a utility class, can not be instantiated\");\n    }\n\n    private static String extractFirst(JsonPathCache cache, JsonBranch branch) {\n        List<String> list = extractList(cache, branch);\n        if (!list.isEmpty()) {\n            return list.get(0);\n        }\n        return null;\n    }\n}",
+    "qualified_in_class_code": "/**\n * Factory class to create MarcRecord from JsonPathCache\n */\npublic class MarcFactory {\n    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(de.gwdg.metadataqa.marc.MarcFactory.class.getCanonicalName());\n\n    private static final java.util.List<java.lang.String> fixableControlFields = java.util.Arrays.asList(\"006\", \"007\", \"008\");\n\n    private static de.gwdg.metadataqa.api.schema.Schema schema = new de.gwdg.metadataqa.api.schema.MarcJsonSchema();\n\n    private MarcFactory() {\n        throw new java.lang.IllegalStateException(\"This is a utility class, can not be instantiated\");\n    }\n\n    private static java.lang.String extractFirst(de.gwdg.metadataqa.api.model.pathcache.JsonPathCache cache, de.gwdg.metadataqa.api.json.JsonBranch branch) {\n        java.util.List<java.lang.String> list = de.gwdg.metadataqa.marc.MarcFactory.extractList(cache, branch);\n        if (!list.isEmpty())\n            return list.get(0);\n\n        return null;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class JsonBranch\n  location: class de.gwdg.metadataqa.marc.MarcFactory\n",
+        "error_message": "[ERROR] /qa-catalogue/src/main/java/de/gwdg/metadataqa/marc/MarcFactory.java:[322,59] cannot find symbol",
+        "client_file_path": "/qa-catalogue/src/main/java/de/gwdg/metadataqa/marc/MarcFactory.java",
+        "client_line_position": "322"
+    },
+    "client_end_line_number": 327,
+    "client_line_number": 322,
+    "method_code": "private static String extractFirst(JsonPathCache cache, JsonBranch branch) {\n    List<String> list = extractList(cache, branch);\n    if (!list.isEmpty())\n      return list.get(0);\n    return null;\n  }",
+    "qualified_code": "private static java.lang.String extractFirst(de.gwdg.metadataqa.api.model.pathcache.JsonPathCache cache, de.gwdg.metadataqa.api.json.JsonBranch branch) {\n    java.util.List<java.lang.String> list = de.gwdg.metadataqa.marc.MarcFactory.extractList(cache, branch);\n    if (!list.isEmpty())\n        return list.get(0);\n\n    return null;\n}",
+    "method_name": "extractFirst"
+}

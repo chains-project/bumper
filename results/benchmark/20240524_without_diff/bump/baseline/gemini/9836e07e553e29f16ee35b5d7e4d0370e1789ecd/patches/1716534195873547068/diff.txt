@@ -1,0 +1,4 @@
+16c16
+<                     new StringContains(true, "Unsupported reference"),
+---
+>                     new StringContains(true, "Unsupported reference: " + string),

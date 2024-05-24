@@ -1,0 +1,12 @@
+15,16c15,18
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+>         encryptor.setProviderName(stringEncrypter.getProviderName());
+>         encryptor.setPasswordCharArray(stringEncrypter.getPasswordCharArray());
+>         encryptor.setAlgorithm(stringEncrypter.getAlgorithm());
+18c20
+<                         return encoder;
+---
+>         return encryptor;

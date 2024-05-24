@@ -1,0 +1,6 @@
+3c3,5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>                 // assumeTrue(GROUP_SHAPE.getChildCount() == 2); // Removed method
+>                 int childCount = GROUP_SHAPE.getChildCount();
+>                 assertEquals(2, childCount);

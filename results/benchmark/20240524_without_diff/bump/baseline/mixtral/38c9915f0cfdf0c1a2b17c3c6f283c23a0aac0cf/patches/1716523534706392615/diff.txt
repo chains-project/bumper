@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public class TaxBeneficiaries implements Beneficiaries {
+>     // ...
+> 
+>     @Override
+>     public int length() {
+>         return new LengthOf<>(beneficiaries).intValue();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

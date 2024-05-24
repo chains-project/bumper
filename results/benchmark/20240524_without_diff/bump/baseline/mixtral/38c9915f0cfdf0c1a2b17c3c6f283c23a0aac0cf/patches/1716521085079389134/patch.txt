@@ -1,0 +1,11 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import java.nio.charset.StandardCharsets;
+
+// ...
+
+IoCheckedScalar<String> scalar = new IoCheckedScalar<>(
+  () -> new IoCheckedBytes(
+    () -> this.in.body().bytes(),
+    StandardCharsets.UTF_8.name()
+  ).asBytes()
+);

@@ -1,0 +1,17 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    public void decode(InputStream in, OutputStream out) throws IOException {
+        try {
+            short alertDescription = in.read();
+            throw new TlsFatalAlert(alertDescription);
+        } catch (IOException e) {
+            // Handle exception
+        }
+    }
+
+    // ...
+}

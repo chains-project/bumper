@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.collection.CollectionOf;
+\ No newline at end of file
+---
+> import org.cactoos.collection.Immutable;
+> import java.util.Collections;
+> 
+> // ...
+> 
+> public class Copies {
+>     // ...
+> 
+>     private static Immutable<String> copiesOf(Iterable<String> copies) {
+>         return new Immutable<>(Collections.unmodifiableList(new ArrayList<>(copies)));
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

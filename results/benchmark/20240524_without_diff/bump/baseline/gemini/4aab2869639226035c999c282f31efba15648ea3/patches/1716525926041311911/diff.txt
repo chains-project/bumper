@@ -1,0 +1,15 @@
+4a5,12
+>         final StoragesLoader loader = new StoragesLoader();
+>         final Config storageConfig =
+>             new Config.Simple(
+>                 new HashMap<String, Object>() {{
+>                     put("type", sub.string("type"));
+>                     put("mapping", Yaml.createYamlInput(sub.toString()).readYamlMapping());
+>                 }}
+>             );
+7,9c15
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                 loader.newObject(sub.string("type"), storageConfig)

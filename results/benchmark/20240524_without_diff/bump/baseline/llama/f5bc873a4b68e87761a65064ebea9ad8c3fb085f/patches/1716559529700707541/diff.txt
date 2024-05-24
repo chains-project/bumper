@@ -1,0 +1,9 @@
+0a1,2
+> import org.apache.maven.execution.MavenSession;
+> import org.apache.maven.project.DefaultProjectBuilder;
+1a4,7
+> 
+> public MavenProject getProject(MavenSession session) {
+>     return new DefaultProjectBuilder().build(session.getCurrentProject().getFile(), session);
+> }
+\ No newline at end of file

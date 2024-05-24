@@ -1,0 +1,21 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class AppenderUtils {
+    // ...
+
+    private static TTransport getFramedTransport(TTransport transport) {
+        return new TFramedTransport(transport);
+    }
+
+    @Override
+    protected TTransport createTransport(TConfiguration conf, TProtocol protocol) throws TTransportException {
+        TTransport transport = getFramedTransport(new TSocketTransport(conf.getSocketAddr(), conf.getTimeout()));
+        transport.open();
+        return transport;
+    }
+
+    // ...
+}

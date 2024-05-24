@@ -1,0 +1,17 @@
+15,16c15,19
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         return new PasswordEncoder() {
+>             @Override
+>             public String encode(CharSequence rawPassword) {
+>                 return stringEncrypter.encrypt(rawPassword.toString());
+>             }
+18c21,25
+<                         return encoder;
+---
+>             @Override
+>             public boolean matches(CharSequence rawPassword, String encodedPassword) {
+>                 return stringEncrypter.decrypt(encodedPassword).equals(rawPassword.toString());
+>             }
+>         };

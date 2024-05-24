@@ -1,0 +1,5 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+Filtered<SomeType> filtered = new Filtered<>(someIterable, someFunc);

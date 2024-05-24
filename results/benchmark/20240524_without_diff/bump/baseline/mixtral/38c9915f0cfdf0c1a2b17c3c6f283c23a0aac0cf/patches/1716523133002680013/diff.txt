@@ -1,0 +1,31 @@
+1c1,26
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.TextOf;
+> 
+> // ...
+> 
+> public class Wallet {
+>     // ...
+> 
+>     private TextOf name;
+> 
+>     @Override
+>     public void init(final Map<String, String> params) throws IOException {
+>         this.name = new TextOf(
+>             new BytesOf(
+>                 new Split(
+>                     ":",
+>                     new TextOf(params.get("name"))
+>                 )
+>             )
+>             .asBytes()
+>         );
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.UncheckedBytes;
+> 
+> // ...
+> 
+> public RtTransaction(String id, Bytes data, Bytes hash, Bytes sign, Scalar<Long> nonce) {
+>     this.id = id;
+>     this.data = new UncheckedBytes(data);
+>     this.hash = new UncheckedBytes(hash);
+>     this.sign = new UncheckedBytes(sign);
+>     this.nonce = new UncheckedScalar<>(nonce);
+> }
+\ No newline at end of file

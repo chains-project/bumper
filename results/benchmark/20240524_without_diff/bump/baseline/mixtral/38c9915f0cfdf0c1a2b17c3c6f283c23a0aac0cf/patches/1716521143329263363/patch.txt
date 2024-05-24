@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String repoId) throws IOException {
+  long size = new LengthOf(new GithubRepo(repoId)).intValue();
+  // ...
+}

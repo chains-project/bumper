@@ -1,0 +1,12 @@
+3,4c3,10
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>     // Create a ClassInfoBuilder instance using the new method
+>     final ClassInfoBuilder classInfoBuilder = coverage.getClassInfo(data.getMutatedClass());
+> 
+>     // Build the ClassInfo object
+>     final ClassInfo classInfo = classInfoBuilder.build();
+> 
+>     // Return the MutationTestSummaryData object with the updated classInfo
+>     return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);

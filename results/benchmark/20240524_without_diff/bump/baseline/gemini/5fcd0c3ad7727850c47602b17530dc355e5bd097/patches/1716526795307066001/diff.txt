@@ -1,0 +1,8 @@
+2a3,5
+>     final ClassName className = ClassName.fromString(data.getMutatedClass());
+>     byte[] bytecode = coverage.getBytecodeForClass(className);
+>     long checksum = coverage.getChecksumForClass(className);
+4c7
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), ClassInfoVisitor.getClassInfo(className, bytecode, checksum));

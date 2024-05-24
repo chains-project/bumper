@@ -1,0 +1,21 @@
+1c1,16
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> @Override
+> public Iterable<TaxBeneficiary> beneficiaries() throws IOException {
+>   return new IterableOf<>(
+>     new Mapped<>(
+>       beneficiary -> new TaxBeneficiary(
+>         beneficiary.id(),
+>         new LengthOf(beneficiary.payments())
+>       ),
+>       this.beneficiaries()
+>     )
+>   );
+> }
+\ No newline at end of file

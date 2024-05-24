@@ -1,0 +1,12 @@
+1c1,7
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.AlertException;
+> 
+> public class ChachaDecoder {
+>     public void decode() throws AlertException {
+>         throw new AlertException(AlertDescription.internal_error);
+>     }
+> }
+\ No newline at end of file

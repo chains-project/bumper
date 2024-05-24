@@ -1,0 +1,131 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+    List<String> list = extractList(cache, branch);
+    if (!list.isEmpty())
+      return list.get(0);
+    return null;
+  }
+```
+
+with the following error message:
+[ERROR] /qa-catalogue/src/main/java/de/gwdg/metadataqa/marc/MarcFactory.java:[324,59] cannot find symbol
+  symbol:   class JsonBranch
+  location: class de.gwdg.metadataqa.marc.MarcFactory
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public void de.gwdg.metadataqa.api.calculator.CompletenessCalculator.evaluateJsonBranch(de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.model.pathcache.PathCache,de.gwdg.metadataqa.api.counter.CompletenessCounter,java.lang.String,java.lang.Object)
+-- public void de.gwdg.metadataqa.api.calculator.CompletenessCalculator.handleEmptyFragment(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public JsonBranch de.gwdg.metadataqa.api.json.JsonBranch(java.lang.String)
+-- public JsonBranch de.gwdg.metadataqa.api.json.JsonBranch(java.lang.String,de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public JsonBranch de.gwdg.metadataqa.api.json.JsonBranch(java.lang.String,java.lang.String)
+-- public JsonBranch de.gwdg.metadataqa.api.json.JsonBranch(java.lang.String,java.lang.String,java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.addChild(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.addRule(de.gwdg.metadataqa.api.configuration.schema.Rule)
+-- public static de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.copy(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.generateIndexField()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getAbsoluteJsonPath()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getAbsoluteJsonPath(de.gwdg.metadataqa.api.schema.Format)
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getAbsoluteJsonPath(int)
+-- public java.util.List de.gwdg.metadataqa.api.json.JsonBranch.getCategories()
+-- public java.util.List de.gwdg.metadataqa.api.json.JsonBranch.getChildren()
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.getIdentifier()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getIndexField()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getJsonPath()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getLabel()
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.getParent()
+-- public java.util.List de.gwdg.metadataqa.api.json.JsonBranch.getRules()
+-- public de.gwdg.metadataqa.api.schema.Schema de.gwdg.metadataqa.api.json.JsonBranch.getSchema()
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.getSolrFieldName()
+-- public bool de.gwdg.metadataqa.api.json.JsonBranch.hasFormat()
+-- public bool de.gwdg.metadataqa.api.json.JsonBranch.isActive()
+-- public bool de.gwdg.metadataqa.api.json.JsonBranch.isCollection()
+-- public bool de.gwdg.metadataqa.api.json.JsonBranch.isExtractable()
+-- public bool de.gwdg.metadataqa.api.json.JsonBranch.isMandatory()
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setActive(boolean)
+-- public transient de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setCategories(de.gwdg.metadataqa.api.model.Category[])
+-- public transient de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setCategories(java.lang.String[])
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setCategories(java.util.List)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setChildren(java.util.List)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setCollection(boolean)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setExtractable()
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setExtractable(boolean)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setIdentifier(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setIndexField(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setJsonPath(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setParent(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setRule(java.util.List)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setRules(java.util.List)
+-- public void de.gwdg.metadataqa.api.json.JsonBranch.setSchema(de.gwdg.metadataqa.api.schema.Schema)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.json.JsonBranch.setSolrFieldName(java.lang.String)
+-- public java.lang.String de.gwdg.metadataqa.api.json.JsonBranch.toString()
+-- public java.lang.Object de.gwdg.metadataqa.api.problemcatalog.ProblemCatalog.getJsonDocument()
+-- public java.lang.String de.gwdg.metadataqa.api.problemcatalog.ProblemCatalog.getJsonString()
+-- public AndChecker de.gwdg.metadataqa.api.rule.logical.AndChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.util.List)
+-- public AndChecker de.gwdg.metadataqa.api.rule.logical.AndChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.util.List)
+-- public LogicalChecker de.gwdg.metadataqa.api.rule.logical.LogicalChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public NotChecker de.gwdg.metadataqa.api.rule.logical.NotChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.util.List)
+-- public NotChecker de.gwdg.metadataqa.api.rule.logical.NotChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.util.List)
+-- public OrChecker de.gwdg.metadataqa.api.rule.logical.OrChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.util.List)
+-- public OrChecker de.gwdg.metadataqa.api.rule.logical.OrChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.util.List)
+-- public DisjointChecker de.gwdg.metadataqa.api.rule.pairchecker.DisjointChecker(de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.json.JsonBranch)
+-- public EqualityChecker de.gwdg.metadataqa.api.rule.pairchecker.EqualityChecker(de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.json.JsonBranch)
+-- public LessThanPairChecker de.gwdg.metadataqa.api.rule.pairchecker.LessThanPairChecker(de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.rule.pairchecker.LessThanPairChecker$TYPE)
+-- protected PropertyPairChecker de.gwdg.metadataqa.api.rule.pairchecker.PropertyPairChecker(de.gwdg.metadataqa.api.json.JsonBranch,de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public ContentTypeChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.ContentTypeChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.util.List)
+-- public ContentTypeChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.ContentTypeChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.util.List)
+-- public EnumerationChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.EnumerationChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.util.List)
+-- public EnumerationChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.EnumerationChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.util.List)
+-- public HasValueChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.HasValueChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public HasValueChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.HasValueChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.lang.String)
+-- public MaxCountChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxCountChecker(de.gwdg.metadataqa.api.json.JsonBranch,int)
+-- public MaxCountChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxCountChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,int)
+-- public MaxLengthChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxLengthChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.Integer)
+-- public MaxLengthChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxLengthChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.lang.Integer)
+-- public MaxWordsChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxWordsChecker(de.gwdg.metadataqa.api.json.JsonBranch,int)
+-- public MaxWordsChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MaxWordsChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,int)
+-- public MinCountChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinCountChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.Integer)
+-- public MinCountChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinCountChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.lang.Integer)
+-- public MinLengthChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinLengthChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.Integer)
+-- public MinLengthChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinLengthChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.lang.Integer)
+-- public MinWordsChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinWordsChecker(de.gwdg.metadataqa.api.json.JsonBranch,int)
+-- public MinWordsChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.MinWordsChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,int)
+-- public NumericValueChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.NumericValueChecker(de.gwdg.metadataqa.api.json.JsonBranch,double,de.gwdg.metadataqa.api.rule.singlefieldchecker.NumericValueChecker$TYPE)
+-- public NumericValueChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.NumericValueChecker(de.gwdg.metadataqa.api.json.JsonBranch,int,de.gwdg.metadataqa.api.rule.singlefieldchecker.NumericValueChecker$TYPE)
+-- public PatternChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.PatternChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public PatternChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.PatternChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String,java.lang.String)
+-- public SingleFieldChecker de.gwdg.metadataqa.api.rule.singlefieldchecker.SingleFieldChecker(de.gwdg.metadataqa.api.json.JsonBranch,java.lang.String)
+-- public de.gwdg.metadataqa.api.schema.BaseSchema de.gwdg.metadataqa.api.schema.BaseSchema.addField(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.BaseSchema.getPathByLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.BaseSchema.getRecordId()
+-- public void de.gwdg.metadataqa.api.schema.BaseSchema.setRecordId(de.gwdg.metadataqa.api.json.JsonBranch)
+++ public de.gwdg.metadataqa.api.json.DataElement de.gwdg.metadataqa.api.schema.MarcJsonSchema.getPathByLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.MarcJsonSchema.getPathByLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.MarcJsonSchema.getRecordId()
+++ public de.gwdg.metadataqa.api.json.DataElement de.gwdg.metadataqa.api.schema.MarcJsonSchema.getRecordId()
+-- public abstract de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.Schema.getPathByLabel(java.lang.String)
+-- public abstract de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.Schema.getRecordId()
+++ public de.gwdg.metadataqa.api.json.DataElement de.gwdg.metadataqa.api.schema.edm.EdmOaiPmLimitedJsonSchema.getPathByLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.edm.EdmOaiPmLimitedJsonSchema.getPathByLabel(java.lang.String)
+-- protected void de.gwdg.metadataqa.api.schema.edm.EdmSchema.addPath(de.gwdg.metadataqa.api.json.JsonBranch)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.edm.EdmSchema.getPathByLabel(java.lang.String)
+-- public de.gwdg.metadataqa.api.json.JsonBranch de.gwdg.metadataqa.api.schema.edm.EdmSchema.getRecordId()
+-- public java.lang.String de.gwdg.metadataqa.api.uniqueness.UniquenessField.getJsonPath()
+-- public void de.gwdg.metadataqa.api.uniqueness.UniquenessField.setJsonPath(java.lang.String)
+-- public InstanceCounter de.gwdg.metadataqa.api.util.InstanceCounter(de.gwdg.metadataqa.api.model.pathcache.PathCache,de.gwdg.metadataqa.api.json.JsonBranch)
+-- public bool de.gwdg.metadataqa.api.util.SkippedEntitySelector.isCollectionSkippable(java.util.List,de.gwdg.metadataqa.api.json.JsonBranch,int,de.gwdg.metadataqa.api.model.pathcache.PathCache,java.lang.Object)
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

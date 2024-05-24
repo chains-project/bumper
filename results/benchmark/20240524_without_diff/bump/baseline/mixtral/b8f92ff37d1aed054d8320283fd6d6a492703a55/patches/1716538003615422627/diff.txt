@@ -1,0 +1,45 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+11a2
+>     WildcardMatcher matcher = new WildcardMatcher("");
+14c5
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>         matcher.setPattern(pattern);
+21c12
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>         matcher.setPattern(pattern);
+28,30c19,23
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>     File testDir = new File(config.getBinTestDir().get(0));
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testDir, TestListResolver.getWildcard());
+>     directoryScanner.scan();
+>     Set<String> classes = directoryScanner.getClasses();
+>     if (classes.contains(className)) {
+33,36c26,31
+<         }
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+> 
+>     File javaDir = new File(config.getBinJavaDir().get(0));
+>     directoryScanner = new DirectoryScanner(javaDir, TestListResolver.getWildcard());
+>     directoryScanner.scan();
+>     classes = directoryScanner.getClasses();
+>     if (classes.contains(className)) {
+39d33
+<         }

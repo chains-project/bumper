@@ -1,0 +1,26 @@
+1c1,5
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+---
+> import static java.util.concurrent.TimeUnit.*;
+> import static com.jcabi.ssh.Tv.*;
+> 
+> // ...
+> 
+4c8
+<         attempts = Tv.SEVEN,
+---
+>     attempts = SEVEN,
+6c10
+<         unit = TimeUnit.MINUTES,
+---
+>     unit = MINUTES,
+25c29
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+---
+>             SECONDS.toMillis(TEN)
+27,28c31,32
+<             session.setServerAliveCountMax(Tv.MILLION);
+<             session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+---
+>         session.setServerAliveCountMax(MILLION);
+>         session.connect(SECONDS.toMillis(10L));

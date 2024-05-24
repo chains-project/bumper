@@ -1,0 +1,5 @@
+import org.cactoos.scalar.Solid;
+
+// ...
+
+Solid<Double> balance = new Solid<>(() -> wallet.balance());

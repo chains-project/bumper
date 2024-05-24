@@ -1,0 +1,79 @@
+1c1,74
+< import org.locationtech.jts.geom.LineString;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints() {
+>     PointIndexMMWrapper index = new PointIndexMMWrapper();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints2() {
+>     PHTreeMMP index = new PHTreeMMP();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints3() {
+>     MinHeap<Node> index = new MinHeap<>();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints4() {
+>     MinHeapI<Node> index = new MinHeap<>();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints5() {
+>     MinMaxHeap<Node> index = new MinMaxHeap<>();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+>   @Test
+>   public void testGetNumberOfPoints6() {
+>     MinMaxHeapI<Node> index = new MinMaxHeap<>();
+>     // ...
+>     int size = index.size(); // use new size() method
+>     // ...
+>   }
+> 
+>   // ...
+> 
+> }
+\ No newline at end of file

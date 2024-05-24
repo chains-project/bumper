@@ -1,0 +1,8 @@
+0a1,2
+> import org.jenkinsci.plugins.p4.client.ConnectionHelper;
+> 
+2c4,5
+<     return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();
+---
+>     ConnectionHelper connectionHelper = clientHelper.getConnectionHelper();
+>     return connectionHelper.getChangeSummary(connectionHelper.getClientHead()).getDepotPath();

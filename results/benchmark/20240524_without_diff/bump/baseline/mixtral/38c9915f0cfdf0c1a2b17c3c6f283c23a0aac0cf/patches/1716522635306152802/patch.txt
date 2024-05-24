@@ -1,0 +1,9 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Double> balance = new ScalarEnvelope<>(() -> {
+    // Calculate the balance here
+});
+UncheckedScalar<Double> uncheckedBalance = new Unchecked<>(balance);

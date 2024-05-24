@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextOf;
+> import org.cactoos.text.TextOfScalar;
+> 
+> // ...
+> 
+> public RtTransaction(Transaction transaction,
+>     @Named("amount") Scalar<BigDecimal> amount,
+>     @Named("currency") Scalar<String> currency,
+>     @Named("timestamp") Scalar<Instant> timestamp) {
+>   this.transaction = Objects.requireNonNull(transaction);
+>   this.amount = Objects.requireNonNull(new TextOfScalar<BigDecimal>(amount));
+>   this.currency = Objects.requireNonNull(new TextOfScalar<String>(currency));
+>   this.timestamp = Objects.requireNonNull(new TextOfScalar<Instant>(timestamp));
+> }
+\ No newline at end of file

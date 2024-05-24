@@ -1,0 +1,9 @@
+21a22,25
+>                 final String expectedDigest = String.format(
+>                     "sha256:%s",
+>                     "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+>                 );
+27c31
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         expectedDigest

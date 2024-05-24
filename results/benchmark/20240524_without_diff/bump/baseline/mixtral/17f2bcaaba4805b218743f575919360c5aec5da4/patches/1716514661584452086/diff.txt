@@ -1,0 +1,27 @@
+1a2,26
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> @Test
+> public void testSomething() {
+>     PointIndexMMWrapper index1 = new PointIndexMMWrapper();
+>     PHTreeMMP index2 = new PHTreeMMP();
+>     MinHeap<Integer> heap1 = new MinHeap<>(10);
+>     MinHeapI<Integer> heap2 = new MinHeapI<>(10);
+>     MinMaxHeap<Integer> heap3 = new MinMaxHeap<>(10);
+>     MinMaxHeapI<Integer> heap4 = new MinMaxHeapI<>(10);
+> 
+>     int size1 = index1.size();
+>     int size2 = index2.size();
+>     int size3 = heap1.size();
+>     int size4 = heap2.size();
+>     int size5 = heap3.size();
+>     int size6 = heap4.size();
+> 
+>     // Add your test code here
+> }
+\ No newline at end of file

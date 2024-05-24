@@ -1,0 +1,17 @@
+1a2,3
+>         Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = globalConfig.getEnabledLanguages();
+>         if (globalConfig.isStandaloneMode()) {
+3d4
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a9
+>                     .setLanguageSupportRepository(new LanguageSupportRepository(Collections.emptySet(), enabledLanguages))
+8a11,19
+>         } else {
+>             return AnalysisEngineConfiguration.builder()
+>                     .setClientPid(globalConfig.getClientPid())
+>                     .setExtraProperties(globalConfig.extraProperties())
+>                     .setWorkDir(globalConfig.getWorkDir())
+>                     .setModulesProvider(globalConfig.getModulesProvider())
+>                     .setLanguageSupportRepository(new LanguageSupportRepository(enabledLanguages, Collections.emptySet()))
+>                     .build();
+>         }

@@ -1,0 +1,4 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>                 org.junit.Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);

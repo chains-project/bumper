@@ -1,0 +1,13 @@
+import com.jcabi.ssh.SshByPassword;
+
+public class MyClass extends SshByPassword {
+    // ...
+
+    @Override
+    // Remove the Tv annotation
+    public String password() {
+        // Your implementation here
+    }
+
+    // ...
+}

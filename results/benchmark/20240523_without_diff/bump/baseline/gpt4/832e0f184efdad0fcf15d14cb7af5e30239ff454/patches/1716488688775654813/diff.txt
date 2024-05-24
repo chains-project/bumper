@@ -1,0 +1,7 @@
+18c18,21
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                         Optional<XEnchantment> optionalEnchant = XEnchantment.matchXEnchantment("power");
+>                         if (optionalEnchant.isPresent()) {
+>                                 pageMeta.addEnchant(optionalEnchant.get().parseEnchantment(), 1, false);
+>                         }

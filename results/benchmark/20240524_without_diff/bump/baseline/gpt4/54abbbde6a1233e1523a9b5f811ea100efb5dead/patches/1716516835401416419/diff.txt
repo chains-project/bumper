@@ -1,0 +1,14 @@
+1d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+4c3
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+25c24
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+---
+>             (int) TimeUnit.SECONDS.toMillis(10)
+27c26
+<             session.setServerAliveCountMax(Tv.MILLION);
+---
+>         session.setServerAliveCountMax(1000000);

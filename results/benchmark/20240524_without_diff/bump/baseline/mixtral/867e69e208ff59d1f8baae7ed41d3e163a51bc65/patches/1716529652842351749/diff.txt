@@ -1,0 +1,5 @@
+1a2,4
+> import org.apache.thrift.transport.TTransportFactory;
+> 
+> TTransport transport = new TFramedTransport(new TTransportFactory().getTransport(new TSocket("localhost", 9090)));
+\ No newline at end of file

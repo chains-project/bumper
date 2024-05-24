@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.text.RandomText;
+\ No newline at end of file
+---
+> import org.cactoos.text.UncheckedText;
+> 
+> // ...
+> 
+> public class Remote {
+>   // ...
+>   @Override
+>   protected Text randomText() {
+>     return new UncheckedText("");
+>   }
+>   // ...
+> }
+\ No newline at end of file

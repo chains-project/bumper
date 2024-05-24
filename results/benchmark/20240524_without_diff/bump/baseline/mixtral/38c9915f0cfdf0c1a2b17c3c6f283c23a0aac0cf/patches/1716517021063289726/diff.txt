@@ -1,0 +1,21 @@
+1c1,16
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.io.Joined;
+> 
+> // ...
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     private String join(Iterable<String> parts) {
+>         return new Joined(
+>             String::valueOf,
+>             parts
+>         ).asString();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

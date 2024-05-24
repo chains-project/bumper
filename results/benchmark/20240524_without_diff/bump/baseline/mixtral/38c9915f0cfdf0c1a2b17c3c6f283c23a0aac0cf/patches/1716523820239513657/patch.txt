@@ -1,0 +1,5 @@
+import org.cactoos.text.TextOf;
+
+// ...
+
+Text randomText = new TextOf("some random text");

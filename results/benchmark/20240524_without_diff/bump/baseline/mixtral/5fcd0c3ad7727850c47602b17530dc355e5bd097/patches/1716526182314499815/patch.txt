@@ -1,0 +1,22 @@
+import org.pitest.classinfo.ClassInfo;
+import org.pitest.classinfo.ClassInfoBuilder;
+import org.pitest.classinfo.ClassName;
+import org.pitest.coverage.BlockStore;
+import org.pitest.coverage.CodeCoverage;
+import org.pitest.coverage.Store;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+    CodeCoverage codeCoverage = coverage.get(data.getMutatedClass());
+    Store store = codeCoverage.getStore();
+    BlockStore blockStore = store.getBlockStore();
+    Collection<ClassInfo> classInfos = blockStore.getBlockEntries().stream()
+            .filter(entry -> entry.getClassName().equals(data.getMutatedClass()))
+            .flatMap(entry -> Arrays.stream(entry.getBlocks()))
+            .map(block -> ClassInfoBuilder.forClass(ClassName.fromString(data.getMutatedClass())))
+            .collect(Collectors.toList());
+    return new MutationTestSummaryData(data.getFileName(),
+            data.getMutations(), classInfos);
+}

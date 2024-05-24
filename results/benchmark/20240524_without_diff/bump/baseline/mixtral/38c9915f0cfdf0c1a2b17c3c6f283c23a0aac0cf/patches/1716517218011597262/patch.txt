@@ -1,0 +1,13 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+import static java.util.Arrays.stream;
+
+// ...
+
+Scalar<Double> sum = new ScalarOf<>(() -> stream(numbers)
+  .mapToDouble(Number::doubleValue)
+  .sum()
+);

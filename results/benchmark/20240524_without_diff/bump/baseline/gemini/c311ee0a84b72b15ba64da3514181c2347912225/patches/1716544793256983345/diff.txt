@@ -1,0 +1,14 @@
+7,8c7,8
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+---
+>                 () -> {
+>                     String requestLine = new RequestLine(
+11,12c11,14
+<                     ).toString()
+<                 ).digest(),
+---
+>                     ).toString();
+>                     UploadEntity.Request request = new UploadEntity.Request(requestLine);
+>                     request.digest();
+>                 },

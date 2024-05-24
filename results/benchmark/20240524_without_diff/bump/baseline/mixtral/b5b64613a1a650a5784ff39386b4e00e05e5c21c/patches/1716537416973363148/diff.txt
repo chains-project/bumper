@@ -1,0 +1,4 @@
+2c2
+<     return clientHelper.getChange(clientHelper.getClientHead()).getAction().getDepotPath();
+---
+>     return clientHelper.getChange(clientHelper.getClientHead().getChangelistId()).getAction().getDepotPath();

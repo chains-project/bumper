@@ -1,0 +1,37 @@
+1a2
+>     boolean startsWith = "/v2/test/blobs/uploads/".contains(Matcher.anyOf(headerValue("Location"))) ;
+4,7c5
+<             new IsHeader(
+<                 "Location",
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+<             ),
+---
+>         new IsHeader("Location", headerValue("Location")),
+10c8
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+---
+>         new IsHeader("Docker-Upload-UUID", not(emptyString()))
+12a11,32
+> 
+> private Matcher<String> headerValue(String headerName) {
+>     return new HeaderMatcher(headerName);
+> }
+> 
+> private static class HeaderMatcher extends TypeSafeMatcher<String> {
+>     private final String headerName;
+> 
+>     private HeaderMatcher(String headerName) {
+>         this.headerName = headerName;
+>     }
+> 
+>     @Override
+>     protected boolean matchesSafely(String item) {
+>         return HttpHeader.parseHeader(headerName, item).isPresent();
+>     }
+> 
+>     @Override
+>     public void describeTo(Description description) {
+>         description.appendText("header ").appendValue(headerName);
+>     }
+> }
+\ No newline at end of file

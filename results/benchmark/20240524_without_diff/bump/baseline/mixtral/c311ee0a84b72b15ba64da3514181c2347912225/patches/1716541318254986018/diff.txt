@@ -1,0 +1,7 @@
+1a2,3
+>     boolean startsWith = "/v2/test/blobs/uploads/".length() == 0 ||
+>         "/v2/test/blobs/uploads/".regionMatches(true, 0, "/v2/test/blobs/uploads/", 0, "/v2/test/blobs/uploads/".length());
+6c8
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             new StringStartsWith(new IsEqual<String>(false), "/v2/test/blobs/uploads/")

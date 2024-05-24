@@ -1,0 +1,15 @@
+1c1,10
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public RtTransaction(RtEnv env, RtTxIn txIn, RtTxOut txOut, RtTxOut[] txOuts,
+>     RtTxOut[] vin, byte[] witness, String lockTime) {
+>   // ...
+>   int length = new LengthOf(vin).intValue();
+>   // ...
+> }
+\ No newline at end of file

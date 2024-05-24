@@ -1,0 +1,12 @@
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public RtTransaction(String id, TransactionType type, Amount amount, String... tags) {
+  super(
+    id,
+    type,
+    amount,
+    new UncheckedText(tags)
+  );
+}

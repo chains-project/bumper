@@ -1,0 +1,8 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.layered.TFastFramedTransport;
+import org.apache.thrift.transport.layered.TFramedTransport$Factory;
+
+// ...
+
+TTransport transport = new TFastFramedTransport(new TFramedTransport.Factory(), new TTransport());

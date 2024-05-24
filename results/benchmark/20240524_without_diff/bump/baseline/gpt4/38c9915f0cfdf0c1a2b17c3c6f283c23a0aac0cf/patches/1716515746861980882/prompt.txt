@@ -1,0 +1,104 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  import org.cactoos.collection.CollectionOf;
+```
+
+with the following error message:
+[ERROR] /java-api/src/main/java/io/zold/api/Copies.java:[30,30] cannot find symbol
+  symbol:   class CollectionOf
+  location: package org.cactoos.collection
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ public BytesOf org.cactoos.bytes.BytesOf(java.util.Collection)
+++ public CollectionEnvelope org.cactoos.collection.CollectionEnvelope(java.util.Collection)
+-- public CollectionEnvelope org.cactoos.collection.CollectionEnvelope(org.cactoos.Scalar)
+-- public final bool org.cactoos.collection.CollectionEnvelope.equals(java.lang.Object)
+-- public final int org.cactoos.collection.CollectionEnvelope.hashCode()
+-- public final java.util.Iterator org.cactoos.collection.CollectionEnvelope.iterator()
+-- public java.lang.String org.cactoos.collection.CollectionEnvelope.toString()
+-- public CollectionNoNulls org.cactoos.collection.CollectionNoNulls(java.util.Collection)
+-- public bool org.cactoos.collection.CollectionNoNulls.add(java.lang.Object)
+-- public bool org.cactoos.collection.CollectionNoNulls.addAll(java.util.Collection)
+-- public void org.cactoos.collection.CollectionNoNulls.clear()
+-- public bool org.cactoos.collection.CollectionNoNulls.contains(java.lang.Object)
+-- public bool org.cactoos.collection.CollectionNoNulls.containsAll(java.util.Collection)
+-- public bool org.cactoos.collection.CollectionNoNulls.isEmpty()
+-- public java.util.Iterator org.cactoos.collection.CollectionNoNulls.iterator()
+-- public bool org.cactoos.collection.CollectionNoNulls.remove(java.lang.Object)
+-- public bool org.cactoos.collection.CollectionNoNulls.removeAll(java.util.Collection)
+-- public bool org.cactoos.collection.CollectionNoNulls.retainAll(java.util.Collection)
+-- public int org.cactoos.collection.CollectionNoNulls.size()
+-- public java.lang.Object org.cactoos.collection.CollectionNoNulls.toArray()
+-- public java.lang.Object org.cactoos.collection.CollectionNoNulls.toArray(java.lang.Object[])
+-- public CollectionOf org.cactoos.collection.CollectionOf(java.lang.Iterable)
+-- public transient CollectionOf org.cactoos.collection.CollectionOf(java.lang.Object[])
+-- public CollectionOf org.cactoos.collection.CollectionOf(java.util.Iterator)
+-- public HeadOf org.cactoos.collection.HeadOf(int,java.util.Collection)
+++ public Immutable org.cactoos.collection.Immutable(java.util.Collection)
+++ public bool org.cactoos.collection.Immutable.addAll(java.util.Collection)
+++ public bool org.cactoos.collection.Immutable.containsAll(java.util.Collection)
+++ public bool org.cactoos.collection.Immutable.removeAll(java.util.Collection)
+++ public bool org.cactoos.collection.Immutable.retainAll(java.util.Collection)
+-- public Mapped org.cactoos.collection.Mapped(org.cactoos.Func,java.util.Collection)
+++ public NoNulls org.cactoos.collection.NoNulls(java.util.Collection)
+++ public bool org.cactoos.collection.NoNulls.addAll(java.util.Collection)
+++ public bool org.cactoos.collection.NoNulls.containsAll(java.util.Collection)
+++ public bool org.cactoos.collection.NoNulls.removeAll(java.util.Collection)
+++ public bool org.cactoos.collection.NoNulls.retainAll(java.util.Collection)
+-- public Reversed org.cactoos.collection.Reversed(java.util.Collection)
+-- public Shuffled org.cactoos.collection.Shuffled(java.util.Collection)
+-- public Skipped org.cactoos.collection.Skipped(java.util.Collection,int)
+-- public SolidCollection org.cactoos.collection.SolidCollection(java.lang.Iterable)
+-- public transient SolidCollection org.cactoos.collection.SolidCollection(java.lang.Object[])
+-- public SolidCollection org.cactoos.collection.SolidCollection(java.util.Collection)
+-- public SolidCollection org.cactoos.collection.SolidCollection(java.util.Iterator)
+-- public Sorted org.cactoos.collection.Sorted(java.util.Comparator,java.util.Collection)
+-- public StickyCollection org.cactoos.collection.StickyCollection(java.lang.Iterable)
+-- public transient StickyCollection org.cactoos.collection.StickyCollection(java.lang.Object[])
+-- public StickyCollection org.cactoos.collection.StickyCollection(java.util.Collection)
+-- public StickyCollection org.cactoos.collection.StickyCollection(java.util.Iterator)
+-- public SyncCollection org.cactoos.collection.SyncCollection(java.lang.Iterable)
+-- public transient SyncCollection org.cactoos.collection.SyncCollection(java.lang.Object[])
+-- public SyncCollection org.cactoos.collection.SyncCollection(java.util.Collection)
+-- public SyncCollection org.cactoos.collection.SyncCollection(java.util.Iterator)
+-- public TailOf org.cactoos.collection.TailOf(int,java.util.Collection)
+++ public bool org.cactoos.list.Immutable.addAll(int,java.util.Collection)
+++ public bool org.cactoos.list.Immutable.addAll(java.util.Collection)
+++ public bool org.cactoos.list.Immutable.containsAll(java.util.Collection)
+++ public bool org.cactoos.list.Immutable.removeAll(java.util.Collection)
+++ public bool org.cactoos.list.Immutable.retainAll(java.util.Collection)
+-- public bool org.cactoos.list.ListNoNulls.addAll(int,java.util.Collection)
+-- public bool org.cactoos.list.ListNoNulls.addAll(java.util.Collection)
+-- public bool org.cactoos.list.ListNoNulls.containsAll(java.util.Collection)
+-- public bool org.cactoos.list.ListNoNulls.removeAll(java.util.Collection)
+-- public bool org.cactoos.list.ListNoNulls.retainAll(java.util.Collection)
+++ public bool org.cactoos.list.NoNulls.addAll(int,java.util.Collection)
+++ public bool org.cactoos.list.NoNulls.addAll(java.util.Collection)
+++ public bool org.cactoos.list.NoNulls.containsAll(java.util.Collection)
+++ public bool org.cactoos.list.NoNulls.removeAll(java.util.Collection)
+++ public bool org.cactoos.list.NoNulls.retainAll(java.util.Collection)
+-- public Shuffled org.cactoos.list.Shuffled(java.util.Collection)
+-- public SolidList org.cactoos.list.SolidList(java.util.Collection)
+-- public Sorted org.cactoos.list.Sorted(java.util.Comparator,java.util.Collection)
+-- public StickyList org.cactoos.list.StickyList(java.util.Collection)
+-- public SyncList org.cactoos.list.SyncList(java.util.Collection)
+-- public final java.util.Collection org.cactoos.map.MapNoNulls.values()
+++ public final java.util.Collection org.cactoos.map.NoNulls.values()
+++ public FormattedText org.cactoos.text.FormattedText(java.lang.CharSequence,java.util.Collection)
+++ public FormattedText org.cactoos.text.FormattedText(java.lang.CharSequence,java.util.Locale,java.util.Collection)
+-- public FormattedText org.cactoos.text.FormattedText(java.lang.String,java.util.Collection)
+-- public FormattedText org.cactoos.text.FormattedText(java.lang.String,java.util.Locale,java.util.Collection)
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

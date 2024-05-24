@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Unchecked;
+
+// ...
+
+Scalar<Bytes> bytes = ...; // get the scalar value
+Unchecked<Bytes> uncheckedBytes = new Unchecked<>(bytes);
+Bytes actualBytes = uncheckedBytes.value();

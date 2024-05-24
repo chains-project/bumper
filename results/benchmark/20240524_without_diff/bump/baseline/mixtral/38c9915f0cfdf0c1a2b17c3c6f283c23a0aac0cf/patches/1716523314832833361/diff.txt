@@ -1,0 +1,25 @@
+0a1,12
+> import org.cactoos.Bytes;
+> import org.cactoos.IoCheckedBytes;
+> import org.cactoos.input.BytesOf;
+> 
+> // ...
+> 
+> private static final Bytes bytes(String resource) {
+>   return new IoCheckedBytes(new BytesOf(resource));
+> }
+> 
+> // ...
+> 
+1a14,23
+>   import java.io.IOException;
+> 
+>   // ...
+> 
+>   @Override
+>   public String value() throws IOException {
+>     return new CheckedScalar<>(
+>       () -> new String(bytes("value.txt").asBytes())
+>     ).value();
+>   }
+\ No newline at end of file

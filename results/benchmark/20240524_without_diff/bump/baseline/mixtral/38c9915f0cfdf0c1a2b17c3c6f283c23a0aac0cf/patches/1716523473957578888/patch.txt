@@ -1,0 +1,16 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+@Override
+public Iterable<TaxBeneficiary> beneficiaries() throws IOException {
+  return new IterableOf<>(
+    new Mapped<>(
+      beneficiary -> new TaxBeneficiary(
+        beneficiary.id(),
+        new LengthOf(beneficiary.payments())
+      ),
+      this.beneficiaries()
+    )
+  );
+}

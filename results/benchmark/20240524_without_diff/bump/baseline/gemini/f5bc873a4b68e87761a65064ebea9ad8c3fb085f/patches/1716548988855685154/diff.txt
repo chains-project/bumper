@@ -1,0 +1,10 @@
+1c1,5
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> import org.apache.maven.artifact.DependencyResolutionException;
+> 
+>   public void execute() throws MojoExecutionException, DependencyResolutionException {
+>     ...
+>   }
+\ No newline at end of file

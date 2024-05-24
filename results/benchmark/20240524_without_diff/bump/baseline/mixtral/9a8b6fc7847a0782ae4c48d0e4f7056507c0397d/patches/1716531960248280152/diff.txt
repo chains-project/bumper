@@ -1,0 +1,21 @@
+0a1,3
+> import org.jasypt.util.password.StrongPasswordEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> 
+3,4c6,18
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     PasswordEncoder encoder = new PasswordEncoder() {
+>         private final StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+> 
+>         @Override
+>         public String encode(CharSequence rawPassword) {
+>             return encryptor.encryptPassword(rawPassword.toString());
+>         }
+> 
+>         @Override
+>         public boolean matches(CharSequence rawPassword, String encodedPassword) {
+>             return encryptor.checkPassword(rawPassword.toString(), encodedPassword);
+>         }
+>     };

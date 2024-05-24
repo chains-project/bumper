@@ -1,0 +1,9 @@
+import org.cactoos.bytes.BytesOf;
+import org.cactoos.text.TextOf;
+
+// ...
+
+@Override
+public Text text() {
+  return new TextOf(BytesOf.bytes(password.getBytes()));
+}

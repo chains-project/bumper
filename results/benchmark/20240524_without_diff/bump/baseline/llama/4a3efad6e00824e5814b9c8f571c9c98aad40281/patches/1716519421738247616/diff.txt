@@ -1,0 +1,10 @@
+1c1,5
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.enumerations.CertificationPermission;
+> 
+> // ... rest of the code ...
+> 
+> // Replace CertificationPermission with eu.europa.esig.dss.enumerations.CertificationPermission
+\ No newline at end of file

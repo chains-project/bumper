@@ -1,0 +1,17 @@
+16,17c16,20
+<             tag::value
+<         );
+---
+>             () -> {
+>                 try {
+>                     tag.value();
+>                     fail("The exception was not thrown.");
+>                 } catch (InvalidTagNameException e) {
+19c22
+<             throwable.getMessage(),
+---
+>                         e.getMessage(),
+25a29,31
+>                     );
+>                 }
+>             }

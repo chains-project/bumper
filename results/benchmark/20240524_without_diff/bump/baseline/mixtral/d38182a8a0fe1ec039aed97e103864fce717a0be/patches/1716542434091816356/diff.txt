@@ -1,0 +1,8 @@
+26,28d25
+< // TODO: review this AI generated patch!
+< import com.artipie.http.auth.AuthUser;
+< 
+31c28
+<     return Optional.of(new AuthUser("alice"));
+---
+>                             return Optional.of(new AuthUser("alice", ""));

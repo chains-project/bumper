@@ -1,0 +1,4 @@
+1c1
+< private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+---
+> private static List<String> extractList(JsonPathCache cache, DataElement branch) {

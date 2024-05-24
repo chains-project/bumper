@@ -1,0 +1,7 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public long length(Iterable<Transaction> transactions) {
+  return new LengthOf<Transaction>(transactions).longValue();
+}

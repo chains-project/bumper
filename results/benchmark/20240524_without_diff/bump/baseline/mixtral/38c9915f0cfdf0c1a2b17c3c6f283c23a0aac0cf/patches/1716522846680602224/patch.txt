@@ -1,0 +1,18 @@
+import org.cactoos.iterable.Filtered;
+
+//...
+
+public class Wallet implements io.zold.core.Wallet {
+    //...
+
+    @Override
+    public void deposit(final String id, final Money money) {
+        final Iterable<String> filtered = new Filtered<>(
+            input -> input.equals(id),
+            this.ids()
+        );
+        //...
+    }
+
+    //...
+}

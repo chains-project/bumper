@@ -1,0 +1,8 @@
+2d1
+<         @Ignore
+31c30
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                 PShape FP = PGS.polygonize(nodedEdgesSet);
+34d32
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());

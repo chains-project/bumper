@@ -1,0 +1,11 @@
+1c1,6
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+> import de.gwdg.metadataqa.api.json.DataElement;
+> 
+> // replace all occurrences of JsonBranch with DataElement
+> // example:
+> //     old: JsonBranch branch = ...
+> //     new: DataElement branch = ...
+\ No newline at end of file

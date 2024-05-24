@@ -1,0 +1,10 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoChecked;
+import org.cactoos.scalar.UncheckedScalar;
+
+// ...
+
+public IoChecked<InputStream> input(String id) throws IOException {
+  Scalar<InputStream> scalar = () -> inputOf(id);
+  return new IoChecked<>(new UncheckedScalar<>(scalar), this::closeQuietly);
+}

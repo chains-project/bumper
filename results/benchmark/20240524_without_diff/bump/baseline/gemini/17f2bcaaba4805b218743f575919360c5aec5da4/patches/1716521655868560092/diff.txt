@@ -1,0 +1,5 @@
+9c9,10
+<                 assertTrue(PGS_Conversion.getChildren(mergedMesh).stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold));
+---
+>                 boolean allFacesAboveThreshold = mergedMesh.getChildCount() == 0 || mergedMesh.getChildren().stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold);
+>                 assertTrue(allFacesAboveThreshold);

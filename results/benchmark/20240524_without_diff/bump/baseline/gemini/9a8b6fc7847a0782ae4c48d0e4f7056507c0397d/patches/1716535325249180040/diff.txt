@@ -1,0 +1,6 @@
+2a3
+>                 StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+4c5
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>                 encoder.setPasswordEncryptor(encryptor);

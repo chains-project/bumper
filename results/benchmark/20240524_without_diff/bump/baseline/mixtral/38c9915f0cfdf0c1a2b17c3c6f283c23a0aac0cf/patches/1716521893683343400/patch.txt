@@ -1,0 +1,8 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtInput input) {
+  this.input = new LengthOf(input.stream());
+  // ...
+}

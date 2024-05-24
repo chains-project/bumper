@@ -1,0 +1,105 @@
+1d0
+< // TODO: review this AI generated patch!
+4d2
+<         /* Default white stained glass borders for inactive */
+14d11
+<         /* New translation button */
+17,18c14
+<         translationMeta.setDisplayName(
+<                 CommonDefinitions.getMessage("wwctGUITranslationButton"));
+---
+>         translationMeta.setDisplayName(CommonDefinitions.getMessage("wwctGUITranslationButton"));
+24d19
+<         /* Set active translator to our current target */
+28d22
+<             /* Make compass enchanted */
+38d31
+<             /* Stop Button: Stop translation if active */
+41,42c34
+<             stopMeta.setDisplayName(ChatColor.RED
+<                     + CommonDefinitions.getMessage("wwctGUIStopButton"));
+---
+>             stopMeta.setDisplayName(ChatColor.RED + CommonDefinitions.getMessage("wwctGUIStopButton"));
+47,48c39
+<                     args = new String[] { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(),
+<                             "stop" };
+---
+>                     args = new String[] {main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(), "stop"};
+62d52
+<             /* Rate Limit Button: Set a rate limit for the current translator */
+72,73c62
+<                     rateMeta.setDisplayName(ChatColor.GREEN
+<                             + CommonDefinitions.getMessage("wwctGUIRateButton"));
+---
+>                     rateMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIRateButton"));
+75,76c64
+<                     rateMeta.setDisplayName(ChatColor.YELLOW
+<                             + CommonDefinitions.getMessage("wwctGUIRateButton"));
+---
+>                     rateMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIRateButton"));
+83d70
+<                 /* Book Translation Button */
+89,90c76
+<                         bookMeta.setDisplayName(ChatColor.GREEN
+<                                 + CommonDefinitions.getMessage("wwctGUIBookButton"));
+---
+>                         bookMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIBookButton"));
+94,95c80
+<                         bookMeta.setDisplayName(ChatColor.YELLOW
+<                                 + CommonDefinitions.getMessage("wwctGUIBookButton"));
+---
+>                         bookMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIBookButton"));
+105d89
+<                     /* Sign Translation Button */
+108d91
+<                         /* Init item, ensure pre-1.14 compatibility */
+112,113c95
+<                             signMeta.setDisplayName(ChatColor.GREEN
+<                                     + CommonDefinitions.getMessage("wwctGUISignButton"));
+---
+>                             signMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUISignButton"));
+117,118c99
+<                             signMeta.setDisplayName(ChatColor.YELLOW
+<                                     + CommonDefinitions.getMessage("wwctGUISignButton"));
+---
+>                             signMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUISignButton"));
+128d108
+<                         /* Item Translation Button */
+134,135c114
+<                                 itemMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwctGUIItemButton"));
+---
+>                                 itemMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIItemButton"));
+139,140c118
+<                                 itemMeta.setDisplayName(ChatColor.YELLOW
+<                                         + CommonDefinitions.getMessage("wwctGUIItemButton"));
+---
+>                                 itemMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIItemButton"));
+150d127
+<                             /* Entity Translation Button */
+158,159c135
+<                                     entityMeta.setDisplayName(ChatColor.GREEN
+<                                             + CommonDefinitions.getMessage("wwctGUIEntityButton"));
+---
+>                                     entityMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIEntityButton"));
+161,162c137
+<                                     entityMeta.setDisplayName(ChatColor.YELLOW
+<                                             + CommonDefinitions.getMessage("wwctGUIEntityButton"));
+---
+>                                     entityMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIEntityButton"));
+172d146
+<                                 /* Chat Translation Button */
+185,186c159
+<                                         chatMeta.setDisplayName(ChatColor.GREEN
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatButton"));
+---
+>                                         chatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatButton"));
+188,189c161
+<                                         chatMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatButton"));
+---
+>                                         chatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatButton"));
+200a173
+>         }
+203d175
+<         }

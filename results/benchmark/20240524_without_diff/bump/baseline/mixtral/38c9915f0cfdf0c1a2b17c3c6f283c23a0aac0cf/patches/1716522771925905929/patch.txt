@@ -1,0 +1,15 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+public class Wallet {
+    // ...
+
+    @Override
+    public Wallet with(final Iterable<Coin> coins) {
+        this.coins = new Filtered<>(coins, new CactoosCoin::isZol);
+        return this;
+    }
+
+    // ...
+}

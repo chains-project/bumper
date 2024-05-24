@@ -1,0 +1,4 @@
+10c10
+<       throw new TlsFatalAlert((short)20); // AlertDescription.bad_record_mac
+---
+>       throw new RuntimeException("bad_record_mac"); // AlertDescription.bad_record_mac

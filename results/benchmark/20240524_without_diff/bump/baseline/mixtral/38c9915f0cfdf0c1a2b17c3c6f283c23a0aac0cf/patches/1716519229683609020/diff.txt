@@ -1,0 +1,25 @@
+0a1
+> import org.cactoos.io.Joined;
+1a3,23
+> 
+> // ...
+> 
+>     @Override
+>     public InputStream inputStream() throws IOException {
+>         return new Joined(
+>             new JoinedText(
+>                 "{\"wallets\":[",
+>                 new IteratorOfBytes<>(
+>                     new IteratorOf(
+>                         new MapOf<>(
+>                             WALLET_IDS,
+>                             id -> new TextOf(api().walletOf(id).balance())
+>                         )
+>                     )
+>                 ),
+>                 "]}"
+>             )
+>         ).stream();
+>     }
+> // ...
+\ No newline at end of file

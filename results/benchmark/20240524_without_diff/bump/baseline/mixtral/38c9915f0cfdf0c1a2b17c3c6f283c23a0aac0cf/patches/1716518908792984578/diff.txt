@@ -1,0 +1,17 @@
+1c1,12
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.Scalar;
+> 
+> public class RtTransaction {
+>   ...
+>   private Scalar<Bytes> content() {
+>     return new IoCheckedBytes(
+>       new BytesOf(() -> new String(data, StandardCharsets.UTF_8))
+>     );
+>   }
+>   ...
+> }
+\ No newline at end of file

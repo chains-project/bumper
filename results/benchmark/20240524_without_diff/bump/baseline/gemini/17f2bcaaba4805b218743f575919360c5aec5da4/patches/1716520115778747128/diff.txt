@@ -1,0 +1,6 @@
+11c11,13
+<                 assertEquals(PGS_ShapePredicates.area(mesh), PGS_ShapePredicates.area(mergedMesh), 1e-6);
+---
+>                 double areaMergedMesh = PGS_ShapePredicates.area(mergedMesh);
+>                 double areaMesh = PGS_ShapePredicates.area(mesh);
+>                 assertEquals(areaMergedMesh, areaMesh, 1e-6);

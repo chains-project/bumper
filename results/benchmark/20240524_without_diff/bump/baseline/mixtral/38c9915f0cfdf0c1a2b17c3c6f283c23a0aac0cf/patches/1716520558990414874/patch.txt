@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtTxId id, RtTxData data) {
+  this.env = Objects.requireNonNull(env);
+  this.id = Objects.requireNonNull(id);
+  this.data = Objects.requireNonNull(data);
+  this.len = new LengthOf<CharSequence>(this.data.toString());
+}

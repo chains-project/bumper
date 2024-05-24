@@ -1,0 +1,10 @@
+26c26
+<                         true,
+---
+>                         digest,
+29,33d28
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)

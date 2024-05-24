@@ -1,0 +1,4 @@
+private Matcher<String> layersPushed() {
+    String layer = this.image.layer();
+    return new StringContains(String.format("%s: Pushed", layer));
+}

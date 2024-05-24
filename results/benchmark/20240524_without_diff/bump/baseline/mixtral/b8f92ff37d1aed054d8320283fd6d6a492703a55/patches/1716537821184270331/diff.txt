@@ -1,0 +1,16 @@
+2c2
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a5,14
+> 
+> private static TestListResolver getTestListResolver() {
+>     CommandLineConfigurationFactory commandLineConfigurationFactory = new CommandLineConfigurationFactory();
+>     commandLineConfigurationFactory.getClasspathForkConfiguration().getForkOptions().setBootClassPath(getBootClassPath());
+>     return commandLineConfigurationFactory.createTestListResolver();
+> }
+> 
+> private static String getBootClassPath() {
+>     return System.getProperty("sun.boot.class.path");
+> }
+\ No newline at end of file

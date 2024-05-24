@@ -1,0 +1,12 @@
+1c1,7
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TIOStreamTransport;
+> 
+> // ...
+> 
+> public static TFramedTransport createFramedTransport(TTransport transport) {
+>     return new TFramedTransport(new TIOStreamTransport(new TConfiguration(), transport));
+> }
+\ No newline at end of file

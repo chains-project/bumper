@@ -1,0 +1,4 @@
+17c17
+<                     new StringContains(false, string)
+---
+>                 new StringContains(false, string).ignoreCase() // ++ Added ignoreCase()

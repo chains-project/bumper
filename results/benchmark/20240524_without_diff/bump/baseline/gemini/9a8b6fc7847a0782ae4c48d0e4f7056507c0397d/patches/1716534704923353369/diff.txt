@@ -1,0 +1,23 @@
+1d0
+< @Override
+4d2
+< 
+6,7c4
+<                 try {
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>                 PBEStringEncryptor stringEncrypter = new PBEStringEncryptor();
+9d5
+< 
+14d9
+< 
+16,17c11
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>                 encoder.setStringEncryptor(stringEncrypter);
+19,22d12
+<                 } finally {
+<                         scramble(password);
+<                         scramble(chars);
+<                 }

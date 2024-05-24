@@ -1,0 +1,12 @@
+1c1,7
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import org.junit.experimental.runners.Enclosed;
+> import org.junit.runner.RunWith;
+> 
+> @RunWith(Enclosed.class)
+> public class FastPolygonizerTests {
+>     // existing test classes go here
+> }
+\ No newline at end of file

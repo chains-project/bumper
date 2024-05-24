@@ -1,0 +1,16 @@
+1a2,12
+>         Set<Language> enabledLanguages = new HashSet<>();
+>         if (globalConfig.isStandaloneMode()) {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getModules().stream()
+>                     .flatMap(module -> module.getLanguages().stream())
+>                     .collect(Collectors.toSet()));
+>         } else {
+>             enabledLanguages.addAll(globalConfig.getModulesProvider().getModules().stream()
+>                     .flatMap(module -> module.getLanguages().stream())
+>                     .filter(language -> globalConfig.getEnabledLanguages().contains(language.getName()))
+>                     .collect(Collectors.toSet()));
+>         }
+3d13
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+7a18
+>                 .addEnabledLanguages(enabledLanguages)

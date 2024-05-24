@@ -1,0 +1,112 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  @Override
+	public void init(Player player, InventoryContents contents) {
+		try {
+			/* Default white stained glass borders for inactive, yellow if player has existing translation session */
+			ItemStack customDefaultBorders = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+			if (!main.getActiveTranslator(targetPlayerUUID).getInLangCode().equals("")) {
+				customDefaultBorders = XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+			}
+			ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+			defaultBorderMeta.setDisplayName(" ");
+			customDefaultBorders.setItemMeta(defaultBorderMeta);
+			contents.fillBorders(ClickableItem.empty(customDefaultBorders));
+			
+			/* Init current active translator */
+			ActiveTranslator currTranslator = main.getActiveTranslator(targetPlayerUUID);
+			
+			/* Pagination: Lets you generate pages rather than set defined ones */
+			Pagination pagination = contents.pagination();
+			ClickableItem[] listOfAvailableLangs = new ClickableItem[main.getSupportedTranslatorLanguages().size()];
+
+			/* Add each supported language from each respective translator */
+			for (int i = 0; i < main.getSupportedTranslatorLanguages().size(); i++) {
+				ItemStack currentLang = XMaterial.ARROW.parseItem();
+				if (XMaterial.TARGET.parseItem() != null) {
+					currentLang = XMaterial.TARGET.parseItem();
+				}
+				ItemMeta currentLangMeta = currentLang.getItemMeta();
+				
+				ArrayList<String> lore = new ArrayList<>();
+				/* Add Glow Effect */
+				currentLangMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+				if (currTranslator.getOutLangCode().equals(main.getSupportedTranslatorLanguages().get(i).getLangCode())) {
+					currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+					lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+				}
+				currentLangMeta.setDisplayName(main.getSupportedTranslatorLanguages().get(i).getLangName());
+				if (!main.getSupportedTranslatorLanguages().get(i).getNativeLangName().equals("")) {
+					lore.add(main.getSupportedTranslatorLanguages().get(i).getNativeLangName());
+				}
+				lore.add(main.getSupportedTranslatorLanguages().get(i).getLangCode());
+				currentLangMeta.setLore(lore);
+				currentLang.setItemMeta(currentLangMeta);
+				String outLang = main.getSupportedTranslatorLanguages().get(i).getLangCode();
+				listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+					/* Send to /wwct */
+					WWCTranslate translateCommand;
+					if (!targetPlayerUUID.equals("GLOBAL-TRANSLATE-ENABLED")) {
+						translateCommand = new WWCTranslate((CommandSender)player, null, null, new String[] {main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(), selectedSourceLanguage, outLang});
+					} else {
+						translateCommand = new WWCGlobal((CommandSender)player, null, null, new String[] {selectedSourceLanguage, outLang});
+					}
+					player.closeInventory();
+					translateCommand.processCommand();
+				});
+			}
+
+			/* 28 langs per page, start at 1, 1 */
+			pagination.setItems(listOfAvailableLangs);
+			pagination.setItemsPerPage(28);
+			pagination.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 1, 1).allowOverride(false));
+
+			/* Bottom Left Option: Previous Page */
+			if (!pagination.isFirst()) {
+				contents.set(5, 2,
+						ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"),
+								e -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+										pagination.previous().getPage())));
+			} else {
+				contents.set(5, 2,
+						ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"),
+								e -> WWCTranslateGUISourceLanguage.getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player)));
+			}
+
+			/* Bottom Right Option: Next Page */
+			if (!pagination.isLast()) {
+				contents.set(5, 6,
+						ClickableItem.of(WWCInventoryManager.getCommonButton("Next"),
+								e -> getTargetLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+										pagination.next().getPage())));
+			}
+			
+			/* Last Option: Page Number */
+			contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+		} catch (Exception e) {
+			WWCInventoryManager.inventoryError(player, e);
+		}
+	}
+```
+
+with the following error message:
+[ERROR] /WorldwideChat/src/main/java/com/expl0itz/worldwidechat/inventory/wwctranslategui/WWCTranslateGUITargetLanguage.java:[81,113] cannot find symbol
+  symbol:   method parseEnchantment()
+  location: class com.cryptomorin.xseries.XEnchantment
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

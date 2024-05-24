@@ -1,0 +1,12 @@
+1c1,7
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import eu.europa.esig.dss.enumerations.CertificationPermission;
+> 
+> // ...
+> 
+> eu.europa.esig.dss.pades.PAdESSignatureParameters signatureParameters = new eu.europa.esig.dss.pades.PAdESSignatureParameters();
+> // ...
+> signatureParameters.setPermission(CertificationPermission.CERTIFY_NEW_SIGNATURES);
+\ No newline at end of file

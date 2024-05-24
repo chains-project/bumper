@@ -1,0 +1,16 @@
+import org.cactoos.io.Joined;
+
+// ...
+
+public class WalletsIn {
+    // ...
+
+    private String join(Iterable<String> parts) {
+        return new Joined(
+            String::valueOf,
+            parts
+        ).asString();
+    }
+
+    // ...
+}

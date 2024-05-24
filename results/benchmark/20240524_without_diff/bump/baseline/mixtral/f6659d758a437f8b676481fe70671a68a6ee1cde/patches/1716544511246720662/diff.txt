@@ -1,0 +1,6 @@
+3d2
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+18a18,20
+>     final TrustedTagInspector trustedTagInspector = new TrustedTagInspector();
+>     constructor.setTagInspector(trustedTagInspector);
+> 

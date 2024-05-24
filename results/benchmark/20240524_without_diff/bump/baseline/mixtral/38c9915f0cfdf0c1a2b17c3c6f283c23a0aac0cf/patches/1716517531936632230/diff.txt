@@ -1,0 +1,21 @@
+1c1,16
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> import java.nio.charset.StandardCharsets;
+> 
+> // ...
+> 
+> import static java.util.stream.Collectors.joining;
+> 
+> // ...
+> 
+> private String asString(Bytes source) {
+>     return new IoCheckedBytes(source, StandardCharsets.UTF_8.name())
+>       .asBytes()
+>       .stream()
+>       .mapToObj(Byte::toString)
+>       .collect(joining());
+> }
+\ No newline at end of file

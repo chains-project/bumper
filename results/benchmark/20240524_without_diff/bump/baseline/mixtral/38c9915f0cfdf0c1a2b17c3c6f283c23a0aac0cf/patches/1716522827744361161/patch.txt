@@ -1,0 +1,11 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+@Override
+public InputStream balanceStream() throws IOException {
+  return new Filtered<>(
+    inputs -> Iterables.size(inputs) > 0,
+    this::balanceStreams
+  ).stream();
+}

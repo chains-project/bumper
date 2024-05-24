@@ -1,0 +1,9 @@
+2,5c2,4
+<         void test_PGS_Morphology_simplifyTopology() {
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+<                 assertEquals(2, out.getChildCount());
+---
+>         public void test_PGS_Morphology_simplifyTopology() {
+>                 PShape shape = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+>                 assertEquals(2, shape.getChildCount());

@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Unchecked;
+
+// ...
+
+private Scalar<Transaction> unchecked(Transaction transaction) {
+  return new Unchecked<>(transaction);
+}

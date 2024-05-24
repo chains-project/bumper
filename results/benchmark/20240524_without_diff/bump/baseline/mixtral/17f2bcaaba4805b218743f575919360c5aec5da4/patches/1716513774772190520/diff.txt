@@ -1,0 +1,39 @@
+1c1,34
+< import it.unimi.dsi.util.XoRoShiRo128PlusRandom;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public class FastPolygonizerTests {
+>     // ...
+> 
+>     @Test
+>     @Override
+>     public void testSize() {
+>         PointIndexMMWrapper index = new PointIndexMMWrapper();
+>         PHTreeMMP phtree = new PHTreeMMP();
+>         MinHeap minHeap = new MinHeap();
+>         MinHeapI minHeapI = new MinHeap();
+>         MinMaxHeap minMaxHeap = new MinMaxHeap();
+>         MinMaxHeapI minMaxHeapI = new MinMaxHeap();
+> 
+>         int indexSize = index.size();
+>         int phtreeSize = phtree.size();
+>         int minHeapSize = minHeap.size();
+>         int minHeapISize = minHeapI.size();
+>         int minMaxHeapSize = minMaxHeap.size();
+>         int minMaxHeapISize = minMaxHeapI.size();
+> 
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

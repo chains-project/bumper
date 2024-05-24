@@ -1,0 +1,13 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double score(Exchange exchange) throws IOException {
+  double sum = 0.0;
+  try (Input input = inputOf(exchange)) {
+    for (String line : LinesOf.lines(input)) {
+      sum += new LengthOf<>(line).intValue();
+    }
+  }
+  return sum;
+}

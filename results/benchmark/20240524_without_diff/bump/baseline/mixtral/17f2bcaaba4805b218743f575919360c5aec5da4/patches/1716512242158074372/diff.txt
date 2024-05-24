@@ -1,0 +1,34 @@
+1c1,29
+< import org.junit.jupiter.api.Test;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> @Test
+> public void testSomething() {
+>     PointIndexMMWrapper wrapper = new PointIndexMMWrapper();
+>     int size = wrapper.size();
+> 
+>     PHTreeMMP phtree = new PHTreeMMP();
+>     size = phtree.size();
+> 
+>     MinHeap minHeap = new MinHeap();
+>     size = minHeap.size();
+> 
+>     MinHeapI minHeapI = new MinHeap();
+>     size = minHeapI.size();
+> 
+>     MinMaxHeap minMaxHeap = new MinMaxHeap();
+>     size = minMaxHeap.size();
+> 
+>     MinMaxHeapI minMaxHeapI = new MinMaxHeap();
+>     size = minMaxHeapI.size();
+> }
+\ No newline at end of file

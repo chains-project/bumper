@@ -1,0 +1,8 @@
+1c1,3
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Split;
+> 
+> SplitText splitText = new Split("your separator");
+\ No newline at end of file

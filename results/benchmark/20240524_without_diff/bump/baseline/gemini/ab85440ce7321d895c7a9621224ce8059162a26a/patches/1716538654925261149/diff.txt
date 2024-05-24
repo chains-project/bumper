@@ -1,0 +1,11 @@
+7a8,9
+>         final byte[] data = "data".getBytes();
+>         final String expectedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+9c11
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>             new CheckedBlobSource(new Content.From(data), new Digest.Sha256(digest))
+27c29
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         expectedDigest

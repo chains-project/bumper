@@ -1,0 +1,8 @@
+3c3
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+12c12
+<             if (!isEmpty(step.credentialsId)) {
+---
+>     if (!StringUtils.isEmpty(step.credentialsId)) {

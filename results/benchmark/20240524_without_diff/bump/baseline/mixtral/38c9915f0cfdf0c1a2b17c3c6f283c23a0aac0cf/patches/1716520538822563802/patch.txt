@@ -1,0 +1,15 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtEnv env, RtTxId id, RtAmount amount, RtSign sign,
+    RtUser user, RtHash hash, RtTime time) {
+    this.env = env;
+    this.id = id;
+    this.amount = amount;
+    this.sign = sign;
+    this.user = user;
+    this.hash = hash;
+    this.time = time;
+    this.len = new LengthOf<>(this.id.value());
+}

@@ -1,0 +1,18 @@
+1d0
+< @Override
+29c28
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.LUCK, 1);
+32c31
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentLangMeta.addEnchant(Enchantment.LUCK, 1);
+78c77
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.LUCK, 1);
+81c80
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 skipSourceMeta.addEnchant(Enchantment.LUCK, 1);

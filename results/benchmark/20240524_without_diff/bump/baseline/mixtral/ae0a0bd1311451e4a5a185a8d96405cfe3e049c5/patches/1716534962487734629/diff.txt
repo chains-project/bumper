@@ -1,0 +1,8 @@
+15,17c15,17
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+---
+>                     ImmutableList.of(
+>                             new StringContains("Unsupported reference"),
+>                             new StringContains(string)

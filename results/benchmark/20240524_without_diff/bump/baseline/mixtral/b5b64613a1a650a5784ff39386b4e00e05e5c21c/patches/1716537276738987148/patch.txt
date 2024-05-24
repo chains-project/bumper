@@ -1,0 +1,4 @@
+private String getUrlFromClientHelper(ClientHelper clientHelper) {
+    ConnectionHelper connectionHelper = clientHelper.getConnection();
+    return connectionHelper.getUrl();
+}

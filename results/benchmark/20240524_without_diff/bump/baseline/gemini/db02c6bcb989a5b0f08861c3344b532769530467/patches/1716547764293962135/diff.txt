@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+3a3
+>         // TODO: review this AI generated patch!
+10c10
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+---
+>                         "/v2/my-repo/blobs/uploads/123-abc"

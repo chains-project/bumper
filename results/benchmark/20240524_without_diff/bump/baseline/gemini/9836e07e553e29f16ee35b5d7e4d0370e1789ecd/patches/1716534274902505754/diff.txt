@@ -1,0 +1,4 @@
+9c9
+<             new IsHeader("Range", "0-0"),
+---
+>             new IsHeader("Range", "bytes=0-0"),

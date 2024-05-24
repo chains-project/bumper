@@ -1,0 +1,7 @@
+0a1
+> import org.cactoos.Scalar;
+1a3,5
+> 
+> Scalar<String> scalar = () -> "some value";
+> UncheckedScalar<String> uncheckedScalar = new UncheckedScalar<>(scalar);
+\ No newline at end of file

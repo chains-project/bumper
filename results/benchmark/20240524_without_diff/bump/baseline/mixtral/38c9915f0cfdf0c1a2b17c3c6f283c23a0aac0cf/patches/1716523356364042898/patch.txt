@@ -1,0 +1,14 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class Wallet {
+    public Wallet(Scalar<String> id) {
+        this.id = new IoCheckedScalar<>(id, this::notEmpty);
+    }
+
+    // ...
+
+    private boolean notEmpty(String value) {
+        return value != null && !value.isEmpty();
+    }
+}

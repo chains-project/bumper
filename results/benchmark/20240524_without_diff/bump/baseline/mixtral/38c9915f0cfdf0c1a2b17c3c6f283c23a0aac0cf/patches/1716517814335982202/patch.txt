@@ -1,0 +1,11 @@
+import org.cactoos.bytes.UncheckedBytes;
+import org.cactoos.input.InputOf;
+
+@Override
+public byte[] content() throws IOException {
+    return new UncheckedBytes(
+        new InputOf(
+            new File(file())
+        )
+    ).asBytes();
+}

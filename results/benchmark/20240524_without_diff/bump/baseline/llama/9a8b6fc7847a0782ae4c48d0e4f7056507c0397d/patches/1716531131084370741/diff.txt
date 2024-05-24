@@ -1,0 +1,6 @@
+1d0
+< @Override
+5c4
+<                 return encoder;
+---
+>     return encoder.setPasswordEncryptor(new StrongPasswordEncryptor());

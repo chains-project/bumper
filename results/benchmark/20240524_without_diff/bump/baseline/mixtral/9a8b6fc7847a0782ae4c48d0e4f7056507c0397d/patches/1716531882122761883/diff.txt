@@ -1,0 +1,12 @@
+0a1,4
+> import org.jasypt.spring.security.PasswordEncoder;
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.util.text.AesTextEncryptor;
+> 
+2a7,8
+>     TextEncryptor textEncryptor = new AesTextEncryptor();
+>     textEncryptor.setPassword("your-secret-password");
+4c10
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     encoder.setTextEncryptor(textEncryptor);

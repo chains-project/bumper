@@ -1,0 +1,13 @@
+2a3,4
+>         final boolean containsNewerImageStatus =
+>             new StringContains(String.format("Status: Downloaded newer image for %s", this.remote()));
+8,14c10
+<             MatcherAssert.assertThat(
+<                 output,
+<                 new StringContains(
+<                     false,
+<                     String.format("Status: Downloaded newer image for %s", this.remote())
+<                 )
+<             );
+---
+>             MatcherAssert.assertThat(output, containsNewerImageStatus);

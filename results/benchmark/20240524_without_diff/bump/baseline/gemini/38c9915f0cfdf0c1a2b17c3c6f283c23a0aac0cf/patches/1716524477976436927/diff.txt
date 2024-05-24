@@ -1,0 +1,16 @@
+1a2,15
+> 
+> public class WalletsIn {
+> 
+>     // ...
+> 
+>     public String getWalletsIn() {
+>         return new FormattedText(
+>                 "GET /api/v1/wallets?status=%s",
+>                 this.status
+>         ).asString();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

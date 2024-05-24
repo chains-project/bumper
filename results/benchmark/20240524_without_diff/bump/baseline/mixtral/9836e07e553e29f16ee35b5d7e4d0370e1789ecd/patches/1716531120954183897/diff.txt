@@ -1,0 +1,6 @@
+2a3
+>     final boolean pushed = "Pushed";
+6c7
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         MatcherAssert.assertThat(output, new StringContains(pushed));

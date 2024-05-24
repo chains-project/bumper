@@ -1,0 +1,11 @@
+1d0
+< @Override
+4c3
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>       // Use the TFastFramedTransport to be compatible with singer_thrift
+7c6,7
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+---
+>       // Use the TFastFramedTransport from the layered library to be compatible with the new version of the library
+>       framedTransport = new org.apache.thrift.transport.layered.TFastFramedTransport(new TIOStreamTransport(os),

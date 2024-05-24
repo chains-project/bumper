@@ -1,0 +1,18 @@
+1a2,17
+> 
+> public class CreateJFrogInstanceStep {
+> 
+>     public void perform(Run<?, ?> run, Node launcher, Launcher listener, FilePath workspace, FilePath[] paths,
+>                         Map<String, String> envVars, TaskListener listener2) throws InterruptedException, IOException {
+>         // ...
+> 
+>         if (isAllBlank(paths)) {
+>             // ...
+>         } else {
+>             // ...
+>         }
+> 
+>         // ...
+>     }
+> }
+\ No newline at end of file

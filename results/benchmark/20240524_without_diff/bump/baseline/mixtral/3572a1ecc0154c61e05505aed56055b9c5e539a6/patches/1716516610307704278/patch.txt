@@ -1,0 +1,10 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportFactory;
+
+// ...
+
+TTransport transport = new TFramedTransport.Factory().getTransport(new TTransportFactory().getTransport(new TSocket("localhost", 9090)));
+protocol = new TBinaryProtocol(transport);
+client = new MyService.Client(protocol);
+transport.open();

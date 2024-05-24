@@ -1,0 +1,17 @@
+1a2,16
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> @Override
+> public void onDecryptError(ChannelHandlerContext ctx, Throwable cause) {
+>     if (cause instanceof TlsFatalAlert) {
+>         TlsFatalAlert fatalAlert = (TlsFatalAlert) cause;
+>         AlertDescription alertDescription = fatalAlert.getAlertDescription();
+>         LOGGER.warn("Decryption error: {}", alertDescription);
+>     } else {
+>         LOGGER.warn("Decryption error: {}", cause.getMessage());
+>     }
+>     ctx.fireExceptionCaught(cause);
+> }
+\ No newline at end of file

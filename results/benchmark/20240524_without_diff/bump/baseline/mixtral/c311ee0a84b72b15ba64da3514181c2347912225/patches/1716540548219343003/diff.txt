@@ -1,0 +1,10 @@
+7c7
+<     void failsToResolveInvalid(final String string) {
+---
+>     void failsToResolveInvalid(String string) {
+16,17c16,17
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+---
+>                                 new StringContains("Unsupported reference"),
+>                                 new StringContains(string)

@@ -1,0 +1,7 @@
+0a1,2
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+9c11
+<       throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+---
+>     throw new TlsFatalAlert(new TlsFatalAlert(AlertDescription.bad_record_mac));

@@ -1,0 +1,13 @@
+21a22,25
+>                 final String actualDigest = Throwables.getRootCause(throwable).getMessage().substring(
+>                     Throwables.getRootCause(throwable).getMessage().indexOf("(") + 1,
+>                     Throwables.getRootCause(throwable).getMessage().indexOf(")")
+>                 );
+24c28
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,
+32c36
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     actualDigest,

@@ -1,0 +1,14 @@
+1c1,9
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransportFactory;
+> import org.apache.thrift.transport.layered.TFastFramedTransport$Factory;
+> 
+> public class SimpleThriftLogger {
+> 
+>   private static final TTransportFactory transportFactory = new TFastFramedTransport$Factory();
+> 
+>   // ...
+> }
+\ No newline at end of file

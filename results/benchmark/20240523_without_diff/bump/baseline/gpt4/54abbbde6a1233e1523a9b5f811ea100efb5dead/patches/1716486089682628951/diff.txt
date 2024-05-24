@@ -1,0 +1,12 @@
+42c42
+<             return this.session(jsch);
+---
+>             return this.session(jsch, file);
+47a48,54
+>     }
+> 
+>     private Session session(JSch jsch, File file) throws JSchException {
+>         Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+>         session.setConfig("StrictHostKeyChecking", "no");
+>         session.connect();
+>         return session;

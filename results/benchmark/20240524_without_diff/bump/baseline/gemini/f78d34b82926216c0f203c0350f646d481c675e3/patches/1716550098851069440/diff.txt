@@ -1,0 +1,16 @@
+15c15
+<         WaveCreator ypp = new WaveCreator(10.0, 100.0, 10.0);
+---
+>         tokyo.peya.lib.WaveCreator ypp = new tokyo.peya.lib.WaveCreator(10.0, 100.0, 10.0);
+33c33
+<                         rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+---
+>                         rangeTmp = new tokyo.peya.lib.WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+40c40
+<                         center.getY() + new WaveCreator(1.0, 2.0, 0.0).get(0.01, count[0] < 20),
+---
+>                         center.getY() + new tokyo.peya.lib.WaveCreator(1.0, 2.0, 0.0).get(0.01, count[0] < 20),
+74c74
+<                     ? new WaveCreator(0.0, config.getDouble("npc.speed.waveRange"), 0 - config.getDouble("npc.speed.waveRange")).get(0.001, true)
+---
+>                     ? new tokyo.peya.lib.WaveCreator(0.0, config.getDouble("npc.speed.waveRange"), 0 - config.getDouble("npc.speed.waveRange")).get(0.001, true)

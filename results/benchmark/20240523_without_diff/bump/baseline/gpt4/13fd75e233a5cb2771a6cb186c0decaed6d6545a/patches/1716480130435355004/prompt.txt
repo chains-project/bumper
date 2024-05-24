@@ -1,0 +1,34 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  @Test
+    void shouldThrowExceptionWhenDigestIsAbsent() {
+        MatcherAssert.assertThat(
+            Assertions.assertThrows(
+                IllegalStateException.class,
+                () -> new UploadEntity.Request(
+                    new RequestLine(
+                        RqMethod.PUT,
+                        "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+                    ).toString()
+                ).digest()
+            ).getMessage(),
+            new StringContains(false, "Unexpected query")
+        );
+    }
+```
+
+with the following error message:
+[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityRequestTest.java:[110,13] constructor StringContains in class org.hamcrest.core.StringContains cannot be applied to given types;
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

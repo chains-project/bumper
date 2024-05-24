@@ -1,0 +1,15 @@
+import org.apache.thrift.transport.TIOStreamTransport;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class AppenderUtils {
+    // ...
+
+    @Override
+    protected TTransport createTransport(TConfiguration conf, InputStream in, OutputStream out) {
+        return new TIOStreamTransport(conf, in, out);
+    }
+
+    // ...
+}

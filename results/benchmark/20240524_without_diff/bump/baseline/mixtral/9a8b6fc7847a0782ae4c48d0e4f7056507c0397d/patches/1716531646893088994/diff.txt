@@ -1,0 +1,25 @@
+7c7
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         StringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+15,16c15,17
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         TextEncryptor textEncryptor = new org.jasypt.encryption.pbe.PBETextEncryptor();
+>         textEncryptor.setPasswordCharArray(chars);
+>         textEncryptor.setStringEncryptor(stringEncrypter);
+18c19,29
+<                         return encoder;
+---
+>         return new PasswordEncoder() {
+>             @Override
+>             public String encodePassword(String rawPass, Object salt) {
+>                 return textEncryptor.encrypt(rawPass);
+>             }
+> 
+>             @Override
+>             public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+>                 return encPass.equals(textEncryptor.encrypt(rawPass));
+>             }
+>         };

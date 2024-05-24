@@ -1,0 +1,6 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+Scalar<Boolean> solidScalar = new ScalarOf<>(() -> true);

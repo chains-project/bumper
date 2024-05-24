@@ -1,0 +1,10 @@
+10a11
+>         Session session = null;
+19c20
+<             final Session session = jsch.getSession(
+---
+>             session = jsch.getSession(
+29d29
+<             return session;
+32a33
+>         return session;

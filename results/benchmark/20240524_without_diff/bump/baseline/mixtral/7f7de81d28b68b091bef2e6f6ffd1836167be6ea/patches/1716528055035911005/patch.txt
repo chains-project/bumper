@@ -1,0 +1,13 @@
+private void registerHard(final MOGroup group) {
+    try {
+        final Field registry = server.getClass().getDeclaredField("registry");
+        registry.setAccessible(true);
+        SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+        DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+        reg.put(contextScope, group);
+        Type token = new TypeToken<SortedMap<MOScope, ManagedObject<?>>>() {}.getType();
+        registry.set(server, MapUtils.castMap(reg, token));
+    } catch (NoSuchFieldException | IllegalAccessException e) {
+        log.warn("could not set server registry", e);
+    }
+}

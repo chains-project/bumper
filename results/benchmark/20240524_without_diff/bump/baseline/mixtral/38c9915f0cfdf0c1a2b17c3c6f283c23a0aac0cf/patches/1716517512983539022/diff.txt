@@ -1,0 +1,33 @@
+1c1,28
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.io.IoChecked;
+> import org.cactoos.io.IoCheckedBytes;
+> import org.cactoos.io.InputOf;
+> import org.cactoos.text.IoCheckedText;
+> import org.cactoos.text.TextOf;
+> import org.cactoos.text.TextOfScalar;
+> 
+> // ...
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     @Override
+>     protected Scalar<InputStream> inputOf(final String address) {
+>         return new IoChecked<>(
+>             new InputOf(
+>                 new IoCheckedText(
+>                     new TextOfScalar(
+>                         new UrlScalar(address)
+>                     )
+>                 )
+>             )
+>         );
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

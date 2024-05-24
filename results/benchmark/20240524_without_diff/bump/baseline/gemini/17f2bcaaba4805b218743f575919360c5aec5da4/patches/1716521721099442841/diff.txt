@@ -1,0 +1,7 @@
+8a9,10
+>                 int mergedMeshSize = mergedMesh.getChildCount();
+>                 int facesSize = faces.size();
+10c12
+<                 assertTrue(faces.size() >= mergedMesh.getChildCount());
+---
+>                 assertTrue(facesSize >= mergedMeshSize);

@@ -1,0 +1,5 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+IoCheckedScalar<String> ioCheckedScalar = IoCheckedBytes::asString;

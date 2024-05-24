@@ -1,0 +1,6 @@
+2a3
+>     String expectedMessage = "Unexpected query";
+13c14
+<             new StringContains(false, "Unexpected query")
+---
+>         Matchers.containsString(expectedMessage)

@@ -1,0 +1,24 @@
+1c1,19
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.Sticky;
+> 
+> // ...
+> 
+> Scalar<Double> balance = new Sticky<>(() -> {
+>     // implementation to get the balance
+> });
+> 
+> // ...
+> 
+> public double getBalance(String currency) throws IOException {
+>     Scalar<Double> balanceInCurrency = new ScalarOf<>(() -> {
+>         double balanceInBase = balance.value();
+>         // implementation to convert balance to the requested currency
+>         return balanceInBase;
+>     });
+>     return balanceInCurrency.value();
+> }
+\ No newline at end of file

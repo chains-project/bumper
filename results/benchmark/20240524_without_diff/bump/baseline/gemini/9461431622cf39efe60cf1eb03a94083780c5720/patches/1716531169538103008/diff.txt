@@ -1,0 +1,13 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+14,15c14,18
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             // Cast the value to the expected type
+>             @SuppressWarnings("unchecked")
+>             SortedMap<MOScope, ManagedObject> castedReg = (SortedMap<MOScope, ManagedObject>) reg;
+>             castedReg.put(contextScope, group);
+>             registry.set(server, castedReg);

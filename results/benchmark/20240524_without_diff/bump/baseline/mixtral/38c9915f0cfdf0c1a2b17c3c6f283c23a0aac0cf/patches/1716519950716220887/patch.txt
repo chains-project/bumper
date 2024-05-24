@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String url) throws IOException {
+  try (InputStream in = new URL(url).openStream()) {
+    return new LengthOf(in).intValue();
+  }
+}

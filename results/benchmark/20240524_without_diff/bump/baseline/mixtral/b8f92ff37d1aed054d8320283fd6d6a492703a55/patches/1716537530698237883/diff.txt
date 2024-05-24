@@ -1,0 +1,12 @@
+0a1,2
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline;
+> 
+2c4,9
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver() {
+>         @Override
+>         protected String getWildcard() {
+>             return "";
+>         }
+>     });

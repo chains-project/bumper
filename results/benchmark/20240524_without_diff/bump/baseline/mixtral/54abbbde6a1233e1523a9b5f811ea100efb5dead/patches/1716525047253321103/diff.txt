@@ -1,0 +1,14 @@
+1c1,9
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.SshByPassword;
+> 
+> public class MyClass {
+>     @Tv // Add this import if missing
+>     public void myMethod() {
+>         SshByPassword ssh = new SshByPassword("user", "password", "host");
+>         // rest of the method code
+>     }
+> }
+\ No newline at end of file

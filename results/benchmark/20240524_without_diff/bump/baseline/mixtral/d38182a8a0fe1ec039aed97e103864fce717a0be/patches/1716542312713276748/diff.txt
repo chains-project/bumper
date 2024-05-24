@@ -1,0 +1,13 @@
+0a1,4
+> private AuthUser authUser(String name) {
+>     return new AuthUser(name);
+> }
+> 
+26,28d29
+< // TODO: review this AI generated patch!
+< import com.artipie.http.auth.AuthUser;
+< 
+31c32
+<     return Optional.of(new AuthUser("alice"));
+---
+>                             return Optional.of(authUser("alice"));

@@ -1,0 +1,33 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+29,30c19,22
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         File dirFile = new File(dir);
+>         if (dirFile.exists() && dirFile.isDirectory()) {
+>             for (File file : dirFile.listFiles()) {
+>                 if (file.isFile() && file.getName().endsWith(".class") && file.getName().replace(".class", "").equals(className)) {
+33a26,27
+>         }
+>     }
+35,36c29,32
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         File dirFile = new File(dir);
+>         if (dirFile.exists() && dirFile.isDirectory()) {
+>             for (File file : dirFile.listFiles()) {
+>                 if (file.isFile() && file.getName().endsWith(".class") && file.getName().replace(".class", "").equals(className)) {
+39a36,37
+>         }
+>     }

@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.io.IoCheckedBytes;
+import org.cactoos.text.TextOfScalar;
+
+//...
+
+Scalar<String> content = // your scalar here
+IoCheckedBytes bytes = new IoCheckedBytes(new TextOfScalar(content));

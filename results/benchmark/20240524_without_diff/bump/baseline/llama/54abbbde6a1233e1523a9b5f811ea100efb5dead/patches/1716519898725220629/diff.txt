@@ -1,0 +1,7 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,

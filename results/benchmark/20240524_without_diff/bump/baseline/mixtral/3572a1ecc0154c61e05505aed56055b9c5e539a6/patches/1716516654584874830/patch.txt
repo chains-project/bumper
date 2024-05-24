@@ -1,0 +1,4 @@
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.transport.TTransportFactory;
+
+TTransport transport = new TFramedTransport.Factory().getTransport(new TTransport());

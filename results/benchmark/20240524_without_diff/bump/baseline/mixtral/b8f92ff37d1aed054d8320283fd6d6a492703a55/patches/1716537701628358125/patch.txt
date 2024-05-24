@@ -1,0 +1,4 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver().getWildcard());
+    return directoryScanner.scan().getClasses();
+}

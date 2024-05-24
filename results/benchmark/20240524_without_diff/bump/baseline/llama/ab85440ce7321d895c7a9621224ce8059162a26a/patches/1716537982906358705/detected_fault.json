@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1608297024,
+    "in_class_code": "/**\n * Integration test for {@link ProxyDocker}.\n *\n * @since 0.3\n * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)\n */\n@SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\n@DockerClientSupport\n@DisabledOnOs(OS.WINDOWS)\nfinal class CachingProxyITCase {\n    /**\n     * Example image to use in tests.\n     */\n    private Image img;\n\n    /**\n     * Docker client.\n     */\n    private DockerClient cli;\n\n    /**\n     * Docker cache.\n     */\n    private Docker cache;\n\n    /**\n     * HTTP client used for proxy.\n     */\n    private JettyClientSlices client;\n\n    /**\n     * Docker repository.\n     */\n    private DockerRepository repo;\n\n    private static Matcher<String> imagePulled(final String image) {\n        return new StringContains(false, String.format(\"Status: Downloaded newer image for %s\", image));\n    }\n}",
+    "qualified_in_class_code": "/**\n * Integration test for {@link ProxyDocker}.\n *\n * @since 0.3\n * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)\n */\n@java.lang.SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\n@com.artipie.docker.junit.DockerClientSupport\n@org.junit.jupiter.api.condition.DisabledOnOs(org.junit.jupiter.api.condition.OS.WINDOWS)\nfinal class CachingProxyITCase {\n    /**\n     * Example image to use in tests.\n     */\n    private com.artipie.docker.http.Image img;\n\n    /**\n     * Docker client.\n     */\n    private com.artipie.docker.junit.DockerClient cli;\n\n    /**\n     * Docker cache.\n     */\n    private com.artipie.docker.Docker cache;\n\n    /**\n     * HTTP client used for proxy.\n     */\n    private com.artipie.http.client.jetty.JettyClientSlices client;\n\n    /**\n     * Docker repository.\n     */\n    private com.artipie.docker.junit.DockerRepository repo;\n\n    private static org.hamcrest.Matcher<java.lang.String> imagePulled(final java.lang.String image) {\n        return new org.hamcrest.core.StringContains(false, java.lang.String.format(\"Status: Downloaded newer image for %s\", image));\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  required: java.lang.String\n  found: boolean,java.lang.String\n  reason: actual and formal argument lists differ in length\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/CachingProxyITCase.java:[170,16] constructor StringContains in class org.hamcrest.core.StringContains cannot be applied to given types;",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/CachingProxyITCase.java",
+        "client_line_position": "170"
+    },
+    "client_end_line_number": 174,
+    "client_line_number": 169,
+    "method_code": "private static Matcher<String> imagePulled(final String image) {\n        return new StringContains(\n            false,\n            String.format(\"Status: Downloaded newer image for %s\", image)\n        );\n    }",
+    "qualified_code": "private static org.hamcrest.Matcher<java.lang.String> imagePulled(final java.lang.String image) {\n    return new org.hamcrest.core.StringContains(false, java.lang.String.format(\"Status: Downloaded newer image for %s\", image));\n}",
+    "method_name": "imagePulled"
+}

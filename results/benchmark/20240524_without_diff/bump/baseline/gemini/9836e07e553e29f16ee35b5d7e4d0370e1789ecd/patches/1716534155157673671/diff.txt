@@ -1,0 +1,5 @@
+17c17,18
+<                     new StringContains(false, string)
+---
+>                 new StringContains(false, string),
+>                 new StringContains(false, "Invalid manifest reference")

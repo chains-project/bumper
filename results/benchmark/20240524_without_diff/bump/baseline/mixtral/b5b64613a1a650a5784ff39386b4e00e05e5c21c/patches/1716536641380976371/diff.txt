@@ -1,0 +1,10 @@
+1,6c1,2
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+---
+> import static org.jenkinsci.plugins.p4.util.P4Util.isAllBlank;
+> 

@@ -1,0 +1,9 @@
+2a3,6
+>     ClassName mutatedClass = data.getMutatedClass();
+>     byte[] emptyByteArray = new byte[0];
+>     long zeroLong = 0L;
+>     ClassInfoBuilder classInfoBuilder = ClassInfoVisitor.getClassInfo(mutatedClass, emptyByteArray, zeroLong);
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoBuilder.build());

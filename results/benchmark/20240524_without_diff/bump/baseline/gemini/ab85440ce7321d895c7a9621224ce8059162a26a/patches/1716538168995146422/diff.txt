@@ -1,0 +1,6 @@
+2c2,4
+<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
+---
+>         boolean isLatest = "latest".equals(this.image.tag());
+>         String digest = isLatest ? "" : String.format(" digest: %s", this.image.digest());
+>         return new StringContains(false, String.format("latest:%s", digest));

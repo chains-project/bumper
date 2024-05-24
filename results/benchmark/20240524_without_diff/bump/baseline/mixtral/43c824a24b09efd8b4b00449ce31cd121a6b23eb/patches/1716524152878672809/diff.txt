@@ -1,0 +1,13 @@
+1c1,3
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+---
+> import de.gwdg.metadataqa.api.json.DataElement;
+> 
+> private static String extractFirst(JsonPathCache cache, DataElement branch) {
+6a9,13
+> 
+> private static List<String> extractList(JsonPathCache cache, DataElement branch) {
+>   // Implement this method to extract a list of strings from the given DataElement
+>   // You can use the JsonPathCache to help you with this
+> }
+\ No newline at end of file

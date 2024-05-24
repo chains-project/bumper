@@ -1,0 +1,11 @@
+import org.cactoos.bytes.BytesOf;
+import org.cactoos.text.TextOf;
+
+// ...
+
+@Override
+public Text remoteText() throws IOException {
+    try (InputStream input = new URL(this.url()).openStream()) {
+        return new TextOf(new BytesOf(input));
+    }
+}

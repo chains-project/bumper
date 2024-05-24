@@ -1,0 +1,18 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    protected void decode(InputStream input, byte[] data) throws IOException {
+        // ...
+
+        short alertDescription = input.readShort();
+        if (alertDescription == TlsFatalAlert.BAD_RECORD_MAC) {
+            throw new TlsFatalAlert(TlsFatalAlert.BAD_RECORD_MAC, AlertDescription.decode(alertDescription));
+        }
+
+        // ...
+    }
+}

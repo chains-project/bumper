@@ -1,0 +1,6 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.UncheckedScalar;
+
+Scalar<String> value() {
+  return new UncheckedScalar<>(() -> "some value");
+}

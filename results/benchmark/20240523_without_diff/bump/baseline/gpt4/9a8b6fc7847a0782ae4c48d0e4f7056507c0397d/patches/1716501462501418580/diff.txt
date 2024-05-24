@@ -1,0 +1,4 @@
+2c2
+<         protected PasswordEncoder createStringEncoder() {
+---
+>         protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {

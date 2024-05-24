@@ -1,0 +1,26 @@
+@Override
+public void unpackTheme(Theme theme, File targetDirectory) throws MojoExecutionException, ArtifactResolverException {
+    if (theme == null || targetDirectory == null) {
+        throw new MojoExecutionException("theme or targetDirectory is null");
+    }
+
+    String themeName = theme.getName();
+    String themeVersion = theme.getVersion();
+    String themeDirectory = themeVersion == null ? themeName : themeName + "-" + themeVersion;
+
+    File themeDir = new File(targetDirectory, themeDirectory);
+    if (!themeDir.mkdirs()) {
+        throw new MojoExecutionException("Failed to create theme directory: " + themeDir.getAbsolutePath());
+    }
+
+    theme.getResources().stream()
+        .filter(resource -> !resource.isDirectory())
+        .forEach(resource -> {
+            try {
+                File destFile = new File(themeDir, resource.getFileName());
+                Files.copy(resource.getInputStream(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                throw new MojoExecutionException("Failed to copy resource: " + resource.getFileName(), e);
+            }
+        });
+}

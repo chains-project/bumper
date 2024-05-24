@@ -1,0 +1,9 @@
+2a3,6
+>     ClassName className = data.getMutatedClass();
+>     byte[] classBytes = ...; // assume this is set correctly
+>     long timestamp = ...; // assume this is set correctly
+>     ClassInfo classInfo = ClassInfoVisitor.getClassInfo(className, classBytes, timestamp);
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

@@ -1,0 +1,14 @@
+1a2,13
+> 
+> import java.util.List;
+> 
+> public class WalletsIn {
+> 
+>     public String getWallets(List<String> addresses) {
+>         return new JoinedText(
+>                 ",",
+>                 addresses
+>         ).asString();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,12 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    public void notifyError(int alert) {
+        throw new TlsFatalAlert((short) alert);
+    }
+
+    // ...
+}

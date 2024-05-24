@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class ChachaDecoder {
+> 
+>     public AlertDescription getAlertDescription() {
+>         return new AlertDescription(AlertDescription.internal_error);
+>     }
+> }
+\ No newline at end of file

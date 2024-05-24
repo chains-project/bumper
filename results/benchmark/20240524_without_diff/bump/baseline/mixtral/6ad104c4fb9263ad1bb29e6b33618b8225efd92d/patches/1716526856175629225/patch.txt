@@ -1,0 +1,12 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+@Override
+public void decode(InputStream in, byte[] buffer) throws IOException {
+    try {
+        // ...
+    } catch (TlsFatalAlert ex) {
+        throw new TlsHandshakeException("decoding failed", ex.getAlertDescription());
+    }
+}

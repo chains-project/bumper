@@ -1,0 +1,13 @@
+7,8c7,8
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+---
+>                 () -> {
+>                     String url = new RequestLine(
+11,12c11,13
+<                     ).toString()
+<                 ).digest(),
+---
+>                     ).toString();
+>                     return new UploadEntity.Request(url).digest();
+>                 },

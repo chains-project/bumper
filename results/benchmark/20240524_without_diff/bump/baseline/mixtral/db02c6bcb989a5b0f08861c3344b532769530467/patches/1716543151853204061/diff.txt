@@ -1,0 +1,6 @@
+12,13c12,13
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+---
+>         ),
+>         new StringContains("Unexpected query") // removed 'false' argument

@@ -1,0 +1,24 @@
+import org.cactoos.text.TextOf;
+
+// ...
+
+public RtTransaction(RtTransactions transactions, RtTransaction prev, RtTransaction next, RtAccount account, RtBlock block, RtValue value, RtCredit credit, RtDebit debit, RtFee fee, RtTimestamp timestamp, RtHash hash, RtSign sign, RtNonce nonce) {
+  super(
+    new TextOf(
+      transactions.toString() + " " +
+      (prev != null ? prev.id() : "") + " " +
+      (next != null ? next.id() : "") + " " +
+      account.toString() + " " +
+      block.toString() + " " +
+      value.toString() + " " +
+      credit.toString() + " " +
+      debit.toString() + " " +
+      fee.toString() + " " +
+      timestamp.toString() + " " +
+      hash.toString() + " " +
+      sign.toString() + " " +
+      nonce.toString()
+    )
+  );
+  // ...
+}

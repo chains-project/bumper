@@ -1,0 +1,5 @@
+import de.gwdg.metadataqa.api.json.DataElement;
+
+// ...
+
+DataElement JsonBranch = de.gwdg.metadataqa.api.schema.MarcJsonSchema.getPathByLabel("some_label");

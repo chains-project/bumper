@@ -1,0 +1,10 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String input) throws IOException {
+  long start = System.nanoTime();
+  double result = new LengthOf(new IoInput(input)).longValue();
+  long finish = System.nanoTime();
+  // ...
+}

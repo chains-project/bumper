@@ -1,0 +1,6 @@
+1d0
+< @Override
+16c15
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>                         encoder.setStringEncryptor(stringEncrypter);

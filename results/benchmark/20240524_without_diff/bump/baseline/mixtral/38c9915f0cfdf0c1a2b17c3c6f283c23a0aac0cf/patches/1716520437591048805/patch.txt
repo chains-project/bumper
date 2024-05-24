@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction of(RtTransactionId id, RtTransactionData data) {
+    Iterable<RtTransactionEntry> entries = data.entries();
+    int size = new LengthOf<RtTransactionEntry>(entries).intValue();
+    // ...
+}

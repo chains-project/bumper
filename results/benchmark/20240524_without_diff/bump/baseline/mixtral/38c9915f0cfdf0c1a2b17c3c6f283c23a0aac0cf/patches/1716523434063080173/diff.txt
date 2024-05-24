@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.LengthOf;
+> 
+> // ...
+> 
+> public double taxBeneficiaries(String... beneficiaries) {
+>   double sum = 0;
+>   for (String beneficiary : beneficiaries) {
+>     sum += new LengthOf<>(beneficiary).longValue();
+>   }
+>   return sum;
+> }
+\ No newline at end of file

@@ -1,0 +1,17 @@
+```java
+protected String computeJacocoIncludes() {
+    StringBuilder includes = new StringBuilder();
+    String wildcard = "*";
+    for (String directory : config.getBinJavaDir()) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), wildcard);
+        includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+    }
+    if (config.isCoverTests()) {
+        for (String directory : config.getBinTestDir()) {
+            DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), wildcard);
+            includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+        }
+    }
+    return includes.toString();
+}
+```

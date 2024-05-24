@@ -1,0 +1,44 @@
+1c1,39
+< import org.junit.jupiter.api.Test;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> @Test
+> void testPolygonizer() {
+>     PointIndexMMWrapper index = new PointIndexMMWrapper();
+>     // ... initialize index
+> 
+>     PHTreeMMP phtree = new PHTreeMMP();
+>     // ... initialize phtree
+> 
+>     MinHeap minHeap = new MinHeap();
+>     // ... initialize minHeap
+> 
+>     MinHeapI minHeapI = new MinHeap();
+>     // ... initialize minHeapI
+> 
+>     MinMaxHeap minMaxHeap = new MinMaxHeap();
+>     // ... initialize minMaxHeap
+> 
+>     MinMaxHeapI minMaxHeapI = new MinMaxHeap();
+>     // ... initialize minMaxHeapI
+> 
+>     // Use the size() method on each of the new objects
+>     int indexSize = index.size();
+>     int phtreeSize = phtree.size();
+>     int minHeapSize = minHeap.size();
+>     int minHeapISize = minHeapI.size();
+>     int minMaxHeapSize = minMaxHeap.size();
+>     int minMaxHeapISize = minMaxHeapI.size();
+> 
+>     // ... rest of the test method
+> }
+\ No newline at end of file

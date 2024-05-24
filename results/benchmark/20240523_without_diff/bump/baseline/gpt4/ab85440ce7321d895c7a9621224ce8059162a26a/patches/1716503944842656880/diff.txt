@@ -1,0 +1,4 @@
+2c2
+<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
+---
+>     return CoreMatchers.containsString(String.format("latest: digest: %s", this.image.digest()));

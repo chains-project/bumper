@@ -1,0 +1,20 @@
+1,9d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )
+24,28c15,17
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+<             session.setServerAliveCountMax(Tv.MILLION);
+<             session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+---
+>         session.setServerAliveInterval(10 * 60 * 1000);
+>         session.setServerAliveCountMax(1000000);
+>         session.connect(10 * 1000);

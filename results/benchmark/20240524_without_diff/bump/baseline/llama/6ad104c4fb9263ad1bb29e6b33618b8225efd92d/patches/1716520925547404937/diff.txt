@@ -1,0 +1,10 @@
+1c1,5
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.util.AlertException;
+> 
+> // ...
+> 
+> throw new AlertException(2); // Replace 2 with the appropriate alert description
+\ No newline at end of file

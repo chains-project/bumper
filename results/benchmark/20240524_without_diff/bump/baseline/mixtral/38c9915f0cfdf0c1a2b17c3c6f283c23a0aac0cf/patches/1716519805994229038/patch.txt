@@ -1,0 +1,15 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double rtScore(String url) throws IOException {
+    // ...
+    long len = new LengthOf<Iterable<Byte>>(
+        Iterables.forBasedIterator(
+            new InputStreamToIterator(
+                new UrlToInputStream(url)
+            )
+        )
+    ).intValue();
+    // ...
+}

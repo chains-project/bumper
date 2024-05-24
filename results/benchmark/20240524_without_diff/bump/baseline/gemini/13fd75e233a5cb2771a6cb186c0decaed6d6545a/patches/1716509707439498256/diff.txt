@@ -1,0 +1,6 @@
+2c2
+<     void shouldPush() throws Exception {
+---
+>     public void shouldPush() throws Exception {
+9d8
+<                 false,

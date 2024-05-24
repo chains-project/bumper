@@ -1,0 +1,24 @@
+7,8c7,8
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+<                         stringEncrypter.setPasswordCharArray(chars);
+---
+>         PBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+>         encryptor.setPasswordCharArray(chars);
+11c11
+<                                 stringEncrypter.setProviderName(getProviderName());
+---
+>             encryptor.setProviderName(getProviderName());
+13c13
+<                         stringEncrypter.setAlgorithm(getAlgorithm());
+---
+>         encryptor.setAlgorithm(getAlgorithm());
+15,16c15,16
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         PasswordEncoder passwordEncoder = new PasswordEncoder();
+>         passwordEncoder.setPasswordEncryptor(encryptor);
+18c18
+<                         return encoder;
+---
+>         return passwordEncoder;

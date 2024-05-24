@@ -1,0 +1,11 @@
+1a2,10
+> import java.util.List;
+> 
+> public class WalletsIn {
+> 
+>     public List<Wallet> getWallets(String token, String walletId) {
+>         // TODO: Implement method
+>         return null;
+>     }
+> }
+\ No newline at end of file

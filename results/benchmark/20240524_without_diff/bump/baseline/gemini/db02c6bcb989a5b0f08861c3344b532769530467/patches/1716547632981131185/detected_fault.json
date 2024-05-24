@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 350068407,
+    "in_class_code": "/**\n * Tests for {@link UploadEntity.Request}.\n *\n * @since 0.2\n * @checkstyle ClassDataAbstractionCouplingCheck (2 lines)\n */\n@SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.TooManyMethods\" })\nclass UploadEntityRequestTest {\n    // TODO: review this AI generated patch!\n    @Test\n    void shouldThrowExceptionWhenDigestIsAbsent() {\n    }\n}",
+    "qualified_in_class_code": "/**\n * Tests for {@link UploadEntity.Request}.\n *\n * @since 0.2\n * @checkstyle ClassDataAbstractionCouplingCheck (2 lines)\n */\n@java.lang.SuppressWarnings({ \"PMD.AvoidDuplicateLiterals\", \"PMD.TooManyMethods\" })\nclass UploadEntityRequestTest {\n    // TODO: review this AI generated patch!\n    @org.junit.jupiter.api.Test\n    void shouldThrowExceptionWhenDigestIsAbsent() {\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityRequestTest.java:[111,10] ')' expected",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityRequestTest.java",
+        "client_line_position": "111"
+    },
+    "client_end_line_number": 112,
+    "client_line_number": 98,
+    "method_code": "// TODO: review this AI generated patch!\n@Test\n    void shouldThrowExceptionWhenDigestIsAbsent() {\n        MatcherAssert.assertThat(\n            Assertions.assertThrows(\n                IllegalStateException.class,\n                () -> new UploadEntity.Request(\n                    new RequestLine(\n                        RqMethod.PUT,\n                        \"/v2/my-repo/blobs/uploads/123-abc?what=nothing\"\n                    ).toString()\n                ).digest(),\n            new StringContains(false, \"Unexpected query\")\n        );\n    }",
+    "qualified_code": "// TODO: review this AI generated patch!\n@org.junit.jupiter.api.Test\nvoid shouldThrowExceptionWhenDigestIsAbsent() {\n}",
+    "method_name": "shouldThrowExceptionWhenDigestIsAbsent"
+}

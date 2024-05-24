@@ -1,0 +1,67 @@
+0a1,26
+> import com.artipie.http.auth.AuthUser;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.Single;
+> import com.artipie.http.auth.Permission;
+> import com.artipie.http.auth.Permissions;
+> import com.artipie.http.auth.UserPermissions;
+> import com.artipie.http.slice.Slice;
+> import com.artipie.security.perms.Action;
+> import com.artipie.security.perms.Action.Standard;
+> import com.artipie.security.perms.Action.Standard.GET;
+> import com.artipie.security.perms.Action.Standard.POST;
+> import com.artipie.security.perms.Action.Standard.PUT;
+> import com.artipie.security.perms.Action.Standard.DELETE;
+> import com.artipie.security.perms.PermissionConfig;
+> import com.artipie.security.perms.PermissionConfig.Yaml;
+> import com.artipie.security.perms.Role;
+> import java.util.Collections;
+> import java.util.EnumSet;
+> import java.util.Set;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.core.IsEqual;
+> import reactor.core.publisher.Mono;
+> import static com.artipie.http.auth.Permissions.single;
+> import static com.artipie.security.perms.Action.*;
+> import static com.artipie.security.perms.Role.ANY;
+> 
+7c33,42
+<         new AuthScopeSlice(
+---
+>     Set<Role> roles = Collections.singleton(ANY);
+>     Permission permission = single(
+>         new PermissionConfig.Yaml(Map.of("actions", EnumSet.of(GET, PUT, POST, DELETE))),
+>         roles
+>     );
+>     UserPermissions userPermissions = new UserPermissions(
+>         () -> Collections.singletonMap("user", permission),
+>         authUser -> authUser.roles()
+>     );
+>     Slice authScopeSlice = new AuthScopeSlice(
+24,35c59,60
+<             (headers, rline) -> CompletableFuture.completedFuture(
+<                 new AuthScheme.Result() {
+<                     @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+<                     }
+< 
+<                     @Override
+<                     public String challenge() {
+<                         return "";
+<                     }
+<                 }
+---
+>         (headers, rline) -> Mono.just(
+>             new Single(new AuthUser("alice"), "")
+38a64
+>             userPermissions.add(new GET("/resource.txt"));
+41,43c67,70
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>     );
+>     authScopeSlice.response(line, Headers.EMPTY, Content.EMPTY).send(
+>         (status, headers, body) -> Mono.empty()
+>     ).block();

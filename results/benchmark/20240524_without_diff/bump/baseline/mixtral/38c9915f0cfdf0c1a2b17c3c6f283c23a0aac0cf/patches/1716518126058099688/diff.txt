@@ -1,0 +1,23 @@
+1c1,18
+< import org.cactoos.text.TrimmedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.TextOf;
+> import java.util.Iterator;
+> 
+> // ...
+> 
+> import static org.cactoos.text.TextOf.iterator;
+> 
+> // ...
+> 
+> public class RtTransaction {
+>   // ...
+> 
+>   private static String trimmed(String text) {
+>     return new TextOf(iterator(text)).asString();
+>   }
+> 
+>   // ...
+> }
+\ No newline at end of file

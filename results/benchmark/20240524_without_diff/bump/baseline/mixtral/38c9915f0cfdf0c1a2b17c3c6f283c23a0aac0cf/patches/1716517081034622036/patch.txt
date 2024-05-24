@@ -1,0 +1,21 @@
+import org.cactoos.io.Joined;
+import org.cactoos.text.TextOf;
+
+...
+
+public class WalletsIn extends Wallets {
+    ...
+
+    @Override
+    protected Input stream(final WalletId id) throws IOException {
+        return new Joined(
+            Arrays.stream(
+                new TextOf(id.value()),
+                new TextOf(":"),
+                super.stream(id)
+            )
+            .map(TextOf::new)
+            .toArray(TextOf[]::new)
+        );
+    }
+}

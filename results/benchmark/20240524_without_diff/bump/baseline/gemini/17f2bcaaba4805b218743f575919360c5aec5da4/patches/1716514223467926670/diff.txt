@@ -1,0 +1,24 @@
+0a1,2
+> import org.junit.Assume;
+> 
+1a4,22
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     public void test_mm() {
+>         assumeTrue(false);
+>     }
+> 
+>     public void test_mm_with_min_heap() {
+>         assumeTrue(false);
+>     }
+> 
+>     public void test_mm_with_min_max_heap() {
+>         assumeTrue(false);
+>     }
+> 
+>     public void test_mm_with_phtree() {
+>         assumeTrue(false);
+>     }
+> }
+\ No newline at end of file

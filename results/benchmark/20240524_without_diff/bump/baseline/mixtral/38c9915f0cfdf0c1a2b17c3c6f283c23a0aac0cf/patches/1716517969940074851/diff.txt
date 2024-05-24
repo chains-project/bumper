@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.scalar.UncheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.ScalarEnvelope;
+> 
+> Scalar<Bytes> bytes = ...;
+> Scalar<Integer> size = new ScalarEnvelope<>(() -> bytes.asBytes().length);
+\ No newline at end of file

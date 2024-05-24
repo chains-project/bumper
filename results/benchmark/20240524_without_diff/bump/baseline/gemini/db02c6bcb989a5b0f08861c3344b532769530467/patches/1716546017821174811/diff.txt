@@ -1,0 +1,18 @@
+11c11
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+---
+> public void shouldFailToGetValueWhenInvalid(final String original) {
+13c13
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+---
+>     MatcherAssert.assertThat(tag.valid(), is(false));
+20c20
+<             new AllOf<>(
+---
+>         allOf(
+22,23c22,23
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                 containsString("Invalid tag"),
+>                 not(containsString(original))

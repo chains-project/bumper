@@ -1,0 +1,4 @@
+6c6
+<         final String output = this.client.run("pull", this.image.remoteByDigest());
+---
+>         String output = this.client.run("pull", this.image.remoteByDigest());

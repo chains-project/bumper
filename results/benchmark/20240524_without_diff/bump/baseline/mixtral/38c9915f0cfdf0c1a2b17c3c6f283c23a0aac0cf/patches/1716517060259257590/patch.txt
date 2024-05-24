@@ -1,0 +1,11 @@
+import org.cactoos.text.Joined;
+import org.cactoos.text.Text;
+import org.cactoos.iterable.IterableOf;
+
+...
+
+Text joined = new Joined(new IterableOf<>(Arrays.asList(
+  "foo",
+  "bar",
+  "baz"
+)));

@@ -1,0 +1,16 @@
+21a22,26
+>                 final String expectedMessage = String.format(
+>                     "Calculated digest %s does not match expected digest %s",
+>                     "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7",
+>                     digest
+>                 );
+27c32
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         expectedMessage
+29,33d33
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)

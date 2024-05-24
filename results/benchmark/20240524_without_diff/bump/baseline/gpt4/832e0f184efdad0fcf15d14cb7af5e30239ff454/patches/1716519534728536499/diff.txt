@@ -1,0 +1,39 @@
+4d3
+<                         /* Default white stained glass borders for inactive, yellow if player has existing translation session */
+14d12
+<                         /* Init current active translator */
+17d14
+<                         /* Pagination: Lets you generate pages rather than set defined ones */
+21d17
+<                         /* Add each supported language from each respective translator */
+25d20
+<                                 /* Add Glow Effect */
+29c24
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 currentLangMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
+32c27
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 currentLangMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
+49d43
+<                         /* 28 langs per page, start at 1, 1 */
+54d47
+<                         /* Bottom Left Option: Previous Page */
+66,67d58
+<                         /* Bottom Middle Option: Auto-detect Source Language */
+<                         /* Disabled for Amazon Translate */
+74d64
+<                                 /* Add Glow Effect */
+78c68
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 skipSourceMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
+81c71
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 skipSourceMeta.addEnchant(Enchantment.ARROW_DAMAGE, 1, false);
+89d78
+<                         /* Bottom Right Option: Next Page */
+98d86
+<                         /* Last Option: Page Number */

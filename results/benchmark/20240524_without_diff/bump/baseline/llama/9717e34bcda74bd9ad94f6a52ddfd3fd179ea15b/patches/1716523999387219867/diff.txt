@@ -1,0 +1,15 @@
+1c1,10
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aoc.annotations.AutoInject;
+> import com.jcabi.aoc.annotations.AutoWire;
+> 
+> @AutoWire
+> public class MkGithub {
+>     @AutoInject
+>     private Github github;
+> 
+>     // ...
+> }
+\ No newline at end of file

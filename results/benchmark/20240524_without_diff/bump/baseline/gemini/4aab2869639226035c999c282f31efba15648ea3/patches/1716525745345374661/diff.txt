@@ -1,0 +1,17 @@
+1c1,12
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.factory.StoragesLoader;
+> 
+> import java.util.Map;
+> 
+> public class YamlPolicyFactory {
+> 
+>     public YamlPolicyFactory(StoragesLoader storagesLoader, Map<String, Object> config) {
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

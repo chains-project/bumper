@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.ScalarOf;
+> 
+> // ...
+> 
+> Scalar<Integer> scalar = new ScalarOf<>(() -> 42);
+> // Use the scalar object as needed in your code
+\ No newline at end of file

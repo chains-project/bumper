@@ -1,0 +1,30 @@
+1c1,25
+< import org.apache.maven.artifact.resolver.ArtifactResolverException;
+\ No newline at end of file
+---
+> @Override
+> public void unpackTheme(Theme theme, File outputDirectory) throws MojoExecutionException, ArtifactResolverException {
+>     try (InputStream inputStream = theme.getThemeStream();
+>          ZipInputStream zipInputStream = new ZipInputStream(inputStream)) {
+>         ZipEntry zipEntry;
+>         while ((zipEntry = zipInputStream.getNextEntry()) != null) {
+>             if (zipEntry.isDirectory()) {
+>                 continue;
+>             }
+> 
+>             String entryName = zipEntry.getName();
+>             int lastSlashIndex = entryName.lastIndexOf('/');
+>             String fileName = entryName.substring(lastSlashIndex + 1);
+>             File destFile = new File(outputDirectory, fileName);
+> 
+>             try (InputStream entryStream = zipInputStream;
+>                  OutputStream outputStream = new FileOutputStream(destFile)) {
+> 
+>                 IOUtils.copy(entryStream, outputStream);
+>             }
+>         }
+>     } catch (IOException e) {
+>         throw new MojoExecutionException("Error unpacking theme", e);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,18 @@
+import org.cactoos.text.TextOf;
+import org.cactoos.text.UncheckedText;
+
+// ...
+
+public class RtTransaction {
+  // ...
+  @Override
+  public Transaction fromJson(final String json) {
+    final UncheckedText jsonText = new UncheckedText(json);
+    // ...
+    final TextOf<CharSequence> trimmedText = new TextOf<>(
+      new Trimmed(jsonText)
+    );
+    // ...
+  }
+  // ...
+}

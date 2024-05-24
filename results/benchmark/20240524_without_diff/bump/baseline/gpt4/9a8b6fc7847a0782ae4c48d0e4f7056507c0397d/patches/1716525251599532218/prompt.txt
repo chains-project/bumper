@@ -1,0 +1,55 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  @Override
+	protected PasswordEncoder createStringEncoder() {
+		byte[] password = lookupPasswordFromKeyStore();
+
+		char[] chars = toChars(password);
+		try {
+			stringEncrypter = new StandardPBEStringEncryptor();
+			stringEncrypter.setPasswordCharArray(chars);
+
+			if (getProviderName() != null && !getProviderName().isEmpty()) {
+				stringEncrypter.setProviderName(getProviderName());
+			}
+			stringEncrypter.setAlgorithm(getAlgorithm());
+
+			PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+			encoder.setPbeStringEncryptor(stringEncrypter);
+
+			return encoder;
+		} finally {
+			scramble(password);
+			scramble(chars);
+		}
+	}
+```
+
+with the following error message:
+[ERROR] /geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStorePBEPasswordEncoder.java:[104,36] error: cannot find symbol
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+-- public PBEPasswordEncoder org.jasypt.spring.security.PBEPasswordEncoder()
+-- public java.lang.String org.jasypt.spring.security.PBEPasswordEncoder.encodePassword(java.lang.String,java.lang.Object)
+-- public bool org.jasypt.spring.security.PBEPasswordEncoder.isPasswordValid(java.lang.String,java.lang.String,java.lang.Object)
+-- public void org.jasypt.spring.security.PBEPasswordEncoder.setPbeStringEncryptor(org.jasypt.encryption.pbe.PBEStringEncryptor)
+-- public void org.jasypt.spring.security.PBEPasswordEncoder.setTextEncryptor(org.jasypt.util.text.TextEncryptor)
+-- public PasswordEncoder org.jasypt.spring.security.PasswordEncoder()
+-- public java.lang.String org.jasypt.spring.security.PasswordEncoder.encodePassword(java.lang.String,java.lang.Object)
+-- public bool org.jasypt.spring.security.PasswordEncoder.isPasswordValid(java.lang.String,java.lang.String,java.lang.Object)
+-- public void org.jasypt.spring.security.PasswordEncoder.setPasswordEncryptor(org.jasypt.util.password.PasswordEncryptor)
+-- public void org.jasypt.spring.security.PasswordEncoder.setStringDigester(org.jasypt.digest.StringDigester)
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

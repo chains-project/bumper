@@ -1,0 +1,5 @@
+import eu.europa.esig.dss.enumerations.CertificationPermission;
+
+// ...
+
+CertificationPermission permission = signatureParameters.getPermission();

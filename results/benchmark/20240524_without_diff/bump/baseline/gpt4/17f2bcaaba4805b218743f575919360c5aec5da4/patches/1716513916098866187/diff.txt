@@ -1,0 +1,11 @@
+1c1,6
+< import java.util.List;
+\ No newline at end of file
+---
+> public class PGS_MeshingTests {
+>     public static void main(String[] args) {
+>         List<Integer> list = new ArrayList<>();
+>         int size = list.size();
+>     }
+> }
+\ No newline at end of file

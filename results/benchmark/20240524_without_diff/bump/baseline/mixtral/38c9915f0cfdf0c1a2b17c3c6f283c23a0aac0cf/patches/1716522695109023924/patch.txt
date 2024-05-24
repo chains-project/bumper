@@ -1,0 +1,6 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Double> balance = new ScalarEnvelope<>(() -> api.balance(walletId));

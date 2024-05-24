@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.text.BytesOf;
+> import org.cactoos.text.Text;
+> 
+> ...
+> 
+> public class Wallet {
+>     ...
+>     @Override
+>     public Text address() throws IOException {
+>         final Text input = new BytesOf(new HexOf(new BytesOf(new Base64Decoded(new TextOfScalar(addressScalar()))));
+>         return new Base64Encoded(input);
+>     }
+>     ...
+> }
+\ No newline at end of file

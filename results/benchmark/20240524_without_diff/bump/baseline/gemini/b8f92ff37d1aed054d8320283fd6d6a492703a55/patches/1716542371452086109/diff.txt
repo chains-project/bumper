@@ -1,0 +1,16 @@
+4,5c4,7
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory));
+>                         directoryScanner.setIncludes(new String[] {"**/*.java"});
+>                         directoryScanner.scan();
+>                         includes.append(":").append(directoryScanner.getIncludedFiles().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+9,10c11,14
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory));
+>                                 directoryScanner.setIncludes(new String[] {"**/*.java"});
+>                                 directoryScanner.scan();
+>                                 includes.append(":").append(directoryScanner.getIncludedFiles().stream().reduce((x, y) -> x + ":" + y).orElse(""));

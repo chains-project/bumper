@@ -1,0 +1,17 @@
+3,5c3,14
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+<                 return encoder;
+---
+>                 StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
+>                 return new PasswordEncoder() {
+>                     @Override
+>                     public String encodePassword(String rawPassword, Object salt) {
+>                         return encryptor.encryptPassword(rawPassword);
+>                     }
+> 
+>                     @Override
+>                     public boolean isPasswordValid(String encPassword, String rawPassword, Object salt) {
+>                         return encryptor.checkPassword(rawPassword, encPassword);
+>                     }
+>                 };

@@ -1,0 +1,12 @@
+2,3c2,9
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder);
+>         directoryScanner.setIncludes(new String[]{"**/*.java"});
+>         directoryScanner.scan();
+>         List<String> classes = new ArrayList<>();
+>         for (String file : directoryScanner.getIncludedFiles()) {
+>             classes.add(file.substring(0, file.length() - ".java".length()));
+>         }
+>         return classes;

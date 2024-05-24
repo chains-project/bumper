@@ -1,0 +1,19 @@
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.io.InputOf;
+
+// ...
+
+public RtTransaction(String hash) {
+  super(
+    new IoCheckedScalar<>(
+      new InputOf(
+        new ByteSourceOf(
+          new IoCheckedBytes(
+            new BytesOf(hash),
+            string -> string.getBytes()
+          )
+        )
+      )
+    )
+  );
+}

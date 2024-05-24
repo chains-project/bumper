@@ -1,0 +1,20 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+@Override
+public PasswordEncoder passwordEncoder() {
+    TextEncryptor textEncryptor = new TextEncryptor();
+    textEncryptor.setPassword(password);
+    return new Pbkdf2PasswordEncoder(strength, textEncryptor);
+}
+
+@Override
+public boolean isPasswordValid(String encryptedPassword, String rawPassword, Object salt) {
+    return passwordEncoder().matches(rawPassword, encryptedPassword);
+}
+
+@Override
+public String encodePassword(String rawPassword, Object salt) {
+    return passwordEncoder().encode(rawPassword);
+}

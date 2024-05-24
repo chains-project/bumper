@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.IoChecked;
+> 
+> ...
+> 
+> public IoChecked<InputStream> input(String path) throws IOException {
+>   return new IoChecked<>(
+>     new IoCheckedScalar<>(
+>       new ScalarOf<>(
+>         () -> new FileInputStream(path)
+>       )
+>     )
+>   );
+> }
+\ No newline at end of file

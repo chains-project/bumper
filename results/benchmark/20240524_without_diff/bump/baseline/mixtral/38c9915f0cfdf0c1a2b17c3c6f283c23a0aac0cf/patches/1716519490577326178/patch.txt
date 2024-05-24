@@ -1,0 +1,9 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarOf;
+
+// ...
+
+Scalar<Double> balance = new ScalarOf<>(() -> 100.0);
+
+// Use ScalarOf instead of SolidScalar
+Solid<Double> solidBalance = new Solid<>(balance);

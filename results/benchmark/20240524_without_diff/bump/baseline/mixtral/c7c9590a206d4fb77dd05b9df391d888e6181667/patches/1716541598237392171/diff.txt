@@ -1,0 +1,27 @@
+1c1,22
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> 
+> // ...
+> 
+> public class SCoverageReportMojo extends AbstractScoverageReportMojo {
+> 
+>     // ...
+> 
+>     @Override
+>     protected void generateReport(ScoverageResult coverageResult, File outputDirectory) throws MojoExecutionException {
+>         try (Writer writer = new FileWriter(new File(outputDirectory, "coverage.html"))) {
+>             RenderingContext renderingContext = new RenderingContext();
+>             getLog().debug("Rendering context: " + renderingContext.getOutputName());
+>             super.generateReport(coverageResult, outputDirectory, renderingContext);
+>         } catch (IOException e) {
+>             throw new MojoExecutionException("Error generating report", e);
+>         }
+>     }
+> 
+>     // ...
+> 
+> }
+\ No newline at end of file

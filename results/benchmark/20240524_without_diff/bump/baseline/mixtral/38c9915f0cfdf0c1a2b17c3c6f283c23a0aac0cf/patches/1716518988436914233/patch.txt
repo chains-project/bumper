@@ -1,0 +1,8 @@
+import org.cactoos.collection.Immutable;
+
+// ...
+
+public Collection<File> copies(String hash) {
+  Collection<File> result = new CollectionOf<File>(files(hash));
+  return new Immutable<>(result);
+}

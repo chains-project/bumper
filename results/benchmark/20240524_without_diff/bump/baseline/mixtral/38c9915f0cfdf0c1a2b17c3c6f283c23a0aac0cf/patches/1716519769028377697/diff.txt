@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> 
+> // ...
+> 
+> IoCheckedScalar<String> scalar = new IoCheckedScalar<>(() -> "Hello, world!");
+> IoCheckedBytes<String> bytes = new IoCheckedBytes(scalar);
+> String value = bytes.asBytes();
+\ No newline at end of file

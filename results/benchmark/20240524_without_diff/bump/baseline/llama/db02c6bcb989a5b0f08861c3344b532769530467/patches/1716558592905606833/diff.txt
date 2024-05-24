@@ -1,0 +1,7 @@
+10,13c10
+<                 new StringContains(
+<                     false,
+<                     String.format("Status: Downloaded newer image for %s", this.remote())
+<                 )
+---
+>             Matchers.containsString(String.format("Status: Downloaded newer image for %s", this.remote()))

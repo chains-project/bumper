@@ -1,0 +1,18 @@
+import org.cactoos.Scalar;
+import org.cactoos.bytes.IoCheckedBytes;
+import org.cactoos.text.TextOfScalar;
+
+public class RtTransaction {
+    ...
+    private Scalar<Bytes> inputFile() {
+        return new IoCheckedBytes(
+            new BytesOf(
+                new TextOfScalar(
+                    new Sticky(
+                        new ScalarOf(() -> Files.newInputStream(Paths.get(inputFilePath))))
+                )
+            )
+        );
+    }
+    ...
+}

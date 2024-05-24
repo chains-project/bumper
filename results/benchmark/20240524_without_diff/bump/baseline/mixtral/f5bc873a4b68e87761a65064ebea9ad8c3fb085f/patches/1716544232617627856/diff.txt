@@ -1,0 +1,10 @@
+1c1,5
+< import org.apache.maven.artifact.resolver.ArtifactResolverException;
+\ No newline at end of file
+---
+> try {
+>     artifactResolver.resolve(requestContext, artifact);
+> } catch (ArtifactResolveException e) {
+>     throw new MojoExecutionException("Failed to resolve artifact", e);
+> }
+\ No newline at end of file

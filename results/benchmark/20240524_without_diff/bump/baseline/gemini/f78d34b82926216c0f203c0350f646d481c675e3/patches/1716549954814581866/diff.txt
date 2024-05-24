@@ -1,0 +1,19 @@
+1c1,14
+< import develop.p2p.lib.WaveCreator;
+\ No newline at end of file
+---
+> import tokyo.peya.lib.WaveCreator;
+> 
+> public class Decorations {
+> 
+>     public WaveCreator waveCreator;
+> 
+>     public Decorations() {
+>         this.waveCreator = new WaveCreator(44100.0, 1.0, 0.0);
+>     }
+> 
+>     public void playSound(String soundName) {
+>         // TODO: Implement sound playback using WaveCreator
+>     }
+> }
+\ No newline at end of file

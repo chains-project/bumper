@@ -1,0 +1,29 @@
+0a1
+> import org.cactoos.Scalar;
+1a3,27
+> import org.cactoos.text.IoCheckedText;
+> import org.cactoos.text.TextOfScalar;
+> 
+> public class WalletsIn {
+>     ...
+>     private Scalar<Iterable<Wallet>> wallets() {
+>         return () -> {
+>             try {
+>                 return new IoCheckedScalar<>(
+>                     new IoCheckedText(
+>                         new TextOfScalar(
+>                             new Http(
+>                                 new Url(URL)
+>                             ).asString()
+>                         )
+>                     )
+>                     .asBytes()
+>                 ).value();
+>             } catch (final IOException e) {
+>                 throw new UncheckedIOException(e);
+>             }
+>         };
+>     }
+>     ...
+> }
+\ No newline at end of file

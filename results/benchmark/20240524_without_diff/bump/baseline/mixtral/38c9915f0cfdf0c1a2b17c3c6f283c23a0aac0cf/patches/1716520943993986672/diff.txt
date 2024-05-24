@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.IoCheckedBytes;
+> import org.cactoos.text.IoCheckedText;
+> 
+> // ...
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     private IoCheckedBytes bytesOf(File file) throws IOException {
+>         return new IoCheckedBytes(Files.newInputStream(file.toPath()), IoCheckedText::new);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

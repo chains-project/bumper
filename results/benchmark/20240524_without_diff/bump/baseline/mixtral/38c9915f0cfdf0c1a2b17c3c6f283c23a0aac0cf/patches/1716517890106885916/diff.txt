@@ -1,0 +1,9 @@
+0a1,2
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.NoNulls;
+1a4,7
+> 
+> Scalar<String> value = // your scalar value here
+> NoNulls<String> noNulls = new NoNulls<>(value);
+> UncheckedScalar<String> unchecked = new UncheckedScalar<>(noNulls);
+\ No newline at end of file

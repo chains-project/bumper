@@ -1,0 +1,11 @@
+1c1,6
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import org.junit.experimental.categories.Category;
+> 
+> @Category(FastPolygonizerTests.class)
+> public class FastPolygonizerTests {
+>     // rest of the code remains the same
+> }
+\ No newline at end of file

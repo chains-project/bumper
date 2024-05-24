@@ -1,0 +1,14 @@
+1a2,13
+> 
+>   public class CreateJFrogInstanceStep {
+> 
+>     public boolean perform(EnvVars env, Launcher launcher, Tags tags, Node node, StepContext context) throws InterruptedException, IOException {
+>       // ...
+>       if (isNotBlank(jfrogInstance.getUrl())) {
+>         // ...
+>       }
+>       // ...
+>       return true;
+>     }
+>   }
+\ No newline at end of file

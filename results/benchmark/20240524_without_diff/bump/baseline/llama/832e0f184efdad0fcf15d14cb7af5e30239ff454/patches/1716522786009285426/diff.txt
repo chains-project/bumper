@@ -1,0 +1,26 @@
+1d0
+< @Override
+27,29c26,27
+<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         outgoingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                 outgoingChatMeta.addEnchant(Enchantment.getByName("POWER"), 1);
+>                 outgoingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+31,32c29
+<                                         outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                 outgoingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+49,51c46,47
+<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                 incomingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                 incomingChatMeta.addEnchant(Enchantment.getByName("POWER"), 1);
+>                 incomingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+53,54c49
+<                                 incomingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                 incomingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));

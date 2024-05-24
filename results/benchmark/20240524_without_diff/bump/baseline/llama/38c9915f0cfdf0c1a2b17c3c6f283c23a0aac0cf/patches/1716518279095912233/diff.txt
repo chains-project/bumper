@@ -1,0 +1,8 @@
+1c1,3
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.scalar.IoCheckedBytes;
+> 
+> IoCheckedBytes ioCheckedBytes = new IoCheckedBytes(new Bytes("")); // Initialize with a Bytes object
+\ No newline at end of file

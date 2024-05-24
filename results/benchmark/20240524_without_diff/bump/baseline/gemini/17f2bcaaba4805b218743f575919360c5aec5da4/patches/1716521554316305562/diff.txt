@@ -1,0 +1,10 @@
+2c2
+<         void testAreaMerge() {
+---
+>         public void testAreaMerge() {
+9c9,11
+<                 assertTrue(PGS_Conversion.getChildren(mergedMesh).stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold));
+---
+>                 for (PShape face : PGS_Conversion.getChildren(mergedMesh)) {
+>                         assertTrue(PGS_ShapePredicates.area(face) >= areaThreshold);
+>                 }

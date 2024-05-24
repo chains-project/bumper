@@ -1,0 +1,9 @@
+3,4c3,7
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>     ClassName mutatedClass = data.getMutatedClass();
+>     byte[] classBytes = {}; // You need to provide appropriate byte array.
+>     long lastModified = 0L; // You need to provide appropriate last modified time.
+>     ClassInfoBuilder classInfoBuilder = ClassInfoVisitor.getClassInfo(mutatedClass, classBytes, lastModified);
+>     return new MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfoBuilder.build());

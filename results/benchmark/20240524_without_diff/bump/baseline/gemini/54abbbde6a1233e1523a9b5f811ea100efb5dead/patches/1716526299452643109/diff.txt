@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class SshByPassword {
+> 
+>     public SshByPassword(String host, int port, String user, String password) {
+>         // do nothing
+>     }
+> 
+>     public Tv connect() {
+>         return null;
+>     }
+> }
+\ No newline at end of file

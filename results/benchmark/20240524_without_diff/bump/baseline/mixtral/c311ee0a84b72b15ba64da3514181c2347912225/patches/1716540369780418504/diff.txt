@@ -1,0 +1,16 @@
+6c6,8
+<                 () -> new UploadEntity.Request(
+---
+>             () -> {
+>                 StringContains matcher = new StringContains("Unexpected query");
+>                 new UploadEntity.Request(
+11c13,15
+<                 ).digest()
+---
+>                 ).digest();
+>                 return false; // this is needed to satisfy the new StringContains constructor
+>             }
+13c17
+<             new StringContains(false, "Unexpected query")
+---
+>         matcher

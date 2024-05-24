@@ -1,0 +1,26 @@
+1d0
+< // TODO: review this AI generated patch!
+30,31c29
+<             outgoingChatMeta.setDisplayName(ChatColor.GREEN
+<                     + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>             outgoingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+33,34c31
+<             outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+<                     + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>             outgoingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+54,55c51
+<             incomingChatMeta.setDisplayName(ChatColor.GREEN
+<                     + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>             incomingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+57,58c53
+<             incomingChatMeta.setDisplayName(ChatColor.YELLOW
+<                     + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>             incomingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+66c61
+<         });
+---
+>         }));

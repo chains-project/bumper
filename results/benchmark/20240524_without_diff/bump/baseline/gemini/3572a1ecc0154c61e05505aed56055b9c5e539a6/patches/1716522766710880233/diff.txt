@@ -1,0 +1,8 @@
+1d0
+< @Override
+7,8c6,7
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>       framedTransport = new TLayeredTransport(new TFastFramedTransport(new TIOStreamTransport(os),
+>           bufferCapacity));

@@ -1,0 +1,14 @@
+13c13
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+---
+>         MatcherAssert.assertThat(tag.valid(), equalTo(false));
+20c20
+<             new AllOf<>(
+---
+>             allOf(
+22,23c22,23
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                     containsString("Invalid tag"),
+>                     not(containsString(original))

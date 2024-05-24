@@ -1,0 +1,7 @@
+2a3,4
+>     final ClassName mutatedClass = new ClassName(data.getFileName());
+>     final ClassInfoBuilder classInfoBuilder = coverage.getClassInfo(mutatedClass, data.getClassBytes(), data.getTimestamp());
+4c6
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfoBuilder.build());

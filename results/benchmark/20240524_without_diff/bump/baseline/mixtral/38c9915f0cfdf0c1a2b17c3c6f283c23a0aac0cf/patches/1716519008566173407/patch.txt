@@ -1,0 +1,13 @@
+import org.cactoos.collection.Immutable;
+
+// ...
+
+public class Copies {
+    // ...
+
+    private Immutable<File> files(String path) {
+        return new Immutable<>(filesByPath(path));
+    }
+
+    // ...
+}

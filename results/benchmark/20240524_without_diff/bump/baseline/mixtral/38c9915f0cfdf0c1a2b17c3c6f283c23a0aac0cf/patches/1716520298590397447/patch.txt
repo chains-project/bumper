@@ -1,0 +1,6 @@
+import org.cactoos.text.TextOf;
+import org.cactoos.text.Trimmed;
+
+// ...
+
+new Trimmed(new TextOf(new String(originalBytes)));

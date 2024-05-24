@@ -1,0 +1,11 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.Unchecked;
+
+// ...
+
+Scalar<Bytes> bytes = ...; // your original logic here
+
+// Replace the following line:
+// Bytes data = new UncheckedScalar<>(bytes).value();
+
+Bytes data = new Unchecked<>(bytes).value();

@@ -1,0 +1,9 @@
+5a6
+>     final String expectedOutput = String.format("latest: digest: %s", original.digest());
+8,11c9
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+---
+>         new StringContains(expectedOutput)

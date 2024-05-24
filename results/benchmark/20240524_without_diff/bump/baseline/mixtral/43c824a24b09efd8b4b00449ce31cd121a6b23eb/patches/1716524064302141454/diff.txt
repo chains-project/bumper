@@ -1,0 +1,10 @@
+1c1
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+---
+> private static String extractFirst(JsonPathCache cache, de.gwdg.metadataqa.api.json.DataElement branch) {
+6a7,10
+> 
+> private static List<String> extractList(JsonPathCache cache, de.gwdg.metadataqa.api.json.DataElement branch) {
+>   // implementation depends on the context
+> }
+\ No newline at end of file

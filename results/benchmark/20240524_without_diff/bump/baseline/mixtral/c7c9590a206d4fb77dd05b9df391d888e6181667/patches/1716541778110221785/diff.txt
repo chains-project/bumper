@@ -1,0 +1,16 @@
+1,5c1,5
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import org.apache.maven.doxia.siterenderer.DocumentContent;
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> import org.apache.maven.doxia.siterenderer.SiteRenderingContext;
+> import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+> 
+23c23
+<         catch ( MavenReportException e )
+---
+>     catch ( Exception e ) // MavenReportException is not present anymore, use Exception instead

@@ -1,0 +1,9 @@
+19c19,24
+<         Yaml yaml = new Yaml(constructor, representer);
+---
+>     Yaml yaml = new Yaml(constructor, representer) {
+>         @Override
+>         protected TrustedTagInspector getTagInspector() {
+>             return super.getTagInspector();
+>         }
+>     };

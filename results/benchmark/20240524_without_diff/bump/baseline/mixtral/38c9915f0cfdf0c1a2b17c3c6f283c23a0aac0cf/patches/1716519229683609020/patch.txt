@@ -1,0 +1,23 @@
+import org.cactoos.io.Joined;
+import org.cactoos.text.JoinedText;
+
+// ...
+
+    @Override
+    public InputStream inputStream() throws IOException {
+        return new Joined(
+            new JoinedText(
+                "{\"wallets\":[",
+                new IteratorOfBytes<>(
+                    new IteratorOf(
+                        new MapOf<>(
+                            WALLET_IDS,
+                            id -> new TextOf(api().walletOf(id).balance())
+                        )
+                    )
+                ),
+                "]}"
+            )
+        ).stream();
+    }
+// ...

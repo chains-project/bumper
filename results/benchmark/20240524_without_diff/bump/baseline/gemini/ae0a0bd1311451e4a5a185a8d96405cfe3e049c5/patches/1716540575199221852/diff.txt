@@ -1,0 +1,5 @@
+10,11c10
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+---
+>                 output.contains(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()))

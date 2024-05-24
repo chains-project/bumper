@@ -1,0 +1,13 @@
+1a2,12
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> @Override
+> public void notifyCloseAlertReceived(short alertDescription) {
+>     if (alertDescription == AlertDescription.close_notify) {
+>         return;
+>     }
+>     throw new TlsFatalAlert(alertDescription);
+> }
+\ No newline at end of file

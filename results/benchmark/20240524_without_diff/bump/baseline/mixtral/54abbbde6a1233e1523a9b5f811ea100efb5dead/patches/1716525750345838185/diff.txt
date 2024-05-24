@@ -1,0 +1,15 @@
+1c1,10
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.SshByPassword;
+> 
+> public class MyClass {
+>     @Override
+>     public SshByPassword connect(String host, int port, String username, String password) {
+>         SshByPassword ssh = new SshByPassword(host, port, username, password);
+>         ssh.timeout(60000); // set timeout to 60 seconds
+>         return ssh;
+>     }
+> }
+\ No newline at end of file

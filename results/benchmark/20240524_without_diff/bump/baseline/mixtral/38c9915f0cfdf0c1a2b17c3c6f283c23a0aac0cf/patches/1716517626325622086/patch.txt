@@ -1,0 +1,7 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public double score(String input) throws IOException {
+    return new LengthOf(Iterables.iterate(input)).value();
+}

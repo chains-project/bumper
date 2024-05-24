@@ -1,0 +1,20 @@
+import org.cactoos.bytes.CheckedBytes;
+import org.cactoos.Func;
+
+// ...
+
+CheckedScalar<Double> check = new CheckedScalar<Double>(
+  new Func<Double>() {
+    @Override
+    public Double value() throws Exception {
+      // original CheckedScalar logic here
+    }
+  }
+);
+
+// ...
+
+Bytes source = new BytesOf(() -> check.value().byteValue());
+CheckedBytes bytes = new CheckedBytes(source, FuncUtils::toBytes);
+
+// ...

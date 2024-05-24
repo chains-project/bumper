@@ -1,0 +1,65 @@
+1,2c1,17
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import static java.util.concurrent.TimeUnit.MINUTES;
+> import static java.util.concurrent.TimeUnit.SECONDS;
+> 
+> import com.jcabi.ssh.Session;
+> import java.io.File;
+> import java.io.IOException;
+> import java.nio.charset.StandardCharsets;
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> import java.util.concurrent.TimeExceededException;
+> import org.apache.commons.io.input.TeeInputStream;
+> import org.slf4j.Logger;
+> import org.slf4j.LoggerFactory;
+> import us.monoid.webdav.Lenient;
+> import us.monoid.webdav.Raw;
+> import us.monoid.webdav.WebdavClient;
+> 
+4c19
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+6c21
+<         unit = TimeUnit.MINUTES,
+---
+>     unit = MINUTES,
+13,14c28
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         final WebdavClient webdav = new WebdavClient(new Lenient());
+25c39,40
+<             jsch.setHostKeyRepository(new EasyRepo());
+---
+>         webdav.put(file.getAbsolutePath(), new Raw(this.key));
+>         Logger logger = LoggerFactory.getLogger(Ssh.class);
+27c42
+<                 jsch.addIdentity(file.getAbsolutePath());
+---
+>             webdav.authenticate(this.getLogin(), file.getAbsolutePath());
+29c44
+<                 jsch.addIdentity(
+---
+>             webdav.authenticate(
+36c51
+<             Logger.debug(
+---
+>         logger.debug(
+38c53
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+---
+>             "Opening SSH session to {}@{}:{} ({})...",
+40c55
+<                 file.length()
+---
+>             Files.size(file.toPath())
+42,43c57,58
+<             return this.session(jsch);
+<         } catch (final JSchException ex) {
+---
+>         return this.session(webdav);
+>     } catch (final IOException | TimeExceededException ex) {

@@ -1,0 +1,15 @@
+1c1,10
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.AlertDescription;
+> 
+> // ...
+> 
+> @Override
+> protected void decode(ChannelBuffer buffer) throws IOException {
+>     short alertDescription = buffer.readShort();
+>     AlertDescription desc = AlertDescription.getAlertDescription(alertDescription);
+>     // ...
+> }
+\ No newline at end of file

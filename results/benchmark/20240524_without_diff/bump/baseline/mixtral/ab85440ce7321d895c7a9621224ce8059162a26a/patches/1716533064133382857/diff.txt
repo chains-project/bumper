@@ -1,0 +1,21 @@
+1a2
+>     boolean startsWith = false;
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             new StringStartsWith(new StringStartsWithMatcher(startsWith), "/v2/test/blobs/uploads/")
+12a14,26
+> 
+> private static class StringStartsWithMatcher implements StringStartsWith.StringStartsWithMatcher {
+>     private final boolean startsWith;
+> 
+>     private StringStartsWithMatcher(boolean startsWith) {
+>         this.startsWith = startsWith;
+>     }
+> 
+>     @Override
+>     public boolean startsWith(String string) {
+>         return startsWith;
+>     }
+> }
+\ No newline at end of file

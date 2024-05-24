@@ -1,0 +1,7 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Bytes> bytes = ...; // your original bytes scalar
+Scalar<Bytes> uncheckedBytes = new ScalarEnvelope<>(bytes);

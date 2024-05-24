@@ -1,0 +1,10 @@
+2a3,4
+>         final boolean containsDownloadedNewerImage =
+>             new StringContains(String.format("Status: Downloaded newer image for %s", this.remote()));
+10,13c12
+<                 new StringContains(
+<                     false,
+<                     String.format("Status: Downloaded newer image for %s", this.remote())
+<                 )
+---
+>                 containsDownloadedNewerImage

@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Integer> scalar = ...; // your original scalar value
+ScalarEnvelope<Integer> scalarEnvelope = new ScalarEnvelope<>(scalar);
+int value = scalarEnvelope.value();

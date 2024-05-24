@@ -1,0 +1,9 @@
+5a6
+>     String expected = String.format("latest: digest: %s", original.digest());
+8,11c9
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+---
+>         org.hamcrest.CoreMatchers.containsString(expected)

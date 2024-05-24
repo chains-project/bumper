@@ -1,0 +1,8 @@
+import com.jcabi.ssh.Ssh;
+
+public class MyClass {
+    @Tv
+    public Ssh sshConnection() {
+        // your implementation here
+    }
+}

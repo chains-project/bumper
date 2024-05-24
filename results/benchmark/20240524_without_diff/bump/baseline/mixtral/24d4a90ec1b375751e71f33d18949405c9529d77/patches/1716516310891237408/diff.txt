@@ -1,0 +1,16 @@
+1c1,11
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.aspects.Immutable;
+> 
+> @Immutable
+> public class MyClass {
+>   // existing code...
+> 
+>   // replace the failing import statement with the following line:
+>   import static com.jcabi.aspects.Immutable.Value;
+> 
+>   // existing code...
+> }
+\ No newline at end of file

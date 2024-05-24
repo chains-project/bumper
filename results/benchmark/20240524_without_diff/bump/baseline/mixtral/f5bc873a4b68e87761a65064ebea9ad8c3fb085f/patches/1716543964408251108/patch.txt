@@ -1,0 +1,10 @@
+import org.apache.maven.artifact.resolver.ArtifactResolutionException;
+
+@Override
+public void execute() throws MojoExecutionException {
+    try {
+        // ... (existing code)
+    } catch (ArtifactResolutionException e) {
+        throw new MojoExecutionException("Failed to unpack theme.", e);
+    }
+}

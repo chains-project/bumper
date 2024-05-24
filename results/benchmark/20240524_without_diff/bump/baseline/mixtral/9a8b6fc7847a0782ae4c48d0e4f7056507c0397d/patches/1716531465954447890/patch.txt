@@ -1,0 +1,12 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
+
+@Override
+public PasswordEncoder passwordEncoder() {
+    TextEncryptor textEncryptor = new org.jasypt.spring.security3.TripleDesEncryptor();
+    PasswordEncoder delegate = new StandardPasswordEncoder();
+    PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder(textEncryptor, delegate);
+    return passwordEncoder;
+}

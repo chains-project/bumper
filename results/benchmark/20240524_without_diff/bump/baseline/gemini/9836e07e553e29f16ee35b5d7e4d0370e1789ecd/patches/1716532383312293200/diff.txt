@@ -1,0 +1,9 @@
+7c7
+<         MatcherAssert.assertThat(
+---
+>         assertThat(
+9,10c9
+<             new StringContains(
+<                 false,
+---
+>             containsString(

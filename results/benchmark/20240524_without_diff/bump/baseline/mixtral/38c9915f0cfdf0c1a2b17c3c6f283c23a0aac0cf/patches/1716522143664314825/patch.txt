@@ -1,0 +1,11 @@
+import org.cactoos.bytes.IoCheckedBytes;
+
+// ...
+
+public RtTransaction(String id, Bytes data, Bytes signature, Scalar<Long> timestamp) {
+  this.id = id;
+  this.data = data;
+  this.signature = signature;
+  this.timestamp = timestamp;
+  this.value = IoCheckedScalar.value(() -> new IoCheckedBytes(data).asBytes());
+}

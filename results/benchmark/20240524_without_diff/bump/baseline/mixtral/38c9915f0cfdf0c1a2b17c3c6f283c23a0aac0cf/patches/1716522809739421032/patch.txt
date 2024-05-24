@@ -1,0 +1,15 @@
+import org.cactoos.iterable.Filtered;
+
+// ...
+
+public Iterable<Entry> entries() throws IOException {
+  return new Filtered<Entry, Entry>(
+    new IterableFunc<Entry>() {
+      @Override
+      public Iterable<Entry> apply(Entry entry) throws IOException {
+        return entry.entries();
+      }
+    },
+    this
+  );
+}

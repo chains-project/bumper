@@ -1,0 +1,13 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.ScalarEnvelope;
+
+// ...
+
+Scalar<Bytes> bytes = ...; // your original code that returns a Scalar<Bytes>
+
+Scalar<Bytes> uncheckedBytes = new ScalarEnvelope<>(bytes) {
+  @Override
+  protected Bytes value() throws Exception {
+    return super.value();
+  }
+};

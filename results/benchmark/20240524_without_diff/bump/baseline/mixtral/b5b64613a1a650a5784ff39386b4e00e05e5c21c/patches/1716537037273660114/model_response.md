@@ -1,0 +1,20 @@
+Here's a fixed version of the `checkInputs` method that should resolve the compilation error:
+
+```java
+private void checkInputs(JFrogPlatformInstance server) throws IOException {
+    if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl().toString(), server.getDistribution().getUrl().toString(),
+            step.url, step.artifactoryUrl, step.distributionUrl)) {
+        throw new IOException("Server URL is missing");
+    }
+    if (isNotBlank(step.credentialsId)) {
+        if (isNotBlank(step.username)) {
+            throw new IOException("'rtServer' step can't include both credentialsId and username");
+        }
+        if (isNotBlank(step.password)) {
+            throw new IOException("'rtServer' step can't include both credentialsId and password");
+        }
+    }
+}
+```
+
+The changes include adding `toString()` to the calls to `server.getArtifactory().getUrl()` and `server.getDistribution().getUrl()` to ensure that they return `String` objects. This should resolve the compilation error related to the `isAllBlank` method.

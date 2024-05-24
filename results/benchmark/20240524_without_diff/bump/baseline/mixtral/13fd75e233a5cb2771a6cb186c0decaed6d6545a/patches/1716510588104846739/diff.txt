@@ -1,0 +1,25 @@
+6c6
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         MatcherAssert.assertThat(output, new StringContains("Pushed"));
+10a11,29
+> 
+> // Added method to replace the failing assertion
+> private static class StringContains extends TypeSafeMatcher<String> {
+>     private final String contains;
+> 
+>     StringContains(boolean contains, String value) {
+>         this.contains = value;
+>     }
+> 
+>     @Override
+>     protected boolean matchesSafely(String item) {
+>         return item.contains(contains);
+>     }
+> 
+>     @Override
+>     public void describeTo(Description description) {
+>         description.appendText("a string containing ").appendValue(contains);
+>     }
+> }
+\ No newline at end of file

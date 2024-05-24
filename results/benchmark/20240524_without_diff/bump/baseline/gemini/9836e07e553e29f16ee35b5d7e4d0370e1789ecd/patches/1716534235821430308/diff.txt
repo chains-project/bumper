@@ -1,0 +1,4 @@
+10c10
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+---
+>             new IsHeader("Docker-Upload-UUID", Matchers::not(Matchers.isEmptyString()))

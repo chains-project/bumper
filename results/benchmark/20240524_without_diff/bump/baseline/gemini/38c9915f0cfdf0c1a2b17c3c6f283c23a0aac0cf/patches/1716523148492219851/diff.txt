@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.bytes.BytesOf;
+> 
+> public class WalletsIn {
+> 
+>     public WalletsIn(BytesOf wallets) {
+>         // TODO Auto-generated constructor stub
+>     }
+> 
+> }
+\ No newline at end of file

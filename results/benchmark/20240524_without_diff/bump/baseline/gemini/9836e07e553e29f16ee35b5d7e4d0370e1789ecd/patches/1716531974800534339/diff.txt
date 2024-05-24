@@ -1,0 +1,7 @@
+6a7,8
+>         final String[] lines = output.split("\n");
+>         final String lastLine = lines[lines.length - 1];
+8c10
+<             output,
+---
+>             lastLine,

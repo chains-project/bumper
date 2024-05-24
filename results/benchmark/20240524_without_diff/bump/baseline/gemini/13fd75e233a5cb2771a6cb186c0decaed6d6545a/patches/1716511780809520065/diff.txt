@@ -1,0 +1,8 @@
+3c3
+<     void shouldThrowExceptionWhenDigestIsAbsent() {
+---
+> public void shouldThrowExceptionWhenDigestIsAbsent() {
+10c10
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+---
+>                     "/v2/my-repo/blobs/uploads/123-abc"

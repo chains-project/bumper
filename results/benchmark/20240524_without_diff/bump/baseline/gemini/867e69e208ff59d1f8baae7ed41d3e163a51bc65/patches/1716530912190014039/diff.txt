@@ -1,0 +1,21 @@
+0a1
+> import org.apache.thrift.transport.TNonblockingTransport;
+1a3,19
+> 
+> public class ThriftReader {
+> 
+>     private TNonblockingTransport transport;
+> 
+>     public ThriftReader(TNonblockingTransport transport) {
+>         this.transport = transport;
+>     }
+> 
+>     public void read() throws Exception {
+>         // Create a framed transport around the non-blocking transport.
+>         TFramedTransport framedTransport = new TFramedTransport(transport);
+> 
+>         // Read data from the framed transport.
+>         // ...
+>     }
+> }
+\ No newline at end of file

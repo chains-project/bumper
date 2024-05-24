@@ -1,0 +1,14 @@
+1d0
+< @Override
+2a2
+>     AuthUser user = new AuthUser(TestAuthentication.ALICE.name(), "");
+5c5
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>         new Permissions.Single(user, action),
+9,10c9,10
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .filter(u -> token.equals(token(u)))
+>                     .map(u -> new AuthUser(u.name(), ""))

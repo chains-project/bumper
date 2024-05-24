@@ -1,0 +1,9 @@
+import org.cactoos.scalar.LengthOf;
+
+// ...
+
+public RtTransaction(RtTransactions transactions, RtTransactionId id,
+    RtTransactionState state, RtTransactionLog log, RtTransactionData data) {
+    super(transactions, id, state, log, data);
+    this.amount = new LengthOf<>(data.asIterable());
+}

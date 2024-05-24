@@ -1,0 +1,12 @@
+0a1
+> import org.cactoos.bytes.BytesOf;
+1a3,10
+> 
+> public class WalletsIn {
+> 
+>     public WalletsIn(JoinedText wallets) {
+>         // do something with wallets
+>     }
+> 
+> }
+\ No newline at end of file

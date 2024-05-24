@@ -1,0 +1,11 @@
+1c1,6
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> import org.apache.maven.project.DefaultProjectBuildingRequest;
+> import org.apache.maven.project.ProjectBuildingRequest;
+> 
+> MavenSession session = new MavenSession();
+> ProjectBuildingRequest buildingRequest = session.getProjectBuildingRequest();
+\ No newline at end of file

@@ -1,0 +1,28 @@
+30c30
+<                                 translationMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 translationMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+71c71
+<                                                 rateMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 rateMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+93c93
+<                                                 bookMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 bookMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+117c117
+<                                                 signMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 signMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+140c140
+<                                                 itemMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 itemMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+161c161
+<                                                 entityMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 entityMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);
+185c185
+<                                                 chatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                                 chatMeta.addEnchant(XMaterial.matchXMaterial("ENCHANTED_BOOK").get().parseEnchantment(), 1, false);

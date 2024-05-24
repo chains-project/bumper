@@ -1,0 +1,20 @@
+0a1
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+1a3,18
+> 
+> // ...
+> 
+> @Override
+> public DecoderResult decode(InputStream inputStream) throws HapException {
+>     // ...
+>     try {
+>         // ...
+>         short alertDescription = tlsStream.nextShort();
+>         AlertDescription alert = TlsFatalAlert.getAlertDescription(alertDescription);
+>         // ...
+>     } catch (IOException e) {
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file
