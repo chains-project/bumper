@@ -1,6 +1,0 @@
-16,17c16,17
-<                     new StringContains(true, "Unsupported reference"),
-<                     new StringContains(false, string)
----
->                 new StringContains("Unsupported reference"),
->                 new StringContains(string)

@@ -1,4 +1,0 @@
-2c2
-<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
----
->         return CoreMatchers.containsString(String.format("%s: Pushed", this.image.layer()));

@@ -1,6 +1,0 @@
-2a3
->     StringContains contains = new StringContains("Unexpected path");
-10c11
-<             new StringContains(false, "Unexpected path")
----
->         contains

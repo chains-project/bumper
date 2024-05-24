@@ -1,4 +1,0 @@
-1a2,3
->   public class PGS_MorphologyGroupShapeTests {
->   }
-\ No newline at end of file

@@ -1,7 +1,0 @@
-9,12c9
-<             new StringContains(
-<                 false,
-<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
-<             )
----
->         CoreMatchers.containsString(String.format("Status: Downloaded newer image for %s", this.image.remote()))

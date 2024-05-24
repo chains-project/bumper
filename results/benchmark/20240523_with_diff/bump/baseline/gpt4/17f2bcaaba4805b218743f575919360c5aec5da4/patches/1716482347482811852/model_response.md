@@ -1,9 +1,0 @@
-```java
-package test.java.micycle.pgs;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-public class PGS_MorphologyGroupShapeTests {
-    // Your test methods go here
-}
-```

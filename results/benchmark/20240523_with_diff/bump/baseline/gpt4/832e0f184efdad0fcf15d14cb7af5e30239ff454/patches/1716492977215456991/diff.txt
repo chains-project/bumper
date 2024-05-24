@@ -1,4 +1,0 @@
-71c71
-<                                                                 e -> WWCTranslateGUISourceLanguage.getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player)));
----
->                                                         e -> WWCTranslateGUISourceLanguage.getSourceLanguageInventory(targetPlayerUUID).open(player)));

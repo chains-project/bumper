@@ -1,5 +1,0 @@
-10,11c10
-<                 new StringContains(
-<                     false,
----
->             org.hamcrest.CoreMatchers.containsString(

@@ -1,4 +1,0 @@
-10c10
-<             new StringContains(false, "Unexpected path")
----
->         Matchers.containsString("Unexpected path")

@@ -1,9 +1,0 @@
-8,12c8,9
-<             output,
-<             new StringContains(
-<                 false,
-<                 String.format("Status: Downloaded newer image for %s", image)
-<             )
----
->         output.contains(String.format("Status: Downloaded newer image for %s", image)),
->         is(true)

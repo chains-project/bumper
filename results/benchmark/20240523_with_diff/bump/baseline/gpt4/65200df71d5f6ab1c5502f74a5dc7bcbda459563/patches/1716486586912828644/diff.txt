@@ -1,4 +1,0 @@
-5c5
-<                 .setExtraProperties(globalConfig.extraProperties())
----
->                 .setExtraProperties(globalConfig.getExtraProperties())

@@ -1,6 +1,0 @@
-```java
-private Matcher<String> layersAlreadyExist() {
-    String formattedString = String.format("%s: Layer already exists", this.image.layer());
-    return CoreMatchers.containsString(formattedString);
-}
-```

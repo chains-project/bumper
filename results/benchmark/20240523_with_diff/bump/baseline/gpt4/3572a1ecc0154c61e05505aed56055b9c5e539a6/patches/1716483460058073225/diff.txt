@@ -1,4 +1,0 @@
-7c7
-<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
----
->       framedTransport = new TTransport(new TIOStreamTransport(os),

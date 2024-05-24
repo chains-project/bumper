@@ -1,8 +1,0 @@
-27c27
-<                                         outgoingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
----
->                                 outgoingChatMeta.addEnchant(Enchantment.getByName("POWER"), 1, false);
-49c49
-<                                 incomingChatMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
----
->                                 incomingChatMeta.addEnchant(Enchantment.getByName("POWER"), 1, false);

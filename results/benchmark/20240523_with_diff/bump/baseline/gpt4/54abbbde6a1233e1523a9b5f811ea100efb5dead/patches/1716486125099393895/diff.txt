@@ -1,4 +1,0 @@
-42c42
-<             return this.session(jsch);
----
->             return this.createSession(jsch);

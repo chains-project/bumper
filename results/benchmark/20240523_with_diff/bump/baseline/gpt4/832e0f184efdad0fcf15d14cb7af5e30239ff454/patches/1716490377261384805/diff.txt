@@ -1,8 +1,0 @@
-36c36
-<                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
----
->                                 String[] args = { main.getServer().getPlayer(targetPlayerUUID).getName() };
-58c58
-<                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
----
->                                 String[] args = { main.getServer().getPlayer(targetPlayerUUID).getName() };

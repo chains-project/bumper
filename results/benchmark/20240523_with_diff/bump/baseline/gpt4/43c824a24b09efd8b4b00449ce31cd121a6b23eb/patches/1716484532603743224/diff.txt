@@ -1,7 +1,0 @@
-5c5,6
-<       for (XmlFieldInstance instance : instances)
----
->       for (Object obj : instances) {
->         XmlFieldInstance instance = (XmlFieldInstance) obj;
-6a8
->       }

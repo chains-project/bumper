@@ -1,8 +1,0 @@
-42c42
-<             return this.session(jsch);
----
->             return this.session(jsch, file);
-47a48,50
->     }
->     private Session session(JSch jsch, File file) throws JSchException {
->         return jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());

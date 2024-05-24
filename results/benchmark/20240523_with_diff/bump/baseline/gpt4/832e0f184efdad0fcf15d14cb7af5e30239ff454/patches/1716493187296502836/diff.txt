@@ -1,6 +1,0 @@
-42c42
-<                                                         .withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings, entry.getKey()));
----
->                                                         .withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.this.overrideNewMessageSettings, entry.getKey()));
-74d73
-<                                 ;

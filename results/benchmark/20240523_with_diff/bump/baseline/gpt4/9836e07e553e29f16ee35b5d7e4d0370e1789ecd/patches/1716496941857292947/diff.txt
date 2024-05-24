@@ -1,4 +1,0 @@
-10c10
-<             new StringContains(false, "Unexpected path")
----
->         CoreMatchers.containsString("Unexpected path")

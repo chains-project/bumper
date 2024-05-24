@@ -1,6 +1,0 @@
-2,3c2,3
-<     List<String> list = extractList(cache, branch);
-<     if (!list.isEmpty())
----
->     List<String> list = cache.getList(branch);
->     if (list != null && !list.isEmpty())

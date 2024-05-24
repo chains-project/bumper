@@ -1,4 +1,0 @@
-12c12
-<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
----
->         final SortedMap<MOScope, ManagedObject<?>> reg = (SortedMap<MOScope, ManagedObject<?>>) registry.get(server);

@@ -1,6 +1,0 @@
-4c4,6
-<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
----
->     PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
->     encryptor.setPassword("requiredPassword");
->     encoder.setPasswordEncryptor(encryptor);

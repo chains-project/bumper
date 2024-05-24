@@ -1,4 +1,0 @@
-27c27
-<                 jsch.addIdentity(file.getAbsolutePath());
----
->                 jsch.addIdentity(file.getAbsolutePath(), this.key);

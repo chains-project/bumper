@@ -1,9 +1,0 @@
-0a1,2
-> package micycle.pgs;
-> 
-1a4,7
-> 
-> public class PGS_MorphologyGroupShapeTests {
->   // your class content here
-> }
-\ No newline at end of file

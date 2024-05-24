@@ -1,4 +1,0 @@
-30c30
-<                     this.getLogin(),
----
->                     file.getAbsolutePath(),

@@ -1,4 +1,0 @@
-```java
-import org.cactoos.Text;
-import org.cactoos.text.Randomized;
-```

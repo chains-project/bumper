@@ -1,6 +1,0 @@
-2d1
-<     @Override
-12d10
-<             JSch.setLogger(new JschLogger());
-13a12
->             jsch.setLogger(new JschLogger());

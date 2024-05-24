@@ -1,5 +1,0 @@
-99c99,100
-<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
----
->                 String pageNumber = String.valueOf(pagination.getPage() + 1);
->                 contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pageNumber}), e -> {}));

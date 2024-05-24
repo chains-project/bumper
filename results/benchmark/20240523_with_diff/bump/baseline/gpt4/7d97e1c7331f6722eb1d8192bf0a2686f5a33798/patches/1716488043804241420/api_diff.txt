@@ -1,4 +1,0 @@
-++ public FakeValidationProvider com.jcabi.aspects.FakeValidationProvider()
-++ public javax.validation.ValidatorFactory com.jcabi.aspects.FakeValidationProvider.buildValidatorFactory(javax.validation.spi.ConfigurationState)
-++ public javax.validation.Configuration com.jcabi.aspects.FakeValidationProvider.createGenericConfiguration(javax.validation.spi.BootstrapState)
-++ public com.jcabi.aspects.FakeValidationProvider$FakeConfiguration com.jcabi.aspects.FakeValidationProvider.createSpecializedConfiguration(javax.validation.spi.BootstrapState)

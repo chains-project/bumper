@@ -1,4 +1,0 @@
-10c10
-<             new StringContains(false, "Unexpected path")
----
->         org.hamcrest.CoreMatchers.containsString("Unexpected path")
