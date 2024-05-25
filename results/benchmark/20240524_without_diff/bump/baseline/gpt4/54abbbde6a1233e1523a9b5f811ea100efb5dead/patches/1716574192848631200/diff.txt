@@ -1,0 +1,6 @@
+42c42,44
+<             return this.session(jsch);
+---
+>             final Session session = this.session(jsch);
+>             session.connect();
+>             return session;

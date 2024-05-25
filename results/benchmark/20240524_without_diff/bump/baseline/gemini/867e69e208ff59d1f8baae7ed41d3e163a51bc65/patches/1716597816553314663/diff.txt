@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class SimpleThriftLogger {
+> 
+>     public SimpleThriftLogger(TFramedTransport transport) {
+>         // TODO Auto-generated constructor stub
+>     }
+> 
+>     public void log(String message) {
+>         // TODO Auto-generated method stub
+>     }
+> 
+> }
+\ No newline at end of file

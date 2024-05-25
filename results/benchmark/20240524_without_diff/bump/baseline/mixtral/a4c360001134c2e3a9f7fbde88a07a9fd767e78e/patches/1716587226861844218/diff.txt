@@ -1,0 +1,13 @@
+6,13c6,8
+<         final String[] packages = packagesToScan.split(",");
+<         for (String packageToScan : packages) {
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+<                 return true;
+<             }
+<         }
+<         return false;
+---
+>     Pattern packagePattern = Pattern.compile("(^|\\.)(" + packagesToScan.replaceAll(",", "|") + ")(\\.|$)");
+>     Matcher matcher = packagePattern.matcher(s);
+>     return matcher.find();

@@ -1,0 +1,10 @@
+29,30c29
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>             if (new File(dir, className.replace('.', File.separatorChar) + ".class").exists()) {
+35,36c34
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>             if (new File(dir, className.replace('.', File.separatorChar) + ".class").exists()) {

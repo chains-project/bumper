@@ -1,0 +1,17 @@
+0a1,9
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ... other code ...
+> 
+3a13
+>         PShape parent = GROUP_SHAPE.getParent();
+5a16,19
+>         out.setParent(parent);
+>     }
+> 
+>     // ... other code ...

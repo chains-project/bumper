@@ -1,0 +1,7 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+@Override
+public void init() {
+    textEncryptor = new BasicTextEncryptor();
+    textEncryptor.setPassword(password);
+}

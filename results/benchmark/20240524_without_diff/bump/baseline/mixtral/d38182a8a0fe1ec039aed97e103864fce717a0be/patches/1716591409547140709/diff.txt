@@ -1,0 +1,16 @@
+10c10
+<                 public Scope scope(final String rqline) {
+---
+>                 public Scope scope(String rqline) {
+17,19c17,19
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+---
+>                     String line,
+>                     Iterable<Map.Entry<String, String>> headers,
+>                     Publisher<ByteBuffer> body
+24c24
+<             (headers, rline) -> CompletableFuture.completedFuture(
+---
+>             (headers, rqline) -> CompletableFuture.completedFuture(

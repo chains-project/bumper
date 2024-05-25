@@ -1,0 +1,13 @@
+1c1,8
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+>   public class ThriftReader {
+> 
+>     public TTransport getTransport(String host, int port) throws Exception {
+>       return new TFramedTransport(new TSocket(host, port));
+>     }
+>   }
+\ No newline at end of file

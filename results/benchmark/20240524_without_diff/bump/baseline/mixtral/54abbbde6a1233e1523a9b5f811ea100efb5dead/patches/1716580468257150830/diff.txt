@@ -1,0 +1,93 @@
+1,2c1,22
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.google.common.base.Throwables;
+> import com.jcabi.ssh.Session;
+> import com.jcabi.ssh.Ssh;
+> import com.jcabi.ssh.exec.Command;
+> import org.apache.commons.io.input.TeeInputStream;
+> import org.eclipse.jgit.util.FS;
+> import org.eclipse.jgit.util.SystemReader;
+> import org.slf4j.Logger;
+> import org.slf4j.LoggerFactory;
+> import org.yaml.snakeyaml.Yaml;
+> import java.io.*;
+> import java.nio.file.Files;
+> import java.nio.file.Path;
+> import java.nio.file.Paths;
+> import java.security.KeyPair;
+> import java.security.interfaces.RSAPrivateKey;
+> import java.security.interfaces.RSAPublicKey;
+> import java.util.Base64;
+> import java.util.Map;
+> import java.util.concurrent.TimeUnit;
+> import java.util.stream.Collectors;
+> 
+15,43c35,62
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+<             jsch.setHostKeyRepository(new EasyRepo());
+<             if (this.passphrase == null) {
+<                 jsch.addIdentity(file.getAbsolutePath());
+<             } else {
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+<             }
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );
+<             return this.session(jsch);
+<         } catch (final JSchException ex) {
+---
+>         KeyPair keyPair = generateRsaKeyPair();
+>         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+>         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+>         String publicKeyBase64 = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+>         String privateKeyBase64 = Base64.getEncoder().encodeToString(privateKey.getEncoded());
+>         Yaml yaml = new Yaml();
+>         Map<String, Object> keyMap = new LinkedHashMap<>();
+>         keyMap.put("e", publicKey.getPublicExponent());
+>         keyMap.put("n", publicKey.getModulus());
+>         String publicKeyYaml = yaml.dump(keyMap);
+>         Files.write(file.toPath(), publicKeyYaml.getBytes());
+>         jsch.setKnownHosts(file.getAbsolutePath());
+>         jsch.addIdentity(privateKeyBase64, privateKeyBase64);
+>         Ssh ssh = new Ssh(this.getAddr(), this.getPort(), file.getAbsolutePath(), this.passphrase);
+>         Command command = ssh.cmd(this.command);
+>         Path outputPath = Paths.get(this.output);
+>         if (outputPath != null) {
+>             try (InputStream inputStream = command.in()) {
+>                 Files.copy(inputStream, outputPath);
+>             }
+>         }
+>         int exitCode = command.execute().getExitCode();
+>         if (exitCode != 0) {
+>             throw new IOException("Command execution failed with exit code: " + exitCode);
+>         }
+>         return ssh;
+>     } catch (JSchException | IOException ex) {
+>         Throwables.throwIfUnchecked(ex);
+48a68,73
+> 
+> private KeyPair generateRsaKeyPair() throws IOException {
+>     KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+>     keyPairGenerator.initialize(2048);
+>     return keyPairGenerator.generateKeyPair();
+> }
+\ No newline at end of file

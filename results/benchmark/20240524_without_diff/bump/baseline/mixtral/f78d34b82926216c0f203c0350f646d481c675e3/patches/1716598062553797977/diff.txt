@@ -1,0 +1,39 @@
+1,6d0
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+12,15c6
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+---
+>         Runnable runnable = () ->
+46d36
+<             }
+49,50c39,49
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+---
+>         runnable.run();
+>         new Timer().schedule(new TimerTask()
+>         {
+>             @Override
+>             public void run()
+>             {
+>                 runnable.run();
+>             }
+>         }, 0, 1000);
+> 
+>         new Timer().schedule(new TimerTask()
+55c54
+<                 runnable.cancel();
+---
+>                 runnable.run();
+57c56
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>         }, seconds * 1000);

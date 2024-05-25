@@ -1,0 +1,8 @@
+4c4
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     PShape mink = createShape(PATH);
+10c10
+<                 mink.endShape(PConstants.CLOSE);
+---
+>     mink.endShape(CLOSE);

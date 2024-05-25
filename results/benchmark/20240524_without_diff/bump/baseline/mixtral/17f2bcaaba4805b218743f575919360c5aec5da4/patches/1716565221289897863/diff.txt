@@ -1,0 +1,24 @@
+0a1,13
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.util.GeometricShapeFactory;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.concurrent.ThreadLocalRandom;
+> 
+4c17,19
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>     GeometricShapeFactory PGS = new GeometricShapeFactory(GEOM_FACTORY);
+>     ThreadLocalRandom r = ThreadLocalRandom.current();
+19c34
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>             final LineString l = GEOM_FACTORY

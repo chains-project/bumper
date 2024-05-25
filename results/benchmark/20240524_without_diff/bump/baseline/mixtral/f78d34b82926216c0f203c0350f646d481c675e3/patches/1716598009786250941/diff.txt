@@ -1,0 +1,109 @@
+1,8c1,10
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations {
+>     // ...
+> 
+>     public static void magic(Player player, int seconds) {
+12,13c14,17
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+---
+>         BukkitRunnable runnable = new BukkitRunnable() {
+>             private final Random random = new Random();
+>             private final Location center = player.getLocation();
+> 
+15,19c19,22
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+<                     Location center = player.getLocation();
+---
+>             public void run() {
+>                 double i = 0;
+>                 while (i < Math.PI * 2) {
+>                     Location loc = center.clone();
+21c24
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+---
+>                     circle(loc.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+23c26
+<                     circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+---
+>                     circle(loc.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+25c28
+<                     circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+---
+>                     circle(loc.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+27,30c30,33
+<                     circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+---
+>                     circle(loc.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+>                     circle(loc.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+>                     circle(loc.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+>                     circle(loc.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+32c35
+<                     circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+---
+>                     circle(loc.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+35d37
+<                 }
+37c39,40
+<                 Location center = player.getLocation();
+---
+>                     i += 0.1 * random.nextDouble();
+>                 }
+39,45c42,55
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 Vector v1 = new Vector(3, 0.7, 0);
+>                 Vector v2 = new Vector(-1.5, 0.7, 2.3);
+>                 Vector v3 = new Vector(-1.5, 0.7, -2.3);
+>                 Vector v4 = new Vector(1.5, 0.7, -2.3);
+>                 Vector v5 = new Vector(1.5, 0.7, 2.3);
+>                 Vector v6 = new Vector(-3, 0.7, 0);
+> 
+>                 line(v1.normalize(), v2.normalize());
+>                 line(v2.normalize(), v3.normalize());
+>                 line(v1.normalize(), v3.normalize());
+> 
+>                 line(v6.normalize(), v4.normalize());
+>                 line(v4.normalize(), v5.normalize());
+>                 line(v6.normalize(), v5.normalize());
+50,51c60
+<         new BukkitRunnable()
+<         {
+---
+>         new BukkitRunnable() {
+53,54c62
+<             public void run()
+<             {
+---
+>             public void run() {
+57a66
+>     }
+58a68
+>     // ...

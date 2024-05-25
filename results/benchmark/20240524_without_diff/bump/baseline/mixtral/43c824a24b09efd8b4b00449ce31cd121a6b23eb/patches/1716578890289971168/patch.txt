@@ -1,0 +1,10 @@
+import de.gwdg.metadataqa.api.json.JsonPathBranch;
+
+// Use the new class name
+public class MarcFactory {
+  // ...
+  public void createMarcRecords(JsonPathBranch jsonBranch) {
+    // ...
+  }
+  // ...
+}

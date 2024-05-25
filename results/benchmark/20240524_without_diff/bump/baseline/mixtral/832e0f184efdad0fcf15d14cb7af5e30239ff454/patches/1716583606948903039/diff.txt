@@ -1,0 +1,49 @@
+0a1,8
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> import org.bukkit.plugin.java.JavaPlugin;
+> 
+> import java.util.Arrays;
+> 
+2,3c10,25
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+<                 ItemMeta pageMeta = pageButton.getItemMeta();
+---
+>     MaterialData pageButtonMaterial;
+>     ItemStack pageButton = null;
+>     ItemMeta pageMeta;
+> 
+>     if (buttonType.equalsIgnoreCase("Previous")) {
+>         pageButtonMaterial = MaterialData.RED_STAINED_GLASS;
+>     } else if (buttonType.equalsIgnoreCase("Next")) {
+>         pageButtonMaterial = MaterialData.GREEN_STAINED_GLASS;
+>     } else if (buttonType.equalsIgnoreCase("Page Number")) {
+>         pageButtonMaterial = MaterialData.LILY_PAD;
+>     } else {
+>         pageButtonMaterial = MaterialData.RED_STAINED_GLASS;
+>     }
+> 
+>     pageButton = new ItemStack(pageButtonMaterial);
+>     pageMeta = pageButton.getItemMeta();
+4a27
+> 
+6c29
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+---
+>         pageButton.setType(org.bukkit.Material.RED_STAINED_GLASS);
+10c33
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+---
+>         pageButton.setType(org.bukkit.Material.GREEN_STAINED_GLASS);
+14c37
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+---
+>         pageButton.setType(org.bukkit.Material.LILY_PAD);
+16a40
+> 
+18c42
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             pageMeta.addEnchant(Enchantment.getByName("DAMAGE_ALL"), 1, false);

@@ -1,0 +1,7 @@
+12c12,15
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+---
+>     PGS_Morphology morphology = new PGS_Morphology(); // add this line
+>     assertNotNull(morphology); // add this line
+> 
+>     PShape out = morphology.minkSum(GROUP_SHAPE, mink);

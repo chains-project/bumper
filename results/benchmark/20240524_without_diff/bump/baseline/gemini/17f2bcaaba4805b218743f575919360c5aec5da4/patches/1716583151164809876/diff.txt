@@ -1,0 +1,16 @@
+1c1,11
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.jupiter.api.Assertions.fail;
+> 
+> import org.junit.jupiter.api.Test;
+> 
+> class PGS_ProcessingGroupShapeTests {
+> 
+>   @Test
+>   void test() {
+>     fail("Not yet implemented");
+>   }
+> }
+\ No newline at end of file

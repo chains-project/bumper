@@ -1,0 +1,4 @@
+42c42
+<             return this.session(jsch);
+---
+>             return this.session(jsch, this.getLogin(), this.getAddr(), this.getPort());

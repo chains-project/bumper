@@ -1,0 +1,10 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public TTransport createTransport() throws TTransportException {
+  TTransport transport = new TFramedTransport(new THttpClient(host, port));
+  transport.open();
+  return transport;
+}

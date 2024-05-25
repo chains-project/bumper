@@ -1,0 +1,8 @@
+31c31
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         List<PShape> FP = polygonize(nodedEdgesSet);
+35c35
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>                         assertEquals(JTS.size(), FP.size());

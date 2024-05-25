@@ -1,0 +1,14 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+10,16c7
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+<         );
+---
+>     MatcherAssert.assertThat(output, Matchers.containsString(String.format("Status: Downloaded newer image for %s", image)));

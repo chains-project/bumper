@@ -1,0 +1,2 @@
+1a2
+>     final String PACKAGE_TO_SCAN = "package_to_scan";

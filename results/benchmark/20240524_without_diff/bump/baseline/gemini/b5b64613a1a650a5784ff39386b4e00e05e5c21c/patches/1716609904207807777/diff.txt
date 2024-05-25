@@ -1,0 +1,6 @@
+18a19,23
+>             } else {
+>                 if (isNotBlank(step.username) && isNotBlank(step.password)) {
+>                     // Use username and password if credentialsId is not provided
+>                     server.setCredentials(new UsernamePasswordCredentials(step.username, step.password));
+>                 }

@@ -1,0 +1,10 @@
+1a2
+>     Pattern pattern = Pattern.compile("/v2/test/blobs/uploads/.*");
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             Matchers.matchesPattern(pattern)
+10c11
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+---
+>         new IsHeader("Docker-Upload-UUID", Matchers.not(Matchers.emptyString()))

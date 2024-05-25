@@ -1,0 +1,6 @@
+20,21c20,21
+<                         scramble(password);
+<                         scramble(chars);
+---
+>                 Arrays.fill(password, (byte) 0);
+>                 Arrays.fill(chars, '\0');

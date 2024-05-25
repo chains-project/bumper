@@ -1,0 +1,22 @@
+0a1,11
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.io.ParseException;
+> import org.locationtech.jts.io.WKTReader;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> 
+4a16
+>     WKTReader fromText = new WKTReader();
+19,20c31,32
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             try {
+>                 final LineString l = (LineString) fromText.read("LINESTRING(" + e.a.x + " " + e.a.y + ", " + e.b.x + " " + e.b.y + ")");
+21a34
+>             } catch (ParseException ignored) {}

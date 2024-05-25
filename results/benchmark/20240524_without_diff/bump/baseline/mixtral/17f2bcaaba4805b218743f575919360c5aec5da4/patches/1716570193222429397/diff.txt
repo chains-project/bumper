@@ -1,0 +1,20 @@
+0a1,9
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ...
+> 
+4,5c13,18
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+<                 assertEquals(2, out.getChildCount());
+---
+>         PShape groupShape = GROUP_SHAPE.getChild(0);
+>         PShape warpedGroupShape = PGS_Morphology.fieldWarp(groupShape, 10, 1, false);
+>         assertEquals(2, warpedGroupShape.getChildCount());
+>     }
+> 
+>     // ...

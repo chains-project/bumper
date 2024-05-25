@@ -1,0 +1,11 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.2"})
+public class SshByPassword {
+    // ...
+    @Override
+    public Ssh ssh(String host, int port) {
+        return new Ssh.ByPassword(host, port, username, password);
+    }
+    // ...
+}

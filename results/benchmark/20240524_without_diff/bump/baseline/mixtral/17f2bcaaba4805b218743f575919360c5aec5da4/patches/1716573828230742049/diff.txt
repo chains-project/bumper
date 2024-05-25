@@ -1,0 +1,16 @@
+0a1,3
+> import processing.core.PShape;
+> import static processing.core.PConstants.CLOSE;
+> 
+4c7
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     final var mink = new PShape(PShape.PATH);
+10c13
+<                 mink.endShape(PConstants.CLOSE);
+---
+>     mink.endShape(CLOSE);
+12c15
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+---
+>     var out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);

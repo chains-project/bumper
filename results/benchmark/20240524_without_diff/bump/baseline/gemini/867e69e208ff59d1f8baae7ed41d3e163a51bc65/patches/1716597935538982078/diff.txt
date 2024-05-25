@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ThriftReader {
+> 
+>     public void read(String path) throws Exception {
+>         TFramedTransport transport = new TFramedTransport(null);
+>         // Rest of the code remains the same
+>     }
+> }
+\ No newline at end of file

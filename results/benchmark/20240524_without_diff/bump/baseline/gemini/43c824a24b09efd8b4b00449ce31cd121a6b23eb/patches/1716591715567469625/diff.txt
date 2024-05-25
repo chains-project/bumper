@@ -1,0 +1,6 @@
+3c3
+<     if (!list.isEmpty())
+---
+>     if (list != null && !list.isEmpty()) { // Check if list is not null before accessing its elements
+4a5
+>     }

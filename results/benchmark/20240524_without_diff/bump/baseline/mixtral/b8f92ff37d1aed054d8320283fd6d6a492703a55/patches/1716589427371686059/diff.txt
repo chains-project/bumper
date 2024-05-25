@@ -1,0 +1,16 @@
+3c3,15
+<         return directoryScanner.scan().getClasses();
+---
+>     Collection<SpoonAPI> scannedElements = directoryScanner.scan();
+>     if (scannedElements instanceof Collection) {
+>         Collection<SpoonAPI> spoonApis = (Collection<SpoonAPI>) scannedElements;
+>         List<String> classes = new ArrayList<>();
+>         for (SpoonAPI spoonApi : spoonApis) {
+>             if (spoonApi instanceof CtTypeInformation) {
+>                 CtTypeInformation ctTypeInformation = (CtTypeInformation) spoonApi;
+>                 classes.add(ctTypeInformation.getQualifiedName());
+>             }
+>         }
+>         return classes;
+>     }
+>     throw new RuntimeException("Unexpected scan result: " + scannedElements);

@@ -1,0 +1,9 @@
+6c6,11
+<         final String[] packages = packagesToScan.split(",");
+---
+>         Pattern pattern = Pattern.compile("([^,]+)");
+>         Matcher matcher = pattern.matcher(packagesToScan);
+>         List<String> packages = new ArrayList<>();
+>         while (matcher.find()) {
+>             packages.add(matcher.group(1));
+>         }

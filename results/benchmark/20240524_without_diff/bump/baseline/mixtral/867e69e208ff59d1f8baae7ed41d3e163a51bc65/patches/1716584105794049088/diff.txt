@@ -1,0 +1,19 @@
+0a1
+> import org.apache.thrift.transport.TTransport;
+1a3,17
+> 
+> public class SimpleThriftLogger {
+>     // ...
+> 
+>     @Override
+>     public void log(TTransport transport) {
+>         TFramedTransport framedTransport = (transport instanceof TFramedTransport)
+>                 ? (TFramedTransport) transport
+>                 : new TFramedTransport(transport);
+> 
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

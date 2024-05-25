@@ -1,0 +1,14 @@
+import static org.apache.commons.lang3.StringUtils.isAnyBlank;
+
+//...
+
+@Override
+public CreateJFrogInstanceStep executeStep(StepContext context) throws IOException, InterruptedException {
+    // Check if 'jfrogInstanceId' and 'url' are not blank
+    if (isAnyBlank(jfrogInstanceId, url)) {
+        log.error("Missing required parameters: jfrogInstanceId and url.");
+        throw new AbortException("Missing required parameters: jfrogInstanceId and url.");
+    }
+
+    //...
+}

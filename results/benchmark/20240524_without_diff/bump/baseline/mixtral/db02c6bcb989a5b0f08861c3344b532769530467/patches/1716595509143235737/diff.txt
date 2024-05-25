@@ -1,0 +1,6 @@
+3c3,5
+<         description.appendText("was ").appendValue(s);
+---
+>         org.hamcrest.MatcherAssert.assertThat(s, org.hamcrest.CoreMatchers.notNullValue());
+>         org.hamcrest.MatcherAssert.assertThat(description, org.hamcrest.CoreMatchers.notNullValue());
+>         description.appendText("was ").appendText(s);

@@ -1,0 +1,10 @@
+3c3,9
+<         return directoryScanner.scan().getClasses();
+---
+>         List<String> classes = new ArrayList<>();
+>         for (String file : directoryScanner.scan().getFiles()) {
+>             if (file.endsWith(".java")) {
+>                 classes.add(file);
+>             }
+>         }
+>         return classes;

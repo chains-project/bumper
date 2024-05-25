@@ -1,0 +1,15 @@
+import java.io.IOException;
+
+import com.jayway.jsonpath.DocumentContext;
+import com.jayway.jsonpath.JsonPath;
+
+public class YamlPolicyFactory {
+  @Override
+  public DocumentContext policy(final String yaml) {
+    try {
+      return JsonPath.parse(yaml);
+    } catch (final IOException ex) {
+      throw new UncheckedIOException(ex);
+    }
+  }
+}

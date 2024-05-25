@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2,3
+<     void shouldThrowExceptionWhenDigestIsAbsent() {
+---
+>     public void shouldThrowExceptionWhenDigestIsAbsent() {
+>         RequestLine requestLine = new RequestLine(RqMethod.PUT, "/v2/my-repo/blobs/uploads/123-abc?what=nothing");
+7,12c7
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+<                         RqMethod.PUT,
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+<                     ).toString()
+<                 ).digest(),
+---
+>                 () -> new UploadEntity.Request(requestLine.toString()).digest(),

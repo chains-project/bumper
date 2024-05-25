@@ -1,0 +1,13 @@
+4,6c4,11
+<     if (instances != null)
+<       for (XmlFieldInstance instance : instances)
+<         values.add(instance.getValue());
+---
+>     if (instances != null) {
+>         for (XmlFieldInstance instance : instances) {
+>             String value = instance.getValue();
+>             if (value != null) {
+>                 values.add(value);
+>             }
+>         }
+>     }

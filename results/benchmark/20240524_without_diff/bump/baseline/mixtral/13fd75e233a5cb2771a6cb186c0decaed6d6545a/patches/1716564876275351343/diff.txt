@@ -1,0 +1,23 @@
+1d0
+< // TODO: review this AI generated patch!
+9,11c8,21
+<     blobs.put(
+<         new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+---
+>     CheckedBlobSource checkedBlobSource = new CheckedBlobSource(
+>             new Content.From("data".getBytes()), new Digest.Sha256(digest)
+>     );
+>     blobs.put(checkedBlobSource)
+>             .thenApply(blob -> {
+>                 throw new InvalidDigestException(
+>                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7",
+>                         "Calculated digest does not match provided digest",
+>                         checkedBlobSource.content().digest(),
+>                         checkedBlobSource.content().data()
+>                 );
+>             })
+>             .toCompletableFuture()
+>             .handle(
+32d41
+<             )

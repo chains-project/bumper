@@ -1,0 +1,9 @@
+6d5
+<     @Override
+19d17
+<             SiteRendererSink sink = new SiteRendererSink( context );
+21c19,20
+<             generate( sink, locale );
+---
+>             SCoverageReportGenerator generator = new SCoverageReportGenerator();
+>             generator.generate(context, locale);

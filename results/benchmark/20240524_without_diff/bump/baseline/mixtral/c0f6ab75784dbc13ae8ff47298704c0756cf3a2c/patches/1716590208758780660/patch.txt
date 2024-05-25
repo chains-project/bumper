@@ -1,0 +1,32 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    PropertyAccessor propertyAccessor = new PropertyAccessor();
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(propertyAccessor.getEnabledLanguages(globalConfig))
+            .setClientPid(propertyAccessor.getClientPid(globalConfig))
+            .setExtraProperties(propertyAccessor.extraProperties(globalConfig))
+            .setWorkDir(propertyAccessor.getWorkDir(globalConfig))
+            .setModulesProvider(propertyAccessor.getModulesProvider(globalConfig))
+            .build();
+}
+
+private static class PropertyAccessor {
+    List<String> getEnabledLanguages(GlobalConfig globalConfig) {
+        return globalConfig.getEnabledLanguages();
+    }
+
+    int getClientPid(GlobalConfig globalConfig) {
+        return globalConfig.getClientPid();
+    }
+
+    Properties extraProperties(GlobalConfig globalConfig) {
+        return globalConfig.extraProperties();
+    }
+
+    File getWorkDir(GlobalConfig globalConfig) {
+        return globalConfig.getWorkDir();
+    }
+
+    ModulesProvider getModulesProvider(GlobalConfig globalConfig) {
+        return globalConfig.getModulesProvider();
+    }
+}

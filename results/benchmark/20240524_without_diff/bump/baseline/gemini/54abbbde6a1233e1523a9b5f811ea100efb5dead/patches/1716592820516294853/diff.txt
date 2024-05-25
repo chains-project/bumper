@@ -1,0 +1,2 @@
+12d11
+<             JSch.setLogger(new JschLogger());

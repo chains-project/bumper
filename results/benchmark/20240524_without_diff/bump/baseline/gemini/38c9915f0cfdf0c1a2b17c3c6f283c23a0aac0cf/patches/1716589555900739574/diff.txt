@@ -1,0 +1,13 @@
+1a2,12
+> import com.google.common.collect.ImmutableList;
+> 
+> public interface RtTransaction {
+>     // ...
+>     
+>     default UncheckedText getTransactionId() {
+>         return new UncheckedText(ImmutableList.copyOf(getTransactions()).get(0).getTransactionId());
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

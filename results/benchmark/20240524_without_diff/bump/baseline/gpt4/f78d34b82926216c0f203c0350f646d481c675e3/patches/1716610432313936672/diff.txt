@@ -1,0 +1,15 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+70c62
+<                     if (meta == null) continue;
+---
+>                 if (meta != null) {
+72a65
+>             }

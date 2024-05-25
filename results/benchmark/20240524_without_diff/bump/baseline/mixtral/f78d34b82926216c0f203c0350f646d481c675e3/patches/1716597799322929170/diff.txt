@@ -1,0 +1,79 @@
+1,8c1,11
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import org.bukkit.Bukkit;
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations {
+>     // ...
+> 
+>     public static void magic(Player player, int seconds) {
+12,18c15,17
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>         Bukkit.getScheduler().runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), () -> {
+>             double i = 0;
+>             while (i < Math.PI * 2) {
+34a34,35
+> 
+>                 i += 0.1;
+39,55c40,59
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+<             }
+<         };
+< 
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+<                 runnable.cancel();
+---
+>             Vector direction1 = new Vector(3, 0.7, 0).subtract(center.toVector()).normalize();
+>             Vector direction2 = new Vector(-1.5, 0.7, 2.3).subtract(center.toVector()).normalize();
+>             Vector direction3 = new Vector(-1.5, 0.7, -2.3).subtract(center.toVector()).normalize();
+> 
+>             line(center.clone().add(3, 0.7, 0), center.clone().add(direction1.multiply(3)));
+>             line(center.clone().add(direction1.multiply(3)), center.clone().add(direction2.multiply(1.5)));
+>             line(center.clone().add(direction2.multiply(1.5)), center.clone().add(direction3.multiply(1.5)));
+> 
+>             Vector direction4 = new Vector(-3, 0.7, 0).subtract(center.toVector()).normalize();
+>             Vector direction5 = new Vector(1.5, 0.7, -2.3).subtract(center.toVector()).normalize();
+>             Vector direction6 = new Vector(1.5, 0.7, 2.3).subtract(center.toVector()).normalize();
+> 
+>             line(center.clone().add(direction4.multiply(3)), center.clone().add(direction5.multiply(1.5)));
+>             line(center.clone().add(direction5.multiply(1.5)), center.clone().add(direction6.multiply(1.5)));
+>             line(center.clone().add(direction6.multiply(1.5)), center.clone().add(direction4.multiply(3)));
+>         }, 0L, 1L);
+> 
+>         Bukkit.getScheduler().runTaskLater(PeyangSuperbAntiCheat.getPlugin(), () -> {
+>             Bukkit.getScheduler().cancelTasks(PeyangSuperbAntiCheat.getPlugin(), runnable -> runnable.getTaskId() != 0);
+>         }, seconds);
+57d60
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+58a62
+>     // ...

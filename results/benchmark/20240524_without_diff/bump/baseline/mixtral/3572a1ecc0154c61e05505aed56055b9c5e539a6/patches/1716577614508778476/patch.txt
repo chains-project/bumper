@@ -1,0 +1,12 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+@Override
+public TTransport createTransport() {
+  try {
+    return new TFramedTransport(socket);
+  } catch (TTransportException e) {
+    throw new RuntimeException("Failed to create framed transport", e);
+  }
+}

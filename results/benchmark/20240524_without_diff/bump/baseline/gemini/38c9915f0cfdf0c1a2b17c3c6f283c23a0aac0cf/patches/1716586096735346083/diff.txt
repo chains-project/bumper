@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class WalletsIn {
+> 
+>     public static SolidScalar<String> of(String... wallets) {
+>         return new SolidScalar<>(String.join(",", wallets));
+>     }
+> }
+\ No newline at end of file

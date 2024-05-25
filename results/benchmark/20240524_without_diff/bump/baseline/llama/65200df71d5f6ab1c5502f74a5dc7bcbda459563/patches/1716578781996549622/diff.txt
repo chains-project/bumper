@@ -1,0 +1,6 @@
+1a2
+>     Map<String, String> extraProperties = globalConfig.extraProperties();
+5c6
+<                 .setExtraProperties(globalConfig.extraProperties())
+---
+>             .setExtraProperties(extraProperties)

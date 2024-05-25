@@ -1,0 +1,10 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    PropertyReader propertyReader = new PropertyReader();
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(propertyReader.getEnabledLanguages())
+            .setClientPid(propertyReader.getClientPid())
+            .setExtraProperties(propertyReader.extraProperties())
+            .setWorkDir(propertyReader.getWorkDir())
+            .setModulesProvider(propertyReader.getModulesProvider())
+            .build();
+}

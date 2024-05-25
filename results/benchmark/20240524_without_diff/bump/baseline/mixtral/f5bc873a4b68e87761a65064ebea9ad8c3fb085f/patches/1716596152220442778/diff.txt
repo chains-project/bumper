@@ -1,0 +1,26 @@
+1c1,21
+< import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+\ No newline at end of file
+---
+> import org.codehaus.plexus.components.io.filewalker.FileVisitor;
+> 
+> @SuppressWarnings("PMD.GodClass")
+> public abstract class AbstractThemeMojo extends AbstractTobagoPlugin {
+> 
+>   // ... (other fields and methods)
+> 
+>   @Override
+>   public void execute() throws MojoExecutionException, MojoFailureException {
+>     // ... (other code)
+> 
+>     DirectoryScanner scanner = new DirectoryScanner();
+>     scanner.setBasedir(themeDirectory);
+>     scanner.setIncludes(new String[]{"**/*.xhtml"});
+>     scanner.scan();
+> 
+>     // ... (other code)
+>   }
+> 
+>   // ... (other methods)
+> }
+\ No newline at end of file

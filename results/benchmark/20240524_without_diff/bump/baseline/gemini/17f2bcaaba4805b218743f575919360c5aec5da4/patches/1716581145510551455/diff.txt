@@ -1,0 +1,8 @@
+31c31,35
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         PShape FP = new PShape();
+>                         for (Polygon polygon : JTS) {
+>                                 PShape poly = PGS.polygon(polygon);
+>                                 FP.addChild(poly);
+>                         }

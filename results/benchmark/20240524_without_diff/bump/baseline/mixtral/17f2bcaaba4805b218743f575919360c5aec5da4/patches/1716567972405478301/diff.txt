@@ -1,0 +1,16 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(PApplet.parseInt(System.getProperty("GROUP_SHAPE_CHILD_COUNT")) == 2);
+>     PShape out = PGS_Morphology.round(loadingShape(), 0.5);
+6a7,14
+> 
+> private PShape loadingShape() {
+>     try {
+>         return (PShape) this.getClass().getClassLoader().loadClass("micycle.pgs.PGS_MorphologyGroupShape").getDeclaredMethod("loadingShape").invoke(null);
+>     } catch (Exception e) {
+>         throw new RuntimeException(e);
+>     }
+> }
+\ No newline at end of file

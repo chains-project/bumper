@@ -1,0 +1,11 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String asString() throws IOException {
+  return new JoinedText(
+    Texts.splitBy("\n", read()),
+    "\n"
+  ).asString();
+}

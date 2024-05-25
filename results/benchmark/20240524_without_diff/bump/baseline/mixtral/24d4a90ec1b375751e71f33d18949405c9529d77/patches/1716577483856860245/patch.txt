@@ -1,0 +1,16 @@
+import com.jcabi.s3.Bucket;
+
+@Tv(42)
+public class BucketRule {
+    private final Bucket bucket;
+
+    public BucketRule(Bucket bucket) {
+        this.bucket = bucket;
+    }
+
+    @Override
+    public void test0001() {
+        // Use the bucket object directly instead of the removed method
+        bucket.delete();
+    }
+}

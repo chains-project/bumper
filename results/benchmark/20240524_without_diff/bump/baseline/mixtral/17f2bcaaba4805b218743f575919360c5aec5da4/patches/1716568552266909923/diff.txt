@@ -1,0 +1,20 @@
+0a1,13
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.LinearRing;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.function.Consumer;
+> 
+3a17
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+19c33
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>             final LineString l = GEOM_FACTORY

@@ -1,0 +1,23 @@
+1c1,18
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.Bucket;
+> 
+> @Tv({"1.0", "2.0"})
+> public class BucketRule {
+>     private final Bucket bucket;
+> 
+>     public BucketRule(Bucket bucket) {
+>         this.bucket = bucket;
+>     }
+> 
+>     public void deleteBucketAfterTest() {
+>         try {
+>             // Existing code that uses the 'bucket' object
+>         } finally {
+>             bucket.delete();
+>         }
+>     }
+> }
+\ No newline at end of file

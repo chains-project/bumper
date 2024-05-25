@@ -1,0 +1,19 @@
+1,6d0
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+40c34
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+---
+>             line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); 
+44c38
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+---
+>             line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); 
+52d45
+<             @Override
+58d50
+< 

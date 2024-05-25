@@ -1,0 +1,9 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public TextEnvelope<Double> values() throws IOException {
+  return new Joined<Double>(", ", input.values());
+}

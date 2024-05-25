@@ -1,0 +1,9 @@
+31c31,32
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         //PShape FP = polygonize(nodedEdgesSet);
+>                         Collection<Polygon> FP = polygonize(nodedEdgesSet);
+35c36
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>                         assertEquals(JTS.size(), FP.size());

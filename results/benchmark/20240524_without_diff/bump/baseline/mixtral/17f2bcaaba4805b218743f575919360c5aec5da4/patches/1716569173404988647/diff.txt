@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+---
+>     PShape groupShapeCopy = (PShape) GROUP_SHAPE.getChildren()[0].copy();
+>     groupShapeCopy.addChild(GROUP_SHAPE.getChildren()[1]);
+>     PShape out = PGS_Morphology.buffer(groupShapeCopy, -1);

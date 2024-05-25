@@ -1,0 +1,4 @@
+2c2
+<     void shouldPullPushedByDigest() throws Exception {
+---
+>     public void shouldPullPushedByDigest() throws Exception {

@@ -1,0 +1,8 @@
+2c2
+<     void shouldThrowExceptionOnInvalidPath() {
+---
+>     public void shouldThrowExceptionOnInvalidPath() {
+10c10
+<             new StringContains(false, "Unexpected path")
+---
+>             containsString("Unexpected path")

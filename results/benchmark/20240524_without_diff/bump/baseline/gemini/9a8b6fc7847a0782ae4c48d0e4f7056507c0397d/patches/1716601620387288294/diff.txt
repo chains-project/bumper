@@ -1,0 +1,4 @@
+19c19
+<                         encoder.++setSalt(getSalt());
+---
+>                         encoder.setSalt(getSalt());

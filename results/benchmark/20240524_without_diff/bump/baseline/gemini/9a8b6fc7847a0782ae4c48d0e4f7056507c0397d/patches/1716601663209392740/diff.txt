@@ -1,0 +1,6 @@
+2d1
+<   @Override
+19c18
+<                         encoder.++setSalt(getSalt());
+---
+>                 encoder.setSalt(getSalt());

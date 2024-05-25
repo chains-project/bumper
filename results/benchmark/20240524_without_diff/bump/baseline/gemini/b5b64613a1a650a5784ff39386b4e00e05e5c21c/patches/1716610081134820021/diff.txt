@@ -1,0 +1,5 @@
+18a19,22
+>             } else {
+>                 if (isBlank(step.username) || isBlank(step.password)) {
+>                     throw new IOException("'rtServer' step must include either credentialsId or both username and password");
+>                 }

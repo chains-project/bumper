@@ -1,0 +1,15 @@
+1,6d0
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+49c43
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+---
+>         runnable.runTaskTimer(Bukkit.getPluginManager().getPlugin("PeyangSuperbAntiCheat"), 0L, 1L);
+57c51
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>         }.runTaskLater(Bukkit.getPluginManager().getPlugin("PeyangSuperbAntiCheat"), seconds);

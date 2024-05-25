@@ -1,0 +1,41 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12,13c2,3
+<         // False if it matches an excludes pattern
+<         for (String pattern : config.getJacocoExcludes()) {
+---
+>     boolean included = false;
+>     for (String pattern : config.getJacocoIncludes()) {
+16c6
+<                 return false;
+---
+>             included = true;
+19,20c9
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+<         for (String pattern : config.getJacocoIncludes()) {
+---
+>     for (String pattern : config.getJacocoExcludes()) {
+23c12
+<                 return true;
+---
+>             return false;
+26,27c15
+< 
+<         // True if it is present in the available binaries
+---
+>     if (!included) {
+40,41c28,29
+< 
+<         return false;
+---
+>     }
+>     return included;

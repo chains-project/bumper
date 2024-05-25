@@ -1,0 +1,13 @@
+2c2
+<     void shouldPullPushedByDigest() throws Exception {
+---
+>     public void shouldPullPushedByDigest() throws Exception {
+7c7
+<         MatcherAssert.assertThat(
+---
+>         assertThat(
+9,10c9
+<             new StringContains(
+<                 false,
+---
+>             containsString(

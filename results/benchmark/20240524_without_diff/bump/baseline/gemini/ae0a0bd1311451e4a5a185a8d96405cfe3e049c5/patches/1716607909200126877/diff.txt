@@ -1,0 +1,9 @@
+33c33,38
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(
+>                         true,
+>                         digest + Throwables.getRootCause(throwable).getMessage().substring(
+>                             Throwables.getRootCause(throwable).getMessage().indexOf("Expected: ") + 10
+>                         )
+>                     )

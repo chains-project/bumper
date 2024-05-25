@@ -1,0 +1,14 @@
+16c16,22
+<             tag::value
+---
+>             () -> {
+>                 try {
+>                     tag.value();
+>                 } catch (final RuntimeException e) {
+>                     throw new RuntimeException(e.getMessage().replaceAll(original, "a"), e);
+>                 }
+>             }
+23c29
+<                     new StringContains(false, original)
+---
+>                     new StringContains(false, "a")

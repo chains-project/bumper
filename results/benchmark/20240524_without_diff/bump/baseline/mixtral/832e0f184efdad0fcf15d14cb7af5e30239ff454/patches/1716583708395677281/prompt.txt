@@ -1,0 +1,50 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+the following client code fails:
+```java
+  // TODO: review this AI generated patch!
+	public static ItemStack getCommonButton(String buttonType, String[] args) {
+		Material buttonMaterial;
+		ItemStack pageButton = Material.WHITE_STAINED_GLASS.parseItem();
+		ItemMeta pageMeta = pageButton.getItemMeta();
+		pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		if (buttonType.equalsIgnoreCase("Previous")) {
+			buttonMaterial = Material.RED_STAINED_GLASS;
+		} else if (buttonType.equalsIgnoreCase("Next")) {
+			buttonMaterial = Material.GREEN_STAINED_GLASS;
+		} else if (buttonType.equalsIgnoreCase("Page Number")) {
+			buttonMaterial = Material.LILY_PAD;
+			if (args[0].equals("1")) {
+				pageMeta.addEnchant(Enchantment.getByKey(Enchantments.DAMAGE_ALL).get(), 1, false);
+			}
+		} else {
+			pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+			return pageButton;
+		}
+		pageButton = buttonMaterial.parseItem();
+		pageMeta.setDisplayName(ChatColor.WHITE + CommonDefinitions.getMessage("wwcConfigGUIPageButton"));
+		if (!buttonType.equalsIgnoreCase("Page Number")) {
+			pageMeta.setDisplayName(ChatColor.getByChar('&') + switch (buttonType) {
+				case "Previous" -> "cRed" + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton");
+				case "Next" -> "aGreen" + CommonDefinitions.getMessage("wwcConfigGUINextPageButton");
+				default -> "1";
+			});
+		}
+		pageButton.setItemMeta(pageMeta);
+		return pageButton;
+	}
+```
+
+with the following error message:
+[ERROR] /WorldwideChat/src/main/java/com/expl0itz/worldwidechat/inventory/WWCInventoryManager.java:[86,44] : expected
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CAN remove the Override decorator IF AND ONLY IF the method is not overriding any method in the new version.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+return only the fixed failing method, not the complete class code, you MUST change something in the code.

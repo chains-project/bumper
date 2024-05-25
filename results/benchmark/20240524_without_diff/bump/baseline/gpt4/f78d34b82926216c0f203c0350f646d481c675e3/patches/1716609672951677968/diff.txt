@@ -1,0 +1,9 @@
+49c49,50
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+---
+>         Plugin plugin = Bukkit.getPluginManager().getPlugin("PeyangSuperbAntiCheat");
+>         runnable.runTaskTimer(plugin, 0L, 1L);
+57c58
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>         }.runTaskLater(plugin, seconds);

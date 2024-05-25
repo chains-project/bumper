@@ -1,0 +1,14 @@
+0a1,2
+> import org.cactoos.iterable.IterableOf;
+> import org.cactoos.list.ListOf;
+1a4,12
+> 
+> import java.util.List;
+> 
+> public class RtTransaction {
+>     public List<String> getRtTransaction(String transactionId) {
+>         // ...
+>         return new ListOf<>(new ItemAt<>(0, rtTransaction));
+>     }
+> }
+\ No newline at end of file

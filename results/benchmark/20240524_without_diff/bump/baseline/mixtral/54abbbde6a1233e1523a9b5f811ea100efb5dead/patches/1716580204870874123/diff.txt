@@ -1,0 +1,41 @@
+1,2c1,7
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.ChannelShell;
+> import com.jcraft.jsch.JSchException;
+> import com.jcraft.jsch.Session;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a16
+>     JSch jsch = new JSch();
+13,21c19
+<             final JSch jsch = new JSch();
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+<             final Session session = jsch.getSession(
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+---
+>         Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+24,26c22
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+---
+>         session.setServerAliveInterval((int) TimeUnit.SECONDS.toMillis(Tv.TEN));
+28a25,29
+> 
+>         // Add a workaround for the missing `Channel` class
+>         ChannelExec channel = (ChannelExec) session.openChannel("exec");
+>         ChannelShell channelShell = (ChannelShell) session.openChannel("shell");
+> 
+30c31
+<         } catch (final JSchException ex) {
+---
+>     } catch (JSchException ex) {

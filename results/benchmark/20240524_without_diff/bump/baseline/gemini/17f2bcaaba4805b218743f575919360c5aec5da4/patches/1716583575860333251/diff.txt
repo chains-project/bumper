@@ -1,0 +1,6 @@
+4,5c4,5
+<                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE, 10);
+<                 assertEquals(2, out.getChildCount());
+---
+>                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE.getChild(0), 10);
+>                 assertEquals(1, out.getChildCount());

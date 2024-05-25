@@ -1,0 +1,12 @@
+24c24
+<             (headers, rline) -> CompletableFuture.completedFuture(
+---
+>             (headers, rqline) -> CompletableFuture.completedFuture(
+41,43c41,43
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>         ).handleResponse((status, headers, body) -> {
+>             return CompletableFuture.allOf();
+>         }).toCompletableFuture().join();

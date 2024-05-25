@@ -1,0 +1,41 @@
+1,2c1,5
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSchException;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a14
+>     JSch jsch = new JSch();
+13d16
+<             final JSch jsch = new JSch();
+19c22
+<             final Session session = jsch.getSession(
+---
+>         Session session = jsch.getSession(
+24,26c27
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+---
+>         session.setServerAliveInterval((int) TimeUnit.SECONDS.toMillis(Tv.TEN));
+30c31
+<         } catch (final JSchException ex) {
+---
+>     } catch (JSchException ex) {
+33a35,46
+> 
+> private static class JschLogger implements com.jcraft.jsch.Logger {
+>     @Override
+>     public boolean isEnabled(int level) {
+>         return true;
+>     }
+> 
+>     @Override
+>     public void log(int level, String message) {
+>         Logger.debug(this, message);
+>     }
+> }
+\ No newline at end of file

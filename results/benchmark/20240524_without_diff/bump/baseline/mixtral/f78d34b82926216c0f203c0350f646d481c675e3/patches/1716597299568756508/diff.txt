@@ -1,0 +1,8 @@
+0a1,2
+> import java.util.stream.IntStream;
+> 
+8,9c10
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+<         setValue(sigmoid(sum));
+---
+>     IntStream.range(0, inputData.size()).forEach(i -> setValue(sigmoid(sum + inputData.get(i).getWeightingValue())));

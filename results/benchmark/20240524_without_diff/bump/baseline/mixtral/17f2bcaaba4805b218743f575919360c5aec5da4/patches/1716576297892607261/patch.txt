@@ -1,0 +1,8 @@
+@Test
+void test_PGS_Morphology_buffer() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape parent = (PShape)GROUP_SHAPE.getChildren().get(0);
+    PShape child = (PShape)GROUP_SHAPE.getChildren().get(1);
+    PShape out = PGS_Morphology.buffer(parent, child, -1);
+    assertEquals(2, out.getChildCount());
+}

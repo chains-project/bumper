@@ -1,0 +1,5 @@
+12c12,13
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>                 //++ using the added constructor
+>                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString);

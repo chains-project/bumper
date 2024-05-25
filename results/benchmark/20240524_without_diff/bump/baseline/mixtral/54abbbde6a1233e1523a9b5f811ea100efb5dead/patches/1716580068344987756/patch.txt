@@ -1,0 +1,12 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv("1.0")
+public class SshByPassword {
+    private final Ssh ssh;
+
+    public SshByPassword(String host, int port, String login, String password) {
+        this.ssh = Ssh.create(host, port, login, password);
+    }
+
+    // existing code...
+}

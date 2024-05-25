@@ -1,0 +1,16 @@
+3,6c3,4
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+---
+>             final String token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbGljZSIsImV4cCI6MTY3MjQ4NjY5MX0.654321";
+>             final BearerAuthScheme authScheme = new BearerAuthScheme(
+14c12,16
+<                 )
+---
+>             );
+>             return new DockerSlice(
+>                 new AstoDocker(new InMemoryStorage()),
+>                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+>                 authScheme

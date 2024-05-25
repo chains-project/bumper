@@ -1,0 +1,16 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_radialWarp() {
+    assumeTrue(hasTwoChildren(GROUP_SHAPE));
+    PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+    assertEquals(2, getChildCount(out));
+}
+
+private boolean hasTwoChildren(PShape shape) {
+    return shape.getChildCount() == 2;
+}
+
+private int getChildCount(PShape shape) {
+    return shape.getChildCount();
+}

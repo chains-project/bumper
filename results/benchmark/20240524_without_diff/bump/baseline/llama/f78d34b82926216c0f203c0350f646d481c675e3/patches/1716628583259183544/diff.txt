@@ -1,0 +1,18 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+53d44
+<                         @Override
+82d72
+<             @Override
+88,89c78
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+< 
+---
+>     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (long) config.getLong("npc.seconds"));

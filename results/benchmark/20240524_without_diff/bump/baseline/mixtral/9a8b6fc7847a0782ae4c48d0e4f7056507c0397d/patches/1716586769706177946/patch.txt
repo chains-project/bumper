@@ -1,0 +1,29 @@
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.jasypt.encryption.pbe.config.PBEConfig;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    try {
+        PBEConfig config = new PBEConfig();
+        config.setAlgorithm(getAlgorithm());
+        config.setProviderName(getProviderName());
+        config.setProvider(new BouncyCastleProvider());
+        config.setPasswordCharArray(chars);
+
+        PBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setConfig(config);
+
+        PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+        encoder.setPbeStringEncryptor(encryptor);
+
+        return encoder;
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

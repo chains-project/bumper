@@ -1,0 +1,39 @@
+private boolean classToInclude(String className) {
+    if (config == null || config.getBinJavaDir() == null) {
+        return false;
+    }
+
+    if (config.getJacocoExcludes() != null) {
+        for (String pattern : config.getJacocoExcludes()) {
+            WildcardMatcher matcher = new WildcardMatcher(pattern);
+            if (matcher.matches(className)) {
+                return false;
+            }
+        }
+    }
+
+    if (config.getJacocoIncludes() != null) {
+        for (String pattern : config.getJacocoIncludes()) {
+            WildcardMatcher matcher = new WildcardMatcher(pattern);
+            if (matcher.matches(className)) {
+                return true;
+            }
+        }
+    }
+
+    for (String dir : config.getBinJavaDir()) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+        if (directoryScanner.scan().getClasses().contains(className)) {
+            return true;
+        }
+    }
+
+    for (String dir : config.getBinTestDir()) {
+        DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+        if (directoryScanner.scan().getClasses().contains(className)) {
+            return true;
+        }
+    }
+
+    return false;
+}

@@ -1,0 +1,12 @@
+2,5c2,7
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return new StringMatcher("Status: Downloaded newer image for " + image) {
+>         @Override
+>         protected boolean match(String actual) {
+>             return actual.contains(this.string);
+>         }
+>     };

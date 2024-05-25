@@ -1,0 +1,11 @@
+3,7c3,6
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         )++
+<         .and(new StringContains(false, "Downloaded"));
+---
+>     final String successMessage = String.format("Status: Downloaded newer image for %s", image);
+>     final String downloadMessage = "Downloaded";
+>     return new StringContains(false, successMessage)
+>         .and(new StringContains(false, downloadMessage));

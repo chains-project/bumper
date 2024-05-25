@@ -1,0 +1,11 @@
+private MutationTestSummaryData createSummaryData(
+      final CoverageDatabase coverage, final ClassMutationResults data) {
+    ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+    if (classInfo == null) {
+      // Handle the case when classInfo is null
+      // You can add proper error handling here
+      return null;
+    }
+    return new MutationTestSummaryData(data.getFileName(),
+        data.getMutations(), classInfo);
+  }

@@ -1,0 +1,15 @@
+import org.apache.maven.project.MavenProjectHelper;
+import org.codehaus.plexus.components.interactivity.Prompter;
+
+// ...
+
+@Override
+protected void initProject(MavenSession session)
+    throws MojoExecutionException, IOException {
+
+    MavenProject mavenProject = session.getProject();
+    Prompter prompter = session.getPrompter();
+    MavenProjectHelper projectHelper = session.getProjectHelper();
+
+    // ...
+}

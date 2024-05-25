@@ -1,0 +1,11 @@
+0a1,5
+> import org.bouncycastle.jce.provider.BouncyCastleProvider;
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+> import org.jasypt.properties.PropertyValueEncryptionUtils;
+> 
+8c13,14
+<                         stringEncrypter.setPasswordCharArray(chars);
+---
+>         ((StandardPBEStringEncryptor) stringEncrypter).setProvider(new BouncyCastleProvider());
+>         ((StandardPBEStringEncryptor) stringEncrypter).setPasswordCharArray(chars);

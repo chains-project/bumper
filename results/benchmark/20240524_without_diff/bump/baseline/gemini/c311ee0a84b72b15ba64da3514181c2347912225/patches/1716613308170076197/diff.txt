@@ -1,0 +1,4 @@
+10c10
+<                 String.format("latest: digest: %s", original.digest())
+---
+>                 String.format("latest: digest: %s size: %s", original.digest(), original.size())

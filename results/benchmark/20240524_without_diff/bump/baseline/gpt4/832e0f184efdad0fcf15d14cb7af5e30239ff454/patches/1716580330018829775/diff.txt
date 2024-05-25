@@ -1,0 +1,8 @@
+6c6
+<                         if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+---
+>                 if (main.getActiveTranslator(targetPlayerUUID).getUUID() != null && !main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+27c27
+<                         if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+---
+>                 if (targetTranslator.getUUID() != null && !targetTranslator.getUUID().equals("")) {

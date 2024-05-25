@@ -1,0 +1,9 @@
+1d0
+< @Override
+3c2,5
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     if (from == null || to == null) {
+>       throw new IllegalArgumentException("Both from and to dates must be non-null.");
+>     }
+>     return new Timestamp(from.getTime());

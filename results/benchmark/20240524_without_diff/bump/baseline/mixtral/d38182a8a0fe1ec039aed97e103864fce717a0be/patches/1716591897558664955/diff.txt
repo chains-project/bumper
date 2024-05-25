@@ -1,0 +1,36 @@
+0a1,2
+> import static java.util.stream.Collectors.toList;
+> 
+2a5,10
+>     BearerAuthScheme authScheme = new BearerAuthScheme(
+>             token -> CompletableFuture.completedFuture(
+>                     getUserByName(getUserByToken(token))
+>             ),
+>             ""
+>     );
+6,8c14,19
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+>             authScheme
+>     );
+> }
+> 
+> private Authentication.User getUserByToken(String token) {
+>     return Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+12,15c23,31
+<                     ),
+<                     ""
+<                 )
+<             );
+---
+>             .orElseThrow(() -> new RuntimeException("User not found"));
+> }
+> 
+> private Authentication.User getUserByName(String name) {
+>     return Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>             .filter(user -> name.equals(user.name()))
+>             .map(user -> new Authentication.User(user.name()))
+>             .findFirst()
+>             .orElseThrow(() -> new RuntimeException("User not found"));

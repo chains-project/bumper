@@ -1,0 +1,11 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+14,15c14,16
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             SortedMap<MOScope, ManagedObject> newReg = new TreeMap<>(reg);
+>             newReg.put(contextScope, group);
+>             registry.set(server, newReg);

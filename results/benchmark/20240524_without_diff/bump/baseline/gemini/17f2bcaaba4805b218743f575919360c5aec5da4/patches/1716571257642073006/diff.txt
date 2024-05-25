@@ -1,0 +1,2 @@
+3d2
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);

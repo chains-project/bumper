@@ -1,0 +1,21 @@
+0a1,8
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Assume;
+> import org.junit.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code...
+> 
+3,4c11,13
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+---
+>         Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+>         PShape pgs = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+>         PShape out = (PShape) pgs.getChild(0);
+6a16,18
+> 
+>     // existing code...
+> }
+\ No newline at end of file

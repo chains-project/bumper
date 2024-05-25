@@ -1,0 +1,24 @@
+8,12c8,11
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+---
+>         new Slice.Simple(
+>             (line, headers, body) -> {
+>                 cline.set(line);
+>                 return new RsStatus(RsStatus.OK);
+14,23c13
+< 
+<                 @Override
+<                 public Response response(
+<                     final String line,
+<                     final Iterable<Map.Entry<String, String>> headers,
+<                     final Publisher<ByteBuffer> body
+<                 ) {
+<                     return StandardRs.OK;
+<                 }
+<             },
+---
+>         ),

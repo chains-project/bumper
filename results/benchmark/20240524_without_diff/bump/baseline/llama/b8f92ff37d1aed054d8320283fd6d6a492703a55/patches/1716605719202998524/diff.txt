@@ -1,0 +1,22 @@
+4,5c4,10
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>         File file = new File(directory);
+>         File[] files = file.listFiles((dir, name) -> name.endsWith(".class"));
+>         List<String> classNames = new ArrayList<>();
+>         for (File classFile : files) {
+>             classNames.add(classFile.getName().replace(".class", ""));
+>         }
+>         includes.append(String.join(":", classNames)).append(":");
+9,10c14,20
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>             File file = new File(directory);
+>             File[] files = file.listFiles((dir, name) -> name.endsWith(".class"));
+>             List<String> classNames = new ArrayList<>();
+>             for (File classFile : files) {
+>                 classNames.add(classFile.getName().replace(".class", ""));
+>             }
+>             includes.append(String.join(":", classNames)).append(":");

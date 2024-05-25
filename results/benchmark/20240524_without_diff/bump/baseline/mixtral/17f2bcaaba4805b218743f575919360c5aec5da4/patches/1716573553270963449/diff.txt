@@ -1,0 +1,26 @@
+0a1,7
+> import processing.core.PApplet;
+> import processing.core.PShape;
+> import static processing.core.PConstants.CLOSE;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // ... other code ...
+> 
+4a12,17
+>         PApplet.runSketch(new Sketch() {
+>             public void settings() {
+>                 size(100, 100);
+>             }
+> 
+>             public void draw() {
+10c23,25
+<                 mink.endShape(PConstants.CLOSE);
+---
+>                 mink.endShape(CLOSE);
+>             }
+>         }, this);
+14a30,32
+> 
+>     // ... other code ...
+> }
+\ No newline at end of file

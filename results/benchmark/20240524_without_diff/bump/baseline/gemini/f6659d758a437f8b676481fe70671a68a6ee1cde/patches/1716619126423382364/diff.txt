@@ -1,0 +1,6 @@
+21,22c21,22
+<         try {
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+---
+>     try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+>         return yaml.load(reader);

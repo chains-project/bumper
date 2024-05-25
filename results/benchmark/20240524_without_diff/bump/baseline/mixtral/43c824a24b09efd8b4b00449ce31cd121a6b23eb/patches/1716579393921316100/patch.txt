@@ -1,0 +1,10 @@
+private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+    List<?> list = extractList(cache, branch);
+    if (list != null && !list.isEmpty()) {
+        Object firstElement = list.get(0);
+        if (firstElement instanceof String) {
+            return (String) firstElement;
+        }
+    }
+    return null;
+}

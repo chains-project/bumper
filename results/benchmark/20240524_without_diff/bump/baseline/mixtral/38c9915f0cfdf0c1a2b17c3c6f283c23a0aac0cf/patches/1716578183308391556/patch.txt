@@ -1,0 +1,5 @@
+import org.cactoos.Scalar;
+
+Scalar<Double> solidScalar(double value) {
+  return new SolidScalar<>(value);
+}

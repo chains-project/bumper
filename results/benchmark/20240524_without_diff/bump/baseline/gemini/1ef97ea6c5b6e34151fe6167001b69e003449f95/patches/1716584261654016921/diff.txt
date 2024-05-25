@@ -1,0 +1,6 @@
+2a3
+>   if (from instanceof Timestamp && to instanceof Timestamp) {
+3a5,7
+>   } else {
+>     return new Timestamp(super.between(new Timestamp(from.getTime()), new Timestamp(to.getTime())).getTime());
+>   }

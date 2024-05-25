@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<     final AstoBlobs blobs = new AstoBlobs(
+---
+>     AstoBlobs blobs = new AstoBlobs(
+8a8
+>     blobs = blobs.withDigestCheck(true); // add this line

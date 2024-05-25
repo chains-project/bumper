@@ -1,0 +1,12 @@
+0a1,5
+> import org.processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+4c9,11
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+---
+>     PShape parent = GROUP_SHAPE.getChildren()[0];
+>     PShape child = GROUP_SHAPE.getChildren()[1];
+>     PShape out = PGS_Morphology.buffer(parent, child, -1);

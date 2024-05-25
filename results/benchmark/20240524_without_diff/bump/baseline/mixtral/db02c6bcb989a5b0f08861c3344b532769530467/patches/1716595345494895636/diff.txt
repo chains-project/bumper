@@ -1,0 +1,4 @@
+3c3
+<         description.appendText("a string containing ").appendValue(substring);
+---
+>     description.appendText("a string containing ").appendText(substring.toString());

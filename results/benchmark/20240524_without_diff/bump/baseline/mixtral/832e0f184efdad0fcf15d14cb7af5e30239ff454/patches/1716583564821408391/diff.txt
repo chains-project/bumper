@@ -1,0 +1,30 @@
+0a1,7
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> 
+> import java.util.Arrays;
+> 
+2c9
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>         ItemStack pageButton = MaterialData.fromData(0).createItemStack();
+6c13
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+---
+>                 pageButton = new ItemStack(Material.RED_STAINED_GLASS);
+10c17
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+---
+>                 pageButton = new ItemStack(Material.GREEN_STAINED_GLASS);
+14c21
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+---
+>                 pageButton = new ItemStack(Material.LILY_PAD);
+18c25
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                         pageMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+23d29
+<                 

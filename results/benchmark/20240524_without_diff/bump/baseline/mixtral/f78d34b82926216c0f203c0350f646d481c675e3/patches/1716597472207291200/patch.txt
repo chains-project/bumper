@@ -1,0 +1,9 @@
+import java.util.stream.IntStream;
+
+//...
+
+public void input(ArrayList<Input> inputData)
+{
+    IntStream.range(0, inputData.size()).parallel().forEach(i -> input(inputData.get(i).getWeightingValue()));
+    setValue(sigmoid(sum));
+}

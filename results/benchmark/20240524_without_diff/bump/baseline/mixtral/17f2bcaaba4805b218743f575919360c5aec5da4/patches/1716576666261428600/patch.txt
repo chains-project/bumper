@@ -1,0 +1,12 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_chaikinCut() {
+    assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+    PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5f, 2);
+    if (out != null) {
+        assertEquals(2, out.getChildCount());
+    } else {
+        fail("Chaikin cut operation returned a null shape.");
+    }
+}

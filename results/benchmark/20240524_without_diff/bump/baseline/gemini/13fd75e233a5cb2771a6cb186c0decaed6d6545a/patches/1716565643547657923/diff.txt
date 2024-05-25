@@ -1,0 +1,5 @@
+5,6c5
+<             String.format("Status: Downloaded newer image for %s", image) ++
+<                 .concat(" with digest ")
+---
+>             String.format("Status: Downloaded newer image for %s", image) + " with digest "

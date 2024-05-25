@@ -1,0 +1,7 @@
+import org.cactoos.Scalar;
+import org.cactoos.io.IoChecked;
+
+@Override
+public Scalar<String> wallet(String id) throws IOException {
+    return new IoChecked<>(() -> new String(Files.readAllBytes(Paths.get(getWalletDir(), id))));
+}

@@ -1,0 +1,10 @@
+2a3,4
+>     ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+>     if (classInfo == null) {
+4c6,9
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>           data.getMutations(), Collections.emptyList());
+>     }
+>     return new MutationTestSummaryData(data.getFileName(),
+>         data.getMutations(), Collections.singletonList(classInfo));

@@ -1,0 +1,16 @@
+3,5c3
+<         DeleteReleaseBundleRequest request;
+<         if (StringUtils.isNotBlank(distRules)) {
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+---
+>         if (StringUtils.isNotBlank(distRules) && (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName))) {
+7a6
+> 
+9,13c8
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+<         } else {
+<             request = new DeleteReleaseBundleRequest();
+<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+<         }
+---
+>         DeleteReleaseBundleRequest request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);

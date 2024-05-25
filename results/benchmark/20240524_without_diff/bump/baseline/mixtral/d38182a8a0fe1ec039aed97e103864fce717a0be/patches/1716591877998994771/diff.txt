@@ -1,0 +1,17 @@
+2a3,6
+>     BiFunction<String, Map<String, User>, Optional<User>> tokenValidator =
+>         (token, users) -> users.values().stream()
+>             .filter(user -> token.equals(token(user)))
+>             .findFirst();
+8,11c12,17
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+<                             .findFirst()
+---
+>                 tokenValidator.apply(token, Map.of(
+>                     TestAuthentication.ALICE.name(), TestAuthentication.ALICE,
+>                     TestAuthentication.BOB.name(), TestAuthentication.BOB
+>                 ))
+>                 .map(User::name)
+>                 .orElse(null)

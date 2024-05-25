@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+12a12
+>                 String message = Throwables.getRootCause(throwable).getMessage();
+20c20
+<                         Throwables.getRootCause(throwable),
+---
+>                         throwable,
+25c25
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                         message,
+32c32
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                         message,

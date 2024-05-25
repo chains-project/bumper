@@ -1,0 +1,39 @@
+1d0
+< // TODO: review this AI generated patch!
+9,12c8,15
+<     blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+---
+>     final Content content = new Content.From("data".getBytes());
+>     final Digest calcDigest = new Digest.Sha256(content.checksum());
+>     final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(content, calcDigest);
+>     blobs.put(checkedBlobSource)
+>             .thenAccept(blob -> {
+>                 fail("Expected InvalidDigestException");
+>             })
+>             .exceptionally(throwable -> {
+20c23
+<                         Throwables.getRootCause(throwable),
+---
+>                         throwable,
+25c28
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                         throwable.getMessage(),
+27c30
+<                                 "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                                 calcDigest.value()
+32c35
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                         throwable.getMessage(),
+35,37c38,39
+<                 return CompletableFuture.allOf();
+<             }
+<     ).join();
+---
+>                 return null;
+>             });

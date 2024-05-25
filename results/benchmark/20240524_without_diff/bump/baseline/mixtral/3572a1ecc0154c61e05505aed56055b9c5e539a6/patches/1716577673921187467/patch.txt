@@ -1,0 +1,10 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static void configureFastFramedTransport(TTransport transport) {
+    if (transport instanceof TFramedTransport) {
+        TFramedTransport framedTransport = (TFramedTransport) transport;
+        framedTransport.setFrameSize(16 * 1024);
+    }
+}

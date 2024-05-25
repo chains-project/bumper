@@ -1,0 +1,28 @@
+import org.bouncycastle.crypto.DataLengthException;
+import org.bouncycastle.crypto.StreamCipher;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.util.Arrays;
+
+import java.io.IOException;
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+    KeyParameter macKey = initRecordMAC(decryptCipher);
+
+    byte[] calculatedMAC = new byte[receivedMAC.length];
+    try {
+        int macLength = decryptCipher.getOutputSize(calculatedMAC.length);
+        decryptCipher.processBytes(additionalData, 0, additionalData.length, calculatedMAC, 0);
+        decryptCipher.doFinal(calculatedMAC, macLength);
+    } catch (DataLengthException e) {
+        throw new IOException("Error calculating MAC", e);
+    }
+
+    if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+        throw new IOException("Bad MAC");
+    }
+
+    byte[] output = new byte[ciphertext.length];
+    decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+
+    return output;
+}

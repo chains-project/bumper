@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+3d1
+<     String expectedString = String.format("latest: digest: %s", this.image.digest());
+4a3,4
+>         private final String expectedString = String.format("latest: digest: %s", image.digest());
+> 

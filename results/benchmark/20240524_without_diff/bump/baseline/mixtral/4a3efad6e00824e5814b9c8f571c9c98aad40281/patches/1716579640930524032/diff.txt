@@ -1,0 +1,11 @@
+1c1,6
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> if (eu.europa.esig.dss.pades.CertificationPermission.class.getClassLoader() != null) {
+>     CertificationPermission certificationPermission = new CertificationPermission();
+>     // Use the 'certificationPermission' object here
+> } else {
+>     // Handle the missing class here
+> }
+\ No newline at end of file

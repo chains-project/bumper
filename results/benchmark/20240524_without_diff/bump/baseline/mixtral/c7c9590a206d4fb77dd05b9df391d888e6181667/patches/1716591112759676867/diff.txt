@@ -1,0 +1,25 @@
+1c1,20
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> @SuppressWarnings("deprecation")
+> @Override
+> protected void doRenderSectionHeading(int level, String id, String title, boolean isOdd, RenderingContext renderingContext) throws IOException {
+>     Sink sink = renderingContext.getSink();
+>     if (level == 1) {
+>         sink.section1(id, title);
+>     } else if (level == 2) {
+>         sink.section2(id, title);
+>     } else if (level == 3) {
+>         sink.section3(id, title);
+>     } else if (level == 4) {
+>         sink.section4(id, title);
+>     } else if (level == 5) {
+>         sink.section5(id, title);
+>     } else if (level == 6) {
+>         sink.section6(id, title);
+>     }
+> }
+\ No newline at end of file

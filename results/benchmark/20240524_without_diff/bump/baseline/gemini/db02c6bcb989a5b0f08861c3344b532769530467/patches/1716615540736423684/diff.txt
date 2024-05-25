@@ -1,0 +1,7 @@
+21,23c21,22
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                 Collections.singletonList(
+>                     new StringContains(true, "Invalid tag")

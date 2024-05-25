@@ -1,0 +1,11 @@
+import java.util.stream.IntStream;
+
+/**
+ * ReLU関数で値を強めて出力系に入れる。
+ *
+ * @param inputData InputクラスのArrayListデータ。
+ */
+public void input(ArrayList<Input> inputData)
+{
+    IntStream.range(0, inputData.size()).forEach(i -> setValue(sigmoid(sum + inputData.get(i).getWeightingValue())));
+}

@@ -1,0 +1,4 @@
+7a8,10
+>     if (server == null || step == null) {
+>         throw new IOException("Server or step is null");
+>     }

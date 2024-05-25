@@ -1,0 +1,23 @@
+import static java.util.stream.Collectors.toList;
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
+@Override
+public Slice slice(final String action) {
+    List<Authentication.User> users = Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+        .map(user -> new Authentication.User(user.name()))
+        .collect(toList());
+    Function<String, CompletableFuture<Authentication.User>> authScheme =
+        token -> CompletableFuture.completedFuture(
+            users.stream()
+                .filter(user -> token.equals(token(user)))
+                .findFirst()
+                .orElse(null)
+        );
+    return new DockerSlice(
+        new AstoDocker(new InMemoryStorage()),
+        new Permissions.Single(TestAuthentication.ALICE.name(), action),
+        new BearerAuthScheme(authScheme, "")
+    );
+}

@@ -1,0 +1,4 @@
+6c6
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         MatcherAssert.assertThat(output, CoreMatchers.containsString("Pushed"));

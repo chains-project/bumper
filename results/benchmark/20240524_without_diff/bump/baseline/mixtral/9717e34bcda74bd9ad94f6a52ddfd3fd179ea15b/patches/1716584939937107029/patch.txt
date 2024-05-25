@@ -1,0 +1,6 @@
+import com.jcabi.github.Github;
+
+@Tv(40)
+public class MkGithub implements Github {
+    // existing code
+}

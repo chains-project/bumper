@@ -1,0 +1,11 @@
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+    if (cache == null) {
+        return Collections.emptyList();
+    }
+    List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+    List<String> values = new ArrayList<>();
+    if (instances != null)
+      for (XmlFieldInstance instance : instances)
+        values.add(instance.getValue());
+    return values;
+}

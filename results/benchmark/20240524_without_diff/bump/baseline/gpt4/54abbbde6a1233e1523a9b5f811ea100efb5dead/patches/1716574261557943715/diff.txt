@@ -1,0 +1,6 @@
+2d1
+<     @Override
+42c41
+<             return this.session(jsch);
+---
+>             return this.connect(jsch);

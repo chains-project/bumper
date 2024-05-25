@@ -1,0 +1,31 @@
+25,28c25
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>                 new CustomStringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+33c30
+<                     new StringContains(true, digest)
+---
+>                 new CustomStringContains(digest)
+38a36,53
+> 
+> private static class CustomStringContains implements ArgumentMatcher<String> {
+>     private final String expectedSubstring;
+> 
+>     public CustomStringContains(String expectedSubstring) {
+>         this.expectedSubstring = expectedSubstring;
+>     }
+> 
+>     @Override
+>     public boolean matches(String actual) {
+>         return actual.contains(expectedSubstring);
+>     }
+> 
+>     @Override
+>     public void describeTo(Description description) {
+>         description.appendText("a string containing ").appendValue(expectedSubstring);
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,10 @@
+1d0
+< @Override
+38c37
+<                                         translateChatOutgoing.processCommand();
+---
+>                                         ++translateChatOutgoing.processCommand();
+60c59
+<                                 translateChatIncoming.processCommand();
+---
+>                                 ++translateChatIncoming.processCommand();

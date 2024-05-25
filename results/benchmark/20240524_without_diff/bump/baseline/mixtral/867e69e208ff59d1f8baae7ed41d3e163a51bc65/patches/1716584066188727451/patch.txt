@@ -1,0 +1,7 @@
+import org.apache.thrift.transport.TTransport;
+
+// Use a different constructor that takes a TTransport instead of a TFramedTransport
+public SimpleThriftLogger(TTransport transport) {
+  this.transport = transport;
+  this.protocol = new TBinaryProtocol(transport);
+}

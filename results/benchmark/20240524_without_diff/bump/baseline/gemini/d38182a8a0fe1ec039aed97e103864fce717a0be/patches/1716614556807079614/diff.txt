@@ -1,0 +1,14 @@
+3,5c3
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>     final AuthenticationScheme scheme =
+14c12,16
+<                 )
+---
+>         );
+>     return new DockerSlice(
+>         new AstoDocker(new InMemoryStorage()),
+>         new Permissions.Single(TestAuthentication.ALICE.name(), action),
+>         scheme

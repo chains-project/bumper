@@ -1,0 +1,15 @@
+0a1,7
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.util.GeometricShapeFactory;
+> 
+3a11,12
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>     GeometricShapeFactory PGS = new GeometricShapeFactory();
+19c28
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>             final LineString l = GEOM_FACTORY

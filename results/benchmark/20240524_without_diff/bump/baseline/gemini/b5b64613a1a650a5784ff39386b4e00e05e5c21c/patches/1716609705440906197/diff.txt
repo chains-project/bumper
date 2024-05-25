@@ -1,0 +1,15 @@
+18a19,32
+>             } else {
+>                 if (isNotBlank(step.username) && isNotBlank(step.password)) {
+>                     // Use provided username and password
+>                 } else {
+>                     // Use credentialsId to retrieve username and password
+>                     Credentials credentials = CredentialsMatchers.firstOrNull(
+>                             hudson.plugins.sshslaves.verifiers.NonInteractiveUsernamePasswordCredentialsImpl.class,
+>                             server.getCredentialsId(), hudson.model.Item.class, step, step.getDescriptor().isUseSecretToken());
+>                     if (credentials == null) {
+>                         throw new IOException("CredentialsId '" + server.getCredentialsId() + "' not found");
+>                     }
+>                     step.username = credentials.getUsername();
+>                     step.password = credentials.getPassword().getSecret();
+>                 }

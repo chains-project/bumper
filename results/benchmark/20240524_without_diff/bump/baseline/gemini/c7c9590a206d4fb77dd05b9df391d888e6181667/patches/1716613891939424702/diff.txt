@@ -1,0 +1,6 @@
+6d5
+<     @Override
+23c22
+<         catch ( MavenReportException e )
+---
+>         catch ( Exception e )

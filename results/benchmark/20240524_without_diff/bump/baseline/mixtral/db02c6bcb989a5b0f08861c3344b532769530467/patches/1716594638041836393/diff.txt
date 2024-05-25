@@ -1,0 +1,18 @@
+6c6,9
+<                 () -> new UploadEntity.Request(
+---
+>             () -> {
+>               String query = "?what=nothing";
+>               String path = "/v2/my-repo/blobs/uploads/123-abc";
+>               UploadEntity.Request request = new UploadEntity.Request(
+9c12
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+---
+>                       path + query
+11c14,17
+<                 ).digest()
+---
+>               );
+>               request.digest();
+>               return null;
+>             }

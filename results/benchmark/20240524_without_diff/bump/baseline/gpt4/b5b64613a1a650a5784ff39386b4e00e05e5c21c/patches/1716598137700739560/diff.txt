@@ -1,0 +1,13 @@
+8,9c8
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl())) {
+11a11,14
+>     if (step != null) {
+>         if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+>             throw new IOException("Step URL is missing");
+>         }
+20a24
+> }
+\ No newline at end of file

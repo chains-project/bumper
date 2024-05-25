@@ -1,0 +1,25 @@
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    try {
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            Security.addProvider(new BouncyCastleProvider());
+        }
+        stringEncrypter = new StandardPBEStringEncryptor();
+        stringEncrypter.setPasswordCharArray(chars);
+
+        stringEncrypter.setAlgorithm(getAlgorithm());
+
+        PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+        encoder.setPbeStringEncryptor(stringEncrypter);
+
+        return encoder;
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

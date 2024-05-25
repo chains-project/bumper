@@ -1,0 +1,6 @@
+4,5c4,5
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+<                 assertEquals(2, out.getChildCount());
+---
+>     PShape parent = PGS_Morphology.buffer(GROUP_SHAPE, -1, true);
+>     assertEquals(2, parent.getChildCount());

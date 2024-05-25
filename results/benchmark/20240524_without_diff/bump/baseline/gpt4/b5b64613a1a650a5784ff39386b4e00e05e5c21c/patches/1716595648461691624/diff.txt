@@ -1,0 +1,6 @@
+4,5c4,5
+<         if (StringUtils.isNotBlank(distRules)) {
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+---
+>         if (distRules != null && !distRules.isEmpty()) {
+>             if (countryCodes != null && !countryCodes.isEmpty() || (siteName != null && !siteName.isEmpty()) || (cityName != null && !cityName.isEmpty())) {

@@ -1,0 +1,13 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+15c7
+<         WaveCreator ypp = new WaveCreator(10.0, 100.0, 10.0);
+---
+>     WaveCreator ypp = new WaveCreator(10.0, 10.0, 10.0); // changed to 10.0 for y and z

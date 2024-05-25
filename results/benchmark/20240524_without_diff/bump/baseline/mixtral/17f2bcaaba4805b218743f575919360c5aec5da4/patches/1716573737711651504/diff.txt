@@ -1,0 +1,38 @@
+0a1,10
+> import processing.core.PApplet;
+> import processing.core.PConstants;
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Assume;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ... other code ...
+> 
+3c13
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>         Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+12,13c22,40
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+<                 assertEquals(2, out.getChildCount());
+---
+>         PApplet.runSketch(new Sketch() {
+>             PShape out;
+> 
+>             @Override
+>             public void settings() {
+>                 size(100, 100);
+>             }
+> 
+>             @Override
+>             public void draw() {
+>                 out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+>             }
+>         });
+> 
+>         assertEquals(2, PApplet.getGraphics().g.pjs.g.sketch.out.getChildCount());
+>     }
+> 
+>     // ... other code ...
+> 

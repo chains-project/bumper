@@ -1,0 +1,14 @@
+private DeleteReleaseBundleRequest createRequest(String distRules, List<String> countryCodes, String siteName,
+                                                 String cityName, boolean dryRun, boolean deleteFromDist) throws IOException {
+    DeleteReleaseBundleRequest request = new DeleteReleaseBundleRequest();
+    if (StringUtils.isNotBlank(distRules)) {
+        ObjectMapper mapper = createMapper();
+        request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+    } else {
+        request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+    }
+    request.setDryRun(dryRun);
+    request.setOnSuccess(deleteFromDist ?
+            DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+    return request;
+}

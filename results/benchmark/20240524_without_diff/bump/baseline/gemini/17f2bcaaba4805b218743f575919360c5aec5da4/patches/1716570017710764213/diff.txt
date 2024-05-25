@@ -1,0 +1,6 @@
+11a12,16
+>                 // Add a child to the mink shape
+>                 final PShape child = new PShape(PShape.GROUP);
+>                 child.addChild(mink);
+>                 mink.addChild(child);
+> 

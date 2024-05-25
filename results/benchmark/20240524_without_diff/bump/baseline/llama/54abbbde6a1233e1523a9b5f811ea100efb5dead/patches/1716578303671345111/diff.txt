@@ -1,0 +1,32 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,14c11,12
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         new com.jcraft.jsch.Logger().setEnabled(true);
+>         final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+25c23,32
+<             jsch.setHostKeyRepository(new EasyRepo());
+---
+>         jsch.setHostKeyRepository(new com.jcraft.jsch.UserInfo() {
+>             @Override
+>             public String getPassword() {
+>                 return null;
+>             }
+>             @Override
+>             public boolean promptYesNo(String str) {
+>                 return true;
+>             }
+>         });
+28a36
+>             byte[] passphraseBytes = this.passphrase.getBytes(StandardCharsets.UTF_8);
+33c41
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+---
+>                 passphraseBytes

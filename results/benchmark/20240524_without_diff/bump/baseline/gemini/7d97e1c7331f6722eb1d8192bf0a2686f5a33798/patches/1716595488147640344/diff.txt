@@ -1,0 +1,16 @@
+1a2,15
+> 
+> public class RegionITCase {
+> 
+>   public void testCreate() throws Exception {
+>     // Given
+>     Tv tv = new Tv();
+> 
+>     // When
+>     tv.create();
+> 
+>     // Then
+>     // ...
+>   }
+> }
+\ No newline at end of file

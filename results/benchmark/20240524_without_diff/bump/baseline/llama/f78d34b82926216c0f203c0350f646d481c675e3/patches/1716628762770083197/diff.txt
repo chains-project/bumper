@@ -1,0 +1,40 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+12,13c4
+<         final double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+<             .get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+---
+>     final double radius = reachMode ? config.getDouble("npc.reachRange") : config.getDoubleList("npc.range").get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+33,34c24
+<                         rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+<                             .get(0.01, true);
+---
+>                     rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin")).get(0.01, true);
+47,48c37
+<                     ((CraftPlayer) player).getHandle().playerConnection
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                 ((CraftPlayer) player).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+53d41
+<                         @Override
+56,57c44
+<                             Bukkit.getOnlinePlayers()
+<                                 .parallelStream()
+---
+>                         Bukkit.getOnlinePlayers().parallelStream()
+61,62c48
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                                 ((CraftPlayer) p).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+82d67
+<             @Override
+89d73
+< 

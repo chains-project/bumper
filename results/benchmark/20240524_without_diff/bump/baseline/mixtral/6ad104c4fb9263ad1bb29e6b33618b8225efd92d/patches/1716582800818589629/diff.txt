@@ -1,0 +1,10 @@
+6c6
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = createPolyKey(macKey, additionalData, ciphertext);
+15a16,20
+>   }
+> 
+>   private byte[] createPolyKey(KeyParameter macKey, byte[] additionalData, byte[] ciphertext) {
+>     // implementation depends on the PolyKeyCreator class
+>     // you can use reflection or other techniques to call the original method

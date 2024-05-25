@@ -1,0 +1,33 @@
+0a1,5
+> import static java.util.stream.Collectors.toList;
+> import java.util.List;
+> import java.util.function.Function;
+> import java.util.stream.Stream;
+> 
+3,6c8,11
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+---
+>     List<Authentication.User> users = Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>         .map(user -> new Authentication.User(user.name()))
+>         .collect(toList());
+>     Function<String, CompletableFuture<Authentication.User>> authScheme =
+8c13
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+>             users.stream()
+10d14
+<                             .map(user -> new Authentication.User(user.name()))
+12,14c16,21
+<                     ),
+<                     ""
+<                 )
+---
+>                 .orElse(null)
+>         );
+>     return new DockerSlice(
+>         new AstoDocker(new InMemoryStorage()),
+>         new Permissions.Single(TestAuthentication.ALICE.name(), action),
+>         new BearerAuthScheme(authScheme, "")

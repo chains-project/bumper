@@ -1,0 +1,4 @@
+2c2
+<     void shouldPullPushedByTag() throws Exception {
+---
+> public void shouldPullPushedByTag() throws Exception {

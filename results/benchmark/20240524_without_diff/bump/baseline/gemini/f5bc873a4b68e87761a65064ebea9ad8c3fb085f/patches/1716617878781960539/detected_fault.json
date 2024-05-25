@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 615634843,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/AbstractThemeMojo.java:[24,32] package org.apache.maven.project does not exist",
+        "client_file_path": "/myfaces-tobago/tobago-tool/tobago-theme-plugin/src/main/java/org/apache/myfaces/tobago/maven/plugin/AbstractThemeMojo.java",
+        "client_line_position": "24"
+    },
+    "client_end_line_number": 24,
+    "client_line_number": 24,
+    "method_code": "import org.apache.maven.project.MavenProject;",
+    "qualified_code": "import org.apache.maven.project.MavenProject;",
+    "method_name": "import"
+}

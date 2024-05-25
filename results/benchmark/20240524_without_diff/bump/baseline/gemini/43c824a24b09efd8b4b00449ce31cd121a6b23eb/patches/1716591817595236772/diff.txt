@@ -1,0 +1,4 @@
+3c3
+<     if (!list.isEmpty())
+---
+>     if (list != null && !list.isEmpty())

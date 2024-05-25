@@ -1,0 +1,12 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+---
+>     assumeTrue(getShapeWithTwoChildren().getChildCount() == 2);
+>     PShape out = PGS_Morphology.radialWarp(getShapeWithTwoChildren(), 10, 1, false);
+6a7,10
+> 
+> private PShape getShapeWithTwoChildren() {
+>     return GROUP_SHAPE; // replace with the actual object that has two children
+> }
+\ No newline at end of file

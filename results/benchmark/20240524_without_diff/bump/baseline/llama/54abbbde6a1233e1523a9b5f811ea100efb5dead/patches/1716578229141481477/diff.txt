@@ -1,0 +1,30 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,24c11,12
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+---
+>         Logger.debug(this, "Opening SSH session...");
+>         JSch jsch = new JSch();
+36,41d23
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );

@@ -1,0 +1,12 @@
+1c1,7
+< import static org.junit.jupiter.api.Assertions.assertEquals;
+\ No newline at end of file
+---
+>   import org.junit.jupiter.api.Assertions;
+> 
+>   public class PGS_MorphologyGroupShapeTests {
+>       public void someTestMethod() {
+>           Assertions.assertEquals(1, 1);
+>       }
+>   }
+\ No newline at end of file

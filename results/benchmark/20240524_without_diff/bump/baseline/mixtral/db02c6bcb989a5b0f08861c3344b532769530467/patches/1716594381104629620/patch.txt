@@ -1,0 +1,40 @@
+@Test
+void failsOnDigestMismatch() {
+    final InMemoryStorage storage = new InMemoryStorage();
+    final AstoBlobs blobs = new AstoBlobs(
+            storage, new DefaultLayout(), new RepoName.Simple("any")
+    );
+    final String digest = "123";
+    final Content content = new Content.From("data".getBytes());
+    final Digest calcDigest = new Digest.Sha256(content.checksum());
+    final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(content, calcDigest);
+    blobs.put(checkedBlobSource)
+            .thenAccept(blob -> {
+                fail("Expected InvalidDigestException");
+            })
+            .exceptionally(throwable -> {
+                MatcherAssert.assertThat(
+                        "Exception thrown",
+                        throwable,
+                        new IsNot<>(new IsNull<>())
+                );
+                MatcherAssert.assertThat(
+                        "Exception is InvalidDigestException",
+                        throwable,
+                        new IsInstanceOf(InvalidDigestException.class)
+                );
+                MatcherAssert.assertThat(
+                        "Exception message contains calculated digest",
+                        throwable.getMessage(),
+                        new JUnit413StringContains(
+                                calcDigest.value()
+                        )
+                );
+                MatcherAssert.assertThat(
+                        "Exception message contains expected digest",
+                        throwable.getMessage(),
+                        new JUnit413StringContains(digest)
+                );
+                return null;
+            });
+}

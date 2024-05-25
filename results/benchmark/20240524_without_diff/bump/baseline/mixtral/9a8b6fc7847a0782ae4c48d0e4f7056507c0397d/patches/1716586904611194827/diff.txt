@@ -1,0 +1,14 @@
+1c1,9
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.ConfigurablePasswordEncoder;
+> 
+> @Override
+> public PasswordEncoder passwordEncoder() {
+>     ConfigurablePasswordEncoder encoder = new ConfigurablePasswordEncoder();
+>     encoder.setAlgorithm("SHA-256");
+>     encoder.setIterations(1024);
+>     return encoder;
+> }
+\ No newline at end of file

@@ -1,0 +1,12 @@
+7,10c7
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+---
+>         assertThat(output, containsString(
+12,13c9
+<             )
+<         );
+---
+>         ));

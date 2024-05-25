@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5, 2);
+---
+>     PShape parent = GROUP_SHAPE.getChildren().get(0);
+>     float depth = 2f;
+>     PShape out = PGS_Morphology.chaikinCut(parent, 0.5f, depth);

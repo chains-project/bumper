@@ -1,0 +1,8 @@
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    PasswordEncoder encoder = new BCryptPasswordEncoder();
+    return encoder;
+}

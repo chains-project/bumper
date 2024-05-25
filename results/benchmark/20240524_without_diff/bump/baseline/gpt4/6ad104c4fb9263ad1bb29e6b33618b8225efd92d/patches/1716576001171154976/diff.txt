@@ -1,0 +1,4 @@
+8c8
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+---
+>     if (!Arrays.equals(calculatedMAC, receivedMAC)) {

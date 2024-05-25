@@ -1,0 +1,37 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+> void failsOnDigestMismatch() throws Exception {
+12,23c12,14
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains calculated digest",
+---
+>             assertThat(throwable, notNullValue());
+>             assertThat(Throwables.getRootCause(throwable), instanceOf(InvalidDigestException.class));
+>             assertThat(
+25,28c16
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>                 containsString("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+30,31c18
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+---
+>             assertThat(
+33c20
+<                     new StringContains(true, digest)
+---
+>                 containsString(digest)

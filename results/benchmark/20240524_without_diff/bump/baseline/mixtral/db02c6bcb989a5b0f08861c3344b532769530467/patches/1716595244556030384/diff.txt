@@ -1,0 +1,4 @@
+3c3
+<         return s.contains(substring);
+---
+>       return s.contains(substring) != false;

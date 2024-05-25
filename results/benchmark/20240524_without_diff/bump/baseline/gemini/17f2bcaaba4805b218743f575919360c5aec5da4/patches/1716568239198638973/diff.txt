@@ -1,0 +1,5 @@
+5c5,6
+<                 assertEquals(2, out.getChildCount());
+---
+>                 // ++ assertEquals(2, out.getChildCount());
+>                 assertTrue(out.getChildCount() == 2);

@@ -1,0 +1,10 @@
+5a6
+>     Pattern pattern = Pattern.compile("(^|\\.)(?!\\.)[^.]+(?=\\.class$)");
+8c9,11
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+---
+>         Matcher matcher = pattern.matcher(packageToScan + ".");
+>         if (matcher.find()) {
+>             String regex = matcher.group();
+12a16
+>     }

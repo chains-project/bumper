@@ -1,0 +1,5 @@
+2c2,3
+<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
+---
+>     String expected = String.format("latest: digest: %s", this.image.digest());
+>     return Matchers.containsString(expected);

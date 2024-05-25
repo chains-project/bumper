@@ -1,0 +1,35 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+12,13c10,11
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         com.jcraft.jsch.Logger.setDefaultLogger(new JschLogger());
+>         final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+19c17
+<             final Session session = jsch.getSession(
+---
+>         final com.jcraft.jsch.Session session = jsch.getSession(
+22c20,22
+<             session.setConfig("StrictHostKeyChecking", "no");
+---
+>         java.util.Properties config = new java.util.Properties();
+>         config.put("StrictHostKeyChecking", "no");
+>         session.setConfig(config);
+25c25
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+---
+>             (int) TimeUnit.SECONDS.toMillis(10L)
+27c27
+<             session.setServerAliveCountMax(Tv.MILLION);
+---
+>         session.setServerAliveCountMax(1000000);
+30c30
+<         } catch (final JSchException ex) {
+---
+>     } catch (final com.jcraft.jsch.JSchException ex) {

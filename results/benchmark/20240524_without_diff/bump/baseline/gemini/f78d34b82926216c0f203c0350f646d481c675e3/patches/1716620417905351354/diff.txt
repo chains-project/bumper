@@ -1,0 +1,23 @@
+12,16c12
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+---
+>         Runnable runnable = () -> {
+45a42,47
+>         };
+> 
+>         BukkitRunnable bukkitRunnable = new BukkitRunnable() {
+>             @Override
+>             public void run() {
+>                 runnable.run();
+49c51
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+---
+>         bukkitRunnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+55c57
+<                 runnable.cancel();
+---
+>                 bukkitRunnable.cancel();

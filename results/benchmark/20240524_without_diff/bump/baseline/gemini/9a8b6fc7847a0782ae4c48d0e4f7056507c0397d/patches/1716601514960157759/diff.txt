@@ -1,0 +1,7 @@
+1,2d0
+< // TODO: review this AI generated patch!
+<   @Override
+19c17
+<                         encoder.++setSalt(getSalt());
+---
+>                         ++encoder.setSalt(getSalt());

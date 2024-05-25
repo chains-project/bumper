@@ -1,0 +1,9 @@
+14,19c14
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+---
+>         CoreMatchers.containsString("Unsupported reference")

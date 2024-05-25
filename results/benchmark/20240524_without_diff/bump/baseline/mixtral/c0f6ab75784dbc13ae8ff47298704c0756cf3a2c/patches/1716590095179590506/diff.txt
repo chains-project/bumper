@@ -1,0 +1,14 @@
+1a2
+>     PropertyReader propertyReader = new PropertyReader();
+3,7c4,8
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .addEnabledLanguages(propertyReader.getEnabledLanguages())
+>             .setClientPid(propertyReader.getClientPid())
+>             .setExtraProperties(propertyReader.extraProperties())
+>             .setWorkDir(propertyReader.getWorkDir())
+>             .setModulesProvider(propertyReader.getModulesProvider())

@@ -1,0 +1,11 @@
+import processing.core.PShape;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeTrue;
+
+@Test
+void test_PGS_Morphology_erosionDilation() {
+    assumeTrue(MorphologyGroupShape.getGroupShape().getChildCount() == 2);
+    PShape out = PGS_Morphology.erosionDilation(MorphologyGroupShape.getGroupShape(), 0);
+    assertEquals(2, out.getChildCount());
+}

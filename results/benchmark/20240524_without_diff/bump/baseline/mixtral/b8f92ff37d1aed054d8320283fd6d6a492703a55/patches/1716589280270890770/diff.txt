@@ -1,0 +1,7 @@
+3c3,6
+<         return directoryScanner.scan().getClasses();
+---
+>     if (directoryScanner.getIncludedFiles().length == 0) {
+>         return Collections.emptyList();
+>     }
+>     return Arrays.asList(directoryScanner.getIncludedFiles());

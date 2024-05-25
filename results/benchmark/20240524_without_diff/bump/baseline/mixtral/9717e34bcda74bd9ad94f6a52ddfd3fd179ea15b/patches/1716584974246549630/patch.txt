@@ -1,0 +1,14 @@
+import com.jcabi.github.Github;
+
+@Tv(40)
+public class MkGithub {
+    private Github github;
+
+    public MkGithub(String token) {
+        this.github = new Github(token);
+    }
+
+    public <T extends com.jcabi.github.Repo> T repo(String fullName) {
+        return (T) this.github.repos().withRepoName(fullName);
+    }
+}

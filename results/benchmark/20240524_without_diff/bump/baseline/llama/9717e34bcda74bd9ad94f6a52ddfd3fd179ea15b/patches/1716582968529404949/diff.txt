@@ -1,0 +1,8 @@
+1c1,3
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import lombok.val;
+> 
+> val tv = new Object();
+\ No newline at end of file

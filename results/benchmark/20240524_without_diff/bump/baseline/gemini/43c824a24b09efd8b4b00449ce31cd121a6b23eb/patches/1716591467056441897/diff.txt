@@ -1,0 +1,8 @@
+5c5,6
+<       for (XmlFieldInstance instance : instances)
+---
+>       for (XmlFieldInstance instance : instances) {
+>         if (instance.getValue() != null) {
+6a8,9
+>         }
+>       }

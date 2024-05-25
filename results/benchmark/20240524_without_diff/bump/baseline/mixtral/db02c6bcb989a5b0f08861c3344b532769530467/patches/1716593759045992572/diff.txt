@@ -1,0 +1,4 @@
+3c3
+<         description.appendText("a string containing: ").appendValue(expected);
+---
+>     description.appendText("a string containing: ").appendText(String.valueOf(expected));

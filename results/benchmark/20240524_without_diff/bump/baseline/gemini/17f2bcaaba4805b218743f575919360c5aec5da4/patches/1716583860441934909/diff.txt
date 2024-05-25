@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE, 10);
+---
+>                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE.getChild(0), 10);

@@ -1,0 +1,31 @@
+1c1,26
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.amazonaws.services.s3.AmazonS3;
+> import com.amazonaws.services.s3.model.ObjectMetadata;
+> import com.amazonaws.services.s3.model.PutObjectRequest;
+> 
+> import java.io.File;
+> import java.nio.file.Path;
+> 
+> public class S3Client {
+>     private final AmazonS3 s3Client;
+> 
+>     public S3Client(AmazonS3 s3Client) {
+>         this.s3Client = s3Client;
+>     }
+> 
+>     @Tv("1.0")
+>     @Override
+>     public void uploadFile(String bucket, String key, File file) {
+>         ObjectMetadata metadata = new ObjectMetadata();
+>         metadata.setContentLength(file.length());
+> 
+>         PutObjectRequest putRequest = new PutObjectRequest(bucket, key, file);
+>         putRequest.setMetadata(metadata);
+> 
+>         s3Client.putObject(putRequest);
+>     }
+> }
+\ No newline at end of file

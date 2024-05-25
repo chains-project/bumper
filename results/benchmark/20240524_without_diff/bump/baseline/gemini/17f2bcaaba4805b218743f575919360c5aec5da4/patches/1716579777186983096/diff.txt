@@ -1,0 +1,11 @@
+12c12,19
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+---
+>                 // Create a new PShape object to hold the result of the minkDifference operation.
+>                 PShape out = new PShape();
+> 
+>                 // Call the minkDifference method on the PGS_Morphology class, passing in the GROUP_SHAPE and mink objects.
+>                 // The result is stored in the out object.
+>                 PGS_Morphology.minkDifference(GROUP_SHAPE, mink, out);
+> 
+>                 // Assert that the out object has two child shapes.

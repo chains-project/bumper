@@ -1,0 +1,68 @@
+0a1,14
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.io.WKTReader;
+> import org.locationtech.jts.linearref.LinearLocation;
+> import org.locationtech.jts.linearref.LocationIndexedLine;
+> import org.locationtech.jts.operation.polygonize.PolygonizerFactory;
+> import org.locationtech.jts.util.GeometricShapeFactory;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> 
+4a19,20
+>     WKTReader fromText = new WKTReader(new GeometryFactory());
+>     GeometricShapeFactory shapeFactory = new GeometricShapeFactory();
+6c22
+<                         List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+---
+>         List<LocationIndexedLine> segmentStrings = new ArrayList<>(111 + k);
+8,9c24,29
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>             double x1 = r.nextDouble() * 10000;
+>             double y1 = r.nextDouble() * 10000;
+>             double x2 = r.nextDouble() * 10000;
+>             double y2 = r.nextDouble() * 13337;
+>             LocationIndexedLine nodedSegmentString = shapeFactory.createLineString(new Coordinate[]{new Coordinate(x1, y1), new Coordinate(x2, y2)});
+>             segmentStrings.add(nodedSegmentString);
+11,14c31,34
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+<                         Collection<PEdge> nodedEdges = new ArrayList<>();
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+<                         Collection<PEdge> nodedEdgesSet = new HashSet<>(nodedEdges);
+---
+>         Collection<LocationIndexedLine> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+>         Collection<LocationIndexedLine> nodedEdges = new ArrayList<>();
+>         nodedSS.forEach(ss -> nodedEdges.add(ss));
+>         Collection<LocationIndexedLine> nodedEdgesSet = new HashSet<>(nodedEdges);
+16c36
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+---
+>         final Polygonizer<LocationIndexedLine> polygonizerJTS = PolygonizerFactory.createPolygonizer(nodedEdgesSet);
+19,20c39
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             LineString l = fromText.read("LINESTRING (" + e.getStartPoint().getX() + " " + e.getStartPoint().getY() + ", " + e.getEndPoint().getX() + " " + e.getEndPoint().getY() + ")");
+24,25d42
+<                         long t1 = System.currentTimeMillis();
+<                         @SuppressWarnings("unchecked")
+27,28d43
+<                         long t2 = System.currentTimeMillis();
+<                         long timeJTS = t2 - t1;
+30,35c45,47
+<                         t1 = System.currentTimeMillis();
+<                         PShape FP = polygonize(nodedEdgesSet);
+<                         t2 = System.currentTimeMillis();
+<                         long timeFP = t2 - t1;
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>         Collection<LocationIndexedLine> nodedEdgesSet2 = new HashSet<>(nodedEdges);
+>         Collection<Polygon> FP = polygonize(nodedEdgesSet2);
+>         assertEquals(JTS.size(), FP.size());

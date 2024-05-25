@@ -1,0 +1,4 @@
+11c11
+<                 String.format("Status: Downloaded newer image for %s", image)
+---
+>                 String.format("Status: Image is up to date for %s", image)

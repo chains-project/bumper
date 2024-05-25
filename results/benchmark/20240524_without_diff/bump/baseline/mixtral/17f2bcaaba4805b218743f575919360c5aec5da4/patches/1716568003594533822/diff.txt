@@ -1,0 +1,12 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(getPGS_Morphology().getChildCount() == 2);
+>     PShape out = getPGS_Morphology().round(0.5);
+6a7,10
+> 
+> private PShape getPGS_Morphology() {
+>     return GROUP_SHAPE;
+> }
+\ No newline at end of file

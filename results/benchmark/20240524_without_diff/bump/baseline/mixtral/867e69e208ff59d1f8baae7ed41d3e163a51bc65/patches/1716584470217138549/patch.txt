@@ -1,0 +1,12 @@
+import org.apache. thrift.transport.TTransport;
+import org.apache. thrift.transport.TFramedTransport;
+
+public class ThriftReader {
+    // ...
+    @Override
+    public void initializeTransport() {
+        Transport transport = new TFramedTransport(new TTransport());
+        // ...
+    }
+    // ...
+}

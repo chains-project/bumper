@@ -1,0 +1,4 @@
+40c40
+<                         center.getY() + new WaveCreator(1.0, 2.0, 0.0).get(0.01, count[0] < 20),
+---
+>                         auraBotYPos(time[0], rangeTmp + speed) + center.getY(),

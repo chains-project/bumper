@@ -1,0 +1,36 @@
+import org.bouncycastle.tls.crypto.TlsCrypto;
+import org.bouncycastle.tls.crypto.impl.TlsCryptoImpl;
+import org.bouncycastle.util.Pack;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.security.SecureRandom;
+
+import static org.bouncycastle.tls.AlertDescription.decodeAlertLevelAndDescription;
+
+public class ChachaDecoder {
+
+    // ... other code ...
+
+    @Override
+    public void decode(ByteBuffer input, ByteBuffer output) throws IOException {
+        if (input.remaining() < 1) {
+            throw new TlsFatalAlert(AlertDescription.decodeAlertLevelAndDescription(input));
+        }
+
+        // ... other code ...
+
+        int nonceLength = 12;
+        byte[] nonce = new byte[nonceLength];
+        input.get(nonce);
+
+        // ... other code ...
+
+        TlsCrypto tlsCrypto = TlsCryptoImpl.getInstance();
+        SecureRandom secureRandom = new SecureRandom();
+        byte[] key = new byte[32];
+        secureRandom.nextBytes(key);
+
+        // ... other code ...
+    }
+}

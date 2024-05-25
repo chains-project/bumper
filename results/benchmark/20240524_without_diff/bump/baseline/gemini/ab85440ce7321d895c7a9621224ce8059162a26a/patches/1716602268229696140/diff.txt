@@ -1,0 +1,8 @@
+2c2
+<     void shouldPush() throws Exception {
+---
+>     public void shouldPush() throws Exception {
+10c10
+<                 String.format("latest: digest: %s", original.digest())
+---
+>                 new StringBuilder().append("latest: digest: ").append(original.digest()).toString()

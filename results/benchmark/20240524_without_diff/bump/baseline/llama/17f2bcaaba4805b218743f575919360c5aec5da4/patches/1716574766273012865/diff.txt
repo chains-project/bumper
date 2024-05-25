@@ -1,0 +1,8 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+<         
+5a3,5
+>     PShape GROUP_SHAPE = PGS_Processing.createGroupShape();
+>     GROUP_SHAPE.addChild(PGS_Processing.createShape(10, 10, 20, 20));
+>     GROUP_SHAPE.addChild(PGS_Processing.createShape(30, 30, 40, 40));

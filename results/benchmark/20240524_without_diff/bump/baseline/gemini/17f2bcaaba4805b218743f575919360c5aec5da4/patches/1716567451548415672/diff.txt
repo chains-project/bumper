@@ -1,0 +1,14 @@
+15,17c15
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+<                         polygonizerJTS.setCheckRingsValid(false);
+---
+>                         List<LineString> lines = new ArrayList<>();
+21c19
+<                                 polygonizerJTS.add(l);
+---
+>                                 lines.add(l);
+26c24
+<                         Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+---
+>                         Collection<Polygon> JTS = new Polygonizer().getPolygons(lines);

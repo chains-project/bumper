@@ -1,0 +1,4 @@
+13c13
+<         super.execute("Create Docker Build", "org.jfrog.build.extractor.docker.extractor.BuildDockerCreator", envExtractor, tempDir);
+---
+>     super.execute("Create Docker Build", "org.jfrog.build.extractor.docker.creator.BuildDockerCreator", envExtractor, tempDir);

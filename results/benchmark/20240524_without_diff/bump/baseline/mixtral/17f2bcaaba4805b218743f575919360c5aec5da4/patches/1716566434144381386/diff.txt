@@ -1,0 +1,15 @@
+0a1,7
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+3c10
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>         assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+6a14
+> }
+\ No newline at end of file

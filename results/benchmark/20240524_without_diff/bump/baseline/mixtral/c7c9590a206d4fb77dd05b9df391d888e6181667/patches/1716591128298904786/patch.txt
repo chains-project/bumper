@@ -1,0 +1,15 @@
+import org.apache.maven.doxia.siterenderer.Renderer;
+
+// ...
+
+@Override
+public void executeReport(Locale locale) throws MojoExecutionException, MojoFailureException {
+    // ...
+    Renderer renderer = this.siteRenderer.getRenderer();
+    if (renderer instanceof AbstractXhtmlRenderer) {
+        AbstractXhtmlRenderer xhtmlRenderer = (AbstractXhtmlRenderer) renderer;
+        RenderingContext renderingContext = xhtmlRenderer.getRenderingContext();
+        // ...
+    }
+    // ...
+}

@@ -1,0 +1,9 @@
+20,25c20
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>         new StringContains(true, "Invalid tag: " + original)

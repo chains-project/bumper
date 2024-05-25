@@ -1,0 +1,9 @@
+3c3,8
+<         return directoryScanner.scan().getClasses();
+---
+>         directoryScanner.scan();
+>         List<String> classes = directoryScanner.getClasses();
+>         if (classes == null) {
+>             return Collections.emptyList();
+>         }
+>         return classes;

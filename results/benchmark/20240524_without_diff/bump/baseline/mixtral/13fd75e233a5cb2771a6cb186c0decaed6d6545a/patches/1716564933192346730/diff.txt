@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+11,12c10
+<     ).toCompletableFuture().handle(
+<         (blob, throwable) -> {
+---
+>     ).exceptionally(throwable -> {
+32d29
+<             )
+34,36c31,32
+<             return CompletableFuture.allOf();
+<         }
+<     ).join();
+---
+>         return null;
+>     });

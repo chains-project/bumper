@@ -1,0 +1,78 @@
+1,8c1,9
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import org.bukkit.Particle;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations {
+>     // ...
+> 
+>     public static void magic(Player player, int seconds) {
+12,13c13,15
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+---
+>         BukkitRunnable runnable = new BukkitRunnable() {
+>             final Random rand = new Random();
+> 
+15,18c17,19
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>             public void run() {
+>                 double i = 0;
+>                 while (i < Math.PI * 2) {
+34a36,37
+> 
+>                     i += rand.nextDouble() * 0.5;
+39,45c42,58
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 Vector v1 = new Vector(3, 0.7, 0);
+>                 Vector v2 = new Vector(-1.5, 0.7, 2.3);
+>                 Vector v3 = new Vector(-1.5, 0.7, -2.3);
+>                 Vector v4 = new Vector(3, 0.7, 0);
+> 
+>                 line(center.clone().add(v1), center.clone().add(v2));
+>                 line(center.clone().add(v2), center.clone().add(v3));
+>                 line(center.clone().add(v3), center.clone().add(v4));
+> 
+>                 v1 = new Vector(-3, 0.7, 0);
+>                 v2 = new Vector(1.5, 0.7, -2.3);
+>                 v3 = new Vector(1.5, 0.7, 2.3);
+>                 v4 = new Vector(-3, 0.7, 0);
+> 
+>                 line(center.clone().add(v1), center.clone().add(v2));
+>                 line(center.clone().add(v2), center.clone().add(v3));
+>                 line(center.clone().add(v3), center.clone().add(v4));
+50,51c63
+<         new BukkitRunnable()
+<         {
+---
+>         new BukkitRunnable() {
+53,54c65
+<             public void run()
+<             {
+---
+>             public void run() {
+57a69
+>     }
+58a71
+>     // ...

@@ -1,0 +1,22 @@
+0a1,9
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // existing code...
+> 
+3,4c12,13
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+---
+>         assumeTrue(PGS_Morphology.getGroupShape().getChildCount() == 2);
+>         PShape out = PGS_Morphology.fieldWarp(PGS_Morphology.getGroupShape(), 10, 1, false);
+6a16,19
+> 
+>     // existing code...
+> 
+> }
+\ No newline at end of file

@@ -1,0 +1,13 @@
+3,6c3,5
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+---
+>             final AstoDocker astoDocker = new AstoDocker(new InMemoryStorage());
+>             final Permissions.Single permissions = new Permissions.Single(TestAuthentication.ALICE.name(), action);
+>             final BearerAuthScheme bearerAuthScheme = new BearerAuthScheme(
+14d12
+<                 )
+15a14
+>             return new DockerSlice(astoDocker, permissions, bearerAuthScheme);

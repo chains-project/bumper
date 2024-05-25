@@ -1,0 +1,86 @@
+1,20c1,26
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+< 
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+> public class PlayerUtils {
+> 
+>     // ...
+> 
+>     public static EntityPlayer getRandomPlayer(World world) {
+>         // ...
+> 
+>         if (random.nextBoolean()) {
+>             first = convertToLeetSpeak(first);
+>             last = convertToLeetSpeak(last);
+23,32c29,30
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+<         if (name.length() > 16)
+<             name = random.nextBoolean() ? first: last;
+< 
+<         if (name.length() > 16)
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+< 
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+< 
+<         Pair<String, String> skin = getRandomSkin();
+---
+>         // ...
+>     }
+34c32,40
+<         GameProfile profile = new GameProfile(UUID.randomUUID(), name);
+---
+>     private static String convertToLeetSpeak(String input) {
+>         String leetSpeak = input
+>                 .replaceAll("[Aa]", "4")
+>                 .replaceAll("[Ee]", "3")
+>                 .replaceAll("[Gg]", "6")
+>                 .replaceAll("[Ii]", "1")
+>                 .replaceAll("[Oo]", "0")
+>                 .replaceAll("[Ss]", "5")
+>                 .replaceAll("[Tt]", "7");
+36c42,43
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+---
+>         return leetSpeak;
+>     }
+38,43d44
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );

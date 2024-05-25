@@ -1,0 +1,9 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new AbstractMatcher<String>("a string containing") {
+        @Override
+        public boolean matches(final Object item) {
+            String string = (String) item;
+            return string.contains(String.format("Status: Downloaded newer image for %s", image));
+        }
+    };
+}

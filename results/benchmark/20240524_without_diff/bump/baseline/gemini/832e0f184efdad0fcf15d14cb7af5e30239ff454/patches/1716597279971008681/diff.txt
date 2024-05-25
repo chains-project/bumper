@@ -1,0 +1,4 @@
+33c33
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                         currentLangMeta.addEnchant(Enchantments.POWER.parseEnchantment(), 1, false);

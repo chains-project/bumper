@@ -1,0 +1,39 @@
+0a1,14
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.LinearComponentExtracter;
+> import org.locationtech.jts.index.strtree.STRtree;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.stream.Collectors;
+> 
+4a19
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+18,22c33,43
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+<                         });
+---
+>         LinearComponentExtracter lce = new LinearComponentExtracter();
+>         STRtree index = new STRtree();
+>         for (PEdge e : nodedEdgesSet) {
+>             LineString l = GEOM_FACTORY.createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+>             lce.add(l);
+>             index.insert(l.getEnvelopeInternal(), l);
+>         }
+>         index.query(lce.getBounds().getExpanded(0.001));
+>         for (LineString ls : lce.getLines()) {
+>             polygonizerJTS.add(ls);
+>         }
+25d45
+<                         @SuppressWarnings("unchecked")
+34d53
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());

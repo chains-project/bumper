@@ -1,0 +1,14 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(11)
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh connect(String host, int port, String username, String password) {
+        // use the new version of the Ssh.using() method
+        return Ssh.using(host, port, username, password);
+    }
+
+    // existing code...
+}

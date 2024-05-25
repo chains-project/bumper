@@ -1,0 +1,21 @@
+1a2,20
+> 
+>   import java.util.ArrayList;
+>   import java.util.List;
+> 
+>   public class RtTransaction {
+> 
+>     // ...
+> 
+>     @Override
+>     public List<String> getOutputs() {
+>       List<String> outputs = new ArrayList<>();
+>       for (String output : new SplitText(this.output).asString()) {
+>         outputs.add(output);
+>       }
+>       return outputs;
+>     }
+> 
+>     // ...
+>   }
+\ No newline at end of file

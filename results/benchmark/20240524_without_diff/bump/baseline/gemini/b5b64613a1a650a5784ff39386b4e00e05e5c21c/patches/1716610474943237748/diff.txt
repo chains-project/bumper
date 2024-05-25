@@ -1,0 +1,6 @@
+1d0
+< @Override
+12c11
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString);

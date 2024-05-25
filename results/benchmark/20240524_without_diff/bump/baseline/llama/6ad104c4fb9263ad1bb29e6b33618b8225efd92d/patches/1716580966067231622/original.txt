@@ -1,0 +1,6 @@
+// TODO: review this AI generated patch!
+
+
+  public byte[] decodeCiphertext(byte[] receivedMAC, byte[] ciphertext) throws IOException {
+    return decodeCiphertext(receivedMAC, null, ciphertext);
+  }

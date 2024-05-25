@@ -1,0 +1,8 @@
+import com.jcabi.s3.Bucket;
+
+@Tv(42)
+@Override
+public void testBucketCreation() {
+    Bucket bucket = s3.bucket(name());
+    assertThat(bucket.exists(), is(true));
+}

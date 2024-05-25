@@ -1,0 +1,20 @@
+1,2c1,4
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.JSchException;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a13
+>     JSch jsch = new JSch();
+13d15
+<             final JSch jsch = new JSch();
+19c21
+<             final Session session = jsch.getSession(
+---
+>         Session session = jsch.getSession(
+30c32
+<         } catch (final JSchException ex) {
+---
+>     } catch (JSchException ex) {

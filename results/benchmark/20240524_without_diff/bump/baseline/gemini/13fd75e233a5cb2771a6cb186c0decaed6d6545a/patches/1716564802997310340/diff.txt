@@ -1,0 +1,8 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                     new NotNullValue<Throwable>()
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     new InstanceOf<InvalidDigestException>(InvalidDigestException.class)

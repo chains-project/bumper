@@ -1,0 +1,21 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+import java.io.IOException;
+
+public class AppenderUtils {
+    // ...
+
+    @Override
+    public void append(ILoggingEvent event) {
+        // ...
+        try (TFramedTransport transport = new TFramedTransport(new TSocket(host, port))) {
+            // ...
+        } catch (TTransportException | TException e) {
+            // ...
+        } catch (IOException e) {
+            // ...
+        }
+    }
+
+    // ...
+}

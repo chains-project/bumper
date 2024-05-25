@@ -1,0 +1,15 @@
+2c2
+<     void shouldPullPushedByDigest() throws Exception {
+---
+>     public void shouldPullPushedByDigest() throws Exception {
+7,12c7,9
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+<             )
+---
+>         assertTrue(
+>             String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()),
+>             output.contains(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()))

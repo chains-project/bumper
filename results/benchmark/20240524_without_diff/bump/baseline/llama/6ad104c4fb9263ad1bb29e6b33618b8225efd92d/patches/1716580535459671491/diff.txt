@@ -1,0 +1,9 @@
+11d10
+<     try {
+13,16c12
+<       return new ChachaDecoder(readKey, nonce).decodeCiphertext(mac, additionalData, ciphertext);
+<     } catch (IOException e) {
+<       throw new RuntimeException(e);
+<     }
+---
+>     return new ChachaDecoder(readKey, nonce).decodeCiphertext(ciphertext, mac, additionalData);

@@ -1,0 +1,4 @@
+5c5
+<                 assertEquals(2, out.getChildCount());
+---
+>                 assertEquals(GROUP_SHAPE.getChildCount(), out.getChildCount());

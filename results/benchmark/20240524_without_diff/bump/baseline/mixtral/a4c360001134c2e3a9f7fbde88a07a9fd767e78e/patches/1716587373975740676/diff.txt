@@ -1,0 +1,11 @@
+6,9c6,10
+<         final String[] packages = packagesToScan.split(",");
+<         for (String packageToScan : packages) {
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>     Pattern pattern = Pattern.compile("(^|\\.)(?<package>[^.]+)\\.(?<class>[^.]+)\\.class$");
+>     for (String packageToScan : packagesToScan.split(",")) {
+>         pattern = Pattern.compile(String.format("(?s).?\\.??%s\\..+\\.class|(?s)(?<package>^|\\.)(?<class>%s)\\.(?<class>[^.]+)\\.class", packageToScan, packageToScan));
+>         Matcher matcher = pattern.matcher(s);
+>         if (matcher.find()) {

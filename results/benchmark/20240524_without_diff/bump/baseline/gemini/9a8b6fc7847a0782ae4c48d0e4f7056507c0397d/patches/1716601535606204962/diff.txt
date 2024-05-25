@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+19c18
+<                         encoder.++setSalt(getSalt());
+---
+>                         encoder.setSalt(getSalt());

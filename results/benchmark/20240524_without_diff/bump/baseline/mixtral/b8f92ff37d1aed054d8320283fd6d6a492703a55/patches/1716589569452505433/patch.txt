@@ -1,0 +1,24 @@
+private boolean classToInclude(String className) {
+    if (config.getJacocoIncludes().stream()
+        .anyMatch(pattern -> new WildcardMatcher(pattern).matches(className))) {
+        return true;
+    }
+
+    for (String dir : config.getBinJavaDir()) {
+        if (isClassPresent(className, dir)) {
+            return true;
+        }
+    }
+    for (String dir : config.getBinTestDir()) {
+        if (isClassPresent(className, dir)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+private boolean isClassPresent(String className, String dir) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+    return directoryScanner.scan().getClasses().contains(className);
+}

@@ -1,0 +1,74 @@
+0a1,19
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.properties.Property;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomUtils.nextBoolean;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> 
+11,12c30,31
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(new Random().nextInt(13) + 1)
+>             : getRandomWord();
+14,15c33,34
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(new Random().nextInt(13) + 1)
+>             : getRandomWord();
+19,20c38,39
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+28c47
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>         name = randomAlphanumeric(random.nextInt(16));
+44a64,93
+> 
+> private static String getRandomWord() {
+>     // Implement this method to return a random word
+>     // You can use any library or method you want as long as it doesn't break the code
+> }
+> 
+> private static class LeetConverter {
+>     public static String convert(String input) {
+>         // Implement this method to convert a string to leet-speak
+>         // You can use any library or method you want as long as it doesn't break the code
+>     }
+> }
+> 
+> private static class Pair<T, U> {
+>     private final T first;
+>     private final U second;
+> 
+>     public Pair(T first, U second) {
+>         this.first = first;
+>         this.second = second;
+>     }
+> 
+>     public T getLeft() {
+>         return first;
+>     }
+> 
+>     public U getRight() {
+>         return second;
+>     }
+> }
+\ No newline at end of file

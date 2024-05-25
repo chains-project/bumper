@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+---
+>                 PShape out = new PShape();
+>                 out.addChild(PGS_Morphology.radialWarp(GROUP_SHAPE.getChild(0), 10, 1, false));
+>                 out.addChild(PGS_Morphology.radialWarp(GROUP_SHAPE.getChild(1), 10, 1, false));

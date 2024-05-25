@@ -1,0 +1,6 @@
+4a5
+>                 org.locationtech.jts.geom.GeometryFactory GEOM_FACTORY = new org.locationtech.jts.geom.GeometryFactory(); // Add null check here
+19c20
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>                                 final LineString l = GEOM_FACTORY

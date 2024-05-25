@@ -1,0 +1,11 @@
+1a2,10
+> import com.jcabi.ssh.SshByPassword;
+> 
+> public class SshByPassword {
+> 
+>     public static Tv tv() {
+>         return new Tv();
+>     }
+> 
+> }
+\ No newline at end of file

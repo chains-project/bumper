@@ -1,0 +1,12 @@
+1d0
+< @Override
+2a2
+>             final AuthenticationToken token = new BearerAuthScheme("", "").token(TestAuthentication.ALICE.name());
+7c7
+<                     token -> CompletableFuture.completedFuture(
+---
+>                     token1 -> CompletableFuture.completedFuture(
+9c9
+<                             .filter(user -> token.equals(token(user)))
+---
+>                             .filter(user -> token1.equals(token))

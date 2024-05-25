@@ -1,0 +1,11 @@
+1d0
+< @Override
+3d1
+< 
+12c10,11
+<                 ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, StandardCharsets.UTF_8.toString());
+---
+>             Charset charset = StandardCharsets.UTF_8;
+>             ClientHelper perforceClient = new ClientHelper(credentials, buildListener, clientString, charset);
+26d24
+< 

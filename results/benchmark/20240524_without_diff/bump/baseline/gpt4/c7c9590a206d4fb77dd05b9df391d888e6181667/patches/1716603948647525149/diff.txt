@@ -1,0 +1,15 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+19c14,19
+<             SiteRendererSink sink = new SiteRendererSink( context );
+---
+>         SiteRendererSink sink = null;
+>         try {
+>             sink = new SiteRendererSink( context );
+>         } catch (Exception e) {
+>             throw new MojoExecutionException("Failed to create SiteRendererSink: " + e.getMessage(), e);
+>         }

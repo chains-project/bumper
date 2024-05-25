@@ -1,0 +1,4 @@
+4c4
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     PShape mink = new PShape(PShape.PATH);

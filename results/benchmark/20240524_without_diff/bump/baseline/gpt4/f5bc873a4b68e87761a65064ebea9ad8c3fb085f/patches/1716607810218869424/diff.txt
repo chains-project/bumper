@@ -1,0 +1,4 @@
+1a2,4
+>     if (project == null) {
+>         project = new MavenProject();
+>     }

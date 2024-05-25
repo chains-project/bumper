@@ -1,0 +1,11 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+12,15c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+<             )
+---
+>         CoreMatchers.containsString(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest()))

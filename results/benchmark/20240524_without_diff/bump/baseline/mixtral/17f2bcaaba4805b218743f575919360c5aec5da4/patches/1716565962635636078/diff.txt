@@ -1,0 +1,18 @@
+0a1,4
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+3c7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(PGS_Morphology.hasChildren(GROUP_SHAPE));
+5c9,14
+<                 assertEquals(2, out.getChildCount());
+---
+>     assertEquals(GROUP_SHAPE.getChildCount(), out.getChildCount());
+> }
+> 
+> // Add this method to the PGS_Morphology class
+> public static boolean hasChildren(PShape shape) {
+>     return shape != null && shape.getChildCount() > 0;

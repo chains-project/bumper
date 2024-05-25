@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1910438136,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /java-api/src/main/java/io/zold/api/RtTransaction.java:[54,1] class, interface, or enum expected",
+        "client_file_path": "/java-api/src/main/java/io/zold/api/RtTransaction.java",
+        "client_line_position": "54"
+    },
+    "client_end_line_number": 54,
+    "client_line_number": 54,
+    "method_code": "import org.cactoos.list.ListOf;",
+    "qualified_code": "import org.cactoos.list.ListOf;",
+    "method_name": "import"
+}

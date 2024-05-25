@@ -1,0 +1,10 @@
+import com.jcabi.sshj.SshClient;
+
+@Tv(42)
+public class Ssh {
+    public SshClient connect(String host) throws IOException {
+        SshClient ssh = new SshClient();
+        ssh.connect(host);
+        return ssh;
+    }
+}

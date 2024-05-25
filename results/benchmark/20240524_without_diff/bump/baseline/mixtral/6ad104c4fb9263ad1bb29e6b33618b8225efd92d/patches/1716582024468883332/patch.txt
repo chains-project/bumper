@@ -1,0 +1,28 @@
+import org.bouncycastle.tls.AlertDescription;
+import org.bouncycastle.tls.crypto.TlsStreamCipher;
+import org.bouncycastle.util.Arrays;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.SecureRandom;
+import java.util.Arrays;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    public byte[] decode(byte[] encryptedData) throws IOException {
+        try (
+            InputStream inputStream = new ByteArrayInputStream(encryptedData);
+            TlsStreamCipher cipher = TlsStreamCipher.create(TlsStreamCipher.CHACHA20_POLY1305_SHA256, inputStream, new SecureRandom())
+        ) {
+            byte[] decryptedData = new byte[inputStream.available()];
+            int read = cipher.doFinal(decryptedData, 0);
+            if (read != decryptedData.length) {
+                throw new IOException("Failed to decrypt data");
+            }
+            return decryptedData;
+        }
+    }
+}

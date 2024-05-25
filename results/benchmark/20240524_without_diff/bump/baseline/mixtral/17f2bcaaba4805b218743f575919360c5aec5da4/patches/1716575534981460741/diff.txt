@@ -1,0 +1,22 @@
+0a1,9
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Assume;
+> import org.junit.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ... (other code remains unchanged)
+> 
+3,4c12,14
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+---
+>         Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+>         PShape pgsMorphology = new PGS_Morphology();
+>         PShape out = pgsMorphology.smoothGaussian(GROUP_SHAPE, 10);
+6a17,19
+> 
+>     // ... (other code remains unchanged)
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+1d0
+< // TODO: review this AI generated patch!
+15c14,15
+<             if (player.hasMetadata("speed"))
+---
+>             Plugin plugin = PeyangSuperbAntiCheat.getPlugin();
+>             if (plugin != null && player.hasMetadata("speed"))
+17c17
+<                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>                     if (value.getOwningPlugin().getName().equals(plugin.getName()))

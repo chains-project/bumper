@@ -1,0 +1,6 @@
+0a1
+> import org.cactoos.Scalar;
+1a3,4
+> 
+> Scalar<InputStream> scalar = new IoCheckedScalar<>(HttpResponse::getBody);
+\ No newline at end of file

@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+---
+>     PShape parent = (PShape)GROUP_SHAPE.getChildren()[0];
+>     PShape child = (PShape)GROUP_SHAPE.getChildren()[1];
+>     PShape out = PGS_Morphology.buffer(parent, child, -1);

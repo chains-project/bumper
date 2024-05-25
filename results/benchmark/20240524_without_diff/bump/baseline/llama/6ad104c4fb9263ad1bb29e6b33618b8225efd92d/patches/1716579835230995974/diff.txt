@@ -1,0 +1,21 @@
+1,3c1
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+< 
+---
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+5,7c3,8
+< 
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+< 
+---
+>     CipherParameters params = new ParametersWithIV(macKey, new byte[PolyKeyCreator.IV_LENGTH]);
+>     BlockCipher cipher = new CBCBlockCipher(new AEADBlockCipher(new ChaChaEngine()));
+>     cipher.init(false, params);
+>     byte[] calculatedMAC = new byte[cipher.getMac().getMacSize()];
+>     cipher.processBytes(additionalData, 0, additionalData.length, calculatedMAC, 0);
+>     cipher.processBytes(ciphertext, 0, ciphertext.length, calculatedMAC, additionalData.length);
+11d11
+< 
+14d13
+< 

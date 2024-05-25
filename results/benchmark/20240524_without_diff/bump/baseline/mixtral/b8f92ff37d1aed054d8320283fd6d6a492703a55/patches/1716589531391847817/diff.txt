@@ -1,0 +1,50 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+11a2,3
+>     WildcardMatcher matcher = new WildcardMatcher();
+> 
+14,15c6
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+---
+>         if (matcher.matches(className, pattern)) {
+18a10
+> 
+21,22c13
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+---
+>         if (matcher.matches(className, pattern)) {
+28,36c19,21
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+<                 return true;
+<             }
+<         }
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>     File binJavaDir = new File(config.getBinJavaDir()[0]);
+>     File binTestDir = new File(config.getBinTestDir()[0]);
+>     if (isClassInDirectory(binJavaDir, className) || isClassInDirectory(binTestDir, className)) {
+39d23
+<         }
+42a27,32
+> 
+> private boolean isClassInDirectory(File dir, String className) {
+>     DirectoryScanner directoryScanner = new DirectoryScanner(dir, TestListResolver.getWildcard());
+>     Set<String> classes = directoryScanner.scan().getClasses();
+>     return classes.stream().anyMatch(c -> c.equals(className));
+> }
+\ No newline at end of file

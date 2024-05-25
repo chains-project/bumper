@@ -1,0 +1,14 @@
+1c1,9
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.StrongTextEncryptor;
+> 
+> @Override
+> public PBEPasswordEncoder getPasswordEncoder() {
+>     StrongTextEncryptor encryptor = new StrongTextEncryptor();
+>     encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>     encryptor.setPassword("your-secret-key"); // replace with your secret key
+>     return new PBEPasswordEncoder(encryptor.getAlgorithm(), encryptor.getPassword().toCharArray(), 4096, 32);
+> }
+\ No newline at end of file

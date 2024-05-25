@@ -1,0 +1,13 @@
+2a3,4
+>             final Authentication.User user = new Authentication.User(TestAuthentication.ALICE.name());
+>             final Permissions permissions = new Permissions.Single(user.getName(), action);
+5c7
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+---
+>                 permissions,
+9,10c11,12
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                             .filter(u -> token.equals(token(u)))
+>                             .map(Authentication.User::new)

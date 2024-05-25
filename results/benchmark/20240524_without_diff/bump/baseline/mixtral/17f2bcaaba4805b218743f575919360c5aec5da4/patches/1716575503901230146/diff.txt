@@ -1,0 +1,6 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+---
+>     assumeTrue(micycle.pgs.PGS_ShapeGroup.GROUP_SHAPE.getChildCount() == 2);
+>     PShape out = micycle.pgs.PGS_Morphology.smoothGaussian(micycle.pgs.PGS_ShapeGroup.GROUP_SHAPE, 10);

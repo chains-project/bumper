@@ -1,0 +1,11 @@
+0a1,2
+> import org.bouncycastle.jce.provider.BouncyCastleProvider;
+> 
+6a9,11
+>         if (getProviderName() != null && !getProviderName().isEmpty()) {
+>             Security.addProvider(new BouncyCastleProvider());
+>         }
+10,12d14
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+<                                 stringEncrypter.setProviderName(getProviderName());
+<                         }

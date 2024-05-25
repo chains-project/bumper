@@ -1,0 +1,124 @@
+1,8c1,11
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import org.bukkit.Bukkit;
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations {
+>     // ...
+> 
+>     public static void magic(Player player, int seconds) {
+12,18c15
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>         Bukkit.getScheduler().runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), () -> {
+21c18
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+---
+>             circle(center, count, 3, Particle.CRIT);
+23c20
+<                     circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+---
+>             circle(center.add(0, 0.7, 0), count, 2.7, Particle.ENCHANTMENT_TABLE);
+25c22
+<                     circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+---
+>             circle(center.clone().add(0, wave.get(0.01, false), 0), count, wave.getStatic());
+27,30c24,27
+<                     circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+---
+>             circle(center.clone().add(3.2, 0.7, 3.2), count, 1.5);
+>             circle(center.clone().add(-3.2, 0.7, -3.2), count, 1.5);
+>             circle(center.clone().add(-3.2, 0.7, 3.2), count, 1.5);
+>             circle(center.clone().add(3.2, 0.7, -3.2), count, 1.5);
+32c29
+<                     circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+---
+>             circle(center.clone().add(0, 1.5, 0), count, 5, Particle.SPELL_WITCH);
+34a32,52
+> 
+>             Location loc1 = center.clone().add(3, 0.7, 0);
+>             Location loc2 = center.clone().add(-1.5, 0.7, 2.3);
+>             Location loc3 = center.clone().add(-1.5, 0.7, -2.3);
+>             Location loc4 = center.clone().add(-3, 0.7, 0);
+> 
+>             line(loc1, loc2);
+>             line(loc2, loc3);
+>             line(loc3, loc4);
+>             line(loc4, loc1);
+> 
+>             line(loc4.clone().add(0, 0, 4.6), loc2.clone().add(0, 0, -4.6));
+>             line(loc2.clone().add(0, 0, -4.6), loc3.clone().add(3, 0, -4.6));
+>             line(loc3.clone().add(3, 0, -4.6), loc1);
+> 
+>             line(loc1.clone().add(6, 0, 0), loc4.clone().add(0, 0, 6));
+>         }, 0L, 1L);
+> 
+>         Bukkit.getScheduler().runTaskLater(PeyangSuperbAntiCheat.getPlugin(), () -> {
+>             Bukkit.getScheduler().cancelTasks(PeyangSuperbAntiCheat.getPlugin(), task -> true);
+>         }, seconds * 20L);
+37c55,57
+<                 Location center = player.getLocation();
+---
+>     private static void circle(Location center, int[] count, double radius, double yOffset, Particle particle) {
+>         circle(center, count, radius, yOffset, particle, 32);
+>     }
+39,55c59,66
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+<             }
+<         };
+< 
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+<                 runnable.cancel();
+---
+>     private static void circle(Location center, int[] count, double radius, double yOffset, Particle particle, int particles) {
+>         Random random = new Random();
+>         for (double i = 0; i < Math.PI * 2; i++) {
+>             double x = radius * Math.cos(i) + center.getX();
+>             double z = radius * Math.sin(i) + center.getZ();
+>             center.getWorld().spawnParticle(particle, x, center.getY() + yOffset, z, 1, new Particle.DustOptions(new Color(random.nextFloat(), random.nextFloat(), random.nextFloat()), 1));
+>             count[0]++;
+>         }
+57d67
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+58a69,77
+>     private static void line(Location start, Location end) {
+>         Vector direction = end.toVector().subtract(start.toVector()).normalize();
+>         double distance = start.distance(end);
+> 
+>         for (double i = 0; i <= distance; i += 0.1) {
+>             Location loc = start.clone().add(direction.multiply(i));
+>             loc.getWorld().spawnParticle(Particle.REDSTONE, loc, 1, new Particle.DustOptions(new Color(0, 0, 0), 1));
+>         }
+>     }

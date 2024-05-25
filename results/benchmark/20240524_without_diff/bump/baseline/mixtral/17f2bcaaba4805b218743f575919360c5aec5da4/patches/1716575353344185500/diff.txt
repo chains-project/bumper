@@ -1,0 +1,13 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3,4c5,8
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smooth(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+>     PShape original = GROUP_SHAPE.getChild(0);
+>     PShape copy = original.getChild("copy");
+>     PShape out = PGS_Morphology.smooth(copy, 0.5);
+5a10
+>     assertEquals(original, out.getChild(0));

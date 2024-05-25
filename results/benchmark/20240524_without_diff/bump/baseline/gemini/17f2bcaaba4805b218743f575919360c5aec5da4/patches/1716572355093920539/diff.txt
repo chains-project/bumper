@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+---
+>                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1);

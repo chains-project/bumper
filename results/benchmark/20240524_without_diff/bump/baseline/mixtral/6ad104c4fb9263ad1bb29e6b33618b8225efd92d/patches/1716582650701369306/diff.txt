@@ -1,0 +1,27 @@
+1,2c1,4
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+---
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+3a6,8
+> import java.io.IOException;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c11,18
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = new byte[receivedMAC.length];
+>     try {
+>         int macLength = decryptCipher.getOutputSize(calculatedMAC.length);
+>         decryptCipher.processBytes(additionalData, 0, additionalData.length, calculatedMAC, 0);
+>         decryptCipher.doFinal(calculatedMAC, macLength);
+>     } catch (DataLengthException e) {
+>         throw new IOException("Error calculating MAC", e);
+>     }
+9c21
+<       throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+---
+>         throw new IOException("Bad MAC");

@@ -1,0 +1,4 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.StickyScalar;
+
+Scalar<Double> scalar = new StickyScalar<>(() -> 4.0);

@@ -1,0 +1,13 @@
+9a10
+>             // Create ArtifactoryServer and DistributionServer instances
+11a13,14
+> 
+>             // Check if credentialsId is provided
+15a19
+>                 // If credentialsId is not provided, use username and password
+18a23,24
+> 
+>             // Set platform URL for ArtifactoryServer
+19a26,27
+> 
+>             // Create JFrogPlatformInstance and return it

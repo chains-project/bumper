@@ -1,0 +1,10 @@
+import org.junit.AssumptionViolatedException;
+import org.junit.internal.Assume;
+
+// ...
+
+try {
+    Assume.assumeTrue(condition);
+} catch (AssumptionViolatedException e) {
+    throw e;
+}

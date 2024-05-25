@@ -1,0 +1,15 @@
+13c13,24
+<                 assertEquals(2, out.getChildCount());
+---
+> 
+>     // Replace 'getChildCount()' with 'getVertexCount()'
+>     int expectedVertexCount = 2;
+>     if (out.getShapeType() == PShape.GROUP) {
+>         int totalVertexCount = 0;
+>         for (PShape childShape : out.getChildren()) {
+>             totalVertexCount += childShape.getVertexCount();
+>         }
+>         assertEquals(expectedVertexCount, totalVertexCount);
+>     } else {
+>         assertEquals(expectedVertexCount, out.getVertexCount());
+>     }

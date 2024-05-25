@@ -1,0 +1,8 @@
+import com.jcabi.s3.S3;
+
+@Tv({"4.2.0"})
+public class AwsOcketITCase {
+  // ...
+  private S3 s3 = S3.create();
+  // ...
+}

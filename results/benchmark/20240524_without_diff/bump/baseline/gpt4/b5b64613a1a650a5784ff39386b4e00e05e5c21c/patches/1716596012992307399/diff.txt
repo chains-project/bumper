@@ -1,0 +1,15 @@
+8,9c8
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>         if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl())) {
+12,13c11,12
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>         if (isNotBlank(server.getCredentialsId())) {
+>             if (isNotBlank(server.getUsername())) {
+16c15
+<                 if (isNotBlank(step.password)) {
+---
+>             if (isNotBlank(server.getPassword())) {

@@ -1,0 +1,19 @@
+1c1,14
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.io.InputOf;
+> import org.cactoos.scalar.UncheckedScalar;
+> 
+> @Override
+> public Double balance(String address) throws IOException {
+>     Scalar<Input> scalar = () -> new InputOf(
+>         new URL(String.format(
+>             "http://localhost:8080/api/wallets/%s/balance",
+>             address
+>         )).openStream()
+>     );
+>     return new UncheckedScalar<>(scalar).value();
+> }
+\ No newline at end of file

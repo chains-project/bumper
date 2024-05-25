@@ -1,0 +1,30 @@
+0a1,17
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.index.ItemVisitor;
+> import org.locationtech.jts.index.Visitable;
+> import org.locationtech.jts.linearref.LengthIndexedLine;
+> import org.locationtech.jts.linearref.LinearLocation;
+> import org.locationtech.jts.operation.polygonize.PolygonizerParams;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.concurrent.CopyOnWriteArraySet;
+> 
+4a22
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+19c37
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>             final LineString l = GEOM_FACTORY
+26c44
+<                         Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+---
+>         Collection<Polygon> JTS = new CopyOnWriteArraySet<>(polygonizerJTS.getPolygons());
+34d51
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());

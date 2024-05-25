@@ -1,0 +1,20 @@
+3,7c3,7
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+---
+>             final String token = TestAuthentication.ALICE.token();
+>             final AstoDocker astoDocker = new AstoDocker(new InMemoryStorage());
+>             final Permissions.Single permissions = new Permissions.Single(TestAuthentication.ALICE.name(), action);
+>             final BearerAuthScheme bearerAuthScheme = new BearerAuthScheme(
+>                 token1 -> CompletableFuture.completedFuture(
+9c9
+<                             .filter(user -> token.equals(token(user)))
+---
+>                         .filter(user -> token1.equals(token))
+14d13
+<                 )
+15a15
+>             return new DockerSlice(astoDocker, permissions, bearerAuthScheme);

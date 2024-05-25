@@ -1,0 +1,12 @@
+1c1,7
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import java.security.cert.CertPath;
+> import java.security.cert.Certificate;
+> import java.security.cert.CertificateFactory;
+> 
+> // ...
+> 
+> CertPath certPath = CertificateFactory.getInstance("X.509").generateCertPath(certificateChain);
+\ No newline at end of file

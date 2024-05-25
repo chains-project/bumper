@@ -1,0 +1,26 @@
+0a1,6
+> import org.bouncycastle.jce.provider.BouncyCastleProvider;
+> import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+> import org.jasypt.encryption.pbe.config.PBEStringEncryptorConfig;
+> import org.jasypt.encryption.pbe.config.PBEStringEncryptorFactory;
+> import org.jasypt.properties.PropertyValueEncryptionUtils;
+> 
+7,13c13,18
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+<                         stringEncrypter.setPasswordCharArray(chars);
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+<                                 stringEncrypter.setProviderName(getProviderName());
+<                         }
+<                         stringEncrypter.setAlgorithm(getAlgorithm());
+---
+>         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+>         PBEStringEncryptorConfig config = new PBEStringEncryptorConfig();
+>         config.setAlgorithm(getAlgorithm());
+>         config.setProviderName(getProviderName());
+>         config.setPasswordCharArray(chars);
+>         encryptor.setConfig(config);
+16c21
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         encoder.setPbeStringEncryptor(encryptor);

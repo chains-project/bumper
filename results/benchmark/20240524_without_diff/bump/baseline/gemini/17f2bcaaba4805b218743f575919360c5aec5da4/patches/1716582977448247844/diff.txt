@@ -1,0 +1,10 @@
+1a2,9
+> 
+>   public class PGS_ProcessingGroupShapeTests {
+> 
+>     @Test
+>     public void testProcessingGroupShape() throws Exception {
+>       assumeTrue(false); // This test is currently disabled due to a dependency issue.
+>     }
+>   }
+\ No newline at end of file

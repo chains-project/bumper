@@ -1,0 +1,4 @@
+31c31
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         PShape FP = polygonize(nodedEdgesSet); //++

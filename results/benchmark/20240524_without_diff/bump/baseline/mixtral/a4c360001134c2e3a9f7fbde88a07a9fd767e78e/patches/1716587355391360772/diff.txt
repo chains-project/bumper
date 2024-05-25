@@ -1,0 +1,9 @@
+6a7
+>     Pattern classPattern = Pattern.compile("\\.class$");
+8,9c9,11
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         String regex = String.format("%s.?\\.??%s\\..+", packageToScan, classPattern.pattern());
+>         Pattern packagePattern = Pattern.compile(regex);
+>         if (packagePattern.matcher(s).matches()) {

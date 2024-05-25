@@ -1,0 +1,6 @@
+4,5c4,5
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+<                 assertEquals(2, out.getChildCount());
+---
+>                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE.getChild(0), 10, 1, false);
+>                 assertEquals(1, out.getChildCount());

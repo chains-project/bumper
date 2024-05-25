@@ -1,0 +1,6 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(44)
+public class SshByPassword implements Ssh.ByPassword {
+    // existing code...
+}

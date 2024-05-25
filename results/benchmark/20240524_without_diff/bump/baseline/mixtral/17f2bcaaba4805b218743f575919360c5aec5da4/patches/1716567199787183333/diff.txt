@@ -1,0 +1,20 @@
+0a1,10
+> import processing.core.PApplet;
+> import processing.core.PConstants;
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Assume;
+> import org.junit.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // ... other code ...
+> 
+3,4c13,14
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>         Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+>         final PShape mink = new PShape(PApplet.createApplet(), PShape.PATH);
+14a25
+> }
+\ No newline at end of file

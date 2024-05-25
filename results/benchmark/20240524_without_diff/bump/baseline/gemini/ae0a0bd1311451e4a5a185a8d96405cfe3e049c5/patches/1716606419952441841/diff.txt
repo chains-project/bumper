@@ -1,0 +1,6 @@
+2c2,4
+<         return new StringContains(
+---
+>     // The original matcher was using StringContains, which is deprecated in Hamcrest 2.2.
+>     // We can use StringContainsIgnoringCase instead, which is a compatible replacement.
+>     return new StringContainsIgnoringCase(

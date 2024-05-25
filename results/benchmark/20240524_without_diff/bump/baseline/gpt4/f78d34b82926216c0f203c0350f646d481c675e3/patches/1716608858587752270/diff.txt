@@ -1,0 +1,8 @@
+8,9c8,11
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+<         setValue(sigmoid(sum));
+---
+>         inputData.parallelStream().forEachOrdered(input -> {
+>             double weightingValue = input.getWeightingValue();
+>             setValue(sigmoid(weightingValue));
+>         });

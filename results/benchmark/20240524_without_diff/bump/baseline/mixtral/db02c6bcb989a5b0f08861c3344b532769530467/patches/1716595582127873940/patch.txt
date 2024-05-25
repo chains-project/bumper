@@ -1,0 +1,5 @@
+  @Override
+  public void describeMismatch(String s, Description description) {
+    org.hamcrest.Description desc = description;
+    desc.appendText("was ").appendValue(s);
+  }

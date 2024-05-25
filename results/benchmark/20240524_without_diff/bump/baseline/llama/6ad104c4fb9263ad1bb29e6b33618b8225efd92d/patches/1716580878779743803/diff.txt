@@ -1,0 +1,9 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+5c2,3
+<     return decodeCiphertext(receivedMAC, null, ciphertext);
+---
+>     byte[] iv = new byte[12]; // assuming the second parameter is an initialization vector
+>     return decodeCiphertext(receivedMAC, iv, ciphertext);

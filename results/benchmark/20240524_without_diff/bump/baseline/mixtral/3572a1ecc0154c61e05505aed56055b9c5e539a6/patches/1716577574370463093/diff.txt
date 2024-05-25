@@ -1,0 +1,19 @@
+1c1,14
+< import org.apache.thrift.transport.TFastFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TFramedTransport;
+> 
+> // ...
+> 
+> public static TFramedTransport newFramedTransport(Socket socket) {
+>   TFramedTransport transport;
+>   try {
+>     transport = new TFastFramedTransport(socket);
+>   } catch (TTransportException e) {
+>     throw new RuntimeException("Failed to create TFastFramedTransport", e);
+>   }
+>   transport.open();
+>   return transport;
+> }
+\ No newline at end of file

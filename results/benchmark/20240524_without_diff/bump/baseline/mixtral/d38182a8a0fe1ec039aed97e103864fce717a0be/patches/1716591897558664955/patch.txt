@@ -1,0 +1,32 @@
+import static java.util.stream.Collectors.toList;
+
+@Override
+public Slice slice(final String action) {
+    BearerAuthScheme authScheme = new BearerAuthScheme(
+            token -> CompletableFuture.completedFuture(
+                    getUserByName(getUserByToken(token))
+            ),
+            ""
+    );
+    return new DockerSlice(
+            new AstoDocker(new InMemoryStorage()),
+            new Permissions.Single(TestAuthentication.ALICE.name(), action),
+            authScheme
+    );
+}
+
+private Authentication.User getUserByToken(String token) {
+    return Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+            .filter(user -> token.equals(token(user)))
+            .map(user -> new Authentication.User(user.name()))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("User not found"));
+}
+
+private Authentication.User getUserByName(String name) {
+    return Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+            .filter(user -> name.equals(user.name()))
+            .map(user -> new Authentication.User(user.name()))
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("User not found"));
+}

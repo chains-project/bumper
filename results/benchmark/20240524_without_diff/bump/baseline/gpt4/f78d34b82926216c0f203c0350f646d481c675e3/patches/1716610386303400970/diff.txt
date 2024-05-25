@@ -1,0 +1,27 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+51c43
+<                     new BukkitRunnable()
+---
+>                     BukkitRunnable bukkitRunnable = new BukkitRunnable()
+67c59,60
+<                     }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>                     };
+>                     bukkitRunnable.runTask(PeyangSuperbAntiCheat.getPlugin());
+80c73
+<         new BukkitRunnable()
+---
+>         BukkitRunnable bukkitRunnable = new BukkitRunnable()
+88c81,82
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+---
+>         };
+>         bukkitRunnable.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));

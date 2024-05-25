@@ -1,0 +1,35 @@
+import org.apache.maven.doxia.sink.Sink;
+
+@Override
+public void executeReport(Locale locale) throws MojoExecutionException {
+    try {
+        sink = createSink();
+        sink.head();
+
+        if (getLog().isDebugEnabled()) {
+            sink.comment("Debug info");
+        }
+
+        sink.title();
+        sink.text(getReportTitle());
+        sink.title_();
+
+        sink.head_();
+
+        sink.body();
+
+        if (getLog().isDebugEnabled()) {
+            sink.comment("Debug info");
+        }
+
+        sink.section1();
+        sink.text(getReportTitle());
+        sink.section1_();
+
+        sink.body_();
+
+        sink.flush();
+    } catch (Exception e) {
+        throw new MojoExecutionException("Failed to generate report", e);
+    }
+}

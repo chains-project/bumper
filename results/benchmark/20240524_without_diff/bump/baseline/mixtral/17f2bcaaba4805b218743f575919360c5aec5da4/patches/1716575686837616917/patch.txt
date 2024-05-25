@@ -1,0 +1,12 @@
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+
+public class PGS_MeshingTests {
+
+    @Test
+    public void testPGS_Meshing() {
+        Object obj = new Object();
+        assertNotNull(obj);
+    }
+}

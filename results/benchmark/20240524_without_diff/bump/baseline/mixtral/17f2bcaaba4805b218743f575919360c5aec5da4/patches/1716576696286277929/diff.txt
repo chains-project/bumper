@@ -1,0 +1,8 @@
+2,4c2,4
+<         void test_PGS_Morphology_erosionDilation() {
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+---
+> void test\_PGS\_Morphology\_erosionDilation() {
+>     assumeTrue(Morphology.GROUP\_SHAPE.getChildCount() == 2);
+>     PShape out = Morphology.erosionDilation(Morphology.GROUP\_SHAPE, 0);

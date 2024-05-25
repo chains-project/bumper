@@ -1,0 +1,34 @@
+0a1,3
+> import static java.util.Collections.singletonList;
+> import static java.util.stream.Collectors.toList;
+> 
+2a6,11
+>     AuthScheme authScheme = new BearerAuthScheme(
+>         token -> CompletableFuture.completedFuture(
+>             getUserFromToken(token, singletonList(TestAuthentication.ALICE, TestAuthentication.BOB))
+>         ),
+>         ""
+>     );
+6,8c15,20
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+>         authScheme
+>     );
+> }
+> 
+> private Authentication.User getUserFromToken(String token, List<TestAuthentication> users) {
+>     return users.stream()
+10c22,23
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>         .map(TestAuthentication::name)
+>         .map(Authentication.User::new)
+12,15c25
+<                     ),
+<                     ""
+<                 )
+<             );
+---
+>         .orElseThrow(() -> new RuntimeException("Invalid token"));

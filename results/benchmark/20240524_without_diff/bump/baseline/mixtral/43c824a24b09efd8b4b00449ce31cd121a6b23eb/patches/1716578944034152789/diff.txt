@@ -1,0 +1,6 @@
+0a1,5
+> import de.gwdg.metadataqa.api.json.JsonPathBranch;
+> 
+> // Use the new class name 'JsonPathBranch' instead of 'JsonBranch'
+> // This class should be available in the same package 'de.gwdg.metadataqa.api.json'
+> // and provides the same functionality as 'JsonBranch'

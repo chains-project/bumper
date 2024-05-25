@@ -1,0 +1,38 @@
+1,2c1,4
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.JSchException;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a13,14
+>     JSch jsch = new JSch();
+>     jsch.setKnownHosts("");
+12,21c16,20
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+<             final Session session = jsch.getSession(
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+---
+>         jsch.addIdentity("");
+>     } catch (JSchException e) {
+>         throw new IOException(e);
+>     }
+>     Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+24,26c23
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+---
+>     session.setServerAliveInterval((int) TimeUnit.SECONDS.toMillis(Tv.TEN));
+30,32d26
+<         } catch (final JSchException ex) {
+<             throw new IOException(ex);
+<         }

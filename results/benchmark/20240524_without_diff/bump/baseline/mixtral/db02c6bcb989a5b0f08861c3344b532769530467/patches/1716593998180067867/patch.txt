@@ -1,0 +1,23 @@
+@Test
+void failsOnDigestMismatch() {
+    final InMemoryStorage storage = new InMemoryStorage();
+    final AstoBlobs blobs = new AstoBlobs(
+            storage, new DefaultLayout(), new RepoName.Simple("any")
+    );
+    final String digest = "123";
+    final Content content = new Content.From("data".getBytes());
+    final Digest calculatedDigest = new Digest.Sha256(content.digest());
+    final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(content, calculatedDigest);
+    blobs.put(checkedBlobSource)
+            .handle((blob, throwable) -> {
+                if (throwable != null) {
+                    InvalidDigestException idException = (InvalidDigestException) Throwables.getRootCause(throwable);
+                    assertThat(idException.getMessage(), idException.getMessage(),
+                            new JUnit413StringContains(calculatedDigest.value()));
+                    assertThat(idException.getMessage(), idException.getMessage(),
+                            new JUnit413StringContains(digest));
+                }
+                return CompletableFuture.allOf();
+            })
+            .join();
+}

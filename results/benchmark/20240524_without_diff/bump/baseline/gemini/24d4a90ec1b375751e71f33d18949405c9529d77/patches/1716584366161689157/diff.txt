@@ -1,0 +1,13 @@
+1a2,12
+> 
+>   import java.io.IOException;
+> 
+>   public class AwsOcketITCase {
+> 
+>     @Tv
+>     public void testPutObject() throws IOException {
+>       // TODO Auto-generated method stub
+>     }
+> 
+>   }
+\ No newline at end of file

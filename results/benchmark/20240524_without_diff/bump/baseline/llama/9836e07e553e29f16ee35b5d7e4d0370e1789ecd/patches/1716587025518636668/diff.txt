@@ -1,0 +1,5 @@
+2c2,3
+<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
+---
+>     String expected = String.format("%s: Pushed", this.image.layer());
+>     return Matchers.containsString(expected);

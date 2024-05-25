@@ -1,0 +1,9 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String ids() throws IOException {
+  return new JoinedText(Texts.split(" ", new String(get("/wallets").getBody())))
+    .asString();
+}

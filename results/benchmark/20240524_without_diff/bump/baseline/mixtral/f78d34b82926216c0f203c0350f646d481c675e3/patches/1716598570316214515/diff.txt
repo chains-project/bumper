@@ -1,0 +1,68 @@
+1,8c1,18
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager_;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+> public class PlayerUtils {
+> 
+>     public static EntityPlayer getRandomPlayer(World world) {
+12c22
+<             : RandomWordUtils.getRandomWord();
+---
+>             : WordUtils.randomDeterministicWord(5);
+15c25
+<             : RandomWordUtils.getRandomWord();
+---
+>             : WordUtils.randomDeterministicWord(5);
+17,20c27,29
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = obfuscate(first);
+>             last = obfuscate(last);
+44a54,74
+> 
+>     private static String obfuscate(String input) {
+>         StringBuilder output = new StringBuilder();
+>         Pattern pattern = Pattern.compile(".");
+>         Matcher matcher = pattern.matcher(input);
+> 
+>         while (matcher.find()) {
+>             char c = Character.toLowerCase(matcher.group().charAt(0));
+>             if (Character.isLetter(c)) {
+>                 if (Character.isUpperCase(c)) {
+>                     output.append((char) (c - 'A' + 'a'));
+>                 } else {
+>                     output.append((char) (c - 'a' + 'A'));
+>                 }
+>             } else {
+>                 output.append(c);
+>             }
+>         }
+>         return output.toString();
+>     }
+> }
+\ No newline at end of file

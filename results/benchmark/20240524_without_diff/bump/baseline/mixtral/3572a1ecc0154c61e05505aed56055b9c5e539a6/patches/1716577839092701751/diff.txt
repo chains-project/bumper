@@ -1,0 +1,13 @@
+4c4
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+---
+>   // Use the TFramedTransport to be compatible with singer_thrift
+7,9c7,10
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>   TTransport transport = new TIOStreamTransport(os);
+>   TFramedTransport framedTransport = new TFramedTransport(transport, bufferCapacity);
+>   TProtocol protocol = new TBinaryProtocol(framedTransport);
+>   framedTransport.open();

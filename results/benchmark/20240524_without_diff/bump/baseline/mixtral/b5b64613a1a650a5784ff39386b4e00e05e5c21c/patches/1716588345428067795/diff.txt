@@ -1,0 +1,28 @@
+0a1,11
+> import org.jfrog.buildinfo.client.ArtifactoryServer;
+> import org.jfrog.buildinfo.client.DistributionServer;
+> import org.jfrog.buildinfo.client.util.SpecUtils;
+> import org.jfrog.hudson.CredentialsIdResolver;
+> import org.jfrog.hudson.ReleaseBundleUploader;
+> import org.jfrog.hudson.ReleaseManagementServerFactory;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerImpl;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerImpl;
+> import org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstanceImpl;
+> import org.jfrog.hudson.util.JFrogPlatformUtils;
+> 
+13,14c24,25
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         artifactoryServer = ReleaseManagementServerFactory.createArtifactoryServer(artifactoryUrl, CredentialsIdResolver.resolve(step.credentialsId));
+>         distributionServer = ReleaseManagementServerFactory.createDistributionServer(distributionUrl, CredentialsIdResolver.resolve(step.credentialsId));
+16,17c27,28
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryServer = ReleaseManagementServerFactory.createArtifactoryServer(artifactoryUrl, step.username, step.password);
+>         distributionServer = ReleaseManagementServerFactory.createDistributionServer(distributionUrl, step.username, step.password);
+20c31
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     return new JFrogPlatformInstanceImpl(new ArtifactoryServerImpl(artifactoryServer), new DistributionServerImpl(distributionServer), urlWithoutSlash, "");

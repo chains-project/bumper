@@ -1,0 +1,9 @@
+26,29d25
+< // TODO: review this AI generated patch!
+< 
+< 
+<                     @Override
+32a29,31
+>                 public AuthScheme.User user() {
+>                     return null;
+>                 }

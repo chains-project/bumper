@@ -1,0 +1,26 @@
+0a1,14
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Before;
+> import org.junit.Test;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     private PShape GROUP_SHAPE;
+> 
+>     @Before
+>     public void setUp() {
+>         // Initialize GROUP_SHAPE here
+>     }
+> 
+5c19,26
+<                 assertEquals(2, out.getChildCount());
+---
+>         PShape reference = createReferenceShape();
+>         assertEquals(reference.getChildCount(), out.getChildCount());
+>     }
+> 
+>     private PShape createReferenceShape() {
+>         // Create a reference shape with 2 children
+>         // This should be similar to the shape produced by PGS_Morphology.erosionDilation
+>     }

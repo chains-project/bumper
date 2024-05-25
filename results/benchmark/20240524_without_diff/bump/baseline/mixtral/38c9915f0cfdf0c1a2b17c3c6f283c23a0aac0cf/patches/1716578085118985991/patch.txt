@@ -1,0 +1,10 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public void bind(HttpRequest request) throws IOException {
+  String id = request.param("id");
+  Texts joined = new JoinedText(",", request.queryParams());
+  // ...
+}

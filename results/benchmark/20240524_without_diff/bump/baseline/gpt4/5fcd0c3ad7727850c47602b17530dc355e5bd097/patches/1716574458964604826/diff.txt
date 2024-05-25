@@ -1,0 +1,7 @@
+2a3,4
+>     Collection<String> mutatedClasses = new ArrayList<>();
+>     mutatedClasses.add(data.getMutatedClass());
+4c6
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), coverage.getClassInfo(mutatedClasses));

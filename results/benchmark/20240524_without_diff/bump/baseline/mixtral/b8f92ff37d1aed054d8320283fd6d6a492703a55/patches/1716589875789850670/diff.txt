@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3,7
+<     if (directoryScanner.scan() instanceof ScanResult scanResult) {
+---
+>     ScanResult scanResult = null;
+>     if (directoryScanner.scan()) {
+>         scanResult = new ScanResult(directoryScanner);
+>     }
+>     if (scanResult != null) {

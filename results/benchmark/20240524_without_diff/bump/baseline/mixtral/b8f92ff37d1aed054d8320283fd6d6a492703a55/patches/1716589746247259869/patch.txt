@@ -1,0 +1,12 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    FileVisitOption[] options = new FileVisitOption[]{FileVisitOption.FOLLOW_LINKS};
+    List<String> classes = new ArrayList<>();
+    try (DirectoryStream<Path> stream = Files.newDirectoryStream(testSrcFolder.toPath(), "**/*.class", options)) {
+        for (Path entry : stream) {
+            classes.add(entry.toAbsolutePath().toString());
+        }
+    } catch (IOException e) {
+        // Handle exception
+    }
+    return classes;
+}

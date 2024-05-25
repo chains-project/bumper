@@ -1,0 +1,38 @@
+0a1,13
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.allOf;
+> import static org.hamcrest.Matchers.hasItem;
+> import static org.hamcrest.Matchers.stringContainsInOrder;
+> 
+> import java.util.Arrays;
+> import org.junit.jupiter.api.Assertions;
+> import org.junit.jupiter.api.Test;
+> import org.junit.jupiter.params.ParameterizedTest;
+> import org.junit.jupiter.params.provider.ValueSource;
+> 
+> class TagValidTest {
+> 
+8d20
+<         //@checkstyle LineLengthCheck (1 line)
+13,14c25,26
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>         assertThat(tag.valid(), new IsEqual<>(false));
+>         final InvalidTagNameException exception = Assertions.assertThrows(
+18,24c30,33
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+---
+>         assertThat(
+>             exception.getMessage(),
+>             allOf(
+>                 hasItem(stringContainsInOrder(Arrays.asList("Invalid tag", original)))
+27a37
+> }
+\ No newline at end of file

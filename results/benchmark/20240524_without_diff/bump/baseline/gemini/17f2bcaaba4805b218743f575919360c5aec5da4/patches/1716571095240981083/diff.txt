@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5f);

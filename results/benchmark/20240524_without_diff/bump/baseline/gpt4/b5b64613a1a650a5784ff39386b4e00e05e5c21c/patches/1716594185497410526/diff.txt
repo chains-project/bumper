@@ -1,0 +1,8 @@
+16,17c16,19
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         String username = step.username;
+>         String password = step.password;
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, username, password);
+>         distributionServer = new DistributionServer(distributionUrl, username, password);

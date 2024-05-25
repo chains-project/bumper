@@ -1,0 +1,8 @@
+3c3,7
+<         return actual instanceof String && ((String) actual).contains(expected);
+---
+>     if (actual instanceof String) {
+>       String actualString = (String) actual;
+>       return actualString.contains(expected);
+>     }
+>     return false;

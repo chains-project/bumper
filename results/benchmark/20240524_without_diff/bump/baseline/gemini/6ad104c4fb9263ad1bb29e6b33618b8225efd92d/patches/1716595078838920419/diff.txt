@@ -1,0 +1,21 @@
+12,13c12,13
+<     byte[] output = new byte[ciphertext.length];
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+---
+>     // Calculate the padding length from the last byte
+>     int paddingLength = ciphertext[ciphertext.length - 1] & 0xFF;
+15c15,26
+<     return output;
+---
+>     // Validate that the padding length is within the valid range
+>     if (paddingLength > ciphertext.length || paddingLength < 1) {
+>       throw new TlsFatalAlert(AlertDescription.decryption_failed);
+>     }
+> 
+>     // Create a new byte array to store the plaintext
+>     byte[] plaintext = new byte[ciphertext.length - paddingLength];
+> 
+>     // Decrypt the ciphertext and remove the padding
+>     decryptCipher.processBytes(ciphertext, 0, ciphertext.length - paddingLength, plaintext, 0);
+> 
+>     return plaintext;

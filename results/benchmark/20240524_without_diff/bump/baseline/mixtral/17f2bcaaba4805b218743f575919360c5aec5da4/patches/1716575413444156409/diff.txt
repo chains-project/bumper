@@ -1,0 +1,10 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3,4c5,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+>     PShape pgs = PGS_Morphology.getPGSInstance();
+>     PShape out = pgs.smoothGaussian(GROUP_SHAPE, 10);

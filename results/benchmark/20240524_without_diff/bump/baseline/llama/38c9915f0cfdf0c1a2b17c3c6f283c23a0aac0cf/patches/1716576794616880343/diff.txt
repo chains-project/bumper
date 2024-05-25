@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.UncheckedText;
+\ No newline at end of file
+---
+> import org.cactoos.Text;
+> 
+> public class WalletsIn {
+>     public void method() {
+>         Text text = new UncheckedText("some text");
+>     }
+> }
+\ No newline at end of file

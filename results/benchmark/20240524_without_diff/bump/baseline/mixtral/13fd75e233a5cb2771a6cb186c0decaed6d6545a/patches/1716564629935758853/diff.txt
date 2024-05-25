@@ -1,0 +1,9 @@
+2,4c2,5
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>     return new CoreMatchers.StringContains(
+>         CoreMatchers.not(CoreMatchers.stringContainsInOrder(
+>             Arrays.asList("Status: Downloaded newer image for", image)
+>         ))

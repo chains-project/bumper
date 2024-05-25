@@ -1,0 +1,15 @@
+8c8,19
+<                 PShape mergedMesh = PGS_Meshing.areaMerge(mesh, areaThreshold);
+---
+>     List<PShape> children = PGS_Conversion.getChildren(mesh);
+>     for (int i = 0; i < children.size(); i++) {
+>         for (int j = i + 1; j < children.size(); j++) {
+>             if (PGS_ShapePredicates.area(children.get(i)) + PGS_ShapePredicates.area(children.get(j)) >= areaThreshold) {
+>                 children.set(i, PGS_Geometry.union(children.get(i), children.get(j)));
+>                 children.remove(j);
+>                 j--;
+>             }
+>         }
+>     }
+> 
+>     PShape mergedMesh = PGS_Conversion.toShape(children);

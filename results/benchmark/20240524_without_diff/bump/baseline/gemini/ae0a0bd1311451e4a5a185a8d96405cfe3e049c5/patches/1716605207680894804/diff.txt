@@ -1,0 +1,60 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>   public void failsOnDigestMismatch() throws Exception {
+4,6c4
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>     final AstoBlobs blobs = new AstoBlobs(storage, new DefaultLayout(), new RepoName.Simple("any"));
+8,20c6,15
+<         blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>     final CompletableFuture<Blob> blobFuture = blobs.put(new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest)));
+>     final CompletableFuture<Void> completionFuture = blobFuture.thenAccept(
+>       blob -> {
+>         try {
+>           final String actualDigest = blobs.get(blob.layer()).digest().value();
+>           MatcherAssert.assertThat(actualDigest, new StringContains(true, digest));
+>         } catch (IOException e) {
+>           throw new RuntimeException(e);
+>         }
+>       }
+21a17,21
+>     try {
+>       completionFuture.get();
+>       fail("Expected an exception to be thrown.");
+>     } catch (ExecutionException e) {
+>       MatcherAssert.assertThat(e.getCause(), new IsInstanceOf(InvalidDigestException.class));
+23,28c23,24
+<                     "Exception message contains calculated digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>         e.getCause().getMessage(),
+>         new StringContains(true, "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+31,32c27
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>         e.getCause().getMessage(),
+35d29
+<                 return CompletableFuture.allOf();
+37d30
+<         ).join();

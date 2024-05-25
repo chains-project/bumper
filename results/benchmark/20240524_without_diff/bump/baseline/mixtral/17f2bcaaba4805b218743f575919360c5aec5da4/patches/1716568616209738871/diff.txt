@@ -1,0 +1,53 @@
+0a1,15
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.LinearComponentExtracter;
+> import org.locationtech.jts.index.strtree.STRtree;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> import org.locationtech.jts.util.GeometricShapeFactory;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.stream.Collectors;
+> 
+4c19,20
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>     STRtree index = new STRtree();
+6c22
+<                         List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+---
+>         List<NodedSegmentString> segmentStrings = new ArrayList<>(111 + k);
+8,9c24,25
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{new Coordinate(Math.random() * 10000, Math.random() * 10000),
+>                     new Coordinate(Math.random() * 10000, Math.random() * 13337)}, null));
+11c27
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<NodedSegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+17a34
+>         LinearComponentExtracter lce = new LinearComponentExtracter();
+19,20c36
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             LineString l = GEOM_FACTORY.createLineString(new Coordinate[]{PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b)});
+21a38
+>             index.insert(l.getEnvelopeInternal(), l);
+31c48
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         Collection<Polygon> FP = polygonize(nodedEdgesSet, index);
+34,35c51
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>         assertEquals(JTS.size(), FP.size());

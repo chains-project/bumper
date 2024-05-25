@@ -1,0 +1,40 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12c2
+<         // False if it matches an excludes pattern
+---
+>     boolean matchesExclude = false;
+16c6,8
+<                 return false;
+---
+>             matchesExclude = true;
+>             break;
+>         }
+17a10,11
+>     if (matchesExclude) {
+>         return false;
+19c13,14
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+---
+> 
+>     boolean matchesInclude = false;
+23c18,20
+<                 return true;
+---
+>             matchesInclude = true;
+>             break;
+>         }
+24a22,23
+>     if (matchesInclude) {
+>         return true;
+27d25
+<         // True if it is present in the available binaries

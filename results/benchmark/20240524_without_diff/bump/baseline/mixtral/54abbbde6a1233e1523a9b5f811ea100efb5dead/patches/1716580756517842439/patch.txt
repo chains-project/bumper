@@ -1,0 +1,7 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(41)
+@Override
+public Ssh ssh() {
+    return Ssh.create(this.config().username(), this.config().password(), this.config().host(), this.config().port());
+}

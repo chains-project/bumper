@@ -1,0 +1,12 @@
+1a2,11
+> 
+>   import java.io.IOException;
+>   import java.io.InputStream;
+> 
+>   public class WalletsIn {
+> 
+>     public WalletsIn(InputStream in) throws IOException {
+>       new IoCheckedScalar<>(in::close).value();
+>     }
+>   }
+\ No newline at end of file

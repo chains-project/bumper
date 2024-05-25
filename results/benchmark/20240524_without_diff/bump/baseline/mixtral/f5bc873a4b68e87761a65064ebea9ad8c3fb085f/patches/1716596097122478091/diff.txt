@@ -1,0 +1,38 @@
+1c1,33
+< import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+\ No newline at end of file
+---
+> import org.codehaus.plexus.components.io.filewalker.FileVisitor;
+> 
+> //...
+> 
+> @Override
+> protected void scanDirectory(File directory, String basedir, List<String> includes, List<String> excludes, boolean followSymlinks) throws MojoExecutionException {
+>     DirectoryScanner scanner = new DirectoryScanner();
+>     scanner.setBasedir(directory);
+>     scanner.setFollowSymlinks(followSymlinks);
+>     scanner.setIncludes(includes.toArray(new String[0]));
+>     scanner.setExcludes(excludes.toArray(new String[0]));
+>     scanner.addDefaultExcludes();
+>     scanner.scan();
+> 
+>     FileSet fileSet = new FileSet();
+>     fileSet.setDirectory(directory);
+>     fileSet.setIncludedFiles(scanner.getIncludedFiles());
+> 
+>     FileVisitor visitor = new FileVisitor() {
+>         @Override
+>         public void visitFile(File file) throws MojoExecutionException {
+>             if (file.isFile()) {
+>                 processFile(file);
+>             }
+>         }
+>     };
+> 
+>     try {
+>         FileUtils.visitFile(fileSet, visitor);
+>     } catch (IOException e) {
+>         throw new MojoExecutionException("Error while visiting files: " + e.getMessage(), e);
+>     }
+> }
+\ No newline at end of file

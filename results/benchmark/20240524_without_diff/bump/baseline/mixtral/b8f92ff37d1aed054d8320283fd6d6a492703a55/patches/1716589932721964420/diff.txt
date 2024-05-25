@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3,5
+<     if (directoryScanner.scan() instanceof ScanResult scanResult) {
+---
+>     directoryScanner.scan();
+>     ScanResult scanResult = directoryScanner.getScanResult();
+>     if (scanResult != null) {

@@ -1,0 +1,11 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_buffer() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape parent = GROUP_SHAPE.getChildren()[0];
+    PShape child = GROUP_SHAPE.getChildren()[1];
+    parent.addChild(child);
+    PShape out = PGS_Morphology.buffer(parent, -1);
+    assertEquals(2, out.getChildCount());
+}

@@ -1,0 +1,13 @@
+1c1,8
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import java.security.Security;
+> 
+> public class ChachaDecoder {
+>     static {
+>         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+>     }
+>     // rest of the class
+> }
+\ No newline at end of file

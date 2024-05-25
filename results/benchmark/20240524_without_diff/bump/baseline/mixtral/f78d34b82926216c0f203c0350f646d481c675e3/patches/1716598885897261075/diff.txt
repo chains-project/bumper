@@ -1,0 +1,66 @@
+1,8c1,25
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.Random;
+> import java.util.UUID;
+> import java.util.function.Function;
+> import java.util.properties.Property;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(int i);
+> import static org.apache.commons.lang3.RandomUtils.nextBoolean;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> 
+> public class PlayerUtils {
+> 
+>     // ...
+> 
+>     public static EntityPlayer getRandomPlayer(World world) {
+11,12c28,29
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>                 ? randomAlphanumeric(nextInt(13) + 1)
+>                 : getRandomWord();
+14,15c31,32
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>                 ? randomAlphanumeric(nextInt(13) + 1)
+>                 : getRandomWord();
+17,20c34,36
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+28c44
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>             name = randomAlphanumeric(nextInt(16));
+44a61,64
+> 
+>     // ...
+> 
+> }
+\ No newline at end of file

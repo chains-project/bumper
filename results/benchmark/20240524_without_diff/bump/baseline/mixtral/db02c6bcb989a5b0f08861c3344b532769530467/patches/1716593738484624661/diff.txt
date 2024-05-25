@@ -1,0 +1,5 @@
+3c3,4
+<         description.appendText("a string containing: ").appendValue(expected);
+---
+>         String value = "a string containing: " + expected;
+>         description.appendText(value);

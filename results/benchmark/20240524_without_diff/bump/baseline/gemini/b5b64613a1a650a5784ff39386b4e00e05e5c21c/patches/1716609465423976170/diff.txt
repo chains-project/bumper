@@ -1,0 +1,12 @@
+3,7d2
+<         DeleteReleaseBundleRequest request;
+<         if (StringUtils.isNotBlank(distRules)) {
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+<                 throw new IOException("The distRules input can't be used with site, city or country codes");
+<             }
+9,10c4,5
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+<         } else {
+---
+>         DeleteReleaseBundleRequest request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+>         if (request == null) {

@@ -1,0 +1,16 @@
+8d7
+<         //@checkstyle LineLengthCheck (1 line)
+14c13
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>         final InvalidTagNameException e = Assertions.assertThrows(
+19c18
+<             throwable.getMessage(),
+---
+>             e.getMessage(),
+22,23c21,22
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+---
+>                     new StringContains("Invalid tag"),
+>                     new StringContains(original, false)

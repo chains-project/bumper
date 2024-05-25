@@ -1,0 +1,9 @@
+3,4c3
+<     if (!list.isEmpty())
+<       return list.get(0);
+---
+>     if (list.isEmpty()) {
+5a5,7
+>     } else {
+>       return list.get(0);
+>     }

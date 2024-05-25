@@ -1,0 +1,4 @@
+8c8
+<                         stringEncrypter.setPasswordCharArray(chars);
+---
+>         stringEncrypter.setPassword(new String(chars));

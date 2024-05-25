@@ -1,0 +1,8 @@
+0a1,2
+> import java.util.stream.Collectors;
+> 
+8c10,11
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>     ArrayList<Double> weightingValues = inputData.stream().map(input -> input.getWeightingValue()).collect(Collectors.toCollection(ArrayList::new));
+>     weightingValues.parallelStream().forEachOrdered(weightingValue -> sum += weightingValue);

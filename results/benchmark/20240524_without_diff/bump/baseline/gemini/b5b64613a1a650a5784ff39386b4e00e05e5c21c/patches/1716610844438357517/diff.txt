@@ -1,0 +1,16 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+12,16c6,7
+<                 if (isNotBlank(step.username)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and username");
+<                 }
+<                 if (isNotBlank(step.password)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and password");
+---
+>                 if (isNotBlank(step.username) || isNotBlank(step.password)) {
+>                     throw new IOException("'rtServer' step can't include both credentialsId and username or password");

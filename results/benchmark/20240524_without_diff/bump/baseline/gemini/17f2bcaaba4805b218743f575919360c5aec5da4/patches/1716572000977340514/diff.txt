@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5, 2);
+---
+>                 PShape out = new PShape();
+>                 out.addChild(PGS_Morphology.chaikinCut(GROUP_SHAPE.getChild(0), 0.5, 2));
+>                 out.addChild(PGS_Morphology.chaikinCut(GROUP_SHAPE.getChild(1), 0.5, 2));

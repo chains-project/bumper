@@ -1,0 +1,5 @@
+15c15,16
+<             registry.set(server, reg);
+---
+>             // ++ Added type cast to avoid incompatible types error.
+>             registry.set(server, (SortedMap<MOScope, ManagedObject<?>>) reg);

@@ -1,0 +1,10 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     if (GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2) {
+4a5
+>         if (out != null) {
+6a8,9
+>     }
+> }
+\ No newline at end of file

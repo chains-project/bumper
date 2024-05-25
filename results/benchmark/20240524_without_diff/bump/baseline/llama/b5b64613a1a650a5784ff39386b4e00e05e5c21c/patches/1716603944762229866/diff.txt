@@ -1,0 +1,7 @@
+8,9c8,10
+<             ObjectMapper mapper = createMapper();
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+---
+>         JsonNode jsonNode = new ObjectMapper().readTree(distRules);
+>         request = new DeleteReleaseBundleRequest();
+>         request.setDistributionRules(jsonNode.get("distributionRules").toString());

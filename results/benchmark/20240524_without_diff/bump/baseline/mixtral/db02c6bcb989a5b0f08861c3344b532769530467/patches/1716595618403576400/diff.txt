@@ -1,0 +1,6 @@
+3c3,5
+<         description.appendText("was ").appendValue(s);
+---
+>     MatcherDescription mismatch = new MatcherDescription();
+>     mismatch.appendText("was ").appendValue(s);
+>     description.append(mismatch);

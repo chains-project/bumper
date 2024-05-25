@@ -1,0 +1,4 @@
+19a20,22
+>             if (isNotBlank(step.username) && isNotBlank(step.password)) {
+>                 server.setCredentials(new CredentialsConfig(step.username, step.password));
+>             }

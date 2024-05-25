@@ -1,0 +1,4 @@
+2c2
+<     void shouldThrowExceptionOnInvalidPath() {
+---
+>     public void shouldThrowExceptionOnInvalidPath() {

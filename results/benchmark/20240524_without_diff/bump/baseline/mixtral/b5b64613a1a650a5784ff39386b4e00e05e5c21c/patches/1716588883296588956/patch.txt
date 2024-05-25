@@ -1,0 +1,15 @@
+import java.util.Objects;
+
+// ...
+
+@Override
+public CreateJFrogInstanceStep executeStep(StepContext context) throws IOException, InterruptedException {
+    // ...
+
+    String url = Objects.requireNonNullElse(context.get(URL_KEY), "").trim();
+    if (isAllBlank(url)) {
+        // ...
+    }
+
+    // ...
+}

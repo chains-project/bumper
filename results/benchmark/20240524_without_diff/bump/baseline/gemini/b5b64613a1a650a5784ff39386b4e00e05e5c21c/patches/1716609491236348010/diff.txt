@@ -1,0 +1,7 @@
+2,5c2
+<         protected JFrogPlatformInstance run() throws Exception {
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+<                 throw new IllegalArgumentException("At least one of the following is mandatory: 'url', 'artifactoryUrl', 'distributionUrl'");
+<             }
+---
+> public JFrogPlatformInstance run() throws Exception {

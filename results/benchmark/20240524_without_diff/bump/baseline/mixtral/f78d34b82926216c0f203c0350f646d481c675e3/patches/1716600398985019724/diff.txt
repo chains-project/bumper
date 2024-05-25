@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+9a9
+>     Plugin plugin = PeyangSuperbAntiCheat.getPlugin();
+17c17
+<                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>                     if (value.getOwningPlugin().getName().equals(plugin.getName()))
+22c22
+<     r.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0, 1);
+---
+>     r.runTaskTimer(plugin, 0, 1);
+30c30
+<     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+---
+>     }.runTaskLater(plugin, 20 * (config.getLong("npc.seconds")));

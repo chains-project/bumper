@@ -1,0 +1,8 @@
+1a2,7
+> import com.artipie.asto.memory.InMemoryStorage;
+> 
+> @Override
+> public Storage storage() {
+>     return Storages.single(new InMemoryStorage());
+> }
+\ No newline at end of file

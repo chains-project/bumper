@@ -1,0 +1,11 @@
+1c1,6
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+> // Use a different type of transport that is still supported
+> private TTransport createTransport() {
+>   return new org.apache.thrift.transport.TSocket(host, port);
+> }
+\ No newline at end of file

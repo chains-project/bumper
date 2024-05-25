@@ -1,0 +1,49 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12,22c2,3
+<         // False if it matches an excludes pattern
+<         for (String pattern : config.getJacocoExcludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+<                 return false;
+<             }
+<         }
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+<         for (String pattern : config.getJacocoIncludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+---
+>     if (config.getJacocoIncludes().stream()
+>         .anyMatch(pattern -> new WildcardMatcher(pattern).matches(className))) {
+25d5
+<         }
+27d6
+<         // True if it is present in the available binaries
+29,30c8
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         if (isClassPresent(className, dir)) {
+33a12
+> 
+35,36c14
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         if (isClassPresent(className, dir)) {
+42a21,25
+> 
+> private boolean isClassPresent(String className, String dir) {
+>     DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+>     return directoryScanner.scan().getClasses().contains(className);
+> }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+import org.apache.thrift.transport.TTransport;
+
+// ...
+
+private TTransport createTransport(String host, int port) {
+  TFramedTransport transport = new TFramedTransport();
+  transport.open();
+  return transport;
+}

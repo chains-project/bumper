@@ -1,0 +1,9 @@
+2c2
+<         return new StringContains(
+---
+>         final Matcher<String> status = new StringContains(
+4a5,8
+>         );
+>         return new StringContains(
+>             false,
+>             status.toString()

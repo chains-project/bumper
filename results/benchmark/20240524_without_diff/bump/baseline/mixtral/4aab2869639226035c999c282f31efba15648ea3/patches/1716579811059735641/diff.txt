@@ -1,0 +1,12 @@
+1c1,7
+< import java.io.UncheckedIOException;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> 
+> try {
+>   // existing code that may throw IOException
+> } catch (IOException e) {
+>   throw new UncheckedIOException(e);
+> }
+\ No newline at end of file

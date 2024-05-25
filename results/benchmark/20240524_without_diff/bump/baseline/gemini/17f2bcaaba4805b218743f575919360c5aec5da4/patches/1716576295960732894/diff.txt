@@ -1,0 +1,17 @@
+15,22c15,21
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+<                         polygonizerJTS.setCheckRingsValid(false);
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+<                         });
+---
+>                         // -- nodedEdgesSet.forEach(e -> {
+>                         // --   final LineString l = PGS.GEOM_FACTORY
+>                         // --                   .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+>                         // --   polygonizerJTS.add(l);
+>                         // -- });
+>                         // ++ polygonizerJTS.add(nodedEdgesSet.stream().map(e -> PGS.GEOM_FACTORY
+>                         // ++                   .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) })).collect(Collectors.toList()));

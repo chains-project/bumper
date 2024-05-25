@@ -1,0 +1,10 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3,4c5,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smooth(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+>     PShape pgsMorphology = new PGS_Morphology();
+>     PShape out = pgsMorphology.smooth(GROUP_SHAPE, 0.5);

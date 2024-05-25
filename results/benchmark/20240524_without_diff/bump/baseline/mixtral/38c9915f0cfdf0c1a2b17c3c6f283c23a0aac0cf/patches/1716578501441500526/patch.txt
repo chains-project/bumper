@@ -1,0 +1,4 @@
+import org.cactoos.Scalar;
+import org.cactoos.scalar.IoCheckedScalar;
+
+Scalar<InputStream> scalar = new IoCheckedScalar<>(HttpResponse::getBody);

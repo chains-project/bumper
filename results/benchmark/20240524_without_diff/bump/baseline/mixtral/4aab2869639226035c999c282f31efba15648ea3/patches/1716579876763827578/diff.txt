@@ -1,0 +1,23 @@
+1c1,18
+< import java.io.UncheckedIOException;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> 
+> // ...
+> 
+> public YamlPolicyFactory implements PolicyFactory {
+>     // ...
+> 
+>     @Override
+>     public Policy load(InputStream input) throws IOException {
+>         try {
+>             return new ObjectMapper().readValue(input, Policy.class);
+>         } catch (JsonProcessingException e) {
+>             throw new UncheckedIOException(e);
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

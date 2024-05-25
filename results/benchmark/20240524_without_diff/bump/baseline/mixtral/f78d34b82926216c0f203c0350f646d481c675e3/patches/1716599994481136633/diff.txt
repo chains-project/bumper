@@ -1,0 +1,96 @@
+1,6c1,9
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+---
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.scheduler.BukkitRunnable;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations
+> {
+13a17,28
+>             private final Random random = new Random();
+>             private final Vector[] points = {
+>                     new Vector(0, 0.9, 0),
+>                     new Vector(0, 0.7, 0),
+>                     new Vector(0, wave.get(0.01, false), 0),
+>                     new Vector(3.2, 0.7, 3.2),
+>                     new Vector(3.2, 0.7, -3.2),
+>                     new Vector(-3.2, 0.7, 3.2),
+>                     new Vector(-3.2, 0.7, -3.2),
+>                     new Vector(0, 1.5, 0)
+>             };
+> 
+17,18d31
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+21,33c34,35
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+< 
+<                     circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+< 
+<                     circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+< 
+<                     circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+< 
+<                     circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+< 
+---
+>                 for (Vector point : points) {
+>                     circle(center.clone().add(point), count[0], 1.5, Particle.CRIT);
+37,45c39,49
+<                 Location center = player.getLocation();
+< 
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 line(center.clone().add(points[0]), center.clone().add(points[1]));
+>                 line(center.clone().add(points[1]), center.clone().add(points[2]));
+>                 line(center.clone().add(points[0]), center.clone().add(points[2]));
+> 
+>                 line(center.clone().add(points[3]), center.clone().add(points[4]));
+>                 line(center.clone().add(points[4]), center.clone().add(points[5]));
+>                 line(center.clone().add(points[3]), center.clone().add(points[5]));
+> 
+>                 line(center.clone().add(points[6]), center.clone().add(points[7]));
+>                 line(center.clone().add(points[7]), center.clone().add(points[0]));
+>                 line(center.clone().add(points[6]), center.clone().add(points[0]));
+59a64,85
+> 
+>     private static void circle(Location location, int count, double radius, Particle particle)
+>     {
+>         for (double i = 0; i < Math.PI * 2; i += Math.PI / 5)
+>         {
+>             double x = radius * Math.cos(i) + location.getX();
+>             double z = radius * Math.sin(i) + location.getZ();
+>             location.getWorld().spawnParticle(particle, x, location.getY(), z, 1);
+>         }
+>     }
+> 
+>     private static void line(Location start, Location end)
+>     {
+>         Vector direction = end.toVector().subtract(start.toVector()).normalize();
+>         Vector location = start.toVector();
+> 
+>         for (double i = 0; i < 1; i += 0.1) {
+>             location = location.add(direction);
+>             start.getWorld().spawnParticle(Particle.REDSTONE, location.getX(), location.getY(), location.getZ(), 1);
+>         }
+>     }
+> }
+\ No newline at end of file

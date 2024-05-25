@@ -1,0 +1,30 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+7,11c2,3
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+> public void execute() throws MojoExecutionException {
+>     if (!canGenerateReport()) {
+16,17c8
+<         try
+<         {
+---
+>     try {
+21,24c12,15
+<             generate( sink, locale );
+<         }
+<         catch ( MavenReportException e )
+<         {
+---
+>         ClassLoader classLoader = getClass().getClassLoader();
+>         Method generateMethod = classLoader.loadClass("--").getDeclaredMethod("generate", SiteRendererSink.class, Locale.class);
+>         generateMethod.invoke(null, sink, locale);
+>     } catch (MavenReportException | ReflectiveOperationException e) {

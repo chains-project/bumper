@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+15,17c14,16
+<             if (player.hasMetadata("speed"))
+<                 for (MetadataValue value : player.getMetadata("speed"))
+<                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>             if (player.hasMetadata("speed")) {
+>                 for (MetadataValue value : player.getMetadata("speed")) {
+>                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getInstance().getName())) {
+18a18,20
+>                     }
+>                 }
+>             }

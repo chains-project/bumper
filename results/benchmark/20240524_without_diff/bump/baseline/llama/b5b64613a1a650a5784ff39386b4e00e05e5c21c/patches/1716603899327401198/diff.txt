@@ -1,0 +1,6 @@
+8,9c8,9
+<             ObjectMapper mapper = createMapper();
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+---
+>         JsonNode jsonNode = new ObjectMapper().readTree(distRules);
+>         request = new ObjectMapper().treeToValue(jsonNode, DeleteReleaseBundleRequest.class);

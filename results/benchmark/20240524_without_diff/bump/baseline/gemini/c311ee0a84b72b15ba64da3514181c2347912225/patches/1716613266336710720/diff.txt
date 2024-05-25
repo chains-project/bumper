@@ -1,0 +1,8 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>     public void failsOnDigestMismatch() {
+33c33
+<                     new StringContains(true, digest)
+---
+>                     Matchers.containsString(digest)

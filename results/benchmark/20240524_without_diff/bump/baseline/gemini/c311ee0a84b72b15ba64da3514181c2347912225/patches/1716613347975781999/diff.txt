@@ -1,0 +1,9 @@
+2c2
+<     void shouldPush() throws Exception {
+---
+>     public void shouldPush() throws Exception {
+8,9c8
+<             new StringContains(
+<                 false,
+---
+>             Matchers.containsString(

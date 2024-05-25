@@ -1,0 +1,4 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>                 //assumeTrue(GROUP_SHAPE.getChildCount() == 2); // Removed due to potential dependency issue

@@ -1,0 +1,17 @@
+7,13c7,14
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+<         );
+---
+>         
+>         // Check if the output contains the expected message
+>         if (output.contains(String.format("Status: Downloaded newer image for %s", this.image.remote()))) {
+>             // Success
+>         } else {
+>             // Failure
+>             fail("Image pull failed: " + output);
+>         }

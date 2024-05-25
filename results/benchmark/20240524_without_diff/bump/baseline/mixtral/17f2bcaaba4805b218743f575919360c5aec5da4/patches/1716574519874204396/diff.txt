@@ -1,0 +1,8 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4c6,7
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>     PShape roundShape = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+>     PShape out = (PShape) roundShape.getChild(0); // assuming the first child is the result

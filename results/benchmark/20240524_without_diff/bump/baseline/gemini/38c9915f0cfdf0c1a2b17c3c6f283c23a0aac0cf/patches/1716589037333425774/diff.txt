@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class RtTransaction {
+> 
+>     public String getTransactionId() {
+>         return new FormattedText("%s - %s", "Transaction", "123456").asString();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(11)
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh login(String host, int port, String user, String password) {
+        return new JschSsh(host, port, user, password);
+    }
+}

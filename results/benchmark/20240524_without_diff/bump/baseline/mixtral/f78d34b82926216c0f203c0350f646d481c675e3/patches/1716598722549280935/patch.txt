@@ -1,0 +1,71 @@
+import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.v1_16_R3.GameProfile;
+import net.minecraft.server.v1_16_R3.MinecraftServer;
+import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+import net.minecraft.server.v1_16_R3.WorldServer;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.entity.Player;
+
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Supplier;
+import java.util.regex.Pattern;
+
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.apache.commons.lang3.RandomUtils.nextInt;
+import static org.apache.commons.lang3.StringUtils.isBlank;
+import static org.apache.commons.lang3.StringUtils.isNotBlank;
+
+public class PlayerUtils {
+    ...
+    public static EntityPlayer getRandomPlayer(World world) {
+        Supplier<String> randomStringSupplier = () -> {
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            return random.nextBoolean() ?
+                    randomAlphanumeric(nextInt(13) + 1) :
+                    randomAlphabetic(nextInt(13) + 1);
+        };
+
+        Supplier<String> randomSkinSupplier = () -> {
+            ThreadLocalRandom random = ThreadLocalRandom.current();
+            return random.nextBoolean() ?
+                    "path/to/random/skin/folder/" + randomAlphanumeric(nextInt(13) + 1) + ".png" :
+                    "path/to/random/skin/folder/" + randomAlphabetic(nextInt(13) + 1) + ".png";
+        };
+
+        String first = randomStringSupplier.get();
+        String last = randomStringSupplier.get();
+
+        if (random.nextBoolean()) {
+            first = LeetConverter.convert(first);
+            last = LeetConverter.convert(last);
+        }
+
+        String name = first + (random.nextBoolean() ? "_" : "") + last + (random.nextBoolean() ? "19" + random.nextInt(120) : "");
+        if (name.length() > 16)
+            name = random.nextBoolean() ? first : last;
+
+        if (name.length() > 16)
+            name = randomAlphanumeric(nextInt(16));
+
+        WorldServer worldServer = ((CraftWorld) world).getHandle();
+
+        Pair<String, String> skin = Pair.of(randomSkinSupplier.get(), "{}");
+
+        GameProfile profile = new GameProfile(UUID.randomUUID(), name);
+
+        profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+
+        return new EntityPlayer(
+                ((CraftServer) Bukkit.getServer()).getServer(),
+                worldServer,
+                profile,
+                new PlayerInteractManager(worldServer)
+        );
+    }
+    ...
+}

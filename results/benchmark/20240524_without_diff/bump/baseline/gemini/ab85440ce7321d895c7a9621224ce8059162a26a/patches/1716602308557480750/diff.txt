@@ -1,0 +1,14 @@
+2c2
+<     void shouldPush() throws Exception {
+---
+>     public void shouldPush() throws Exception {
+6,12c6
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+<         );
+---
+>         assertThat(output, containsString(String.format("latest: digest: %s", original.digest())));

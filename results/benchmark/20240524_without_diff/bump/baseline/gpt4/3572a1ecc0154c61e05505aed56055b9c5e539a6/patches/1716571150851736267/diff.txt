@@ -1,0 +1,5 @@
+7,8c7
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>   framedTransport = new TFramedTransport(new TIOStreamTransport(os), bufferCapacity);

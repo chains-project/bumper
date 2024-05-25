@@ -1,0 +1,7 @@
+import java.io.IOException;
+
+try {
+  // existing code that might throw IOException
+} catch (IOException e) {
+  throw new UncheckedIOException(e);
+}

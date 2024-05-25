@@ -1,0 +1,16 @@
+6c6
+<                         /* White stained glass borders as default, Green stained glass borders for active */
+---
+>                         // White stained glass borders as default, Green stained glass borders for active
+21c21
+<                         /* Outgoing Chat Button */
+---
+>                         // Outgoing Chat Button
+43c43
+<                         /* Incoming Chat Button */
+---
+>                         // Incoming Chat Button
+65c65
+<                         /* Bottom Left Option: Previous Page */
+---
+>                         // Bottom Left Option: Previous Page

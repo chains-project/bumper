@@ -1,0 +1,11 @@
+2c2,9
+<     List<String> list = extractList(cache, branch);
+---
+>   List<String> list = new ArrayList<>();
+>   if (branch.has("$")) {
+>     try {
+>       list = cache.getJsonPath(branch.toString());
+>     } catch (JsonProcessingException e) {
+>       // Handle exception or add proper logging
+>     }
+>   }

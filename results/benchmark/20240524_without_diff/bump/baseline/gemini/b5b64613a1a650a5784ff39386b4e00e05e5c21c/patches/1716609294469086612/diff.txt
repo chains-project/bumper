@@ -1,0 +1,5 @@
+19c19,20
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+---
+>             // ++
+>             artifactoryServer.setPlatformUrl(urlWithoutSlash + "/" + "platform");

@@ -1,0 +1,27 @@
+1d0
+< // TODO: review this AI generated patch!
+15,17c14,16
+<             if (player.hasMetadata("speed"))
+<                 for (MetadataValue value : player.getMetadata("speed"))
+<                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>             if (player.hasMetadata("speed")) {
+>                 for (MetadataValue value : player.getMetadata("speed")) {
+>                     if (value.getOwningPlugin().getName().equals(getPluginName())) {
+18a18,20
+>                     }
+>                 }
+>             }
+22c24
+<     r.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0, 1);
+---
+>     r.runTaskTimer(getPlugin(), 0, 1);
+30c32,34
+<     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+---
+>     }.runTaskLater(getPlugin(), 20 * (config.getLong("npc.seconds")));
+> 
+> }
+31a36,37
+> private static String getPluginName() {
+>     return PeyangSuperbAntiCheat.getPlugin().getName();

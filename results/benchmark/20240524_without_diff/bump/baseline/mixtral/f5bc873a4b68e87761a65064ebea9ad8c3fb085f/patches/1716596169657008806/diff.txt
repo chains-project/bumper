@@ -1,0 +1,19 @@
+1c1,14
+< import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+\ No newline at end of file
+---
+> import org.codehaus.plexus.components.io.filemanagers.FilteredFileManager;
+> 
+> // ...
+> 
+> public class AbstractThemeMojo {
+>   // ...
+> 
+>   @Override
+>   protected FilteredFileManager getFilteredFileManager() {
+>     return getProject().get filteredFileManager();
+>   }
+> 
+>   // ...
+> }
+\ No newline at end of file

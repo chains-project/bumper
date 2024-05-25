@@ -1,0 +1,39 @@
+1,6d0
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+12c6
+<         BukkitRunnable runnable = new BukkitRunnable()
+---
+>     Runnable runnable = new Runnable()
+14d7
+<             @Override
+40c33
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+---
+>             line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); 
+44c37
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+---
+>             line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); 
+49,50c42,43
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+---
+>     PeyangSuperbAntiCheat.getPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(PeyangSuperbAntiCheat.getPlugin(), runnable, 0L, 1L);
+>     PeyangSuperbAntiCheat.getPlugin().getServer().getScheduler().scheduleSyncDelayedTask(PeyangSuperbAntiCheat.getPlugin(), new Runnable()
+52d44
+<             @Override
+55c47,48
+<                 runnable.cancel();
+---
+>             runnable.run();
+>             PeyangSuperbAntiCheat.getPlugin().getServer().getScheduler().cancelTask(PeyangSuperbAntiCheat.getPlugin().getServer().getScheduler().scheduleSyncRepeatingTask(PeyangSuperbAntiCheat.getPlugin(), runnable, 0L, 1L));
+57,58c50
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+< 
+---
+>     }, seconds * 20);

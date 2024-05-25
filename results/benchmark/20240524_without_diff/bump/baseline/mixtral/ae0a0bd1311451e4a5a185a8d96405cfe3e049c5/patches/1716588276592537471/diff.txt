@@ -1,0 +1,41 @@
+1d0
+< // TODO: review this AI generated patch!
+9,12c8,13
+<     blobs.put(
+<         new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+<         (blob, throwable) -> {
+---
+>     final Content content = new Content.From("data".getBytes());
+>     final Digest calculatedDigest = new Digest.Sha256(content);
+>     final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(content, calculatedDigest);
+>     blobs.put(checkedBlobSource)
+>         .thenAccept(blob -> {
+>             try {
+15,20c16
+<                 throwable,
+<                 new CoreMatchers.IsNot.<Throwable>instanceOf(NullPointerException.class)
+<             );
+<             MatcherAssert.assertThat(
+<                 "Exception is InvalidDigestException",
+<                 Throwables.getRootCause(throwable),
+---
+>                     Throwables.getRootCause(blob.exception()),
+25c21
+<                 Throwables.getRootCause(throwable).getMessage(),
+---
+>                     Throwables.getRootCause(blob.exception()).getMessage(),
+27c23
+<                     new CoreMatchers.StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"),
+---
+>                         new CoreMatchers.StringContains(calculatedDigest.value()),
+31c27,28
+<             return CompletableFuture.allOf();
+---
+>             } catch (InterruptedException e) {
+>                 throw new RuntimeException(e);
+33c30,31
+<     ).join();
+---
+>         })
+>         .join();

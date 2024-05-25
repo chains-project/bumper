@@ -1,0 +1,49 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12c2,5
+<         // False if it matches an excludes pattern
+---
+>     if (config.getJacocoIncludes().isEmpty() && config.getJacocoExcludes().isEmpty()) {
+>         return isClassPresent(config.getBinJavaDir(), className) || isClassPresent(config.getBinTestDir(), className);
+>     }
+> 
+19c12
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+---
+> 
+23c16
+<                 return true;
+---
+>             return !isClassPresentInExcluded(config.getJacocoExcludes(), className);
+27,28c20,24
+<         // True if it is present in the available binaries
+<         for (String dir : config.getBinJavaDir()) {
+---
+>     return isClassPresent(config.getBinJavaDir(), className) || isClassPresent(config.getBinTestDir(), className);
+> }
+> 
+> private boolean isClassPresent(List<String> dirs, String className) {
+>     for (String dir : dirs) {
+34,36c30,36
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>     return false;
+> }
+> 
+> private boolean isClassPresentInExcluded(List<String> excludePatterns, String className) {
+>     for (String pattern : excludePatterns) {
+>         WildcardMatcher matcher = new WildcardMatcher(pattern);
+>         if (matcher.matches(className)) {
+40d39
+< 

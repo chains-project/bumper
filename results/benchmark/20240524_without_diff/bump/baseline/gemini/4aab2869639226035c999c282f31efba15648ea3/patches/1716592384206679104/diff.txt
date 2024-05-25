@@ -1,0 +1,14 @@
+0a1
+> import java.io.IOException;
+1a3,12
+> 
+> public class YamlPolicyFactory {
+>     public static Policy policy(String yaml) {
+>         try {
+>             return Policy.from(new Yaml(yaml).loadAs(Map.class));
+>         } catch (IOException e) {
+>             throw new UncheckedIOException(e);
+>         }
+>     }
+> }
+\ No newline at end of file

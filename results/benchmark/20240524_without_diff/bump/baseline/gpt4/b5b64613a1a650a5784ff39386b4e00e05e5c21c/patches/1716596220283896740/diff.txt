@@ -1,0 +1,12 @@
+8c8,16
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>         if (server == null || step == null) {
+>             throw new IOException("Server or Step is null");
+>         }
+> 
+>         String serverUrl = server.getUrl();
+>         String artifactoryUrl = server.getArtifactory() != null ? server.getArtifactory().getUrl() : null;
+>         String distributionUrl = server.getDistribution() != null ? server.getDistribution().getUrl() : null;
+> 
+>         if (isAllBlank(serverUrl, artifactoryUrl, distributionUrl,

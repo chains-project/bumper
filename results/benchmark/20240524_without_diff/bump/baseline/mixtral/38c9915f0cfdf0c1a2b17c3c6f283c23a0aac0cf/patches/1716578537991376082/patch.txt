@@ -1,0 +1,6 @@
+import org.cactoos.Io;
+import org.cactoos.scalar.IoCheckedScalar;
+
+IoCheckedScalar<String> checkedIo(Io<String> io) {
+  return new IoCheckedScalar<>(io);
+}

@@ -1,0 +1,7 @@
+12c12,15
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+---
+>                 // ++ Added line to create a new PGS instance
+>                 final PGS pgs = new PGS(GROUP_SHAPE);
+> 
+>                 PShape out = pgs.minkSum(mink);

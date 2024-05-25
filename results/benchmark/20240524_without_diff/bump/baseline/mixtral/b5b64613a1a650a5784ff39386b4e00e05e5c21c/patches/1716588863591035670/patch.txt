@@ -1,0 +1,10 @@
+import static org.apache.commons.lang3.StringUtils.isAllEmpty;
+
+// ...
+
+@Override
+public CreateJFrogInstanceStep executeStep(StepContext context) throws IOException, InterruptedException {
+    // ...
+    if (isAllEmpty(jfrogInstanceId, url, apiKey, apiSecret, verifyCertificates, trustAllCerts)) {
+    // ...
+}

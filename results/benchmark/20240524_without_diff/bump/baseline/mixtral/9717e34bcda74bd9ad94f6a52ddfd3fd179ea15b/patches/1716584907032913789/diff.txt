@@ -1,0 +1,13 @@
+1c1,8
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.github.Github;
+> 
+> @Tv(40)
+> public class MkGithub extends com.jcabi.github.Github {
+>     public MkGithub(String token) {
+>         super(new URL("https://api.github.com"), new GitHub.TokenAuth(token));
+>     }
+> }
+\ No newline at end of file

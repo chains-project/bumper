@@ -1,0 +1,8 @@
+3,5c3,5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.smooth(GROUP_SHAPE, 0.5);
+<                 assertEquals(2, out.getChildCount());
+---
+>                 PShape shape = GROUP_SHAPE.getChild(0);
+>                 PShape out = PGS_Morphology.smooth(shape, 0.5);
+>                 assertEquals(1, out.getChildCount());

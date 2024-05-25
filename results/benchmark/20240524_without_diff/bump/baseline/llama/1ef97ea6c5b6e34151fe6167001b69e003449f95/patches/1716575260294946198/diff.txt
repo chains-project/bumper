@@ -1,0 +1,7 @@
+1d0
+< @Override
+3c2,3
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     java.util.Date superResult = super.between(from, to);
+>     return new Timestamp(superResult.getTime());

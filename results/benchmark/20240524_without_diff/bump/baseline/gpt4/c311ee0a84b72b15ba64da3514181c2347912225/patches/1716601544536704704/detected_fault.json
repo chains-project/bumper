@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 148626113,
+    "in_class_code": "{\n    public void describeTo(Description description) {\n        description.appendText(expectedString);\n    }\n}",
+    "qualified_in_class_code": " {\n    public void describeTo(com.artipie.docker.http.Description description) {\n        description.appendText(expectedString);\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol: class Description\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/DockerSliceITCase.java:[126,32] cannot find symbol",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/DockerSliceITCase.java",
+        "client_line_position": "126"
+    },
+    "client_end_line_number": 128,
+    "client_line_number": 126,
+    "method_code": "public void describeTo(Description description) {\n            description.appendText(expectedString);\n        }",
+    "qualified_code": "public void describeTo(com.artipie.docker.http.Description description) {\n    description.appendText(expectedString);\n}",
+    "method_name": "describeTo"
+}

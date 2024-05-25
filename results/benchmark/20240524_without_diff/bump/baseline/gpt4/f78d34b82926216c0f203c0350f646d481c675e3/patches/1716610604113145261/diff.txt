@@ -1,0 +1,8 @@
+29c29
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>             .sendPacket(new PacketPlayOutEntityTeleport(((CraftEntity)target).getHandle()));
+43c43
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                             .sendPacket(new PacketPlayOutEntityTeleport(((CraftEntity)target).getHandle()));

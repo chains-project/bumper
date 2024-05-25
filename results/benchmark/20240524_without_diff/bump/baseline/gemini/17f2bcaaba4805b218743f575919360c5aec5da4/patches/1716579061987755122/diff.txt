@@ -1,0 +1,2 @@
+5a6
+>                 assertEquals(2, out.getChildCount());

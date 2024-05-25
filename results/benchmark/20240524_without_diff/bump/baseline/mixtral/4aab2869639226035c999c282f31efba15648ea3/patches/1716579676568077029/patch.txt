@@ -1,0 +1,4 @@
+import com.artipie.asto.factory.Storage;
+import com.artipie.asto.factory.Storages;
+
+Storage storage = Storages.loopback();

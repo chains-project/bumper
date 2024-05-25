@@ -1,0 +1,6 @@
+1c1
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.PasswordEncoder;
+\ No newline at end of file

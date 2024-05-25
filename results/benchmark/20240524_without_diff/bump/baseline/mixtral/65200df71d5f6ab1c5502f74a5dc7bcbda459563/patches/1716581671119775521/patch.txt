@@ -1,0 +1,11 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    Properties extraProperties = globalConfig.extraProperties();
+    ModuleProvider modulesProvider = globalConfig.getModulesProvider();
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(globalConfig.getEnabledLanguages())
+            .setClientPid(globalConfig.getClientPid())
+            .setExtraProperties(extraProperties)
+            .setWorkDir(globalConfig.getWorkDir())
+            .setModulesProvider(modulesProvider)
+            .build();
+}

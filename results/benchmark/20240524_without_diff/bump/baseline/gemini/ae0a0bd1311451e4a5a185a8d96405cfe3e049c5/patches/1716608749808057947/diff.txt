@@ -1,0 +1,4 @@
+10c10
+<             new StringContains(false, "Unexpected path")
+---
+>             new StringContains(false, "Invalid path")

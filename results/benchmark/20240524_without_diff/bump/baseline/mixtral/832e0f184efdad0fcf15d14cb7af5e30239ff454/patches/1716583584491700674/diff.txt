@@ -1,0 +1,31 @@
+1a2
+>                 XMaterial material;
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>                         material = XMaterial.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>                         material = XMaterial.GREEN_STAINED_GLASS;
+14,16c11
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>                         material = XMaterial.LILY_PAD;
+18c13
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 pageMeta.addEnchant(Enchantment.getByKey(Enchantment.POWER.getKey()), 1, false);
+21a17
+>                         return pageButton;
+23c19,20
+<                 
+---
+>                 pageButton = material.parseItem();
+>                 pageMeta.setDisplayName(ChatColor.WHITE + CommonDefinitions.getMessage(buttonType.toLowerCase() + "Button"));

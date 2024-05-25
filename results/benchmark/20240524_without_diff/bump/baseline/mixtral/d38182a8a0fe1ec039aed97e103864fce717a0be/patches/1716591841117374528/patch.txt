@@ -1,0 +1,19 @@
+import static java.util.stream.Stream.of;
+import java.util.function.Function;
+import java.util.stream.Stream;
+
+@Override
+public Slice slice(final String action) {
+    Function<String, Stream<Authentication.User>> tokenValidator =
+        token -> of(TestAuthentication.ALICE, TestAuthentication.BOB)
+            .filter(user -> token.equals(token(user)))
+            .map(user -> new Authentication.User(user.name()));
+    return new DockerSlice(
+        new AstoDocker(new InMemoryStorage()),
+        new Permissions.Single(TestAuthentication.ALICE.name(), action),
+        new BearerAuthScheme(
+            tokenValidator,
+            ""
+        )
+    );
+}

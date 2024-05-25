@@ -1,0 +1,8 @@
+    @Override
+    public boolean specificMatches(Object actual) {
+        if (actual instanceof String) {
+            String str = (String) actual;
+            return str.contains(expected);
+        }
+        return false;
+    }

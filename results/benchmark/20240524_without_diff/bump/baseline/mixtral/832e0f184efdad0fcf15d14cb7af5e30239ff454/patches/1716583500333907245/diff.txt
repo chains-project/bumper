@@ -1,0 +1,39 @@
+2c2,3
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>                 XMaterial material = XMaterial.WHITE_STAINED_GLASS;
+>                 ItemStack pageButton = material.parseItem();
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>                         material = XMaterial.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>                         material = XMaterial.GREEN_STAINED_GLASS;
+14,16c11
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>                         material = XMaterial.LILY_PAD;
+18c13
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 pageMeta.addEnchant(Enchantment.getByName("DAMAGE_ALL"), 1, false);
+23c18,26
+<                 
+---
+>                 pageButton.setItemMeta(pageMeta);
+>                 pageMeta.setDisplayName(ChatColor.AQUA + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+>                 if (buttonType.equalsIgnoreCase("Previous")) {
+>                         pageMeta.setDisplayName(ChatColor.RED
+>                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+>                 } else if (buttonType.equalsIgnoreCase("Next")) {
+>                         pageMeta.setDisplayName(ChatColor.GREEN
+>                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+>                 }

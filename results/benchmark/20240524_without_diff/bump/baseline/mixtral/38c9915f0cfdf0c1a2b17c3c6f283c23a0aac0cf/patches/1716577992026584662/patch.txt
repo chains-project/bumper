@@ -1,0 +1,10 @@
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public InputStream walletsIn(String id) throws IOException {
+  List<String> urls = new ArrayList<>();
+  // ... populate urls with appropriate values ...
+  return new URLsInputStream(new Joined(urls));
+}

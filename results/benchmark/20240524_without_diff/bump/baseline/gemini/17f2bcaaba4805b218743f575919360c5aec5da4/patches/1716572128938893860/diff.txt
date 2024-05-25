@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5, 2);
+---
+>                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5f, 2);

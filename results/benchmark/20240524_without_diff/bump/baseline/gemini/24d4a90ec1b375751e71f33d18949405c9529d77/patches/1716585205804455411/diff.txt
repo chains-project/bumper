@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class BucketRule {
+> 
+>     public BucketRule() {
+>         new Tv();
+>     }
+> }
+\ No newline at end of file

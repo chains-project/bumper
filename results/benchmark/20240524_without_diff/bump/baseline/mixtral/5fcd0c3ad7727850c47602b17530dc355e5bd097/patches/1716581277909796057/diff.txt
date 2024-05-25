@@ -1,0 +1,11 @@
+2a3,8
+>     ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+>     if (classInfo == null) {
+>       // Handle the case when classInfo is null
+>       // You can add proper error handling here
+>       return null;
+>     }
+4c10
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

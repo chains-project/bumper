@@ -1,0 +1,10 @@
+@Test
+void test_PGS_Morphology_radialWarp() {
+    assumeTrue(getShapeWithTwoChildren().getChildCount() == 2);
+    PShape out = PGS_Morphology.radialWarp(getShapeWithTwoChildren(), 10, 1, false);
+    assertEquals(2, out.getChildCount());
+}
+
+private PShape getShapeWithTwoChildren() {
+    return GROUP_SHAPE; // replace with the actual object that has two children
+}

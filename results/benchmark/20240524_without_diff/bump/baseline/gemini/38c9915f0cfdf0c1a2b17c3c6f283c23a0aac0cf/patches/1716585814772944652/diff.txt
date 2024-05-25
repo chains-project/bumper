@@ -1,0 +1,19 @@
+0a1,2
+> import com.google.common.base.Joiner;
+> 
+1a4,17
+> 
+> public class WalletsIn {
+>     // ...
+> 
+>     @Override
+>     public String getWallets(String address) {
+>         return new JoinedText(
+>                 Joiner.on(","),
+>                 walletsRepository.getWallets(address)
+>         ).asString();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

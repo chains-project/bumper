@@ -1,0 +1,62 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+12c5
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+15c8,54
+<             registry.set(server, reg);
+---
+>         Type genericType = server.getRegistry().entrySet().iterator().next().getValue().getClass().getGenericInterfaces()[0];
+>         SortedMap<MOScope, ManagedObject> safeReg = new TreeMap<MOScope, ManagedObject>() {
+>             private static final long serialVersionUID = 1L;
+>             @SuppressWarnings("unchecked")
+>             @Override
+>             public Map<MOScope, ManagedObject> putAll(Map<? extends MOScope, ? extends ManagedObject> m) {
+>                 return super.putAll(m);
+>             }
+>             @Override
+>             public Map<MOScope, ManagedObject> clone() {
+>                 return new TreeMap<MOScope, ManagedObject>(this);
+>             }
+>             @Override
+>             public Set<Entry<MOScope, ManagedObject>> entrySet() {
+>                 return new AbstractSet<Entry<MOScope, ManagedObject>>() {
+>                     @Override
+>                     public Iterator<Entry<MOScope, ManagedObject>> iterator() {
+>                         return new Iterator<Entry<MOScope, ManagedObject>>() {
+>                             private final Iterator<Entry<MOScope, ManagedObject<?>>> it = reg.entrySet().iterator();
+> 
+>                             @Override
+>                             public boolean hasNext() {
+>                                 return it.hasNext();
+>                             }
+> 
+>                             @Override
+>                             public Entry<MOScope, ManagedObject> next() {
+>                                 Entry<MOScope, ManagedObject<?>> next = it.next();
+>                                 return new SimpleEntry<MOScope, ManagedObject>(next.getKey(), (ManagedObject) next.getValue().getValues().get(0));
+>                             }
+> 
+>                             @Override
+>                             public void remove() {
+>                                 it.remove();
+>                             }
+>                         };
+>                     }
+> 
+>                     @Override
+>                     public int size() {
+>                         return reg.size();
+>                     }
+>                 };
+>             }
+>         };
+>         safeReg.putAll(reg);
+>         registry.set(server, safeReg);

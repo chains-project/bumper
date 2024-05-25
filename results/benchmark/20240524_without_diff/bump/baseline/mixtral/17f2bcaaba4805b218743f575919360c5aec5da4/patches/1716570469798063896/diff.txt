@@ -1,0 +1,18 @@
+0a1,3
+> import processing.core.PShape;
+> import static processing.core.PConstants.CLOSE;
+> 
+4c7
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     PShape mink = new PShape(PShape.PATH);
+10c13
+<                 mink.endShape(PConstants.CLOSE);
+---
+>     mink.endShape(CLOSE);
+12a16
+>     if (out != null) {
+13a18,20
+>     } else {
+>         fail("Expected a non-null result from PGS_Morphology.minkDifference().");
+>     }

@@ -1,0 +1,10 @@
+20a21
+>         if (path != null) {
+23c24
+<         } catch (FileNotFoundException e) {
+---
+>             } catch (IOException e) {
+24a26,28
+>             }
+>         } else {
+>             throw new RuntimeException("Path parameter is null");

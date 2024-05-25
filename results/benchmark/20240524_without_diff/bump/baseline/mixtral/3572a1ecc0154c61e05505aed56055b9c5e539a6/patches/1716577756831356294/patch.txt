@@ -1,0 +1,33 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+import org.slf4j.Marker;
+
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+public class AppenderUtils {
+    // ...
+
+    @Override
+    public void append(LoggingEvent event) {
+        ThriftEvent thriftEvent = ThriftEvent.fromLoggingEvent(event);
+        TTransport transport = null;
+        try {
+            transport = new TFastFramedTransport(new SocketTransport(host, port));
+            transport.open();
+            thriftEvent.write(transport);
+        } catch (TTransportException | IOException e) {
+            // Handle exceptions
+        } finally {
+            if (transport != null) {
+                try {
+                    transport.close();
+                } catch (TTransportException e) {
+                    // Handle exceptions
+                }
+            }
+        }
+    }
+
+    // ...
+}

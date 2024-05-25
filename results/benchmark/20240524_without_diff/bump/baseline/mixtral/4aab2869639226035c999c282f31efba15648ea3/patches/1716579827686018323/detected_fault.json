@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 369049246,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /http/src/main/java/com/artipie/security/policy/YamlPolicyFactory.java:[28,1] class, interface, or enum expected",
+        "client_file_path": "/http/src/main/java/com/artipie/security/policy/YamlPolicyFactory.java",
+        "client_line_position": "28"
+    },
+    "client_end_line_number": 28,
+    "client_line_number": 28,
+    "method_code": "import java.io.UncheckedIOException;",
+    "qualified_code": "import java.io.UncheckedIOException;",
+    "method_name": "import"
+}

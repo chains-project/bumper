@@ -1,0 +1,13 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(PApplet.parseInt(processing.core.PApplet.getText("GROUP_SHAPE_CHILD_COUNT")) == 2);
+>     PShape out = PGS_Morphology.round(getGroupShape(), 0.5);
+6a7,11
+> 
+> private PShape getGroupShape() {
+>     // Implement the logic to get or create the GROUP_SHAPE instance
+>     // ...
+> }
+\ No newline at end of file

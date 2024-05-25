@@ -1,0 +1,12 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.22", "0.15.23", "0.15.24", "0.15.25"})
+public class MyClass {
+    private Ssh ssh;
+
+    public MyClass() {
+        this.ssh = new Ssh("my-ssh-server.com", 22);
+    }
+
+    // existing methods...
+}

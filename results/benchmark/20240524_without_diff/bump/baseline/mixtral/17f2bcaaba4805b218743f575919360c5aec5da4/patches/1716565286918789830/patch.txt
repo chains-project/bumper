@@ -1,0 +1,64 @@
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.operation.polygonize.Polygonizer;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+
+import static micycle.pgs.PGS.GEOM_FACTORY;
+import static micycle.pgs.PGS.coordFromPVector;
+import static micycle.pgs.PGS.nodeSegmentStrings;
+import static micycle.pgs.PGS.toPVector;
+
+@Test
+@Ignore
+void testRobustnessRandomly() {
+    final GeometryFactory geometryFactory = GEOM_FACTORY;
+    final ThreadLocalRandom random = ThreadLocalRandom.current();
+    final int iterations = 100;
+
+    for (int k = 0; k < iterations; k++) {
+        List<org.locationtech.jts.geom.LineString> segmentStrings = new ArrayList<>(111 + k);
+        for (int i = 0; i < 111 + k; i++) {
+            segmentStrings.add(new LineString(new Coordinate[]{
+                    new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 10000),
+                    new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 13337)
+            }, geometryFactory));
+        }
+        Collection<Polygon> nodedSS = nodeSegmentStrings(segmentStrings);
+        Collection<org.locationtech.jts.geom.LineString> nodedEdges = new ArrayList<>();
+        nodedSS.forEach(ss -> nodedEdges.add(new LineString(new Coordinate[]{
+                coordFromPVector(toPVector(ss.getCoordinate(0))),
+                coordFromPVector(toPVector(ss.getCoordinate(1)))
+        }, geometryFactory)));
+        Collection<org.locationtech.jts.geom.LineString> nodedEdgesSet = new HashSet<>(nodedEdges);
+
+        final Polygonizer polygonizerJTS = new Polygonizer();
+        polygonizerJTS.setCheckRingsValid(false);
+        nodedEdgesSet.forEach(e -> {
+            LineString l = geometryFactory.createLineString(new Coordinate[]{
+                    coordFromPVector(toPVector(e.getCoordinateN(0))),
+                    coordFromPVector(toPVector(e.getCoordinateN(1)))
+            });
+            polygonizerJTS.add(l);
+        });
+
+        long t1 = System.currentTimeMillis();
+        @SuppressWarnings("unchecked")
+        Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+        long t2 = System.currentTimeMillis();
+        long timeJTS = t2 - t1;
+
+        t1 = System.currentTimeMillis();
+        Collection<Polygon> FP = polygonize(nodedEdgesSet);
+        t2 = System.currentTimeMillis();
+        long timeFP = t2 - t1;
+
+        assertEquals(JTS.size(), FP.size());
+    }
+}

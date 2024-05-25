@@ -1,0 +1,40 @@
+2c2,3
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>                 Material buttonMaterial;
+>                 ItemStack pageButton = Material.WHITE_STAINED_GLASS.parseItem();
+6,8c7
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>                         buttonMaterial = Material.RED_STAINED_GLASS;
+10,12c9
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>                         buttonMaterial = Material.GREEN_STAINED_GLASS;
+14,16c11
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>                         buttonMaterial = Material.LILY_PAD;
+18c13
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                                 pageMeta.addEnchant(Enchantment.getByKey(Enchantments.DAMAGE_ALL).get(), 1, false);
+21a17,26
+>                         return pageButton;
+>                 }
+>                 pageButton = buttonMaterial.parseItem();
+>                 pageMeta.setDisplayName(ChatColor.WHITE + CommonDefinitions.getMessage("wwcConfigGUIPageButton"));
+>                 if (!buttonType.equalsIgnoreCase("Page Number")) {
+>                         pageMeta.setDisplayName(ChatColor.getByChar('&') + switch (buttonType) {
+>                                 case "Previous" -> "cRed" + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton");
+>                                 case "Next" -> "aGreen" + CommonDefinitions.getMessage("wwcConfigGUINextPageButton");
+>                                 default -> "1";
+>                         });
+23d27
+<                 

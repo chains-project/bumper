@@ -1,0 +1,13 @@
+0a1,3
+> import processing.core.PShape;
+> import static processing.core.PConstants.CLOSE;
+> 
+4c7,8
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     PShape mink = new PShape(PShape.PATH);
+>     mink.setStroke(false);
+10c14
+<                 mink.endShape(PConstants.CLOSE);
+---
+>     mink.endShape(CLOSE);

@@ -1,0 +1,6 @@
+1c1
+< import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+\ No newline at end of file
+---
+> // no change
+\ No newline at end of file

@@ -1,0 +1,41 @@
+0a1,19
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.DistributionServerBuilder;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.Token;
+> import org.jfrog.artifactory.client.impl.ArtifactoryServerImpl;
+> import org.jfrog.artifactory.client.impl.auth.BasicAuthentication;
+> import org.jfrog.artifactory.client.impl.auth.AuthenticationInfo;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig.Builder;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerContext;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerContext;
+> import org.jfrog.hudson.pipeline.common.types.UsernamePasswordCredentials;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep.JFrogPlatformInstance;
+> 
+> import java.io.IOException;
+> import java.net.URL;
+> import java.util.Objects;
+> 
+11a31
+>     OkHttpClientConfig.Builder httpClientBuilder = new Builder();
+13,14c33,38
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         AuthenticationInfo authInfo = new BasicAuthentication(step.username, step.password);
+>         artifactoryServer = new ArtifactoryServerImpl(artifactoryUrl, new ArtifactoryServerContext(step.credentialsId, authInfo), httpClientBuilder);
+>         DistributionServerContext distributionServerContext = new DistributionServerContext(step.credentialsId, authInfo);
+>         DistributionServerBuilder distributionServerBuilder = new DistributionServer.DistributionServerBuilder(distributionUrl, distributionServerContext);
+>         Token token = new Token(Token.TokenType.BEARER, "some-token");
+>         distributionServer = distributionServerBuilder.withToken(token).build();
+16,17c40,44
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         artifactoryServer = new ArtifactoryServerImpl(artifactoryUrl, new ArtifactoryServerContext(step.username, step.password), httpClientBuilder);
+>         DistributionServerContext distributionServerContext = new DistributionServerContext(step.username, step.password);
+>         DistributionServerBuilder distributionServerBuilder = new DistributionServer.DistributionServerBuilder(distributionUrl, distributionServerContext);
+>         Token token = new Token(Token.TokenType.BEARER, "some-token");
+>         distributionServer = distributionServerBuilder.withToken(token).build();

@@ -1,0 +1,16 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+6,7c3
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+---
+>     String exceptionMessage = Assertions.assertThrows(
+15,17c11,12
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+<         );
+---
+>     ).getMessage();
+>     MatcherAssert.assertThat(exceptionMessage, CoreMatchers.containsString("Unexpected query"));

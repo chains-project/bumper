@@ -1,0 +1,14 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+    // ...
+
+    @Override
+    public void log(byte[] data) {
+        TTransport transport = new TFramedTransport(new TSocket(host, port));
+        // ...
+    }
+
+    // ...
+}

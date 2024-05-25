@@ -1,0 +1,4 @@
+3a4
+>     Cipher decryptCipher = Cipher.getInstance("ChaCha20");
+12a14
+>     decryptCipher.init(Cipher.DECRYPT_MODE, macKey);

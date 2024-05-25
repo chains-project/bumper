@@ -1,0 +1,10 @@
+1c1,5
+< import java.io.File;
+\ No newline at end of file
+---
+> public class AbstractThemeMojo {
+>     public void execute() {
+>         File file = new File("");
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,15 @@
+import org.apache.commons.lang3.StringUtils;
+
+// ...
+
+@Override
+public CreateJFrogInstanceStep execute(StepContext context) throws IOException, InterruptedException {
+    // ...
+    if (isAllBlank(instanceId, url, apiKey)) {
+        // ...
+    }
+    // ...
+}
+
+// Remove the static import statement
+// static import org.apache.commons.lang3.StringUtils.isAllBlank;

@@ -1,0 +1,18 @@
+1,2c1,4
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+---
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+3a6,8
+> import java.io.IOException;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+12a18
+>     try {
+13a20,22
+>     } catch (DataLengthException e) {
+>         throw new IOException("Error decrypting ciphertext", e);
+>     }

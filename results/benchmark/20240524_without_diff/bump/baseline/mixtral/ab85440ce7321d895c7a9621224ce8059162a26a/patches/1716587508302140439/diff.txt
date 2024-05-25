@@ -1,0 +1,11 @@
+0a1,3
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.core.StringContains.containsString;
+> 
+2,5c5
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return containsString(String.format("Status: Downloaded newer image for %s", image));

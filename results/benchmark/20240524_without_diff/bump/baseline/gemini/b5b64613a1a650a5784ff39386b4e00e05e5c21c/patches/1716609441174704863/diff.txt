@@ -1,0 +1,6 @@
+3c3
+<         DeleteReleaseBundleRequest request;
+---
+>         DeleteReleaseBundleRequest request = new DeleteReleaseBundleRequest();
+11d10
+<             request = new DeleteReleaseBundleRequest();

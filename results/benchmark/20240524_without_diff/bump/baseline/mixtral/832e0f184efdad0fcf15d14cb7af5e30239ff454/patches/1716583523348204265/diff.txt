@@ -1,0 +1,43 @@
+0a1,8
+> import org.bukkit.enchantments.Enchantment;
+> import org.bukkit.inventory.ItemFlag;
+> import org.bukkit.inventory.meta.ItemMeta;
+> import org.bukkit.material.MaterialData;
+> import org.bukkit.plugin.java.JavaPlugin;
+> 
+> import java.util.Arrays;
+> 
+2c10,11
+<                 ItemStack pageButton = XMaterial.WHITE_STAINED_GLASS.parseItem();
+---
+>     MaterialData pageButtonMaterial;
+>     ItemStack pageButton = pageButtonMaterial.toItemStack(1);
+6,8c15
+<                         pageButton = XMaterial.RED_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.RED
+<                                         + CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageButtonMaterial = MaterialData.fromItem(XMaterial.RED_STAINED_GLASS.parseItem()).toMaterialData();
+10,12c17
+<                         pageButton = XMaterial.GREEN_STAINED_GLASS.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.GREEN
+<                                         + CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+---
+>         pageButtonMaterial = MaterialData.fromItem(XMaterial.GREEN_STAINED_GLASS.parseItem()).toMaterialData();
+14,16c19
+<                         pageButton = XMaterial.LILY_PAD.parseItem();
+<                         pageMeta.setDisplayName(ChatColor.AQUA
+<                                         + CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageButtonMaterial = MaterialData.fromItem(XMaterial.LILY_PAD.parseItem()).toMaterialData();
+18c21
+<                                 pageMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>             pageMeta.addEnchant(Enchantment.getByName("DAMAGE_ALL"), 1, false);
+21a25,26
+>         pageButton.setItemMeta(pageMeta);
+>         return pageButton;
+23d27
+<                 
+24a29
+>     pageButton.setType(pageButtonMaterial.getItemType());

@@ -1,0 +1,14 @@
+14d13
+<             @Override
+49c48,50
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+---
+>         BukkitServer server = Bukkit.getServer();
+>         Plugin plugin = server.getPluginManager().getPlugin("PeyangSuperbAntiCheat");
+>         runnable.runTaskTimer(plugin, 0L, 1L);
+52d52
+<             @Override
+57c57
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>         }.runTaskLater(plugin, seconds);

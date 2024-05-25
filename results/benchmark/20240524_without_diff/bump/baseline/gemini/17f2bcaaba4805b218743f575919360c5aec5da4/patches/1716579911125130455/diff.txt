@@ -1,0 +1,9 @@
+12c12,17
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+---
+>                 // ++ Add a new PShape variable to hold the result of the minkDifference operation
+>                 PShape out = new PShape();
+> 
+>                 // ++ Call the minkDifference method with the new PShape variable as the output parameter
+>                 PGS_Morphology.minkDifference(GROUP_SHAPE, mink, out);
+> 

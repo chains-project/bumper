@@ -1,0 +1,9 @@
+17a18,21
+>         if (PGS.class.getDeclaredField("GEOM_FACTORY") == null) {
+>             throw new IllegalStateException("PGS class does not have a GEOM_FACTORY field");
+>         }
+>         GeometryFactory GEOM_FACTORY = (GeometryFactory) PGS.class.getDeclaredField("GEOM_FACTORY").get(null);
+19c23
+<                                 final LineString l = PGS.GEOM_FACTORY
+---
+>             final LineString l = GEOM_FACTORY

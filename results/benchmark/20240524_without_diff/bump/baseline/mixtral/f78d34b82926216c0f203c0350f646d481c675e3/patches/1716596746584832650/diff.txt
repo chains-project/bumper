@@ -1,0 +1,45 @@
+0a1,13
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+19,20c32,33
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+44a58,80
+> 
+> private static class LeetConverter {
+>     private static final Pattern LEET_PATTERN = Pattern.compile("[aeiou]");
+> 
+>     private static String convert(String input) {
+>         StringBuilder output = new StringBuilder();
+>         for (int i = 0; i < input.length(); i++) {
+>             char c = input.charAt(i);
+>             if (LEET_PATTERN.matcher(String.valueOf(c)).matches()) {
+>                 c = switch (c) {
+>                     case 'a' -> '4';
+>                     case 'e' -> '3';
+>                     case 'i' -> '1';
+>                     case 'o' -> '0';
+>                     case 'u' -> 'v';
+>                     default -> c;
+>                 };
+>             }
+>             output.append(c);
+>         }
+>         return output.toString();
+>     }
+> }
+\ No newline at end of file

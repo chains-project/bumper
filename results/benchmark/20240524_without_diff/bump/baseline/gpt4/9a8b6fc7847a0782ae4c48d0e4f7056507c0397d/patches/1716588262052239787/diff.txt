@@ -1,0 +1,10 @@
+4c4,10
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     try {
+>         Class<?> clazz = Class.forName("org.jasypt.util.password.StrongPasswordEncryptor");
+>         Object instance = clazz.getDeclaredConstructor().newInstance();
+>         encoder.setPasswordEncryptor((PasswordEncryptor) instance);
+>     } catch (Exception e) {
+>         e.printStackTrace();
+>     }

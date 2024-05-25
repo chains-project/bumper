@@ -1,0 +1,5 @@
+9c9,10
+<         setValue(sigmoid(sum));
+---
+>         // --setValue(sigmoid(sum));
+>         sum = sigmoid(sum);

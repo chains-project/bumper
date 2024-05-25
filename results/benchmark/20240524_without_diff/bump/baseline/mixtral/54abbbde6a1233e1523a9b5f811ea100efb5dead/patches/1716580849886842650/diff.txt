@@ -1,0 +1,48 @@
+1,2c1,6
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSchException;
+> import java.io.ByteArrayOutputStream;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a15
+>     JSch jsch = new JSch();
+13,21c18
+<             final JSch jsch = new JSch();
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+<             final Session session = jsch.getSession(
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+---
+>         Session session = jsch.getSession(getLogin(), getAddr(), getPort());
+23,26c20,21
+<             session.setPassword(this.password);
+<             session.setServerAliveInterval(
+<                 (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+<             );
+---
+>         session.setPassword(password);
+>         session.setServerAliveInterval((int) TimeUnit.SECONDS.toMillis(Tv.TEN));
+28a24,34
+> 
+>         ChannelExec channel = (ChannelExec) session.openChannel("exec");
+>         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+>         channel.setOutputStream(outputStream);
+>         channel.connect();
+> 
+>         // Add your command here
+>         channel.setCommand("your-command");
+> 
+>         channel.disconnect();
+> 
+30c36
+<         } catch (final JSchException ex) {
+---
+>     } catch (JSchException ex) {

@@ -1,0 +1,4 @@
+16c16
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+---
+>                         Polygonizer polygonizerJTS = new Polygonizer();

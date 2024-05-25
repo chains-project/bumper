@@ -1,0 +1,19 @@
+1d0
+< // TODO: review this AI generated patch!
+8a8,9
+>     final Content content = new Content.From("data".getBytes());
+>     final Digest calculatedDigest = new Digest.Sha256(content.digest());
+10c11
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>             new CheckedBlobSource(content, new Digest.Sha256(digest))
+27c28
+<                                 "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                                 calculatedDigest.toString()
+33a35,39
+>                 );
+>                 MatcherAssert.assertThat(
+>                         "Calculated digest matches expected digest",
+>                         calculatedDigest,
+>                         new IsEqual<Digest>(new Digest.Sha256(digest))

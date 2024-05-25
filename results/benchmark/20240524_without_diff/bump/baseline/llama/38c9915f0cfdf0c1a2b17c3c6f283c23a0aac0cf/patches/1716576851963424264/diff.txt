@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.UncheckedText;
+\ No newline at end of file
+---
+> import java.text.Normalizer;
+> 
+> public class UncheckedText {
+>     public String asString() {
+>         return "";
+>     }
+> }
+\ No newline at end of file

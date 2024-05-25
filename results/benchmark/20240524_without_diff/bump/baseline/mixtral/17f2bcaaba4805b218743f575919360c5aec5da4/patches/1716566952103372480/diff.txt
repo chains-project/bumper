@@ -1,0 +1,14 @@
+0a1,8
+> import processing.core.PApplet;
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // ... other code ...
+> 
+3a12
+>         PApplet.runSketch(new String[]{}, () -> {
+13a23,24
+>         });
+>     }

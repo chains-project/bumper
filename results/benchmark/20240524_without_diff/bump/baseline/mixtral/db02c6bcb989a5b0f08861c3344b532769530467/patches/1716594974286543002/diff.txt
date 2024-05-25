@@ -1,0 +1,27 @@
+1d0
+< // TODO: review this AI generated patch!
+12a12,13
+>                 if (throwable != null) {
+>                     InvalidDigestException ide = (InvalidDigestException) Throwables.getRootCause(throwable);
+14,25c15
+<                         "Exception thrown",
+<                         throwable,
+<                         new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                         "Exception is InvalidDigestException",
+<                         Throwables.getRootCause(throwable),
+<                         new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+<                         "Exception message contains calculated digest",
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                             ide.getMessage(),
+29,30c19
+<                         "Exception message contains expected digest",
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                             ide.getMessage(),
+32a22
+>                 }

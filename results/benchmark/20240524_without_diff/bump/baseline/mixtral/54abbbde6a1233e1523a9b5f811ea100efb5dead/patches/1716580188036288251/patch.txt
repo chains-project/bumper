@@ -1,0 +1,43 @@
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSchException;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@RetryOnFailure(
+    attempts = Tv.SEVEN,
+    delay = 1,
+    unit = TimeUnit.MINUTES,
+    verbose = false,
+    types = IOException.class
+)
+protected Session session() throws IOException {
+    final Logger logger = LoggerFactory.getLogger(this.getClass());
+    final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    try {
+        final JSch jsch = new JSch();
+        jsch.setKnownHosts(null);
+        final Session session = jsch.getSession(
+            this.getLogin(), this.getAddr(), this.getPort()
+        );
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.setPassword(this.password);
+        session.setServerAliveInterval(
+            (int) TimeUnit.SECONDS.toMillis(Tv.TEN)
+        );
+        session.setServerAliveCountMax(Tv.MILLION);
+        session.connect((int) TimeUnit.SECONDS.toMillis(10L));
+        final ChannelExec channel = (ChannelExec) session.openChannel("exec");
+        channel.setCommand(outputStream, "true");
+        channel.connect();
+        channel.disconnect();
+        return session;
+    } catch (final JSchException ex) {
+        throw new IOException(ex);
+    } finally {
+        outputStream.close();
+        logger.debug("SSH session closed.");
+    }
+}

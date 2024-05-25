@@ -1,0 +1,8 @@
+7,10c7,8
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+---
+>         Assert.assertTrue(
+>             output.contains(

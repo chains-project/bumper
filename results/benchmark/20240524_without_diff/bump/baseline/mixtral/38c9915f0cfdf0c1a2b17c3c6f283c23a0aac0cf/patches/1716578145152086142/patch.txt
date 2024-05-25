@@ -1,0 +1,9 @@
+import org.cactoos.text.Texts;
+
+// ...
+
+@Override
+public String wallets(String owner) throws IOException {
+  return new JoinedText(Texts.split(get(URI.create(url + owner)), "\n"))
+    .asString();
+}

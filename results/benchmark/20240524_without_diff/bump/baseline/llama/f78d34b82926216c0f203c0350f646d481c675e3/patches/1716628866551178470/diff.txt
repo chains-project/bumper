@@ -1,0 +1,11 @@
+34d33
+<                         @Override
+48c47
+<                     }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 0);
+53d51
+<                 }
+57a56
+> }
+\ No newline at end of file

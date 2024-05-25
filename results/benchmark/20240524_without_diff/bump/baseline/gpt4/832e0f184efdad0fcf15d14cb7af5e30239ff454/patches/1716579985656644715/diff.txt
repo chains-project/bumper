@@ -1,0 +1,22 @@
+25a26
+>                 String targetPlayerUUIDString = targetPlayerUUID.toString();
+47c48
+<                                                 args = new String[] { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(),
+---
+>                                         args = new String[] { main.getServer().getPlayer(UUID.fromString(targetPlayerUUIDString)).getName(),
+100c101
+<                                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUIDString)).getName() };
+124c125
+<                                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUIDString)).getName() };
+147c148
+<                                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUIDString)).getName() };
+170c171
+<                                                 String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                                         String[] args = { main.getServer().getPlayer(UUID.fromString(targetPlayerUUIDString)).getName() };

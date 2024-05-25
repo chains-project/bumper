@@ -1,0 +1,14 @@
+11c11
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>         ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+14c14
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>         ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+19,20c19,20
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);

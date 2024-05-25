@@ -1,0 +1,14 @@
+1c1,9
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import org.junit.Test;
+> 
+> public class FastPolygonizerTests {
+> 
+>     @Test
+>     public void test() {
+>         // test implementation
+>     }
+> }
+\ No newline at end of file

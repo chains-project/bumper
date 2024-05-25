@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+---
+>                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE.getChild(0), 1);

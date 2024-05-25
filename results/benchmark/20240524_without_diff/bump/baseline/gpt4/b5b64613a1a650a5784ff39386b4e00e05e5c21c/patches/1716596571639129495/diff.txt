@@ -1,0 +1,5 @@
+20c20,21
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     String platformUrl = step.url;
+>     return new JFrogPlatformInstance(artifactoryServer, distributionServer, platformUrl, "");

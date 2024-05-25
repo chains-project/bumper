@@ -1,0 +1,12 @@
+import org.processing.core.PShape;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeTrue;
+import org.junit.Test;
+
+@Test
+void test_PGS_Morphology_buffer() {
+    assumeTrue(PGS_Morphology.getGroupShapeChildCount() == 2);
+    PShape groupShape = PGS_Morphology.getGroupShape();
+    PShape out = PGS_Morphology.buffer(groupShape, -1);
+    assertEquals(2, out.getChildCount());
+}

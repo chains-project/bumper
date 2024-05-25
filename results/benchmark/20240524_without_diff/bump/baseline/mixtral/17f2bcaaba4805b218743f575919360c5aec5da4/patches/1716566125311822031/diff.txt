@@ -1,0 +1,6 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5, 2);
+---
+>     assumeTrue(micycle.pgs.PGS_ShapeFactory.GROUP_SHAPE.getChildCount() == 2);
+>     PShape out = micycle.pgs.PGS_Morphology.chaikinCut(micycle.pgs.PGS_ShapeFactory.GROUP_SHAPE, 0.5, 2);

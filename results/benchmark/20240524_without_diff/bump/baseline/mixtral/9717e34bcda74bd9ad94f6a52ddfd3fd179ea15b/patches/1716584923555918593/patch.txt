@@ -1,0 +1,12 @@
+import com.jcabi.github.Github;
+
+@Tv(40)
+public class MkGithub {
+    private final Github github;
+
+    public MkGithub() {
+        this.github = new Github();
+    }
+
+    // ... other methods ...
+}

@@ -1,0 +1,24 @@
+0a1,5
+> import static java.util.stream.Collectors.toList;
+> import java.util.List;
+> import java.util.function.Function;
+> import java.util.stream.Stream;
+> 
+3,6c8
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+---
+>     Function<String, CompletableFuture<Authentication.User>> tokenValidator =
+12,14c14,19
+<                     ),
+<                     ""
+<                 )
+---
+>                             .orElse(null)
+>             );
+>     return new DockerSlice(
+>             new AstoDocker(new InMemoryStorage()),
+>             new Permissions.Single(TestAuthentication.ALICE.name(), action),
+>             new BearerAuthScheme(tokenValidator, "")

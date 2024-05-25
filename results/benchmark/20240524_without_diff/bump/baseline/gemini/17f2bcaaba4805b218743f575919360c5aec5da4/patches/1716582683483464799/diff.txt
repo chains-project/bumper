@@ -1,0 +1,9 @@
+8a9,10
+> 
+>                 // Check that all faces in the merged mesh have an area greater than or equal to the threshold
+9a12,13
+> 
+>                 // Check that the number of faces in the merged mesh is less than or equal to the number of faces in the original mesh
+10a15,16
+> 
+>                 // Check that the area of the merged mesh is equal to the area of the original mesh

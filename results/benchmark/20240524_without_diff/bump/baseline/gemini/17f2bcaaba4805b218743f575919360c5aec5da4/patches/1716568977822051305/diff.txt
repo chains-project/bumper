@@ -1,0 +1,6 @@
+31c31,33
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         PShape FP = polygonize(nodedEdgesSet.stream()
+>                                         .map(e -> new LineSegment(PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b)))
+>                                         .collect(Collectors.toList()));

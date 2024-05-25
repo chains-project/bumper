@@ -1,0 +1,17 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TFramedTransport;
+
+public class SimpleThriftLogger {
+    // ...
+
+    @Override
+    public void log(TTransport transport) {
+        TFramedTransport framedTransport = (transport instanceof TFramedTransport)
+                ? (TFramedTransport) transport
+                : new TFramedTransport(transport);
+
+        // ...
+    }
+
+    // ...
+}

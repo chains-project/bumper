@@ -1,0 +1,58 @@
+0a1,21
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.Builder;
+> import org.jfrog.artifactory.client.distribution.DistributionUrlBuilder;
+> import org.jfrog.artifactory.client.distribution.UrlBuilder;
+> import org.jfrog.artifactory.client.impl.ArtifactoryServerImpl;
+> import org.jfrog.artifactory.client.impl.DistributionServerImpl;
+> import org.jfrog.artifactory.client.impl.auth.BasicAuthenticationInfo;
+> import org.jfrog.artifactory.client.okhttp.OkHttpArtifactoryHttpClient;
+> import org.jfrog.artifactory.client.okhttp.OkHttpDistributionHttpClient;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServerContext;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServerContext;
+> import org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance;
+> import org.jfrog.hudson.pipeline.common.types.auth.ArtifactoryServerAuth;
+> import org.jfrog.hudson.pipeline.common.types.auth.DistributionServerAuth;
+> import org.jfrog.hudson.pipeline.common.types.auth.UsernamePasswordCredentials;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep;
+> 
+> import java.net.URL;
+> import java.util.Objects;
+> 
+10,11c31,32
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     ArtifactoryServerContext artifactoryServerContext = null;
+>     DistributionServerContext distributionServerContext = null;
+13,14c34,41
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         ArtifactoryServerAuth artifactoryServerAuth = new ArtifactoryServerAuth(new UsernamePasswordCredentials(step.credentialsId));
+>         artifactoryServerContext = new ArtifactoryServerContext(new ArtifactoryServerImpl(new OkHttpArtifactoryHttpClient(), artifactoryUrl, artifactoryServerAuth));
+> 
+>         DistributionServerAuth distributionServerAuth = new DistributionServerAuth(new UsernamePasswordCredentials(step.credentialsId));
+>         UrlBuilder urlBuilder = new UrlBuilder(distributionUrl);
+>         DistributionUrlBuilder distributionUrlBuilder = new DistributionUrlBuilder(urlBuilder);
+>         Builder distributionServerBuilder = new DistributionServerImpl.Builder(new OkHttpDistributionHttpClient(), distributionUrlBuilder);
+>         distributionServerContext = new DistributionServerContext(distributionServerBuilder.auth(distributionServerAuth).build());
+16,17c43,50
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         ArtifactoryServerAuth artifactoryServerAuth = new ArtifactoryServerAuth(step.username, step.password);
+>         artifactoryServerContext = new ArtifactoryServerContext(new ArtifactoryServerImpl(new OkHttpArtifactoryHttpClient(), artifactoryUrl, artifactoryServerAuth));
+> 
+>         DistributionServerAuth distributionServerAuth = new DistributionServerAuth(step.username, step.password);
+>         UrlBuilder urlBuilder = new UrlBuilder(distributionUrl);
+>         DistributionUrlBuilder distributionUrlBuilder = new DistributionUrlBuilder(urlBuilder);
+>         Builder distributionServerBuilder = new DistributionServerImpl.Builder(new OkHttpDistributionHttpClient(), distributionUrlBuilder);
+>         distributionServerContext = new DistributionServerContext(distributionServerBuilder.auth(distributionServerAuth).build());
+19,20c52,53
+<             artifactoryServer.setPlatformUrl(urlWithoutSlash);
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     artifactoryServerContext.getArtifactoryServer().setPlatformUrl(urlWithoutSlash);
+>     return new JFrogPlatformInstance(artifactoryServerContext, distributionServerContext, step.url, "");

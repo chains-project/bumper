@@ -1,0 +1,18 @@
+import java.io.IOException;
+
+// ...
+
+public YamlPolicyFactory implements PolicyFactory {
+    // ...
+
+    @Override
+    public Policy load(InputStream input) throws IOException {
+        try {
+            return new ObjectMapper().readValue(input, Policy.class);
+        } catch (JsonProcessingException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    // ...
+}

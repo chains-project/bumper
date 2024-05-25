@@ -1,0 +1,4 @@
+23c23
+<                     new StringContains(false, original)
+---
+>                     new StringDoesNotContain(original)

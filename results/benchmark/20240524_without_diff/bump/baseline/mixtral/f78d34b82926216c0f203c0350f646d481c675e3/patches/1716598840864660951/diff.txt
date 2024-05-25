@@ -1,0 +1,77 @@
+0a1,16
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.RandomUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.PlayerInteractManager;
+> import org.bukkit.profile.GameProfile;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> 
+> public class PlayerUtils {
+>     // ...
+> 
+7,8c23
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     public static EntityPlayer getRandomPlayer(World world) {
+17,20c32,34
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = leetConvert(first);
+>             last = leetConvert(last);
+44a59,102
+> 
+>     private static String leetConvert(String input) {
+>         StringBuilder output = new StringBuilder();
+>         for (char c : input.toCharArray()) {
+>             switch (c) {
+>                 case 'A':
+>                 case 'a':
+>                     output.append("4");
+>                     break;
+>                 case 'B':
+>                 case 'b':
+>                     output.append("8");
+>                     break;
+>                 case 'E':
+>                 case 'e':
+>                     output.append("3");
+>                     break;
+>                 case 'G':
+>                 case 'g':
+>                     output.append("6");
+>                     break;
+>                 case 'I':
+>                 case 'i':
+>                     output.append("1");
+>                     break;
+>                 case 'O':
+>                 case 'o':
+>                     output.append("0");
+>                     break;
+>                 case 'S':
+>                 case 's':
+>                     output.append("5");
+>                     break;
+>                 case 'T':
+>                 case 't':
+>                     output.append("7");
+>                     break;
+>                 default:
+>                     output.append(c);
+>             }
+>         }
+>         return output.toString();
+>     }
+> }
+\ No newline at end of file

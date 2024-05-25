@@ -1,0 +1,6 @@
+0a1
+> import com.artipie.asto.factory.Storage;
+1a3,4
+> 
+> Storage storage = Storages.loopback();
+\ No newline at end of file

@@ -1,0 +1,6 @@
+1a2
+>     Pattern pattern = Pattern.compile("/v2/test/blobs/uploads/.*");
+6c7
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+>             new MatchesPattern(pattern)

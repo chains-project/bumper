@@ -1,0 +1,12 @@
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) throws IOException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    List<String> values = new ArrayList<>();
+    JsonNode instances = objectMapper.readTree(cache.get(branch.getJsonPath()));
+    if (instances != null)
+        for (JsonNode instance : instances)
+            values.add(instance.textValue());
+    return values;
+}

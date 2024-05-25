@@ -1,0 +1,4 @@
+1a2
+>     DependencyCheckConfiguration dependencyCheckConfiguration = globalConfig.getDependencyCheckConfiguration();
+7a9
+>             .setDependencyCheckConfiguration(dependencyCheckConfiguration) // Add this line

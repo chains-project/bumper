@@ -1,0 +1,3 @@
+13a14,15
+>                 // The following line was added to fix the error
+>                 assertEquals(1, out.getVertexCount());

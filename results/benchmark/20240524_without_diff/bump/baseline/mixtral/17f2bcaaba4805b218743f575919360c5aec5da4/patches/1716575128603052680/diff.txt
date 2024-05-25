@@ -1,0 +1,8 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4c6,7
+<                 PShape out = PGS_Morphology.smooth(GROUP_SHAPE, 0.5);
+---
+>     PShape pgsInstance = PGS_Morphology.INSTANCE.smooth(GROUP_SHAPE, 0.5);
+>     PShape out = pgsInstance;

@@ -1,0 +1,9 @@
+import org.apache.maven.doxia.sink.Sink;
+
+// ...
+
+@Override
+protected void decorateBodyOpenTag(RenderingContext context, Sink sink) {
+    sink.body();
+    sink.openTag("div", "class", "scoverage-body");
+}

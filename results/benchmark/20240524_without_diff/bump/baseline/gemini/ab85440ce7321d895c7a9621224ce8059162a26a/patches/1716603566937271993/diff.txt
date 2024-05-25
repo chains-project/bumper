@@ -1,0 +1,5 @@
+3c3,4
+<         return new StringContains(false, String.format("%s: Pushed", **getImage().layer()**));
+---
+>         String layer = getImage().layer();
+>         return new StringContains(false, String.format("%s: Pushed", layer));

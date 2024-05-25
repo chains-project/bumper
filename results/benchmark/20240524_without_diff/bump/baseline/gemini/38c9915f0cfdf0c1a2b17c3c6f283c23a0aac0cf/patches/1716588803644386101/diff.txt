@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class RtTransaction {
+> 
+>     public static ZonedDateTimeOf getTimestamp() {
+>         return new ZonedDateTimeOf();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,24 @@
+import processing.core.PApplet;
+import processing.core.PShape;
+import static processing.core.PConstants.*;
+
+public class PGS_MorphologyGroupShapeTests {
+
+    static PShape GROUP_SHAPE;
+
+    @Test
+    void test_PGS_Morphology_minkDifference() {
+        assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+        final PShape mink = new PShape(PShape.PATH);
+        PApplet.beginShape();
+        PApplet.vertex(0, 0);
+        PApplet.vertex(5, 0);
+        PApplet.vertex(5, 5);
+        PApplet.vertex(0, 5);
+        PApplet.endShape(CLOSE);
+        mink.setVerletIntegration(false);
+
+        PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+        assertEquals(2, out.getChildCount());
+    }
+}

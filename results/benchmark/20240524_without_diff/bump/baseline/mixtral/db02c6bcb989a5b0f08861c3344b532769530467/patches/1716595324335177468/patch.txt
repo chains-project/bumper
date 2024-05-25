@@ -1,0 +1,4 @@
+  @Override
+    public void describeTo(io.cucumber.core.api.ScenarioDescriptor scenario) {
+        scenario.write("a string containing ").appendValue(substring);
+    }

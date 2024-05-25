@@ -1,0 +1,16 @@
+1c1,11
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.S3;
+> 
+> @Tv({"2.31.0"})
+> public class AwsOcketITCase {
+>   private S3 s3;
+> 
+>   public void testOcket() {
+>     this.s3 = new S3("us-east-1");
+>     // ...
+>   }
+> }
+\ No newline at end of file

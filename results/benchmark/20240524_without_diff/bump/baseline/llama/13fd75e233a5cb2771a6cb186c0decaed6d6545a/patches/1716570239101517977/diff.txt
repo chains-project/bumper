@@ -1,0 +1,20 @@
+1,18d0
+< // TODO: review this AI generated patch!
+< 
+< 
+<     @Test
+<     void shouldThrowExceptionWhenDigestIsAbsent() {
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+<                 IllegalStateException.class,
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(
+<                         RqMethod.PUT,
+<                         "/v2/my-repo/blobs/uploads/123-abc?what=nothing"
+<                     ).toString()
+<                 ).digest()
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected query")
+<         );
+<     }
+\ No newline at end of file

@@ -1,0 +1,9 @@
+1c1,4
+< import org.cactoos.scalar.Sticky;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.StickyScalar;
+> 
+> Scalar<Double> scalar = new StickyScalar<>(() -> 0.0);
+\ No newline at end of file

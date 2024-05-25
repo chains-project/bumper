@@ -1,0 +1,21 @@
+@Test
+void failsOnDigestMismatch() {
+    final InMemoryStorage storage = new InMemoryStorage();
+    final AstoBlobs blobs = new AstoBlobs(
+            storage, new DefaultLayout(), new RepoName.Simple("any")
+    );
+    final String digest = "123";
+    final Content content = new Content.From("data".getBytes());
+    final Digest calculatedDigest = new Digest.Sha256(content.checksum());
+    final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(content, calculatedDigest);
+    final InvalidDigestException expectedException = new InvalidDigestException(
+        String.format("expected '%s', calculated '%s'", digest, calculatedDigest)
+    );
+    blobs.put(checkedBlobSource)
+        .exceptionally(throwable -> {
+            Assertions.assertNotNull(throwable);
+            Assertions.assertInstanceOf(InvalidDigestException.class, throwable);
+            Assertions.assertEquals(expectedException.getMessage(), throwable.getMessage());
+            return null;
+        });
+}

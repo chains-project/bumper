@@ -1,0 +1,19 @@
+import org.cactoos.iterable.Joined;
+
+// ...
+
+@Override
+public List<WalletDto> getAll() throws IOException {
+  List<WalletDto> result = new ArrayList<>();
+  try (
+    InputStream input = connection().getResourceAsStream("/wallets.json");
+    Reader reader = new InputStreamReader(input);
+    JsonReader json = Json.createReader(reader)
+  ) {
+    JsonArray jsonArray = json.readArray();
+    for (JsonValue value : new Joined<>(jsonArray)) {
+      result.add(new WalletDto(value.asObject()));
+    }
+  }
+  return result;
+}

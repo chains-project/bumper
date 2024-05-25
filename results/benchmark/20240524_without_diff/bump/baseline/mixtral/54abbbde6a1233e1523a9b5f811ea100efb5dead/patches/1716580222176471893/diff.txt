@@ -1,0 +1,33 @@
+1,2c1,12
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.Channel;
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSch;
+> import com.jcraft.jsch.JSchException;
+> import com.jcraft.jsch.Session;
+> import com.jcraft.jsch.UserInfo;
+> import java.io.ByteArrayOutputStream;
+> import java.io.IOException;
+> import java.io.InputStream;
+> import java.util.Properties;
+> import java.util.concurrent.TimeUnit;
+> 
+12d21
+<             JSch.setLogger(new JschLogger());
+14,18d22
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+22c26,31
+<             session.setConfig("StrictHostKeyChecking", "no");
+---
+>         final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+>         final Properties config = new Properties();
+>         config.load(getClass().getResourceAsStream("/jcraft.properties"));
+>         config.put("StrictHostKeyChecking", "no");
+>         jsch.setConfig(config);
+>         session.setConfig(config);

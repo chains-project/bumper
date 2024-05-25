@@ -1,0 +1,18 @@
+3c3,6
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     // Make sure the child count is 2 before proceeding
+>     assumeTrue(getChildCount(GROUP_SHAPE) == 2);
+>     
+>     // Use the static method to simplify topology
+5c8,15
+<                 assertEquals(2, out.getChildCount());
+---
+>     
+>     // Assert the child count after simplification
+>     assertEquals(2, getChildCount(out));
+> }
+> 
+> // Add helper method to get child count
+> private int getChildCount(PShape shape) {
+>     return shape.getChildCount();

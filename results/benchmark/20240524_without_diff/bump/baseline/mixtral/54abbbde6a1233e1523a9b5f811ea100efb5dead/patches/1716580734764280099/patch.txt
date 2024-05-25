@@ -1,0 +1,18 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"1.0"})
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh ssh(String host, int port, String username, String password) {
+        // existing code...
+
+        // replace the failing line with the following:
+        Session session = jsch.getSession(username, host, port);
+
+        // existing code...
+    }
+
+    // existing code...
+}

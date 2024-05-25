@@ -1,0 +1,15 @@
+1c1,10
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.Bucket;
+> 
+> @Tv({"1.0"})
+> public class BucketRule {
+>     private Bucket bucket;
+> 
+>     public void setUp() throws Exception {
+>         bucket = new Bucket("my-bucket", "my-region");
+>     }
+> }
+\ No newline at end of file

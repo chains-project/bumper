@@ -1,0 +1,14 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(41)
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh sshByPassword(String host, int port, String login, String password) {
+        // use the new Ssh.create() method instead of the removed Ssh.login() method
+        return Ssh.create(host, port, login, password);
+    }
+
+    // existing code...
+}

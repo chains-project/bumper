@@ -1,0 +1,14 @@
+9c9
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>                 step.getUrl(), step.getArtifactoryUrl(), step.getDistributionUrl())) {
+12,13c12,13
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>         if (isNotBlank(step.getCredentialsId())) {
+>             if (isNotBlank(step.getUsername())) {
+16c16
+<                 if (isNotBlank(step.password)) {
+---
+>             if (isNotBlank(step.getPassword())) {

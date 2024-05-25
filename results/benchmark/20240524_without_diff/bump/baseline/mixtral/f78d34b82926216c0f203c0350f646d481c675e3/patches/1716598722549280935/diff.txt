@@ -1,0 +1,79 @@
+1,20c1,45
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+< 
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.MinecraftServer;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.regex.Pattern;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> import static org.apache.commons.lang3.StringUtils.isBlank;
+> import static org.apache.commons.lang3.StringUtils.isNotBlank;
+> 
+> public class PlayerUtils {
+>     ...
+>     public static EntityPlayer getRandomPlayer(World world) {
+>         Supplier<String> randomStringSupplier = () -> {
+>             ThreadLocalRandom random = ThreadLocalRandom.current();
+>             return random.nextBoolean() ?
+>                     randomAlphanumeric(nextInt(13) + 1) :
+>                     randomAlphabetic(nextInt(13) + 1);
+>         };
+> 
+>         Supplier<String> randomSkinSupplier = () -> {
+>             ThreadLocalRandom random = ThreadLocalRandom.current();
+>             return random.nextBoolean() ?
+>                     "path/to/random/skin/folder/" + randomAlphanumeric(nextInt(13) + 1) + ".png" :
+>                     "path/to/random/skin/folder/" + randomAlphabetic(nextInt(13) + 1) + ".png";
+>         };
+> 
+>         String first = randomStringSupplier.get();
+>         String last = randomStringSupplier.get();
+> 
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+28c53
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>             name = randomAlphanumeric(nextInt(16));
+32c57
+<         Pair<String, String> skin = getRandomSkin();
+---
+>         Pair<String, String> skin = Pair.of(randomSkinSupplier.get(), "{}");
+44a70,71
+>     ...
+> }
+\ No newline at end of file

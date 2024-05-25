@@ -1,0 +1,17 @@
+1d0
+< // TODO: review this AI generated patch!
+8a8,11
+>     final JUnit413StringContains containsDigest = new JUnit413StringContains(digest);
+>     final JUnit413StringContains containsCalculatedDigest = new JUnit413StringContains(
+>             "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+>     );
+26,28c29
+<                         new JUnit413StringContains(
+<                                 "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                         )
+---
+>                         containsCalculatedDigest
+33c34
+<                         new JUnit413StringContains(digest)
+---
+>                         containsDigest

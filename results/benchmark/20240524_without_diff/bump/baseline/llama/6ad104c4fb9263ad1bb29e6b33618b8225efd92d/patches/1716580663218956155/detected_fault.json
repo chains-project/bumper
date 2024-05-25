@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 490218,
+    "in_class_code": "public class ChachaDecoder {\n    private final ChaChaEngine decryptCipher;\n\n    public ChachaDecoder(byte[] key, byte[] nonce) throws IOException {\n        this.decryptCipher = new ChaChaEngine(20);\n        this.decryptCipher.init(false, new ParametersWithIV(new KeyParameter(key), nonce));\n    }\n\n    // TODO: review this AI generated patch!\n    public byte[] decodeCiphertext(byte[] receivedMAC, byte[] ciphertext) throws IOException {\n        return decodeCiphertext(receivedMAC, null, ciphertext);\n    }\n}",
+    "qualified_in_class_code": "public class ChachaDecoder {\n    private final org.bouncycastle.crypto.engines.ChaChaEngine decryptCipher;\n\n    public ChachaDecoder(byte[] key, byte[] nonce) throws java.io.IOException {\n        this.decryptCipher = new org.bouncycastle.crypto.engines.ChaChaEngine(20);\n        this.decryptCipher.init(false, new org.bouncycastle.crypto.params.ParametersWithIV(new org.bouncycastle.crypto.params.KeyParameter(key), nonce));\n    }\n\n    // TODO: review this AI generated patch!\n    public byte[] decodeCiphertext(byte[] receivedMAC, byte[] ciphertext) throws java.io.IOException {\n        return decodeCiphertext(receivedMAC, null, ciphertext);\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  required: byte[],byte[]\n  found: byte[],<nulltype>,byte[]\n  reason: actual and formal argument lists differ in length\n",
+        "error_message": "[ERROR] /HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java:[23,12] method decodeCiphertext in class io.github.hapjava.server.impl.crypto.ChachaDecoder cannot be applied to given types;",
+        "client_file_path": "/HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java",
+        "client_line_position": "23"
+    },
+    "client_end_line_number": 28,
+    "client_line_number": 23,
+    "method_code": "// TODO: review this AI generated patch!\n\n\n  public byte[] decodeCiphertext(byte[] receivedMAC, byte[] ciphertext) throws IOException {\n    return decodeCiphertext(receivedMAC, null, ciphertext);\n  }",
+    "qualified_code": "// TODO: review this AI generated patch!\npublic byte[] decodeCiphertext(byte[] receivedMAC, byte[] ciphertext) throws java.io.IOException {\n    return decodeCiphertext(receivedMAC, null, ciphertext);\n}",
+    "method_name": "decodeCiphertext"
+}

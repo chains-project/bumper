@@ -1,0 +1,7 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+try {
+    Class.forName("de.gwdg.metadataqa.marc.MarcFactory");
+} catch (ClassNotFoundException e) {
+    // Handle or log the exception
+}

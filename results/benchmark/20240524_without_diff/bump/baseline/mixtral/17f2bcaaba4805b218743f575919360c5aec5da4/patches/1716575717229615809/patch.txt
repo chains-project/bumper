@@ -1,0 +1,21 @@
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+
+public class PGS_MeshingTests {
+    // ...
+
+    @Test
+    public void test_getMesh_returnsValidMesh() {
+        // Arrange
+        // ...
+
+        // Act
+        Mesh mesh = pgs.getMesh(meshType, vertices, triangles);
+
+        // Assert
+        assertNotNull(mesh);
+    }
+
+    // ...
+}

@@ -1,0 +1,26 @@
+1a2,25
+> 
+> public class FastPolygonizerTests {
+> 
+>     @Ignore
+>     public void testPolygonize() {
+>         // TODO: Implement test
+>     }
+> 
+>     @Ignore
+>     public void testPolygonizeWithHoles() {
+>         // TODO: Implement test
+>     }
+> 
+>     @Ignore
+>     public void testPolygonizeWithHolesAndSelfIntersections() {
+>         // TODO: Implement test
+>     }
+> 
+>     @Ignore
+>     public void testPolygonizeWithSelfIntersections() {
+>         // TODO: Implement test
+>     }
+> 
+> }
+\ No newline at end of file

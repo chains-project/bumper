@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+14a14
+>             if (PeyangSuperbAntiCheat.getPlugin() != null && PeyangSuperbAntiCheat.getPlugin().isEnabled()) {
+18a19,21
+>             } else {
+>                 speed = 1.0; // set a default value for speed
+>             }

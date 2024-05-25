@@ -1,0 +1,23 @@
+1c1,18
+< import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+\ No newline at end of file
+---
+> import org.codehaus.plexus.components.io.filemanipulator.FileManipulator;
+> 
+> // ...
+> 
+> @Override
+> public void scanDirectory(FileManipulator fileManipulator, String directory) throws MojoExecutionException {
+>     DirectoryScanner directoryScanner = new DirectoryScanner();
+>     directoryScanner.setBasedir(new File(directory));
+>     directoryScanner.addDefaultExcludes();
+>     directoryScanner.scan();
+>     String[] includedFiles = directoryScanner.getIncludedFiles();
+>     for (String includedFile : includedFiles) {
+>         File file = new File(directory, includedFile);
+>         if (file.isFile() && !file.isHidden()) {
+>             processFile(fileManipulator, file);
+>         }
+>     }
+> }
+\ No newline at end of file

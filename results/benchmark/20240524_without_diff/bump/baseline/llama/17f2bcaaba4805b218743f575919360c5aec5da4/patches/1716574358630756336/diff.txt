@@ -1,0 +1,10 @@
+8c8,14
+<                 PShape mergedMesh = PGS_Meshing.areaMerge(mesh, areaThreshold);
+---
+>     PShape mergedMesh = mesh;
+>     for (int i = faces.size() - 1; i >= 0; i--) {
+>         if (PGS_ShapePredicates.area(faces.get(i)) < areaThreshold) {
+>             mesh.removeChild(faces.get(i));
+>         }
+>     }
+> 

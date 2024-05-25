@@ -1,0 +1,6 @@
+3a4,6
+>             String.format("Status: Downloaded newer image for %s", image),
+>             new StringContains(
+>                 false,
+4a8
+>             )

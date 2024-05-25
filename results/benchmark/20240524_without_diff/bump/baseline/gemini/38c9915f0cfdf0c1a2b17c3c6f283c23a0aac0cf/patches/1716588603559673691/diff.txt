@@ -1,0 +1,16 @@
+0a1,2
+> import java.time.ZonedDateTime;
+> 
+1a4,14
+> 
+> public class RtTransaction {
+> 
+>     // ...
+> 
+>     public ZonedDateTime getCreatedAt() {
+>         return new ZonedDateTimeOf(createdAt).value();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

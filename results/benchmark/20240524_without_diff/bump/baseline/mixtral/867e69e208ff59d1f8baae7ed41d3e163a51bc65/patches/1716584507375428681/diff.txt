@@ -1,0 +1,6 @@
+0a1
+> import org.apache. thrift.transport.TTransport;
+1a3,4
+> 
+> TTransport transport = new TFramedTransport(new TTransport());
+\ No newline at end of file

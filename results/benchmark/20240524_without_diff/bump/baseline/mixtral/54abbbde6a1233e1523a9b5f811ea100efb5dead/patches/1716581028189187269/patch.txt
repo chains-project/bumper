@@ -1,0 +1,8 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.22", "0.15.23", "0.15.24"})
+public class MyClass {
+    private final Ssh ssh = new Ssh("my-host", 22, "my-user", "my-pass");
+
+    // rest of the class
+}

@@ -1,0 +1,13 @@
+2,3c2,3
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+---
+>     final String packagesToScan = System.getProperty(PACKAGE_TO_SCAN, "");
+>     if (packagesToScan.isEmpty()) {
+6a7
+>     Pattern pattern = Pattern.compile("");
+9c10,11
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         pattern = Pattern.compile(regex);
+>         if (pattern.matcher(s).matches()) {

@@ -1,0 +1,7 @@
+0a1,2
+> import micycle.pgs.PGS_Morphology;
+> 
+4c6
+<                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+---
+>     PShape out = new PGS_Morphology().simplifyTopology(GROUP_SHAPE, 1);

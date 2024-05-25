@@ -1,0 +1,24 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                 notNullValue()
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                 instanceOf(InvalidDigestException.class)
+25,26c25,26
+<                     new StringContains(
+<                         true,
+---
+>                 allOf(
+>                     stringContains(
+27a28,30
+>                     ),
+>                     stringContains(digest)
+>                 )
+29,33d31
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)

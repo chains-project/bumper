@@ -1,0 +1,8 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new StringMatcher("Status: Downloaded newer image for " + image) {
+        @Override
+        protected boolean match(String actual) {
+            return actual.contains(this.string);
+        }
+    };
+}

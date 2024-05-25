@@ -1,0 +1,7 @@
+4,5c4,6
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+<                 assertEquals(2, out.getChildCount());
+---
+>     PShape parent = GROUP_SHAPE.getChildren()[0];
+>     PShape out = PGS_Morphology.round(parent, 0.5);
+>     assertEquals(1, out.getChildCount());

@@ -1,0 +1,6 @@
+1a2
+>         String expectedMessage = String.format("%s: Layer already exists", this.image.layer());
+4c5
+<             String.format("%s: Layer already exists", this.image.layer())
+---
+>             expectedMessage

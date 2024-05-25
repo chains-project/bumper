@@ -1,0 +1,10 @@
+6d5
+<     @Override
+23c22
+<         catch ( MavenReportException e )
+---
+>         catch ( Exception e ) //++
+26c25
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+---
+>             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e ); //++

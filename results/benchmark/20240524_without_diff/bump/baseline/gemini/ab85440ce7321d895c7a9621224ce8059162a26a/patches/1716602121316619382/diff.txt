@@ -1,0 +1,4 @@
+33c33
+<                     new StringContains(true, digest)
+---
+>                     new StringEndsWith(digest)

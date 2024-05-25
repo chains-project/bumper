@@ -1,0 +1,10 @@
+@Test
+void test_PGS_Morphology_round() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape parent = GROUP_SHAPE.getChildren()[0];
+    float radius = 0.5f;
+    PShape out = PGS_Morphology.round(parent, radius);
+    assertEquals(1, out.getChildCount());
+    assertTrue(out instanceof PShape);
+    assertEquals(radius, ((PShape) out).getWidth() / 2, 0.01);
+}

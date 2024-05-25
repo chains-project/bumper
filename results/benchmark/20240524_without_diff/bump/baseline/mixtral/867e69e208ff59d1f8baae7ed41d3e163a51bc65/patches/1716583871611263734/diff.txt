@@ -1,0 +1,20 @@
+0a1
+> import org.apache.thrift.transport.TTransport;
+1a3,18
+> import org.apache.thrift.protocol.TBinaryProtocol;
+> 
+> // ...
+> 
+> private TTransport createTransport() {
+>   TTransport transport = new TFramedTransport(new TSocket(host, port));
+>   transport.open();
+>   return transport;
+> }
+> 
+> private TProtocol createProtocol() {
+>   TTransport transport = createTransport();
+>   return new TBinaryProtocol(transport);
+> }
+> 
+> // ...
+\ No newline at end of file

@@ -1,0 +1,6 @@
+_erosionDilation() {
+    final var groupShape = Morphology.GROUP_SHAPE;
+    assumeTrue(groupShape.getChildCount() == 2);
+    PShape out = Morphology.erosionDilation(groupShape, 0);
+    assertEquals(2, out.getChildCount());
+}

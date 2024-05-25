@@ -1,0 +1,9 @@
+import org.apache.maven.doxia.sink.Sink;
+
+private void renderDecorations(Sink sink, RenderingContext renderingContext) {
+    // You might need to update the import statement for RenderingContext
+    // if it has moved to a different package in the updated dependency.
+    // If so, update the import statement accordingly.
+
+    // Your existing code using sink and renderingContext goes here.
+}

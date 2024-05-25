@@ -1,0 +1,4 @@
+9a10,12
+>       // Add a flusher to the transport to ensure messages are flushed to the
+>       // underlying stream.
+>       framedTransport.setFlusher(new TFlushingTransport(framedTransport));

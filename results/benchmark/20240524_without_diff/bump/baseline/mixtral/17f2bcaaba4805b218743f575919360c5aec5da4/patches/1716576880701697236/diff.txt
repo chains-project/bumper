@@ -1,0 +1,7 @@
+2,3c2,4
+<     assumeTrue(Morphology.GROUP\_SHAPE.getChildCount() == 2);
+<     PShape out = Morphology.erosionDilation(Morphology.GROUP\_SHAPE, 0);
+---
+>     final var groupShape = Morphology.GROUP_SHAPE;
+>     assumeTrue(groupShape.getChildCount() == 2);
+>     PShape out = Morphology.erosionDilation(groupShape, 0);

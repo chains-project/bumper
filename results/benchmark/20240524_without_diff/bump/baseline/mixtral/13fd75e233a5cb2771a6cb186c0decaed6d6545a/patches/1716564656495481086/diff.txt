@@ -1,0 +1,13 @@
+2,5c2,8
+<         return new StringContains(
+<             false,
+<             String.format("Status: Downloaded newer image for %s", image)
+<         );
+---
+>     return new AbstractMatcher<String>("a string containing") {
+>         @Override
+>         public boolean matches(final Object item) {
+>             String string = (String) item;
+>             return string.contains(String.format("Status: Downloaded newer image for %s", image));
+>         }
+>     };

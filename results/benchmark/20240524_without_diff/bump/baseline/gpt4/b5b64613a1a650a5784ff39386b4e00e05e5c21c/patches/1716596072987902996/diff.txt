@@ -1,0 +1,18 @@
+7a8,10
+>         if (server == null || step == null) {
+>             throw new IOException("Server or step is null");
+>         }
+9c12
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>                 step.getUrl(), step.getArtifactoryUrl(), step.getDistributionUrl())) {
+12,13c15,16
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>         if (isNotBlank(step.getCredentialsId())) {
+>             if (isNotBlank(step.getUsername())) {
+16c19
+<                 if (isNotBlank(step.password)) {
+---
+>             if (isNotBlank(step.getPassword())) {

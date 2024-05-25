@@ -1,0 +1,12 @@
+1a2,11
+> 
+>   public class RtTransaction {
+> 
+>     public static String getHash(String rawTx) {
+>       String trimmedTx = new TrimmedText(rawTx).asString();
+>       String hash = "";
+>       // TODO: Implement hash calculation logic
+>       return hash;
+>     }
+>   }
+\ No newline at end of file

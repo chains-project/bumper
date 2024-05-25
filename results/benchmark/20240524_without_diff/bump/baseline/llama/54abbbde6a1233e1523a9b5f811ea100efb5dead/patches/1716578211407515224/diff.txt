@@ -1,0 +1,35 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,26c11,13
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+<             new Unchecked<>(
+<                 new LengthOf(
+<                     new TeeInput(
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+<                         file
+<                     )
+<                 )
+<             ).value();
+<             jsch.setHostKeyRepository(new EasyRepo());
+<             if (this.passphrase == null) {
+---
+>         Logger.debug(this, "Opening SSH session...");
+>         JSch jsch = new JSch();
+>         jsch.setLogger(new JschLogger());
+28,35d14
+<             } else {
+<                 jsch.addIdentity(
+<                     this.getLogin(),
+<                     this.key.getBytes(StandardCharsets.UTF_8),
+<                     null,
+<                     this.passphrase.getBytes(StandardCharsets.UTF_8)
+<                 );
+<             }

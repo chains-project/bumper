@@ -1,0 +1,7 @@
+9,12c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+---
+>         new StringContains("Status: Downloaded newer image for " + image)

@@ -1,0 +1,22 @@
+0a1,3
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.util.text.SimpleTextEncryptor;
+> 
+7,8c10,11
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+<                         stringEncrypter.setPasswordCharArray(chars);
+---
+>         TextEncryptor textEncryptor = new SimpleTextEncryptor();
+>         textEncryptor.setPasswordCharArray(chars);
+11c14,16
+<                                 stringEncrypter.setProviderName(getProviderName());
+---
+>             textEncryptor.setAlgorithm(getAlgorithm() + "-" + getProviderName());
+>         } else {
+>             textEncryptor.setAlgorithm(getAlgorithm());
+13d17
+<                         stringEncrypter.setAlgorithm(getAlgorithm());
+16c20
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         encoder.setPbeStringEncryptor(textEncryptor);

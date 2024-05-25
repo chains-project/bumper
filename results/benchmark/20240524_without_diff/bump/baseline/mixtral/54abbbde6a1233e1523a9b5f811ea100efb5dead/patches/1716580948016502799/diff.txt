@@ -1,0 +1,29 @@
+1,2c1,6
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSchException;
+> import com.jcraft.jsch.Session;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> 
+10a15
+>     JSch jsch = new JSch();
+13d17
+<             final JSch jsch = new JSch();
+19c23
+<             final Session session = jsch.getSession(
+---
+>         Session session = jsch.getSession(
+28a33,38
+> 
+>         ChannelExec channel = (ChannelExec) session.openChannel("exec");
+>         channel.setCommand("true"); // replace with the desired command
+>         channel.connect();
+>         channel.disconnect();
+> 
+30c40
+<         } catch (final JSchException ex) {
+---
+>     } catch (JSchException ex) {

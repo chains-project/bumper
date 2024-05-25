@@ -1,0 +1,23 @@
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLEngine;
+import javax.net.ssl.SSLException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+@Override
+public SSLEngine createSSLEngine() {
+    SSLContext context = null;
+    try {
+        context = SSLContext.getInstance("TLS");
+    } catch (NoSuchAlgorithmException e) {
+        throw new IllegalStateException(e);
+    }
+    try {
+        context.init(null, null, null);
+    } catch (KeyManagementException e) {
+        throw new IllegalStateException(e);
+    }
+    return context.createSSLEngine();
+}

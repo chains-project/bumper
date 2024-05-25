@@ -1,0 +1,38 @@
+0a1,18
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.LinearComponentExtracter;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.stream.Collectors;
+> 
+> import static micycle.pgs.PGS.GEOM_FACTORY;
+> import static micycle.pgs.PGS.coordFromPVector;
+> import static micycle.pgs.PGS.nodeSegmentStrings;
+> import static micycle.pgs.PGS.toPVector;
+> 
+11c29
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<SegmentString> nodedSS = nodeSegmentStrings(segmentStrings);
+13c31
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(toPVector(ss.getCoordinate(0)), toPVector(ss.getCoordinate(1)))));
+18,22c36,39
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+<                         });
+---
+>         LinearComponentExtracter extracter = new LinearComponentExtracter();
+>         nodedEdgesSet.forEach(e -> extracter.add(new LineString(new Coordinate[]{coordFromPVector(e.a), coordFromPVector(e.b)})));
+>         Collection<LineString> lineStrings = extracter.getLines();
+>         lineStrings.forEach(l -> polygonizerJTS.add(l));

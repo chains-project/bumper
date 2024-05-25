@@ -1,0 +1,29 @@
+1c1,24
+< import org.apache.thrift.transport.TFramedTransport;
+\ No newline at end of file
+---
+> import org.apache.thrift.transport.TTransport;
+> 
+> import java.io.ByteArrayOutputStream;
+> import java.io.IOException;
+> import java.io.OutputStream;
+> 
+> public class SimpleThriftLogger {
+>     // ...
+> 
+>     @Override
+>     public OutputStream getTransportOutputStream() throws IOException {
+>         if (transport == null) {
+>             transport = new TFramedTransport(new TTransport.NullTransport());
+>         }
+>         return new ByteArrayOutputStream() {
+>             @Override
+>             public void close() throws IOException {
+>                 // Do nothing.
+>             }
+>         };
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

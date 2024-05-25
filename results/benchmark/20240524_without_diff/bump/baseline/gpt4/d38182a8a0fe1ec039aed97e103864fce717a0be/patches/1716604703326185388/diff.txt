@@ -1,0 +1,4 @@
+9c9
+<                             .filter(user -> token.equals(token(user)))
+---
+>                     .filter(user -> token.equals(user.token()))

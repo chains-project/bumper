@@ -1,0 +1,8 @@
+1d0
+< @Override
+3c2,4
+<     return new Timestamp(super.between(from, to).getTime());
+---
+>     java.util.Date utilDate = super.between(from, to);
+>     java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(utilDate.getTime());
+>     return sqlTimestamp;

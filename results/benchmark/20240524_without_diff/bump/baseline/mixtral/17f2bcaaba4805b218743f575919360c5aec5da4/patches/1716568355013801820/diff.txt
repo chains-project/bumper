@@ -1,0 +1,59 @@
+0a1,18
+> import java.awt.geom.Area;
+> import java.awt.geom.GeneralPath;
+> import java.awt.geom.Path2D;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.ArrayList;
+> 
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.GeometryTransformers;
+> import org.locationtech.jts.index.strtree.STRtree;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> 
+> import com.vividsolutions.jts.algorithm.ConvexHull;
+> 
+31c49
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         Collection<Polygon> FP = createPolygons(nodedEdgesSet);
+34,35c52,59
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>         assertEquals(JTS.size(), FP.size());
+>     }
+> }
+> 
+> private Collection<Polygon> createPolygons(Collection<PEdge> edges) {
+>     STRtree index = new STRtree();
+>     for (PEdge edge : edges) {
+>         index.insert(GeometryTransformers.createJTSGeometry(edge.a), edge);
+36a61,83
+> 
+>     Collection<Polygon> polygons = new ArrayList<>();
+>     for (PEdge edge : edges) {
+>         Collection<Coordinate> points = new ArrayList<>();
+>         points.add(PGS.coordFromPVector(edge.a));
+>         points.add(PGS.coordFromPVector(edge.b));
+>         ConvexHull ch = new ConvexHull(points);
+>         List<Coordinate> hullPoints = new ArrayList<>(ch.getPoints());
+>         hullPoints.add(hullPoints.get(0));
+> 
+>         GeneralPath gp = new GeneralPath();
+>         gp.moveTo(hullPoints.get(0).x, hullPoints.get(0).y);
+>         for (int i = 1; i < hullPoints.size(); i++) {
+>             gp.lineTo(hullPoints.get(i).x, hullPoints.get(i).y);
+>         }
+>         gp.closePath();
+> 
+>         Path2D path = new Path2D.Double(gp);
+>         Area area = new Area(path);
+>         polygons.add(GeometryTransformers.createJTSGeometry(area));
+>     }
+> 
+>     return polygons;

@@ -1,0 +1,13 @@
+6,9c6,10
+<         final String[] packages = packagesToScan.split(",");
+<         for (String packageToScan : packages) {
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>     Pattern pattern = Pattern.compile("(^|\\.)(?<package>[^.]+)\\.([^.]+\\.class)$");
+>     for (String packageToScan : packagesToScan.split(",")) {
+>         Matcher matcher = pattern.matcher(s);
+>         while (matcher.find()) {
+>             if (packageToScan.equals(matcher.group("package"))) {
+12a14
+>     }

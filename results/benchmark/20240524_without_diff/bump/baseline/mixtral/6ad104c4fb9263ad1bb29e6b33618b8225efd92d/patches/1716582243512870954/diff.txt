@@ -1,0 +1,24 @@
+1c1,19
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> try {
+>     // Use reflection to access the required class
+>     Class<?> tlsFatalAlertClass = Class.forName("org.bouncycastle.crypto.tls.TlsFatalAlert");
+>     Field valueField = tlsFatalAlertClass.getDeclaredField("VALUE");
+>     valueField.setAccessible(true);
+> 
+>     // Use the constant value as before
+>     int handshakeFailure = (Integer) valueField.get(TlsFatalAlert.HANDSHAKE_FAILURE);
+> 
+>     // ...
+> } catch (ClassNotFoundException | IllegalAccessException | NoSuchFieldException e) {
+>     // Handle the exception appropriately
+>     // For example, log the error and throw a runtime exception
+>     throw new RuntimeException("Failed to initialize TlsFatalAlert", e);
+> }
+\ No newline at end of file

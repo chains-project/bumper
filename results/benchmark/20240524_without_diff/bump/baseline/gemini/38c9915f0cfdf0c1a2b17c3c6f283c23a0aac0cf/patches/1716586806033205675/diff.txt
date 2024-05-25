@@ -1,0 +1,18 @@
+1a2,17
+> 
+> import java.util.concurrent.CompletableFuture;
+> 
+> public class RtTransaction {
+> 
+>     private final CompletableFuture<UncheckedScalar<String>> txId;
+> 
+>     public RtTransaction(CompletableFuture<UncheckedScalar<String>> txId) {
+>         this.txId = txId;
+>     }
+> 
+>     public CompletableFuture<UncheckedScalar<String>> getTxId() {
+>         return txId;
+>     }
+> 
+> }
+\ No newline at end of file

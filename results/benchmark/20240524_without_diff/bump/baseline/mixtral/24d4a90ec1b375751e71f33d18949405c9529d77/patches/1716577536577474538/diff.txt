@@ -1,0 +1,13 @@
+1c1,8
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.s3.Bucket;
+> 
+> @Tv(43)
+> @Override
+> public void testBucketCreation() {
+>     Bucket bucket = s3.bucket("jcabi-s3-test");
+>     assertTrue(bucket.exists());
+> }
+\ No newline at end of file

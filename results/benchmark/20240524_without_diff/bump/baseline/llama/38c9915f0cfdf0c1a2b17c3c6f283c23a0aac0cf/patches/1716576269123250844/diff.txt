@@ -1,0 +1,10 @@
+1c1,5
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import java.util.stream.Stream;
+> import java.util.Arrays;
+> 
+> String[] texts = {"text1", "text2", "text3"};
+> String joinedText = Arrays.stream(texts).reduce((a, b) -> a + ", " + b).orElse("");
+\ No newline at end of file

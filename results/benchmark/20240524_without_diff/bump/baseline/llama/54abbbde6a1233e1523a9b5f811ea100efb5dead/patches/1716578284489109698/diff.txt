@@ -1,0 +1,53 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,14c11,23
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         com.jcraft.jsch.Logger logger = new com.jcraft.jsch.Logger() {
+>             public boolean isEnabled(int level) {
+>                 return true;
+>             }
+>             public void log(int level, String message) {
+>                 Logger.debug(this, message);
+>             }
+>         };
+>         com.jcraft.jsch JSch = new com.jcraft.jsch();
+>         JSch.setLogger(logger);
+>         final String key = this.key.replaceAll("\r", "")
+>                 .replaceAll("\n\\s+|\n{2,}", "\n")
+>                 .trim();
+18,20c27
+<                         this.key.replaceAll("\r", "")
+<                             .replaceAll("\n\\s+|\n{2,}", "\n")
+<                             .trim(),
+---
+>                     key,
+25c32,39
+<             jsch.setHostKeyRepository(new EasyRepo());
+---
+>         JSch.setHostKeyRepository(new com.jcraft.jsch.UserInfo() {
+>             public String getPassword() {
+>                 return null;
+>             }
+>             public String getPassphrase() {
+>                 return this.passphrase;
+>             }
+>         });
+27c41
+<                 jsch.addIdentity(file.getAbsolutePath());
+---
+>             JSch.addIdentity(file.getAbsolutePath());
+29c43
+<                 jsch.addIdentity(
+---
+>             JSch.addIdentity(
+42c56
+<             return this.session(jsch);
+---
+>         return this.session(JSch);

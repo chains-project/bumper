@@ -1,0 +1,9 @@
+import org.cactoos.text.Texts;
+import org.cactoos.iterable.Joined;
+
+// ...
+
+@Override
+public String all() throws IOException {
+  return new Joined(Texts::trim, readers()).asString();
+}

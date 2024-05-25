@@ -1,0 +1,9 @@
+1a2,8
+>   
+>   public class RtTransaction {
+>   
+>     public String getTxId(String txId) {
+>       return new TrimmedText(txId).asString();
+>     }
+>   }
+\ No newline at end of file

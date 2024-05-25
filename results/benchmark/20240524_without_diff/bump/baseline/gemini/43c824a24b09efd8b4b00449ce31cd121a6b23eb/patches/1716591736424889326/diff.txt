@@ -1,0 +1,6 @@
+3c3
+<     if (!list.isEmpty())
+---
+>     if (!list.isEmpty()) {
+4a5
+>     }

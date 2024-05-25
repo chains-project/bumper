@@ -1,0 +1,12 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3c5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+4a7
+>     if (out != null) {
+6a10
+> }
+\ No newline at end of file

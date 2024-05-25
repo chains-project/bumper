@@ -1,0 +1,16 @@
+0a1
+> import org.apache.thrift.transport.TTransport;
+1a3,14
+> 
+> public class SimpleThriftLogger {
+>     // ...
+> 
+>     @Override
+>     public void log(byte[] data) {
+>         TTransport transport = new TFramedTransport(new TSocket(host, port));
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

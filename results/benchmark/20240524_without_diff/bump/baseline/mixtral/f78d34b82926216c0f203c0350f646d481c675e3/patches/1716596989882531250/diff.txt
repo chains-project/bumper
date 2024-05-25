@@ -1,0 +1,57 @@
+0a1,11
+> import net.minecraft.server.v1_12_R1.EntityPlayer;
+> import net.minecraft.server.v1_12_R1.GameProfile;
+> import net.minecraft.server.v1_12_R1.MinecraftServer;
+> import net.minecraft.server.v1_12_R1.PlayerInteractManager;
+> import net.minecraft.server.v1_12_R1.WorldServer;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> 
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+12c23
+<             : RandomWordUtils.getRandomWord();
+---
+>             : WordUtils.randomDeterministicWord(10);
+15c26
+<             : RandomWordUtils.getRandomWord();
+---
+>             : WordUtils.randomDeterministicWord(10);
+19,20c30,31
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+44a56,84
+> 
+> private static final Pattern LEET_PATTERN = Pattern.compile("[A-Z]");
+> 
+> private static String convert(String input)
+> {
+>     Matcher matcher = LEET_PATTERN.matcher(input);
+>     StringBuilder output = new StringBuilder();
+>     while (matcher.find()) {
+>         char c = matcher.group().toLowerCase().charAt(0);
+>         if (c == 'a') {
+>             matcher.appendReplacement(output, "@");
+>         } else if (c == 'e') {
+>             matcher.appendReplacement(output, "3");
+>         } else if (c == 'g') {
+>             matcher.appendReplacement(output, "9");
+>         } else if (c == 'o') {
+>             matcher.appendReplacement(output, "0");
+>         } else if (c == 't') {
+>             matcher.appendReplacement(output, "7");
+>         } else if (c == 's') {
+>             matcher.appendReplacement(output, "5");
+>         } else if (c == 'b') {
+>             matcher.appendReplacement(output, "8");
+>         } else {
+>             matcher.appendReplacement(output, matcher.group());
+>         }
+>     }
+>     return matcher.appendTail(output).toString();
+> }
+\ No newline at end of file

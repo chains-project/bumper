@@ -1,0 +1,6 @@
+42c42,44
+<             return this.session(jsch);
+---
+>             Session session = jsch.getSession(this.getLogin(), this.getAddr(), this.getPort());
+>             session.setConfig("StrictHostKeyChecking", "no");
+>             return session;

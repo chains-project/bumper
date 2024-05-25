@@ -1,0 +1,6 @@
+@Test
+void test_PGS_Morphology_round() {
+    assumeTrue(PApplet.prototype.getChildCount.call(GROUP_SHAPE) == 2);
+    PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+    assertEquals(2, PApplet.prototype.getChildCount.call(out));
+}

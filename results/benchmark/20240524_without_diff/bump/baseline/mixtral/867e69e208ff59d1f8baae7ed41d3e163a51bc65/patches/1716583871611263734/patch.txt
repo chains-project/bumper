@@ -1,0 +1,18 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TFramedTransport;
+import org.apache.thrift.protocol.TBinaryProtocol;
+
+// ...
+
+private TTransport createTransport() {
+  TTransport transport = new TFramedTransport(new TSocket(host, port));
+  transport.open();
+  return transport;
+}
+
+private TProtocol createProtocol() {
+  TTransport transport = createTransport();
+  return new TBinaryProtocol(transport);
+}
+
+// ...

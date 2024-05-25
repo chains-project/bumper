@@ -1,0 +1,37 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>     public void failsOnDigestMismatch() {
+12c12
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                     not(nullValue())
+17c17
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     instanceOf(InvalidDigestException.class)
+22c22
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+25,26c25
+<                     new StringContains(
+<                         true,
+---
+>                     containsString(
+30c29
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+33c32
+<                     new StringContains(true, digest)
+---
+>                     containsString(digest)

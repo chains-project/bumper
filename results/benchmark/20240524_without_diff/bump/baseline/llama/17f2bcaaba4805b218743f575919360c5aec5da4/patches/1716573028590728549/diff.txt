@@ -1,0 +1,11 @@
+6c6,11
+<                 double areaThreshold = PGS_ShapePredicates.area(faces.get(faces.size() / 2));
+---
+>     double areaThreshold = faces.isEmpty() ? 0 : PGS_ShapePredicates.area(faces.get(faces.size() / 2));
+> 
+>     PShape mergedMesh = mesh;
+>     if (!faces.isEmpty()) {
+>         mergedMesh = PGS_Meshing.areaMerge(mesh, areaThreshold);
+>     }
+8d12
+<                 PShape mergedMesh = PGS_Meshing.areaMerge(mesh, areaThreshold);

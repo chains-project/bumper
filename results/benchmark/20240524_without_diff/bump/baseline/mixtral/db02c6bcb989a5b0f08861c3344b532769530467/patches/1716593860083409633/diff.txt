@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+8a8
+>     JUnit413StringContains contains = new JUnit413StringContains(digest);
+33c33
+<                         new JUnit413StringContains(digest)
+---
+>                         contains

@@ -1,0 +1,6 @@
+41,43c41
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>         ).response(line, Headers.EMPTY, Content.EMPTY).toCompletableFuture().join();

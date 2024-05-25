@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+2a2
+>     String format = "Status: Downloaded newer image for %s";
+4c4
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>             String.format(format, image)

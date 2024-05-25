@@ -1,0 +1,12 @@
+1a2,11
+> 
+> import java.util.function.Function;
+> 
+> public class RtTransaction {
+> 
+>     public static <T> UncheckedScalar<T> of(Function<RtTransaction, T> func) {
+>         return new UncheckedScalar<>(func);
+>     }
+> 
+> }
+\ No newline at end of file

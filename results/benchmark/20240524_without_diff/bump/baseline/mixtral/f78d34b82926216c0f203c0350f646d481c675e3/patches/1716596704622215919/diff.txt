@@ -1,0 +1,44 @@
+0a1,15
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.properties.Property;
+> 
+9c24
+<         Random random = new Random();
+---
+>     ThreadLocalRandom random = ThreadLocalRandom.current();
+11c26
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>             ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+14c29
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>             ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+19,20c34,35
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+44a60,67
+> 
+> // Added LeetConverter class
+> static class LeetConverter {
+>     public static String convert(String input) {
+>         // Implement leet conversion here
+>         return input;
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,26 @@
+0a1,9
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // ... other code ...
+> 
+3,4c12,14
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+---
+>         assumeTrue(getGroupShape().getChildCount() == 2);
+>         PShape groupShape = getGroupShape();
+>         PShape out = PGS_Morphology.erosionDilation(groupShape, 0);
+6a17,23
+> 
+>     private PShape getGroupShape() {
+>         return GROUP_SHAPE;
+>     }
+> 
+>     // ... other code ...
+> }
+\ No newline at end of file

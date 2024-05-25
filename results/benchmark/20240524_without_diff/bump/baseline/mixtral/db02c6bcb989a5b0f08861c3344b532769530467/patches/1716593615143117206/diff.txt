@@ -1,0 +1,4 @@
+2c2
+<     public void describeTo(Description description) {
+---
+> public void describeTo(org.hamcrest.Description description) {

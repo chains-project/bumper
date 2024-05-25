@@ -1,0 +1,13 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.2"})
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh ssh(String host, int port, String username, String password) {
+        return Ssh.create(host, port, username, password);
+    }
+
+    // existing code...
+}

@@ -1,0 +1,5 @@
+7c7,8
+<         .and(new StringContains(false, "Downloaded"));
+---
+>         .and(new StringContains(false, "Downloaded"))++
+>         .and(new StringContains(false, "Digest: sha256:"));

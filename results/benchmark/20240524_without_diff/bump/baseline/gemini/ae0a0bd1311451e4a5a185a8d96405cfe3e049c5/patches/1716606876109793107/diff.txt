@@ -1,0 +1,23 @@
+7,13c7,20
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+<         );
+---
+>         //MatcherAssert.assertThat(
+>         //    output,
+>         //    new StringContains(
+>         //        false,
+>         //        String.format("Status: Downloaded newer image for %s", this.image.remote())
+>         //    )
+>         //);
+>         String[] lines = output.split("\n");
+>         for (String line : lines) {
+>             if (line.contains(String.format("Status: Downloaded newer image for %s", this.image.remote()))) {
+>                 return;
+>             }
+>         }
+>         fail("Downloaded newer image for " + this.image.remote() + " not found in output");

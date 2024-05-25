@@ -1,0 +1,11 @@
+1a2,5
+>         if (path == null) {
+>             throw new NullPointerException("path cannot be null");
+>         }
+> 
+22,23c26,27
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+<         } catch (FileNotFoundException e) {
+---
+>             return yaml.load(new BufferedReader(new InputStreamReader(Files.newInputStream(Paths.get(path)))));
+>         } catch (IOException e) {

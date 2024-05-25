@@ -1,0 +1,6 @@
+import org.cactoos.Scalar;
+import org.cactoos.io.InputOf;
+
+Scalar<String> ioCheckedScalar(java.io.InputStream input) throws IOException {
+  return new IoCheckedScalar<>(new InputOf(input));
+}

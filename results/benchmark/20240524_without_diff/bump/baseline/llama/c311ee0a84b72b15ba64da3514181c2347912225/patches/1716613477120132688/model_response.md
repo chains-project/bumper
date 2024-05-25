@@ -1,0 +1,27 @@
+```
+@ParameterizedTest
+@ValueSource(strings = {
+        "",
+        ".0",
+        "*",
+        "\u00ea",
+        "-my-tag",
+        "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+    })
+void shouldFailToGetValueWhenInvalid(final String original) {
+    final Tag.Valid tag = new Tag.Valid(original);
+    MatcherAssert.assertThat(tag.valid(), Matchers.equalTo(false));
+    final Throwable throwable = Assertions.assertThrows(
+        InvalidTagNameException.class,
+        tag::value
+    );
+    MatcherAssert.assertThat(
+        throwable.getMessage(),
+        Matchers.containsString("Invalid tag")
+    );
+    MatcherAssert.assertThat(
+        throwable.getMessage(),
+        Matchers.not(Matchers.containsString(original))
+    );
+}
+```

@@ -1,0 +1,10 @@
+1a2,9
+> import java.util.Arrays;
+> 
+> public class RtTransaction {
+> 
+>     public static String[] splitTransaction(String transaction) {
+>         return new SplitText(transaction, "\n").asList().stream().flatMap(Arrays::stream).toArray(String[]::new);
+>     }
+> }
+\ No newline at end of file

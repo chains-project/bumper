@@ -1,0 +1,11 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.2"})
+public class SshByPassword {
+    // existing code...
+
+    @Override
+    public Ssh password(String user, String pass) {
+        return new RtSsh.ByPassword(user, pass, host(), port(), this.keyPath());
+    }
+}

@@ -1,0 +1,6 @@
+6c6,8
+<                 .concat(" with digest ")
+---
+>                 .concat(" with digest ") ++
+>                 .concat(" from ") ++
+>                 .concat(" to ")

@@ -1,0 +1,41 @@
+0a1,10
+> import org.jfrog.buildinfo.client.generic.GenericBuildInfoClient;
+> import org.jfrog.buildinfo.client.generic.GenericBuildInfoClientFactory;
+> import org.jfrog.hudson.pipeline.common.types.ArtifactoryServer;
+> import org.jfrog.hudson.pipeline.common.types.DistributionServer;
+> import org.jfrog.hudson.pipeline.common.utils.BuildInfoClientCreator;
+> import org.jfrog.hudson.pipeline.common.utils.CredentialsIdUtils;
+> import org.jfrog.hudson.pipeline.common.utils.StringUtils;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep;
+> import org.jfrog.hudson.pipeline.scripted.steps.JFrogPlatformInstance;
+> 
+3c13
+<             if (isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     if (StringUtils.isAllBlank(step.url, step.artifactoryUrl, step.distributionUrl)) {
+6,8c16,18
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+<             String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+<             String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+---
+>     String urlWithoutSlash = StringUtils.removeEnd(step.url, "/");
+>     String artifactoryUrl = StringUtils.defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+>     String distributionUrl = StringUtils.defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+12,14c22,28
+<             if (!isEmpty(step.credentialsId)) {
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>     String credentialsId = step.credentialsId;
+>     if (StringUtils.isEmpty(credentialsId)) {
+>         credentialsId = CredentialsIdUtils.getAutomaticCredentialsId();
+>     }
+>     if (StringUtils.isNotEmpty(credentialsId)) {
+>         artifactoryServer = new ArtifactoryServer(artifactoryUrl, credentialsId);
+>         distributionServer = new DistributionServer(distributionUrl, credentialsId);
+20c34,36
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+> 
+>     GenericBuildInfoClient buildInfoClient = BuildInfoClientCreator.createBuildInfoClient(artifactoryServer, distributionServer);
+>     return new JFrogPlatformInstance(artifactoryServer, distributionServer, buildInfoClient, step.url, "");

@@ -1,0 +1,22 @@
+15,16c15,26
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+---
+>         this.yamlConstructors.put(zoneIdTag, new Construct() {
+>             @Override
+>             public Object construct(Node node) {
+>                 return ZoneId.of(node_scalar(node));
+>             }
+>         });
+>         this.yamlConstructors.put(localDateTag, new Construct() {
+>             @Override
+>             public Object construct(Node node) {
+>                 return LocalDate.parse(node_scalar(node));
+>             }
+>         });
+26a37,40
+> 
+> private String node_scalar(Node node) {
+>     return ((ScalarNode) node).getValue();
+> }
+\ No newline at end of file

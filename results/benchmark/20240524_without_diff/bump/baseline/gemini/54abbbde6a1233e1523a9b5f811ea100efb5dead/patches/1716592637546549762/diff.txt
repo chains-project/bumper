@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class SshByPassword {
+> 
+>     public static Tv connect(String host, String user, String pass) {
+>         return null;
+>     }
+> }
+\ No newline at end of file

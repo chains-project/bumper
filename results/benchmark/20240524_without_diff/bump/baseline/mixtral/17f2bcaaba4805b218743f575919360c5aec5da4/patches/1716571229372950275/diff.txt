@@ -1,0 +1,15 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4,5c6,13
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+<                 assertEquals(2, out.getChildCount());
+---
+>     PShape parent = GROUP_SHAPE.getChildren()[0];
+>     float radius = 0.5f;
+>     PShape out = PGS_Morphology.round(parent, radius);
+>     assertEquals(1, out.getChildCount());
+>     PShape circle = out.getChildren()[0];
+>     assertEquals(360, circle.getVertexCount());
+>     assertEquals(radius, circle.getVertex(0).x, 0.01);
+>     assertEquals(radius, circle.getVertex(0).y, 0.01);

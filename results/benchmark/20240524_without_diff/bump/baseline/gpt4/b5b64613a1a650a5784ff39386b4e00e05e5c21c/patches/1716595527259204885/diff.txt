@@ -1,0 +1,21 @@
+8c8,12
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+---
+>             String serverUrl = server.getUrl();
+>             String artifactoryUrl = server.getArtifactory().getUrl();
+>             String distributionUrl = server.getDistribution().getUrl();
+> 
+>             if (isAllBlank(serverUrl, artifactoryUrl, distributionUrl,
+12,13c16,19
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+---
+>             String stepCredentialsId = step.credentialsId;
+>             if (isNotBlank(stepCredentialsId)) {
+>                 String stepUsername = step.username;
+>                 if (isNotBlank(stepUsername)) {
+16c22,23
+<                 if (isNotBlank(step.password)) {
+---
+>                 String stepPassword = step.password;
+>                 if (isNotBlank(stepPassword)) {

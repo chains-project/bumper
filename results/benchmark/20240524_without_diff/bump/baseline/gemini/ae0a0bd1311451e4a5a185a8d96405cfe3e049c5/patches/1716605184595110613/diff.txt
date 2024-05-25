@@ -1,0 +1,4 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                     new Not(new IsNull<>())

@@ -1,0 +1,28 @@
+40c40
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+---
+>                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); 
+44c44
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+---
+>                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); 
+49,51c49,51
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+<         {
+---
+>         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+>         int taskId = scheduler.scheduleSyncRepeatingTask(PeyangSuperbAntiCheat.getPlugin(), runnable, 0L, 1L);
+>         scheduler.scheduleSyncDelayedTask(PeyangSuperbAntiCheat.getPlugin(), new Runnable() {
+53,55c53,54
+<             public void run()
+<             {
+<                 runnable.cancel();
+---
+>             public void run() {
+>                 scheduler.cancelTask(taskId);
+57,58c56
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+< 
+---
+>         }, seconds);

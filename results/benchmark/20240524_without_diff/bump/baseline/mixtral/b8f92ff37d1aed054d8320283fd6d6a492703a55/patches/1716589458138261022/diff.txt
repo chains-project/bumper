@@ -1,0 +1,46 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12c2,7
+<         // False if it matches an excludes pattern
+---
+>     if (config.getJacocoIncludes().stream()
+>         .map(pattern -> new WildcardMatcher(pattern))
+>         .anyMatch(matcher -> matcher.matches(className))) {
+>         return true;
+>     }
+> 
+19,25d13
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+<         for (String pattern : config.getJacocoIncludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+<                 return true;
+<             }
+<         }
+27d14
+<         // True if it is present in the available binaries
+29,30c16
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         if (directoryScanner(dir, TestListResolver.getWildcard()).scan().getClasses().contains(className)) {
+35,36c21
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+---
+>         if (directoryScanner(dir, TestListResolver.getWildcard()).scan().getClasses().contains(className)) {
+42a28,31
+> 
+> private DirectoryScanner directoryScanner(String dir, String wildcard) {
+>     return new DirectoryScanner(new File(dir), wildcard);
+> }
+\ No newline at end of file

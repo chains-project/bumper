@@ -1,0 +1,9 @@
+import org.bouncycastle.tls.crypto.TlsCrypto;
+
+// ...
+
+private void decode(TlsCrypto crypto, InputStream input, ByteQueue output) throws IOException {
+    // ...
+    TlsFatalAlert fatalAlert = new TlsFatalAlert(AlertDescription.decode(input));
+    // ...
+}

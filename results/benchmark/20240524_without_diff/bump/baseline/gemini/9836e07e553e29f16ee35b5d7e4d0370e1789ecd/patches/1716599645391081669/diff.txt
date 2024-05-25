@@ -1,0 +1,21 @@
+11c11
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+---
+> public void shouldFailToGetValueWhenInvalid(final String original) {
+14c14
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     assertThrows(
+16,25c16
+<             tag::value
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+>         () -> tag.value()

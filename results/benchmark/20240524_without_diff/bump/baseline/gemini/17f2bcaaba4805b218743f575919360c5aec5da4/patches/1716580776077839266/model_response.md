@@ -1,0 +1,9 @@
+```java
+@Test
+	void test_PGS_Morphology_smooth() {
+		assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+		PShape out = PGS_Morphology.smooth(GROUP_SHAPE, 0.5);
+		assertEquals(2, out.getChildCount());
+		assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+	}
+```

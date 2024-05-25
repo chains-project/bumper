@@ -1,0 +1,10 @@
+2c2
+<     void shouldPush() throws Exception {
+---
+>     public void shouldPush() throws Exception {
+5a6
+>         final String digest = original.digest();
+10c11
+<                 String.format("latest: digest: %s", original.digest())
+---
+>                 String.format("latest: digest: %s", digest)

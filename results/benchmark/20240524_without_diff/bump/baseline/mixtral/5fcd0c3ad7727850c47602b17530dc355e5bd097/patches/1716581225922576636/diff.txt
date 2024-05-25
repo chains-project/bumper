@@ -1,0 +1,14 @@
+1,2c1,6
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+---
+> private MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+>     ClassInfo classInfo = coverage.getClassInfo(Collections.singleton(data.getMutatedClass()));
+>     if (classInfo == null) {
+>         // Handle the case where classInfo is null
+>         // You can add appropriate error handling or logging here
+>     }
+4c8
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+>         data.getMutations(), classInfo);

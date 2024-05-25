@@ -1,0 +1,11 @@
+1a2,10
+> 
+> try {
+>     Class.forName("de.gwdg.metadataqa.marc.MarcFactory");
+> } catch (ClassNotFoundException e) {
+>     // Handle the case where the MarcFactory class is not found
+>     // You can replace the following line with your own error handling code
+>     System.err.println("Error: MarcFactory class not found.");
+>     System.exit(1);
+> }
+\ No newline at end of file

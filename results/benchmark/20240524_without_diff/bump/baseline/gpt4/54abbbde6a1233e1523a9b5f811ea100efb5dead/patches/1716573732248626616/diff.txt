@@ -1,0 +1,10 @@
+12,13c12,13
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>             JSch jsch = new JSch();
+>             jsch.setLogger(new JschLogger());
+19c19
+<             final Session session = jsch.getSession(
+---
+>             Session session = jsch.getSession(

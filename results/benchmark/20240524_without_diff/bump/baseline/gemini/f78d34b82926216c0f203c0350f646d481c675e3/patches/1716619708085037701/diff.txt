@@ -1,0 +1,7 @@
+8c8,11
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>         double sum = 0.0;
+>         for (Input input : inputData) {
+>             sum += input.getWeightingValue();
+>         }

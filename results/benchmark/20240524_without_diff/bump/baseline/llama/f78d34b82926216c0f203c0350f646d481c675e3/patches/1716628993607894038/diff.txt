@@ -1,0 +1,6 @@
+34d33
+<                         @Override
+48c47
+<                     }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 0);

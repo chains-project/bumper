@@ -1,0 +1,32 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,14c11,12
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         com.jcraft.jsch.Logger.setLogger(new JschLogger());
+>         final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+25c23,38
+<             jsch.setHostKeyRepository(new EasyRepo());
+---
+>         jsch.setHostKeyRepository(new com.jcraft.jsch.HostKeyRepository() {
+>             @Override
+>             public int check(String host, byte[] key) {
+>                 return 0;
+>             }
+>             @Override
+>             public void add(HostKey hostkey, UserInfo ui) {
+>             }
+>             @Override
+>             public void remove(String host, String type) {
+>             }
+>             @Override
+>             public String getKnownHostsRepositoryID() {
+>                 return "";
+>             }
+>         });

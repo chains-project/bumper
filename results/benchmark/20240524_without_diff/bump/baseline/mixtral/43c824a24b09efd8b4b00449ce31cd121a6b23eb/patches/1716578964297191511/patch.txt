@@ -1,0 +1,12 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+try {
+    // Your import might be causing issues due to a broken dependency update
+    // You can try using the fully qualified name instead
+    JsonBranch branch = new de.gwdg.metadataqa.api.json.JsonBranch();
+    // Use the 'branch' object here
+} catch (NoClassDefFoundError e) {
+    // If the issue persists, you might need to handle the exception
+    // and add a fallback or error message
+    System.err.println("Failed to initialize JsonBranch: " + e.getMessage());
+}

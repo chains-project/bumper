@@ -1,0 +1,50 @@
+1,6c1,9
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+---
+> import org.bukkit.Bukkit;
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.scheduler.BukkitRunnable;
+> import org.bukkit.util.Vector;
+> 
+> public class Decorations {
+>     // ...
+> 
+21c24
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+---
+>                     circle(center, count[0], 3, Particle.CRIT);
+59a63,89
+> 
+>     private static void circle(Location loc, int count, double radius, Particle particle) {
+>         for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 16) {
+>             Location pos = loc.clone().add(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+>             spawnParticle(pos, particle);
+>         }
+>     }
+> 
+>     private static void circle(Location loc, int count, double radius) {
+>         for (double angle = 0; angle < Math.PI * 2; angle += Math.PI / 16) {
+>             Location pos = loc.clone().add(Math.cos(angle) * radius, 0, Math.sin(angle) * radius);
+>             spawnParticle(pos, Particle.FLAME);
+>         }
+>     }
+> 
+>     private static void line(Location start, Location end) {
+>         Vector dir = end.toVector().subtract(start.toVector()).normalize();
+>         for (double dist = 0; dist <= 1; dist += 0.1) {
+>             Location loc = start.clone().add(dir.multiply(dist));
+>             spawnParticle(loc, Particle.FLAME);
+>         }
+>     }
+> 
+>     private static void spawnParticle(Location loc, Particle particle) {
+>         loc.getWorld().spawnParticle(loc, particle, 1);
+>     }
+> }
+\ No newline at end of file

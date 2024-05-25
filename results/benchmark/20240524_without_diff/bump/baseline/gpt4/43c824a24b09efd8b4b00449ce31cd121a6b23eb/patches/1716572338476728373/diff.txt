@@ -1,0 +1,6 @@
+1c1
+< import de.gwdg.metadataqa.api.json.JsonBranch;
+\ No newline at end of file
+---
+>   import de.gwdg.metadataqa.api.model.JsonBranch;
+\ No newline at end of file

@@ -1,0 +1,21 @@
+0a1,9
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // existing code...
+> 
+4c13,14
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+---
+>         PShape groupShapeCopy = GROUP_SHAPE.getChild(0).copy();
+>         PShape out = PGS_Morphology.fieldWarp(groupShapeCopy, 10, 1, false);
+6a17,20
+> 
+>     // existing code...
+> 
+> }
+\ No newline at end of file

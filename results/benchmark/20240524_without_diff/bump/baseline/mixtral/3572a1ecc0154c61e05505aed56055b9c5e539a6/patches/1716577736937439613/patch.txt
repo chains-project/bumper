@@ -1,0 +1,11 @@
+import org.apache.thrift.transport.TFramedTransport;
+
+// ...
+
+public static TFramedTransport createFramedTransport(TTransport transport) {
+  if (transport instanceof TNonblockingTransport) {
+    return new TFastFramedTransport((TNonblockingTransport) transport);
+  } else {
+    return new TFramedTransport(transport);
+  }
+}

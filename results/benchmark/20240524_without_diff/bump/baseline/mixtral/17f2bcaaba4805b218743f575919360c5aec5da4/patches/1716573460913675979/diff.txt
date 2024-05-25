@@ -1,0 +1,6 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+---
+>     assumeTrue(morphologyGroupShape.getChildCount() == 2);
+>     PShape out = PGS_Morphology.fieldWarp(morphologyGroupShape, 10, 1, false);

@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.text.JoinedText;
+\ No newline at end of file
+---
+> import org.cactoos.text.Texts;
+> import org.cactoos.iterable.Joined;
+> 
+> // ...
+> 
+> @Override
+> public String all() throws IOException {
+>   return new Joined(Texts::trim, readers()).asString();
+> }
+\ No newline at end of file

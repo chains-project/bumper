@@ -1,0 +1,2 @@
+2a3
+>         directoryScanner.setClassLoader(TestListResolver.getClassLoader()); // Add class loader to directory scanner

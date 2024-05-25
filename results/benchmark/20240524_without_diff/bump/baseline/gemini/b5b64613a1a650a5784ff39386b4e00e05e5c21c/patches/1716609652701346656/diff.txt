@@ -1,0 +1,6 @@
+1c1
+< import static org.apache.commons.lang3.StringUtils.isAllBlank;
+\ No newline at end of file
+---
+> import static org.apache.commons.lang3.StringUtils.isEmpty;
+\ No newline at end of file

@@ -1,0 +1,79 @@
+1,8c1,16
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.StringUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.*;
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+> public class PlayerUtils {
+>     // ...
+> 
+>     public static EntityPlayer getRandomPlayer(World world) {
+11c19
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>                 ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+14c22
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>                 ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+17,20c25,27
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = leetConvert(first);
+>             last = leetConvert(last);
+44a52,85
+> 
+>     private static String leetConvert(String input) {
+>         Pattern leetPattern = Pattern.compile("[aeiou]");
+>         StringBuilder output = new StringBuilder();
+> 
+>         for (char c : input.toLowerCase().toCharArray()) {
+>             if (leetPattern.matcher(String.valueOf(c)).find()) {
+>                 switch (c) {
+>                     case 'a':
+>                         output.append("@");
+>                         break;
+>                     case 'e':
+>                         output.append("3");
+>                         break;
+>                     case 'i':
+>                         output.append("1");
+>                         break;
+>                     case 'o':
+>                         output.append("0");
+>                         break;
+>                     case 'u':
+>                         output.append("v");
+>                         break;
+>                     default:
+>                         output.append(c);
+>                 }
+>             } else {
+>                 output.append(c);
+>             }
+>         }
+> 
+>         return output.toString();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,8 @@
+0a1,2
+> import org.springframework.security.crypto.password.StandardPasswordEncoder;
+> 
+3,4c5
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     PasswordEncoder encoder = new StandardPasswordEncoder();

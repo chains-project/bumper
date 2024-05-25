@@ -1,0 +1,11 @@
+6c6,7
+<                         if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+---
+>         ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+>         if (!targetTranslator.getUUID().equals("")) {
+25d25
+<                         ActiveTranslator targetTranslator = main.getActiveTranslator(targetPlayerUUID);
+27c27
+<                         if (!main.getActiveTranslator(targetPlayerUUID).getUUID().equals("")) {
+---
+>         if (!targetTranslator.getUUID().equals("")) {

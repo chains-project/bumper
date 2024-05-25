@@ -1,0 +1,18 @@
+import org.bouncycastle.tls.TlsFatalAlert;
+
+// ...
+
+try {
+    // Use reflection to access the needed class
+    Class<?> tlsFatalAlertClass = Class.forName("org.bouncycastle.crypto.tls.TlsFatalAlert");
+    Field VALUE_field = tlsFatalAlertClass.getDeclaredField("VALUE");
+    VALUE_field.setAccessible(true);
+
+    // Assign the value to the constant
+    int handshake_failure = VALUE_field.getInt(TlsFatalAlert.class.getDeclaredField("handshake_failure").get(null));
+
+    // Use the constant in your code
+    // ...
+} catch (ClassNotFoundException | NoSuchFieldException | IllegalAccessException e) {
+    // Handle exceptions appropriately
+}

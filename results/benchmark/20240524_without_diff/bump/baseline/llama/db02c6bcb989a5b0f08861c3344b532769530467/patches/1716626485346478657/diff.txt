@@ -1,0 +1,8 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+9c6
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         MatcherAssert.assertThat(output, Matchers.containsString("Pushed"));

@@ -1,0 +1,5 @@
+3,4c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>                 PShape mink = new PShape(PShape.PATH);

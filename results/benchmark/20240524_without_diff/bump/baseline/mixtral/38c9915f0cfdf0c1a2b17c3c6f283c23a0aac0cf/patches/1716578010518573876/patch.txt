@@ -1,0 +1,13 @@
+import org.cactoos.text.TextEnvelope;
+import org.cactoos.text.Joined;
+
+// ...
+
+@Override
+public TextEnvelope<Double> one(String wallet) {
+  Double sum = 0.0;
+  for (String id : ids(wallet)) {
+    sum += balance(id);
+  }
+  return new Joined<>("", asDoubleList(sum));
+}

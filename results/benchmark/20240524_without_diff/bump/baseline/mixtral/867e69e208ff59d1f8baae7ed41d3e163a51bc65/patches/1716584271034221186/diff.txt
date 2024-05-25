@@ -1,0 +1,12 @@
+0a1
+> import org.apache.thrift.transport.TTransport;
+1a3,10
+> 
+> // ...
+> 
+> public TTransport createTransport() throws TTransportException {
+>   TTransport transport = new TFramedTransport(new THttpClient(host, port));
+>   transport.open();
+>   return transport;
+> }
+\ No newline at end of file

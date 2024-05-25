@@ -1,0 +1,14 @@
+0a1,2
+> import java.util.stream.IntStream;
+> 
+4c6
+<      * @param inputData InputクラスのArrayListデータ。
+---
+>  * @param inputData InputクラスのArrayListデーTA。
+8c10,13
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>     IntStream.range(0, inputData.size()).forEach(i -> {
+>         Input input = inputData.get(i);
+>         input(input.getWeightingValue());
+>     });

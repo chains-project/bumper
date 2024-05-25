@@ -1,0 +1,10 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+23c18
+<         catch ( MavenReportException e )
+---
+>     catch ( Exception e ) // use a more general exception type

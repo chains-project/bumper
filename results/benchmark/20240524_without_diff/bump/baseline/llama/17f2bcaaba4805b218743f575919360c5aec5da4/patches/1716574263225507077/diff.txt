@@ -1,0 +1,7 @@
+3,4c3,5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Processing.densify(GROUP_SHAPE, 1);
+---
+>     PShape groupShape = GROUP_SHAPE;
+>     assumeTrue(groupShape.getChildCount() == 2);
+>     PShape out = PGS_Processing.densify(groupShape, 1);

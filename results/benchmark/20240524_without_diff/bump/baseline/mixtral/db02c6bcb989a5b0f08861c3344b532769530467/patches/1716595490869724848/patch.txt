@@ -1,0 +1,4 @@
+  @Override
+    public void describeTo(io.cucumber.core.backend.TestCase testCase) {
+        testCase.appendText("a string containing ").appendValue(substring);
+    }

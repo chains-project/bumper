@@ -1,0 +1,8 @@
+1d0
+< @Override
+3,5c2
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+<                 return encoder;
+---
+>     return new BCryptPasswordEncoder();

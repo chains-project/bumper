@@ -1,0 +1,14 @@
+1c1,9
+< import org.cactoos.scalar.IoCheckedScalar;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> 
+> import io.zold.api.Wallet;
+> 
+> public class WalletsIn {
+>     public Wallet getWallet() {
+>         return new Wallet();
+>     }
+> }
+\ No newline at end of file

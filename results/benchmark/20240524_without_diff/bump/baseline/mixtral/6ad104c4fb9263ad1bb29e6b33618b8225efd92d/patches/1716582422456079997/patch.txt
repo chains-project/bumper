@@ -1,0 +1,3 @@
+import org.bouncycastle.tls.crypto.TlsCrypto;
+
+TlsCrypto crypto = TlsCrypto.getDefault();

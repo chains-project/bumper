@@ -1,0 +1,27 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.text.SimpleTextEncryptor;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    try {
+        TextEncryptor textEncryptor = new SimpleTextEncryptor();
+        textEncryptor.setPasswordCharArray(chars);
+
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            textEncryptor.setAlgorithm(getAlgorithm() + "-" + getProviderName());
+        } else {
+            textEncryptor.setAlgorithm(getAlgorithm());
+        }
+
+        PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+        encoder.setPbeStringEncryptor(textEncryptor);
+
+        return encoder;
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

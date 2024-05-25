@@ -1,0 +1,15 @@
+12,13c12,22
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+<                 assertEquals(2, out.getChildCount());
+---
+>                 final PShape[] children = GROUP_SHAPE.getChildren();
+>                 final PShape firstChild = children[0];
+>                 final PShape secondChild = children[1];
+> 
+>                 final PShape out = PGS_Morphology.minkSum(firstChild, mink);
+>                 final PShape out2 = PGS_Morphology.minkSum(secondChild, mink);
+> 
+>                 final PShapeGroup outGroup = new PShapeGroup(out);
+>                 outGroup.addChild(out2);
+> 
+>                 assertEquals(2, outGroup.getChildCount());

@@ -1,0 +1,14 @@
+import org.codehaus.plexus.components.io.filemanagers.FilteredFileManager;
+
+// ...
+
+public class AbstractThemeMojo {
+  // ...
+
+  @Override
+  protected FilteredFileManager getFilteredFileManager() {
+    return getProject().get filteredFileManager();
+  }
+
+  // ...
+}

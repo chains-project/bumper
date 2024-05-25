@@ -1,0 +1,7 @@
+  @Override
+  public boolean matches(String s) {
+      if (substring == null) {
+          throw new IllegalStateException("substring cannot be null");
+      }
+      return s.contains(substring);
+  }

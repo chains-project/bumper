@@ -1,0 +1,5 @@
+17a18,21
+>                 }
+>             } else {
+>                 if (isNotBlank(step.username) && isNotBlank(step.password)) {
+>                     server.setCredentials(new UsernamePasswordCredentials(step.username, step.password));

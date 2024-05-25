@@ -1,0 +1,11 @@
+1a2,3
+>     Properties extraProperties = globalConfig.extraProperties();
+>     ModuleProvider modulesProvider = globalConfig.getModulesProvider();
+5c7
+<                 .setExtraProperties(globalConfig.extraProperties())
+---
+>             .setExtraProperties(extraProperties)
+7c9
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setModulesProvider(modulesProvider)

@@ -1,0 +1,7 @@
+1c1,2
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.jupiter.api.Assumptions;
+> import static org.junit.jupiter.api.Assumptions.assumeTrue;
+\ No newline at end of file

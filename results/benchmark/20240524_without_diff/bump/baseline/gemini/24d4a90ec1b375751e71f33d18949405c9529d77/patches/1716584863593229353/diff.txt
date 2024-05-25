@@ -1,0 +1,13 @@
+1a2,12
+>   import org.junit.Rule;
+> 
+>   public class BucketRule {
+> 
+>     @Rule
+>     public final Tv tv = new Tv();
+> 
+>     public BucketRule() {
+>       System.setProperty("jcabi.s3.bucket.name", "jcabi-s3-test");
+>     }
+>   }
+\ No newline at end of file

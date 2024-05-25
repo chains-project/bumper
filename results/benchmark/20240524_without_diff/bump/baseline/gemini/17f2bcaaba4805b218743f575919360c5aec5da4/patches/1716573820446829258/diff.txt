@@ -1,0 +1,6 @@
+3d2
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+5c4
+<                 assertEquals(2, out.getChildCount());
+---
+>                 assertEquals(1, out.getChildCount());

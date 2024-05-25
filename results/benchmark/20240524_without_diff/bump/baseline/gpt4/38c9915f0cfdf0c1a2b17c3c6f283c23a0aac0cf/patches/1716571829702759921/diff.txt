@@ -1,0 +1,9 @@
+1c1,4
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import org.cactoos.Text;
+> import org.cactoos.scalar.ItemAt;
+> import org.cactoos.text.Joined;
+> import org.cactoos.text.Split;
+\ No newline at end of file

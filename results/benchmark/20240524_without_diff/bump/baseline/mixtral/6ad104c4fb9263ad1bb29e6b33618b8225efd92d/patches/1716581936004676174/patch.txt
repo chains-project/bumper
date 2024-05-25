@@ -1,0 +1,18 @@
+import org.bouncycastle.tls.AlertDescription;
+
+import java.security.GeneralSecurityException;
+import java.security.Security;
+
+public class ChachaDecoder {
+    // ...
+
+    static {
+        try {
+            Security.addProvider(new BouncyCastleProvider());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // ...
+}

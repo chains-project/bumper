@@ -1,0 +1,11 @@
+0a1,2
+> import java.util.stream.IntStream;
+> 
+8c10,12
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>     IntStream.range(0, inputData.size()).forEach(i -> {
+>         Input input = inputData.get(i);
+>         input(input.getWeightingValue());
+9a14
+>     });

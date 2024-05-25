@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TTransport;
+
+// Use a different type of transport that is still supported
+private TTransport createTransport() {
+  return new org.apache.thrift.transport.TSocket(host, port);
+}

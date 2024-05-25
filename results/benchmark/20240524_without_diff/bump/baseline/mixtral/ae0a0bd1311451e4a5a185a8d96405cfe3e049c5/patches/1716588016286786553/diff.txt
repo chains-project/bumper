@@ -1,0 +1,25 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                 new CoreMatchers.notNullValue()
+19,20c19,20
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                 throwable,
+>                 new InstanceOf(InvalidDigestException.class)
+24,28c24,25
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+---
+>                 throwable.getMessage(),
+>                 new StringContains.ContainsString("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+32,33c29,30
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                 throwable.getMessage(),
+>                 new StringContains.ContainsString(digest)

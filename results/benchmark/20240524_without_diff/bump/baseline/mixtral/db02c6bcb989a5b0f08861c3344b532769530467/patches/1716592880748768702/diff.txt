@@ -1,0 +1,11 @@
+6c6
+<         final String output = this.cli.run("pull", image);
+---
+>     String output = this.cli.run("pull", image);
+9,12c9
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+---
+>         new StringContains("Status: Downloaded newer image for " + image)

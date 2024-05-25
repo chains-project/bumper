@@ -1,0 +1,9 @@
+1,5c1,2
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import org.apache.maven.plugins.reporting.MavenReportException;
+> 

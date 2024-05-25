@@ -1,0 +1,14 @@
+0a1,7
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+> 
+> import java.io.IOException;
+> 
+12a20
+>     try {
+13a22,24
+>     } catch (DataLengthException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

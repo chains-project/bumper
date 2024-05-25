@@ -1,0 +1,4 @@
+41c41
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+---
+>     ).response(line, (Headers.EMPTY != null) ? Headers.EMPTY : ImmutableHeaders.of(), Content.EMPTY).send(

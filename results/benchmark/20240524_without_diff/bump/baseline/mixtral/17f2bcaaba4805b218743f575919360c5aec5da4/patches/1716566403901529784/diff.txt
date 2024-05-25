@@ -1,0 +1,13 @@
+0a1,5
+> import processing.core.PShape;
+> 
+> import static org.junit.Assert.assertEquals;
+> import static org.junit.Assume.assumeTrue;
+> 
+3,4c8,10
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+---
+>     assumeTrue(micycle.pgs.PGS_ShapeGroup.GROUP_SHAPE.getChildCount() == 2);
+>     PShape groupShape = micycle.pgs.PGS_ShapeGroup.GROUP_SHAPE;
+>     PShape out = PGS_Morphology.erosionDilation(groupShape, 0);

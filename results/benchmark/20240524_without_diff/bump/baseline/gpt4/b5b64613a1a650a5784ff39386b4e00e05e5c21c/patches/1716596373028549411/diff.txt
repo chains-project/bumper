@@ -1,0 +1,7 @@
+12,13c12,14
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+<         super.execute("Create Docker Build", "org.jfrog.build.extractor.docker.extractor.BuildDockerCreator", envExtractor, tempDir);
+---
+>     CreateDockerBuildEnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+>     String buildDockerCreator = "org.jfrog.build.extractor.docker.extractor.BuildDockerCreator";
+>     super.execute("Create Docker Build", buildDockerCreator, envExtractor, tempDir);

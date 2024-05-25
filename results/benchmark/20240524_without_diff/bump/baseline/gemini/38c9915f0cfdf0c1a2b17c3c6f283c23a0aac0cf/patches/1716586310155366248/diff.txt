@@ -1,0 +1,11 @@
+1a2,10
+> import java.io.IOException;
+> import java.io.InputStream;
+> 
+> public class WalletsIn {
+> 
+>   public IoCheckedScalar<InputStream> wallets(String url) throws IOException {
+>     return new IoCheckedScalar<>(() -> new URL(url).openStream());
+>   }
+> }
+\ No newline at end of file

@@ -1,0 +1,23 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+53d44
+<                         @Override
+65c56
+<                             this.cancel();
+---
+>                         cancel();
+82d72
+<             @Override
+86c76
+<                 this.cancel();
+---
+>             cancel();
+89d78
+< 

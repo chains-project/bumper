@@ -1,0 +1,3 @@
+13a14,15
+>     } catch (Exception e) {
+>         throw new RuntimeException("Unexpected error", e);

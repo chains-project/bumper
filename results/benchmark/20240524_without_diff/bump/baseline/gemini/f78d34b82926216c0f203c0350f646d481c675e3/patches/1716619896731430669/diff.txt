@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class Decorations {
+> 
+>     public static void main(String[] args) {
+>         WaveCreator waveCreator = new WaveCreator();
+>         waveCreator.createWave();
+>     }
+> }
+\ No newline at end of file

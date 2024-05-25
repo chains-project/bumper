@@ -1,0 +1,16 @@
+39,41c39,41
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+---
+>                 // -- line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+>                 // -- line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+>                 // -- line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+43,45c43,45
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 // -- line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+>                 // -- line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+>                 // -- line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));

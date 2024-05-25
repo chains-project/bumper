@@ -1,0 +1,15 @@
+36a37,50
+>         }
+> 
+>         private PShape polygonize(Collection<PEdge> nodedEdgesSet) {
+>                 final PShape shape = new PShape(PShape.GROUP);
+>                 nodedEdgesSet.forEach(e -> {
+>                         PShape line = new PShape(PShape.LINE);
+>                         line.setStroke(true);
+>                         line.setStrokeWeight(1);
+>                         line.setStrokeColor(color(0));
+>                         line.setVertex(0, e.a.x, e.a.y);
+>                         line.setVertex(1, e.b.x, e.b.y);
+>                         shape.addChild(line);
+>                 });
+>                 return shape;

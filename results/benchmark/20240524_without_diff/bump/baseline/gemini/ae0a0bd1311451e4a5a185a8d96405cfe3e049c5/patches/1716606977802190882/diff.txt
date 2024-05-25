@@ -1,0 +1,6 @@
+6a7
+>         // ++ StringContains is replaced by StringContainsInOrder
+9c10
+<             new StringContains(
+---
+>             new StringContainsInOrder(

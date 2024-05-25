@@ -1,0 +1,13 @@
+private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+  List<String> list = new ArrayList<>();
+  if (branch.has("$")) {
+    try {
+      list = cache.getJsonPath(branch.toString());
+    } catch (JsonProcessingException e) {
+      // Handle exception or add proper logging
+    }
+  }
+  if (!list.isEmpty())
+    return list.get(0);
+  return null;
+}

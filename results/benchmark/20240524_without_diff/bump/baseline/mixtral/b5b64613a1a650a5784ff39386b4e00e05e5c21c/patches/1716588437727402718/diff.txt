@@ -1,0 +1,11 @@
+0a1,4
+> import org.jfrog.buildinfo.ArtifactoryServer;
+> import org.jfrog.buildinfo.client.distribution.DistributionServer;
+> import org.jfrog.hudson.pipeline.common.types.buildInfo.BuildInfoStep;
+> 
+12a17
+>         try {
+14a20,22
+>         } catch (Exception e) {
+>             throw new RuntimeException("Failed to create ArtifactoryServer or DistributionServer with credentialsId", e);
+>         }

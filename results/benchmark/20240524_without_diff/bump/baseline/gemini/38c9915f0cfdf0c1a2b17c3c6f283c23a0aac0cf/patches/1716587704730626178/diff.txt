@@ -1,0 +1,22 @@
+0a1
+>   import io.zold.api.RtTransaction;
+1a3,20
+>   import org.junit.jupiter.api.Test;
+> 
+>   import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+>   class RtTransactionTest {
+> 
+>     @Test
+>     void test() {
+>       // Given
+>       RtTransaction transaction = new RtTransaction();
+> 
+>       // When
+>       int length = new LengthOf<>(transaction.getOutputs()).value();
+> 
+>       // Then
+>       assertEquals(0, length);
+>     }
+>   }
+\ No newline at end of file

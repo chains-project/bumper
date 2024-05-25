@@ -1,0 +1,9 @@
+1,3d0
+< // TODO: review this AI generated patch!
+< 
+< 
+5c2,3
+<     return decodeCiphertext(receivedMAC, null, ciphertext);
+---
+>     byte[] iv = new byte[16]; // assuming 16-byte IV
+>     return decodeCiphertext(receivedMAC, iv, ciphertext);

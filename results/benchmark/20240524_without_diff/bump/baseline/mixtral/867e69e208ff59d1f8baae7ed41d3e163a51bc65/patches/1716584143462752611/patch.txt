@@ -1,0 +1,6 @@
+import org.apache.thrift.transport.TSocket;
+import org.apache.thrift.transport.TTransport;
+
+private TTransport createTransport(String host, int port) {
+  return new TSocket(host, port);
+}

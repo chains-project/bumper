@@ -1,0 +1,23 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+51,55d42
+<                     new BukkitRunnable()
+<                     {
+<                         @Override
+<                         public void run()
+<                         {
+65,67d51
+<                             this.cancel();
+<                         }
+<                     }.runTask(PeyangSuperbAntiCheat.getPlugin());
+82d65
+<             @Override
+89d71
+< 

@@ -1,0 +1,19 @@
+1a2,18
+> 
+>   import java.time.ZoneId;
+>   import java.time.ZonedDateTime;
+> 
+>   public class RtTransaction {
+> 
+>       private final ZonedDateTime creationDate;
+> 
+>       public RtTransaction(final String creationDate) {
+>           this.creationDate = ZonedDateTimeOf.of(creationDate, ZoneId.of("UTC"));
+>       }
+> 
+>       public ZonedDateTime getCreationDate() {
+>           return creationDate;
+>       }
+> 
+>   }
+\ No newline at end of file

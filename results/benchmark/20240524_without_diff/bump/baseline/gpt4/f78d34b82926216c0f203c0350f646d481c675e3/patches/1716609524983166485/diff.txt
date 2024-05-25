@@ -1,0 +1,19 @@
+7c7
+<     public static void magic(Player player, int seconds)
+---
+>     public static void magic(final Player player, int seconds)
+10c10
+<         WaveCreator wave = new WaveCreator(0.8, 1.8, 0.1);
+---
+>         final WaveCreator wave = new WaveCreator(0.8, 1.8, 0.1);
+49,50c49,50
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+---
+>         Bukkit.getScheduler().runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), runnable, 0L, 1L);
+>         Bukkit.getScheduler().runTaskLater(PeyangSuperbAntiCheat.getPlugin(), new Runnable()
+57,58c57
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+< 
+---
+>         }, seconds);

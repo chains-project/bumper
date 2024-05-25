@@ -1,0 +1,9 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv({"0.15.2"})
+public class MyClass {
+    public void myMethod() {
+        Ssh ssh = new Ssh("my-server.com", 22);
+        // ... continue using Ssh object as needed ...
+    }
+}

@@ -1,0 +1,107 @@
+0a1,19
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.Random;
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.regex.Pattern;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> 
+9c28
+<         Random random = new Random();
+---
+>     Random random = ThreadLocalRandom.current();
+11,12c30,31
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(nextInt(13) + 1)
+>             : getRandomWord();
+14,15c33,34
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(nextInt(13) + 1)
+>             : getRandomWord();
+19,20c38,39
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+28c47
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>         name = randomAlphanumeric(nextInt(16));
+44a64,122
+> 
+> private static String getRandomWord()
+> {
+>     // replace with your own implementation of getting a random word
+>     return "player";
+> }
+> 
+> private static class LeetConverter
+> {
+>     private static final Pattern LEET_PATTERN = Pattern.compile("[aeiou]");
+> 
+>     private static String convert(String string)
+>     {
+>         StringBuilder builder = new StringBuilder();
+>         for (char c : string.toCharArray())
+>         {
+>             if (LEET_PATTERN.matcher(String.valueOf(c)).matches())
+>             {
+>                 if (c == 'a' || c == 'A')
+>                     builder.append('@');
+>                 else if (c == 'e' || c == 'E')
+>                     builder.append('3');
+>                 else if (c == 'i' || c == 'I')
+>                     builder.append('1');
+>                 else if (c == 'o' || c == 'O')
+>                     builder.append('0');
+>                 else if (c == 'u' || c == 'U')
+>                     builder.append('|_|');
+>             }
+>             else
+>             {
+>                 builder.append(c);
+>             }
+>         }
+>         return builder.toString();
+>     }
+> }
+> 
+> private static class Pair<F, S>
+> {
+>     private F first;
+>     private S second;
+> 
+>     public Pair(F first, S second)
+>     {
+>         this.first = first;
+>         this.second = second;
+>     }
+> 
+>     public F getLeft()
+>     {
+>         return first;
+>     }
+> 
+>     public S getRight()
+>     {
+>         return second;
+>     }
+> }
+\ No newline at end of file

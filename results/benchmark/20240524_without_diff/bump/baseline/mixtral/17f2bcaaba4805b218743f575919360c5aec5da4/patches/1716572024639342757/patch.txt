@@ -1,0 +1,5 @@
+import static org.junit.Assert.assertTrue;
+
+// ...
+
+assertTrue(someCondition);

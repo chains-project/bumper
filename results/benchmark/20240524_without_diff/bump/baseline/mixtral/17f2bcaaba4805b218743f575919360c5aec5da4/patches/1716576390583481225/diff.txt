@@ -1,0 +1,8 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     if (GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2) {
+5a6,8
+>     } else {
+>         fail("GROUP_SHAPE is null or has incorrect child count");
+>     }

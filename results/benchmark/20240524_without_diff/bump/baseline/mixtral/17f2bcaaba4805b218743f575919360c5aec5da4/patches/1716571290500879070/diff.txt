@@ -1,0 +1,6 @@
+3,4c3,4
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+---
+>     assumeTrue(PApplet.parseInt(PApplet.getText("GROUP_SHAPE_child_count")) == 2);
+>     PShape out = PGS_Morphology.round(new PShape(), 0.5);

@@ -1,0 +1,20 @@
+0a1,3
+> import processing.core.PShape;
+> import static processing.core.PConstants.*;
+> 
+4,10c7,13
+<                 final PShape mink = new PShape(PShape.PATH);
+<                 mink.beginShape();
+<                 mink.vertex(0, 0);
+<                 mink.vertex(5, 0);
+<                 mink.vertex(5, 5);
+<                 mink.vertex(0, 5);
+<                 mink.endShape(PConstants.CLOSE);
+---
+>     PShape mink = createShape(PATH);
+>     beginShape(mink);
+>     vertex(0, 0);
+>     vertex(5, 0);
+>     vertex(5, 5);
+>     vertex(0, 5);
+>     endShape(CLOSE);

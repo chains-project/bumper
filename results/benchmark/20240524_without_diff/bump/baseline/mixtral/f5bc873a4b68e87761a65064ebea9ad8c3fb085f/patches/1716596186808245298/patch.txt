@@ -1,0 +1,26 @@
+import org.apache.maven.plugin.logging.Log;
+import org.codehaus.plexus.components.io.directoryscanner.DirectoryScanner;
+
+import java.io.File;
+
+public class AbstractThemeMojo {
+    // Add the following import for Log
+    import org.apache.maven.plugin.logging.Log;
+
+    protected Log log;
+
+    public AbstractThemeMojo() {
+    }
+
+    public AbstractThemeMojo(Log log) {
+        this.log = log;
+    }
+
+    @Override
+    protected DirectoryScanner createDirectoryScanner() {
+        DirectoryScanner directoryScanner = new DirectoryScanner();
+        // Add the following log statement
+        log.info("Creating DirectoryScanner instance");
+        return directoryScanner;
+    }
+}

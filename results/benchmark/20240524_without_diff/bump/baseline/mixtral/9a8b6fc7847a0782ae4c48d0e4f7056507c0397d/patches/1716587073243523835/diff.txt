@@ -1,0 +1,9 @@
+0a1,2
+> import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+> 
+3,5c5
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+<                 return encoder;
+---
+>     return new BCryptPasswordEncoder();

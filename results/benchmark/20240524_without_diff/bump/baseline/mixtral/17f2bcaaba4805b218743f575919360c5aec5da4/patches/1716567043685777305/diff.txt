@@ -1,0 +1,8 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+12c12
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+---
+>     PShape out = PGS_Morphology.minkDifference_v2(GROUP_SHAPE, mink);

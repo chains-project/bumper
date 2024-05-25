@@ -1,0 +1,6 @@
+1c1
+< import org.cactoos.text.SplitText;
+\ No newline at end of file
+---
+> import com.yegor256.cactoos.text.SplitText;
+\ No newline at end of file

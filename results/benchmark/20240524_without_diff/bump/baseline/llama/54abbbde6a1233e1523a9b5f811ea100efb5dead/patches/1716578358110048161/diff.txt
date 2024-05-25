@@ -1,0 +1,17 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+12a11,12
+>         final Logger logger = Logger.getLogger(this.getClass());
+>         logger.debug("Opening SSH session to %s@%s:%s...", this.getLogin(), this.getAddr(), this.getPort());
+36,41d35
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...",
+<                 this.getLogin(), this.getAddr(), this.getPort(),
+<                 file.length()
+<             );

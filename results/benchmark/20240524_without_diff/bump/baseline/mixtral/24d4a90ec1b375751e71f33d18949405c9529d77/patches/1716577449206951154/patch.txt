@@ -1,0 +1,15 @@
+import com.jcabi.s3.Bucket;
+
+@Tv({"0.22"})
+public class BucketRule {
+    // Existing code...
+
+    @Override
+    public void testCreateBucket(final Bucket bucket) throws IOException {
+        // Existing code...
+        final String bucketName = bucket.name(); // Use the new method to get the bucket name
+        // Existing code...
+    }
+
+    // Existing code...
+}

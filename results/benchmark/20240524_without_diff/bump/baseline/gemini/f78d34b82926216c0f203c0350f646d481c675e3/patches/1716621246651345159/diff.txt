@@ -1,0 +1,8 @@
+28c28
+<                     ((CraftPlayer) player).getHandle().playerConnection
+---
+>                     ++((CraftPlayer) player).getHandle().playerConnection
+42c42
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+---
+>                                     ++((CraftPlayer) p).getHandle().playerConnection

@@ -1,0 +1,16 @@
+0a1
+>   import processing.core.PApplet;
+1a3,14
+> 
+>   public class PGS_MorphologyGroupShapeTests extends PApplet {
+> 
+>     public void setup() {
+>       size(200, 200);
+>       noLoop();
+>     }
+> 
+>     public void draw() {
+>       // Your drawing code goes here
+>     }
+>   }
+\ No newline at end of file

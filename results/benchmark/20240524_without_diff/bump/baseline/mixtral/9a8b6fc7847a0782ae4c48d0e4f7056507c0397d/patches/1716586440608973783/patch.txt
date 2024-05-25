@@ -1,0 +1,19 @@
+import org.jasypt.util.text.StrongTextEncryptor;
+
+@Override
+public final PBEPasswordEncoder getPasswordEncoder() {
+    StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+    textEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+    textEncryptor.setPassword(password);
+    return new PBEPasswordEncoder() {
+        @Override
+        public String encode(String rawPass) {
+            return textEncryptor.encrypt(rawPass);
+        }
+
+        @Override
+        public boolean matches(String encPass, String rawPass) {
+            return textEncryptor.checkPassword(rawPass, encPass);
+        }
+    };
+}

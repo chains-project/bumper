@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class UnPackThemeMojo {
+> 
+>     public void execute() throws DependencyResolutionRequiredException {
+>         // ...
+>     }
+> 
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+1a2,10
+> import com.jcabi.aspects.TvImpl;
+> 
+> public class RegionITCase {
+> 
+>     public void testRegion() throws Exception {
+>         Tv tv = new TvImpl();
+>         tv.play("Hello, world!");
+>     }
+> }
+\ No newline at end of file

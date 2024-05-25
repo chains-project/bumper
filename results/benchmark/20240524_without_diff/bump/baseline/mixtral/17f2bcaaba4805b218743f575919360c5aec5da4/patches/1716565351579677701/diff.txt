@@ -1,0 +1,25 @@
+0a1,16
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.io.WKTReader;
+> import org.locationtech.jts.io.WKTWriter;
+> import xyz.micycle.pgson.PGS;
+> import xyz.micycle.pgson.geometry.NodedSegmentString;
+> import xyz.micycle.pgson.geometry.PEdge;
+> import xyz.micycle.pgson.geometry.PShape;
+> import xyz.micycle.pgson.geometry.SegmentString;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> 
+3a20,21
+>     WKTReader wktReader = new WKTReader();
+>     WKTWriter wktWriter = new WKTWriter();
+19,20c37
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             final LineString l = wktReader.read("LINESTRING (" + wktWriter.write(PGS.coordFromPVector(e.a)) + " " + wktWriter.write(PGS.coordFromPVector(e.b)) + " )");

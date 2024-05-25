@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class RtTransaction {
+> 
+>     public UncheckedScalar<String> rtTransaction(String txHash) {
+>         return () -> {
+>             throw new RuntimeException("Not implemented");
+>         };
+>     }
+> }
+\ No newline at end of file

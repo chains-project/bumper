@@ -1,0 +1,26 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TTransportException;
+
+import java.io.IOException;
+import java.util.Properties;
+
+public class AppenderUtils {
+    // ...
+
+    public static TTransport createFastFramedTransport(Properties props) {
+        String host = props.getProperty("host");
+        int port = Integer.parseInt(props.getProperty("port"));
+
+        TTransport transport = new TFastFramedTransport(new SocketChannelTransport(host, port));
+
+        try {
+            transport.open();
+        } catch (TTransportException | IOException e) {
+            throw new RuntimeException("Failed to open the transport", e);
+        }
+
+        return transport;
+    }
+
+    // ...
+}

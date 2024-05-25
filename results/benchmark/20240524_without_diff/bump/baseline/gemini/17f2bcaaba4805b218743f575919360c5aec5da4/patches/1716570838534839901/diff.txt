@@ -1,0 +1,6 @@
+4c4,6
+<                 PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+---
+>                 // -- PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+>                 PShape out = GROUP_SHAPE.copy();
+>                 out = PGS_Morphology.radialWarp(out, 10, 1, false);

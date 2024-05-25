@@ -1,0 +1,73 @@
+import com.google.common.io.Files;
+import com.jcabi.ssh.JSchException;
+import org.apache.commons.io.input.TeeInputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files as NIOFiles;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyPair;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.util.concurrent.TimeUnit;
+import javax.annotation.Nullable;
+import jcabi.aspects.RetryOnFailure;
+
+@RetryOnFailure(
+    attempts = Tv.SEVEN,
+    delay = 1,
+    unit = TimeUnit.MINUTES,
+    verbose = false,
+    types = IOException.class
+)
+protected Session session() throws IOException {
+    final Path tempFile = Files.createTempFile("jcabi-ssh", ".key");
+    try {
+        JSch.setLogger(new JschLogger());
+        final JSch jsch = new JSch();
+        TeeInputStream teeInput = new TeeInputStream(
+            new ByteArrayInputStream(this.key.replaceAll("\r", "")
+                .replaceAll("\n\\s+|\n{2,}", "\n")
+                .trim()
+                .getBytes(StandardCharsets.UTF_8)),
+            NIOFiles.newOutputStream(tempFile)
+        );
+        jsch.setHostKeyRepository(new EasyRepo());
+        if (this.passphrase == null) {
+            jsch.addIdentity(tempFile.toString());
+        } else {
+            KeyPair keyPair = generateRSAKeyPair(this.key);
+            jsch.addIdentity(
+                this.getLogin(),
+                keyPair.getPublic(),
+                null,
+                this.passphrase.getBytes(StandardCharsets.UTF_8)
+            );
+        }
+        Logger logger = LoggerFactory.getLogger(this.getClass());
+        logger.debug(
+            "Opening SSH session to {}@{}:{} ({})...",
+            this.getLogin(), this.getAddr(), this.getPort(),
+            Files.size(tempFile)
+        );
+        return this.session(jsch);
+    } catch (final JSchException ex) {
+        throw new IOException(ex);
+    } finally {
+        NIOFiles.deleteIfExists(tempFile);
+    }
+}
+
+private KeyPair generateRSAKeyPair(String key) throws IOException {
+    KeyPair keyPair = null;
+    try (ByteArrayInputStream keyInputStream = new ByteArrayInputStream(key.getBytes(StandardCharsets.UTF_8))) {
+        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+        PrivateKey privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(IOUtils.toByteArray(keyInputStream)));
+        RSAPrivateKey rsaPrivateKey = (RSAPrivateKey) privateKey;
+        RSAPublicKey rsaPublicKey = (RSAPublicKey) keyFactory.generatePublic(new X509EncodedKeySpec(rsaPrivateKey.getPublic().getEncoded()));
+        keyPair = new KeyPair(rsaPublicKey, rsaPrivateKey);
+    }
+    return keyPair;
+}

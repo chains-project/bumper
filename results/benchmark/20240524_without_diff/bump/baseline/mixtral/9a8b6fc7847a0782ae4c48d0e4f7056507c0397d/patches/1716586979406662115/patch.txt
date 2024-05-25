@@ -1,0 +1,9 @@
+import org.jasypt.util.password.DigestPasswordEncoder;
+
+//...
+
+@Override
+public String encodePassword(String rawPass, Object salt) throws Exception {
+    DigestPasswordEncoder encoder = new DigestPasswordEncoder("SHA-256", 1000);
+    return encoder.encodePassword(rawPass, (String) salt);
+}

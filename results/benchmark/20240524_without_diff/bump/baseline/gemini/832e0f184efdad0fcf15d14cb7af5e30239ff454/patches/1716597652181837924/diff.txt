@@ -1,0 +1,10 @@
+1d0
+< @Override
+56c55
+<                                         overrideNewMessageSettings.open(player,
+---
+>                                         ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings.open(player,
+71c70
+<                                         overrideNewMessageSettings.open(player,
+---
+>                                         ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings.open(player,

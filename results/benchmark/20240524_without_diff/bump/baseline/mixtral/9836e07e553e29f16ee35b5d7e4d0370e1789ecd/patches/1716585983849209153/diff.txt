@@ -1,0 +1,52 @@
+1c1,21
+< @ParameterizedTest
+---
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.allOf;
+> import static org.hamcrest.Matchers.containsString;
+> import static org.hamcrest.Matchers.not;
+> import static org.junit.jupiter.api.Assertions.assertThrows;
+> 
+> import org.junit.jupiter.api.BeforeEach;
+> import org.junit.jupiter.api.Test;
+> import org.junit.jupiter.params.ParameterizedTest;
+> import org.junit.jupiter.params.provider.ValueSource;
+> 
+> class TagValidTest {
+> 
+>     private Tag.Valid tag;
+> 
+>     @BeforeEach
+>     void setUp() {
+>         tag = new Tag.Valid("");
+>     }
+> 
+>     @Test
+8d27
+<         //@checkstyle LineLengthCheck (1 line)
+11,14c30,32
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+<         final Tag.Valid tag = new Tag.Valid(original);
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+<         final Throwable throwable = Assertions.assertThrows(
+---
+>     void shouldFailToGetValueWhenInvalid(String original) {
+>         tag = new Tag.Valid(original);
+>         InvalidTagNameException exception = assertThrows(
+18,24c36,40
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+---
+>         assertThat(tag.valid(), new IsEqual<>(false));
+>         assertThat(exception.getMessage(),
+>                 allOf(
+>                         containsString("Invalid tag"),
+>                         not(containsString(original))
+27a44
+> }
+\ No newline at end of file

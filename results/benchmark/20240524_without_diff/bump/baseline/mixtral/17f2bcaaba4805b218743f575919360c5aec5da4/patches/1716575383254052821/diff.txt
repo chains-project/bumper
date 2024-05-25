@@ -1,0 +1,8 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4c6,7
+<                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+---
+>     PShape parent = GROUP_SHAPE.getChild(0);
+>     PShape out = PGS_Morphology.smoothGaussian(parent, 10);

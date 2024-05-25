@@ -1,0 +1,42 @@
+0a1,17
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.RandomUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import org.bukkit.event.player.PlayerQuitEvent;
+> import org.bukkit.profile.GameProfile;
+> import org.bukkit.scoreboard.Scoreboard;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.regex.Pattern;
+> 
+19,20c36,37
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = leetConvert(first);
+>         last = leetConvert(last);
+44a62,77
+> 
+> private static String leetConvert(String input) {
+>     StringBuilder output = new StringBuilder();
+>     for (char c : input.toCharArray()) {
+>         if (Character.isLetter(c)) {
+>             if (Character.isUpperCase(c)) {
+>                 output.append((char) (c + 32));
+>             } else {
+>                 output.append((char) (c - 32));
+>             }
+>         } else {
+>             output.append(c);
+>         }
+>     }
+>     return output.toString();
+> }
+\ No newline at end of file

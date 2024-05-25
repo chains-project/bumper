@@ -1,0 +1,45 @@
+1d0
+< // TODO: review this AI generated patch!
+9,13c8,11
+<     blobs.put(
+<         new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+<         (blob, throwable) -> {
+<             MatcherAssert.assertThat(
+---
+>     CheckedBlobSource checkedBlobSource = new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest));
+>     Blob blob = blobs.put(checkedBlobSource).join();
+>     Digest calculatedDigest = blob.digest();
+>     Assert.assertNotEquals(
+15,16c13,14
+<                 throwable,
+<                 new CoreMatchers.IsNot.<Throwable>instanceOf(NullPointerException.class)
+---
+>         digest,
+>         calculatedDigest.toString()
+18c16
+<             MatcherAssert.assertThat(
+---
+>     Assert.assertEquals(
+20,21c18,19
+<                 Throwables.getRootCause(throwable),
+<                 new CoreMatchers.InstanceOf(InvalidDigestException.class)
+---
+>         InvalidDigestException.class,
+>         blob.exception().getClass()
+23c21
+<             MatcherAssert.assertThat(
+---
+>     Assert.assertThat(
+25c23
+<                 Throwables.getRootCause(throwable).getMessage(),
+---
+>         blob.exception().getMessage(),
+27c25
+<                     new CoreMatchers.StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"),
+---
+>             new CoreMatchers.StringContains(calculatedDigest.toString()),
+31,33d28
+<             return CompletableFuture.allOf();
+<         }
+<     ).join();

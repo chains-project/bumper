@@ -1,0 +1,7 @@
+4a5
+>                 GeometryFactory factory = JTSFactoryFinder.getGeomFactory(null); // Add this line
+19,20c20
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>                                 final LineString l = factory.createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) }); // Modify this line

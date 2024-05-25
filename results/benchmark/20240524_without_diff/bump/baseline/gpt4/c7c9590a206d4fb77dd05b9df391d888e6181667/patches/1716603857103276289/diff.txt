@@ -1,0 +1,34 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+7,11c2,3
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+> public void execute() throws MojoExecutionException {
+>     if (!canGenerateReport()) {
+16,19c8,12
+<         try
+<         {
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+---
+>     try {
+>         File outputDir = outputDirectory;
+>         String outputName = getOutputName() + ".html";
+>         RenderingContext context = new RenderingContext(outputDir, outputName);
+>         Sink sink = new SiteRendererSink(context);
+21,24c14,15
+<             generate( sink, locale );
+<         }
+<         catch ( MavenReportException e )
+<         {
+---
+>         generate(sink, null, locale);
+>     } catch (MavenReportException e) {

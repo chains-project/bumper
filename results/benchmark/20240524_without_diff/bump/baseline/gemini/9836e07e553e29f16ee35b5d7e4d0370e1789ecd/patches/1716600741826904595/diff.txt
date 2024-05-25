@@ -1,0 +1,6 @@
+3a4,6
+>             String.format("%s: Layer already exists", this.image.layer()),
+>             new StringContains(
+>                 false,
+4a8
+>             )

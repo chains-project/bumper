@@ -1,0 +1,5 @@
+6c6,7
+<                 .concat(" with digest ")
+---
+>                 .concat(" with digest ") ++
+>                 String.format("%s", "digest")

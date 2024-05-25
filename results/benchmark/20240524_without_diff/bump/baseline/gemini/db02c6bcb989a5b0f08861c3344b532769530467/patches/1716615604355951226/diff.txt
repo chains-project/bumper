@@ -1,0 +1,10 @@
+16c16,22
+<             tag::value
+---
+>             () -> {
+>                 try {
+>                     tag.value();
+>                 } catch (final InvalidTagNameException e) {
+>                     throw new AssertionError(e);
+>                 }
+>             }

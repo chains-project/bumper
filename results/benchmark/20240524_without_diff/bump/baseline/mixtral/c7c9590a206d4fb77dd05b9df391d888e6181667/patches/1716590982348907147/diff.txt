@@ -1,0 +1,21 @@
+1c1,16
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.sink.Sink;
+> 
+> // ...
+> 
+> @Override
+> protected void decorate(Sink sink, RenderingContext renderingContext) throws IOException {
+>     if (renderingContext.getDecorations() != null) {
+>         sink.body();
+>         sink.div("decoration-content");
+>         sink.text(renderingContext.getDecorations());
+>         sink.div_();
+>         sink.div("clearer");
+>         sink.div_();
+>         sink.body_();
+>     }
+> }
+\ No newline at end of file

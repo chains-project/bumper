@@ -1,0 +1,6 @@
+1,4d0
+< @Override
+<                     public Optional<Authentication.User> user() {
+<                         return Optional.of(new Authentication.User("alice"));
+<                     }
+\ No newline at end of file

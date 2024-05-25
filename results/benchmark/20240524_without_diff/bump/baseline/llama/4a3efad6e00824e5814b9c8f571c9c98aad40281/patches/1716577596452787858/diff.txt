@@ -1,0 +1,11 @@
+1c1,6
+< import eu.europa.esig.dss.pades.CertificationPermission;
+\ No newline at end of file
+---
+> import java.security.cert.Certificate;
+> import java.security.cert.CertPath;
+> 
+> // ...
+> 
+> CertPath certificationPermission = null; // Replace with actual certification permission
+\ No newline at end of file

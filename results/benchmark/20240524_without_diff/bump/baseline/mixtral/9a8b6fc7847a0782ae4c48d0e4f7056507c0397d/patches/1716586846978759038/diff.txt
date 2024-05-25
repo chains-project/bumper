@@ -1,0 +1,25 @@
+1c1,20
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.password.PasswordEncoder;
+> 
+> // ...
+> 
+> @Override
+> public PasswordEncoder passwordEncoder() {
+>     return new PasswordEncoder() {
+>         @Override
+>         public String encode(String rawPass) {
+>             // Implement the encoding logic here
+>             return null;
+>         }
+> 
+>         @Override
+>         public boolean matches(String rawPass, String encodedPass) {
+>             // Implement the matching logic here
+>             return false;
+>         }
+>     };
+> }
+\ No newline at end of file

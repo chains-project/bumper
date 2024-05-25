@@ -1,0 +1,8 @@
+1c1,3
+< import org.apache.maven.artifact.DependencyResolutionRequiredException;
+\ No newline at end of file
+---
+> import org.eclipse.aether.resolution.DependencyResolutionException;
+> 
+> // No changes needed, just replaced the import statement
+\ No newline at end of file

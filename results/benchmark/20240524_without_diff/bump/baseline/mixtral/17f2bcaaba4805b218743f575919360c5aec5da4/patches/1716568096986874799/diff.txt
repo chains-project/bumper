@@ -1,0 +1,8 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(PApplet.prototype.getChildCount.call(GROUP_SHAPE) == 2);
+5c5
+<                 assertEquals(2, out.getChildCount());
+---
+>     assertEquals(2, PApplet.prototype.getChildCount.call(out));

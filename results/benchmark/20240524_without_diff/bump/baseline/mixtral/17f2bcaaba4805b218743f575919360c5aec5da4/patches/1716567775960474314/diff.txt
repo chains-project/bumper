@@ -1,0 +1,10 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4c6,9
+<                 PShape out = PGS_Morphology.radialWarp(GROUP_SHAPE, 10, 1, false);
+---
+>     PShape parent = GROUP_SHAPE.getChildren()[0];
+>     float angle = 10;
+>     boolean clockwise = false;
+>     PShape out = PGS_Morphology.radialWarp(parent, angle, 1, clockwise);

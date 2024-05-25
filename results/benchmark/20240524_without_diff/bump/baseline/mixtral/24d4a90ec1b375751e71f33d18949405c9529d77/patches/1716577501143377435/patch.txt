@@ -1,0 +1,13 @@
+import com.jcabi.s3.Bucket;
+
+@Tv({"1.7.2"})
+public class BucketRule {
+    // existing code...
+
+    @Override
+    public void testBucketCreation(Bucket bucket) throws IOException {
+        // existing code...
+    }
+
+    // existing code...
+}

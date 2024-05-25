@@ -1,0 +1,13 @@
+1c1,8
+< import org.cactoos.scalar.SolidScalar;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> 
+> import static org.cactoos.iterable.ConstantOf.constant;
+> 
+> @Override
+> public Scalar<Iterable<Wallet>> wallets() throws IOException {
+>   return () -> constant(new Wallets(api()));
+> }
+\ No newline at end of file

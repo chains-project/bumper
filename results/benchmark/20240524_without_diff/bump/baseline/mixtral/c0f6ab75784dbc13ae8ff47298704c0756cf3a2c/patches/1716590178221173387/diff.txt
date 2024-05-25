@@ -1,0 +1,10 @@
+1a2
+>     Properties extraProperties = globalConfig.extraProperties();
+5,7c6,8
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .setExtraProperties(extraProperties)
+>             .setWorkDir(new File(extraProperties.getProperty("work.dir")))
+>             .setModulesProvider(new DefaultModulesProvider(extraProperties))

@@ -1,0 +1,6 @@
+5a6
+>         String digest = original.digest();
+10c11
+<                 String.format("latest: digest: %s", original.digest())
+---
+>                 "latest: digest: " + digest

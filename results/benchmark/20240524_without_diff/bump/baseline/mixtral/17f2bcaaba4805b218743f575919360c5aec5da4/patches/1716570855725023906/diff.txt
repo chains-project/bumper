@@ -1,0 +1,5 @@
+2a3
+>     if (GROUP_SHAPE != null) {
+6a8
+> }
+\ No newline at end of file

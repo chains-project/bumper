@@ -1,0 +1,22 @@
+12a13,14
+> 
+>                 // Check if the output shape has the expected number of children.
+13a16,33
+> 
+>                 // Check if the output shape has the expected vertices.
+>                 List<PVector> expectedVertices = Arrays.asList(
+>                                 new PVector(0, 0),
+>                                 new PVector(5, 0),
+>                                 new PVector(5, 5),
+>                                 new PVector(0, 5)
+>                 );
+>                 List<PVector> actualVertices = new ArrayList<>();
+>                 for (int i = 0; i < out.getChildCount(); i++) {
+>                         PShape child = (PShape) out.getChild(i);
+>                         if (child.getShapeType() == PShape.PATH) {
+>                                 for (int j = 0; j < child.getVertexCount(); j++) {
+>                                         actualVertices.add(child.getVertex(j));
+>                                 }
+>                         }
+>                 }
+>                 assertEquals(expectedVertices, actualVertices);

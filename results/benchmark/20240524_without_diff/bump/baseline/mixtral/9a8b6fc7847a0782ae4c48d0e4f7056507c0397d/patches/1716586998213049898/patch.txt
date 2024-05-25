@@ -1,0 +1,8 @@
+import org.jasypt.util.password.DigestPasswordEncoder;
+
+@Override
+public PasswordEncoder passwordEncoder() {
+    DigestPasswordEncoder encoder = new DigestPasswordEncoder();
+    encoder.setAlgorithm("SHA-256");
+    return encoder;
+}

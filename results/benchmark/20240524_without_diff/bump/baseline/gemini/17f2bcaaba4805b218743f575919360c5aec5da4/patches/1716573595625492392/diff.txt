@@ -1,0 +1,3 @@
+5a6,7
+>                 assertEquals(GROUP_SHAPE.getChild(0).getShapeType(), out.getChild(0).getShapeType());
+>                 assertEquals(GROUP_SHAPE.getChild(1).getShapeType(), out.getChild(1).getShapeType());

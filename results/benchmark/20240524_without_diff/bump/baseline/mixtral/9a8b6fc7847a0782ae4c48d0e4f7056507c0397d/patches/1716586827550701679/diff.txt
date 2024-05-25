@@ -1,0 +1,14 @@
+1c1,9
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.DigestPasswordEncoder;
+> 
+> //...
+> 
+> @Override
+> public String encodePassword(String rawPass, Object salt) throws Exception {
+>     DigestPasswordEncoder encoder = new DigestPasswordEncoder();
+>     return encoder.encodePassword(rawPass, (String) salt);
+> }
+\ No newline at end of file

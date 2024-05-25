@@ -1,0 +1,19 @@
+0a1,4
+> import processing.core.PApplet;
+> import processing.core.PShape;
+> import static processing.core.PConstants.CLOSE;
+> 
+4a9,15
+>     PApplet.runSketch(new PApplet() {
+>         public void settings() {
+>             size(100, 100, P3D);
+>         }
+> 
+>         public void draw() {
+>             background(255);
+10c21,23
+<                 mink.endShape(PConstants.CLOSE);
+---
+>             mink.endShape(CLOSE);
+>         }
+>     });

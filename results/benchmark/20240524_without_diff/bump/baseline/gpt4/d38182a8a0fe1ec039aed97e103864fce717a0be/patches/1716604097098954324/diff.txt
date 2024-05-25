@@ -1,0 +1,21 @@
+8,14c8
+<             new ScopeSlice() {
+<                 @Override
+<                 public Scope scope(final String rqline) {
+<                     cline.set(rqline);
+<                     return new Scope.FromString(action);
+<                 }
+< 
+---
+>         new Slice() {
+21c15,22
+<                     return StandardRs.OK;
+---
+>                 cline.set(line);
+>                 return new SliceSimple(
+>                     new RsFull(
+>                         RsStatus.OK,
+>                         new Headers.From("Content-Type", "text/plain"),
+>                         new Content.From(action.getBytes(StandardCharsets.UTF_8))
+>                     )
+>                 ).response(line, headers, body);

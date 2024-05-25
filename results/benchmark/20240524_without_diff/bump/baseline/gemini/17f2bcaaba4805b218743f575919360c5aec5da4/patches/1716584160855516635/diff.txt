@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Processing.convexPartition(GROUP_SHAPE);
+---
+>                 PShape out = PGS_Processing.convexPartition(GROUP_SHAPE.getChild(0), GROUP_SHAPE.getChild(1));

@@ -1,0 +1,52 @@
+0a1,17
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.properties.Properties;
+> 
+> public class PlayerUtils {
+> 
+7,9c24,25
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+---
+>     public static EntityPlayer getRandomPlayer(World world) {
+>         ThreadLocalRandom random = ThreadLocalRandom.current();
+11c27
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>                 ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+14c30
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+---
+>                 ? RandomStringUtils.randomAlphanumeric(random.nextInt(13) + 1)
+17,20c33,35
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+36c51,54
+<         profile.getProperties().put("textures", new Property("textures", skin.getLeft(), skin.getRight()));
+---
+>         profile.getProperties().put("textures", new Properties() {{
+>             setProperty("textures", skin.getLeft());
+>             setProperty("model", skin.getRight());
+>         }});
+44a63
+> }
+\ No newline at end of file

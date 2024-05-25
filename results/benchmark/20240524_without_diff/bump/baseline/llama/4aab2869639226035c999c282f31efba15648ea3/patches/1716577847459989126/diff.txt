@@ -1,0 +1,15 @@
+1d0
+< @Override
+4c3,4
+<         try {
+---
+>     final Object yamlInput = Yaml.createYamlInput(sub.toString());
+>     final Map<String, Object> yamlMapping = yamlInput.readYamlMapping();
+8c8
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                 sub.string("type"), yamlMapping
+12,14d11
+<         } catch (final IOException err) {
+<             throw new UncheckedIOException(err);
+<         }

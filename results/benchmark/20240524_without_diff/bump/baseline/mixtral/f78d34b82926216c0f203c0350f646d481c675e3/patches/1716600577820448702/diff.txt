@@ -1,0 +1,25 @@
+1d0
+< // TODO: review this AI generated patch!
+10c9
+<     BukkitRunnable r = new BukkitRunnable() {
+---
+>     Runnable r = () -> {
+12,14d10
+< 
+<         @Override
+<         public void run() {
+20d15
+<         }
+22c17
+<     r.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0, 1);
+---
+>     Bukkit.getScheduler().runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), r, 0, 1);
+24c19
+<     new BukkitRunnable() {
+---
+>     new Runnable() {
+27,28c22
+<             r.cancel();
+<             this.cancel();
+---
+>             Bukkit.getScheduler().cancelTasks(PeyangSuperbAntiCheat.getPlugin());

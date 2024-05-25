@@ -1,0 +1,4 @@
+11c11
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+---
+> public void shouldFailToGetValueWhenInvalid(final String original) {

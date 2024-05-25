@@ -1,0 +1,7 @@
+private static Matcher<String> imagePulled(final String image) {
+    return new CoreMatchers.StringContains(
+        CoreMatchers.not(CoreMatchers.stringContainsInOrder(
+            Arrays.asList("Status: Downloaded newer image for", image)
+        ))
+    );
+}

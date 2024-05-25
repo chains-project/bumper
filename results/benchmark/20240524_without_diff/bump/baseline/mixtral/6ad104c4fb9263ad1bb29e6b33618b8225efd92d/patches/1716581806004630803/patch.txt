@@ -1,0 +1,40 @@
+import org.bouncycastle.tls.AlertDescription;
+
+import java.security.GeneralSecurityException;
+import java.security.Provider;
+import java.security.Security;
+import java.util.Objects;
+
+public class ChachaDecoder {
+    // ...
+
+    @Override
+    protected void engineInitDecode(CipherParameters parameters) throws IllegalStateException {
+        Objects.requireNonNull(parameters);
+        if (!(parameters instanceof KeyParameter)) {
+            throw new IllegalStateException("invalid parameters");
+        }
+        KeyParameter keyParam = (KeyParameter) parameters;
+        byte[] key = Arrays.copyOfRange(keyParam.getKey(), 0, 32);
+        byte[] nonce = Arrays.copyOfRange(keyParam.getKey(), 32, 48);
+
+        Provider provider = Security.getProvider("BC");
+        if (provider == null) {
+            try {
+                provider = new BouncyCastleProvider();
+                Security.addProvider(provider);
+            } catch (Exception e) {
+                throw new IllegalStateException("failed to initialize BouncyCastle provider", e);
+            }
+        }
+
+        try {
+            cipher = Cipher.getInstance("ChaCha20-Poly1305/None/NoPadding", provider);
+            cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "ChaCha20"), nonce);
+        } catch (GeneralSecurityException e) {
+            throw new IllegalStateException("failed to initialize cipher", e);
+        }
+    }
+
+    // ...
+}

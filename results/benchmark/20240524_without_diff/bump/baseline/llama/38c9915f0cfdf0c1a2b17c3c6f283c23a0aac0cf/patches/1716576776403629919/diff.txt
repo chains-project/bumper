@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.UncheckedText;
+\ No newline at end of file
+---
+> import java.text.StringCharacterIterator;
+> 
+> public class WalletsIn {
+>     public void someMethod() {
+>         StringCharacterIterator iterator = new StringCharacterIterator("UncheckedText");
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,11 @@
+1,5d0
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+18c13,14
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+---
+>         File outputDir = new File(outputDirectory, getOutputName() + ".html");
+>         RenderingContext context = new RenderingContext( outputDir, getOutputName() + ".html" );

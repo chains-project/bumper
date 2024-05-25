@@ -1,0 +1,17 @@
+2c2
+<     void shouldPullPushedByTag() throws Exception {
+---
+>     public void shouldPullPushedByTag() throws Exception {
+7c7
+<         MatcherAssert.assertThat(
+---
+>         assertThat(
+9,10c9
+<             new StringContains(
+<                 false,
+---
+>             not(containsString(
+12c11
+<             )
+---
+>             ))

@@ -1,0 +1,12 @@
+import com.jcabi.ssh.Ssh;
+
+@Tv(42)
+public class SshByPassword {
+    // existing code...
+
+    public Ssh ssh(String host, String user, String password) {
+        return new SshByPassword.Simple(host, user, password);
+    }
+
+    // existing code...
+}

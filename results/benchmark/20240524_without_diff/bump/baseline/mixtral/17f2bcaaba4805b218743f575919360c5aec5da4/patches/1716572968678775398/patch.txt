@@ -1,0 +1,10 @@
+@Test
+void test_PGS_Morphology_erosionDilation() {
+    assumeTrue(getShapeGroup().getChildCount() == 2);
+    PShape out = PGS_Morphology.erosionDilation(getShapeGroup(), 0);
+    assertEquals(2, out.getChildCount());
+}
+
+private PShape getShapeGroup() {
+    return GROUP_SHAPE;
+}

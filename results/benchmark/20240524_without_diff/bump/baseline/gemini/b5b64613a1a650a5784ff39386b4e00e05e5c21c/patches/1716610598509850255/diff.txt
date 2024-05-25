@@ -1,0 +1,8 @@
+1d0
+< @Override
+7d5
+<         ConnectionHelper connection = new ConnectionHelper(credentials, buildListener);
+11c9
+<             if (connection.isClient(clientString)) {
+---
+>       if (new ConnectionHelper(credentials, buildListener).isClient(clientString)) {

@@ -1,0 +1,12 @@
+1d0
+< @Override
+2a2,3
+>     Authentication.User alice = new Authentication.User(TestAuthentication.ALICE.name());
+>     Authentication.User bob = new Authentication.User(TestAuthentication.BOB.name());
+8,10c9,10
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                 Stream.of(alice, bob)
+>                     .filter(user -> token.equals(token(user.getName())))

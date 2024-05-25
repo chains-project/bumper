@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+4a4,6
+>         String expected = expectedString;
+> 
+>         @Override
+6c8
+<             description.appendText(expectedString);
+---
+>             description.appendText(expected);
+8a11
+>         @Override
+10c13
+<             return item.contains(expectedString);
+---
+>             return item.contains(expected);

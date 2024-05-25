@@ -1,0 +1,62 @@
+1,10d0
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+12,17c2,4
+<         // False if it matches an excludes pattern
+<         for (String pattern : config.getJacocoExcludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+<                 return false;
+<             }
+---
+>     if (config.getJacocoIncludes().isEmpty() && config.getJacocoExcludes().isEmpty()) {
+>         return isClassPresentInAnyDir(className, config.getBinJavaDir())
+>             || isClassPresentInAnyDir(className, config.getBinTestDir());
+19c6,7
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+---
+> 
+>     boolean matchesIncludePattern = false;
+23c11,12
+<                 return true;
+---
+>             matchesIncludePattern = true;
+>             break;
+27,31c16,20
+<         // True if it is present in the available binaries
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+<                 return true;
+---
+>     if (matchesIncludePattern) {
+>         for (String pattern : config.getJacocoExcludes()) {
+>             WildcardMatcher matcher = new WildcardMatcher(pattern);
+>             if (matcher.matches(className)) {
+>                 return false;
+34,36d22
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+<             if (directoryScanner.scan().getClasses().contains(className)) {
+39d24
+<         }
+42a28,37
+> 
+> private boolean isClassPresentInAnyDir(String className, List<String> dirs) {
+>     return dirs.stream()
+>         .anyMatch(dir -> isClassPresentInDir(className, dir));
+> }
+> 
+> private boolean isClassPresentInDir(String className, String dir) {
+>     DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+>     return directoryScanner.scan().getClasses().contains(className);
+> }
+\ No newline at end of file

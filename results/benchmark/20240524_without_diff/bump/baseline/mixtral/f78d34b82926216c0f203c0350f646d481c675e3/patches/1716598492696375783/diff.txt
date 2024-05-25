@@ -1,0 +1,33 @@
+1,8d0
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+12c4
+<         final double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+---
+>     double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+15c7
+<         WaveCreator ypp = new WaveCreator(10.0, 100.0, 10.0);
+---
+>     WaveCreator ypp = new WaveCreator(10.0, 10.0, 10.0);
+47c39,40
+<                     ((CraftPlayer) player).getHandle().playerConnection
+---
+>                 CraftPlayer craftPlayer = (CraftPlayer) player;
+>                 craftPlayer.getHandle().playerConnection
+56,57c49,50
+<                             Bukkit.getOnlinePlayers()
+<                                 .parallelStream()
+---
+>                         List<Player> onlinePlayers = Bukkit.getOnlinePlayers();
+>                         onlinePlayers.stream()
+61c54,55
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+---
+>                                 CraftPlayer craftPlayer = (CraftPlayer) p;
+>                                 craftPlayer.getHandle().playerConnection

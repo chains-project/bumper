@@ -1,0 +1,14 @@
+47c47,48
+<                     ((CraftPlayer) player).getHandle().playerConnection
+---
+>                     if (target instanceof CraftPlayer) { // Check if target is a CraftPlayer
+>                         ((CraftPlayer) target).getHandle().playerConnection
+48a50
+>                     }
+61c63,64
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+---
+>                                     if (target instanceof CraftPlayer) { // Check if target is a CraftPlayer
+>                                         ((CraftPlayer) target).getHandle().playerConnection
+62a66
+>                                     }

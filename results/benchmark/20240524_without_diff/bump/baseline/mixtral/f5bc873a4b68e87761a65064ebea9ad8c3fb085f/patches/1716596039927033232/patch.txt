@@ -1,0 +1,19 @@
+import org.codehaus.plexus.components.interactivity.Prompter;
+import org.codehaus.plexus.util.DirectoryScanner;
+
+// ...
+
+@Override
+protected void scanDirectory(File directory, List<String> includes, List<String> excludes, List<File> result)
+        throws MojoExecutionException {
+    DirectoryScanner scanner = new DirectoryScanner();
+    scanner.setBasedir(directory);
+    scanner.setIncludes(includes.toArray(new String[0]));
+    scanner.setExcludes(excludes.toArray(new String[0]));
+    scanner.scan();
+
+    String[] files = scanner.getIncludedFiles();
+    for (String file : files) {
+        result.add(new File(directory, file));
+    }
+}

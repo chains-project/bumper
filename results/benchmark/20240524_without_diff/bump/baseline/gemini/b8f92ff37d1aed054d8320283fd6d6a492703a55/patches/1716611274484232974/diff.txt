@@ -1,0 +1,14 @@
+2,3c2,11
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     List<String> classesLoc = new ArrayList<>();
+>     File[] files = testSrcFolder.listFiles();
+>     if (files != null) {
+>         for (File file : files) {
+>             if (file.isFile() && file.getName().endsWith(".java")) {
+>                 classesLoc.add(file.getAbsolutePath());
+>             }
+>         }
+>     }
+>     return classesLoc;

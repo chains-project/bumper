@@ -1,0 +1,7 @@
+1a2,7
+>     MavenProject project = null;
+>     try {
+>         project = (MavenProject) getPluginContext().get("project");
+>     } catch(Exception e) {
+>         System.out.println("Error getting the project");
+>     }

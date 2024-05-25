@@ -1,0 +1,17 @@
+1d0
+< // TODO: review this AI generated patch!
+9,11c8,12
+<     blobs.put(
+<         new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+---
+>     CheckedBlobSource checkedBlobSource = new CheckedBlobSource(
+>         new Content.From("data".getBytes()), new Digest.Sha256(digest)
+>     );
+>     CompletableFuture<Blob> putFuture = blobs.put(checkedBlobSource);
+>     putFuture.handle(
+36c37,38
+<     ).join();
+---
+>     );
+>     putFuture.join();

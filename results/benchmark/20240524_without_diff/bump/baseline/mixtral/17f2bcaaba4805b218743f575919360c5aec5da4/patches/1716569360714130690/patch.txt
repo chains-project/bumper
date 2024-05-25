@@ -1,0 +1,9 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_chaikinCut() {
+    PShape groupShape = new PShape(); // initialize the groupShape
+    assumeTrue(groupShape.getChildCount() == 2);
+    PShape out = PGS_Morphology.chaikinCut(groupShape, 0.5, 2);
+    assertEquals(2, out.getChildCount());
+}

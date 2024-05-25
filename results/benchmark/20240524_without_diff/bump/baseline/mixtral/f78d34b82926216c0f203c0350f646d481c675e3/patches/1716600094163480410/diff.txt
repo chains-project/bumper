@@ -1,0 +1,42 @@
+1,6d0
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+12c6
+<         BukkitRunnable runnable = new BukkitRunnable()
+---
+>     Runnable runnable = new Runnable()
+21c15
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+---
+>                 circle(center.clone().add(0, 0.9, 0), count[0], 3, "CRIT");
+23c17
+<                     circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+---
+>                 circle(center.add(0, 0.7, 0), count[0], 2.7, "ENCHANTMENT_TABLE");
+32c26
+<                     circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+---
+>                 circle(center.clone().add(0, 1.5, 0), count[0], 5, "SPELL_WITCH");
+49d42
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+55c48
+<                 runnable.cancel();
+---
+>             runnable.run();
+57c50,59
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>     }.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+> 
+>     new BukkitRunnable()
+>     {
+>         @Override
+>         public void run()
+>         {
+>             runnable.run();
+>         }
+>     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds * 20L);

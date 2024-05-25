@@ -1,0 +1,8 @@
+1a2,7
+> 
+>   public class RtTransaction {
+>     public static String getTransactionId(String transactionId) {
+>       return new UncheckedText(transactionId).asString();
+>     }
+>   }
+\ No newline at end of file

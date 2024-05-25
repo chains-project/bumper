@@ -1,0 +1,5 @@
+6c6,7
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = new byte[PolyKeyCreator.getMacLength()];
+>     PolyKeyCreator.create(macKey, additionalData, ciphertext, calculatedMAC);

@@ -1,0 +1,26 @@
+0a1,4
+> import static micycle.pgs.PGS.*;
+> 
+> // ...
+> 
+11c15
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<SegmentString> nodedSS = nodeSegmentStrings(segmentStrings);
+13c17
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(toPVector(ss.getCoordinate(0)), toPVector(ss.getCoordinate(1)))));
+19,20c23,24
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             final LineString l = GEOM_FACTORY
+>                     .createLineString(new Coordinate[] { coordFromPVector(e.a), coordFromPVector(e.b) });
+37a42,46
+> 
+> // Added to the PGS class
+> public static Coordinate coordFromPVector(PVector v) {
+>     return new Coordinate(v.x, v.y);
+> }
+\ No newline at end of file

@@ -1,0 +1,22 @@
+1c1,17
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.Scalar;
+> import org.cactoos.scalar.Sticky of;
+> 
+> // ...
+> 
+> @Override
+> public double score(CurrencyId id) throws IOException {
+>   Scalar<Long> length = new of(() -> lengthOf(id));
+>   return length.value() / MAX_SCORE;
+> }
+> 
+> private long lengthOf(CurrencyId id) throws IOException {
+>   ListIterable<String> iterable = new IoChecked<>(
+>     () -> new Files(new AbsPath(id.value())).iterate()
+>   );
+>   return new LengthOf(iterable).longValue();
+> }
+\ No newline at end of file

@@ -1,0 +1,6 @@
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.StringContains.containsString;
+
+private static Matcher<String> imagePulled(final String image) {
+    return containsString(String.format("Status: Downloaded newer image for %s", image));
+}

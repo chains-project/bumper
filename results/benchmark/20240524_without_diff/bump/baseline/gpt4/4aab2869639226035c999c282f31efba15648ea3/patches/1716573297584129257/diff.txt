@@ -1,0 +1,10 @@
+4a5,7
+>         final Yaml yaml = new Yaml();
+>         final String storageType = sub.string("type");
+>         final YamlMapping yamlMapping = yaml.loadAs(sub.toString(), YamlMapping.class);
+7,9c10
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+---
+>                 new Storages().newStorage(storageType, yamlMapping)

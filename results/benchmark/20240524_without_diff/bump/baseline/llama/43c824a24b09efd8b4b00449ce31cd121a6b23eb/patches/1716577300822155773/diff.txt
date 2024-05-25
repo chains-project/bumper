@@ -1,0 +1,7 @@
+2c2,5
+<     List<String> list = extractList(cache, branch);
+---
+>     List<String> list = new ArrayList<>();
+>     for (String value : cache.read(branch)) {
+>         list.add(value);
+>     }

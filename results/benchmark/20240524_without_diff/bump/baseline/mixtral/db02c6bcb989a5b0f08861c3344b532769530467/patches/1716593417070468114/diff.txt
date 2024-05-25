@@ -1,0 +1,10 @@
+2,3c2,7
+<     public boolean matches(Object actual) {
+<         return actual instanceof String && ((String) actual).contains(expected);
+---
+>     public boolean specificMatches(Object actual) {
+>         if (actual instanceof String) {
+>             String actualString = (String) actual;
+>             return actualString.contains(expected);
+>         }
+>         return false;

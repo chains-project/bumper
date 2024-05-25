@@ -1,0 +1,15 @@
+1a2,14
+> 
+> import java.util.List;
+> 
+> public class WalletsIn {
+> 
+>     public String getWallets(String url, String accessToken) {
+>         List<String> walletIds = List.of("wallet1", "wallet2");
+>         return new JoinedText(
+>                 System.lineSeparator(),
+>                 walletIds
+>         ).asString();
+>     }
+> }
+\ No newline at end of file

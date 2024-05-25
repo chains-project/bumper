@@ -1,0 +1,17 @@
+1d0
+< @Override
+3a3
+>     final Map<String, Object> yamlMap;
+4a5,8
+>         yamlMap = Yaml.createYamlInput(sub.toString()).readYamlMapping();
+>     } catch (final IOException err) {
+>         throw new UncheckedIOException(err);
+>     }
+8c12
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+---
+>                 sub.string("type"), yamlMap
+12,14d15
+<         } catch (final IOException err) {
+<             throw new UncheckedIOException(err);
+<         }

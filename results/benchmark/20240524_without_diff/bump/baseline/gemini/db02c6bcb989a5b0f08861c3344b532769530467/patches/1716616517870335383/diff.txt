@@ -1,0 +1,7 @@
+4c4,7
+<             String.format("%s: Layer already exists", this.image.layer())
+---
+>             String.format(
+>                 "%s: Layer already exists",
+>                 this.image.getLayer().toString()
+>             )

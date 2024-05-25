@@ -1,0 +1,17 @@
+1c1,12
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.jcabi.ssh.Ssh;
+> 
+> @Tv({"0.15.2"})
+> public class MyClass {
+>     private Ssh ssh;
+> 
+>     public MyClass() {
+>         this.ssh = new Ssh("my-ssh-server.com", 22);
+>     }
+> 
+>     // Rest of the class remains unchanged.
+> }
+\ No newline at end of file

@@ -1,0 +1,30 @@
+15,16c15
+<                     new IsNot<>(new IsNull<>())
+<                 );
+---
+>                     new NotNullValue<>());
+19,21c18,19
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+---
+>                     throwable,
+>                     new InstanceOf(InvalidDigestException.class));
+24c22
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     throwable.getMessage(),
+26d23
+<                         true,
+28,29c25
+<                     )
+<                 );
+---
+>                     ));
+32,34c28,29
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+<                 );
+---
+>                     throwable.getMessage(),
+>                     new StringContains(digest));

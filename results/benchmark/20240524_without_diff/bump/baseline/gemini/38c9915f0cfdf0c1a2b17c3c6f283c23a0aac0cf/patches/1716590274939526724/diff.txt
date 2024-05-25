@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class RtTransaction {
+> 
+>     public StickyScalar<String> getTransactionId() {
+>         return new StickyScalar<>(() -> {
+>             return String.valueOf(System.currentTimeMillis());
+>         });
+>     }
+> }
+\ No newline at end of file

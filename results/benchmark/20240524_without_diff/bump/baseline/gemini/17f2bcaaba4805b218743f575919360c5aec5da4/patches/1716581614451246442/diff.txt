@@ -1,0 +1,4 @@
+5c5
+<                 assertEquals(2, out.getChildCount());
+---
+>                 ShapeUtils.assertShape(out, 2, 2, 2, 2, 2, 2);

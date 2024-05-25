@@ -1,0 +1,17 @@
+1a2,16
+> 
+> import java.util.List;
+> 
+> public class RtTransaction {
+> 
+>     private final List<RtTransactionItem> items;
+> 
+>     public RtTransaction(List<RtTransactionItem> items) {
+>         this.items = items;
+>     }
+> 
+>     public String toText() {
+>         return new TextOf(items).asString();
+>     }
+> }
+\ No newline at end of file

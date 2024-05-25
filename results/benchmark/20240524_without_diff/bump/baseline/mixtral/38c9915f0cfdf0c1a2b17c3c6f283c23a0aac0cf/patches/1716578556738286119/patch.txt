@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+import org.cactoos.io.InputOf;
+
+@Override
+public double balance(String addr) throws IOException {
+  Scalar<Input> scalar = new IoCheckedScalar<>(() -> new InputOf(api().balance(addr)));
+  return scalar.value().readAllBytes().length;
+}

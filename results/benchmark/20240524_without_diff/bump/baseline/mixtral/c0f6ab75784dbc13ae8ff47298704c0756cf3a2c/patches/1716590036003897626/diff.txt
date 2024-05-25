@@ -1,0 +1,16 @@
+2,8c2,8
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>     DependencyCheckingAnalysisEngineConfiguration.Builder builder = DependencyCheckingAnalysisEngineConfiguration.builder();
+>     builder.setClientPid(globalConfig.getClientPid());
+>     builder.setExtraProperties(globalConfig.extraProperties());
+>     builder.setWorkDir(globalConfig.getWorkDir());
+>     builder.setModulesProvider(globalConfig.getModulesProvider());
+>     globalConfig.getEnabledLanguages().forEach(builder::addEnabledLanguage);
+>     return builder.build();

@@ -1,0 +1,12 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3c5,6
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2);
+>     PShape parent = GROUP_SHAPE.getParent();
+5a9,11
+>     if (parent != null) {
+>         parent.addChild(out);
+>     }

@@ -1,0 +1,22 @@
+1c1,17
+< import com.jcabi.aspects.Tv;
+\ No newline at end of file
+---
+> import com.amazonaws.services.s3.AmazonS3;
+> import com.amazonaws.services.s3.model.S3ObjectSummary;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import java.util.List;
+> 
+> public class AwsOcketITCase {
+> 
+>     private AmazonS3 s3 = ... // Initialize AmazonS3 object
+> 
+>     @Test
+>     @Override
+>     public void testBucketHasFiles() throws Exception {
+>         List<S3ObjectSummary> objects = s3.listObjectsV2("my-bucket").getObjectSummaries();
+>         MatcherAssert.assertThat(objects.size(), Matchers.greaterThan(0));
+>     }
+> }
+\ No newline at end of file

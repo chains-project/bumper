@@ -1,0 +1,4 @@
+5c5
+<                 faces.sort((a, b) -> Double.compare(PGS_ShapePredicates.area(a), PGS_ShapePredicates.area(b)));
+---
+>                 faces.sort(Comparator.comparingDouble(f -> PGS_ShapePredicates.area(f)));

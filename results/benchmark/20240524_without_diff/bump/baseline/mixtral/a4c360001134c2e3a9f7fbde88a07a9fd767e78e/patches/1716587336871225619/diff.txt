@@ -1,0 +1,7 @@
+6a7
+>     Pattern pattern = Pattern.compile(".+");
+9c10,11
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         Matcher matcher = pattern.matcher(s);
+>         if (matcher.find() && new FilterBuilder().include(regex).apply(s)) {

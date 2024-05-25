@@ -1,0 +1,4 @@
+2c2
+<     List<String> list = extractList(cache, branch);
+---
+>     List<String> list = cache.extractList(branch);

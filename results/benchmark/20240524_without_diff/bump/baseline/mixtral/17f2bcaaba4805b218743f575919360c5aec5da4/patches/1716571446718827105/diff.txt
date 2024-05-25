@@ -1,0 +1,10 @@
+3c3
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(hasTwoChildren(GROUP_SHAPE));
+6a7,10
+> 
+> private boolean hasTwoChildren(PShape shape) {
+>     return shape.getChildCount() == 2;
+> }
+\ No newline at end of file

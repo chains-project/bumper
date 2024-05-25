@@ -1,0 +1,9 @@
+3,4c3,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.chaikinCut(GROUP_SHAPE, 0.5, 2);
+---
+>     assumeTrue(MorphologyGroupShape.getChildCount() == 2);
+>     PShape parentShape = new PShape(PShape.GROUP);
+>     parentShape.addChild(MorphologyGroupShape.getChild(0));
+>     parentShape.addChild(MorphologyGroupShape.getChild(1));
+>     PShape out = PGS_Morphology.chaikinCut(parentShape, 0.5, 2);

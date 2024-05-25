@@ -1,0 +1,5 @@
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.transport.TFramedTransport;
+
+TTransport rawTransport = ... // Initialize your raw transport here
+TFramedTransport framedTransport = new TFramedTransport(rawTransport);

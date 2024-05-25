@@ -1,0 +1,18 @@
+11a12
+>                 final Throwable rootCause = Throwables.getRootCause(throwable);
+14c15
+<                     throwable,
+---
+>                     rootCause,
+19c20
+<                     Throwables.getRootCause(throwable),
+---
+>                     rootCause,
+24c25
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     rootCause.getMessage(),
+32c33
+<                     Throwables.getRootCause(throwable).getMessage(),
+---
+>                     rootCause.getMessage(),

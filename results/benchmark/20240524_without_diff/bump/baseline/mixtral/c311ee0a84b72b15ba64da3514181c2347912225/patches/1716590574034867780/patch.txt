@@ -1,0 +1,54 @@
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.stringContainsInOrder;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
+import org.junit.jupiter.api.Test;
+import com.artipie.asto.CheckedBlobSource;
+import com.artipie.asto.Content;
+import com.artipie.asto.Digest;
+import com.artipie.asto.Extend;
+import com.artipie.asto.Memory;
+import com.artipie.asto.Storage;
+import com.artipie.asto.layer.Layout;
+import com.artipie.asto.repo.RepoName;
+import com.artipie.asto.test.TestResource;
+import com.google.common.base.Throwables;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import io.vertx.core.Future;
+import io.vertx.ext.unit.Async;
+import io.vertx.ext.unit.TestContext;
+import io.vertx.ext.unit.junit.VertxExtension;
+
+@ExtendWith(VertxExtension.class)
+class AstoBlobsITCase {
+
+    @Test
+    void failsOnDigestMismatch(TestContext ctx) {
+        final Async async = ctx.async();
+        final Storage storage = Memory.buffer();
+        final Layout layout = Mockito.mock(Layout.class);
+        final RepoName repoName = new RepoName.Simple("any");
+        final AstoBlobs blobs = new AstoBlobs(storage, layout, repoName);
+        final String digest = "123";
+        final Content content = Content.from(TestResource.classpath("data"), StandardCharsets.UTF_8);
+        final Digest calculatedDigest = Digest.Sha256. Blake2b_256.sha256(content.asInputStream());
+        final CheckedBlobSource checkedBlobSource = new CheckedBlobSource(
+            content, calculatedDigest
+        );
+        blobs.put(checkedBlobSource)
+            .onSuccess(blob -> ctx.fail("Exception expected"))
+            .onFailure(throwable -> {
+                assertThat(throwable, notNullValue());
+                assertThat(throwable, instanceOf(InvalidDigestException.class));
+                final String message = throwable.getMessage();
+                assertThat(message, stringContainsInOrder(
+                    calculatedDigest.encoded(),
+                    digest
+                ));
+                async.complete();
+            });
+    }
+}

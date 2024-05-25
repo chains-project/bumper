@@ -1,0 +1,12 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>     public void failsOnDigestMismatch() {
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                     new Not(new NullValue())
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     new InstanceOf(InvalidDigestException.class)

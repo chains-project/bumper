@@ -1,0 +1,27 @@
+0a1,8
+> import processing.core.PApplet;
+> import processing.core.PShape;
+> import static processing.core.PConstants.*;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     static PShape GROUP_SHAPE;
+> 
+5,10c13,19
+<                 mink.beginShape();
+<                 mink.vertex(0, 0);
+<                 mink.vertex(5, 0);
+<                 mink.vertex(5, 5);
+<                 mink.vertex(0, 5);
+<                 mink.endShape(PConstants.CLOSE);
+---
+>         PApplet.beginShape();
+>         PApplet.vertex(0, 0);
+>         PApplet.vertex(5, 0);
+>         PApplet.vertex(5, 5);
+>         PApplet.vertex(0, 5);
+>         PApplet.endShape(CLOSE);
+>         mink.setVerletIntegration(false);
+14a24
+> }
+\ No newline at end of file

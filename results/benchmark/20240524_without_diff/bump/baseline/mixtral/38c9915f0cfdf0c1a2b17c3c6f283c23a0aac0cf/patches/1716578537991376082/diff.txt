@@ -1,0 +1,8 @@
+0a1
+> import org.cactoos.Io;
+1a3,6
+> 
+> IoCheckedScalar<String> checkedIo(Io<String> io) {
+>   return new IoCheckedScalar<>(io);
+> }
+\ No newline at end of file

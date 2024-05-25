@@ -1,0 +1,10 @@
+import org.cactoos.Scalar;
+
+import static org.cactoos.iterable.ConstantOf.constant;
+
+@Override
+public Scalar<Iterable<Wallet>> values() throws IOException {
+  return () -> this.wallets().stream()
+    .filter(Wallet::isActive)
+    .collect(Collectors.toList());
+}

@@ -1,0 +1,5 @@
+2a3
+>     ch.qos.logback.classic.spi.ThrowableInformation.buildCallerData(new Throwable()).forEach(callerData -> {
+3a5,6
+>       description.appendText(" (at ").appendValue(callerData.getDeclaringClass().getName()).appendValue(":").appendValue(callerData.getMethodName()).appendValue(":").appendValue(callerData.getLineNumber()).appendText(")").appendText("\n");
+>     });

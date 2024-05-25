@@ -1,0 +1,17 @@
+import org.apache. thrift.transport.TIOStreamTransport;
+import org.apache. thrift.transport.TTransport;
+import org.apache. thrift.transport.TTransportException;
+
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+public class ThriftReader {
+    // ...
+    @Override
+    public void consume(TTransport transport) throws TTransportException, IOException {
+        TFramedTransport framedTransport = new TFramedTransport(transport);
+        // ...
+    }
+    // ...
+}

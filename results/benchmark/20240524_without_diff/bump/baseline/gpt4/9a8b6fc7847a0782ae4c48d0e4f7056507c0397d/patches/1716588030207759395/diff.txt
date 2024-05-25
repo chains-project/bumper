@@ -1,0 +1,4 @@
+16c16
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         encoder.setPbeStringEncryptor((PBEStringEncryptor) stringEncrypter);

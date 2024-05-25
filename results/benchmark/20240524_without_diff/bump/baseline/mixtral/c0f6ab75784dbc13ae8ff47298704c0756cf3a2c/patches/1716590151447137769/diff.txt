@@ -1,0 +1,8 @@
+1a2
+>     Properties extraProperties = globalConfig.extraProperties();
+5,6c6,7
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+---
+>             .setExtraProperties(extraProperties)
+>             .setWorkDir(new File(extraProperties.getProperty("work.dir")))

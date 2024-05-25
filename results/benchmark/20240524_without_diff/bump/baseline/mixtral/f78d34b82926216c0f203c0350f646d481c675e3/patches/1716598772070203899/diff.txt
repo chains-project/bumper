@@ -1,0 +1,47 @@
+0a1,19
+> import net.minecraft.server.v1_16_R3.EntityPlayer;
+> import net.minecraft.server.v1_16_R3.GameProfile;
+> import net.minecraft.server.v1_16_R3.PlayerInteractManager;
+> import net.minecraft.server.v1_16_R3.WorldServer;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.apache.commons.lang3.text.WordUtils;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.regex.Pattern;
+> 
+> public class PlayerUtils {
+> 
+>     // ... (previous code)
+> 
+7,8c26
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+>     public static EntityPlayer getRandomPlayer(World world) {
+12c30
+<             : RandomWordUtils.getRandomWord();
+---
+>                 : WordUtils.randomWord();
+15c33
+<             : RandomWordUtils.getRandomWord();
+---
+>                 : WordUtils.randomWord();
+17,20c35,37
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         if (random.nextBoolean()) {
+>             first = LeetConverter.convert(first);
+>             last = LeetConverter.convert(last);
+44a62,64
+> 
+>     // ... (remaining code)
+> }
+\ No newline at end of file

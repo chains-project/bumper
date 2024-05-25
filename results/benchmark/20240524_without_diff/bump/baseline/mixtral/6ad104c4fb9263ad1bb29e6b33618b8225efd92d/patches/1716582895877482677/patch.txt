@@ -1,0 +1,29 @@
+import org.bouncycastle.crypto.DataLengthException;
+import org.bouncycastle.crypto.StreamCipher;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.util.Arrays;
+
+import java.io.IOException;
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+        throws IOException {
+
+    KeyParameter macKey = initRecordMAC(decryptCipher);
+
+    byte[] calculatedMAC = new byte[receivedMAC.length];
+    try {
+        decryptCipher.processBytes(additionalData, 0, additionalData.length, calculatedMAC, 0);
+        decryptCipher.processBytes(ciphertext, 0, ciphertext.length, calculatedMAC, additionalData.length);
+    } catch (DataLengthException e) {
+        throw new IOException("Error processing ciphertext", e);
+    }
+
+    if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+        throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+    }
+
+    byte[] output = new byte[ciphertext.length];
+    decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+
+    return output;
+}

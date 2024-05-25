@@ -1,0 +1,12 @@
+47,48c47,48
+<                     ((CraftPlayer) player).getHandle().playerConnection
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                     // ((CraftPlayer) player).getHandle().playerConnection
+>                     //     .sendPacket(new PacketPlayOutEntityTeleport(target));
+61,62c61,62
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                                     // ((CraftPlayer) p).getHandle().playerConnection
+>                                     //     .sendPacket(new PacketPlayOutEntityTeleport(target));

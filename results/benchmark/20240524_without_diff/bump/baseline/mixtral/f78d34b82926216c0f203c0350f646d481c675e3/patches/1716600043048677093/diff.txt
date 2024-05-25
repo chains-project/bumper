@@ -1,0 +1,50 @@
+0a1,12
+> import org.bukkit.Bukkit;
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.scheduler.BukkitRunnable;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations
+> {
+>     //...
+> 
+13a26,28
+>             Random random = new Random();
+>             Location center = player.getLocation();
+> 
+19,20d33
+<                     Location center = player.getLocation();
+< 
+37,45c50,63
+<                 Location center = player.getLocation();
+< 
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 Vector v1 = new Vector(3, 0.7, 0);
+>                 Vector v2 = new Vector(-1.5, 0.7, 2.3);
+>                 Vector v3 = new Vector(-1.5, 0.7, -2.3);
+>                 Vector v4 = new Vector(-3, 0.7, 0);
+>                 Vector v5 = new Vector(1.5, 0.7, -2.3);
+>                 Vector v6 = new Vector(1.5, 0.7, 2.3);
+> 
+>                 line(center.clone().add(v1), center.clone().add(v2));
+>                 line(center.clone().add(v2), center.clone().add(v3));
+>                 line(center.clone().add(v1), center.clone().add(v3));
+> 
+>                 line(center.clone().add(v4), center.clone().add(v5));
+>                 line(center.clone().add(v5), center.clone().add(v6));
+>                 line(center.clone().add(v4), center.clone().add(v6));
+59a78,80
+> 
+>     //...
+> }
+\ No newline at end of file

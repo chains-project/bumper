@@ -1,0 +1,64 @@
+0a1,13
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.allOf;
+> import static org.hamcrest.Matchers.containsString;
+> import static org.hamcrest.Matchers.equalTo;
+> import static org.junit.jupiter.api.Assertions.assertThrows;
+> import static org.junit.jupiter.params.provider.Arguments.arguments;
+> import java.util.stream.Stream;
+> import org.hamcrest.Matcher;
+> import org.junit.jupiter.api.Test;
+> import org.junit.jupiter.params.ParameterizedTest;
+> import org.junit.jupiter.params.provider.MethodSource;
+> import com.artipie.docker.Tag.Valid;
+> 
+2,25c15,38
+<     @ValueSource(strings = {
+<         "",
+<         ".0",
+<         "*",
+<         "\u00ea",
+<         "-my-tag",
+<         //@checkstyle LineLengthCheck (1 line)
+<         "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+<     })
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+<         final Tag.Valid tag = new Tag.Valid(original);
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+<         final Throwable throwable = Assertions.assertThrows(
+<             InvalidTagNameException.class,
+<             tag::value
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+---
+> @MethodSource("invalidTags")
+> void shouldFailToGetValueWhenInvalid(String original, Matcher<Boolean> validMatcher,
+>   Matcher<Throwable> throwableMatcher) {
+>   Valid tag = new Valid(original);
+>   assertThat(tag.valid(), validMatcher);
+>   assertThrows(InvalidTagNameException.class, tag::value, throwableMatcher);
+> }
+> 
+> static Stream<Arguments> invalidTags() {
+>   return Stream.of(
+>     arguments("", equalTo(false),
+>       allOf(containsString("Invalid tag"), containsString(""))),
+>     arguments(".0", equalTo(false),
+>       allOf(containsString("Invalid tag"), containsString(".0"))),
+>     arguments("*", equalTo(false),
+>       allOf(containsString("Invalid tag"), containsString("*"))),
+>     arguments("\u00ea", equalTo(false),
+>       allOf(containsString("Invalid tag"), containsString("\u00ea"))),
+>     arguments("-my-tag", equalTo(false),
+>       allOf(containsString("Invalid tag"), containsString("-my-tag"))),
+>     arguments("01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678",
+>       equalTo(false),
+>       allOf(containsString("Invalid tag"),
+>         containsString("01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678")))

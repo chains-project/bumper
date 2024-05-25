@@ -1,0 +1,7 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+// ...
+
+if (jsonBranch instanceof JsonBranch) {
+  // ...
+}

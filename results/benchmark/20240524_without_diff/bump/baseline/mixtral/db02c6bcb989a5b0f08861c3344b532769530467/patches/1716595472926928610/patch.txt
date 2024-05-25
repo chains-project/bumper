@@ -1,0 +1,4 @@
+@Override
+public void describeTo(io.cucumber.core.backend.TestDescription description) {
+    description.append("a string containing ").append(substring);
+}

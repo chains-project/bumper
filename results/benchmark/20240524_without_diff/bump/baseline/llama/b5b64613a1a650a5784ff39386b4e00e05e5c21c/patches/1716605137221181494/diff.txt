@@ -1,0 +1,15 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+12c6
+<                 if (isNotBlank(step.username)) {
+---
+>         if (StringUtils.isNotBlank(step.getUsername())) {
+15c9
+<                 if (isNotBlank(step.password)) {
+---
+>         if (StringUtils.isNotBlank(step.getPassword())) {

@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class TestClass {
+>     @Test
+>     public void testMethod() {
+>         // test code goes here
+>     }
+> }
+\ No newline at end of file

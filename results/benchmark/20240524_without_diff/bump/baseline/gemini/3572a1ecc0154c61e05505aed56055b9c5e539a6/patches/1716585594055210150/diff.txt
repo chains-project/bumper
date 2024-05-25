@@ -1,0 +1,4 @@
+9c9
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>       protocol = new TBinaryProtocol(framedTransport, true, true);

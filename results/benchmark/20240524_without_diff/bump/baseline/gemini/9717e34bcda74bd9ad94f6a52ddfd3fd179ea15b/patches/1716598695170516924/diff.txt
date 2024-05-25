@@ -1,0 +1,16 @@
+1a2,15
+> 
+>     public class MkGithub {
+> 
+>         private Tv tv = new Tv();
+> 
+>         public MkGithub() {
+>             // This constructor is needed to create an instance of MkGithub.
+>         }
+> 
+>         public void mock() {
+>             // This method is needed to mock the GitHub API.
+>             tv.play("https://github.com/");
+>         }
+>     }
+\ No newline at end of file

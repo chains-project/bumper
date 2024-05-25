@@ -1,0 +1,22 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+<                 ItemStack pageButton = Material.WHITE_STAINED_GLASS.parseItem();
+---
+>     ItemStack pageButton = Material.WHITE_STAINED_GLASS_PANE.createItemStack();
+8c7
+<                         buttonMaterial = Material.RED_STAINED_GLASS;
+---
+>         buttonMaterial = Material.RED_STAINED_GLASS_PANE;
+10c9
+<                         buttonMaterial = Material.GREEN_STAINED_GLASS;
+---
+>         buttonMaterial = Material.GREEN_STAINED_GLASS_PANE;
+14c13
+<                                 pageMeta.addEnchant(Enchantment.getByKey(Enchantments.DAMAGE_ALL).get(), 1, false);
+---
+>             pageMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+20c19
+<                 pageButton = buttonMaterial.parseItem();
+---
+>     pageButton = buttonMaterial.createItemStack();

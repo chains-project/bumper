@@ -1,0 +1,21 @@
+12c12,27
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+---
+>                 PShape out = new PShape(PShape.PATH);
+>                 out.beginShape();
+>                 out.vertex(0, 0);
+>                 out.vertex(5, 0);
+>                 out.vertex(5, 5);
+>                 out.vertex(0, 5);
+>                 out.endShape(PConstants.CLOSE);
+> 
+>                 PShape out2 = new PShape(PShape.PATH);
+>                 out2.beginShape();
+>                 out2.vertex(0, 0);
+>                 out2.vertex(5, 0);
+>                 out2.vertex(5, 5);
+>                 out2.vertex(0, 5);
+>                 out2.endShape(PConstants.CLOSE);
+> 
+13a29
+>                 assertEquals(2, out2.getChildCount());

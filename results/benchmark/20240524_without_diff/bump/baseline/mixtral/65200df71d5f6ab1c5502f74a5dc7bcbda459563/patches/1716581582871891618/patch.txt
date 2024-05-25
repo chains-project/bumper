@@ -1,0 +1,10 @@
+private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    PropertyAccessor propertyAccessor = new PropertyAccessor();
+    return AnalysisEngineConfiguration.builder()
+            .addEnabledLanguages(propertyAccessor.getEnabledLanguages())
+            .setClientPid(propertyAccessor.getClientPid())
+            .setExtraProperties(propertyAccessor.extraProperties())
+            .setWorkDir(propertyAccessor.getWorkDir())
+            .setModulesProvider(propertyAccessor.getModulesProvider())
+            .build();
+}

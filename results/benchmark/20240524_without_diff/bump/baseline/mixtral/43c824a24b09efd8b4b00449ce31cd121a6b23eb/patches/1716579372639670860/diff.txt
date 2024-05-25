@@ -1,0 +1,8 @@
+2,4c2,4
+<     List<String> list = extractList(cache, branch);
+<     if (!list.isEmpty())
+<       return list.get(0);
+---
+>     List<?> list = extractList(cache, branch);
+>     if (list != null && !list.isEmpty())
+>       return (String) list.get(0);

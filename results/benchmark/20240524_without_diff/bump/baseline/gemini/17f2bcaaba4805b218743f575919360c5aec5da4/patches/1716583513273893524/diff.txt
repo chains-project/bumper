@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Processing.densify(GROUP_SHAPE, 1);
+---
+>                 PShape out = PShape.densify(GROUP_SHAPE, 1);

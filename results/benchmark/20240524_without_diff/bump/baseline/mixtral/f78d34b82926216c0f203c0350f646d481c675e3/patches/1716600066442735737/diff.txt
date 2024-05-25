@@ -1,0 +1,53 @@
+0a1,12
+> import org.bukkit.Bukkit;
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.scheduler.BukkitRunnable;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations
+> {
+>     //...
+> 
+13a26,28
+>             Random rand = new Random();
+>             double[][] directions = {{3, 0, 0}, {-1.5, 0, 2.3}, {-1.5, 0, -2.3}, {3, 0, 0}, {-3, 0, 0}, {1.5, 0, -2.3}, {1.5, 0, 2.3}, {-3, 0, 0}};
+> 
+17,18d31
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+20a34,35
+>                 for (double i = 0; i < Math.PI * 2; i++)
+>                 {
+27,30c42
+<                     circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+---
+>                     circle(center.clone().add(directions[count[0] % 8][0], directions[count[0] % 8][1], directions[count[0] % 8][2]), count[0], 1.5);
+37,45c49,55
+<                 Location center = player.getLocation();
+< 
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>                 Vector v1 = new Vector(directions[rand.nextInt(8)][0], 0.7, directions[rand.nextInt(8)][2]);
+>                 Vector v2 = new Vector(directions[rand.nextInt(8)][0], 0.7, directions[rand.nextInt(8)][2]);
+>                 Vector v3 = new Vector(directions[rand.nextInt(8)][0], 0.7, directions[rand.nextInt(8)][2]);
+> 
+>                 line(center.clone().add(v1), center.clone().add(v2));
+>                 line(center.clone().add(v2), center.clone().add(v3));
+>                 line(center.clone().add(v3), center.clone().add(v1));
+59a70,72
+> 
+>     //...
+> }
+\ No newline at end of file

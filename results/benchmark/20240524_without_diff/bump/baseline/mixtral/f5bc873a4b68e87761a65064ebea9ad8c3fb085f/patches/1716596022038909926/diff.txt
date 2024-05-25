@@ -1,0 +1,34 @@
+0a1
+> import org.codehaus.plexus.components.interactivity.Prompter;
+1a3,32
+> 
+> // ...
+> 
+> @Override
+> protected void scanDirectory(String directory, List<String> includes, List<String> excludes) throws MojoFailureException {
+>     DirectoryScanner scanner = new DirectoryScanner();
+>     scanner.setBasedir(new File(directory));
+> 
+>     if (CollectionUtils.isNotEmpty(includes)) {
+>         scanner.setIncludes(includes.toArray(new String[0]));
+>     }
+> 
+>     if (CollectionUtils.isNotEmpty(excludes)) {
+>         scanner.setExcludes(excludes.toArray(new String[0]));
+>     }
+> 
+>     scanner.addDefaultExcludes();
+>     scanner.scan();
+> 
+>     String[] files = scanner.getIncludedFiles();
+>     for (String file : files) {
+>         File f = new File(directory, file);
+>         if (f.isFile()) {
+>             String relativePath = getRelativePath(f);
+>             if (relativePath != null) {
+>                 addResource(relativePath);
+>             }
+>         }
+>     }
+> }
+\ No newline at end of file

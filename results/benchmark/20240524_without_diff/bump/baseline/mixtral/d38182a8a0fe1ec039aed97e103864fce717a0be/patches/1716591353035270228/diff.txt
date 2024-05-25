@@ -1,0 +1,8 @@
+24c24
+<             (headers, rline) -> CompletableFuture.completedFuture(
+---
+>             (headers, rqline) -> CompletableFuture.completedFuture(
+41c41
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+---
+>         ).response(line, Map.of(), io.smallrye.mutiny.helpers.Empty.instance()).send(

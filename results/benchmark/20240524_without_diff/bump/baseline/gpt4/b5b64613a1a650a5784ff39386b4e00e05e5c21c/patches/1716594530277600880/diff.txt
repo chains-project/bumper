@@ -1,0 +1,13 @@
+8c8
+<             ObjectMapper mapper = createMapper();
+---
+>             ObjectMapper mapper = new ObjectMapper();
+15,16c15,19
+<         request.setOnSuccess(deleteFromDist ?
+<                 DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>         if(deleteFromDist) {
+>             request.setOnSuccess(DeleteReleaseBundleRequest.OnSuccess.DELETE);
+>         } else {
+>             request.setOnSuccess(DeleteReleaseBundleRequest.OnSuccess.KEEP);
+>         }

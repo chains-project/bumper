@@ -1,0 +1,31 @@
+1a2,30
+> import de.gwdg.metadataqa.marc.definition.MarcTagDefinition;
+> 
+> import java.util.List;
+> import java.util.Objects;
+> 
+> public class MarcFactory {
+>     // ...
+> 
+>     @Override
+>     public MarcTagDefinition getTagDefinition(String tag) {
+>         Objects.requireNonNull(tag, "tag must not be null");
+>         if (tag.startsWith("-")) {
+>             return getControlfieldDefinition(tag);
+>         } else if (tag.startsWith("0")) {
+>             return getFieldDefinition(tag);
+>         } else {
+>             return getSubfieldDefinition(tag);
+>         }
+>     }
+> 
+>     // ...
+> 
+>     private MarcTagDefinition getControlfieldDefinition(String tag) {
+>         List<JsonBranch> branches = jsonBranchProvider.getBranches(String.format("/controlfields/%s", tag));
+>         // ...
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

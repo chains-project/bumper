@@ -1,0 +1,9 @@
+12c12
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject<?>> reg = server.getRegistry();
+15c15,16
+<             registry.set(server, reg);
+---
+>             // ++ replace the line below with the following line
+>             registry.set(server, Collections.unmodifiableSortedMap(reg));

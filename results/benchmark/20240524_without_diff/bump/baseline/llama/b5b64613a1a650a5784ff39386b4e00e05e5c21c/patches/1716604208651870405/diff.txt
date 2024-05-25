@@ -1,0 +1,24 @@
+1,6d0
+< /**
+<          * Validate step's inputs.
+<          *
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+<          */
+8,9c2,5
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+---
+>     String url = server.getUrl();
+>     String artifactoryUrl = server.getArtifactory().getUrl();
+>     String distributionUrl = server.getDistribution().getUrl();
+>     if (isAllBlank(url, artifactoryUrl, distributionUrl, step.url, step.artifactoryUrl, step.distributionUrl)) {
+13,17c9,10
+<                 if (isNotBlank(step.username)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and username");
+<                 }
+<                 if (isNotBlank(step.password)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and password");
+---
+>         if (isNotBlank(step.username) || isNotBlank(step.password)) {
+>             throw new IOException("'rtServer' step can't include both credentialsId and username/password");

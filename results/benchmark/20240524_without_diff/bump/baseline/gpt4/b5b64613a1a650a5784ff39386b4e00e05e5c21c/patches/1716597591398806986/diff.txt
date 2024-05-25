@@ -1,0 +1,12 @@
+6,8c6,8
+<             String urlWithoutSlash = removeEnd(step.url, "/");
+<             String artifactoryUrl = defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+<             String distributionUrl = defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+---
+>     String urlWithoutSlash = StringUtils.removeEnd(step.url, "/");
+>     String artifactoryUrl = StringUtils.defaultIfBlank(step.artifactoryUrl, urlWithoutSlash + "/" + "artifactory");
+>     String distributionUrl = StringUtils.defaultIfBlank(step.distributionUrl, urlWithoutSlash + "/" + "distribution");
+12c12
+<             if (!isEmpty(step.credentialsId)) {
+---
+>     if (!StringUtils.isEmpty(step.credentialsId)) {

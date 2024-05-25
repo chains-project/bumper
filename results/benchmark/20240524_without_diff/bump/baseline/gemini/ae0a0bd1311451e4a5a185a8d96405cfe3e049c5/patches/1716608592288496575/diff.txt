@@ -1,0 +1,4 @@
+7c7
+<                     new RequestLine(RqMethod.PUT, "/one/two").toString()
+---
+>                     new RequestLine(RqMethod.PUT, "/one/two")

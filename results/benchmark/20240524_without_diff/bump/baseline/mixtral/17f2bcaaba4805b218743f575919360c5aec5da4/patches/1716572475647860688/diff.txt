@@ -1,0 +1,7 @@
+0a1,2
+> import processing.core.PShape;
+> 
+4c6
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+---
+>     PShape out = PGS_Morphology.buffer(GROUP_SHAPE, 0);

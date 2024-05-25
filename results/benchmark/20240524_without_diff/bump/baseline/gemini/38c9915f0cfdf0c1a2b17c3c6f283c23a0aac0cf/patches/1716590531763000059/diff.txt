@@ -1,0 +1,13 @@
+1a2,12
+> import java.io.IOException;
+> 
+> public class RtTransaction {
+> 
+>     /**
+>      * --
+>      */
+>     public static String getTransactionId(String url) throws IOException {
+>         return new TextOf(url).split("/").last();
+>     }
+> }
+\ No newline at end of file

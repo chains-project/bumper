@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class SshByPassword {
+> 
+>     public static void main(String[] args) throws Exception {
+>         Tv tv = new Tv();
+>         tv.turnOn();
+>     }
+> }
+\ No newline at end of file

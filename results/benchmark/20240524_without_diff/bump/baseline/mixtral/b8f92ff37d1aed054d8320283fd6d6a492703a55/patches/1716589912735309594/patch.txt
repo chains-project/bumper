@@ -1,0 +1,11 @@
+static List<String> getClassesLoc(File testSrcFolder) {
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+    ScanResult scanResult = null;
+    if (directoryScanner.scan() instanceof ScanResult) {
+        scanResult = (ScanResult) directoryScanner.scan();
+    }
+    if (scanResult != null) {
+        return scanResult.getClasses();
+    }
+    throw new RuntimeException("Failed to scan for classes.");
+}

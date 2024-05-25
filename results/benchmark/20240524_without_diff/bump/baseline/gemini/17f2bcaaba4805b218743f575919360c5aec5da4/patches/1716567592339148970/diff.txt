@@ -1,0 +1,12 @@
+36a37,47
+>         }
+> 
+>         private PShape polygonize(Collection<PEdge> edges) {
+>                 PShape shape = new PShape();
+>                 shape.beginShape();
+>                 for (PEdge edge : edges) {
+>                         shape.vertex(edge.a.x, edge.a.y);
+>                         shape.vertex(edge.b.x, edge.b.y);
+>                 }
+>                 shape.endShape(CLOSE);
+>                 return shape;

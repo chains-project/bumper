@@ -1,0 +1,10 @@
+1,5c1,3
+< // TODO: review this AI generated patch!
+< private static Matcher<String> imagePulled(final String image) {
+<     return new CoreMatchers.<String>containsString(
+<             String.format("Downloaded newer image for %s", image)
+<     );
+---
+> private static Matcher<String> imagePulled(String image) {
+>     String format = String.format("Downloaded newer image for %s", image);
+>     return new CoreMatchers.<String>containsString(format);

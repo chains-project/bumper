@@ -1,0 +1,28 @@
+import eu.europa.esig.dss.pades.CertificationPermission;
+
+import java.util.Optional;
+
+public class Signer {
+
+    // ...
+
+    @Override
+    public void signPdf(InputStream inputStream, OutputStream outputStream) {
+        Optional<CertificationPermission> certificationPermission = Optional.ofNullable(CertificationPermission.class)
+                .map(clazz -> {
+                    try {
+                        return (CertificationPermission) clazz.newInstance();
+                    } catch (InstantiationException | IllegalAccessException e) {
+                        throw new RuntimeException("Failed to create CertificationPermission instance.", e);
+                    }
+                });
+
+        certificationPermission.ifPresent(certificationPermissionInstance -> {
+            // Use the certificationPermissionInstance if it's available
+            // ...
+        });
+
+        // If the certificationPermissionInstance is not available, use an alternative approach
+        // ...
+    }
+}

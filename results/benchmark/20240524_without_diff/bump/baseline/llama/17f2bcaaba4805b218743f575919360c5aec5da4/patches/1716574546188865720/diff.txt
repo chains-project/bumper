@@ -1,0 +1,13 @@
+8,9c8,16
+<                 PShape mergedMesh = PGS_Meshing.areaMerge(mesh, areaThreshold);
+<                 assertTrue(PGS_Conversion.getChildren(mergedMesh).stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold));
+---
+>     List<PShape> children = PGS_Conversion.getChildren(mesh);
+>     PShape mergedMesh = new PShape();
+>     for (PShape face : children) {
+>         if (PGS_ShapePredicates.area(face) >= areaThreshold) {
+>             mergedMesh.addChild(face);
+>         }
+>     }
+> 
+>     assertTrue(mergedMesh.getChildren().stream().allMatch(f -> PGS_ShapePredicates.area(f) >= areaThreshold));

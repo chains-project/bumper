@@ -1,0 +1,15 @@
+1,5c1,4
+< /**
+<      * ReLU関数で値を強めて出力系に入れる。
+<      *
+<      * @param inputData InputクラスのArrayListデータ。
+<      */
+---
+> import java.util.stream.IntStream;
+> 
+> //...
+> 
+8c7
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+---
+>     IntStream.range(0, inputData.size()).parallel().forEach(i -> input(inputData.get(i).getWeightingValue()));

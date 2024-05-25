@@ -1,0 +1,13 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3c5
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+---
+>     assumeTrue(hasTwoChildren(GROUP_SHAPE));
+6a9,12
+> 
+> boolean hasTwoChildren(PShape shape) {
+>     return shape.getChildCount() == 2;
+> }
+\ No newline at end of file

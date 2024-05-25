@@ -1,0 +1,14 @@
+0a1
+> import org.apache. thrift.transport.TTransport;
+1a3,12
+> 
+> public class ThriftReader {
+>   // ...
+>   @Override
+>   public void open() {
+>     Transport transport = new TFramedTransport(new TTransport());
+>     // ...
+>   }
+>   // ...
+> }
+\ No newline at end of file

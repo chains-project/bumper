@@ -1,0 +1,18 @@
+import processing.core.PShape;
+import static processing.core.PConstants.*;
+
+@Test
+void test_PGS_Morphology_minkSum() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    final PShape mink = createShape(PATH);
+    beginShape();
+    vertex(0, 0);
+    vertex(5, 0);
+    vertex(5, 5);
+    vertex(0, 5);
+    endShape(CLOSE);
+    mink.setShapeType(PATH);
+
+    PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+    assertEquals(2, out.getChildCount());
+}

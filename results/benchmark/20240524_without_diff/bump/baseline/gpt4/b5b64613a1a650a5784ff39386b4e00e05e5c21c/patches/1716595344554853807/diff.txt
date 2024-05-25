@@ -1,0 +1,16 @@
+7a8,11
+>     if (server == null || step == null) {
+>         throw new IOException("Server or Step is null");
+>     }
+> 
+11a16
+> 
+13c18
+<                 if (isNotBlank(step.username)) {
+---
+>         if (isNotBlank(step.getUsername())) {
+16c21,22
+<                 if (isNotBlank(step.password)) {
+---
+> 
+>         if (isNotBlank(step.getPassword())) {

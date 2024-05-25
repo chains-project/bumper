@@ -1,0 +1,7 @@
+5a6,7
+>         final String expectedDigest = original.digest();
+>         final String expectedOutput = String.format("latest: digest: %s", expectedDigest);
+10c12
+<                 String.format("latest: digest: %s", original.digest())
+---
+>                 expectedOutput

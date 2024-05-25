@@ -1,0 +1,10 @@
+1,9d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+<     @RetryOnFailure(
+<         attempts = Tv.SEVEN,
+<         delay = 1,
+<         unit = TimeUnit.MINUTES,
+<         verbose = false,
+<         types = IOException.class
+<     )

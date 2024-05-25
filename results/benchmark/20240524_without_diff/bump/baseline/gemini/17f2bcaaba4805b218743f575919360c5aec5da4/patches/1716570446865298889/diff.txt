@@ -1,0 +1,5 @@
+12c12,13
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+---
+>                 // fix: cast the output to PShapeGroup
+>                 PShapeGroup out = (PShapeGroup) PGS_Morphology.minkSum(GROUP_SHAPE, mink);

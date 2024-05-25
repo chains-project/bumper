@@ -1,0 +1,9 @@
+4,5c4,5
+<     if (instances != null)
+<       for (XmlFieldInstance instance : instances)
+---
+>     if (instances != null) {
+>         for (XmlFieldInstance instance : instances) {
+6a7,8
+>         }
+>     }

@@ -1,0 +1,25 @@
+0a1,16
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.Polygonizer;
+> import org.locationtech.jts.io.WKTReader;
+> import org.locationtech.jts.linearref.LengthIndexedLine;
+> import org.locationtech.jts.linearref.LinearLocation;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.concurrent.ExecutorService;
+> import java.util.concurrent.Executors;
+> import java.util.concurrent.TimeUnit;
+> 
+4a21,22
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>     WKTReader wktReader = new WKTReader(GEOM_FACTORY);
+19,20c37
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>             LineString l = (LineString) wktReader.read("LINESTRING(" + e.a.getX() + " " + e.a.getY() + ", " + e.b.getX() + " " + e.b.getY() + ")");

@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class RtTransaction {
+> 
+>     public StickyScalar<String> getTransactionId() {
+>         return new StickyScalar<>("");
+>     }
+> 
+> }
+\ No newline at end of file

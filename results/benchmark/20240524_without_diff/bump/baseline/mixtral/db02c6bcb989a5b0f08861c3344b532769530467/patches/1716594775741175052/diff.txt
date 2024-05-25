@@ -1,0 +1,32 @@
+1d0
+< // TODO: review this AI generated patch!
+26,28c25
+<                         new JUnit413StringContains(
+<                                 "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                         )
+---
+>                         new JUnit413StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7")
+37a35,57
+> }
+> 
+> private static class JUnit413StringContains extends BaseMatcher<String, String> {
+>     private final String substring;
+> 
+>     private JUnit413StringContains(String substring) {
+>         this.substring = substring;
+>     }
+> 
+>     @Override
+>     public boolean matches(String s) {
+>         return s.contains(substring);
+>     }
+> 
+>     @Override
+>     public void describeTo(Description description) {
+>         description.appendText("a string containing ").appendValue(substring);
+>     }
+> 
+>     @Override
+>     public void describeMismatch(String s, Description description) {
+>         description.appendText("was ").appendValue(s);
+>     }

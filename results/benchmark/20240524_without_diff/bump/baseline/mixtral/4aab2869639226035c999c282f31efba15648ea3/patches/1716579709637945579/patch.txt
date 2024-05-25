@@ -1,0 +1,15 @@
+import com.artipie.asto.storage.Storage;
+
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
+
+public class YamlPolicyFactory {
+    private final Storage storage;
+
+    public YamlPolicyFactory() {
+        this.storage = Storages.loose("policies", Path::of);
+    }
+
+    // existing methods
+}

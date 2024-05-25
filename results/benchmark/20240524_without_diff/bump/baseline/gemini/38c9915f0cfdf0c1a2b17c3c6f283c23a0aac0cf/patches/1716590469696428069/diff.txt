@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class RtTransaction {
+> 
+>     public RtTransaction(StickyScalar<String> transactionId) {
+>         this.transactionId = transactionId;
+>     }
+> 
+>     private final StickyScalar<String> transactionId;
+> 
+>     public String getTransactionId() {
+>         return transactionId.value();
+>     }
+> }
+\ No newline at end of file

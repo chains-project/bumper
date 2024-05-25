@@ -1,0 +1,16 @@
+15,16c15,26
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+---
+>         this.yamlConstructors.put(zoneIdTag, new Construct() {
+>             @Override
+>             public Object construct(Node node) {
+>                 return ZoneId.of(node_scalar);
+>             }
+>         });
+>         this.yamlConstructors.put(localDateTag, new Construct() {
+>             @Override
+>             public Object construct(Node node) {
+>                 return LocalDate.parse(node_scalar);
+>             }
+>         });

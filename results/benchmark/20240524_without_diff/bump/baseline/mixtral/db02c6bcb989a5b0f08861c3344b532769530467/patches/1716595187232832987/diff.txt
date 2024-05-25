@@ -1,0 +1,4 @@
+2a3,5
+>       if (substring == null) {
+>           throw new IllegalStateException("substring cannot be null");
+>       }

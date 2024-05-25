@@ -1,0 +1,4 @@
+57c57
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+---
+>         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds * 20L);

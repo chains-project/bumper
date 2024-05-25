@@ -1,0 +1,10 @@
+3c3
+<         DeleteReleaseBundleRequest request;
+---
+>     DeleteReleaseBundleRequest request = new DeleteReleaseBundleRequest();
+5,7d4
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+<                 throw new IOException("The distRules input can't be used with site, city or country codes");
+<             }
+11d7
+<             request = new DeleteReleaseBundleRequest();

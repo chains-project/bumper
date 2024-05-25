@@ -1,0 +1,26 @@
+1d0
+< // TODO: review this AI generated patch!
+13,22c12,13
+<                 MatcherAssert.assertThat(
+<                         "Exception thrown",
+<                         throwable,
+<                         new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                         "Exception is InvalidDigestException",
+<                         Throwables.getRootCause(throwable),
+<                         new IsInstanceOf(InvalidDigestException.class)
+<                 );
+---
+>                 if (throwable != null) {
+>                     InvalidDigestException ide = (InvalidDigestException) Throwables.getRootCause(throwable);
+25c16
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                             ide.calculatedDigest(),
+30c21
+<                         Throwables.getRootCause(throwable).getMessage(),
+---
+>                             ide.expectedDigest(),
+32a24
+>                 }

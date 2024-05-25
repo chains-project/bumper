@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class Signer {
+>     public static void main(String[] args) {
+>         CertificationPermission permission = new CertificationPermission();
+>         // Your code here
+>     }
+> }
+\ No newline at end of file

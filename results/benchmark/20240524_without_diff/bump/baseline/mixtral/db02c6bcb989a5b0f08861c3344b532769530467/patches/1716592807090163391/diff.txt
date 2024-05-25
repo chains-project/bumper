@@ -1,0 +1,29 @@
+25,26c25
+<                     new StringContains(
+<                         true,
+---
+>                         new JUnit413StringContains(
+33c32
+<                     new StringContains(true, digest)
+---
+>                         new JUnit413StringContains(digest)
+38a38,55
+> 
+> private static class JUnit413StringContains extends BaseMatcher<String> {
+>     private final String expected;
+> 
+>     JUnit413StringContains(String expected) {
+>         this.expected = expected;
+>     }
+> 
+>     @Override
+>     public boolean matches(Object actual) {
+>         return actual instanceof String && ((String) actual).contains(expected);
+>     }
+> 
+>     @Override
+>     public void describeTo(Description description) {
+>         description.appendText("a string containing: ").appendValue(expected);
+>     }
+> }
+\ No newline at end of file

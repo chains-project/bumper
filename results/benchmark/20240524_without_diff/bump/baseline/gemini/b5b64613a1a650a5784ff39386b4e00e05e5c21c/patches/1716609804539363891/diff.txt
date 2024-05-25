@@ -1,0 +1,9 @@
+10a11,18
+>             }
+>             if (isNotBlank(step.credentialsId)) {
+>                 if (isNotBlank(step.username)) {
+>                     throw new IOException("'rtServer' step can't include both credentialsId and username");
+>                 }
+>                 if (isNotBlank(step.password)) {
+>                     throw new IOException("'rtServer' step can't include both credentialsId and password");
+>                 }

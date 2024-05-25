@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.FormattedText;
+\ No newline at end of file
+---
+> import java.text.MessageFormat;
+> 
+> public class WalletsIn {
+>     public void method() {
+>         String formattedText = MessageFormat.format("some text", new Object[] {});
+>     }
+> }
+\ No newline at end of file

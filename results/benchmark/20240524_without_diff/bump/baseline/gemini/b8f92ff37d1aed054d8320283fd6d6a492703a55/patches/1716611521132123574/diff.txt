@@ -1,0 +1,16 @@
+4c4,6
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+---
+>                         File directoryFile = new File(directory);
+>                         if (directoryFile.exists()) {
+>                                 DirectoryScanner directoryScanner = new DirectoryScanner(directoryFile, TestListResolver.getWildcard());
+6a9
+>                 }
+9c12,14
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+---
+>                                 File directoryFile = new File(directory);
+>                                 if (directoryFile.exists()) {
+>                                         DirectoryScanner directoryScanner = new DirectoryScanner(directoryFile, TestListResolver.getWildcard());
+10a16
+>                                 }

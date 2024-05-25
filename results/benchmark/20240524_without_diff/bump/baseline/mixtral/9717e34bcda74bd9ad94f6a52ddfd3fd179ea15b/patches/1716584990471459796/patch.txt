@@ -1,0 +1,7 @@
+import com.jcabi.github.Github;
+
+@Tv(403)
+@Override
+public Github github() {
+    return new MkGithub();
+}

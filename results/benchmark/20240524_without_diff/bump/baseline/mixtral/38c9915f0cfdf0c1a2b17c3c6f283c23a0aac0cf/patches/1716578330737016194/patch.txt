@@ -1,0 +1,8 @@
+import org.cactoos.Scalar;
+
+import static org.cactoos.iterable.ConstantOf.constant;
+
+@Override
+public Scalar<Iterable<Wallet>> wallets() throws IOException {
+  return () -> constant(new Wallets(api()));
+}

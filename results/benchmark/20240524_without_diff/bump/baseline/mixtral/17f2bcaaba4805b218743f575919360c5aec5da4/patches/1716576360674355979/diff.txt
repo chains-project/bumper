@@ -1,0 +1,13 @@
+0a1,5
+> import processing.core.PShape;
+> import static org.junit.Assert.assertEquals;
+> import org.junit.Assume;
+> import org.junit.Test;
+> 
+3,4c8,10
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+---
+>     PShape groupShape = GROUP_SHAPE.getChild(0);
+>     Assume.assumeTrue(groupShape.getChildCount() == 2);
+>     PShape out = PGS_Morphology.buffer(groupShape, -1);

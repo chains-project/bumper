@@ -1,0 +1,7 @@
+import com.jcabi.aspects.Immutable;
+
+@Immutable
+public interface Region {
+    @Tv("region")
+    String name();
+}

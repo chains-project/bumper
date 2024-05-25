@@ -1,0 +1,14 @@
+1,5d0
+< /**
+<      * ReLU関数で値を強めて出力系に入れる。
+<      *
+<      * @param inputData InputクラスのArrayListデータ。
+<      */
+8,9c3,6
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+<         setValue(sigmoid(sum));
+---
+>         inputData.parallelStream().forEachOrdered(input -> {
+>             double weightingValue = input.getWeightingValue();
+>             setValue(sigmoid(weightingValue));
+>         });

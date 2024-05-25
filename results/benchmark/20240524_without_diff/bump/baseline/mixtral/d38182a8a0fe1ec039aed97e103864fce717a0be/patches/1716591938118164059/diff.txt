@@ -1,0 +1,29 @@
+0a1,2
+> import static java.util.stream.Collectors.toList;
+> 
+3,6c5
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+---
+>     BearerAuthScheme authScheme = new BearerAuthScheme(
+8c7,8
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+---
+>             TestAuthentication.authenticate(token)
+>                 .stream()
+14d13
+<                 )
+15a15,25
+>     return new DockerSlice(
+>         new AstoDocker(new InMemoryStorage()),
+>         new Permissions.Single(TestAuthentication.ALICE.name(), action),
+>         authScheme
+>     );
+> }
+> 
+> private static List<TestAuthentication> authenticate(String token) {
+>     return Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>         .filter(user -> token.equals(token(user)))
+>         .collect(toList());

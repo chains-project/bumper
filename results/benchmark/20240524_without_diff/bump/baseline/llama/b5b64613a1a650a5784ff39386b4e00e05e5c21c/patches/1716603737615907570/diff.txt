@@ -1,0 +1,6 @@
+1d0
+< @Override
+20c19
+<             return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "");
+---
+>     return new JFrogPlatformInstance(artifactoryServer, distributionServer, step.url, "", step.username, step.password);

@@ -1,0 +1,9 @@
+import de.gwdg.metadataqa.api.json.JsonBranch;
+
+// Add the following import statement
+import de.gwdg.metadataqa.api.json.JsonPathUtils;
+
+// Modify the following line
+// JsonBranch branch = JsonPathUtils.getBranch(json, path);
+// To
+JsonBranch branch = JsonPathUtils.getBranch(json, path, JsonBranch.class);

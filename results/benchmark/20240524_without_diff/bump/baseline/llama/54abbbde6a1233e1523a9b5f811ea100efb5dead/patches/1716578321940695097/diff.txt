@@ -1,0 +1,19 @@
+1,2d0
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+4c2
+<         attempts = Tv.SEVEN,
+---
+>     attempts = 7,
+13,14c11,18
+<             JSch.setLogger(new JschLogger());
+<             final JSch jsch = new JSch();
+---
+>         com.jcraft.jsch.Logger jschLogger = new com.jcraft.jsch.Logger() {
+>             @Override
+>             public void log(String message) {
+>                 Logger.debug(this, message);
+>             }
+>         };
+>         com.jcraft.jsch.JSch.setLogger(jschLogger);
+>         final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();

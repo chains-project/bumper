@@ -1,0 +1,9 @@
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) throws IOException {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+
+    return objectMapper.readValue(new File(path), clazz);
+}

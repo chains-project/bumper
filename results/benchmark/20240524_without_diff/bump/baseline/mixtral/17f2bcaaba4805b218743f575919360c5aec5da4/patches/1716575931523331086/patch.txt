@@ -1,0 +1,10 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testMorphologyGroupShape() {
+        assumeTrue(false);
+        // Add your test code here
+    }
+}

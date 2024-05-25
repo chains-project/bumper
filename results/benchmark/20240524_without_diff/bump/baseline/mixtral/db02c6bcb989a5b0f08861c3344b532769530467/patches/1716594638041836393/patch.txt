@@ -1,0 +1,21 @@
+@Test
+void shouldThrowExceptionWhenDigestIsAbsent() {
+    MatcherAssert.assertThat(
+        Assertions.assertThrows(
+            IllegalStateException.class,
+            () -> {
+              String query = "?what=nothing";
+              String path = "/v2/my-repo/blobs/uploads/123-abc";
+              UploadEntity.Request request = new UploadEntity.Request(
+                  new RequestLine(
+                      RqMethod.PUT,
+                      path + query
+                  ).toString()
+              );
+              request.digest();
+              return null;
+            }
+        ).getMessage(),
+        new StringContains(false, "Unexpected query")
+    );
+}

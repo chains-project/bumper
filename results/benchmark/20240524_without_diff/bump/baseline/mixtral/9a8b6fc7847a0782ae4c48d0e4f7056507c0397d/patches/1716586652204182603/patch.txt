@@ -1,0 +1,30 @@
+import org.jasypt.pbe.PBEStringEncryptor;
+import org.jasypt.pbe.config.SimpleStringPBEConfig;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.text.TextEncryptorFactory;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+
+    char[] chars = toChars(password);
+    TextEncryptor textEncryptor = TextEncryptorFactory.create();
+    textEncryptor.setPasswordCharArray(chars);
+
+    if (getProviderName() != null && !getProviderName().isEmpty()) {
+        SimpleStringPBEConfig config = new SimpleStringPBEConfig();
+        config.setProviderName(getProviderName());
+        config.setAlgorithm(getAlgorithm());
+        textEncryptor.setConfig(config);
+    } else {
+        textEncryptor.setAlgorithm(getAlgorithm());
+    }
+
+    PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+    encoder.setPbeStringEncryptor((PBEStringEncryptor) textEncryptor);
+
+    scramble(password);
+    scramble(chars);
+
+    return encoder;
+}

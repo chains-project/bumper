@@ -1,0 +1,13 @@
+1d0
+< // TODO: review this AI generated patch!
+4a4,5
+>         String expected = expectedString;
+> 
+6c7
+<             description.appendText(expectedString);
+---
+>             description.appendText(expected);
+10c11
+<             return item.contains(expectedString);
+---
+>             return item.contains(expected);

@@ -1,0 +1,5 @@
+3c3,4
+<         description.appendText("was ").appendValue(s);
+---
+>     org.hamcrest.Description desc = description;
+>     desc.appendText("was ").appendValue(s);

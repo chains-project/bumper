@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1261153343,
+    "in_class_code": "{\n    @Override\n    public Optional<Authentication.User> user() {\n        return java.util.Optional.of(new Authentication.User(\"alice\"));\n    }\n}",
+    "qualified_in_class_code": " {\n    @java.lang.Override\n    public Optional<com.artipie.http.auth.Authentication.User> user() {\n        return java.util.Optional.of(new com.artipie.http.auth.Authentication.User(\"alice\"));\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class User\n  location: interface com.artipie.http.auth.Authentication\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/AuthScopeSliceTest.java:[57,62] cannot find symbol",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/AuthScopeSliceTest.java",
+        "client_line_position": "57"
+    },
+    "client_end_line_number": 58,
+    "client_line_number": 55,
+    "method_code": "@Override\n                    public Optional<Authentication.User> user() {\n                        return Optional.of(new Authentication.User(\"alice\"));\n                    }",
+    "qualified_code": "@java.lang.Override\npublic Optional<com.artipie.http.auth.Authentication.User> user() {\n    return java.util.Optional.of(new com.artipie.http.auth.Authentication.User(\"alice\"));\n}",
+    "method_name": "user"
+}

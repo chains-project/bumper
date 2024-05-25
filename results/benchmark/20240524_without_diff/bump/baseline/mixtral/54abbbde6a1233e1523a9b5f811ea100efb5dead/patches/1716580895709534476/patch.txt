@@ -1,0 +1,30 @@
+@RetryOnFailure(
+        attempts = Tv.SEVEN,
+        delay = 1,
+        unit = TimeUnit.MINUTES,
+        verbose = false,
+        types = IOException.class
+)
+protected Session session() throws IOException {
+    if (this.password == null) {
+        throw new IOException("Password is null");
+    }
+    try {
+        JSch.setLogger(new JschLogger());
+        final JSch jsch = new JSch();
+        Logger.debug(
+                this,
+                "Opening SSH session to %s@%s:%s (auth with password)...",
+                this.getLogin(), this.getAddr(), this.getPort()
+        );
+        try {
+            return jsch.getSession(
+                    this.getLogin(), this.getAddr(), this.getPort()
+            );
+        } catch (JSchException ex) {
+            throw new IOException(ex);
+        }
+    } catch (final JSchException ex) {
+        throw new IOException(ex);
+    }
+}

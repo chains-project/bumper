@@ -1,0 +1,7 @@
+3c3,6
+<         return directoryScanner.scan().getClasses();
+---
+>     if (directoryScanner.scan() instanceof ScanResult scanResult) {
+>         return scanResult.getClasses();
+>     }
+>     throw new RuntimeException("Failed to scan for classes.");

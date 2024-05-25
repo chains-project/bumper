@@ -1,0 +1,6 @@
+@Test
+void test_PGS_Morphology_smooth() {
+    assumeTrue(morphologyGroupShape.getChildCount() == 2);
+    PShape out = PGS_Morphology.smooth(morphologyGroupShape, 0.5);
+    assertEquals(2, out.getChildCount());
+}

@@ -1,0 +1,20 @@
+0a1
+>   import org.cactoos.text.Text;
+1a3,18
+> 
+>   public class RtTransaction {
+> 
+>     // ...
+> 
+>     private Text transactionId;
+> 
+>     // ...
+> 
+>     public RtTransaction(String transactionId) {
+>       this.transactionId = new UncheckedText(transactionId);
+>     }
+> 
+>     // ...
+> 
+>   }
+\ No newline at end of file

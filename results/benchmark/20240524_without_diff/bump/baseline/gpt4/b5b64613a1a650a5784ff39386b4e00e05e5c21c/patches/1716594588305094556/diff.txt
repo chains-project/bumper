@@ -1,0 +1,4 @@
+16c16
+<                 DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>                 DeleteReleaseBundleRequest.OnSuccess.DELETE : DeleteReleaseBundleRequest.OnSuccess.KEEP);

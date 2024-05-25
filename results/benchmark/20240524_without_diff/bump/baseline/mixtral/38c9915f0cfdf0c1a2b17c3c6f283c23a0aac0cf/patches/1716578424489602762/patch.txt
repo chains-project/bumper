@@ -1,0 +1,20 @@
+import org.cactoos.Io;
+import org.cactoos.scalar.IoCheckedScalar;
+
+public class WalletsIn {
+    ...
+    @Override
+    public double balance(final String id) throws IOException {
+        IoCheckedScalar balance = IoCheckedScalar.checked(
+            IoScalar.size(
+                Io.inputUtf8(
+                    new Http<>(
+                        new Url("http://localhost:8080/zold/balance/" + id)
+                    ).openStream()
+                )
+            )
+        );
+        return balance.value() / 100.0;
+    }
+    ...
+}

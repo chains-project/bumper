@@ -1,0 +1,13 @@
+1c1,8
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.StrongTextEncryptor;
+> 
+> @Override
+> public String encode(String rawPassword) {
+>     StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+>     textEncryptor.setPassword(password);
+>     return textEncryptor.encrypt(rawPassword);
+> }
+\ No newline at end of file

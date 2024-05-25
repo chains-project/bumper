@@ -1,0 +1,18 @@
+1d0
+< @Override
+2a2,7
+>     Authentication.User user = CompletableFuture.completedFuture(
+>         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>             .filter(u -> token(u).equals(token))
+>             .map(u -> new Authentication.User(u.name()))
+>             .findFirst()
+>     ).join();
+7,12c12
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+<                             .findFirst()
+<                     ),
+---
+>             t -> CompletableFuture.completedFuture(user),

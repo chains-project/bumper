@@ -1,0 +1,18 @@
+0a1,7
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+> 
+> import java.io.IOException;
+> 
+6c13,19
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = new byte[receivedMAC.length];
+>     try {
+>         decryptCipher.processBytes(additionalData, 0, additionalData.length, calculatedMAC, 0);
+>         decryptCipher.processBytes(ciphertext, 0, ciphertext.length, calculatedMAC, additionalData.length);
+>     } catch (DataLengthException e) {
+>         throw new IOException("Error processing ciphertext", e);
+>     }

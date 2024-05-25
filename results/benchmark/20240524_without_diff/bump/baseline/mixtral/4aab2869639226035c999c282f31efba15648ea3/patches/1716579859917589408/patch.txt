@@ -1,0 +1,9 @@
+import java.io.IOException;
+
+// ...
+
+try {
+  // existing code that reads the YAML file
+} catch (IOException e) {
+  throw new UncheckedIOException(e);
+}

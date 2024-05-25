@@ -1,0 +1,16 @@
+1a2,15
+>   import org.cactoos.text.TextOf;
+> 
+>   public class RtTransaction {
+> 
+>     public String getTransactionId() {
+>       return new FormattedText("Transaction ID: %s", new TextOf(this.transactionId)).asString();
+>     }
+> 
+>     private final String transactionId;
+> 
+>     public RtTransaction(String transactionId) {
+>       this.transactionId = transactionId;
+>     }
+>   }
+\ No newline at end of file

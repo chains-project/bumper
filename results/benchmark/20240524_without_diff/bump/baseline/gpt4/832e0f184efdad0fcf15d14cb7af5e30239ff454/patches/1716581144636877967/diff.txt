@@ -1,0 +1,8 @@
+48c48
+<                                                 translateCommand = new WWCTranslate((CommandSender)player, null, null, new String[] {main.getServer().getPlayer(UUID.fromString(targetPlayerUUID)).getName(), selectedSourceLanguage, outLang});
+---
+>                                         translateCommand = new WWCTranslate((CommandSender)player, null, null, new String[] {main.getServer().getPlayer(targetPlayerUUID).getName(), selectedSourceLanguage, outLang});
+83c83
+<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+---
+>                 contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {String.valueOf(pagination.getPage() + 1)}), e -> {}));

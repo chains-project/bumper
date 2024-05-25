@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 2087885397,
+    "in_class_code": "private static class JUnit413StringContains extends BaseMatcher<String> {\n    private final String expected;\n\n    JUnit413StringContains(String expected) {\n        this.expected = expected;\n    }\n\n    @Override\n    public boolean matches(Object actual) {\n        return (actual instanceof String) && ((String) (actual)).contains(expected);\n    }\n}",
+    "qualified_in_class_code": "private static class JUnit413StringContains extends com.artipie.docker.asto.BaseMatcher<java.lang.String> {\n    private final java.lang.String expected;\n\n    JUnit413StringContains(java.lang.String expected) {\n        this.expected = expected;\n    }\n\n    @java.lang.Override\n    public boolean matches(java.lang.Object actual) {\n        return (actual instanceof java.lang.String) && ((java.lang.String) (actual)).contains(expected);\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/asto/AstoBlobsITCase.java:[109,5] method does not override or implement a method from a supertype",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/asto/AstoBlobsITCase.java",
+        "client_line_position": "109"
+    },
+    "client_end_line_number": 112,
+    "client_line_number": 109,
+    "method_code": "@Override\n    public boolean matches(Object actual) {\n        return actual instanceof String && ((String) actual).contains(expected);\n    }",
+    "qualified_code": "@java.lang.Override\npublic boolean matches(java.lang.Object actual) {\n    return (actual instanceof java.lang.String) && ((java.lang.String) (actual)).contains(expected);\n}",
+    "method_name": "matches"
+}

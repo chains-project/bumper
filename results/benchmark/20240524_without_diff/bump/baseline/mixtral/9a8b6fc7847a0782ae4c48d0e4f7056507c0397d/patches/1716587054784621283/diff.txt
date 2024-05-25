@@ -1,0 +1,14 @@
+0a1,5
+> import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+> import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.security.crypto.password.StandardPasswordEncoder;
+> 
+3,4c8,11
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+>     PasswordEncoder encoder = new DelegatingPasswordEncoder("", new PasswordEncoder[]{
+>             new StandardPasswordEncoder(),
+>             NoOpPasswordEncoder.getInstance()
+>     });

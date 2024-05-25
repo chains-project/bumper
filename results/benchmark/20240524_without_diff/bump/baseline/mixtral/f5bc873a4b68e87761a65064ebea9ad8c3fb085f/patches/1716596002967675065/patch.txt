@@ -1,0 +1,9 @@
+import org.apache.maven.project.MavenProjectHelper;
+
+// ...
+
+@Override
+protected void addDependency(MavenProject project, String groupId, String artifactId, String version, String type, String classifier) {
+    MavenProjectHelper projectHelper = this.lookup(MavenProjectHelper.class);
+    projectHelper.addDependency(project, groupId, artifactId, version, type, classifier);
+}

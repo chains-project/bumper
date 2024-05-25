@@ -1,0 +1,11 @@
+4c4,11
+<                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE, 10);
+---
+> 
+>                 // Create a copy of the GROUP_SHAPE
+>                 PShape copy = new PShape();
+>                 for (PShape child : GROUP_SHAPE.getChildren()) {
+>                         copy.addChild(child.copy());
+>                 }
+> 
+>                 PShape out = PGS_Processing.removeSmallHoles(copy, 10);

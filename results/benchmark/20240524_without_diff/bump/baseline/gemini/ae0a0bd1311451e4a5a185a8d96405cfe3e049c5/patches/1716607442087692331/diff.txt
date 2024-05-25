@@ -1,0 +1,4 @@
+4c4
+<             String.format("%s: Layer already exists", this.image.layer())
+---
+>         this.image.layer() + ": Layer already exists"

@@ -1,0 +1,17 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                         new CoreMatchers.IsNot<>(new CoreMatchers.IsNull<>())
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                         new CoreMatchers.IsInstanceOf(InvalidDigestException.class)
+25,26c25
+<                     new StringContains(
+<                         true,
+---
+>                         new CoreMatchers.StringContains.StringContains(
+33c32
+<                     new StringContains(true, digest)
+---
+>                         new CoreMatchers.StringContains.StringContains(true, digest)

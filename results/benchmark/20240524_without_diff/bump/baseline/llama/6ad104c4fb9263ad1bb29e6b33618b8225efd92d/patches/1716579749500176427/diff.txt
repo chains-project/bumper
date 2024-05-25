@@ -1,0 +1,18 @@
+1,3c1
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+< 
+---
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+5,8c3,4
+< 
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+< 
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+---
+>     byte[] calculatedMAC = Poly1305.create(macKey, additionalData, ciphertext);
+>     if (!MessageDigest.isEqual(calculatedMAC, receivedMAC)) {
+11d6
+< 
+14d8
+< 

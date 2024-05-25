@@ -1,0 +1,6 @@
+2a3
+>         final String message = String.format("Status: Downloaded newer image for %s", image);
+5c6
+<             String.format("Status: Downloaded newer image for %s", image)
+---
+>             message

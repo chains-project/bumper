@@ -1,0 +1,12 @@
+1c1,7
+< import org.cactoos.text.FormattedText;
+\ No newline at end of file
+---
+> import java.text.MessageFormat;
+> 
+> public class FormattedText {
+>     public static String format(String pattern, Object... arguments) {
+>         return MessageFormat.format(pattern, arguments);
+>     }
+> }
+\ No newline at end of file

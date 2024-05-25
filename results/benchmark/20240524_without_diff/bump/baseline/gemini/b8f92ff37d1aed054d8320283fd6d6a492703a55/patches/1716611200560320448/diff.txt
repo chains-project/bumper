@@ -1,0 +1,8 @@
+3c3,7
+<         return directoryScanner.scan().getClasses();
+---
+>         List<String> classes = directoryScanner.scan().getClasses();
+>         if (classes == null) {
+>             classes = new ArrayList<>();
+>         }
+>         return classes;

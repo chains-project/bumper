@@ -1,0 +1,68 @@
+0a1,17
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+> import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+> import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> import org.bukkit.event.player.PlayerJoinEvent;
+> import org.bukkit.event.player.PlayerKickEvent;
+> import org.bukkit.inventory.ItemStack;
+> import org.bukkit.plugin.Plugin;
+> 
+> import java.util.Objects;
+> import java.util.Random;
+> import java.util.UUID;
+> 
+> import static org.bukkit.Bukkit.getServer;
+> import static org.bukkit.event.EventPriority.MONITOR;
+> 
+7,8c24
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+---
+> public static Player getRandomPlayer(World world) {
+17,20c33,36
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>     if (random.nextBoolean()) {
+>         // LeetConverter is removed, so I added a simple method to replace it.
+>         first = replaceLeetSpeak(first);
+>         last = replaceLeetSpeak(last);
+38,43c54,80
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+---
+>     // Create the player and add them to the server
+>     Player createdPlayer = ((CraftServer) Bukkit.getServer()).getServer().createPlayer(profile);
+>     Objects.requireNonNull(createdPlayer);
+> 
+>     // Set the player's skin
+>     CraftPlayer craftPlayer = (CraftPlayer) createdPlayer;
+>     craftPlayer.setPlayerListName(name);
+>     craftPlayer.getHandle().playerConnection.sendPacket(new PlayerInfoUpdatePacket(PlayerInfoAction.ADD_PLAYER, craftPlayer));
+>     craftPlayer.getHandle().playerConnection.sendPacket(new PlayerAbilitiesPacket(true, false, false, false, false));
+>     craftPlayer.getHandle().playerConnection.sendPacket(new SetPlayerGameTypePacket(PlayerList.GameType.CREATIVE));
+>     craftPlayer.getHandle().playerConnection.sendPacket(new PlayerInfoUpdatePacket(PlayerInfoAction.UPDATE_GAME_MODE, craftPlayer));
+>     craftPlayer.getHandle().playerConnection.sendPacket(new PlayerInfoUpdatePacket(PlayerInfoAction.UPDATE_LATENCY, craftPlayer));
+>     craftPlayer.getHandle().playerConnection.sendPacket(new PlayerInfoUpdatePacket(PlayerInfoAction.UPDATE_DISPLAY_NAME, craftPlayer));
+> 
+>     return createdPlayer;
+> }
+> 
+> // Simple replacement for LeetConverter
+> private static String replaceLeetSpeak(String input) {
+>     String output = input.replaceAll("A", "@");
+>     output = output.replaceAll("E", "3");
+>     output = output.replaceAll("G", "6");
+>     output = output.replaceAll("I", "1");
+>     output = output.replaceAll("O", "0");
+>     output = output.replaceAll("S", "5");
+>     output = output.replaceAll("T", "7");
+>     return output;

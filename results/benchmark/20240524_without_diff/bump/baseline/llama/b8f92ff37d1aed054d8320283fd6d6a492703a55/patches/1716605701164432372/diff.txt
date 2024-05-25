@@ -1,0 +1,26 @@
+4,5c4,12
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>         File dir = new File(directory);
+>         if (dir.isDirectory()) {
+>             List<File> files = Arrays.asList(dir.listFiles());
+>             for (File file : files) {
+>                 if (file.isFile() && file.getName().endsWith(".class")) {
+>                     includes.append(":").append(file.getName().replace(".class", ""));
+>                 }
+>             }
+>         }
+9,10c16,24
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>             File dir = new File(directory);
+>             if (dir.isDirectory()) {
+>                 List<File> files = Arrays.asList(dir.listFiles());
+>                 for (File file : files) {
+>                     if (file.isFile() && file.getName().endsWith(".class")) {
+>                         includes.append(":").append(file.getName().replace(".class", ""));
+>                     }
+>                 }
+>             }

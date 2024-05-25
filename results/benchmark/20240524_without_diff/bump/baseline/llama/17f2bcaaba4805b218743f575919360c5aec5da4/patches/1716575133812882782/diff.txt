@@ -1,0 +1,9 @@
+3,4c3,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Processing.convexPartition(GROUP_SHAPE);
+---
+>     PShape GROUP_SHAPE_LOCAL = new PShape();
+>     GROUP_SHAPE_LOCAL.addChild(new PShape());
+>     GROUP_SHAPE_LOCAL.addChild(new PShape());
+>     assumeTrue(GROUP_SHAPE_LOCAL.getChildCount() == 2);
+>     PShape out = PGS_Processing.convexPartition(GROUP_SHAPE_LOCAL);

@@ -1,0 +1,11 @@
+16a17,26
+>                 }
+>             } else {
+>                 if (isNotBlank(step.username)) {
+>                     if (isNotBlank(step.password)) {
+>                         // Credentials are valid
+>                     } else {
+>                         throw new IOException("Password is missing");
+>                     }
+>                 } else {
+>                     throw new IOException("Username is missing");

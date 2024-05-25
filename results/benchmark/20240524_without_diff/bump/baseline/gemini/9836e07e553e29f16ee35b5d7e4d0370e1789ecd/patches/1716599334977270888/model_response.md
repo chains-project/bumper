@@ -1,0 +1,16 @@
+```java
+@Test
+    void shouldPush() throws Exception {
+        final Image original = new Image.ForOs();
+        final String image = this.copy(original);
+        final String output = this.cli.run("push", image);
+        String digest = original.digest();
+        MatcherAssert.assertThat(
+            output,
+            new StringContains(
+                false,
+                "latest: digest: " + digest
+            )
+        );
+    }
+```

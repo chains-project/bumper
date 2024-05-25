@@ -1,0 +1,7 @@
+33c33,36
+<                     new StringContains(true, digest)
+---
+>                     new StringContains(
+>                         true,
+>                         digest.toLowerCase()
+>                     )

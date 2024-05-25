@@ -1,0 +1,28 @@
+12,15c12
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+---
+>         Runnable runnable = () ->
+46d42
+<             }
+49,51c45,46
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+<         {
+---
+>         runnable.run();
+>         new Timer().schedule(new TimerTask() {
+53,55c48,49
+<             public void run()
+<             {
+<                 runnable.cancel();
+---
+>             public void run() {
+>                 runnable.run();
+57,58c51
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+< 
+---
+>         }, 1000, seconds * 1000);

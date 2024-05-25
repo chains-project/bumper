@@ -1,0 +1,12 @@
+1a2,11
+> 
+> public class RtTransaction {
+> 
+>     public String getTransactionStatus(String transactionId) {
+>         return new FormattedText(
+>                 "SELECT status FROM transactions WHERE id = %s",
+>                 transactionId
+>         ).asString();
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,8 @@
+1a2,7
+> 
+> try {
+>     Class.forName("de.gwdg.metadataqa.marc.MarcFactory");
+> } catch (ClassNotFoundException e) {
+>     // Handle or log the exception
+> }
+\ No newline at end of file

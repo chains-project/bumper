@@ -1,0 +1,8 @@
+5c5
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>                         includes.append(":").append(directoryScanner.scan().getClasses().stream().collect(Collectors.joining(":")));
+10c10
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().collect(Collectors.joining(":")));

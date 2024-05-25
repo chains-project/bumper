@@ -1,0 +1,5 @@
+13c13,14
+<       return new ChachaDecoder(readKey, nonce).decodeCiphertext(mac, additionalData, ciphertext);
+---
+>       ChachaDecoder decoder = new ChachaDecoder(readKey, nonce);
+>       return decoder.decodeCiphertext(ciphertext, mac, additionalData);

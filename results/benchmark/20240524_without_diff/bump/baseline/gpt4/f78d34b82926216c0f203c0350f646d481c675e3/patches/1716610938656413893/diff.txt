@@ -1,0 +1,8 @@
+29c29
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>             .sendPacket(new PacketPlayOutEntityTeleport(target.getBukkitEntity()));
+43c43
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                             .sendPacket(new PacketPlayOutEntityTeleport(target.getBukkitEntity()));

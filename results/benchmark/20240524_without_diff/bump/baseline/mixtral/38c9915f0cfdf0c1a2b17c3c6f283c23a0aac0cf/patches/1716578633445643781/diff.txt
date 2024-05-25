@@ -1,0 +1,16 @@
+1c1,11
+< import org.cactoos.iterable.LengthOf;
+\ No newline at end of file
+---
+> import org.cactoos.Iterable;
+> import org.cactoos.iterable.Iterables;
+> 
+> // ...
+> 
+> public double rtScore(String userId) throws IOException {
+>   long start = System.currentTimeMillis();
+>   Iterable<Transaction> txs = api.transactionsOf(userId);
+>   long end = System.currentTimeMillis();
+>   return Iterables.size(txs) / (end - start) * 1000.0;
+> }
+\ No newline at end of file

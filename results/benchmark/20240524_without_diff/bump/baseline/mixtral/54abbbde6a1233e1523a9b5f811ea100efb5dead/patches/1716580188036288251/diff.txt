@@ -1,0 +1,34 @@
+1,2c1,8
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSchException;
+> import java.io.ByteArrayOutputStream;
+> import java.io.IOException;
+> import java.util.concurrent.TimeUnit;
+> import org.slf4j.Logger;
+> import org.slf4j.LoggerFactory;
+> 
+10a17,18
+>     final Logger logger = LoggerFactory.getLogger(this.getClass());
+>     final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+12d19
+<             JSch.setLogger(new JschLogger());
+14,18c21
+<             Logger.debug(
+<                 this,
+<                 "Opening SSH session to %s@%s:%s (auth with password)...",
+<                 this.getLogin(), this.getAddr(), this.getPort()
+<             );
+---
+>         jsch.setKnownHosts(null);
+28a32,35
+>         final ChannelExec channel = (ChannelExec) session.openChannel("exec");
+>         channel.setCommand(outputStream, "true");
+>         channel.connect();
+>         channel.disconnect();
+31a39,41
+>     } finally {
+>         outputStream.close();
+>         logger.debug("SSH session closed.");

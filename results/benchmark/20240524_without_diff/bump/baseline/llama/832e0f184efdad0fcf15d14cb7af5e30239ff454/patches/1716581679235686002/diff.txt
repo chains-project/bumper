@@ -1,0 +1,63 @@
+1d0
+< @Override
+4d2
+<                         /* Default white stained glass borders for inactive, yellow if player has existing translation session */
+14d11
+<                         /* Init current active translator */
+17d13
+<                         /* Pagination: Lets you generate pages rather than set defined ones */
+21d16
+<                         /* Add each supported language from each respective translator */
+25d19
+<                                 /* Add Glow Effect */
+43,46c37
+<                                 listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+<                                         WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID)
+<                                                         .open(player);
+<                                 });
+---
+>             listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID).open(player));
+49d39
+<                         /* 28 langs per page, start at 1, 1 */
+54d43
+<                         /* Bottom Left Option: Previous Page */
+56,59c45
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.previous().getPage());
+<                                 }));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage())));
+61,63c47
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+<                                 }));
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player)));
+66,67d49
+<                         /* Bottom Middle Option: Auto-detect Source Language */
+<                         /* Disabled for Amazon Translate */
+71,74c53
+<                                 skipSourceMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+<                                 
+<                                 /* Add Glow Effect */
+---
+>             skipSourceMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+85,86c64
+<                                 contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage
+<                                                 .getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage.getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+89d66
+<                         /* Bottom Right Option: Next Page */
+91,95c68
+<                                 contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.next().getPage());
+<                                 }));
+<                                 ;
+---
+>             contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage())));
+98d70
+<                         /* Last Option: Page Number */

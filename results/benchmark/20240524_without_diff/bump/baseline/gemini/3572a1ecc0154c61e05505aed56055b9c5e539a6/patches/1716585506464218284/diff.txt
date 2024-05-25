@@ -1,0 +1,5 @@
+9a10,13
+>       // Create a new instance of TFlushingFastFramedTransport
+>       final TFlushingFastFramedTransport flushingTransport = new TFlushingFastFramedTransport(framedTransport);
+>       // Create a new instance of TBinaryProtocol with the flushingTransport
+>       protocol = new TBinaryProtocol(flushingTransport);

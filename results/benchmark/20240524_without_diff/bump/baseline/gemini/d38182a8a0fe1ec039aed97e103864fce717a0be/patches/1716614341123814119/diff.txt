@@ -1,0 +1,4 @@
+3c3
+<                         return Optional.of(new Authentication.User("alice"));
+---
+>                         return Optional.ofNullable(/*++*/new Authentication.User("alice"));

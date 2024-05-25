@@ -1,0 +1,4 @@
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     new InstanceOf(InvalidDigestException.class)

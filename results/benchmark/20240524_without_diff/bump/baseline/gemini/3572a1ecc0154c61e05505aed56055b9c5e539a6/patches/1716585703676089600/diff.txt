@@ -1,0 +1,6 @@
+2c2
+<     public void init(OutputStream os) {
+---
+>     public void init(OutputStream os) throws TTransportException {
+9a10
+>       framedTransport.open();

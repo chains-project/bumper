@@ -1,0 +1,22 @@
+1c1,17
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.artipie.asto.factory.MappedStorages;
+> 
+> // ...
+> 
+> @Override
+> public Optional<Policy> policy(final Path path) {
+>     return policy0(path).flatMap(policy -> {
+>         if (policy instanceof YamlPolicy) {
+>             return Optional.of(policy);
+>         }
+>         return Optional.ofNullable(
+>             MappedStorages.single("policy", policy)
+>         ).flatMap(sto -> YamlPolicy.class.cast(
+>             new YamlPolicyFactory(sto).create(path)
+>         ));
+>     });
+> }
+\ No newline at end of file

@@ -1,0 +1,15 @@
+0a1,2
+> import processing.core.PShape;
+> 
+3,4c5,6
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.simplifyVW(GROUP_SHAPE, 1);
+---
+>     assumeTrue(getGroupShape().getChildCount() == 2);
+>     PShape out = PGS_Morphology.simplifyVW(getGroupShape(), 1);
+6a9,12
+> 
+> private PShape getGroupShape() {
+>     return GROUP_SHAPE;
+> }
+\ No newline at end of file

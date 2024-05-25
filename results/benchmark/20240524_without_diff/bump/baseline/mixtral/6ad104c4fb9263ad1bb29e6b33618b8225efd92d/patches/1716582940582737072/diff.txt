@@ -1,0 +1,27 @@
+0a1,7
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+> 
+> import java.io.IOException;
+> import java.security.SecureRandom;
+> 
+4c11,14
+<     KeyParameter macKey = initRecordMAC(decryptCipher);
+---
+>     SecureRandom random = new SecureRandom();
+>     byte[] macKey = new byte[32];
+>     random.nextBytes(macKey);
+>     KeyParameter macKeyParam = new KeyParameter(macKey);
+6c16
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = PolyKeyCreator.create(macKeyParam, additionalData, ciphertext);
+12a23,25
+>     // Assuming 'decryptCipher' is an instance variable of the class
+>     // and it has been initialized with a valid cipher object
+>     try {
+13a27,29
+>     } catch (DataLengthException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

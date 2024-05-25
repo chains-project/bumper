@@ -1,0 +1,18 @@
+2,4d1
+<         final LoaderOptions loadingConfig = new LoaderOptions();
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+< 
+11,13c8,10
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+---
+>     final Constructor constructor = new Constructor(clazz) {{
+>         addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+>         addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+15,16c12,13
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+---
+>         yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+>         yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());

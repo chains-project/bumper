@@ -1,0 +1,9 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_erosionDilation() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape shape = (PShape)GROUP_SHAPE.getChildren().get(0); // get the first child of GROUP_SHAPE
+    PShape out = PGS_Morphology.erosionDilation(shape, 0);
+    assertEquals(1, out.getChildCount());
+}

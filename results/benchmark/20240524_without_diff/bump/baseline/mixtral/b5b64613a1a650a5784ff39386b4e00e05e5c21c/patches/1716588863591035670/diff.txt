@@ -1,0 +1,15 @@
+1c1,10
+< import static org.apache.commons.lang3.StringUtils.isAllBlank;
+\ No newline at end of file
+---
+> import static org.apache.commons.lang3.StringUtils.isAllEmpty;
+> 
+> // ...
+> 
+> @Override
+> public CreateJFrogInstanceStep executeStep(StepContext context) throws IOException, InterruptedException {
+>     // ...
+>     if (isAllEmpty(jfrogInstanceId, url, apiKey, apiSecret, verifyCertificates, trustAllCerts)) {
+>     // ...
+> }
+\ No newline at end of file

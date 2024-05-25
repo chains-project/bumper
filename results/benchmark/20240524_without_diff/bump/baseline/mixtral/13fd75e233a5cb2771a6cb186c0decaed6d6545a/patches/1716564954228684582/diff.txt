@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+9,11c8,10
+<     blobs.put(
+<         new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<     ).toCompletableFuture().handle(
+---
+>     CheckedBlobSource source = new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest));
+>     BlobId blobId = BlobId.name(Digest.sha256(source.content()));
+>     blobs.put(source).toCompletableFuture().handle(
+28c27
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+---
+>                         blobId.digest().toString()

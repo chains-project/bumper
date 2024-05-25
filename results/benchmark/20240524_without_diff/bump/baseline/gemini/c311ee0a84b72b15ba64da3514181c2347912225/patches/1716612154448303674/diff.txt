@@ -1,0 +1,43 @@
+2c2
+<     void failsOnDigestMismatch() {
+---
+>     public void failsOnDigestMismatch() {
+4,6c4
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>         final AstoBlobs blobs = new AstoBlobs(storage, new DefaultLayout(), new RepoName.Simple("any"));
+12c10
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+15c13
+<                     new IsNot<>(new IsNull<>())
+---
+>                     not(nullValue())
+17c15
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+20c18
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     instanceOf(InvalidDigestException.class)
+22c20
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+25,26c23
+<                     new StringContains(
+<                         true,
+---
+>                     containsString(
+30c27
+<                 MatcherAssert.assertThat(
+---
+>                 assertThat(
+33c30
+<                     new StringContains(true, digest)
+---
+>                     containsString(digest)

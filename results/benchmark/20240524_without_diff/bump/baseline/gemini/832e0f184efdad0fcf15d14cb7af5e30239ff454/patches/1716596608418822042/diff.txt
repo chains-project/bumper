@@ -1,0 +1,38 @@
+6c6
+<                         /* White stained glass borders as default, Green stained glass borders for active */
+---
+>                         // White stained glass borders as default, Green stained glass borders for active
+21c21
+<                         /* Outgoing Chat Button */
+---
+>                         // Outgoing Chat Button
+28,29c28
+<                                         outgoingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                                         outgoingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+31,32c30
+<                                         outgoingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                         + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+---
+>                                         outgoingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatOutgoingButton"));
+43c41
+<                         /* Incoming Chat Button */
+---
+>                         // Incoming Chat Button
+48a47
+>                                         //++ Added library method: XEnchantment.matchXEnchantment
+50,51c49
+<                                 incomingChatMeta.setDisplayName(ChatColor.GREEN
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                                         incomingChatMeta.setDisplayName(ChatColor.GREEN + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+53,54c51
+<                                 incomingChatMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+---
+>                                         incomingChatMeta.setDisplayName(ChatColor.YELLOW + CommonDefinitions.getMessage("wwctGUIChatIncomingButton"));
+65c62
+<                         /* Bottom Left Option: Previous Page */
+---
+>                         // Bottom Left Option: Previous Page

@@ -1,0 +1,15 @@
+1a2,3
+>         ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+>         if (modulesProvider == null) {
+7d8
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+8a10,18
+>         } else {
+>             return AnalysisEngineConfiguration.builder()
+>                     .addEnabledLanguages(globalConfig.getEnabledLanguages())
+>                     .setClientPid(globalConfig.getClientPid())
+>                     .setExtraProperties(globalConfig.extraProperties())
+>                     .setWorkDir(globalConfig.getWorkDir())
+>                     .setModulesProvider(modulesProvider)
+>                     .build();
+>         }

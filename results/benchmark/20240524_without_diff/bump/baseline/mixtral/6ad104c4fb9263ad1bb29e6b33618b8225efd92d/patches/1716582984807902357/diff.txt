@@ -1,0 +1,17 @@
+0a1,8
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.InvalidCipherTextException;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+> 
+> import java.io.IOException;
+> import java.security.SecureRandom;
+> 
+3c11
+< 
+---
+>     try {
+15a24,26
+>     } catch (DataLengthException | IllegalStateException | InvalidCipherTextException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

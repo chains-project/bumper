@@ -1,0 +1,4 @@
+2c2
+<         void testAreaMerge() {
+---
+> public void testAreaMerge() {

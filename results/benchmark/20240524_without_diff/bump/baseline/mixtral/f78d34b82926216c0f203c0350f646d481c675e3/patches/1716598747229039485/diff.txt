@@ -1,0 +1,91 @@
+0a1,19
+> import net.minecraft.server.v1_12_R1.EntityPlayer;
+> import net.minecraft.server.v1_12_R1.GameProfile;
+> import net.minecraft.server.v1_12_R1.PlayerInteractManager;
+> import net.minecraft.server.v1_12_R1.WorldServer;
+> import org.bukkit.Bukkit;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+> import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+> import org.bukkit.entity.Player;
+> 
+> import java.util.UUID;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.function.Supplier;
+> import java.util.properties.Property;
+> 
+> import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
+> import static org.apache.commons.lang3.RandomUtils.nextInt;
+> import static org.apache.commons.lang3.RandomUtils.nextBoolean;
+> 
+9c28
+<         Random random = new Random();
+---
+>     ThreadLocalRandom random = ThreadLocalRandom.current();
+11,12c30,31
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(nextInt(13) + 1)
+>             : getRandomWord();
+14,15c33,34
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+>             ? randomAlphanumeric(nextInt(13) + 1)
+>             : getRandomWord();
+19,20c38,39
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+23c42
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+---
+>     String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + nextInt(120): "");
+28c47
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+---
+>         name = randomAlphanumeric(nextInt(16));
+44a64,102
+> 
+> private static String getRandomWord()
+> {
+>     // Implement this method to return a random word.
+>     // You can use any library or technique you want.
+>     throw new UnsupportedOperationException("getRandomWord not implemented");
+> }
+> 
+> private static class LeetConverter
+> {
+>     private static final char[] LEET_MAP = { 'A', 'B', 'E', 'G', 'I', 'O', 'S', 'T' };
+>     private static final char[] LEET_REPLACEMENTS = { '4', '8', '3', '6', '1', '0', '5', '7' };
+> 
+>     private static String convert(String input)
+>     {
+>         StringBuilder output = new StringBuilder();
+>         for (int i = 0; i < input.length(); i++)
+>         {
+>             char c = input.charAt(i);
+>             if (c >= 'A' && c <= 'Z')
+>             {
+>                 int index = c - 'A';
+>                 if (index >= 0 && index < LEET_MAP.length)
+>                 {
+>                     output.append(LEET_REPLACEMENTS[index]);
+>                 }
+>                 else
+>                 {
+>                     output.append(c);
+>                 }
+>             }
+>             else
+>             {
+>                 output.append(c);
+>             }
+>         }
+>         return output.toString();
+>     }
+> }
+\ No newline at end of file

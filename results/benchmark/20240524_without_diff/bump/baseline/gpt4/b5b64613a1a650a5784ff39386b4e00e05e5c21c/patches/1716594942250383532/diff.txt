@@ -1,0 +1,13 @@
+10,11c10,11
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     ArtifactoryServer artifactoryServer = null;
+>     DistributionServer distributionServer = null;
+15a16
+>         if (!isEmpty(step.username) && !isEmpty(step.password)) {
+18a20,21
+>     }
+>     if (artifactoryServer != null) {
+19a23
+>     }

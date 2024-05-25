@@ -1,0 +1,8 @@
+import org.apache.commons.lang3.StringUtils;
+
+// ...
+
+@Override
+public boolean isBlank(String string) {
+    return StringUtils.isAllBlank(string);
+}

@@ -1,0 +1,8 @@
+1d0
+< @Test
+41,43c40
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>     ).response(line, Headers.from(Map.of()), Content.empty()).toCompletableFuture().join();

@@ -1,0 +1,16 @@
+1,3c1,3
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+< 
+---
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+>     Cipher decryptCipher = Cipher.getInstance("ChaCha20");
+>     decryptCipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(new byte[32], "ChaCha20"));
+8c8
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+---
+>     if (!Arrays.equals(calculatedMAC, receivedMAC)) {
+13c13
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+---
+>     decryptCipher.doFinal(ciphertext, 0, ciphertext.length, output, 0);

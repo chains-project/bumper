@@ -1,0 +1,5 @@
+12c12,13
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             // ++ Cast the registry to the correct type
+>             final SortedMap<MOScope, ManagedObject> reg = (SortedMap<MOScope, ManagedObject>) server.getRegistry();

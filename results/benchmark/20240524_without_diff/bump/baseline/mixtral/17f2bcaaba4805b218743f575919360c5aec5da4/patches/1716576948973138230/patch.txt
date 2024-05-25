@@ -1,0 +1,5 @@
+_erosionDilation() {
+    Assume.assumeTrue(Morphology.GROUP_SHAPE.getChildCount() == 2);
+    PShape out = Morphology.erosionDilation(Morphology.GROUP_SHAPE, 0);
+    Assertions.assertEquals(2, out.getChildCount());
+}

@@ -1,0 +1,88 @@
+1,10c1
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+<     private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode)
+<     {
+---
+> private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode) {
+12,13c3
+<         final double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+<             .get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+---
+>     final double radius = reachMode ? config.getDouble("npc.reachRange") : config.getDoubleList("npc.range").get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+18,21c8,9
+<         BukkitRunnable r = new BukkitRunnable()
+<         {
+<             public void run()
+<             {
+---
+>     BukkitRunnable r = new BukkitRunnable() {
+>         public void run() {
+24,26c12,14
+<                 if (player.hasMetadata("speed"))
+<                     for (MetadataValue value : player.getMetadata("speed"))
+<                         if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>             if (player.hasMetadata("speed")) {
+>                 for (MetadataValue value : player.getMetadata("speed")) {
+>                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName())) {
+28,29c16,20
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>                     }
+>                 }
+>             }
+> 
+>             for (double i = 0; i < Math.PI * 2; i++) {
+32,34c23,25
+<                     if (config.getBoolean("npc.wave"))
+<                         rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+<                             .get(0.01, true);
+---
+>                 if (config.getBoolean("npc.wave")) {
+>                     rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin")).get(0.01, true);
+>                 }
+47,48c38,39
+<                     ((CraftPlayer) player).getHandle().playerConnection
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                 // PacketPlayOutEntityTeleport packet = new PacketPlayOutEntityTeleport(target); // ++
+>                 // ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet); // ++
+51,52c42
+<                     new BukkitRunnable()
+<                     {
+---
+>                 new BukkitRunnable() {
+54,55c44
+<                         public void run()
+<                         {
+---
+>                     public void run() {
+59,62c48,50
+<                                 .forEachOrdered(p ->
+<                                 {
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                                 .forEachOrdered(p -> {
+>                                     // PacketPlayOutEntityTeleport packet = new PacketPlayOutEntityTeleport(target); // ++
+>                                     // ((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet); // ++
+80,81c68
+<         new BukkitRunnable()
+<         {
+---
+>     new BukkitRunnable() {
+83,84c70
+<             public void run()
+<             {
+---
+>         public void run() {
+89d74
+< 

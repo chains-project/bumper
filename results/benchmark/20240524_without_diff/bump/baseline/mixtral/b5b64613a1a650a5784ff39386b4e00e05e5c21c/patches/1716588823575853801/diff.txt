@@ -1,0 +1,13 @@
+1c1,8
+< import static org.apache.commons.lang3.StringUtils.isAllBlank;
+\ No newline at end of file
+---
+> import org.apache.commons.lang3.StringUtils;
+> 
+> // ...
+> 
+> @Override
+> public boolean isBlank(String string) {
+>     return StringUtils.isAllBlank(string);
+> }
+\ No newline at end of file

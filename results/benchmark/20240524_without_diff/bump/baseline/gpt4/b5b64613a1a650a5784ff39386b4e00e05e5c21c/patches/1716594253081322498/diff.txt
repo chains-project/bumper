@@ -1,0 +1,10 @@
+10,11c10,11
+<             ArtifactoryServer artifactoryServer;
+<             DistributionServer distributionServer;
+---
+>     ArtifactoryServer artifactoryServer = null;
+>     DistributionServer distributionServer = null;
+18a19
+>     if (artifactoryServer != null) {
+19a21
+>     }

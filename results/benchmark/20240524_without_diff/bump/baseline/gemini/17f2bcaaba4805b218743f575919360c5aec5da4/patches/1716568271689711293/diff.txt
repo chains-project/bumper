@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+---
+>                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE.getChild(0), 0);

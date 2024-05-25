@@ -1,0 +1,23 @@
+1c1,18
+< import org.junit.Ignore;
+\ No newline at end of file
+---
+> import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+> 
+> // ...
+> 
+> @Test
+> @Override
+> public void testFastPolygonize() {
+>     // Arrange
+>     Polygonizer polygonizer = new FastPolygonizer();
+> 
+>     // Act
+>     List<Polygon> polygons = polygonizer.polygonize(vertices);
+> 
+>     // Assert
+>     assertDoesNotThrow(() -> {
+>         validatePolygons(polygons);
+>     });
+> }
+\ No newline at end of file

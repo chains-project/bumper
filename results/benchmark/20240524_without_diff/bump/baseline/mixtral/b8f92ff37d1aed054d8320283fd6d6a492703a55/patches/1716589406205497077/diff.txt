@@ -1,0 +1,9 @@
+3c3,8
+<         return directoryScanner.scan().getClasses();
+---
+>         Collection<String> classes = directoryScanner.scan().getMatchingFiles();
+>         List<String> classNames = new ArrayList<>();
+>         for (String classPath : classes) {
+>             classNames.add(classPath.substring(classPath.lastIndexOf('/') + 1, classPath.length() - 5));
+>         }
+>         return classNames;

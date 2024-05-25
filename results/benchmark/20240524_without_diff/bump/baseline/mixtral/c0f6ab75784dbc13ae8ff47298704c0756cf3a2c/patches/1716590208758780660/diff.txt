@@ -1,0 +1,38 @@
+1a2
+>     PropertyAccessor propertyAccessor = new PropertyAccessor();
+3,7c4,8
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>             .addEnabledLanguages(propertyAccessor.getEnabledLanguages(globalConfig))
+>             .setClientPid(propertyAccessor.getClientPid(globalConfig))
+>             .setExtraProperties(propertyAccessor.extraProperties(globalConfig))
+>             .setWorkDir(propertyAccessor.getWorkDir(globalConfig))
+>             .setModulesProvider(propertyAccessor.getModulesProvider(globalConfig))
+9a11,32
+> 
+> private static class PropertyAccessor {
+>     List<String> getEnabledLanguages(GlobalConfig globalConfig) {
+>         return globalConfig.getEnabledLanguages();
+>     }
+> 
+>     int getClientPid(GlobalConfig globalConfig) {
+>         return globalConfig.getClientPid();
+>     }
+> 
+>     Properties extraProperties(GlobalConfig globalConfig) {
+>         return globalConfig.extraProperties();
+>     }
+> 
+>     File getWorkDir(GlobalConfig globalConfig) {
+>         return globalConfig.getWorkDir();
+>     }
+> 
+>     ModulesProvider getModulesProvider(GlobalConfig globalConfig) {
+>         return globalConfig.getModulesProvider();
+>     }
+> }
+\ No newline at end of file

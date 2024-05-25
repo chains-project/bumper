@@ -1,0 +1,75 @@
+1,8c1,10
+< /**
+<      * まほーじん！！
+<      *
+<      * @param player  餌食
+<      * @param seconds 秒数
+<      */
+<     public static void magic(Player player, int seconds)
+<     {
+---
+> import org.bukkit.Location;
+> import org.bukkit.Particle;
+> import org.bukkit.util.Vector;
+> 
+> import java.util.Random;
+> 
+> public class Decorations {
+>     // ...
+> 
+>     public static void magic(Player player, int seconds) {
+12,13c14,17
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+---
+>         BukkitRunnable runnable = new BukkitRunnable() {
+>             Random random = new Random();
+>             double[] direction = new double[3];
+> 
+15,18c19,20
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+---
+>             public void run() {
+>                 for (double i = 0; i < Math.PI * 2; i++) {
+21c23
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+---
+>                     circle(center, count[0], 3, Particle.CRIT);
+38a41,46
+>                 direction[0] = random.nextGaussian();
+>                 direction[1] = random.nextGaussian();
+>                 direction[2] = random.nextGaussian();
+> 
+>                 line(center.clone().add(3, 0.7, 0), center.clone().add(direction[0], direction[1], direction[2]));
+>                 line(center.clone().add(direction[0], direction[1], direction[2]), center.clone().add(-1.5, 0.7, 2.3));
+40,41d47
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+42a49,54
+>                 direction[0] = random.nextGaussian();
+>                 direction[1] = random.nextGaussian();
+>                 direction[2] = random.nextGaussian();
+> 
+>                 line(center.clone().add(-3, 0.7, 0), center.clone().add(direction[0], direction[1], direction[2]));
+>                 line(center.clone().add(direction[0], direction[1], direction[2]), center.clone().add(1.5, 0.7, -2.3));
+44,45d55
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+50,51c60
+<         new BukkitRunnable()
+<         {
+---
+>         new BukkitRunnable() {
+53,54c62
+<             public void run()
+<             {
+---
+>             public void run() {
+59a68,70
+> 
+>     // ...
+> }
+\ No newline at end of file

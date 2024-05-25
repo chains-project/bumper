@@ -1,0 +1,57 @@
+1,2c1,7
+< // @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+<     @Override
+---
+> import com.jcraft.jsch.ChannelExec;
+> import com.jcraft.jsch.JSchException;
+> import java.io.ByteArrayOutputStream;
+> import java.io.IOException;
+> import java.io.OutputStream;
+> import java.util.concurrent.TimeUnit;
+> 
+12d16
+<             JSch.setLogger(new JschLogger());
+28a33,75
+> 
+>         // Create a new channel for executing commands
+>         final ChannelExec channel = (ChannelExec) session.openChannel("exec");
+> 
+>         // Set the command to execute
+>         channel.setCommand("echo");
+> 
+>         // Set the input stream for the command
+>         OutputStream inputStream = channel.getInputStream();
+> 
+>         // Set the output stream for the command
+>         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+> 
+>         // Set the error stream for the command
+>         ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
+> 
+>         // Set the command to execute
+>         channel.setCommand("echo");
+> 
+>         // Start the command
+>         channel.connect();
+> 
+>         // Write input to the command
+>         inputStream.write("Hello, world!".getBytes());
+> 
+>         // Wait for the command to finish executing
+>         channel.waitFor(Tv.MILLION, TimeUnit.SECONDS);
+> 
+>         // Get the exit status of the command
+>         int exitStatus = channel.getExitStatus();
+> 
+>         // Close the input stream
+>         inputStream.close();
+> 
+>         // Close the output stream
+>         outputStream.close();
+> 
+>         // Close the error stream
+>         errorStream.close();
+> 
+>         // Close the channel
+>         channel.disconnect();
+> 

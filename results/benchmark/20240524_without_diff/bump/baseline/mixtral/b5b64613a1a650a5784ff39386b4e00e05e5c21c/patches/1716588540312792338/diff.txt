@@ -1,0 +1,39 @@
+0a1,14
+> import org.jfrog.artifactory.client.ArtifactoryServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer;
+> import org.jfrog.artifactory.client.distribution.DistributionServer.Builder;
+> import org.jfrog.artifactory.client.distribution.DistributionServerCredentials;
+> import org.jfrog.artifactory.client.distribution.DistributionServerDetails;
+> import org.jfrog.artifactory.client.distribution.impl.DistributionServerImpl;
+> import org.jfrog.artifactory.client.impl.ArtifactoryServerImpl;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig;
+> import org.jfrog.artifactory.client.okhttp.OkHttpClientConfig.Builder;
+> import org.jfrog.hudson.ArtifactoryServerDetailsImpl;
+> import org.jfrog.hudson.DistributionServerDetailsImpl;
+> import org.jfrog.hudson.credentials.CredentialsImpl;
+> import org.jfrog.hudson.pipeline.scripted.steps.CreateJFrogPlatformInstanceStep.Step;
+> 
+11a26
+>     OkHttpClientConfig.Builder httpClientBuilder = OkHttpClientConfig.newBuilder();
+13,14c28,34
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.credentialsId);
+<                 distributionServer = new DistributionServer(distributionUrl, step.credentialsId);
+---
+>         DistributionServerCredentials distributionServerCredentials = new CredentialsImpl(step.credentialsId);
+>         DistributionServerDetails distributionServerDetails = new DistributionServerDetailsImpl(distributionUrl, distributionServerCredentials);
+>         Builder distributionServerBuilder = DistributionServerImpl.newBuilder(distributionServerDetails);
+>         distributionServer = distributionServerBuilder.httpClientConfig(httpClientBuilder.build()).build();
+> 
+>         ArtifactoryServerDetails artifactoryServerDetails = new ArtifactoryServerDetailsImpl(artifactoryUrl, distributionServerCredentials);
+>         artifactoryServer = ArtifactoryServerImpl.newBuilder(artifactoryServerDetails).httpClientConfig(httpClientBuilder.build()).build();
+16,17c36,42
+<                 artifactoryServer = new ArtifactoryServer(artifactoryUrl, step.username, step.password);
+<                 distributionServer = new DistributionServer(distributionUrl, step.username, step.password);
+---
+>         DistributionServerCredentials distributionServerCredentials = new CredentialsImpl(step.username, step.password);
+>         DistributionServerDetails distributionServerDetails = new DistributionServerDetailsImpl(distributionUrl, distributionServerCredentials);
+>         Builder distributionServerBuilder = DistributionServerImpl.newBuilder(distributionServerDetails);
+>         distributionServer = distributionServerBuilder.httpClientConfig(httpClientBuilder.build()).build();
+> 
+>         ArtifactoryServerDetails artifactoryServerDetails = new ArtifactoryServerDetailsImpl(artifactoryUrl, distributionServerCredentials);
+>         artifactoryServer = ArtifactoryServerImpl.newBuilder(artifactoryServerDetails).httpClientConfig(httpClientBuilder.build()).build();

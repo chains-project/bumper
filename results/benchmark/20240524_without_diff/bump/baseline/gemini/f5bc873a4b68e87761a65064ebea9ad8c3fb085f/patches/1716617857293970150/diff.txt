@@ -1,0 +1,15 @@
+1a2,14
+> 
+> public class AbstractThemeMojo {
+> 
+>     private final MavenProject project;
+> 
+>     public AbstractThemeMojo(MavenProject project) {
+>         this.project = project;
+>     }
+> 
+>     public MavenProject getProject() {
+>         return project;
+>     }
+> }
+\ No newline at end of file

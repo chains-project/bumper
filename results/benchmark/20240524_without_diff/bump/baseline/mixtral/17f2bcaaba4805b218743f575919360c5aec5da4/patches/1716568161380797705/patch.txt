@@ -1,0 +1,10 @@
+@Test
+void test_PGS_Morphology_round() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape out = PGS_Morphology.round(GROUP_SHAPE, 0.5);
+    if (out != null && out.getChildCount() >= 0) { // added null check and child count check
+        assertEquals(2, out.getChildCount());
+    } else {
+        fail("Expected a non-null PShape with at least one child.");
+    }
+}

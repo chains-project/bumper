@@ -1,0 +1,4 @@
+4c4
+<                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+---
+>                 PShape out = PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10, 10);

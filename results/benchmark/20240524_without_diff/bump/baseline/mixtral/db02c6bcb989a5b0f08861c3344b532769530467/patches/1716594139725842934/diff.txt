@@ -1,0 +1,38 @@
+1d0
+< // TODO: review this AI generated patch!
+13c12
+<                 MatcherAssert.assertThat(
+---
+>                 assertNotNull(
+15,16c14
+<                         throwable,
+<                         new IsNot<>(new IsNull<>())
+---
+>                         throwable
+18c16
+<                 MatcherAssert.assertThat(
+---
+>                 assertTrue(
+20,21c18
+<                         Throwables.getRootCause(throwable),
+<                         new IsInstanceOf(InvalidDigestException.class)
+---
+>                         throwable instanceof InvalidDigestException
+23c20
+<                 MatcherAssert.assertThat(
+---
+>                 assertTrue(
+25,26c22
+<                         Throwables.getRootCause(throwable).getMessage(),
+<                         new JUnit413StringContains(
+---
+>                         throwable.getMessage().contains(
+30c26
+<                 MatcherAssert.assertThat(
+---
+>                 assertTrue(
+32,33c28
+<                         Throwables.getRootCause(throwable).getMessage(),
+<                         new JUnit413StringContains(digest)
+---
+>                         throwable.getMessage().contains(digest)

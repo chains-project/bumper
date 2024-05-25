@@ -1,0 +1,12 @@
+41,43c41,47
+<         ).response(line, Headers.EMPTY, Content.EMPTY).send(
+<             (status, headers, body) -> CompletableFuture.allOf()
+<         ).toCompletableFuture().join();
+---
+>         ).handle((response, throwable) -> {
+>             if (throwable != null) {
+>                 throwable.printStackTrace();
+>                 return null;
+>             }
+>             return response;
+>         }).toCompletableFuture().join();

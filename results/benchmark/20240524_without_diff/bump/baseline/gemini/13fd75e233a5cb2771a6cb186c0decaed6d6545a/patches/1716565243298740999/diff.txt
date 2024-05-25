@@ -1,0 +1,13 @@
+7c7
+<         MatcherAssert.assertThat(
+---
+>         assertThat(
+9,10c9
+<             new StringContains(
+<                 false,
+---
+>             not(containsString(
+12c11
+<             )
+---
+>             ))

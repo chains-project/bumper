@@ -1,0 +1,14 @@
+private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+    List<Object> instances = cache.get(branch.getJsonPath());
+    List<String> values = new ArrayList<>();
+    if (instances != null)
+        for (Object instance : instances) {
+            if (instance instanceof Map) {
+                Map<String, Object> mapInstance = (Map<String, Object>) instance;
+                if (mapInstance.containsKey("value")) {
+                    values.add((String) mapInstance.get("value"));
+                }
+            }
+        }
+    return values;
+}

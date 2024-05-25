@@ -1,0 +1,11 @@
+1a2,10
+> 
+> public class PGS_ProcessingGroupShapeTests {
+> 
+>     @Test
+>     public void testPGS_ProcessingGroupShape() {
+>         assumeTrue(false);
+>     }
+> 
+> }
+\ No newline at end of file

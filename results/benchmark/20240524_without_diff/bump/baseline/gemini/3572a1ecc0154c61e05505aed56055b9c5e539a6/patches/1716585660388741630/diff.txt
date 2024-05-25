@@ -1,0 +1,5 @@
+9c9,10
+<       protocol = new TBinaryProtocol(framedTransport);
+---
+>       // ++ protocol = new TBinaryProtocol(framedTransport);
+>       protocol = new TBinaryProtocol.Factory().getProtocol(framedTransport);

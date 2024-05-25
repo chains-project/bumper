@@ -1,0 +1,6 @@
+if (eu.europa.esig.dss.pades.CertificationPermission.class.getClassLoader() != null) {
+    CertificationPermission certificationPermission = new CertificationPermission();
+    // Use the 'certificationPermission' object here
+} else {
+    // Handle the missing class here
+}

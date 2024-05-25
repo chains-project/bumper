@@ -1,0 +1,7 @@
+import org.jasypt.util.password.StrongPasswordEncoder;
+
+@Override
+public String encodePassword(String rawPass, Object salt) {
+    StrongPasswordEncoder encoder = new StrongPasswordEncoder();
+    return encoder.encodePassword(rawPass, (String) salt);
+}

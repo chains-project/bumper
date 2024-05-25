@@ -1,0 +1,8 @@
+2c2
+<     void shouldPull() throws Exception {
+---
+>     public void shouldPull() throws Exception {
+11c11
+<                 String.format("Status: Downloaded newer image for %s", image)
+---
+>                 "Status: Downloaded newer image for " + image

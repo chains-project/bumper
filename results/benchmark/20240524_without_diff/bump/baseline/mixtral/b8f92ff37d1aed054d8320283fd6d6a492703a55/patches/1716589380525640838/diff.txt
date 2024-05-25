@@ -1,0 +1,10 @@
+3c3,9
+<         return directoryScanner.scan().getClasses();
+---
+>     Collection<String> classes = new ArrayList<>();
+>     for (File file : directoryScanner.scan().getFiles()) {
+>         if (file.isFile() && file.getName().endsWith(".class")) {
+>             classes.add(file.getAbsolutePath());
+>         }
+>     }
+>     return new ArrayList<>(classes);

@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class RtTransaction {
+> 
+>     public String getRtTransactionId() {
+>         return new TextOf(this).asString();
+>     }
+> }
+\ No newline at end of file

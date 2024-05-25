@@ -1,0 +1,6 @@
+import com.jcabi.github.Github;
+
+@Tv(41)
+public class MkGithub extends BaseGithub implements Github {
+  // ...
+}

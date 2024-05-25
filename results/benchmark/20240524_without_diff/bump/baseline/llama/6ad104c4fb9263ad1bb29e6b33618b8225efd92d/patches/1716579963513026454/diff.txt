@@ -1,0 +1,8 @@
+6c6
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+---
+>     byte[] calculatedMAC = Poly1305.create(macKey, additionalData, ciphertext);
+8c8
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+---
+>     if (!MessageDigest.isEqual(calculatedMAC, receivedMAC)) {

@@ -1,0 +1,6 @@
+1c1
+< import com.artipie.asto.factory.Storages;
+\ No newline at end of file
+---
+> import com.jfrog.artifactory.client.ArtifactoryRequests;
+\ No newline at end of file

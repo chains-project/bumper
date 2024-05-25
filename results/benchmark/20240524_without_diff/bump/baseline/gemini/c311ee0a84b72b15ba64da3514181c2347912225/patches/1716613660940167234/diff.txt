@@ -1,0 +1,11 @@
+3c3
+<         return new StringContains(
+---
+>         final Matcher<String> downloadedNewerImage = new StringContains(
+6,7c6,8
+<         )++
+<         .and(new StringContains(false, "Downloaded"));
+---
+>         );
+>         final Matcher<String> downloaded = new StringContains(false, "Downloaded");
+>         return downloadedNewerImage.and(downloaded);

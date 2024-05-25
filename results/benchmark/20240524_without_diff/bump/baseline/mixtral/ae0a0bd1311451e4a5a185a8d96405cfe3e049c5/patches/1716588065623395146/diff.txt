@@ -1,0 +1,17 @@
+15c15
+<                     new IsNot<>(new IsNull<>())
+---
+>                     notNullValue()
+20c20
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                     instanceOf(InvalidDigestException.class)
+25,26c25
+<                     new StringContains(
+<                         true,
+---
+>                     containsString(
+33c32
+<                     new StringContains(true, digest)
+---
+>                     containsString(digest)

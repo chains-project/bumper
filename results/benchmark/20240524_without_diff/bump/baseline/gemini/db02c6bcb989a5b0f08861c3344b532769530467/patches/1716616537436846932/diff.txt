@@ -1,0 +1,4 @@
+4c4
+<             String.format("%s: Layer already exists", this.image.layer())
+---
+>             String.format(Locale.ROOT, "%s: Layer already exists", this.image.layer())

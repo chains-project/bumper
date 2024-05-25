@@ -1,0 +1,7 @@
+@Test
+void test_PGS_Morphology_simplifyTopology() {
+    if (GROUP_SHAPE != null && GROUP_SHAPE.getChildCount() == 2) {
+        PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+        assert out != null && out.getChildCount() == 2;
+    }
+}

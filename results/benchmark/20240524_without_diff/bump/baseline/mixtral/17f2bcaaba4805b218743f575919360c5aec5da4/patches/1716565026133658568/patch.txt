@@ -1,0 +1,18 @@
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+// ...
+
+@Test
+@Override
+public void testFastPolygonize() {
+    // Arrange
+    Polygonizer polygonizer = new FastPolygonizer();
+
+    // Act
+    List<Polygon> polygons = polygonizer.polygonize(vertices);
+
+    // Assert
+    assertDoesNotThrow(() -> {
+        validatePolygons(polygons);
+    });
+}

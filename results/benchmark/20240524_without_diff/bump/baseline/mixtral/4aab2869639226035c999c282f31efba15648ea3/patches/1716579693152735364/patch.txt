@@ -1,0 +1,7 @@
+import com.artipie.asto.factory.Storages;
+import com.artipie.asto.memory.InMemoryStorage;
+
+@Override
+public Storage storage() {
+    return Storages.single(new InMemoryStorage());
+}

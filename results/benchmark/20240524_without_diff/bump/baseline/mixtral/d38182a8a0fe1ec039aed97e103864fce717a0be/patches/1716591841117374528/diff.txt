@@ -1,0 +1,19 @@
+0a1,4
+> import static java.util.stream.Stream.of;
+> import java.util.function.Function;
+> import java.util.stream.Stream;
+> 
+2a7,10
+>     Function<String, Stream<Authentication.User>> tokenValidator =
+>         token -> of(TestAuthentication.ALICE, TestAuthentication.BOB)
+>             .filter(user -> token.equals(token(user)))
+>             .map(user -> new Authentication.User(user.name()));
+7,12c15
+<                     token -> CompletableFuture.completedFuture(
+<                         Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB)
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+<                             .findFirst()
+<                     ),
+---
+>             tokenValidator,

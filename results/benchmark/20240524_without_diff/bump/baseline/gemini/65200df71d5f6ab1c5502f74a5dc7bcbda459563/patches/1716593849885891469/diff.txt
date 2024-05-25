@@ -1,0 +1,18 @@
+1a2,6
+>         List<String> enabledLanguages = globalConfig.getEnabledLanguages();
+>         String clientPid = globalConfig.getClientPid();
+>         Map<String, String> extraProperties = globalConfig.extraProperties();
+>         File workDir = globalConfig.getWorkDir();
+>         ModulesProvider modulesProvider = globalConfig.getModulesProvider();
+3,7c8,12
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+>                 .enabledLanguages(enabledLanguages)
+>                 .clientPid(clientPid)
+>                 .extraProperties(extraProperties)
+>                 .workDir(workDir)
+>                 .modulesProvider(modulesProvider)

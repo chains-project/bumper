@@ -1,0 +1,11 @@
+import processing.core.PShape;
+
+@Test
+void test_PGS_Morphology_chaikinCut() {
+    assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+    PShape parentShape = GROUP_SHAPE.getChildren()[0];
+    float depth = 2;
+    float fraction = 0.5f;
+    PShape result = PGS_Morphology.chaikinCut(parentShape, fraction, depth);
+    assertEquals(2, result.getVertecies().length);
+}

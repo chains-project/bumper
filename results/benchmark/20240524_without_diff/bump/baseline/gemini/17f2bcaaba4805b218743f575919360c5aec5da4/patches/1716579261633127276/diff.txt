@@ -1,0 +1,16 @@
+2d1
+<         @Ignore
+31c30,36
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>                         final PolygonizerFP polygonizerFP = new PolygonizerFP(); // ++ new
+>                         polygonizerFP.setCheckRingsValid(false); // ++ added method
+>                         nodedEdgesSet.forEach(e -> {
+>                                 final LineString l = PGS.GEOM_FACTORY
+>                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+>                                 polygonizerFP.add(l); // ++ added method call
+>                         });
+35c40
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>                         assertEquals(JTS.size(), polygonizerFP.getPolygons().size()); // ++ added method call

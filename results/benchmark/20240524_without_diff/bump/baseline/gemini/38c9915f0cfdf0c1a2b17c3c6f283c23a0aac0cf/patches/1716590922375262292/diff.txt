@@ -1,0 +1,18 @@
+1a2,17
+> 
+> import java.io.IOException;
+> 
+> public class RtTransaction {
+> 
+>     // ...
+> 
+>     public IoCheckedScalar<String> getTransactionData() throws IOException {
+>         return new IoCheckedScalar<>(
+>                 () -> "transaction_data",
+>                 IOException::new
+>         );
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file
