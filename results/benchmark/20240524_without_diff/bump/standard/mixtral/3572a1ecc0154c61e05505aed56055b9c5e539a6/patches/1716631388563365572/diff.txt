@@ -1,0 +1,54 @@
+1a2,8
+> import net.w3designed.summer.transport.TFramedTransport;
+> import org.apache.thrift.transport.TSocket;
+> import org.apache.thrift.transport.TTransportException;
+> import org.apache.thrift.protocol.TCompactProtocol;
+> import org.apache.thrift.TDeserializer;
+> import java.lang.RuntimeException;
+> 
+6c13
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+---
+>         transport = new TFramedTransport(new TSocket("localhost", 9090));
+8c15
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol(transport));
+---
+>         return new TDeserializer(new TCompactProtocol(transport));
+10c17
+<         throw new RuntimeException(e);
+---
+>         throw new java.lang.RuntimeException(e);
+14a22,54
+>  }
+> }
+> 
+> class TFramedTransport implements org.apache.thrift.transport.TTransport {
+>     private final org.apache.thrift.transport.TTransport delegate;
+> 
+>     public TFramedTransport(org.apache.thrift.transport.TTransport delegate) {
+>         this.delegate = delegate;
+>     }
+> 
+>     @Override
+>     public void open() throws org.apache.thrift.transport.TTransportException {
+>         this.delegate.open();
+>     }
+> 
+>     @Override
+>     public void close() {
+>         this.delegate.close();
+>     }
+> 
+>     @Override
+>     public int read(byte[] buf, int off, int len) throws java.io.IOException {
+>         return this.delegate.read(buf, off, len);
+>  }
+> 
+>     @Override
+>     public void write( byt e[] buf, int off, int len) throws java.io.IOException {
+>         this.delegate.write(buf, off, len);
+>     }
+> 
+>     @Override
+>     public boolean isOpen() {
+>         return this.delegate.isOpen();

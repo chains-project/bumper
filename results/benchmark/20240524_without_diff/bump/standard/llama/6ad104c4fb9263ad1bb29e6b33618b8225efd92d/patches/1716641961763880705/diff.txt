@@ -1,0 +1,12 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2
+<     org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+---
+>     java.security.Key macKey = initRecordMAC(decryptCipher);
+5,6c4,5
+<     if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>     if (!java.util.Arrays.equals(calculatedMAC, receivedMAC)) {
+>         throw new java.io.IOException("Bad record MAC");

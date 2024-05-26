@@ -1,0 +1,11 @@
+import org.apache.maven.surefire.api.testset.TestFileSet;
+import org.apache.maven.surefire.api.util.SurefireReflectionUtils;
+
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, getTestFileSet().getIncludes());
+    return directoryScanner.scan().getClasses();
+}
+
+private static TestFileSet getTestFileSet() {
+    return SurefireReflectionUtils.getInstance().newInstance(TestFileSet.class);
+}

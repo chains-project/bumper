@@ -1,0 +1,9 @@
+6c6,7
+<      * @param group {@link ManagedObject} to register.
+---
+>      * @param group
+>      *          {@link ManagedObject} to register.
+12c13
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>             final SortedMap<MOScope, ManagedObject> reg = new TreeMap<>();

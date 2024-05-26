@@ -1,0 +1,11 @@
+9c9,13
+<     decryptCipher.processBytes(cipherte struct, 0, ciphertext.length, output, 0);
+---
+>     int processed = decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output,  typo fixed: cipherte -> 0);
+>     if (processed < 0) {
+>         throw new RuntimeException("Error while decrypting ciphertext");
+>    
+>     }
+11a16
+> ``
+\ No newline at end of file

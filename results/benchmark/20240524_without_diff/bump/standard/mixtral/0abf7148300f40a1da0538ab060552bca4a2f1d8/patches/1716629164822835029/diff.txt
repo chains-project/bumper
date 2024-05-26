@@ -1,0 +1,28 @@
+1,2d0
+< private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style)
+<         {
+9c7,23
+<                 textField.getLineBox().getPen().setLineWidth(border.getLineWidth());
+---
+>                 float lineWidth = border.getLineWidth();
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+>                 textField.getLineBox().getPen().setLineStyle(BorderlineStyle.SOLID.getLineStyleEnum());
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+>                 textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+>                 textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+>                 textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+>                 textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+11a26,29
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineJFreePen().setLineWidth(lineWidth);
+>                 textField.getLineJFreePen().setLineColor(border.getLineColor());
+>                 textField.getLineJFreePen().setLineStyle(border.getLineStyle().getLineStyleEnum().getValue());

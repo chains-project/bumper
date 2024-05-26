@@ -1,0 +1,18 @@
+import org.jasypt.util.password.BasicPasswordEncryptor;
+
+// ...
+
+public class GeoStoreDigestPasswordEncoder {
+
+    private BasicPasswordEncryptor encryptor = new BasicPasswordEncryptor();
+
+    // ...
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return encryptor.encryptPassword(rawPassword.toString());
+    }
+
+    // ...
+
+}

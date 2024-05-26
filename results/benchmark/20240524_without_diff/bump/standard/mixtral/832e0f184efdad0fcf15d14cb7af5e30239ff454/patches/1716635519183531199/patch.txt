@@ -1,0 +1,31 @@
+@Override
+public void init(Player player, InventoryContents contents) {
+    com.expl0itz.worldwidechat.util.ActiveTranslator targetTranslator = main.getActiveTranscom().getCryptomorin().xseries.XMaterial.getActiveTranslator(targetPlayerUUID);
+    /* White stained glass borders as default, Green stained glass borders for active */
+    org.bukkit.inventory.ItemStack customBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+    org.bukkit.inventory.meta.ItemMeta borderMeta = customBorders.getItemMeta();
+    org.bukkit.inventory.meta.ItemMeta borderMetaActive = customBorders.getItemMeta();
+    borderMeta.setDisplayName(" ");
+    borderMetaActive.setDisplayName(" ");
+    customBorders.setItemMeta(borderMeta);
+    contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customBorders));
+    if (targetTranslator.getTranslatingChatOutgoing() || targetTranslator.getTranslatingChatIncoming()) {
+        customBorders = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+        borderMetaActive = customBorders.getItemMeta();
+        borderMetaActive.setDisplayName(" ");
+        customBorders.setItemMeta(borderMetaActive);
+    }
+    /* Outgoing Chat Button */
+    org.bukkit.inventory.ItemStack outgoingChatButton = com.cryptomorin.xseries.XMaterial.CHEST_MINECART.parseItem();
+    org.bukkit.inventory.meta.ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+    if (targetTranslator.getTranslatingChatOutgoing()) {
+        addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+        addEnchant(matchXEnchantment("power").get().parse(), 1, false);
+        outgoingChatMeta.setDisplayName(ChatColor.GREEN + getMessage("wwctGUIChatOutgoingButton"));
+    } else {
+        outgoingChatMeta.setDisplayName(ChatColor.YELLOW + getMessage("wwctGUIChatOutgoingButton"));
+    }
+    outgoingChatButton.setItemMeta(outgoingChatMeta);
+    /* Incoming Chat Button */
+    /* Bottom Left Option: Previous Page */
+}

@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 111900554,
+    "in_class_code": "{\n    // TODO: review this AI generated patch!\n    @Override\n    protected TDeserializer initialValue() {\n        try {\n            return new TDeserializer(new TBinaryProtocol.Factory().getProtocol(new TIOStreamTransport(new ByteArrayInputStream(new byte[0]))));\n        } catch (TException e) {\n            throw new RuntimeException(e);\n        }\n    }\n}",
+    "qualified_in_class_code": " {\n    // TODO: review this AI generated patch!\n    @java.lang.Override\n    protected org.apache.thrift.TDeserializer initialValue() {\n        try {\n            return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory().getProtocol(new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]))));\n        } catch (org.apache.thrift.TException e) {\n            throw new java.lang.RuntimeException(e);\n        }\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java:[182,120] incompatible types: org.apache.thrift.protocol.TProtocol cannot be converted to org.apache.thrift.protocol.TProtocolFactory",
+        "client_file_path": "/singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java",
+        "client_line_position": "182"
+    },
+    "client_end_line_number": 186,
+    "client_line_number": 178,
+    "method_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    try {\n        return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory().getProtocol(new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]))));\n    } catch (org.apache.thrift.TException e) {\n        throw new java.lang.RuntimeException(e);\n    }\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    try {\n        return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory().getProtocol(new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]))));\n    } catch (org.apache.thrift.TException e) {\n        throw new java.lang.RuntimeException(e);\n    }\n}",
+    "method_name": "initialValue"
+}

@@ -1,0 +1,9 @@
+import java.util.Random;
+import org.apache.commons.lang3.StringUtils;
+
+// ...
+
+public static String getRandomString(int length) {
+    Random rnd = new Random();
+    return StringUtils.repeat('a', length);
+}

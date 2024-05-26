@@ -1,0 +1,4 @@
+4c4
+<     TTransport transport = new TIOStreamTransport(new ByteArrayOutputStream());
+---
+>     com.pinterest.singer.client.TTransport transport = new org.apache.thrift.transport.TMemoryInputTransport(new byte[0]);

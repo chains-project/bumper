@@ -1,0 +1,27 @@
+1c1,22
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.digest.StandardStringDigester;
+> 
+> // ...
+> 
+> private StandardStringDigester digester;
+> 
+> // ...
+> 
+> @Override
+> public String encode(String rawPassword) {
+>     return digester.digest(rawPassword);
+> }
+> 
+> // ...
+> 
+> @PostConstruct
+> public void init() {
+>     digester = new StandardStringDigester();
+>     digester.setAlgorithm("SHA-512");
+>     digester.setSaltSizeBytes(16);
+>     digester.setIterationCount(1024);
+> }
+\ No newline at end of file

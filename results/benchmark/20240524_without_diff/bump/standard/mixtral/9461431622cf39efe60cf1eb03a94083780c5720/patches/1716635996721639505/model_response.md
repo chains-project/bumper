@@ -1,0 +1,19 @@
+Here is a possible patch for the `registerHard` method:
+
+```java
+private void registerHard(final MOGroup group) {
+    try {
+        final Field registry = server.getClass().getDeclaredField("registry");
+        registry.setAccessible(true);
+        final Map<MOScope, ManagedObject> reg = new TreeMap<>(server.getRegistry());
+        DefaultMOContextScope contextScope = new DefaultMOContextScope(new OctetString(""), group.getScope());
+        reg.put(contextScope, group);
+        Field tableField = server.getClass().getDeclaredField("table");
+        tableField.setAccessible(true);
+        tableField.set(server, new TreeMap<>(new ValueMapper<MOScope, ManagedObject, Comparator<MOScope>>() {
+            @Override
+            public Comparator<MOScope> getComparator(final MOScope key, final ManagedObject value) {
+                return (o1, o2) -> {
+                    int res = o1.compareTo(o2);
+                    if (res == 
+```

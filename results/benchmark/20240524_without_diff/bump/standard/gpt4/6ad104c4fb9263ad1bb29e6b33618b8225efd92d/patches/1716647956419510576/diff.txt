@@ -1,0 +1,7 @@
+1c1,2
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> // import the correct package
+> import org.bouncycastle.correct.package.AlertDescription;
+\ No newline at end of file

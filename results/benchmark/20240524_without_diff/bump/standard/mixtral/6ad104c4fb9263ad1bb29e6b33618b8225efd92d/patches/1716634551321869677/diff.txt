@@ -1,0 +1,13 @@
+1d0
+< // TODO: review this AI generated patch!
+9c8,15
+<     decryptCipher.processBytes(cipherte struct, 0, ciphertext.length, output, 0);
+---
+>     int processed = 0;
+>     while (processed < ciphertext.length) {
+>         int processedBytes = decryptCipher.processBytes(ciphertext, processed, ciphertext.length - processed, output, processed);
+>         if (processedBytes == 0) {
+>             throw new RuntimeException("Failed to decrypt ciphertext");
+>         }
+>         processed += processedBytes;
+>     }

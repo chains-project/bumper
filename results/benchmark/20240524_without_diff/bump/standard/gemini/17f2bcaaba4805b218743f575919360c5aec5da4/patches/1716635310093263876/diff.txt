@@ -1,0 +1,17 @@
+1c1,12
+< import org.junit.jupiter.api.Test;
+\ No newline at end of file
+---
+> package org.junit.jupiter.api;
+> 
+> import java.lang.annotation.ElementType;
+> import java.lang.annotation.Retention;
+> import java.lang.annotation.RetentionPolicy;
+> import java.lang.annotation.Target;
+> 
+> @Retention(RetentionPolicy.RUNTIME)
+> @Target({ElementType.TYPE, ElementType.METHOD})
+> public @interface Test {
+> 
+> }
+\ No newline at end of file

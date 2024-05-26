@@ -1,0 +1,13 @@
+@java.lang.Override
+protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+    char[] chars = java.util.Arrays.stream(password).map(t -> (char) t).toArray();
+    try {
+        stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+        stringEncrypter.setPassword(new String(chars));
+        if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+            stringEncrypter.setProviderName(getProviderIt.geosolutions.geostore.core.security.password.SecurityUtils.scramble(password);
+        java.util.Arrays.fill(chars, ' ');
+    }
+    return new org.jasypt.spring.security.PBEPasswordEncoder();
+}

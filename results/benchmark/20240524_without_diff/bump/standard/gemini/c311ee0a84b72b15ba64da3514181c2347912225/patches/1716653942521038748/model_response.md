@@ -1,0 +1,1 @@
+final String output = this.client.run("pull", this.image.remoteByDigest());

@@ -1,0 +1,48 @@
+1,6c1,11
+< private DeleteReleaseBundleRequest createRequest(String distRules, List<String> countryCodes, String siteName,
+<                                                      String cityName, boolean dryRun, boolean deleteFromDist) throws IOException {
+<         DeleteReleaseBundleRequest request;
+<         if (StringUtils.isNotBlank(distRules)) {
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+<                 throw new IOException("The distRules input can't be used with site, city or country codes");
+---
+> import static org.apache.commons.lang3.StringUtils.isNotBlank;
+> import static org.apache.commons.collections.CollectionUtils.isEmpty;
+> import static org.apache.commons.lang3.StringUtils.isBlank;
+> 
+> // ...
+> 
+> private org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest createRequest(java.lang.String distRules, java.util.List<java.lang.String> countryCodes, java.lang.String siteName, java.lang.String cityName, boolean dryRun, boolean deleteFromDist) throws java.io.IOException {
+>     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request;
+>     if (isNotBlank(distRules)) {
+>         if ((!isEmpty(countryCodes)) || ((!isBlank(siteName)) && (!isBlank(cityName)))) {
+>             throw new java.io.IOException("The distRules input can't be used with site, city or country codes");
+8,9c13,14
+<             ObjectMapper mapper = createMapper();
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+>         request = mapper.readValue(distRules, org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.class);
+11,12c16,17
+<             request = new DeleteReleaseBundleRequest();
+<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+---
+>         request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();
+>         request.setDistributionRules(org.jfrog.hudson.pipeline.common.Utils.createDistributionRules(countryCodes, siteName, cityName));
+15,16c20
+<         request.setOnSuccess(deleteFromDist ?
+<                 DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>     request.setOnSuccess(deleteFromDist ? DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+18a23,32
+> 
+> // Add the new isAllBlank method to the StringUtils class
+> private static boolean isAllBlank(String... strings) {
+>     for (String string : strings) {
+>         if (!isBlank(string)) {
+>             return false;
+>         }
+>     }
+>     return true;
+> }
+\ No newline at end of file

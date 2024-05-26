@@ -1,0 +1,21 @@
+1c1,16
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import java.security.Provider;
+> import java.security.Security;
+> 
+> import javax.net.ssl.SSLContext;
+> import javax.net.ssl.SSLException;
+> 
+> public class ChachaDecoder {
+>     public ChachaDecoder() {
+>         String tlsProviderName = "Conscrypt";
+>         Provider tlsProvider = Security.getProvider(tlsProviderName);
+>         if (tlsProvider == null) {
+>             tlsProvider = new org.conscrypt.OpenSSLProvider(tlsProviderName);
+>             Security.addProvider(tlsProvider);
+>         }
+>     }
+> }
+\ No newline at end of file

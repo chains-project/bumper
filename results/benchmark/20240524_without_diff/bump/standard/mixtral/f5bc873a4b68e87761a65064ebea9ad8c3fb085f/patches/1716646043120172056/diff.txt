@@ -1,0 +1,10 @@
+1a2,9
+> import java.nio.file.Paths;
+> 
+> // ...
+> 
+> File file = new File("path/to/your/file");
+> 
+> // Use NIO.2 to get the parent
+> File parent = Paths.get(file.getAbsolutePath()).toFile().getParentFile();
+\ No newline at end of file

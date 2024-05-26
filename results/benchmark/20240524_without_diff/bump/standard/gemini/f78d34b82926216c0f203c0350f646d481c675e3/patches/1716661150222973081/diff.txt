@@ -1,0 +1,3 @@
+1a2
+> import static develop.p2p.lib.LearnMath.sigmoid2;
+\ No newline at end of file

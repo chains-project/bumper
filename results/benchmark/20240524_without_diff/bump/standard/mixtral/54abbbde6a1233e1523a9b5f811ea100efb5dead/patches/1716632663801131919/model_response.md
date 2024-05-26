@@ -1,0 +1,31 @@
+Here's the fixed method with the required `finally` block:
+
+```java
+@Override
+@com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = java.util.concurrent.TimeUnit.MINUTES, verbose = false, types = java.io.IOException.class)
+protected com.jcraft.jsch.Session session() throws java.io.IOException {
+    com.jcraft.jsch.Session session = null;
+    try {
+        com.jcraft.jsch.JSch.setLogger(new com.jcabi.ssh.JschLogger());
+        final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+        java.lang.String login = this.getLogin();
+        java.lang.String addr = this.getAddr();
+        int port = this.getPort();
+        java.lang.String password = this.password;
+        session = jsch.getSession(login, addr, port);
+        session.setConfig("StrictHostKeyChecking", "no");
+        session.setPassword(password);
+        session.setServerAliveInterval(1000 * 10);
+        session.setServerAliveCountMax(1000000);
+        session.connect(1000 * 10);
+    } catch (com.jcraft.jsch.JSchException ex) {
+        throw new java.io.IOException(ex);
+    } finally {
+        if (session != null) {
+            session.disconnect();
+        }
+    }
+}
+```
+
+This version adds a `finally` block that disconnects the `Session` if it's not `null`. The error was caused by a missing `finally` block, which is why the compiler was complaining about a "try without 'catch', 'finally' or resource declarations" at line 79.

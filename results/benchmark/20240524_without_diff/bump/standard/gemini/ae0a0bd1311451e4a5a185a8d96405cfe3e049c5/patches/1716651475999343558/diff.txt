@@ -1,0 +1,12 @@
+4c4,12
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains("Unexpected path"));
+---
+>     try {
+>         new UploadEntityRequest(
+>                 new org.apache.http.client.methods.HttpGet("/does-not-exist"),
+>                 org.apache.http.entity.ContentType.APPLICATION_OCTET_STREAM
+>         );
+>         org.junit.jupiter.api.Assertions.fail("Should have thrown exception");
+>     } catch (final java.io.IOException e) {
+>         // expected
+>     }

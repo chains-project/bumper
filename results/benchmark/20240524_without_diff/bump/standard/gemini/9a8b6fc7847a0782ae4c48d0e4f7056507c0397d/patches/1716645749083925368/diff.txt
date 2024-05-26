@@ -1,0 +1,13 @@
+1,5c1,6
+< @Override
+<             protected PasswordEncoder createStringEncoder() {
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+<                 return encoder;
+---
+> @java.lang.Override
+> protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {
+>     org.jasypt.util.password.StrongPasswordEncryptor encryptor = new org.jasypt.util.password.StrongPasswordEncryptor();
+>     return new org.springframework.security.crypto.password.DelegatingPasswordEncoder("bcrypt",
+>             new org.springframework.security.crypto.password.MessageDigestPasswordEncoder("MD5"),
+>             encryptor);

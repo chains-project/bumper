@@ -1,0 +1,24 @@
+1,15c1,7
+< @Test
+<     void writeAndReadBlob() throws Exception {
+<         final AstoBlobs blobs = new AstoBlobs(
+<             new InMemoryStorage(), new DefaultLayout(), new RepoName.Simple("test")
+<         );
+<         final byte[] bytes = {0x05, 0x06, 0x07, 0x08};
+<         final Digest digest = blobs.put(new TrustedBlobSource(bytes))
+<             .toCompletableFuture().get().digest();
+<         final byte[] read = Flowable.fromPublisher(
+<             blobs.blob(digest)
+<                 .toCompletableFuture().get()
+<                 .get().content()
+<                 .toCompletableFuture().get()
+<         ).toList().blockingGet().get(0).array();
+<         MatcherAssert.assertThat(read, Matchers.equalTo(bytes));
+---
+> @org.junit.jupiter.api.Test
+> void writeAndReadBlob() throws java.lang.Exception {
+>     final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(new com.artipie.asto.memory.InMemoryStorage(), new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("test"));
+>     final byte[] bytes = new byte[]{ 0x5, 0x6, 0x7, 0x8 };
+>     final com.artipie.docker.Digest digest = blobs.put(new com.artipie.docker.asto.TrustedBlobSource(bytes)).toCompletableFuture().get().digest();
+>     final byte[] read = io.reactivex.Flowable.fromPublisher(blobs.blob(digest).toCompletableFuture().get().get().content().toCompletableFuture().get()).toList().blockingGet().get(0).array();
+>     org.hamcrest.MatcherAssert.assertThat(read, org.hamcrest.Matchers.equalTo(bytes));

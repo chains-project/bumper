@@ -1,0 +1,20 @@
+1a2,19
+> import java.io.IOException;
+> import java.nio.file.Files;
+> import java.nio.file.Paths;
+> 
+> // ...
+> 
+> @Override
+> public void execute() throws MojoExecutionException {
+>     // ...
+>     try {
+>         Files.createDirectories(Paths.get(outputDirectory));
+>     -    new File(outputDirectory, "thms.xml").createNewFile();
+> +    Files.createFile(Paths.get(outputDirectory, "thms.xml"));
+>     } catch (IOException e) {
+>         // ...
+>     }
+>     // ...
+> }
+\ No newline at end of file

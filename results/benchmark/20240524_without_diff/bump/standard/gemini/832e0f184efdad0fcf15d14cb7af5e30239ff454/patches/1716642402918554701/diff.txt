@@ -1,0 +1,11 @@
+1,3c1,6
+< @Override
+<         public void update(Player player, InventoryContents contents) {
+<                 WWCInventoryManager.checkIfPlayerIsMissing(player, targetPlayerUUID);
+---
+> @java.lang.Override
+> public void update(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+>     com.expl0itz.worldwidechat.inventory.WWCInventoryManager.checkIfPlayerIsMissing(player, targetPlayerUUID);
+>     if (contents != null) {
+>         contents.setProperty("wwc_translate_gui_source_language", this.sourceLanguage);
+>     }

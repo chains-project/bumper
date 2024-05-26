@@ -1,0 +1,114 @@
+1,21c1,9
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+<     private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode)
+<     {
+<         final double[] time = {0.0};
+<         final double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+<             .get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+< 
+<         WaveCreator ypp = new WaveCreator(10.0, 100.0, 10.0);
+< 
+<         final int[] count = {0};
+<         BukkitRunnable r = new BukkitRunnable()
+<         {
+<             public void run()
+<             {
+---
+> private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode) {
+>     final double[] time = new double[]{ 0.0 };
+>     final double radius = (reachMode) ? ml.peya.plugins.Variables.config.getDouble("npc.reachRange") : ml.peya.plugins.Variables.config.getDoubleList("npc.range").get(new java.util.Random().nextInt(ml.peya.plugins.Variables.config.getDoubleList("npc.range").size()));
+>     final double min = 10.0;
+>     final double max = 100.0;
+>     final double increment = 10.0;
+>     final int[] count = new int[]{ 0 };
+>     BukkitRunnable r = new BukkitRunnable() {
+>         public void run() {
+23d10
+< 
+28,30d14
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+<                     double rangeTmp = radius;
+32,34c16,19
+<                     if (config.getBoolean("npc.wave"))
+<                         rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+<                             .get(0.01, true);
+---
+>             for (double i = 0; i < (java.lang.Math.PI * 2); i++) {
+>                 double rangeTmp = radius;
+>                 if (ml.peya.plugins.Variables.config.getBoolean("npc.wave"))
+>                     rangeTmp = min + (max - min) * java.lang.Math.sin(i * increment);
+37,45c22
+<                     final Location n = new Location(
+<                         center.getWorld(),
+<                         auraBotXPos(time[0], rangeTmp + speed) + center.getX(),
+<                         center.getY() + new WaveCreator(1.0, 2.0, 0.0).get(0.01, count[0] < 20),
+<                         auraBotZPos(time[0], rangeTmp + speed) + center.getZ(),
+<                         (float) ypp.getStatic(),
+<                         (float) ypp.get(4.5, false)
+<                     );
+< 
+---
+>                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + new java.util.Random().nextInt(2) + 1, ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (Math.sin(4.5))), ((float) (Math.sin(4.5))));
+47,49c24
+<                     ((CraftPlayer) player).getHandle().playerConnection
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+< 
+---
+>                 ((CraftPlayer) (player)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+51,62c26,30
+<                     new BukkitRunnable()
+<                     {
+<                         @Override
+<                         public void run()
+<                         {
+<                             Bukkit.getOnlinePlayers()
+<                                 .parallelStream()
+<                                 .filter(p -> p.hasPermission("psac.viewnpc"))
+<                                 .forEachOrdered(p ->
+<                                 {
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                 new BukkitRunnable() {
+>                     @java.lang.Override
+>                     public void run() {
+>                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+>                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+69,70c37,40
+<                     CheatDetectNowMeta meta = cheatMeta.getMetaByPlayerUUID(player.getUniqueId());
+<                     if (meta == null) continue;
+---
+>                 CheatDetectNowMeta meta = ml.peya.plugins.Variables.cheatMeta.getMetaByPlayerUUID(player.getUniqueId());
+>                 if (meta == null)
+>                     continue;
+> 
+73,75c43
+<                 time[0] += config.getDouble("npc.time") + (config.getBoolean("npc.speed.wave")
+<                     ? new WaveCreator(0.0, config.getDouble("npc.speed.waveRange"), 0 - config.getDouble("npc.speed.waveRange")).get(0.001, true)
+<                     : 0.0);
+---
+>             time[0] += ml.peya.plugins.Variables.config.getDouble("npc.time") + (ml.peya.plugins.Variables.config.getBoolean("npc.speed.wave") ? Math.sin(0.001) : 0.0);
+79,84c47,49
+< 
+<         new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+---
+>     new BukkitRunnable() {
+>         @java.lang.Override
+>         public void run() {
+88,89c53
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+< 
+---
+>     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));

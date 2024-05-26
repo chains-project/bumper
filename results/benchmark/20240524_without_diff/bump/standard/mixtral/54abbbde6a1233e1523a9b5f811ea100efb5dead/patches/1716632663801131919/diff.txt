@@ -1,0 +1,21 @@
+1,2c1
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+---
+> @Override
+4a4
+>     com.jcraft.jsch.Session session = null;
+12,14d11
+<                 com.jcraft.jsch.Session session = null;
+<                 try {
+<                         com.jcabi.log.Logger.debug(this, "Opening SSH session to %s@%s:%s (auth with password)...", login, addr, port);
+18c15
+<                         session.setServerAluminveInterval(1000 * 10);
+---
+>         session.setServerAliveInterval(1000 * 10);
+22a20,22
+>     } finally {
+>         if (session != null) {
+>             session.disconnect();
+24d23
+<                 return session;

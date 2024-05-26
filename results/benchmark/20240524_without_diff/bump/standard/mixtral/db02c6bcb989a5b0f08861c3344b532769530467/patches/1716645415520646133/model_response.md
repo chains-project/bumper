@@ -1,0 +1,25 @@
+Here's a suggestion for a fix for the given client code:
+
+```java
+@org.junit.jupiter.api.Test
+void fixesOnDigestMismatch() {
+    final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.asto.memory.InMemoryStorage();
+    final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+    final java.lang.String digest = "123";
+    com.artipie.docker.asto.CheckedBlobSource checkedBlobSource = new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.asto.DefaultDigest.Sha256(digest));
+    com.artipie.docker.asto.CheckedBlob checkedBlob = new com.artipie.docker.asto.CheckedBlob(checkedBlobSource, new com.artipie.docker.asto.DefaultDigest.Sha256(digest));
+    java.util.function.Consumer<Throwable> errorHandler = (throwable) -> {
+        org.hamcrest.MatcherAssert.assertThat("Exception thrown", throwable, new org.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwbl
+    owable).getMessage(), new org.hamcrest.core.StringStartsWith(new java.lang.StringBuilder().append(com.google.common.io.BaseEncoding.base16().encode(com.google.common.io.BaseEncoding.base16().decode(new java.lang.StringBuilder().append(com.artipie.docker.asto.DefaultDigest.SHA256_PREFIX).append(digest).toString()))).toString()).build()));
+    };
+    java.util.concurrent.CompletableFuture.runAsync(() -> {
+        try {
+            blobs.put(checkedBlob).toCompletableFuture().join();
+        } catch (Throwable e) {
+            errorHandler.accept(e);
+        }
+    });
+    org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(new java.lang.StringBuilder().append(com.artipie.docker.asto.DefaultDigest.SHA256_PREFIX).append(digest).toString()));
+    org.hamcrest.MatcherAssert.assertThat("Exception message does not contain calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringDoesNotContain(new java.lang.StringBuilder().append(com.artip.
+```

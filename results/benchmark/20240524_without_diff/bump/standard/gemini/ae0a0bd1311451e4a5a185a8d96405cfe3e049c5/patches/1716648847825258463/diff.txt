@@ -1,0 +1,21 @@
+1,13c1,4
+< @Test
+<     void shouldPush() throws Exception {
+<         final Image original = new Image.ForOs();
+<         final String image = this.copy(original);
+<         final String output = this.cli.run("push", image);
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("latest: digest: %s", original.digest())
+<             )
+<         );
+<     }
+\ No newline at end of file
+---
+> final com.artipie.docker.http.Image original = new com.artipie.docker.http.Image.ForOs();
+> final java.lang.String image = this.copy(original);
+> final java.lang.String output = this.cli.run("push", image);
+> org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(java.lang.String.format("latest: digest: %s", original.digest())));
+\ No newline at end of file

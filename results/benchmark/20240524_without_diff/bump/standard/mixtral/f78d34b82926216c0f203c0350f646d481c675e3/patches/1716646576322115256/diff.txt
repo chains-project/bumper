@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.commons.lang3.RandomStringUtils;
+\ No newline at end of file
+---
+> import org.apache.commons.text.RandomStringGenerator;
+> 
+> ...
+> 
+> private static final String LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+> ...
+> 
+> public static String generateRandomString(int length) {
+>     RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange(LETTERS.charAt(0), LETTERS.charAt(LETTERS.length() - 1)).build();
+>     return generator.generate(length);
+> }
+\ No newline at end of file

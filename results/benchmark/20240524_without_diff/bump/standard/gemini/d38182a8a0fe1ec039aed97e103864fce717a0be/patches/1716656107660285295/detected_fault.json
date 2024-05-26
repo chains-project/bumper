@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1859374258,
+    "in_class_code": "/**\n * Bearer authentication method.\n *\n * @since 0.8\n */\nprivate static final class Bearer implements Method {\n    // TODO: review this AI generated patch!\n    @Override\n    public Slice slice(final String action) {\n    }\n}",
+    "qualified_in_class_code": "/**\n * Bearer authentication method.\n *\n * @since 0.8\n */\nprivate static final class Bearer implements com.artipie.docker.http.AuthTest.Method {\n    // TODO: review this AI generated patch!\n    @java.lang.Override\n    public com.artipie.http.Slice slice(final java.lang.String action) {\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/AuthTest.java:[347,568] ')' expected",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/AuthTest.java",
+        "client_line_position": "347"
+    },
+    "client_end_line_number": 348,
+    "client_line_number": 344,
+    "method_code": "// TODO: review this AI generated patch!\n@java.lang.Override\npublic com.artipie.http.Slice slice(final java.lang.String action) {\n    return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.Basic(user.name(), user.password())).findFirst()), \"\");\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@java.lang.Override\npublic com.artipie.http.Slice slice(final java.lang.String action) {\n}",
+    "method_name": "slice"
+}

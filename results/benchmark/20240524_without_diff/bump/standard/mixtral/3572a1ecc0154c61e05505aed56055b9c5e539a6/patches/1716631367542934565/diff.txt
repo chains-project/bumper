@@ -1,0 +1,19 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+<     org.apache.thrift.transport.TTransport transport = null;
+---
+>     org.apache.thrift.transport.TSocket transport = null;
+6,10c5,10
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+<         transport.open();
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol(transport));
+<     } catch (org.apache.thrift.transport.TTransportException e) {
+<         throw new RuntimeException(e);
+---
+>         transport = new org.apache.thrift.transport.TSocket("localhost", 9090);
+>         org.apache.thrift.transport.TFramedTransport framedTransport = new org.apache.thrift.transport.TFramedTransport(transport);
+>         framedTransport.open();
+>         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol(framedTransport));
+>    9  } catch (org.apache.thrift.transport.TTransportException e) {
+>         throw new java.lang.RuntimeException(e);

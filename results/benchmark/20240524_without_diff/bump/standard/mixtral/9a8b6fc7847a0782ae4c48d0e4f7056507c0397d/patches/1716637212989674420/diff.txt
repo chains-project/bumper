@@ -1,0 +1,11 @@
+1c1,6
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.password.PBEPasswordEncoder;
+> 
+> // Change the following line
+> // PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+> // to
+> PBEPasswordEncoder encoder = new PBEPasswordEncoder(new StandardPBEStringEncryptor());
+\ No newline at end of file

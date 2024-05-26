@@ -1,0 +1,11 @@
+1a2,10
+> import develop.p2p.lib.WaveCreator;
+> 
+> public class Decorations {
+> 
+>     public static void main(String[] args) {
+>         WaveCreator waveCreator = new WaveCreator();
+>         waveCreator.createWave("test.wav");
+>     }
+> }
+\ No newline at end of file

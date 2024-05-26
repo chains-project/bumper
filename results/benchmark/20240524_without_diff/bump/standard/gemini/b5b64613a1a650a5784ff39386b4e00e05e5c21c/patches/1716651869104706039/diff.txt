@@ -1,0 +1,24 @@
+3c3,4
+<     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request;
+---
+>     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();
+>     request.setDistributionRules(org.jfrog.hudson.pipeline.common.Utils.createDistributionRules(countryCodes, siteName, cityName));
+5c6
+<         if ((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isBlank(siteName)) || (!org.apache.commons.lang3.StringUtils.isBlank(cityName)))) {
+---
+>         if (((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isBlank(siteName))) || (!org.apache.commons.lang3.StringUtils.isBlank(cityName))) {
+8,9c9,13
+<         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+<         request = mapper.readValue(distRules, org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.class);
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = org.jfrog.hudson.pipeline.common.executors.SerializationUtils.createMapper();
+>         org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest requestFromDistRules = mapper.readValue(distRules, org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.class);
+>         request.setDistributionRules(requestFromDistRules.getDistributionRules());
+>         request.setDryRun(requestFromDistRules.isDryRun());
+>         request.setOnSuccess(requestFromDistRules.getOnSuccess());
+11,13d14
+<         request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();
+<         request.setDistributionRules(org.jfrog.hudson.pipeline.common.Utils.createDistributionRules(countryCodes, siteName, cityName));
+<     }
+15a17
+>     }

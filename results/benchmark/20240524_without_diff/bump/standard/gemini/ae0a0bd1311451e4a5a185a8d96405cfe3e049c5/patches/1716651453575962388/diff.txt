@@ -1,0 +1,18 @@
+4c4,18
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains("Unexpected path"));
+---
+>   // Arrange
+>   // Act
+>   // Assert
+>   org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> {
+>     new com.artipie.docker.http.UploadEntityRequest(
+>       new org.eclipse.jetty.server.Request(
+>         "GET",
+>         "/docker/images/create?fromImage=invalidPath",
+>         "HTTP/1.1",
+>         new java.util.HashMap<>(),
+>         new java.io.ByteArrayInputStream(new byte[0])
+>       ),
+>       "invalidPath"
+>     );
+>   });

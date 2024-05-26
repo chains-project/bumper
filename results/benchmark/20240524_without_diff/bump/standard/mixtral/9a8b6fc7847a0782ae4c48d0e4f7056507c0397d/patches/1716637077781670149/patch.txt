@@ -1,0 +1,11 @@
+import org.jasypt.password.PBEPasswordEncoder;
+
+// Change the type of the variable to the new imported class
+public class GeoStorePBEPasswordEncoder {
+
+    // ...
+
+    private final PBEPasswordEncoder passwordEncoder;
+
+    // ...
+}

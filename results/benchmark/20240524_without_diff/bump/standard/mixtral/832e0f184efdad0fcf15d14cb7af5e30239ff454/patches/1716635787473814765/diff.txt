@@ -1,0 +1,134 @@
+1d0
+< // TODO: review this AI generated patch!
+4d2
+<     try {
+8,9c6
+<         org.bukkit.inventory.meta.ItemMeta borderMeta = customBXMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+<         org.bukkit.inventory.meta.ItemMeta borderMetaActive = customBordersActive.getItemMeta();
+---
+>     org.bukkit.inventory.meta.ItemMeta borderMeta = customBorders.getItemMeta();
+14,46c11,16
+<             org.bukkit.inventory.ItemStack customBordersActive = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS_++.parseItem();
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setDisplayName(" ");
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemMeta(borderMetaActive);
+<             ++.setItemParseItem();
+---
+>         org.bukkit.incremental.Material customBordersActive = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS;
+>         org.bukkit.inventory.ItemStack borderItem = customBordersActive.parseItem();
+>         org.bukkit.inventory.meta.ItemMeta borderMetaActive = borderItem.getItemMeta();
+>         borderMetaActive.setDisplayName(" ");
+>         borderItem.setItemMeta(borderMetaActive);
+>         setItemMeta(borderMetaActive, borderItem);
+49d18
+<         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctco")) || ((!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctco.otherplayers"))) {
+53,55c22,24
+<                 ++.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+<                 ++.addEnchant(++.matchXEnchantment("power").get().parse(), 1, false);
+<                 ++.setDisplayName(org.bukkit.ChatColor.GREEN + ++.getMessage("wwctGUIChatOutgoingButton"));
+---
+>         addItemFlags(outgoingChatMeta, org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>         addEnchant(outgoingChatMeta, "power", 1, false);
+>         setDisplayName(outgoingChatMeta, org.bukget.ChatColor.GREEN + getMessage("wwctGUIChatOutgoingButton"));
+57,65c26
+<                 ++.setDisplayName(org.bukkit.ChatColor.YELLOW + ++.getMessage("wwctGUIChatOutgoingButton"));
+<             }
+<             ++.setItemMeta(outgoingChatMeta);
+<             ++.setItem(1, 3, fr.minuskube.inv.ClickableItem.of(outgoingChatButton, ( e) -> {
+<                 ++.[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+<                 ++.com.expl0itz.worldwidechat.commands.WWCTranslateChatOutgoing translateChatOutgoing = new ++.com.expl0itz.worldwidechat.commands.WWCTranslateChatOutgoing(((org.bukkit.command.CommandSender) (player)), null, null, ++.args);
+<                 ++.translateChatOutgoing.processCommand();
+<                 ++.getTranslateChatMenu(targetPlayerUUID).open(player);
+<             }));
+---
+>         setDisplayName(outgoingChatMeta, org.bukkit.ChatColor.YELLOW + getMessage("wwctGUIChatOutgoingButton"));
+66a28
+>     setItemMeta(outgoingChatMeta, outgoingChatButton);
+68,76c30
+<         if ((player.getUniqueId().toString().equals(targetPlayerUUID) && player.hasPermission("worldwidechat.wwctci")) || ((!player.getUniqueId().toString().equals(targetPlayerUUID)) && player.hasPermission("worldwidechat.wwctci.otherplayers"))) {
+<             org.bukkit.increasement.ItemStack incomingChatButton = ++.parseItem();
+<             org.bukkit.increasement.ItemMeta incomingChatMeta = incomingChatButton.getItemMeta();
+<             if (targetTranslator.getTranslatingChatIncoming()) {
+<                 ++.addItemFlags(org.bukkit.increasement.ItemFlag.HIDE_ENCHANTS);
+<                 ++.addEnchant(++.matchXEnchantment("power").get().parse(), 1, false);
+<                 ++.setDisplayName(org.bukkit.ChatColor.GREEN + ++.getMessage("wwctGUIChatIncomingButton"));
+<             } else {
+<                 ++.setDisplayName(org.bukkit.ChatColor.YELLOW + ++.getMessage("wwctGUIChatIncomingButton"));
+---
+>     /* Bottom Left Option: Previous Page */
+78,84c32,58
+<             ++.setItemMeta(incomingChatMeta);
+<             ++.setItem(1, 5, fr.minuskube.inv.ClickableItem.of(incomingChatButton, ( e) -> {
+<                 ++.[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+<                 ++.com.expl0itz.worldwidechat.commands.WWCTranslateChatIncoming translateChatIncoming = new ++.com.expl0itz.worldwidechat.commands.WWCTranslateChatIncoming(((org.bukkit.command.CommandSender) (player)), null, null, ++.args);
+<                 ++.translateChatIncoming.processCommand();
+<                 ++.getTranslateChatMenu(targetPlayerUUID).open(player);
+<             }));
+---
+> 
+> private void setItemMeta(org.bukkit.inventory.ItemMeta meta, org.bukkit.inventory.ItemStack item) {
+>     item.setItemMeta(meta);
+> }
+> 
+> private void setItemMeta(org.bukkit.inventory.ItemMeta meta, String text) {
+>     meta.setDisplayName(text);
+> }
+> 
+> private void addEnchant(org.bukkit.inventory.ItemMeta meta, String name, int level, boolean hide) {
+>     try {
+>         org.bukkit.enchantments.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByName(name);
+>         if (enchantment != null) {
+>             meta.addEnchant(enchantment, level, true);
+>         }
+>     } catch (IllegalArgumentException e) {
+>         // Ignore
+>     }
+>     if (hide) {
+>         meta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>     }
+> }
+> 
+> private void addItemFlags(org.bukkit.inventory.ItemMeta meta, org.bukkit.inventory.ItemFlag... flags) {
+>     if (meta != null && flags != null) {
+>         for (org.bukkit.inventory.ItemFlag flag : flags) {
+>             meta.addItemFlags(flag);
+86,91d59
+<         /* Bottom Left Option: Previous Page */
+<         ++.setItem(2, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+<             ++.com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+<         }));
+<     } catch (java.lang.Exception e) {
+<         ++.inventoryError(player, e);
+93a62,64
+> 
+> private org.bukkit.enchantments.Enchantment getXEnchantment(String name) {
+>     for (org.bun
+\ No newline at end of file

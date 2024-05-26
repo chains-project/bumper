@@ -1,0 +1,4 @@
+@Override
+	public void update(Player player, InventoryContents contents) {
+		WWCInventoryManager.checkIfPlayerIsMissing(player, targetPlayerUUID);
+	}

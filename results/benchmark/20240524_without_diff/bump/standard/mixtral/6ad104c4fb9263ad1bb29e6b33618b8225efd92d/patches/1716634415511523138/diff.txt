@@ -1,0 +1,8 @@
+6c6
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(10));
+---
+>         throw new org.bouncycastle.crypto.tls.TlsFtyalert(new org.bouncycastle.crypto.tls.AlertDescription(10));
+9c9
+<     decryptCipher.processBytes(cipherte struct, 0, ciphertext.length, output, 0);
+---
+>     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);

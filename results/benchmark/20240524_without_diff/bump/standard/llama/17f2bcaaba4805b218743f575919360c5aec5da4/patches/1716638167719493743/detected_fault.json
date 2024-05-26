@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 689654773,
+    "in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Processing\n * PGS_Processing} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_ProcessingGroupShapeTests {\n    private PShape GROUP_SHAPE;\n\n    @Test\n    void test_PGS_Processing_densify() {\n        assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n        PShape out = PGS_Processing.densify(GROUP_SHAPE, 1);\n        assertEquals(2, out.getChildCount());\n    }\n}",
+    "qualified_in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Processing\n * PGS_Processing} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_ProcessingGroupShapeTests {\n    private processing.core.PShape GROUP_SHAPE;\n\n    @org.junit.jupiter.api.Test\n    void test_PGS_Processing_densify() {\n        Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n        processing.core.PShape out = micycle.pgs.PGS_Processing.densify(GROUP_SHAPE, 1);\n        assertEquals(2, out.getChildCount());\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   method assumeTrue(boolean)\n  location: class micycle.pgs.PGS_ProcessingGroupShapeTests\n",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/PGS_ProcessingGroupShapeTests.java:[52,17] cannot find symbol",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/PGS_ProcessingGroupShapeTests.java",
+        "client_line_position": "52"
+    },
+    "client_end_line_number": 55,
+    "client_line_number": 50,
+    "method_code": "@Test\n\tvoid test_PGS_Processing_densify() {\n\t\tassumeTrue(GROUP_SHAPE.getChildCount() == 2);\n\t\tPShape out = PGS_Processing.densify(GROUP_SHAPE, 1);\n\t\tassertEquals(2, out.getChildCount());\n\t}",
+    "qualified_code": "@org.junit.jupiter.api.Test\nvoid test_PGS_Processing_densify() {\n    Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n    processing.core.PShape out = micycle.pgs.PGS_Processing.densify(GROUP_SHAPE, 1);\n    assertEquals(2, out.getChildCount());\n}",
+    "method_name": "test_PGS_Processing_densify"
+}

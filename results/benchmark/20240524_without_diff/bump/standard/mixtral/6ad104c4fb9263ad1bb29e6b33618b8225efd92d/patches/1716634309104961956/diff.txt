@@ -1,0 +1,23 @@
+1,9c1,5
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext)
+<       throws IOException {
+< 
+<     KeyParameter macKey = initRecordMAC(decryptCipher);
+< 
+<     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+< 
+<     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+<       throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+---
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+>     org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+>     byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+>     if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+>         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(10));
+11d6
+< 
+13,14c8
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+< 
+---
+>     decryptCipher.processBytes(cipherte struct, 0, ciphertext.length, output, 0);

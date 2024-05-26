@@ -1,0 +1,38 @@
+1,2c1
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+---
+> @Override
+5d3
+<     try {
+8,9c6,7
+<         java.lang.String login = this.getLogin();
+<         java.lang.String addr = this.getAddr();
+---
+>     String login = this.getLogin();
+>     String addr = this.getAddr();
+11,12c9
+<                 java.lang.String password = this.password;
+<                 com.jcraft.jsch.Session session = null;
+---
+>     String password = this.password;
+15c12
+<                         session = jsch.getSession(login, addr, port);
+---
+>         com.jcraft.jsch.Session session = jsch.getSession(login, addr, port);
+18c15
+<                         session.setServerAluminveInterval(1000 * 10);
+---
+>         session.setServerAliveInterval(1000 * 10);
+20,26c17
+<                         session.connect(1000 * 10);
+<                 } catch (com.jcraft.jsch.JSchException ex) {
+<                         throw new java.io.IOException(ex);
+<                 }
+<                 return session;
+<     }
+< }
+\ No newline at end of file
+---
+>         session.connect(1000 * 
+\ No newline at end of file

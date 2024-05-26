@@ -1,0 +1,60 @@
+0a1,8
+> import org.junit.jupiter.api.Test;
+> 
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.core.StringContains.containsString;
+> import static org.junit.jupiter.api.Assertions.assertThrows;
+> 
+> public class AstoBlobsITCase {
+> 
+2c10
+<     void failsOnDigestMismatch() {
+---
+>     public void failsOnDigestMismatch() {
+4,6c12
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>         final AstoBlobs blobs = new AstoBlobs(storage, new DefaultLayout(), new RepoName.Simple("any"));
+8,35c14,22
+<         blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains calculated digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+<                 );
+<                 return CompletableFuture.allOf();
+---
+> 
+>         assertThrows(InvalidDigestException.class, () -> blobs.put(new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))).toCompletableFuture().join());
+>     }
+> 
+>     private static class InvalidDigestException extends RuntimeException {
+> 
+>         public InvalidDigestException(String message) {
+>             super(message);
+>         }
+37d23
+<         ).join();

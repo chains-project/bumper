@@ -1,0 +1,43 @@
+6c6
+<  *              プレイヤー。
+---
+>                 プレイヤー。
+8c8
+<  *              ターゲット。
+---
+>                 ターゲット。
+10c10
+<  *              装備。
+---
+>                 装備。
+12c12
+<  *              リーチモードかどうか。
+---
+>                 リーチモードかどうか。
+34c34
+<                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + ml.peya.plugins.Detect.NPCTeleport.getWaveY(count[0]), ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(4.5, false))), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(0.01, count[0] < 20)))));
+---
+>                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + ml.peya.plugins.Detect.NPCTeleport.getWaveY(count[0]), ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(4.5, false))), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(0.01, count[0] < 20))));
+38,47c38
+<                 new BukkitRunnable() {
+<                     @java.lang.Override
+<                     public void run() {
+<                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+<                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+<                             NPC.setArmor(p, target, arm);
+<                         });
+<                         this.cancel();
+<                     }
+<                 }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>                 r.runTask(PeyangSuperbAntiCheat.getPlugin());
+59,65c50
+<     new BukkitRunnable() {
+<         @java.lang.Override
+<         public void run() {
+<             r.cancel();
+<             this.cancel();
+<         }
+<     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));
+---
+>     r.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));

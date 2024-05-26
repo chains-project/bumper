@@ -1,0 +1,21 @@
+		final ColumnBorder border = style.getColBorder();
+		if(border == null)
+		{
+			return;
+		}
+		
+		float lineWidth = border.getLineWidth();
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(BorderAdapter.convert(border.getLineStyle()));
+	}
+
+static class BorderAdapter {
+	public static Integer convert(final LineStyle lineStyle) {
+		// conversion logic here
+		// ...
+		// return the correct value based on the input
+		// for example:
+		return null;
+	}
+}

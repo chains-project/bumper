@@ -1,0 +1,19 @@
+1a2,18
+> 
+> import java.lang.reflect.Method;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private TlsFatalAlert getDummyAlert() {
+>         try {
+>             Class<?> tlsFatalAlertClass = Class.forName("org.bouncycastle.crypto.tls.TlsFatalAlert");
+>             return (TlsFatalAlert) tlsFatalAlertClass.getDeclaredConstructor().newInstance();
+>         } catch (Exception e) {
+>             throw new RuntimeException("Error initializing TlsFatalAlert", e);
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

@@ -1,0 +1,41 @@
+Here's a fixed version of the method with the `CertificationPermission` issue resolved:
+
+```java
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+import eu.europa.esig.dss.pades.signature.PAdESService;
+import eu.europa.esig.dss.token.JKSSignatureToken;
+import eu.europa.esig.dss.validation.CommonCertificateVerifier;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.openpdfsign.dss.PdfBoxNativeTableObjectFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.security.KeyStore;
+import java.security.KeyStore.PasswordProtection;
+import java.security.cert.Certificate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Signer {
+
+    // ...
+
+    public void signPdf(Path pdfFile, Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws IOException {
+        // ...
+        // PAdES parameters
+        PAdESSignatureParameters signatureParameters = new PAdESSignatureParameters();
+        // ...
+        signatureParameters.setPermission(eu.europa.esig.dss.pades.CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+        // ...
+    }
+
+    // ...
+
+}
+```
+
+In the provided code, I replaced `CertificationPermission` with `eu.europa.esig.dss.pades.CertificationPermission`. The class was imported incorrectly, and the correct import is from the `eu.europa.esig.dss.pades` package.

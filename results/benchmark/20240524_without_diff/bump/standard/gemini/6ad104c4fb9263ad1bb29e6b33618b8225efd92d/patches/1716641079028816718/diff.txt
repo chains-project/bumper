@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ChachaDecoder {
+> 
+>     public void decode(byte[] in, int inOff, int len) throws TlsFatalAlert {
+>         // TODO Auto-generated method stub
+>     }
+> 
+> }
+\ No newline at end of file

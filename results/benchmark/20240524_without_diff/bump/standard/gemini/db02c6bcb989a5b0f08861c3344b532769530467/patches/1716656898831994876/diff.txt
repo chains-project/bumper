@@ -1,0 +1,21 @@
+1,3c1
+< @Test
+<     void shouldPull() throws Exception {
+<         final String image = this.copy(new Image.ForOs());
+---
+> final java.lang.String image = this.copy(new com.artipie.docker.http.Image.ForOs());
+6,14c4,5
+<         final String output = this.cli.run("pull", image);
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+<         );
+<     }
+\ No newline at end of file
+---
+>     final java.lang.String output = this.cli.run("pull", image);
+>     org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(java.lang.String.format("Status: Downloaded newer image for %s", image)));
+\ No newline at end of file

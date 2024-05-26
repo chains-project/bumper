@@ -1,0 +1,8 @@
+1a2,7
+> import org.codehaus.plexus.util.FileUtils;
+> 
+> // ...
+> 
+> File targetDir = new File(outputDirectory, "theme");
+> FileUtils.forceMkdir(targetDir);
+\ No newline at end of file

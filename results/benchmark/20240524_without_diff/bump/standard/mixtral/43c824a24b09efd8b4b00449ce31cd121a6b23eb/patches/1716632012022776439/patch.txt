@@ -1,0 +1,7 @@
+private static java.lang.String extractFirst(de.gwdg.metadataqa.api.model.pathcache.JsonPathCache cache, Object branch) {
+    java.util.List<java.lang.String> list = de.gwdg.metadataqa.mar.MarcFactory.extractList(cache, (com.jayway.jsonpath.JsonPath) branch);
+    if (!list.isEmpty())
+        return list.get(0);
+
+    return null;
+}

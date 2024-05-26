@@ -1,0 +1,9 @@
+@Override
+public Policy<?> getPolicy(PolicyConfig config) {
+    PolicyConfig sub = config.config("storage");
+    try {
+        return new YamlPolicy(new BlockingStorage(new com.artipie.asto.storage.Storage<>(sub.string("type"), new com.amihaiemil.eoyaml.YamlInput(sub.toString()).readMapping())));
+    } catch (IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}

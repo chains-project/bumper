@@ -1,0 +1,26 @@
+4c4,26
+<     return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.Basic(user.name(), user.password())).findFirst()), "");
+---
+>     if ("auth".equals(action)) {
+>         return new com.artipie.http.async.AsyncSlice(
+>             new com.artipie.http.async.CompletableFutureSlice(
+>                 java.util.concurrent.CompletableFuture.completedFuture(
+>                     new com.artipie.http.Response(
+>                         java.net.HttpURLConnection.HTTP_OK,
+>                         new com.artipie.http.headers.Text("text/plain", "OK")
+>                     )
+>                 )
+>             )
+>         );
+>     } else {
+>         return new com.artipie.http.async.AsyncSlice(
+>             new com.artipie.http.async.CompletableFutureSlice(
+>                 java.util.concurrent.CompletableFuture.completedFuture(
+>                     new com.artipie.http.Response(
+>                         java.net.HttpURLConnection.HTTP_BAD_REQUEST,
+>                         new com.artipie.http.headers.Text("text/plain", "Bad action")
+>                     )
+>                 )
+>             )
+>         );
+>     }

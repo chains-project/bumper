@@ -1,0 +1,148 @@
+1c1
+< public void signPdf(Path pdfFile, Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws IOException {
+---
+> public void signPdf(java.nio.file.Path pdfFile, java.nio.file.Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws java.io.IOException {
+7d6
+< 
+10d8
+< 
+12,13c10
+<         JKSSignatureToken signingToken = new JKSSignatureToken(keyStore, new KeyStore.PasswordProtection(keyStorePassword));
+< 
+---
+>     eu.europa.esig.dss.token.JKSSignatureToken signingToken = new eu.europa.esig.dss.token.JKSSignatureToken(keyStore, new java.security.KeyStore.PasswordProtection(keyStorePassword));
+16c13
+<         PAdESSignatureParameters signatureParameters = new PAdESSignatureParameters();
+---
+>     eu.europa.esig.dss.pades.PAdESSignatureParameters signatureParameters = new eu.europa.esig.dss.pades.PAdESSignatureParameters();
+18,20c15,17
+<         String keyAlias = "alias";
+<         if (signingToken.getKeys().get(0) instanceof KSPrivateKeyEntry) {
+<             keyAlias = ((KSPrivateKeyEntry) signingToken.getKeys().get(0)).getAlias();
+---
+>     java.lang.String keyAlias = "alias";
+>     if (signingToken.getKeys().get(0) instanceof eu.europa.esig.dss.token.KSPrivateKeyEntry) {
+>         keyAlias = ((eu.europa.esig.dss.token.KSPrivateKeyEntry) (signingToken.getKeys().get(0))).getAlias();
+22d18
+<         ;
+25,26c21,22
+<         if (params.getUseTimestamp() || !params.getTSA().isEmpty()) {
+<             signatureParameters.setSignatureLevel(SignatureLevel.PAdES_BASELINE_T);
+---
+>     if (params.getUseTimestamp() || (!params.getTSA().isEmpty())) {
+>         signatureParameters.setSignatureLevel(eu.europa.esig.dss.enumerations.SignatureLevel.PAdES_BASELINE_T);
+28c24
+<             signatureParameters.setSignatureLevel(SignatureLevel.PAdES_BASELINE_B);
+---
+>         signatureParameters.setSignatureLevel(eu.europa.esig.dss.enumerations.SignatureLevel.PAdES_BASELINE_B);
+30,31c26
+<         signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+< 
+---
+>     signatureParameters.setPermission(eu.europa.esig.dss.enumerations.SignaturePolicyId.B_LT_LEVEL);
+33c28
+<         CommonCertificateVerifier commonCertificateVerifier = new CommonCertificateVerifier();
+---
+>     eu.europa.esig.dss.validation.CommonCertificateVerifier commonCertificateVerifier = new eu.europa.esig.dss.validation.CommonCertificateVerifier();
+35,36c30
+<         PAdESService service = new PAdESService(commonCertificateVerifier);
+< 
+---
+>     eu.europa.esig.dss.pades.signature.PAdESService service = new eu.europa.esig.dss.pades.signature.PAdESService(commonCertificateVerifier);
+38d31
+< 
+41c34
+<             SignatureImageParameters imageParameters = new SignatureImageParameters();
+---
+>         eu.europa.esig.dss.pades.SignatureImageParameters imageParameters = new eu.europa.esig.dss.pades.SignatureImageParameters();
+44,46c37,38
+< 
+<             if (!Strings.isStringEmpty(params.getImageFile())) {
+<                 imageParameters.setImage(new InMemoryDocument(Files.readAllBytes(Paths.get(params.getImageFile()))));
+---
+>         if (!com.beust.jcommander.Strings.isStringEmpty(params.getImageFile())) {
+>             imageParameters.setImage(new InMemoryDocument(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(params.getImageFile()))));
+48c40
+<                 imageParameters.setImage(new InMemoryDocument((IOUtils.toByteArray(getClass().getClassLoader().getResourceAsStream("signature.png")))));
+---
+>             imageParameters.setImage(new InMemoryDocument(org.apache.commons.io.IOUtils.toByteArray(getClass().getClassLoader().getResourceAsStream("signature.png"))));
+50d41
+< 
+52c43
+<                 PDDocument pdDocument = PDDocument.load(toSignDocument.openStream());
+---
+>             org.apache.pdfbox.pdmodel.PDDocument pdDocument = org.apache.pdfbox.pdmodel.PDDocument.load(toSignDocument.openStream());
+57d47
+< 
+61,64c51,53
+<             fieldParameters.setOriginX(params.getLeft() * POINTS_PER_MM * 10f);
+<             fieldParameters.setOriginY(params.getTop() * POINTS_PER_MM * 10f);
+<             fieldParameters.setWidth(params.getWidth() * POINTS_PER_MM * 10f);
+< 
+---
+>         fieldParameters.setOriginX((params.getLeft() * org.openpdfsign.Signer.POINTS_PER_MM) * 10.0F);
+>         fieldParameters.setOriginY((params.getTop() * org.openpdfsign.Signer.POINTS_PER_MM) * 10.0F);
+>         fieldParameters.setWidth((params.getWidth() * org.openpdfsign.Signer.POINTS_PER_MM) * 10.0F);
+67c56
+<             DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.systemDefault());
+---
+>         java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(java.time.ZoneId.systemDefault());
+70c59
+<                 formatter = formatter.withZone(ZoneId.of(params.getTimezone()));
+---
+>             formatter = formatter.withZone(java.time.ZoneId.of(params.getTimezone()));
+74c63
+<             if (!Strings.isStringEmpty(params.getHint())) {
+---
+>         if (!com.beust.jcommander.Strings.isStringEmpty(params.getHint())) {
+79d67
+< 
+81,83c69
+< 
+< 
+<             PdfBoxNativeObjectFactory pdfBoxNativeObjectFactory = new PdfBoxNativeTableObjectFactory();
+---
+>         eu.europa.esig.dss.pdf.pdfbox.PdfBoxNativeObjectFactory pdfBoxNativeObjectFactory = new org.openpdfsign.dss.PdfBoxNativeTableObjectFactory();
+87d72
+< 
+92,94c77,79
+<         if (params.getUseTimestamp() || params.getTSA() != null) {
+<             CompositeTSPSource compositeTSPSource = new CompositeTSPSource();
+<             Map<String, TSPSource> tspSources = new HashMap<>();
+---
+>     if (params.getUseTimestamp() || (params.getTSA() != null)) {
+>         eu.europa.esig.dss.spi.x509.tsp.CompositeTSPSource compositeTSPSource = new eu.europa.esig.dss.spi.x509.tsp.CompositeTSPSource();
+>         java.util.Map<java.lang.String, eu.europa.esig.dss.spi.x509.tsp.TSPSource> tspSources = new java.util.HashMap<>();
+97,98c82,83
+<                 Arrays.stream(Configuration.getInstance().getProperties().getStringArray("tsp_sources")).forEach(source -> {
+<                     tspSources.put(source, new OnlineTSPSource(source));
+---
+>             java.util.Arrays.stream(Configuration.getInstance().getProperties().getStringArray("tsp_sources")).forEach(( source) -> {
+>                 tspSources.put(source, new eu.europa.esig.dss.service.tsp.OnlineTSPSource(source));
+101,102c86,87
+<                 params.getTSA().stream().forEach(source -> {
+<                     tspSources.put(source, new OnlineTSPSource(source));
+---
+>             params.getTSA().stream().forEach(( source) -> {
+>                 tspSources.put(source, new eu.europa.esig.dss.service.tsp.OnlineTSPSource(source));
+107d91
+< 
+109d92
+< 
+112c95
+<         DigestAlgorithm digestAlgorithm = signatureParameters.getDigestAlgorithm();
+---
+>     eu.europa.esig.dss.enumerations.DigestAlgorithm digestAlgorithm = signatureParameters.getDigestAlgorithm();
+115d97
+< 
+118c100,101
+<         }*/
+---
+>     }
+>      */
+120d102
+< 
+124c106
+<             signedDocument.writeTo(System.out);
+---
+>         signedDocument.writeTo(java.lang.System.out);

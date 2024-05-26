@@ -1,0 +1,22 @@
+Here'ed the updated `randomRepo()` method that should fix the error:
+
+```java
+import com.jcabi.github.Repos;
+import com.jcabi.github.Repo;
+import org.apache.commons.lang3.RandomStringUtils;
+
+public class MkGithub {
+
+    // ...
+
+    public Repo randomRepo() throws IOException {
+        final int max = 20; // Use a constant instead of the missing class
+        return this.repos().create(new Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(max), true));
+   
+    }
+
+    // ...
+
+}
+``
+```

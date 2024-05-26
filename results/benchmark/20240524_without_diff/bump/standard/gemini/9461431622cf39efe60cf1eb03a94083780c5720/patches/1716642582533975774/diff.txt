@@ -1,0 +1,35 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+9,12c2,9
+<         try {
+<             final Field registry = server.getClass().getDeclaredField("registry");
+<             registry.setAccessible(true);
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>     // Get the server's registry field.
+>     Field registryField = server.getClass().getDeclaredField("registry");
+>     registryField.setAccessible(true);
+> 
+>     // Get the server's registry.
+>     SortedMap<MOScope, ManagedObject> registry = (SortedMap<MOScope, ManagedObject>) registryField.get(server);
+> 
+>     // Create a new context scope for the group.
+14,18c11,16
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+<         } catch (NoSuchFieldException | IllegalAccessException e) {
+<             log.warn("could not set server registry", e);
+<         }
+---
+> 
+>     // Put the group in the registry with the new context scope.
+>     registry.put(contextScope, group);
+> 
+>     // Set the server's registry back to the field.
+>     registryField.set(server, registry);

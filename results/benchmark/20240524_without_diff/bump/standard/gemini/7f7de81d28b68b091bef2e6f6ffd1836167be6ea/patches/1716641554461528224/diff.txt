@@ -1,0 +1,4 @@
+14c14
+<             reg.put(contextScope, group);
+---
+>             ((SortedMap<MOScope, ManagedObject<?>>) reg).put(contextScope, group);

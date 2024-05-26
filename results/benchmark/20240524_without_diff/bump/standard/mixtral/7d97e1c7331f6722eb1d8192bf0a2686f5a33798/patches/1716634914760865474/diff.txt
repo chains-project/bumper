@@ -1,0 +1,28 @@
+1,4c1,3
+< /**
+<      * Region.Simple can select many items.
+<      */
+<     @Test
+---
+> import static com.jcabi.tv.Tv;
+> 
+> @org.junit.jupiter.api.Test
+6c5
+<         final Domain domain = this.domain();
+---
+>     final com.jcabi.simpledb.Domain domain = this.domain();
+9c8
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>             domain.item(java.lang.String.format("i-%d", idx)).put("hey", "");
+11,18c10
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         org.hamcrest.MatcherAssert.assertThat(domain.select(new com.amazonaws.services.simpledb.model.SelectRequest().withSelectExpression(java.lang.String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), org.hamcrest.Matchers.iterableWithSize(Tv.TEN));

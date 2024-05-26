@@ -1,0 +1,20 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3,17
+<     return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.Basic(user.name(), user.password())).findFirst()), "");
+---
+>     return new com.artipie.http.async.AsyncSlice(
+>         new com.artipie.http.async.SliceAsAsync(
+>             com.artipie.http.Slice.wrap(
+>                 this.request(
+>                     new com.artipie.http.rq.RequestLine(
+>                         com.artipie.http.Slice.wrap(action).toString()
+>                     ),
+>                     new com.artipie.http.Headers.From(
+>                         com.artipie.http.Headers.EMPTY
+>                     ),
+>                     com.artipie.http.EmptyBody.EMPTY
+>                 )
+>             )
+>         )
+>     );

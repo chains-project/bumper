@@ -1,0 +1,46 @@
+1,5c1,9
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+> import org.scoverage.plugin.ScoverageReportMojo;
+> 
+> import java.io.File;
+> import java.io.IOException;
+> import java.util.Locale;
+> 
+> public class ScoverageReportMojo extends ScoverageReportMojo {
+> 
+7,11c11,12
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+>     public void execute() throws MojoExecutionException {
+>         if (!canGenerateReport()) {
+15,19c16,18
+< 
+<         try
+<         {
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+---
+>         try {
+>             File scoverageReportFile = new File(outputDirectory, getOutputName() + ".html");
+>             SiteRendererSink sink = new SiteRendererSink(scoverageReportFile);
+22,25c21,22
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+---
+>         } catch (IOException e) {
+>             String prefix = ("An error has occurred in " + getName(Locale.ENGLISH)) + " report generation";
+28a26
+> }
+\ No newline at end of file

@@ -1,0 +1,12 @@
+4c4,12
+<     return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.Basic(user.name(), user.password())).findFirst()), "");
+---
+>     if (action.equals("login")) {
+>         return this.login();
+>     } else if (action.equals("logout")) {
+>         return this.logout();
+>     } else if (action.equals("user")) {
+>         return this.user();
+>     } else {
+>         return this.error();
+>     }

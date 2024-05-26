@@ -1,0 +1,54 @@
+1c1,15
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+---
+> import org.yaml.snakeyaml.LoaderOptions;
+> import org.yaml.snakeyaml.representer.Representer;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.Yaml;
+> import java.io.BufferedReader;
+> import java.io.FileReader;
+> import java.io.IOException;
+> import java.time.ZoneId;
+> import java.time.LocalDate;
+> import com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct;
+> import com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct;
+> import com.premiumminds.billy.core.test.trust.TrustedTagInspector;
+> 
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(java.lang.Class<T> clazz, java.lang.String path) {
+4,5c18
+< 
+<         final Representer representer = new Representer(new DumperOptions());
+---
+>     final Representer representer = new Representer(new org.yaml.snakeyaml.DumperOptions());
+7c20
+<         representer.addClassTag(ZoneId.class, zoneIdTag);
+---
+>     representer.addClassTag(java.time.ZoneId.class, zoneIdTag);
+9,14c22,26
+<         representer.addClassTag(LocalDate.class, localDateTag);
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+---
+>     representer.addClassTag(java.time.LocalDate.class, localDateTag);
+>     final Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+>             this.addTypeDescription(new org.yaml.snakeyaml.TypeDescription(java.time.ZoneId.class, "ZoneId"));
+>             this.addTypeDescription(new org.yaml.snakeyaml.TypeDescription(java.time.LocalDate.class, "LocalDate"));
+17,18c29,30
+<         }};
+< 
+---
+>         }
+>     };
+20d31
+< 
+22,23c33,34
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+<         } catch (FileNotFoundException e) {
+---
+>         return (T) yaml.load(new BufferedReader(new FileReader(path)));
+>     } catch (IOException e) {

@@ -1,0 +1,22 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+<     org.apache.thrift.transport.TTransport transport = null;
+---
+>     org.apache.thrift.transport.TTransport<byte[]> transport = null;
+6,16c5
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+<         transport.open();
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol(transport));
+<     } catch (org.apache.thrift.transport.TTransportException e) {
+<         throw new RuntimeException(e);
+<     } finally {
+<         if (transport != null) {
+<             transport.close();
+<         }
+<     }
+< }
+\ No newline at end of file
+---
+>         transport = new org.apache.thrift.transport.TFramedTransport<>(new org.apache.thrift.transport.TSocket("localhost", 909 Generated 2023-03-13T14:28:32.195693800Z
+\ No newline at end of file

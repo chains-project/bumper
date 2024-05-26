@@ -1,0 +1,25 @@
+1,2c1
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+---
+> @Override
+4a4
+>     com.jcraft.jsch.Session session = null;
+12d11
+<                 com.jcraft.jsch.Session session = null;
+18c17
+<                         session.setServerAluminveInterval(1000 * 10);
+---
+>             session.setServerAliveInterval(1000 * 10);
+20c19
+<                         session.connect(1000 * 10);
+---
+>             session.connect(1000 * 5);
+24c23,27
+<                 return session;
+---
+>     }
+>     finally {
+>         if (session != null) {
+>             session.disconnect();
+>         }

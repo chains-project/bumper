@@ -1,0 +1,8 @@
+1,2c1,4
+< private Matcher<String> layersPushed() {
+<         return new StringContains(false, String.format("%s: Pushed", this.image.layer()));
+---
+> private org.hamcrest.Matcher<java.lang.String> layersPushed() {
+>     String layer = this.image.layer();
+>     String message = String.format("%s: Pushed", layer);
+>     return new org.hamcrest.core.StringContains(false, message);

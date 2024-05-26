@@ -1,0 +1,18 @@
+1c1,13
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.StrongPasswordEncryptor;
+> 
+> public class GeoStorePBEPasswordEncoder extends StrongPasswordEncryptor {
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         super();
+>     }
+> 
+>     public GeoStorePBEPasswordEncoder(String password) {
+>         super(password);
+>     }
+> 
+> }
+\ No newline at end of file

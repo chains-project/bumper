@@ -1,0 +1,23 @@
+1,7d0
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+12c5,6
+<             final SortedMap<MOScope, ManagedObject> reg = server.getRegistry();
+---
+>         SortedMap<MOScope, ManagedObject<?>> originalReg = server.getRegistry();
+>         TreeMap<MOScope, ManagedObject<?>> newReg = new TreeMap<>(originalReg);
+14,15c8,10
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>         newReg.put(contextScope, group);
+>         registry.set(server, newReg);
+>    
+19a15
+> ``
+\ No newline at end of file

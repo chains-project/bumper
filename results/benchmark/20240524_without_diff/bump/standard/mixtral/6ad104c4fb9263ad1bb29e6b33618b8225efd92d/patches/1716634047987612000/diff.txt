@@ -1,0 +1,14 @@
+1a2,13
+> 
+> import java.security.Security;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     static {
+>         Security.addProvider(new BouncyCastleProvider());
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

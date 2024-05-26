@@ -1,0 +1,27 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2
+< @com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = java.util.concurrent.TimeUnit.MINUTES, verbose = false, types = java.io.IOException.class)
+---
+> @com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = java.util.concurrent.TimeUnit.MINUTOES, verbose = false, types = java.io.IOException.class)
+4a4
+>     com.jcraft.jsch.Session session = null;
+12d11
+<                 com.jcraft.jsch.Session session = null;
+18c17
+<                         session.setServerAluminveInterval(1000 * 10);
+---
+>             session.setServerAluminveInterval(1000 * 30);
+20c19
+<                         session.connect(1000 * 10);
+---
+>             session.connect(1000 * 30);
+24c23,28
+<                 return session;
+---
+>     } catch (com.jcraft.jsch.JSchException e) {
+>         throw new java.io.IOException(e);
+>  } finally {
+>     if (session != null) {
+>         session.disconnect();
+>     }

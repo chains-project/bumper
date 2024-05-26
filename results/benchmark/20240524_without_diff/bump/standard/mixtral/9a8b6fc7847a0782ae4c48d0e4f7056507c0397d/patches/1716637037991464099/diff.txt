@@ -1,0 +1,21 @@
+1c1,16
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import java.security.MessageDigest;
+> import java.security.NoSuchAlgorithmException;
+> import java.util.Base64;
+> 
+> public class GeoStorePBEPasswordEncoder {
+> 
+>     public String encode(String rawPass) {
+>         try {
+>             MessageDigest md = MessageDigest.getInstance("SHA-256");
+>             byte[] hashedPass = md.digest(rawPass.getBytes());
+>             return Base64.getEncoder().encodeToString(hashedPass);
+>         } catch (NoSuchAlgorithmException e) {
+>             throw new IllegalStateException("SHA-256 algorithm not available.", e);
+>         }
+>     }
+> }
+\ No newline at end of file

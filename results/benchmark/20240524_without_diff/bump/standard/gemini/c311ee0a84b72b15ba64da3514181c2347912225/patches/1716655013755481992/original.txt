@@ -1,0 +1,16 @@
+@Test
+    void writeAndReadBlob() throws Exception {
+        final AstoBlobs blobs = new AstoBlobs(
+            new InMemoryStorage(), new DefaultLayout(), new RepoName.Simple("test")
+        );
+        final byte[] bytes = {0x05, 0x06, 0x07, 0x08};
+        final Digest digest = blobs.put(new TrustedBlobSource(bytes))
+            .toCompletableFuture().get().digest();
+        final byte[] read = Flowable.fromPublisher(
+            blobs.blob(digest)
+                .toCompletableFuture().get()
+                .get().content()
+                .toCompletableFuture().get()
+        ).toList().blockingGet().get(0).array();
+        MatcherAssert.assertThat(read, Matchers.equalTo(bytes));
+    }

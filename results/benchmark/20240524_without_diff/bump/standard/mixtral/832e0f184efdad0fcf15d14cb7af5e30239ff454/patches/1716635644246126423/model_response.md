@@ -1,0 +1,44 @@
+Here's the fixed method with the error resolved:
+
+```java
+@Override
+public void init(Player player, InventoryContents contents) {
+    ActiveTranslator targetTranslator = main.getActiveTranscom().getCryptomorin().XMaterial.getActiveTranslator(targetPlayerUUID);
+    ItemStack customBorders = Cryptomorin.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+    ItemMeta borderMeta = Cryptomorin.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem().getItemMeta();
+    ItemMeta borderMetaActive = customBorders.getItemMeta();
+    borderMeta.setDisplayName(" ");
+    customBorders.setItemMeta(borderMeta);
+    contents.fillBorders(ClickableItem.empty(customBorders));
+    if (targetTranslator.getTranslatingChatOutgoing() || targetTranslator.getTranslatingChatIncoming()) {
+        ItemStack customBordersActive = Cryptomorin.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+        borderMetaActive = customBordersActive.getItemMeta();
+        borderMetaActive.setDisplayName(" ");
+        customBordersActive.setItemMeta(borderMetaActive);
+        contents.set(3, new ClickableItem(customBordersActive, e -> {}));
+    }
+    ItemStack outgoingChatButton = Cryptomorin.XMaterial.CHEST_MINECART.parseItem();
+    ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+    if (targetTranslator.getTranslatingChatOutgoing()) {
+        outgoingChatMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        outgoingChatMeta.addEnchant(matchXEnchantment("power").get().parse(), 1, false);
+        outgoingChatMeta.setDisplayName(ChatColor.GREEN + getMessage("wwctGUIChatOutgoingButton"));
+    } else {
+        outgoingChatMeta.setDisplayName(ChatColor.YELLOW + getMessage("wwctGUIChatOutgoingButton"));
+    }
+    outgoingChatButton.setItemMeta(outgoingChatMeta);
+    contents.set(11, new ClickableItem(outgoingChatButton, e -> {}));
+    /* Incoming Chat Button */
+    /* Bottom Left Option: Previous Page */
+}
+```
+
+Changes made:
+- Replaced `com.expl0itz.worldwidechat.util.ActiveTranslator` with `ActiveTranslator`.
+- Removed redundant and incorrect `setItemMeta()` calls.
+- Created `customBordersActive` using `Cryptomorin.XMaterial.GREEN_STAINED_GLASS_PANE.parseItem()`.
+- Updated `borderMetaActive` with the correct display name and applied it to `customBordersActive`.
+- Added `contents.set(3, new ClickableItem(customBordersActive, e -> {}));` for the active borders.
+- Updated `outgoingChatButton` and `outgoingChatMeta` initialization with the correct method.
+- Updated `outgoingChatMeta` with enchantments, display name, and applied it to `outgoingChatButton`.
+- Added `contents.set(11, new ClickableItem(outgoingChatButton, e -> {}));` for the outgoing chat button.

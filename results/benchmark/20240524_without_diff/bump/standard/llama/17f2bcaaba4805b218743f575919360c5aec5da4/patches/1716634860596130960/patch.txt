@@ -1,0 +1,1 @@
+assumeTrue = org.junit.Assume.assumeTrue;

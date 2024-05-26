@@ -1,0 +1,22 @@
+1c1,17
+< import org.apache.commons.lang3.RandomStringUtils;
+\ No newline at end of file
+---
+> import java.util.Random;
+> 
+> import org.apache.commons.lang3.StringUtils;
+> 
+> public class PlayerUtils {
+>     // existing code
+> 
+>     public static String generateRandomString(int length) {
+>         if (length <= 0) {
+>             throw new IllegalArgumentException("Length must be greater than zero");
+>         (
+>         Random random = new Random();
+>         return StringUtils.repeat('a', length).replace(new String(new char[length]), " ", "" + (char) (random.nextInt(26) + 'a'));
+>     }
+> 
+>     // existing code
+> }
+\ No newline at end of file

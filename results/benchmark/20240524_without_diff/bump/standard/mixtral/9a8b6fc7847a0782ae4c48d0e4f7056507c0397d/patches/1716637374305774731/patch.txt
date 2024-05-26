@@ -1,0 +1,23 @@
+import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
+import org.jasypt.spring.security3.PasswordEncoder;
+import org.springframework.security.crypto.password.PBEPasswordEncoder;
+
+@java.lang.Override
+protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+    char[] chars = it.geosolutions.geostore.core.security.password.SecurityUtils.toChars(password);
+    try {
+        PooledPBEStringEncryptor stringEncrypter = new PooledPBEStringEncryptable();
+        stringEncrypter.setPasswordCharArray(chars);
+        if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+            stringEncrypter.setProviderName(getProviderName());
+        }
+        stringEncrypter.setAlgorithm(getAlgorithm());
+        PasswordEncoder encoder = new PasswordEncoder();
+        encoder.setPBEStringEncryptor(stringEncrypter);
+        return (PBEPasswordEncoder) encoder;
+    } finally {
+        it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(password);
+        it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(chars);
+    }
+}

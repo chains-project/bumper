@@ -1,0 +1,9 @@
+1d0
+< // TODO: review this AI generated patch!
+5,8c4
+<         if ((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isBlank(siteName)) || (!org.apache.commons.lang3.StringUtils.isBlank(cityName)))) {
+<             throw new java.io.IOException("The distRules input can't be used with site, city or country codes");
+<         }
+<         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = org.jfrog.hudson.pipeline.common.executors.SerializationUtils.createMapper();

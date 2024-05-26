@@ -1,0 +1,14 @@
+1c1,9
+< import org.apache.commons.lang3.RandomStringUtils;
+\ No newline at end of file
+---
+> import java.util.Random;
+> import org.apache.commons.lang3.StringUtils;
+> 
+> // ...
+> 
+> public static String getRandomString(int length) {
+>     Random rnd = new Random();
+>     return StringUtils.repeat('a', length);
+> }
+\ No newline at end of file

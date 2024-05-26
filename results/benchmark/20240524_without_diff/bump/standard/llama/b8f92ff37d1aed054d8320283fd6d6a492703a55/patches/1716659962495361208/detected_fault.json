@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1165303897,
+    "in_class_code": "public class SourceFolderFinder implements ClassFinder {\n    private String srcFolder;\n\n    public SourceFolderFinder(String srcFolder) {\n        this.srcFolder = srcFolder;\n    }\n\n    static List<String> getClassesLoc(File testSrcFolder) {\n        DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());\n        return directoryScanner.scan().getClasses();\n    }\n}",
+    "qualified_in_class_code": "public class SourceFolderFinder implements fr.spoonlabs.flacoco.core.test.strategies.classloader.finder.classes.ClassFinder {\n    private java.lang.String srcFolder;\n\n    public SourceFolderFinder(java.lang.String srcFolder) {\n        this.srcFolder = srcFolder;\n    }\n\n    static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {\n        org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, org.apache.maven.surefire.api.testset.TestListResolver.getWildcard());\n        return directoryScanner.scan().getClasses();\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   method getWildcard()\n  location: class org.apache.maven.surefire.api.testset.TestListResolver\n",
+        "error_message": "[ERROR] /flacoco/src/main/java/fr/spoonlabs/flacoco/core/test/strategies/classloader/finder/classes/impl/SourceFolderFinder.java:[25,97] cannot find symbol",
+        "client_file_path": "/flacoco/src/main/java/fr/spoonlabs/flacoco/core/test/strategies/classloader/finder/classes/impl/SourceFolderFinder.java",
+        "client_line_position": "25"
+    },
+    "client_end_line_number": 27,
+    "client_line_number": 24,
+    "method_code": "static List<String> getClassesLoc(File testSrcFolder) {\n        DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());\n        return directoryScanner.scan().getClasses();\n    }",
+    "qualified_code": "static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {\n    org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, org.apache.maven.surefire.api.testset.TestListResolver.getWildcard());\n    return directoryScanner.scan().getClasses();\n}",
+    "method_name": "getClassesLoc"
+}

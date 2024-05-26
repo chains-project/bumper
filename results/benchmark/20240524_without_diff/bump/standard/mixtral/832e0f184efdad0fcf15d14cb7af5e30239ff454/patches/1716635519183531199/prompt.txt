@@ -1,0 +1,80 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+// TODO: review this AI generated patch!
+@java.lang.Override
+public void init(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+    com.expl0itz.worldwidechat.util.ActiveTranslator targetTranslator = main.getActiveTranscom.cryptomorin.xseries.XMaterial.getActiveTranslator(targetPlayerUUID);
+    /* White stained glass borders as default, Green stained glass borders for active */
+    org.bukkit.inventory.ItemStack customBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+    org.bukkit.inventory.meta.ItemMeta borderMeta = customBXMaterial.GREEN_STAINED_GLASS_PANE.parseItem();
+    org.bukkit.inventory.meta.ItemMeta borderMetaActive = customBordersActive.getItemMeta();
+    borderMeta.setDisplayName(" ");
+    customBorders.setItemMeta(borderMeta);
+    contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customBorders));
+    if (targetTranslator.getTranslatingChatOutgoing() || targetTranslator.getTranslatingChatIncoming()) {
+        org.bukkit.inventory.ItemStack customBordersActive = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS_++;
+        parseItem();
+        setItemMeta(borderMetaActive);
+        setDisplayName(" ");
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemMeta(borderMetaActive);
+        setItemParseItem();
+    }
+    /* Outgoing Chat Button */
+    org.bukkit.inventory.ItemStack outgoingChatButton = com.cryptomorin.xseries.XMaterial.CHEST_MINECART.parseItem();
+    org.bukkit.inventory.meta.ItemMeta outgoingChatMeta = outgoingChatButton.getItemMeta();
+    if (targetTranslator.getTranslatingChatOutgoing()) {
+        addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+        addEnchant(matchXEnchantment("power").get().parse(), 1, false);
+        setDisplayName(org.bukkit.ChatColor.GREEN + getMessage("wwctGUIChatOutgoingButton"));
+    } else {
+        setDisplayName(org.bukkit.ChatColor.YELLOW + getMessage("wwctGUIChatOutgoingButton"));
+    }
+    setItemMeta(outgoingChatMeta);
+    /* Incoming Chat Button */
+    /* Bottom Left Option: Previous Page */
+}
+```
+
+with the following error message:
+[ERROR] /WorldwideChat/src/main/java/com/expl0itz/worldwidechat/inventory/wwctranslategui/WWCTranslateGUIChatMenu.java:[70,15] illegal start of expression

@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+9c8
+<     decryptCipher.processBytes(cipherte struct, 0, ciphertext.length, output, 0);
+---
+>     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output,  variableName);

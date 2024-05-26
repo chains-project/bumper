@@ -1,0 +1,48 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+public void run() {
+    double speed = 0.0;
+    if (player.hasMetadata("speed"))
+        for (MetadataValue value : player.getMetadata("speed"))
+            if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+                speed = value.asDouble() * 2.0;
+
+
+
+    for (double i = 0; i < (java.lang.Math.PI * 2); i++) {
+        double rangeTmp = radius;
+        if (ml.peya.plugins.Variables.config.getBoolean("npc.wave"))
+            rangeTmp = ml.peya.plugins.Detect.NPCTeleport.getRangeTmp(rangeTmp, radius);
+
+        final Location center = player.getLocation();
+        final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + ml.peya.plugins.Detect.NPCTeleport.getWaveY(count[0]), ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(4.5, false))), ((float) (ml.peya.plugins.Detect.NPCTeleport.getYpp(0.01, count[0] < 20))));
+        NPC.setLocation(n, target);
+        ((CraftPlayer) (player)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+        NPC.setArmor(player, target, arm);
+        $missing$ = $missing$.runTask(PeyangSuperbAntiCheat.getPlugin());
+        count[0]++;
+        CheatDetectNowMeta meta = ml.peya.plugins.Variables.cheatMeta.getMetaByPlayerUUID(player.getUniqueId());
+        if (meta == null)
+            continue;
+
+        meta.setNpcLocation(n.toVector());
+    }
+    time[0] += ml.peya.plugins.Variables.config.getDouble("npc.time") + (ml.peya.plugins.Variables.config.getBoolean("npc.speed.wave") ? ml.peya.plugins.Detect.NPCTeleport.getSpeedWave(time[0]) : 0.0);
+}
+```
+
+with the following error message:
+[ERROR] /PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Detect/NPCTeleport.java:[180,463] ';' expected

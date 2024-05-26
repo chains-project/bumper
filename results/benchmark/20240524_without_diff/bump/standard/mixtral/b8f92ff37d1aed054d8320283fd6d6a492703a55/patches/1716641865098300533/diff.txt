@@ -1,0 +1,28 @@
+0a1,11
+> import org.apache.maven.shared.utils.os.Platform;
+> import org.codehaus.plexus.components.interactivity.Prompter;
+> import org.codehaus.plexus.util.FileUtils;
+> 
+> import java.io.File;
+> import java.io.FileFilter;
+> import java.io.IOException;
+> import java.util.ArrayList;
+> import java.util.List;
+> import java.util.regex.Pattern;
+> 
+2,3c13,24
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     Pattern inclPattern = Pattern.compile("**"); // use regex pattern to match all files
+>     FileFilter fileFilter = f -> f.isFile() && inclPattern.matcher(f.getAbsolutePath()).matches();
+>     File[] files = FileUtils.listFiles(testSrcFolder, fileFilter, null);
+>     List<String> classNames = new ArrayList<>();
+>     for (File file : files) {
+>         String fileName = file.getName();
+>         if (fileName.endsWith(".class")) {
+>             String className = fileName.substring(0, fileName.length() - 6).replace(File.separatorChar, '.');
+>             classNames.add(className);
+>         }
+>     }
+>     return classNames;

@@ -1,0 +1,19 @@
+1a2,18
+> import java.util.ArrayList;
+> import java.util.List;
+> 
+> public class Decorations {
+> 
+>     private final WaveCreator waveCreator;
+> 
+>     public Decorations(WaveCreator waveCreator) {
+>         this.waveCreator = waveCreator;
+>     }
+> 
+>     public List<String> getDecorations() {
+>         List<String> decorations = new ArrayList<>();
+>         decorations.add("WaveCreator: " + waveCreator.getName());
+>         return decorations;
+>     }
+> }
+\ No newline at end of file

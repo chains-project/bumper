@@ -1,0 +1,4 @@
+// This is your proposed patch.
+// You can apply this patch to the failing client code to fix the error.
+
+// The original code:

@@ -1,0 +1,34 @@
+private void prepareTextfieldWithBorder(final JRDesignTextElement textField, final ColumnStyle style) {
+```java
+		final ColumnBorder border = style.getColBorder();
+		if(border == null)
+		{
+			return;
+		}
+		
+		float lineWidth = border.getLineWidth();
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(BorderlineStyle.SOLID.getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineBox().getPen().setLineColor(border.getLineColor());
+		textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+		textField.getLineBox().getPen().setLineWidth(lineWidth);
+		textField.getLineJFreePen().setLineWidth(lineWidth);
+		textField.getLineJFreePen().setLineColor(border.getLineColor());
+		textField.getLineJFreePen().setLineStyle(border.getLineStyle().getLineStyleEnum().getValue());
+}
+
+```

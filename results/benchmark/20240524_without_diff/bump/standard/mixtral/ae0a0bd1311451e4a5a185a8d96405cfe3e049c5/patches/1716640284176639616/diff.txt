@@ -1,0 +1,40 @@
+1,9c1,29
+< // TODO: review this AI generated patch!
+< @org.junit.jupiter.params.ParameterizedTest
+< @org.junit.jupiter.params.provider.ValueSource(strings = { "", ".0", "*", "ê", "-my-tag", // @checkstyle LineLengthCheck (1 line)
+< "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+< void shouldFailToGetValueWhenInvalid(final java.lang.String original) {
+<     final com.artipie.docker.Tag.Valid tag = new com.artipie.docker.Tag.Valid(original);
+<     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual<>(false));
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(com.artipie.docker.error.InvalidTagNameException.class, tag::value);
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.MatcherAssert.CoreMatchers.<java.lang.String>allOf(new org.hamcrest.core.StringContains.CoreStringContains(original), new org.hamcrest.core.StringContains.CoreStringContains("Invalid tag")));
+---
+> import com.artipie.docker.error.InvalidTagNameException;
+> import java.util.stream.Stream;
+> import org.hamcrest.CoreMatchers;
+> import org.hamcrest.MatcherAssert;
+> import org.junit.jupiter.api.Assertions;
+> import org.junit.jupiter.params.ParameterizedTest;
+> import org.junit.jupiter.params.provider.MethodSource;
+> 
+> import static org.junit.jupiter.params.provider.Arguments.arguments;
+> 
+> @ParameterizedTest
+> @MethodSource("invalidTagsProvider")
+> void shouldFailToGetValueWhenInvalid(String original) {
+>     com.artipie.docker.Tag.Valid tag = new com.artipie.docker.Tag.Valid(original);
+>     MatcherAssert.assertThat(tag.valid(), CoreMatchers.is(false));
+>     Assertions.assertThrows(InvalidTagNameException.class, () -> tag.value());
+>     MatcherAssert.assertThat(Assertions.assertThrows(InvalidTagNameException.class, tag::value).getMessage(),
+>         CoreMatchers.<String>allOf(CoreMatchers.stringContains(original), CoreMatchers.stringContains("Invalid tag")));
+> }
+> 
+> static Stream<String> invalidTagsProvider() {
+>     return Stream.of(
+>         "",
+>         ".0",
+>         "*",
+>         "ê",
+>         "-my-tag",
+>         "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+>     );

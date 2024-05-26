@@ -1,0 +1,14 @@
+import org.bouncycastle.crypto.engines.ChaChaEngine;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.ParametersWithIV;
+
+public class ChachaDecoder {
+    // existing code
+
+    private void decode(byte[] input, byte[] output) {
+        ChaChaEngine engine = new ChaChaEngine();
+        KeyParameter keyParam = new KeyParameter(key.getBytes());
+        engine.init(true, new ParametersWithIV(keyParam, nonce));
+        engine.processBytes(input, 0, input.length, output, 0);
+    }
+}

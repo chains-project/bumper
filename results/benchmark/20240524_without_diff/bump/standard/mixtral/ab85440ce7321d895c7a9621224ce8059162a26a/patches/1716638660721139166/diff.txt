@@ -1,0 +1,18 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6,9
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle(( blob, throwable) -> {
+---
+>     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest)))
+>         .toCompletableFuture()
+>         .handle((blob, throwable) -> {
+>             if (throwable != null) {
+11c13,14
+<         org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(new java.lang.StringBuffer(new java.lang.StringBuffer(new java.lang.StringBuffer().append("Wanted but not invoked:")).append(System.lineSeparator()).append("-> at com.artipie.docker.asto.AstoBlobsITCase.failsOnDigestMismatch(AstoBlogsITCase.java:").append(94)).append(System.lineSeparator()).append("-> at java.base/java.util.Objects.requireNonNull(Objects.java:233)").append(System.lineSeparator()).append("-> at com.artipie.docker.asto.AstoBlobsITCase.lambda$new$1(AstoBlogsITCase.java:65)").append(System.lineSeparator())).append(digest).append(System.lineSeparator())));
+---
+>                 org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(new java.lang.StringBuffer(new java.lang.StringBuffer(new java.lang.StringBuffer().append("Wanted but not invoked:")).append(java.lang.System.lineSeparator()).append("-> at com.artipie.docker.asto.AstoBlobsITCase.failsOnDigestMismatch(AstoBlogsITCase.java:").append(94)).append(java.lang.System.lineSeparator()).append("-> at java.base/java.util.Objects.requireNonNull(Objects.java:233)").append(java.lang.System.lineSeparator()).append("-> at com.artipie.docker.asto.AstoBlobsITCase.lambda$new$1(AstoBlogsITCase.java:65)").append(java.lang.System.lineSeparator())).append(digest).append(java.lang.System.lineSeparator()));
+>             }
+13c16
+<     }).join();
+---
+>         });

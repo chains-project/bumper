@@ -1,0 +1,36 @@
+import it.geosolutions.geostore.core.security.password.SecurityUtils;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.spring.security.PBEPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.util.StringUtils;
+
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
+import java.util.Arrays;
+
+@Override
+protected PasswordEncoder createStringEncoder() {
+    try {
+        byte[] password = lookupPasswordFromKeyStore();
+        char[] chars = SecurityUtils.toChars(password);
+        try {
+            StandardPBEStringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+            stringEncrypter.setPasswordCharArray(chars);
+            if (getProviderName() != null && !getProviderName().isEmpty()) {
+                stringEncrypter.setProviderName(getProviderName());
+            }
+            stringEncrypter.setAlgorithm(getAlgorithm());
+            PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+            encoder.setPbeStringEncryptor(stringEncrypter);
+            return encoder;
+        } finally {
+            SecurityUtils.scramble(password);
+            SecurityUtils.scramble(chars);
+        }
+    } catch (KeyStoreException | NoSuchAlgorithmException | CertificateException | UnrecoverableKeyException e) {
+        throw new IllegalStateException("Failed to create password encoder.", e);
+    }
+}

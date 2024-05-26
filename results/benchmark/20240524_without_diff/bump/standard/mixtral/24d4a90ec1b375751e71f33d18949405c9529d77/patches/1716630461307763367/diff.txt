@@ -1,0 +1,28 @@
+1,17c1,5
+< /**
+<      * Create S3 subj.
+<      * @throws Exception If fails
+<      */
+<     private void create() throws Exception {
+<         final Region region = new CdRegion(
+<             new ReRegion(
+<                 new Region.Simple(BucketRule.KEY, BucketRule.SECRET)
+<             )
+<         );
+<         final String name = String.format(
+<             "%s.s3.jcabi.com",
+<             RandomStringUtils.randomAlphabetic(Tv.FIVE)
+<                 .toLowerCase(Locale.ENGLISH)
+<         );
+<         this.subj = region.bucket(name);
+<         final AmazonS3 aws = this.subj.region().aws();
+---
+> private void create() throws java.lang.Exception {
+>     final int five = 5;
+>     final java.lang.String name = java.lang.String.format("%s.s3.jcabi.com", org.apache.commons.lang3.RandomStringUtils.randomAlphabetic(five).toLowerCase(java.util.Locale.ENGLISH));
+>     this.subj = new com.jcabi.s3.Bucket(com.jcabi.s3.BucketRule.AMAZON_S3.region(), name);
+>     final com.amazonaws.services.s3.AmazonS3 aws = this.subj.region().aws();
+19c7
+<         Logger.info(this, "S3 bucket %s created", name);
+---
+>     com.jcabi.log.Logger.info(this, "S3 bucket %s created", name);

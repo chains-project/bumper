@@ -1,0 +1,20 @@
+1,5c1,5
+< protected String computeJacocoIncludes() {
+<                 StringBuilder includes = new StringBuilder();
+<                 for (String directory : config.getBinJavaDir()) {
+<                         DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                         includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+> protected java.lang.String computeJacocoIncludes() {
+>     java.lang.StringBuilder includes = new java.lang.StringBuilder();
+>     for (java.lang.String directory : config.getBinJavaDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(directory), "**/*.class");
+>         includes.append(":").append(directoryScanner.scan().getIncludedFiles().stream().map(file -> file.getName()).reduce((x, y) -> (x + ":") + y).orElse(""));
+8,10c8,10
+<                         for (String directory : config.getBinTestDir()) {
+<                                 DirectoryScanner directoryScanner = new DirectoryScanner(new File(directory), TestListResolver.getWildcard());
+<                                 includes.append(":").append(directoryScanner.scan().getClasses().stream().reduce((x, y) -> x + ":" + y).orElse(""));
+---
+>         for (java.lang.String directory : config.getBinTestDir()) {
+>             org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(directory), "**/*.class");
+>             includes.append(":").append(directoryScanner.scan().getIncludedFiles().stream().map(file -> file.getName()).reduce((x, y) -> (x + ":") + y).orElse(""));

@@ -1,0 +1,29 @@
+1c1,24
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.digest.StandardStringDigester;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> 
+> public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+> 
+>     private final StandardStringDigester stringDigester;
+> 
+>     public GeoStoreDigestPasswordEncoder() {
+>         stringDigester = new StandardStringDigester();
+>         stringDigester.setAlgorithm("SHA-256");
+>         stringDigester.setIterations(1024);
+>         stringDigester.setSaltSizeBytes(32);
+>     }
+> 
+>     @Override
+>     public String encode(CharSequence rawPassword) {
+>         return stringDigester.digest(rawPassword.toString());
+>     }
+> 
+>     @Override
+>     public boolean matches(CharSequence rawPassword, String encodedPassword) {
+>         return encodedPassword.equals(encode(rawPassword));
+>     }
+> }
+\ No newline at end of file

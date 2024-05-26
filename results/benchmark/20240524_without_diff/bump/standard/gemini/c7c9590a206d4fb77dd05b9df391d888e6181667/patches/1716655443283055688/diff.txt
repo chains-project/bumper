@@ -1,0 +1,59 @@
+1,5c1,11
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+---
+> import java.util.Locale;
+> import java.util.Optional;
+> 
+> import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+> import org.apache.maven.plugin.MojoExecutionException;
+> import org.apache.maven.reporting.MavenReportException;
+> import org.scoverage.plugin.RenderingContext;
+> import org.scoverage.plugin.SCoverageReportMojo;
+> 
+> public class SCoverageReportMojo extends SCoverageReportMojo {
+> 
+7,11c13,14
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+>   public void execute() throws MojoExecutionException {
+>     if (!canGenerateReport()) {
+16,19c19,22
+<         try
+<         {
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+---
+>     try {
+>       Optional<RenderingContext> renderingContext = getRenderingContext();
+>       if (renderingContext.isPresent()) {
+>         SiteRendererSink sink = new SiteRendererSink(renderingContext.get());
+21a25,26
+>       } else {
+>         getLog().info("Skipping SCoverage report generation due to missing rendering context.");
+23,25c28,29
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+---
+>     } catch (MavenReportException e) {
+>       String prefix = ("An error has occurred in " + getName(Locale.ENGLISH)) + " report generation";
+28a33,42
+> 
+>   private Optional<RenderingContext> getRenderingContext() {
+>     try {
+>       return Optional.of(new RenderingContext(outputDirectory, getOutputName() + ".html"));
+>     } catch (Exception e) {
+>       getLog().warn("Failed to create RenderingContext", e);
+>       return Optional.empty();
+>     }
+>   }
+> }
+\ No newline at end of file

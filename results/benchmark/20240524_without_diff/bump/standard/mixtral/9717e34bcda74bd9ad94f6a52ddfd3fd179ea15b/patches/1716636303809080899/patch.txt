@@ -1,0 +1,22 @@
+import com.jcabi.github.Repos;
+import com.jcabi.github.RepoCreate;
+import org.apache.commons.lang3.RandomStringUtils;
+import java.io.IOException;
+
+public class MkGithub {
+    // Add the following line to create a static final variable for TWENTY
+    private static final int TWENTY = 20;
+
+    // The rest of the class remains unchanged
+
+    /**
+     * Create repo with random name.
+     *
+     * @return Repo
+     * @throws IOException
+     * 		If fails
+     */
+    public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+        return this.repos().create(new com.jcabi.github.Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(TWENTY), true));
+    }
+}

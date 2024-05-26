@@ -1,0 +1,19 @@
+2a3
+>  *
+4c5,6
+<      * @throws IOException If fails
+---
+>  * @throws IOException
+>  *              If fails
+6,12c8,10
+<     public Repo randomRepo() throws IOException {
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+---
+> public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+>     int nameLength = 20;
+>     return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(nameLength), true));

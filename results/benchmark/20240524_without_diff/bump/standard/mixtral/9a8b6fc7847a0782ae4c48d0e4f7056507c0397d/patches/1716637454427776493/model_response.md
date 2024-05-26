@@ -1,0 +1,28 @@
+Here's the patched method:
+```java
+import org.jasypt.digest.StandardStringDigester;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+
+    private final StandardStringDigester stringDigester;
+
+    public GeoStoreDigestPasswordEncoder() {
+        stringDigester = new StandardStringDigester();
+        stringDigester.setAlgorithm("SHA-256");
+        stringDigester.setIterations(1024);
+        stringDigester.setSaltSizeBytes(32);
+    }
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return stringDigester.digest(rawPassword.toString());
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return encodedPassword.equals(encode(rawPassword));
+    }
+}
+```
+This version replaces the `org.jasypt.spring.security.PasswordEncoder` with the `org.springframework.security.crypto.password.PasswordEncoder` interface and uses `org.jasypt.digest.StandardStringDigester` for password encoding. This way, the code does not depend on the `org.jasypt.spring.security` package and should work without issues.

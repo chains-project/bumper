@@ -1,0 +1,7 @@
+4,5c4,6
+<     TTransport transport = new TIOStreamTransport(new ByteArrayOutputStream());
+<     return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory(), transport);
+---
+>     com.pinterest.singer.client.TTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayOutputStream());
+>     org.apache.thrift.protocol.TProtocol protocol = new org.apache.thrift.protocol.TCompactProtocol(transport);
+>     return new org.apache.thrift.TDeserializer(protocol);

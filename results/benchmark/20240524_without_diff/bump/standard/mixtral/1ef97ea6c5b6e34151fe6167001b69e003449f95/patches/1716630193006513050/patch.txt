@@ -1,0 +1,10 @@
+public class DateTime extends DateAndTime {
+    protected DateTime(Faker faker) {
+        super(faker);
+    }
+
+    @Override
+    public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+        return new Timestamp(super.between(from, to).getTime()).toLocalDateTime().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+}

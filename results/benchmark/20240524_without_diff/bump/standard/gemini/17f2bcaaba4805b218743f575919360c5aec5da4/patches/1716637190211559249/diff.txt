@@ -1,0 +1,20 @@
+0a1,2
+> import org.junit.jupiter.api.Test;
+> 
+1a4,18
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @Test
+>     public void testMorphologyGroupShape() {
+>         // Given
+>         PGS_MorphologyGroupShape morphologyGroupShape = new PGS_MorphologyGroupShape();
+> 
+>         // When
+>         morphologyGroupShape.morphologyGroupShape();
+> 
+>         // Then
+>         assertEquals(0, morphologyGroupShape.getShape().size());
+>     }
+> }
+\ No newline at end of file

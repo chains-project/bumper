@@ -1,0 +1,41 @@
+4c4,41
+<     return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.Basic(user.name(), user.password())).findFirst()), "");
+---
+>     return new com.artipie.http.async.AsyncSlice(
+>         com.artipie.http.async.CompletableFutureSlice.from(
+>             com.artipie.http.async.CompletableFuture.completed(
+>                 new com.artipie.http.Response() {
+>                     @java.lang.Override
+>                     public java.util.concurrent.CompletionStage<com.artipie.http.Response> send(
+>                         final com.artipie.http.rq.Request rq
+>                     ) {
+>                         return com.artipie.http.async.CompletableFuture.completed(
+>                             new com.artipie.http.Response() {
+>                                 @java.lang.Override
+>                                 public int code() {
+>                                     return 200;
+>                                 }
+> 
+>                                 @java.lang.Override
+>                                 public com.artipie.http.headers.Header header(
+>                                     final java.lang.String name
+>                                 ) {
+>                                     return com.artipie.http.headers.Headers.EMPTY;
+>                                 }
+> 
+>                                 @java.lang.Override
+>                                 public java.util.Iterator<com.artipie.http.headers.Header> headers() {
+>                                     return com.artipie.http.headers.Headers.EMPTY.iterator();
+>                                 }
+> 
+>                                 @java.lang.Override
+>                                 public java.util.Optional<java.lang.String> entity() {
+>                                     return java.util.Optional.empty();
+>                                 }
+>                             }
+>                         );
+>                     }
+>                 }
+>             )
+>         )
+>     );

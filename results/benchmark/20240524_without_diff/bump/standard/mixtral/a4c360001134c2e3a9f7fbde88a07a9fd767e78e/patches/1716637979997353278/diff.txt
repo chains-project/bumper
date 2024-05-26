@@ -1,0 +1,30 @@
+1,9c1,19
+< private boolean shouldScan(String s) {
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+<         }
+<         final String[] packages = packagesToScan.split(",");
+<         for (String packageToScan : packages) {
+<             String regex = String.format(".?\\.??%s\\..+\\.class", packageToScan);
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+> private boolean shouldScan(java.lang.String s) {
+>     final java.lang.String packagesToScan = java.lang.System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+>     if ((packagesToScan == null) || packagesToScan.isEmpty()) {
+>         return new org.reflections.util.FilterBuilder().include(new org.reflections.util.Reflections.Predicate<java.lang.Class<?>>() {
+>             @Override
+>             public boolean apply(java.lang.Class<?> input) {
+>                 return input.getCanonicalName().matches(".+\\.class");
+>             }
+>         }).apply(s.getClass());
+>     }
+>     final java.lang.String[] packages = packagesToScan.split(",");
+>     for (java.lang.String packageToScan : packages) {
+>         java.lang.String regex = java.lang.String.format(".?\\.??%s\\..+\\.class", packageToScan);
+>         if (new org.reflections.util.FilterBuilder().include(new org.reflections.util.Reflections.Predicate<java.lang.Class<?>>() {
+>             @Override
+>             public boolean apply(java.lang.Class<?> input) {
+>                 return input.getCanonicalName().matches(regex);
+>             }
+>         }).apply(s.getClass())) {
