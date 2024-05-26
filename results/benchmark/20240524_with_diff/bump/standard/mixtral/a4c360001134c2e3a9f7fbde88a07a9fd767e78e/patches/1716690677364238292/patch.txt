@@ -1,0 +1,13 @@
+private boolean shouldScan(java.lang.String s) {
+    final java.lang.String packagesToScan = java.lang.System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TEST_PATH);
+    if ((packagesToScan == null) || packagesToScan.isEmpty()) {
+        return new org.reflections.util.FilterBuilder().include(".+\\.class").get(s);
+    }
+    final java.lang.String[] packages = packagesToScan.split(",");
+    for (java.lang.String packageToScan : packages) {
+        java.lang.String regex = java.lang.String.format(".?\\.??%s\\..+\\.class", packageToScan.replaceAll("\\.", "\\\\."));
+        if (new org.reflections.util.FilterBuilder().include(regex).get(s)) {
+            return true;
+    }
+    return false;
+}

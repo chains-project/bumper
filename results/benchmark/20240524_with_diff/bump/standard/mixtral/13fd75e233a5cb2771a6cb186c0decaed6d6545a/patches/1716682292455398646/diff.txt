@@ -1,0 +1,49 @@
+1,4c1,17
+< // TODO: review this AI generated patch!
+< @org.junit.jupiter.api.Test
+< void failsOnDigestMismatch() {
+<     final com.artipie.asto.memory.InMemoryStorage storage = new com.artip calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+---
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.core.IsInstanceOf;
+> import org.hamcrest.core.StringContains;
+> import org.junit.jupiter.api.Test;
+> import java.io.ByteArrayInputStream;
+> import java.io.InputStream;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.concurrent.ExecutionException;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.startsWith;
+> 
+> @Test
+> void failsOnDigestMismatch() throws ExecutionException, InterruptedException {
+>     final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.docker.asto.artip.InMemoryStorage();
+>     final String calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+6,11c19,36
+<     final java.lang.String digest = "123";
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.dorg.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), org.hamcrest.core.StringStartsWith.startsWith(calculatedDigest));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwstringContains = new org.hamcrest.core.StringContains(calculatedDigest, true));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), stringContains);
+<     return java.util.concurrent.CompletableFuture.allOf();
+---
+>     final String digest = "123";
+>     InputStream content = new ByteArrayInputStream("data".getBytes(StandardCharsets.UTF_8));
+>     CompletableFuture<Void> putFuture = blobs.put(new com.artipie.asto.CheckedBlobSource(content, instanceOf(com.artipie.docker.error.InvalidDigestException.class)));
+>     putFuture.get();
+>     Throwable throwable = putFuture.getException();
+>     StringThrowable stringThrowable = new StringThrowable(throwable);
+>     MatcherAssert.assertThat("Exception message contains calculated digest", stringThrowable.getMessage(), startsWith(calculatedDigest));
+>     MatcherAssert.assertThat("Exception message contains expected digest", stringThrowable.getMessage(), new StringContains(calculatedDigest, true));
+>     return CompletableFuture.allOf();
+> }
+> 
+> private static class StringThrowable extends RuntimeException {
+>     private StringThrowable(Throwable cause) {
+>         super(cause.getMessage(), cause);
+>     }
+>     public String getMessage() {
+>         return super.getMessage();
+>     }

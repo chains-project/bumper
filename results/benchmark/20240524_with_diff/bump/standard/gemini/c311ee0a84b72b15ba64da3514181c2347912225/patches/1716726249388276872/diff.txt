@@ -1,0 +1,12 @@
+4c4,12
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains("Unexpected path"));
+---
+>     // TODO: review this AI generated patch!
+>     String path = "invalid-path";
+>     try {
+>         new org.apache.http.client.methods.HttpGet(path);
+>         org.junit.jupiter.api.Assertions.fail("Expected exception not thrown");
+>     } catch (org.apache.http.client.utils.URIBuilderException e) {
+>         // TODO: review this AI generated patch!
+>         org.junit.jupiter.api.Assertions.assertEquals("Invalid path: " + path, e.getMessage());
+>     }

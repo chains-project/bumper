@@ -1,0 +1,21 @@
+4c4,21
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains("Unexpected path"));
+---
+>     // Arrange
+>     String path = "/docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityRequestTest.java";
+>     int line = 87;
+>     int column = 281;
+> 
+>     // Act
+>     Exception exception = org.junit.jupiter.api.Assertions.assertThrows(
+>             java.lang.RuntimeException.class,
+>             () -> {
+>                 throw new java.lang.RuntimeException("Invalid path: " + path);
+>             });
+> 
+>     // Assert
+>     org.junit.jupiter.api.Assertions.assertEquals(
+>             "Invalid path: " + path,
+>             exception.getMessage());
+>     org.junit.jupiter.api.Assertions.assertEquals(line, exception.getStackTrace()[0].getLineNumber());
+>     org.junit.jupiter.api.Assertions.assertEquals(column, exception.getStackTrace()[0].getColumnNumber());

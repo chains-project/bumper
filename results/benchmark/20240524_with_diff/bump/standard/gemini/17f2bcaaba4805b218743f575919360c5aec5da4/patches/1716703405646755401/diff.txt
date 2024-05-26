@@ -1,0 +1,21 @@
+1c1,16
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.Assume.assumeThat;
+> 
+> public class PGS_ProcessingGroupShapeTests {
+> 
+>     @Test
+>     public void testProcessingGroupShapes() {
+>         assumeThat(System.getProperty("os.name"), not(containsString("Windows")));
+>         // ...
+>     }
+> 
+>     @Test
+>     public void testProcessingGroupShapes_Windows() {
+>         assumeThat(System.getProperty("os.name"), containsString("Windows"));
+>         // ...
+>     }
+> }
+\ No newline at end of file

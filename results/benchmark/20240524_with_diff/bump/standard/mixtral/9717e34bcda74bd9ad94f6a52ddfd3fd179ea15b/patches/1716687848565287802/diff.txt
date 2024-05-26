@@ -1,0 +1,22 @@
+0a1,2
+> import java.util.Random;
+> 
+2a5
+>  *
+4c7,8
+<      * @throws IOException If fails
+---
+>  * @throws IOException
+>  *              If fails
+6,12c10,12
+<     public Repo randomRepo() throws IOException {
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+---
+> public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+>     RandomStringUtils randomStringUtils = new RandomStringUtils();
+>     return this.repos().create(new com.jcabi.github.Repos.RepoCreate(randomStringUtils.randomAlphanumeric(20), true));

@@ -1,0 +1,5 @@
+import eu.europa.esig.dss.tsl.trustlist.entry.CertificateTrustListEntry;
+
+public void signPdf(java.nio.file.Path pdfFile, java.nio.file.Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws java.io.IOException {
+    boolean visibleSignature = params.getPage() != null;
+    // https://github.

@@ -1,0 +1,10 @@
+1,2c1,6
+< private org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getTestListResolverWildcard() {
+<     return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard() {
+---
+> private org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline getTestListResolverWildcard() {
+>     return new org.apache.maven.plugin.surefire.booterclient.lazytestprovider.JarFileCommandline() {
+>         @Override
+>         protected void resolveClasspath(Commandline commandline, String classpathElementSeparator, StartupConfiguration config, File classpathFile) {
+>             // Implement resolution logic here
+>         }

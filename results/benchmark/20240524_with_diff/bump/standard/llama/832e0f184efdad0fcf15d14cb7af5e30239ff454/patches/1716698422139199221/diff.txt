@@ -1,0 +1,142 @@
+1,2c1,2
+< @Override
+<         public void init(Player player, InventoryContents contents) {
+---
+> @java.lang.Override
+> public void init(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+5c5
+<                         ItemStack customDefaultBorders = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+---
+>         org.bukkit.inventory.ItemStack customDefaultBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+7c7
+<                                 customDefaultBorders = XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+---
+>             customDefaultBorders = com.cryptomorin.xseries.XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+9c9
+<                         ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+---
+>         org.bukkit.inventory.meta.ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+12,13c12
+<                         contents.fillBorders(ClickableItem.empty(customDefaultBorders));
+<                         
+---
+>         contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customDefaultBorders));
+15,16c14
+<                         ActiveTranslator currTranslator = main.getActiveTranslator(targetPlayerUUID);
+<                         
+---
+>         com.expl0itz.worldwidechat.util.ActiveTranslator currTranslator = main.getActiveTranslator(targetPlayerUUID);
+18,20c16,17
+<                         Pagination pagination = contents.pagination();
+<                         ClickableItem[] listOfAvailableLangs = new ClickableItem[main.getSupportedTranslatorLanguages().size()];
+< 
+---
+>         fr.minuskube.inv.content.Pagination pagination = contents.pagination();
+>         fr.minuskube.inv.ClickableItem[] listOfAvailableLangs = new fr.minuskube.inv.ClickableItem[main.getSupportedTranslatorLanguages().size()];
+23,24c20,21
+<                                 ItemStack currentLang = XMaterial.BOOK.parseItem();
+<                                 ItemMeta currentLangMeta = currentLang.getItemMeta();
+---
+>             org.bukkit.inventory.ItemStack currentLang = com.cryptomorin.xseries.XMaterial.BOOK.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta currentLangMeta = currentLang.getItemMeta();
+26,27c23,24
+<                                 ArrayList<String> lore = new ArrayList<>();
+<                                 currentLangMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>             java.util.ArrayList<java.lang.String> lore = new java.util.ArrayList<>();
+>             currentLangMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+29,30c26,27
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.GREEN + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+---
+>                 currentLangMeta.addEnchant(new org.bukkit.enchantments.EnchantmentWrapper("power"), 1);
+>                 lore.add(((org.bukkit.ChatColor.GREEN + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+32,33c29,30
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+---
+>                 currentLangMeta.addEnchant(new org.bukkit.enchantments.EnchantmentWrapper("power"), 1);
+>                 lore.add(((org.bukkit.ChatColor.YELLOW + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+42,45c39,41
+<                                 String thisLangCode = main.getSupportedTranslatorLanguages().get(i).getLangCode();
+<                                 listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+<                                         WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID)
+<                                                         .open(player);
+---
+>             java.lang.String thisLangCode = main.getSupportedTranslatorLanguages().get(i).getLangCode();
+>             listOfAvailableLangs[i] = fr.minuskube.inv.ClickableItem.of(currentLang, ( e) -> {
+>                 com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID).open(player);
+48d43
+< 
+53d47
+< 
+56,58c50,51
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.previous().getPage());
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage());
+61,62c54,55
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+>                 com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+65d57
+< 
+69,73c61,63
+<                                 ItemStack skipSourceButton = XMaterial.BOOKSHELF.parseItem();
+<                                 ItemMeta skipSourceMeta = skipSourceButton.getItemMeta();
+<                                 skipSourceMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+<                                 
+---
+>             org.bukkit.inventory.ItemStack skipSourceButton = com.cryptomorin.xseries.XMaterial.BOOKSHELF.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta skipSourceMeta = skipSourceButton.getItemMeta();
+>             skipSourceMeta.setDisplayName(org.bukkit.ChatColor.YELLOW + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+75,79c65,69
+<                                 skipSourceMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+<                                 ArrayList<String> lore = new ArrayList<>();
+<                                 if ((currTranslator.getInLangCode().equals("None"))) {
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.GREEN + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+---
+>             skipSourceMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>             java.util.ArrayList<java.lang.String> lore = new java.util.ArrayList<>();
+>             if (currTranslator.getInLangCode().equals("None")) {
+>                 skipSourceMeta.addEnchant(new org.bukkit.enchantments.EnchantmentWrapper("power"), 1);
+>                 lore.add(((org.bukkit.ChatColor.GREEN + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+81,82c71,72
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+---
+>                 skipSourceMeta.addEnchant(new org.bukkit.enchantments.EnchantmentWrapper("power"), 1);
+>                 lore.add(((org.bukkit.ChatColor.YELLOW + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+85,86c75
+<                                 contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage
+<                                                 .getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(skipSourceButton, ( e) -> com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUITargetLanguage.getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+88d76
+< 
+91,93c79,80
+<                                 contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.next().getPage());
+---
+>             contents.set(5, 6, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Next"), ( e) -> {
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage());
+95d81
+<                                 ;
+97d82
+<                         
+99,101c84,87
+<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+<                 } catch (Exception e) {
+<                         WWCInventoryManager.inventoryError(player, e);
+---
+>         contents.set(5, 8, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ (pagination.getPage() + 1) + "" }), ( e) -> {
+>         }));
+>     } catch (java.lang.Exception e) {
+>         com.expl0itz.worldwidechat.inventory.WWCInventoryManager.inventoryError(player, e);

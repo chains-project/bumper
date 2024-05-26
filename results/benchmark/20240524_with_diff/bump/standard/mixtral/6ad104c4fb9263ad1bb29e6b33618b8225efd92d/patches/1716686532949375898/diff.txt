@@ -1,0 +1,21 @@
+1c1,16
+< import org.bouncycastle.util.Arrays;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.util.Strings;
+> import org.bouncecastle.crypto.tls.TlsFatalAlert;
+> import org.bouncecastle.crypto.tls.AlertDescription;
+> 
+> // ...
+> 
+> private void decode(RawDataStream in, ByteQueue queue) throws IOException {
+>     // ...
+>     int type = in.readUint8();
+>     int length = in.readUint24();
+>     if (length < 1) {
+>         throw new TlsFatalAlert(AlertDescription.decode(in.get(in.getLoad() - 1)));
+>     Strings.cBB(in.getLoad(), in.get(), in.getLoad(), queue);
+>     in.add(in.getLoad());
+>     // ...
+> }
+\ No newline at end of file

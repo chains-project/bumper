@@ -1,0 +1,132 @@
+import org.apache.maven.plugin.surefire.api.testset.TestFileSet;
+import org.apache.maven.plugin.surefire.util.DefaultScanResult;
+import org.apache.maven.plugin.surefire.util.DefaultSurefireArg;
+import org.apache.maven.plugin.surefire.util.DirectoryScanner;
+import org.apache.maven.plugin.surefire.booterclient.CommandLine;
+import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.ClasspathSettings;
+import org.apache.maven.surefire.api.testset.TestRequest;
+import org.apache.maven.surefire.api.testset.TestRequestBuilder;
+import org.apache.maven.surefire.api.testset.TestRequestFactory;
+import org.apache.maven.surefire.api.provider.ProviderParameters;
+import org.apache.maven.surefire.api.provider.SurefireProvider;
+import org.apache.maven.surefire.api.provider.SurefireProviderFactory;
+import org.apache.maven.surefire.api.util.internal.ClasspathSettingsFactory;
+import org.apache.maven.surefire.api.util.internal.DefaultScanResultFactory;
+import org.apache.maven.surefire.api.util.internal.DefaultStreamDecorator;
+import org.apache.maven.surefire.api.util.internal.InputStreamConsumer;
+import org.apache.maven.surefire.api.util.internal.JUnitXmlReportParser;
+import org.apache.maven.surefire.api.util.internal.ReportEntry;
+import org.apache.maven.surefire.api.util.internal.ReportParsingDecorator;
+import org.apache.maven.surefire.api.util.internal.TestSetFailedException;
+import org.apache.maven.surefire.api.util.internal.dependency.DependencyResolver;
+import org.apache.maven.surefire.api.util.internal.dependency.DependencyResolverFactory;
+import org.apache.maven.surefire.api.util.internal.dependency.SingleDependencyResolver;
+import org.apache.maven.surefire.api.util.internal.dependency.SingleDependencyResolverFactory;
+import org.apache.maven.surefire.api.util.internal.dependency.TestClassPath;
+import org.apache.maven.surefire.api.util.internal.dependency.TestClassPathFactory;
+import org.apache.maven.surefire.api.util.internal.dependency.TestClassPathUtil;
+import org.apache.maven.surefire.api.util.internal.logging.InternalLoggerFactory;
+import org.apache.maven.surefire.api.util.internal.logging.Slf4jLoggerFactory;
+import org.apache.maven.surefire.api.util.internal.logging.SurefireLogger;
+import org.apache.maven.surefire.api.util.internal.logging.SurefireStreamDecorator;
+import org.apache.maven.surefire.api.util.internal.provider.ProviderParametersFactory;
+import org.apache.maven.surefire.api.util.internal.provider.ProviderParametersFactoryImpl;
+import org.apache.maven.surefire.api.util.internal.provider.SurefireProviderFactoryImpl;
+import org.apache.maven.surefire.api.util.internal.provider.SurefireProviderUtils;
+import org.apache.maven.surefire.api.util.internal.provider.TestClassFilter;
+import org.apache.maven.surefire.api.util.internal.provider.TestClassFilterFactory;
+import org.apache.maven.surefire.api.util.internal.provider.TestClassFilterFactoryImpl;
+import org.apache.maven.surefire.api.util.internal.provider.TestRequestFactoryImpl;
+import org.apache.maven.surefire.api.util.internal.provider.TestSetFilterFactory;
+import org.apache.maven.surefire.api.util.internal.provider.TestSetFilterFactoryImpl;
+import org.apache.maven.surefire.api.util.internal.stream.Streams;
+import org.apache.maven.surefire.api.util.internal.stream.StreamsFactory;
+import org.apache.maven.surefire.api.util.internal.stream.StreamsFactoryImpl;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.ServiceLoader;
+import java.util.Set;
+import java.util.ServiceLoader.Provider;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+
+import static org.apache.maven.plugin.surefire.api.testset.TestFileSet.Type.INCLUDE;
+
+static List<String> getClassesLoc(File testSrcFolder) {
+    TestFileSet testFileSet = new TestFileSet(testSrcFolder, new FileFilter() {
+        @Override
+        public boolean accept(File pathname) {
+            return pathname.isFile() && pathname.getName().endsWith(".class");
+        }
+    }, INCLUDE);
+
+    TestRequestBuilder requestBuilder = new TestRequestBuilder();
+    TestRequest testRequest = requestBuilder.testClass(testFileSet).build();
+    TestClassFilter testClassFilter = new TestClassFilterFactoryImpl().create(testRequest);
+    TestSetFilter testSetFilter = new TestSetFilterFactoryImpl().create(testRequest);
+
+    ProviderParametersFactory providerParametersFactory = new ProviderParametersFactoryImpl();
+    ProviderParameters providerParameters = providerParametersFactory.create(testRequest, testClassFilter, testSetFilter);
+
+    ServiceLoader<SurefireProviderFactory> surefireProviderFactoryServiceLoader = ServiceLoader.load(SurefireProviderFactory.class);
+    SurefireProviderFactory surefireProviderFactory = new SurefireProviderFactoryImpl();
+    SurefireProvider surefireProvider = surefireProviderFactory.createProvider(providerParameters);
+
+    ClassLoader originalClassLoader = surefireProvider.getClass().getClassLoader();
+    ClassLoader testClassLoader = URLClassLoader.newInstance(new URL[]{testSrcFolder.toURI().toURL()}, originalClassLoader);
+    Thread.currentThread().setContextClassLoader(testClassLoader);
+
+    DefaultScanResultFactory scanResultFactory = new DefaultScanResultFactory();
+    DefaultScanResult scanResult = scanResultFactory.create(testRequest);
+
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, testRequest);
+    directoryScanner.scan();
+
+    ClasspathSettingsFactory classpathSettingsFactory = new ClasspathSettingsFactory();
+    ClasspathSettings classpathSettings = classpathSettingsFactory.createClasspathSettings(testRequest, scanResult, originalClassLoader);
+
+    TestClassPathFactory testClassPathFactory = new TestClassPathFactory();
+    TestClassPath testClassPath = testClassPathFactory.createClassPath(classpathSettings);
+
+    DefaultStreamDecorator streamDecorator = new DefaultStreamDecorator();
+    StreamsFactory streamsFactory = new StreamsFactoryImpl();
+    InputStreamConsumer outputStreamConsumer = streamsFactory.createConsumer(streamDecorator.createDecoratedPrintStream(System.out));
+    InputStreamConsumer errorStreamConsumer = streamsFactory.createConsumer(streamDecorator.createDecoratedPrintStream(System.err));
+
+    JUnitXmlReportParser jUnitXmlReportParser = new JUnitXmlReportParser();
+    ReportParsingDecorator reportParsingDecorator = new ReportParsingDecorator();
+    reportParsingDecorator.setJUnitXmlReportParser(jUnitXmlReportParser);
+
+    DefaultSurefireArg surefireArg = new DefaultSurefireArg();
+    surefireArg.setArg(TestListResolver.getWildcard());
+
+    CommandLine commandLine = new CommandLine();
+    commandLine.setArg(surefireArg);
+
+    ModularClasspathForkConfiguration modularClasspathForkConfiguration = new ModularClasspathForkConfiguration();
+    modularClasspathForkConfiguration.resolveClasspath(commandLine, testRequest.getTestMethod(), testRequest.getTestClass(), testSrcFolder);
+
+    return commandLine.getArg().get(0).getClasses();
+}

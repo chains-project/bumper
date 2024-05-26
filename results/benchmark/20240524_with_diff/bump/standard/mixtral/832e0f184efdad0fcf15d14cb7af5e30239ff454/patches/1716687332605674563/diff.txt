@@ -1,0 +1,44 @@
+1,5c1,5
+< // TODO: review this AI generated patch!
+< public static org.bukkit.inorganic.ItemStack getCommonButton(java.lang.String buttonType, java.lang.String[] args) {
+<     org.bukkit.inorganic.ItemStack pageButton = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS.parseItem();
+<     org.bukkit.inorganic.meta.ItemMeta pageMeta = pageButton.getItemMeta();
+<     pageMeta.addItemFlags(org.bukkit.inorganic.ItemFlag.HIDE_ENCHANTS);
+---
+> public static org.bukkit.inventory.ItemStack getCommonButton(java.lang.String buttonType, java.lang.String[] args) {
+>     org.bukkit.material.ItemStack pageButton = org.bukkit.Material.WHITE_STAINED_GLASS.createItem();
+>     org.bukkit.meta.ItemMeta pageMeta = pageButton.getItemMeta();
+>     pageMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>     String prefix = com.expl0itz.worldwidechat.util.CommonDefinitions.getPrefix();
+7,8c7,9
+<         pageButton = com.cryptomorin.xseries.XMaterial.RED_STAINED_GLASS.parseItem();
+<         pageMeta.setDisplayName(org.bukkit.ChatColor.RED + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+---
+>         pageButton = org.bukkit.Material.RED_STAINED_GLASS.createItem();
+>         pageMeta.setDisplayName(org.bukkit.ChatColor.RED + prefix + getMessage("wwcConfigGUIPreviousPageButton"));
+>     static org.bukkit.enchantments.Enchantment ENCHANTMENT_DAMAGE_ALL = org.bukkit.enchantments.Enchantment.DAMAGE_ALL;
+10,14c11,15
+<         pageButton = com.cryptomorin.xseries.XMaterial.GREEN_STAINED_GLASS.parseItem();
+<         pageMeta.setDisplayName(org.bukkit.ChatColor.GREEN + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+<     ++    } else if (buttonType.equalsIgnoreCase("Page Number")) {
+<         pageButton = com.cryptomorin.xseries.XMaterial.LILY_PAD.parseItem();
+<         pageMeta.setDisplayName(org.bukkit.ChatColor.AQUA + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+---
+>         pageButton = org.bukkit.Material.GREEN_STAINED_GLASS.createItem();
+>         pageMeta.setDisplayName(org.bukkit.ChatColor.GREEN + prefix + getMessage("wwcConfigGUINextPageButton"));
+>     } else if (buttonType.equalsIgnoreCase("Page Number")) {
+>         pageButton = org.bukkit.Material.LILY_PAD.createItem();
+>         pageMeta.setDisplayName(org.bukkit.ChatColor.AQUA + prefix + getMessage("wwwGUIPageNumber", args));
+16c17
+<             pageMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.getByName("DAMAGE_ALL").get(), 1, false);
+---
+>             pageMeta.addEnchant(ENCHANTMENT_DAMAGE_ALL, 1, false);
+22a24,31
+> }
+> 
+> private static String getPrefix() {
+>     return com.expl0itz.worldwidechat.util.CommonDefinitions.getPrefix();
+> }
+> 
+> private static String getMessage(String key, String... args) {
+>     return com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage(key, args);

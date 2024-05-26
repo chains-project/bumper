@@ -1,0 +1,11 @@
+1c1,6
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.jsse.BCSSLSocket;
+> import org.bouncycastle.tls.AlertDescription;
+> 
+> // ...
+> 
+> throw new BCSSLTransportException(AlertDescription.INTERNAL_ERROR);
+\ No newline at end of file

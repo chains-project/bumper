@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+6c5,6
+<     return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol(transport));
+---
+>     org.apache.thrift.protocol.TProtocolFactory protocolFactory = new org.apache.thrift.protocol.TBinaryProtocol.Factory();
+>     return new org.apache.thrift.TDeserializer(protocolFactory.getProtocol(transport));

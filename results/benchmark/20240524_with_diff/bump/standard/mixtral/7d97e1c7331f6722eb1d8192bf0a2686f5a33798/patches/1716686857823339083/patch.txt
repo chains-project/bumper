@@ -1,0 +1,40 @@
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.iterableWithSize;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
+import com.amazonaws.services.simpledb.model.SelectRequest;
+import com.amazonaws.services.simpledomain.AWSSimpleDB;
+import com.amazonaws.services.simpledomain.AWSSimpleDBClientBuilder;
+import com.amazonaws.services.simpledomain.model.BatchPutAttributesRequest;
+import com.amazonaws.services.simpledomain.model.BatchPutAttributesResult;
+import com.amazonaws.services.simpledomain.model.DeleteDomainRequest;
+import com.amazonaws.services.simpledomain.model.DomainMetadata;import static com.amazonaws.services.simpledomain.model.Key.builder;
+
+/**
+ * Region.Simple can select many items.
+ */
+@org.junit.jupiter.api.Test
+void selectsManyItems() {
+    final String domainName = "test-domain-" + this.hashCode();
+    final AWSSimpleDB client = AWSSimpleDBClientBuilder.defaultClient();
+    final String[] items = IntStream.range(0, 10)
+        .mapToObj(i -> "i-" + i)
+        .toArray(String[]::new);
+    try {
+        final BatchPutAttributesRequest request = new BatchPutAttributesRequest().withDomainName(domainName);
+        for (String item : items) {
+            request.addBatchItem(builder().withName(item).withValue("").build(), null);
+        }
+        final BatchPutAttributesResult result = client.batchPutAttributes(request);
+        final String selectExpression = "SELECT * FROM `" + domainName + "`";
+        final SelectRequest selectRequest = new SelectRequest().withSelectExpression(selectExpression).withConsistentRead(true);
+        final DomainMetadata metadata = client.domainMetadata(new DeleteDomainRequest().withDomainName(domainName));
+        assertThat(client.select(selectRequest), iterableWithSize(10));
+    } finally {
+        client.deleteDomain(new DeleteDomainRequest().withDomainName(domainName));
+    }
+}
+
+private String hashCode() {
+    return Integer.toHexString(super.hashCode());
+}

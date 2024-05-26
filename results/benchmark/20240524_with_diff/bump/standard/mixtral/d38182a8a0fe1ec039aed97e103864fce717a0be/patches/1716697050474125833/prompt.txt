@@ -1,0 +1,81 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+@java.lang.Override
+public com.artipie.http.Slice slice(final java.lang.String action) {
+    return new com.artipie.docker.http.DockerSlice(new com.artipie.docker.asto.AstoDocker(new com.artipie.asto.memory.InMemoryStorage()), new com.artipie.http.auth.Permissions.Single(TestAuthentication.ALICE.name(), action), new com.artipie.http.auth.BearerAuthScheme(( token) -> java.util.concurrent.CompletableFuture.completedFuture(java.util.stream.Stream.of(TestAuthentication.ALICE, TestAuthentication.BOB).filter(( user) -> token.equals(token(user))).map(( user) -> new com.artipie.http.auth.Authentication.User(user.name())).findFirst()), ""));
+}
+```
+
+with the following error message:
+[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/AuthTest.java:[353,60] cannot find symbol
+  symbol:   class User
+  location: interface com.artipie.http.auth.Authentication
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ public AuthUser com.artipie.http.auth.AuthUser(java.lang.String,java.lang.String)
+++ public java.lang.String com.artipie.http.auth.AuthUser.authContext()
+++ public bool com.artipie.http.auth.AuthUser.equals(java.lang.Object)
+++ public int com.artipie.http.auth.AuthUser.hashCode()
+++ public java.lang.String com.artipie.http.auth.AuthUser.name()
+++ public java.lang.String com.artipie.http.auth.AuthUser.toString()
+++ public Authentication$Single com.artipie.http.auth.Authentication$Single(com.artipie.http.auth.AuthUser,java.lang.String)
+-- public Authentication$Single com.artipie.http.auth.Authentication$Single(com.artipie.http.auth.Authentication$User,java.lang.String)
+-- public Authentication$User com.artipie.http.auth.Authentication$User(java.lang.String)
+-- public Authentication$User com.artipie.http.auth.Authentication$User(java.lang.String,java.util.Collection)
+-- public bool com.artipie.http.auth.Authentication$User.equals(java.lang.Object)
+-- public java.util.Collection com.artipie.http.auth.Authentication$User.groups()
+-- public int com.artipie.http.auth.Authentication$User.hashCode()
+-- public java.lang.String com.artipie.http.auth.Authentication$User.name()
+-- public java.lang.String com.artipie.http.auth.Authentication$User.toString()
+++ public bool com.artipie.http.auth.JoinedPermissions.allowed(com.artipie.http.auth.AuthUser,java.lang.String)
+-- public bool com.artipie.http.auth.JoinedPermissions.allowed(com.artipie.http.auth.Authentication$User,java.lang.String)
+++ public bool com.artipie.http.auth.OperationControl.allowed(com.artipie.http.auth.AuthUser)
+++ public bool com.artipie.http.auth.Permission$All.allowed(com.artipie.http.auth.AuthUser)
+-- public bool com.artipie.http.auth.Permission$All.allowed(com.artipie.http.auth.Authentication$User)
+++ public bool com.artipie.http.auth.Permission$Any.allowed(com.artipie.http.auth.AuthUser)
+-- public bool com.artipie.http.auth.Permission$Any.allowed(com.artipie.http.auth.Authentication$User)
+++ public bool com.artipie.http.auth.Permission$ByName.allowed(com.artipie.http.auth.AuthUser)
+-- public bool com.artipie.http.auth.Permission$ByName.allowed(com.artipie.http.auth.Authentication$User)
+++ public abstract bool com.artipie.http.auth.Permission.allowed(com.artipie.http.auth.AuthUser)
+-- public abstract bool com.artipie.http.auth.Permission.allowed(com.artipie.http.auth.Authentication$User)
+++ public bool com.artipie.http.auth.Permissions$Single.allowed(com.artipie.http.auth.AuthUser,java.lang.String)
+-- public bool com.artipie.http.auth.Permissions$Single.allowed(com.artipie.http.auth.Authentication$User,java.lang.String)
+++ public final bool com.artipie.http.auth.Permissions$Wrap.allowed(com.artipie.http.auth.AuthUser,java.lang.String)
+-- public final bool com.artipie.http.auth.Permissions$Wrap.allowed(com.artipie.http.auth.Authentication$User,java.lang.String)
+++ public abstract bool com.artipie.http.auth.Permissions.allowed(com.artipie.http.auth.AuthUser,java.lang.String)
+-- public abstract bool com.artipie.http.auth.Permissions.allowed(com.artipie.http.auth.Authentication$User,java.lang.String)
+++ public abstract java.lang.String com.artipie.http.auth.Tokens.generate(com.artipie.http.auth.AuthUser)
+++ public java.util.Set com.artipie.security.perms.Action$All.names()
+++ public java.util.Set com.artipie.security.perms.Action$Standard.names()
+++ public abstract java.util.Set com.artipie.security.perms.Action.names()
+++ public java.lang.String com.artipie.security.perms.PermissionConfig$Yaml.name()
+++ public abstract java.lang.String com.artipie.security.perms.PermissionConfig.name()
+++ public User$Simple com.artipie.security.perms.User$Simple(java.util.Collection,java.security.PermissionCollection)
+++ public java.security.PermissionCollection com.artipie.security.perms.User$Simple.perms()
+++ public java.util.Collection com.artipie.security.perms.User$Simple.roles()
+++ public abstract java.security.PermissionCollection com.artipie.security.perms.User.perms()
+++ public abstract java.util.Collection com.artipie.security.perms.User.roles()
+++ public UserPermissions com.artipie.security.perms.UserPermissions(java.util.function.Supplier,java.util.function.Function)
+++ public void com.artipie.security.perms.UserPermissions.add(java.security.Permission)
+++ public java.util.Enumeration com.artipie.security.perms.UserPermissions.elements()
+++ public bool com.artipie.security.perms.UserPermissions.implies(java.security.Permission)
+++ public java.security.PermissionCollection com.artipie.security.policy.CachedYamlPolicy$AstoUser.perms()
+++ public java.util.Collection com.artipie.security.policy.CachedYamlPolicy$AstoUser.roles()
+++ public com.artipie.security.perms.UserPermissions com.artipie.security.policy.CachedYamlPolicy.getPermissions(com.artipie.http.auth.AuthUser)
+++ public abstract java.security.PermissionCollection com.artipie.security.policy.Policy.getPermissions(com.artipie.http.auth.AuthUser)
+++ public PolicyByUsername com.artipie.security.policy.PolicyByUsername(java.lang.String)
+++ public java.security.PermissionCollection com.artipie.security.policy.PolicyByUsername.getPermissions(com.artipie.http.auth.AuthUser)

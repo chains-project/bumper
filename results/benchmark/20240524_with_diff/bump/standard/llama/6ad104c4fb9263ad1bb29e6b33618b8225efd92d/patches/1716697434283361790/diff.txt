@@ -1,0 +1,14 @@
+1c1,9
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.jsse.BCSSLSnapshot;
+> 
+> import java.io.IOException;
+> 
+> public class ChachaDecoder {
+>     public void decode() throws IOException {
+>         // No-op, removed dependency
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,31 @@
+Here is the updated code that should fix the error:
+
+```java
+// @checkstyle ProtectedMethodInFinalClassCheck (10 lines)
+@java.lang.Override
+@com.jcabi.aspects.RetryOnFailure(attempts = 7, delay = 1, unit = java.util.concurrent.TimeUnit.MINUTES, verbose = false, types = java.io.IOException.class)
+protected com.jcraft.jsch.Session session() throws java.io.IOException {
+    final java.io.File file = java.io.File.createTempFile("jcabi-surname", ".key");
+    try {
+        com.jcraft.jsch.JSch.setLogger(new com.jcabi.ssh.JschLogger());
+        final com.jcraft.jsch.JSch jsch = new com.jcraft.jsch.JSch();
+        new org.cactoos.scalar.Unchecked<>(new org.cactoos.scalar.LengthOf(new org.cint.io.TeeInput(this.key.replaceAll("\r", "").replaceAll("\n\\s+|\n{2,}", "\n").trim(), file))).value();
+        jsch.setHostKeyRepository(new com.jcabi.ssh.EasyRepo());
+        if (this.passphrase == null) {
+            jsch.addIdentity(file.getAbsolutePath());
+        } else {
+            jsch.addIdentity(this.getLogin(), this.key.getBytes(java.nio.charset.StandardCharsets.UTF_int8), null, this.passphrase.getBytes(java.nio.charset.StandardCharsets.UTF_int8));
+        }
+        com.jcabi.log.Logger.debug(this, "Opening SSH session to %s@%s:%s (%d bytes in RSA key)...", this.getLogin(), this.getAddr(), this.getPort(), file.length());
+        return this.session(jsch);
+    } catch (final com.jcraft.jsch.JSchException ex) {
+        throw new java.io.IOException(ex);
+`enter code here`    } finally {
+        java.nio.file.Files.deleteIfExists(file.toPath());
+    }
+}
+```
+
+In this updated code, I replaced the `Tv.SEVEN` with a hardcoded `7`, and replaced `java.nio.charset.StandardCharsets.UTF_CHARSETS.UTF_8` with `java.nio.charset.StandardCharsets.UTF_INT8`.
+
+Note that these changes are based on the assumption that the `Tv.SEVEN` and `UTF_CHARSETS.UTF_8` were removed in the new library version. If this is not the case, then the error might be caused by something else.

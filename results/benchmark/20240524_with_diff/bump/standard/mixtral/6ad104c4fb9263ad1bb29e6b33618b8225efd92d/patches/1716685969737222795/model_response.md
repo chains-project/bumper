@@ -1,0 +1,10 @@
+```java
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    private void handleRenegotiation(TlsKeyExchange keyExchange, TlsSignerSignerSignerSigner signer) throws IOException {
+        if (keyExchange.getSelectedCipher() != null && !keyEx Cha
+```

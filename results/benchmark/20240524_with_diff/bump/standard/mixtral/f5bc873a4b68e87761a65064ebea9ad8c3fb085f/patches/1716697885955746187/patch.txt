@@ -1,0 +1,65 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.aether.RepositorySystem;
+import org.eclipse.aether.RepositorySystemSession;
+import org.eclipse.aether.collection.CollectRequest;
+import org.eclipse.aether.collection.DependencyCollectionException;
+import org.eclipse.aether.collection.DependencyFilter;
+import org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory;
+import org.eclipse.aether.graph.Dependency;
+import org.eclipse.aether.impl.DefaultServiceLocator;
+import org.eclipse.aether.repository.LocalRepository;
+import org.eclipse.aether.repository.RemoteRepository;
+import org.eclipse.aether.repository.RepositoryPolicy;
+import org.eclipse.aether.spi.connector.RepositoryConnectorFactory;
+import org.eclipse.aether.spi.locator.ServiceLocator;
+import org.eclipse.aether.transfer.TransferCancelledException;
+import org.eclipse.aether.transfer.TransferException;
+import org.eclipse.aether.util.graph.transformer.ConflictResolver;
+
+// ...
+
+private MavenProject createMavenProject(String groupId, String artifactId, String version) {
+    Model model = new Model();
+    model.setGroupId(groupId);
+    model.setArtifactId(artifactId);
+    model.setVersion(version);
+
+    DefaultServiceLocator locator = new DefaultServiceLocator();
+    locator.addService(RepositoryConnectorFactory.class, BasicRepositoryConnectorFactory::new);
+
+    RepositorySystem repositorySystem = newRepositorySystem(locator);
+    RepositorySystemSession session = newSession(repositorySystem, locator);
+
+    LocalRepository localRepo = new LocalRepository("local-repo");
+    RemoteRepository remoteRepo = new RemoteRepository.Builder("central", "default", "https://repo1.maven.org/maven2/").build();
+
+    CollectRequest collectRequest = new CollectRequest();
+    collectRequest.setRoot(new Dependency(groupId, artifactId, version));
+    collectRequest.setRepositories(remoteRepo);
+
+    try {
+        DependencyFilter filter = DependencyFilter.includeVersionRange(version);
+        return repositorySystem.collectDependencies(session, collectRequest, filter).getRoot();
+    } catch (DependencyCollectionException | TransferCancelledException | TransferException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+private RepositorySystem newRepositorySystem(ServiceLocator locator) {
+    RepositorySystem repositorySystem = new DefaultRepositorySystem();
+    locator.addService(RepositorySystem.class, repositorySystem);
+    return repositorySystem;
+}
+
+private RepositorySystemSession newSession(RepositorySystem repositorySystem, ServiceLocator locator) {
+    RepositorySystemSession session = repositorySystem.newSession();
+
+    LocalRepository localRepo = new LocalRepository("local-repo");
+    session.setLocalRepositoryManager(repositorySystem.newLocalRepositoryManager(session, localRepo));
+
+    ConflictResolver conflictResolver = new ConflictResolver();
+    session.setDependencyConflictResolver(conflictResolver);
+
+    return session;
+}

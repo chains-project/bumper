@@ -1,0 +1,14 @@
+2,4c2,4
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+<         if (packagesToScan == null || packagesToScan.isEmpty()) {
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>     final String packagesToScan = System.getenv(GaugeConstant.PACKAGE_TO_SCAN);
+>     if ((packagesToScan) == null || packagesToScan.isEmpty()) {
+>         return new org.reflections.util.FilterBuilder().include(".+\\.class").get(s);
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (new org.reflections.util.FilterBuilder().include(regex).get(s)) {
+12d11
+<         }

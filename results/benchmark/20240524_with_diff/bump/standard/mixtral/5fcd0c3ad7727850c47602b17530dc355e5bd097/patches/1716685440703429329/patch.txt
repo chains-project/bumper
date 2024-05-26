@@ -1,0 +1,6 @@
+private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitorg.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
+    final var className = data.getMutatedClass();
+    final var classpath = this.getResources().getResource(className.getInternalForm()).getFile();
+    final var classInfo = org.pitest.classinfo.ClassInfo.fromPath(className, classpath, coverage.getStorage().getByteCode(className));
+    return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
+}

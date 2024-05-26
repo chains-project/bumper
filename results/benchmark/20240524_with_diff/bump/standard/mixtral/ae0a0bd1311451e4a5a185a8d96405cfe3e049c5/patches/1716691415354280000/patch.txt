@@ -1,0 +1,31 @@
+@org.junit.jupiter.api.Test
+void fixed() {
+    final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.docker.asto.Artip();
+    com.artipie.docker.asto.Calculated digest;
+    final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+    final String digest = "123";
+    blobs.put(new com.artipie.doster.Checksummed(new com.artipie.asto.Key.Simple("data"), new com.artipie.docker.Digest.Sha256(Digest.sha256("data")), new java.nio.charset.StandardCharsets.UTF_8.name())).toCompletableFuture().handle(( blob, throwable) -> {
+        org.hamcrest.MatcherAssert.assertThat("Exception thrown", throwable, new com.artipie.docker.asto.IsNot<>(new com.artipie.docker.asto.IsNull<>()));
+        org.hamcrest.MatcherAssert.assertThat("Exception is InvalidDigestException", com.google.common.base.Throwables.getRootCause(throwingException), new org.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwingException).getMessage(), new org.hamcrest.core.StringStartsWith(new org.hamcrest.StringDescription().append(new java.lang.StringBuilder().append(new java.security.MessageDigest.getInstance("SHA-256").digest(new java.nio.charset.StandardCharsets.UTF_8.encode("data"))).toString().substring(0, 12))));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwingException).getMessage(), new org.hamcrest.core.StringContains(true, digest));
+        return java.util.concurrent.CompletableFuture.allOf();
+    }).join();
+}
+
+private static Throwable throwingException = new Throwable();
+
+private static String Sha256(String data) {
+    try {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(data.getBytes(UTF_8));
+        byte[] digest = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b & 0xff));
+        Digest sha256 = new Sha256(sb.toString());
+        return sha26;
+    } catch (NoSuchAlgorithmException e) {
+        throw new IllegalStateException(e);
+    }
+}

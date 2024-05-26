@@ -1,0 +1,1 @@
+I'm sorry, but there is no code in the provided client code that can be fixed or replaced. The error message indicates an issue with a static import, but no static import is provided in the client code. Please provide the correct client code for me to provide a solution.

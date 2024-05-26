@@ -1,0 +1,15 @@
+1c1,10
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> 
+> // ...
+> 
+> try {
+>     // ...
+> } catch (Exception e) {
+>     int errorCode = /* some error code */;
+>     throw new TlsFatalAlert(TlsUtils.getAlert(errorCode));
+> }
+\ No newline at end of file

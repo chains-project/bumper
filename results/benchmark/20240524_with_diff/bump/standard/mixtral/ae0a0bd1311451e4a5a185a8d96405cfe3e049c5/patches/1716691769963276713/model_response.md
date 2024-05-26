@@ -1,0 +1,26 @@
+Here is the updated code with the changes:
+
+```java
+@org.junit.jupiter.api.Test
+void failsOnDigestMismatch() {
+  final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.docker.asto.Artip();
+  com.artipie.docker.asto.Calculated<com.artipie.docker.Digest.Sha256> digest;
+  final com.artipie.docker.asto.AstoBlobs<byte[]> blobs = new com.artipie.docker.asto.AstoBl ContentNegotiation.ALLOW.Blobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+  final String digest = "123";
+  blobs.put(new com.artipie.doster.Checksummed<>(new com.artipie.asto.Key.Simple("data"), new com.artipie.docker.Digest.Sha256(digest), new java.nio.charset.StandardCharsets.UTF_8.name())).toCompletableFuture().handle(( blob, throwable) -> {
+    org.hamcrest.MatcherAssert.assertThat("Exception thrown", throwable, new com.artipContentNegotiation.IsNot<>(new com.artipie.asto.IsNull<>()));
+    org.hamcrest.MatcherAssert.assertThat("Exception is InvalidDigestException", com.google.common.base.Throwables.getRootCause(throwable), new org.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+    org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringStartsWith(new org.hamcrest.StringDescription().append(new java.lang.StringBuilder().append(new java.security.MessageDigest.getInstance("SHA-256").digest(new java.nio.charset.StandardCharsets.UTF_8.encode("data"))).toString().substring(0, 12))));
+    org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringContains(true, digest));
+    return java.util.concurrent.CompletableFuture.allOf();
+  }).join();
+}
+```
+
+Changes made:
+
+1. Updated `com.artipie.docker.asto.Artip` instead of `com.artipie.docker.asto.artip`
+2. Updated `com.artipie.docker.asto.Calculated` generic type from `com.artipie.docker.Artifact` to `com.artipie.docker.Digest.Sha256`
+3. Updated `com.artipie.docker.asto.AstoBlobs` generic type from `com.artipie.docker.Artifact` to `byte[]`
+4. Updated `new org.hamcrest.Matchers.IsNot<>(new org.hamcrest.Matchers.InstanceOf<>(com.artipie.asto.Empty.class))` to `new com.artipie.docker.asto.IsNot<>(new com.artipie.asto.IsNull<>())`
+5. Updated import statement for `org.hamcrest.Matchers` to `com.artipie.docker.asto.IsNot`

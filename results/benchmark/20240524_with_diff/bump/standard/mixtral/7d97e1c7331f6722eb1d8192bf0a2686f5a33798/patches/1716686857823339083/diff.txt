@@ -1,0 +1,57 @@
+0a1,12
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import java.util.stream.IntStream;
+> import org.junit.jupiter.api.Test;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import com.amazonaws.services.simpledomain.AWSSimpleDB;
+> import com.amazonaws.services.simpledomain.AWSSimpleDBClientBuilder;
+> import com.amazonaws.services.simpledomain.model.BatchPutAttributesRequest;
+> import com.amazonaws.services.simpledomain.model.BatchPutAttributesResult;
+> import com.amazonaws.services.simpledomain.model.DeleteDomainRequest;
+> import com.amazonaws.services.simpledomain.model.DomainMetadata;import static com.amazonaws.services.simpledomain.model.Key.builder;
+> 
+4c16
+<     @Test
+---
+> @org.junit.jupiter.api.Test
+6c18,22
+<         final Domain domain = this.domain();
+---
+>     final String domainName = "test-domain-" + this.hashCode();
+>     final AWSSimpleDB client = AWSSimpleDBClientBuilder.defaultClient();
+>     final String[] items = IntStream.range(0, 10)
+>         .mapToObj(i -> "i-" + i)
+>         .toArray(String[]::new);
+8,9c24,26
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>         final BatchPutAttributesRequest request = new BatchPutAttributesRequest().withDomainName(domainName);
+>         for (String item : items) {
+>             request.addBatchItem(builder().withName(item).withValue("").build(), null);
+11,18c28,32
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         final BatchPutAttributesResult result = client.batchPutAttributes(request);
+>         final String selectExpression = "SELECT * FROM `" + domainName + "`";
+>         final SelectRequest selectRequest = new SelectRequest().withSelectExpression(selectExpression).withConsistentRead(true);
+>         final DomainMetadata metadata = client.domainMetadata(new DeleteDomainRequest().withDomainName(domainName));
+>         assertThat(client.select(selectRequest), iterableWithSize(10));
+20c34
+<             domain.drop();
+---
+>         client.deleteDomain(new DeleteDomainRequest().withDomainName(domainName));
+22a37,40
+> 
+> private String hashCode() {
+>     return Integer.toHexString(super.hashCode());
+> }
+\ No newline at end of file

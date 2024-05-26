@@ -1,0 +1,9 @@
+4c4,9
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), org.hamcrest.core.StringEndsWith.endsWith("Unexpected path"));
+---
+>     try {
+>         new UploadEntityRequest(new java.net.URI("http://localhost:8080/docker-api/images/create?fromImage=alpine:latest&tag=test&fromSrc=/tmp/test.tar"), new java.io.ByteArrayInputStream(new byte[0]), 1000);
+>         org.junit.jupiter.api.Assertions.fail("Should fail with IllegalArgumentException");
+>     } catch (java.lang.IllegalArgumentException e) {
+>         // expected
+>     }

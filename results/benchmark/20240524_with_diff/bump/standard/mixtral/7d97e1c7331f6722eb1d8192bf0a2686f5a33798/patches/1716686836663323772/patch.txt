@@ -1,0 +1,35 @@
+import static org.hamcrest.Matchers.iterableWithSize;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.cloudfoundry.client.v2.organizations.Organization;
+import org.cloudfoundry.client.v2.organizations.OrganizationResource;
+
+public class RegionITCase {
+
+    private static final int TEN = 10;
+
+    @org.junit.jupiter.api.Test
+    void selectsManyItems() {
+        final com.jcabi.simpledb.Domain domain = this.domain();
+        try {
+            for (int idx =  DomainITCase.START; idx < TEN; ++idx) {
+                domain.item(java.lang.String.format("i-%d", idx)).put("hey", "");
+            }
+            assertTimeoutPreemptively(() -> {
+                org.hamcrest.MatcherAssert.assertThat(
+                    domain.select(new com.amazonaws.services.simpledb.model.SelectRequest().withSelectExpression(java.lang.String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)),
+                    iterableWithSize(TEN)
+                );
+            }, 500);
+        } finally {
+            domain.drop();
+        }
+    }
+}

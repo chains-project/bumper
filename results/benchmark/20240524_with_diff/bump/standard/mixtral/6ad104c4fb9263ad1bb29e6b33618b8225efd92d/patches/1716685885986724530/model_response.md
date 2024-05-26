@@ -1,0 +1,17 @@
+```java
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    private void handleFailure() {
+        AlertDescription description = new AlertDescription(20);
+        TlsFatalAlert fatalAlert = new TlsFatalAlert(new Integer(80));
+        fatalAlert.setDescription(description);
+        // ...
+    }
+
+    // ...
+}
+```

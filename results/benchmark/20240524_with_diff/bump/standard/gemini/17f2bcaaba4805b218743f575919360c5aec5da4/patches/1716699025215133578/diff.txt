@@ -1,0 +1,16 @@
+1c1,11
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.jupiter.api.Assertions.assertThrows;
+> 
+> import org.junit.jupiter.api.Test;
+> 
+> public class PGS_ProcessingGroupShapeTests {
+> 
+>     @Test
+>     public void testAssumeTrue() {
+>         assertThrows(IllegalStateException.class, () -> assumeTrue(false, "This should fail"));
+>     }
+> }
+\ No newline at end of file

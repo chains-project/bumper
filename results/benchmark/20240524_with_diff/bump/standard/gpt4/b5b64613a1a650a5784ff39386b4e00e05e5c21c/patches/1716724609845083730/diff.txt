@@ -1,0 +1,31 @@
+4,5c4,7
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+---
+>  * @param server
+>  *              - The server to check
+>  * @throws IOException
+>  *              if there is an illegal step configuration.
+7,10c9,11
+<         private void checkInputs(JFrogPlatformInstance server) throws IOException {
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+<                 throw new IOException("Server URL is missing");
+---
+> private void checkInputs(org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance server) throws java.io.IOException {
+>     if (server.getUrl() == null || server.getArtifactory().getUrl() == null || server.getDistribution().getUrl() == null || step.url == null || step.artifactoryUrl == null || step.distributionUrl == null) {
+>         throw new java.io.IOException("Server URL is missing");
+12,14c13,15
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and username");
+---
+>     if (org.apache.commons.lang3.StringUtils.isNotBlank(step.credentialsId)) {
+>         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.username)) {
+>             throw new java.io.IOException("'rtServer' step can't include both credentialsId and username");
+16,17c17,18
+<                 if (isNotBlank(step.password)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and password");
+---
+>         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.password)) {
+>             throw new java.io.IOException("'rtServer' step can't include both credentialsId and password");

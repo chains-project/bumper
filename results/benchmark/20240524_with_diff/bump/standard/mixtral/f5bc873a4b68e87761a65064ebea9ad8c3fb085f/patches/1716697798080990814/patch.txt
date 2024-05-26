@@ -1,0 +1,15 @@
+import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectBuilder;
+import org.codehaus.plexus.util.FileUtils;
+
+// ...
+
+MavenProject project = null;
+try {
+    FileUtils fileUtils = new FileUtils();
+    File pomFile = fileUtils.getFile(projectDir, "pom.xml");
+    MavenProjectBuilder projectBuilder = new MavenProjectBuilder();
+    project = projectBuilder.build(pomFile);
+} catch (Exception e) {
+    // handle exception
+}

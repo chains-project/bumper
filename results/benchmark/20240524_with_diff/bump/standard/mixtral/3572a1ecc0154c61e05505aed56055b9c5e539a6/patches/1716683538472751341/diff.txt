@@ -1,0 +1,27 @@
+1c1,6
+< // TODO: review this AI generated patch!
+---
+> import org.apache.thrift.TDeserializer;
+> import org.apache.thrift.transport.TIOStreamTransport;
+> import org.apache.thrift.protocol.TBinaryProtocol;
+> import java.io.ByteArrayInputStream;
+> import java.io.IOException;
+> 
+3,4c8,9
+< protected org.apache.thrift.TDeserializer initialValue() {
+<     org.apache.thrift.transport.TIOStreamTransport transport;
+---
+> protected TDeserializer initialValue() {
+>     TIOStreamTransport transport;
+6,8c11,13
+<         transport = new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]));
+<     } catch (java.io.IOException e) {
+<         throw new org.apache.thrift.TTransportException(e);
+---
+>         transport = new TIOStreamTransport(new ByteArrayInputStream(new byte[0]));
+>     } catch (IOException e) {
+>         throw new org.apache.thrift.transport.TTransportException(e);
+10c15
+<     return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory(), transport);
+---
+>     return new TDeserializer(new TBinaryProtocol.Factory(), transport);

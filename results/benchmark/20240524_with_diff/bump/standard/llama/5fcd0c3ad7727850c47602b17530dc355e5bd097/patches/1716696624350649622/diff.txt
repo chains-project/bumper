@@ -1,0 +1,12 @@
+1,4c1,6
+< private MutationTestSummaryData createSummaryData(
+<       final CoverageDatabase coverage, final ClassMutationResults data) {
+<     return new MutationTestSummaryData(data.getFileName(),
+<         data.getMutations(), coverage.getClassInfo(Collections.singleton(data.getMutatedClass())));
+---
+> private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final org.pitest.coverage.CoverageDatabase coverage, final org.pitest.mutationtest.ClassMutationResults data) {
+>     org.pitest.classinfo.ClassName className = data.getMutatedClass();
+>     byte[] bytecode = coverage.getBytesForClass(className);
+>     long timestamp = coverage.getTimestampForClass(className);
+>     org.pitest.classinfo.ClassInfo classInfo = org.pitest.classinfo.ClassInfoVisitor.getClassInfo(className, bytecode, timestamp);
+>     return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);

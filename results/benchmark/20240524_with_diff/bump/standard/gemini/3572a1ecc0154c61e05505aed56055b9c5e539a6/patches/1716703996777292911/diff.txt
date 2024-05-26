@@ -1,0 +1,6 @@
+5c5,7
+<     return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory(), conf);
+---
+>     org.apache.thrift.protocol.TProtocolFactory protocolFactory = new org.apache.thrift.protocol.TBinaryProtocol.Factory();
+>     org.apache.thrift.transport.TTransport transport = new org.apache.thrift.transport.TIOStreamTransport(conf);
+>     return new org.apache.thrift.TDeserializer(protocolFactory, transport);

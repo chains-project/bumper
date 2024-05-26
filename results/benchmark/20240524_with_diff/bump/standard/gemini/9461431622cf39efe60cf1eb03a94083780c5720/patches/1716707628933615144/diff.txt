@@ -1,0 +1,7 @@
+14,15c14,16
+<             reg.put(contextScope, group);
+<             registry.set(server, reg);
+---
+>             // ++ Added method putAll() in SortedMap interface
+>             reg.putAll(Collections.singletonMap(contextScope, group));
+>             // -- Removed method set() in Field class

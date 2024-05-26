@@ -1,0 +1,9 @@
+@Bean
+    public PasswordEncoder passwordEncoder() {
+        StandardPBEByteEncryptor encryptor = new StandardPBEByteEncryptor();
+        encryptor.setPassword(encryptorPassword);
+        encryptor.setSaltGenerator(new RandomSaltGenerator());
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        passwordEncryptor.setEncryptor(encryptor);
+        return passwordEncryptor;
+    }

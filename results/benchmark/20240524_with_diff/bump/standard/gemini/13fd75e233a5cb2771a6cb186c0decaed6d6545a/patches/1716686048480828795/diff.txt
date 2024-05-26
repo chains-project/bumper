@@ -1,0 +1,28 @@
+1,20c1,6
+< @ParameterizedTest
+<     @ValueSource(strings = {
+<         "",
+<         "a:b:c",
+<         ".123"
+<     })
+<     void failsToResolveInvalid(final String string) {
+<         final Throwable throwable = Assertions.assertThrows(
+<             IllegalStateException.class,
+<             () -> new ManifestRef.FromString(string).link().string()
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Unsupported reference"),
+<                     new StringContains(false, string)
+<                 )
+<             )
+<         );
+---
+> @org.junit.jupiter.params.ParameterizedTest
+> @org.junit.jupiter.params.provider.ValueSource(strings = { "", "a:b:c", ".123" })
+> void failsToResolveInvalid(final java.lang.String string) {
+>     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());
+>     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.StringContains(true, "Unsupported reference"));
+>     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.StringContains(false, string));

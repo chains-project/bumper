@@ -1,0 +1,19 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+
+// ...
+
+private void renderDocument(Writer writer, SiteRenderingContext siteRenderingContext) throws SiteRendererException, IOException {
+    RenderingContext renderingContext = siteRenderingContext.createRenderingContext();
+    SiteRendererSink sink = new SiteRendererSink(renderingContext);
+
+    // ...
+
+    siteRenderingContext.setSink(sink);
+    siteRenderingContext.setRenderingContext(renderingContext);
+
+    // Use the new method to get the output name
+    String outputName = renderingContext.getOutputName();
+
+    // ...
+}

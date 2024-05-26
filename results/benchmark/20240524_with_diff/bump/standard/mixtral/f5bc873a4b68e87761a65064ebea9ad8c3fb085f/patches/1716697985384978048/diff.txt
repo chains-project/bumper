@@ -1,0 +1,19 @@
+1a2,18
+> import org.apache.myfaces.tobago.theme.Theme;
+> 
+> public class AbstractThemeMojo {
+>     // Add a new variable to hold the theme
+>     private Theme theme;
+> 
+>     // Modify the constructor to accept a Theme parameter
+>     public AbstractThemeMojo(Theme theme) {
+>         this.theme = theme;
+>     }
+> 
+>     // Modify the existing method to use the new theme variable
+>     public void someMethod() {
+>         File file = new File(theme.getBaseDir(), "some-file.txt");
+>         // Rest of the method remains unchanged
+>     }
+> }
+\ No newline at end of file

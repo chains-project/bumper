@@ -1,0 +1,6 @@
+private org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getTestListResolverWildcard() {
+    return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard() {
+        // Add this inner class to fix the "cannot find symbol" error
+        protected static class Wildcard {}
+    };
+}

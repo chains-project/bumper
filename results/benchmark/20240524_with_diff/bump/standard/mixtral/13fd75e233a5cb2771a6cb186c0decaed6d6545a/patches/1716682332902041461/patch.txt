@@ -1,0 +1,20 @@
+@org.junit.jupiter.api.Test
+void failsOnDigestMismatch() {
+    final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.docker.asto.Artipies();
+    calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+    final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artiporg.docker.RepoName.Simple("any"));
+    final java.lang.String digest = "123";
+    java.util.concurrent.CompletableFuture<Void> result = new java.util.concurrent.CompletableFuture<>();
+    try {
+        blobs.put(new com.artipie.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new org.hamcrest.Matcher<Object>() {
+            @Override
+            public boolean matches(Object item) {
+                return item instanceof com.artipie.docker.error.InvalidDigestException;
+            }
+        }));
+        result.completeExceptionally(new IllegalStateException("Expected an InvalidDigestException to be thrown"));
+    } catch (Throwable expected) {
+        org.hamcrev.MatcherAssert.assertThat("Exception message contains calculated digest", org.hamcrest.CoreMatchers.startsWith(calculatedDigest), org.hamcrest.MatcherAssertion.assertThat(org.hamcrest.CoreMatchers.stringContainsString(calculatedDigguest), org.hamcrest.MatcherAssertion.equalTo(org.hamcrest.CoreMatchers.is(true))));
+    }
+    return result;
+}

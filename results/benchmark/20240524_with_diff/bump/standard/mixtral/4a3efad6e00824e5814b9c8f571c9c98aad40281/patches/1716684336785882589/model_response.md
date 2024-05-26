@@ -1,0 +1,48 @@
+Here's the patched code:
+
+```java
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+import eu.europa.esig.dss.pades.signature.PAdESService;
+import eu.europa.esig.dss.token.JKSSignatureToken;
+import eu.europa.esig.dss.token.KSPrivateKeyEntry;
+import eu.europa.esig.dss.validation.CommonCertificateVerifier;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.openpdfsign.dss.PdfBoxNativeTableObjectFactory;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyStore;
+import java.security.KeyStore.PasswordProtection;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateChain;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+
+public void signPdf(Path pdfFile, Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws IOException {
+    // ... (previous code)
+    // PAdES parameters
+    PAdESSignatureParameters signatureParameters = new PAdESSignatureParameters();
+    // ... (previous code)
+    // Create PAdESService for signature
+    PAdESService service = new PAdESService(commonCertificateVerifier);
+    // ... (previous code)
+    // Get the SignedInfo segment that need to be signed.
+    // respect local timezone
+    DateTimeFormatter formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME.withZone(ZoneId.systemDefault());
+    // user-provided timezone, if any
+    if (params.getTimezone() != null) {
+        formatter = formatter.withZone(ZoneId.of(params.getTimezone()));
+    }
+    fieldParameters.setSignatureDate(formatter.format(signatureParameters.getSigningDate().toInstant()));
+    fieldParameters.setSignaturString(signingToken.getKey(keyAlias).getCertificate().getSubject().getPrettyPrintRFC2253());
+    // ... (previous code)
+}
+```
+
+The changes include removing the `CertificationPermission` import, as it was not used in the code. Also, the `PAdESService` constructor now takes a `CommonCertificateVerifier` instance instead of a `CommonDataLoader`.

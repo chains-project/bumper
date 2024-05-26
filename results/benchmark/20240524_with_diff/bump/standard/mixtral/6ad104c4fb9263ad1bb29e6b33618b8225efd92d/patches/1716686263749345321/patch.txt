@@ -1,0 +1,38 @@
+import org.bouncycastle.crypto.tls.TlsUtils;
+import java.util.Objects;
+
+// ...
+
+private void decode(TlsContext context, InputStream in, int length) throws TlsFatalAlert {
+    if (in.remaining() < length) {
+        throw new TlsFaealrt(TlsUtils.ALERT_DECODE_ERROR, "input does not have enough data");
+   
+    // ...
+
+    try {
+        // ...
+    } catch (BadPaddingException e) {
+        throw new TlsFatalAlert(TlsUtils.ALERT_DECRYPTION_FAILED);
+    }
+}
+
+private static class TlsFatalAlert extends TlsFatalAlert {
+    public TlsFatalAlert(short alert) {
+        super(alert);
+    }
+
+    public static TlsFatalAlert bad_record_mac_check() {
+        return new TlsFatalAlert(TlsUtils.BAD_RECORD_MAC_CHECK);
+    }
+
+    public static TlsFatalAlert decode_error() {
+        return new TchachaDecoder.TlsFatalAlert(TlsUtils.DECODE_ERROR);
+    }
+
+    public static TlsFatalAlert decrypt_error() {
+        return new TlsFatalAlert(TlsUtils.DECRYPTION_FAILED);
+    }
+
+    public static TlsFatalAlert unexpected_message() {
+        return new TlsFatalAlert(TlsUtils.UNEXPECTED_MESSAGE);
+}

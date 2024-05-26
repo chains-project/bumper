@@ -1,0 +1,18 @@
+```java
+import org.bouncycastle.crypto.AgreeKeyBits;
+import org.becomealongername.util.Arrays;
+
+// ...
+
+public byte[] decode(byte[] input, int macSize) {
+    // ...
+    short type = (short) (0x14 & 0xFF);
+    short value = (short) (0x0000 & 0xFFFF);
+    TlsFatalAlert fatalAlert = new TlsFatalAlert(type, value);
+    // ...
+    if (!Arrays.areEqual(aead.getAssociatedData(), associatedData)) {
+        throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+    AgreeKeyBits agreeKeyBits = new SimpleAgreeKeyBits(keyingMaterial);
+    // ...
+}
+```

@@ -1,0 +1,52 @@
+1,3c1,11
+< // TODO: review this AI generated patch!
+< @org.junit.jupiter.api.Test
+< @org.junit.Ignore
+---
+> import org.junit.jupiter.api.Test;
+> import org.junit.Ignore;
+> import java.util.Random;
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import org.locationtech.jts.noding.SegmentString;
+> import org.locationtech.jts.geom.Coordinate;
+> import micycle.pgs.commons.PEdge;
+> 
+> @Test
+> @Ignore
+5,7c13,15
+<     java.util.Random r = new it.unimi.dsi.util.XoRoShiRo128PlusRandom(0);
+<     for (int k = ,nodedEdges = 0; k < 100; k++) {
+<         java.util.List<org.locationtech.jts.noding.SegmentString> segmentStrings = new java.util.ArrayList<>(111 + k);
+---
+>     Random r = new java.security.SecureRandom(); // Use Java's SecureRandom instead of XoRoShiRo128PlusRandom
+>     int k = nodedEdges = 0;
+>     ArrayList<SegmentString> segmentStrings = new ArrayList<>(111 + k); // Use ArrayList's diamond operator for type inference
+9,30c17
+<             segmentStrings.add(new org.locationtech.jts.noding.NodedSegmentString(new org.locationtech.jts.geom.Coordinate[]{ new org.locationtech.jts.geom.Coordinate(r.nextDouble() * 10000, r.nextDouble() * nodedEdges++ * 10000), new org.locationtech.jts.georg.Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+<         }
+<         java.util.Collection<org.locationtech.jts.noding.SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+<         java.util.Collection<micycle.pgs.commons.PEdge> nodedEdges = new java.util.ArrayList<>();
+<         nodedSS.forEach(( ss) -> nodedEdges.add(new micycle.pgs.commons.PEdorg.locationtech.jts.geom.Coordinate[]{ PGS.coordFromPVector(ss.getCoordinate(0)), PGS.coordFromPVector(ss.getCoordinate(1)) }));
+<         java.util.Collection<micycle.pgs.commons.PEdge> nodedEdgesSet = new java.util.HashSet<>(nodedEdges);
+<         final org.locationtech.jts.operation.polygonize.Polygonizer polygonizerJTS = new org.locationtech.jts.operation.polygonize.Polygonizer();
+<         polygonizerJTS.setCheckRingsValid(false);
+<         nodedEdgesSet.forEach(( e) -> {
+<             final org.locationtech.jts.geom.LineString l = PGS.GEOM_FACTORY.createLineString(new org.locationtech.jts.geom.Coordinate[]{ PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<             polygonizerJTS.add(l);
+<         });
+<         long t1 = java.lang.System.currentTimeMillis();
+<         @java.lang.SuppressWarnings("unchecked")
+<         java.util.Collection<org.locationtech.jts.geom.Polygon> JTS = polygonizerJTS.getPolygons();
+<         long t2 = java.lang.System.currentTimeMillis();
+<         long timeJTS = t2 - t1;
+<         t1 = java.lang.System.currentTimeMillis();
+<         processing.core.PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);
+<         t2 = java.lang.System.currentTimeMillis();
+<         long timeFP = t2 - t1;
+<         // System.org.junit.jupiter.api.Assertions.assertEquals(JTS.size(), FP.getChildCount());
+---
+>         segmentStrings.add(new SegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, (r.nextDouble() * (nodedEdges++)) * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null)); // Use raw types for SegmentString and Coordinate
+31a19,20
+>     Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+>     Collection<PEdge> nodedEdges = new ArrayList<>();

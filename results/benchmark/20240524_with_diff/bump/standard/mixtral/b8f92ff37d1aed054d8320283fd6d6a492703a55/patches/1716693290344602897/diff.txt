@@ -1,0 +1,3 @@
+2a3,4
+>         // Add the missing import statement
+>         import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.Commandline;

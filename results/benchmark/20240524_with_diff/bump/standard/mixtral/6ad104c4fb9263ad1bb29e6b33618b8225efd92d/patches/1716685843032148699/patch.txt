@@ -1,0 +1,11 @@
+import org.bouncycastle.tls.AlertDescription;
+import org.bouncycastle.tls.TlsFatalAlert;
+
+public AlertDescription decode(byte[] input) {
+    try {
+        TlsFatalAlert alert = new TlsFatalAlert(input[0] & 0xFF);
+        return alert.getAlertDescription();
+    } catch (IllegalArgumentException e) {
+        throw new RuntimeException("Failed to decode alert description", e);
+    }
+}

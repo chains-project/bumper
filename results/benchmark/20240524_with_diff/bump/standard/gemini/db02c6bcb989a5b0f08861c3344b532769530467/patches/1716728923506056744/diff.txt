@@ -1,0 +1,11 @@
+4c4,11
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), org.hamcrest.core.StringEndsWith.endsWith("Unexpected path"));
+---
+>     try (final var client = new com.artipie.http.client.jetty.JettyClient()) {
+>         client.put(new java.net.URI("http://localhost:8080/v2/repositories/test/"),
+>                 new com.artipie.http.headers.Header("Content-Type", "application/json"),
+>                 new com.artipie.http.headers.Header("Authorization", "Basic dGVzdDp0ZXN0"),
+>                 new com.artipie.http.rs.StandardRs(new java.io.ByteArrayInputStream("{\"name\":\"test\"}".getBytes())));
+>     } catch (final java.io.IOException e) {
+>         org.junit.jupiter.api.Assertions.assertEquals(400, ((com.artipie.http.Response) e).code());
+>     }

@@ -1,0 +1,15 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.TlsFatalAlert.AlertDescription;
+
+import java.util.Arrays;
+
+// ...
+
+private void decodeHandshakeMessage(InputStream in, HandshakeMessage handshakeMessage) throws IOException {
+    // ...
+    try {
+        // ...
+    } catch (TlsFatalAlert ex) {
+        throw new TlsFatalAlert(AlertDescription.decode(ex.getAlertDescription().getCode()));
+    }
+}

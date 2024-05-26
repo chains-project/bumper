@@ -1,0 +1,23 @@
+3,4c3,21
+< void shouldThrowExceptionOnInvalidPath() {
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), org.hamcrest.core.StringEndsWith.endsWith("Unexpected path"));
+---
+> void shouldThrowExceptionOnInvalidPath() throws IOException {
+>     final InputStream input = Mockito.mock(InputStream.class);
+>     final InputStreamReader reader = new InputStreamReader(input);
+>     final BufferedReader bufferedReader = new BufferedReader(reader);
+>     final String path = "/path/to/file";
+>     final String invalidPath = "invalid/path";
+>     final String expectedMessage = "Invalid path: " + invalidPath;
+> 
+>     Mockito.when(bufferedReader.readLine()).thenReturn(path, invalidPath);
+> 
+>     final UploadEntityRequest request = new UploadEntityRequest(bufferedReader);
+> 
+>     final CompletableFuture<UploadEntityRequest.Result> future = request.execute();
+> 
+>     final ExecutionException exception = Assertions.assertThrows(ExecutionException.class, future::get);
+> 
+>     final IOException cause = (IOException) exception.getCause();
+> 
+>     Assertions.assertEquals(expectedMessage, cause.getMessage());

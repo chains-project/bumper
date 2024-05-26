@@ -1,0 +1,18 @@
+1,2c1,2
+< @Test
+<     void shouldPullPushedByDigest() throws Exception {
+---
+> @org.junit.jupiter.api.Test
+> void shouldPullPushedByDigest() throws java.lang.Exception {
+6,13c6,7
+<         final String output = this.client.run("pull", this.image.remoteByDigest());
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())
+<             )
+<         );
+---
+>     final java.lang.String output = this.client.run("pull", this.image.remoteByDigest());
+>     org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(String.format("Status: Downloaded newer image for %s", this.image.remoteByDigest())));

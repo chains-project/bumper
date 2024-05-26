@@ -1,0 +1,32 @@
+4,5c4
+< 
+<                 char[] chars = toChars(password);
+---
+>     char[] chars = SecurityUtils.toChars(password);
+7,11c6,9
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+<                         stringEncrypter.setPasswordCharArray(chars);
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+<                                 stringEncrypter.setProviderName(getProviderName());
+---
+>         org.jasypt.util.text.TextEncryptor textEncryptor = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+>         textEncryptor.setPasswordCharArray(chars);
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+>             textEncryptor.setProviderName(getProviderName());
+13,17c11,13
+<                         stringEncrypter.setAlgorithm(getAlgorithm());
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>         textEncryptor.setAlgorithm(getAlgorithm());
+>         PasswordEncoder encoder = new PasswordEncoder();
+>         encoder.setTextEncryptor(textEncryptor);
+20,21c16,17
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         SecurityUtils.scramble(password);
+>         SecurityUtils.scramble(chars);

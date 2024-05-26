@@ -1,0 +1,36 @@
+1,26c1,8
+< @ParameterizedTest
+<     @ValueSource(strings = {
+<         "",
+<         ".0",
+<         "*",
+<         "\u00ea",
+<         "-my-tag",
+<         //@checkstyle LineLengthCheck (1 line)
+<         "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678"
+<     })
+<     void shouldFailToGetValueWhenInvalid(final String original) {
+<         final Tag.Valid tag = new Tag.Valid(original);
+<         MatcherAssert.assertThat(tag.valid(), new IsEqual<>(false));
+<         final Throwable throwable = Assertions.assertThrows(
+<             InvalidTagNameException.class,
+<             tag::value
+<         );
+<         MatcherAssert.assertThat(
+<             throwable.getMessage(),
+<             new AllOf<>(
+<                 Arrays.asList(
+<                     new StringContains(true, "Invalid tag"),
+<                     new StringContains(false, original)
+<                 )
+<             )
+<         );
+---
+> @org.junit.jupiter.params.ParameterizedTest
+> @org.junit.jupiter.params.provider.ValueSource(strings = { "", ".0", "*", "ê", "-my-tag", // @checkstyle LineLengthCheck (1 line)
+> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+> void shouldFailToGetValueWhenInvalid(final java.lang.String original) {
+>     final com.artipie.docker.Tag.Valid tag = new com.artipie.docker.Tag.Valid(original);
+>     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual<>(false));
+>     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(com.artipie.docker.error.InvalidTagNameException.class, tag::value);
+>     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.StringContains(true, "Invalid tag " + original));

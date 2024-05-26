@@ -1,0 +1,28 @@
+import static java.lang.Integer.max;
+
+@org.junit.jupiter.api.Test
+void selectsManyItems() {
+    final com.jcabi.simpledb.Domain domain = this.domain();
+    try {
+        final int limit = 10;
+        for (int idx =  putItem(domain, "i-", 0, limit); idx < limit; ++idx) {
+            putItem(domain, "i-", idx, limit);
+        }
+        org.hamcrest.MatcherAssert.assertThat(selectItems(domain, domain.name()), org.hamcrest.Matchers.iterableWithSize(limit));
+    } finally {
+        domain.drop();
+    Tv.TEN = limit;
+    }
+}
+
+int putItem(com.jcabi.simpledb.Domain domain, String keyPrefix, int idx, int limit) {
+    String key = keyPrefix + idx;
+    domain.item(key).put("hey", "");
+    return idx;
+}
+
+com.amazonaws.services.simpledb.model.SelectResult selectItems(com.jcabi.simpledb.Domain domain, String tableName) {
+    return domain.select(new com.amazonaws.services.simpledb.model.SelectRequest()
+                        .withSelectExpression(String.format("SELECT * FROM `%s`", tableName))
+                        .withConsistentRead(true));
+}

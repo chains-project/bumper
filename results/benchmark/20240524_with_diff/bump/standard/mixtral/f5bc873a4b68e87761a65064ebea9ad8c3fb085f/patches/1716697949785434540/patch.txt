@@ -1,0 +1,17 @@
+import java.io.File;
+import org.apache.myfaces.tobago.theme.Theme;
+
+public class AbstractThemeMojo {
+    // ...
+
+    private Theme theme;
+
+    // ...
+
+    protected void initTheme() {
+        File themeDir = new File("src/main/resources/META-INF/resources/org/apache/myfaces/tobago/theme");
+        this.theme = Theme.load(themeDir);
+    }
+
+    // ...
+}

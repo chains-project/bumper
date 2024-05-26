@@ -1,0 +1,37 @@
+1c1,15
+< // TODO: review this AI generated patch!
+---
+> import com.artipie.asto.CheckedBlobSource;
+> import com.artipie.asto.Content;
+> import com.artipie.asto.memory.InMemoryStorage;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.AstoBlasts;
+> import com.artipie.docker.asto.DefaultLayout;
+> import com.artipie.docker.RepoName;
+> import com.artipie.docker.error.InvalidDigestException;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.core.IsInstanceOf;
+> import org.hamcrest.core.StringContains;
+> import org.hamcrest.core.StringStartsWith;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> 
+4,11c18,26
+<     final com.artipie.asto.memory.InMemoryStorage storage = new com.artip calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+<     final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlasts(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+<     final java.lang.String digest = "123";
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.dorg.hamcrest.core.IsInstanceOf(com.artipie.docker.error.InvalidDigestException.class));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), org.hamcrest.core.StringStartsWith.startsWith(calculatedDigest));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwstringContains = new org.hamcrest.core.StringContains(calculatedDigest, true));
+<     org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), stringContains);
+<     return java.util.concurrent.CompletableFuture.allOf();
+---
+>     final InMemoryStorage storage = new InMemoryStorage();
+>     final String calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+>     final AstoBlobs blobs = new AstoBlasts(storage, new DefaultLayout(), new RepoName.Simple("any"));
+>     final String digest = "123";
+>     final Content content = Content.From("data".getBytes(StandardCharsets.UTF_8));
+>     final InvalidDigestException exception = new InvalidDigestException(new CheckedBlobSource(content, new IsInstanceOf(InvalidDigestException.class)));
+>     MatcherAssert.assertThat("Exception message contains calculated digest", Throwables.getRootCause(exception).getMessage(), StringStartsWith.startsWith(calculatedDigest));
+>     MatcherAssert.assertThat("Exception message contains expected digest", Throwables.getRootCause(exception).getMessage(), StringContains.containsString(calculatedDigest));
+>     return CompletableFuture.allOf();

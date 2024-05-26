@@ -1,0 +1,10 @@
+4,9c4,5
+<     org.apache.thrift.transport.TIOStreamTransport transport;
+<     try {
+<         transport = new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]));
+<     } catch (java.io.IOException e) {
+<         throw new org.apache.thrift.TTransportException(e);
+<     }
+---
+>     java.io.ByteArrayInputStream inputStream = new java.io.ByteArrayInputStream(new byte[0]);
+>     org.apache.thrift.transport.TIOStreamTransport transport = new org.apache.org.apache.thrift.transport.TIOStreamTransport(inputStream);

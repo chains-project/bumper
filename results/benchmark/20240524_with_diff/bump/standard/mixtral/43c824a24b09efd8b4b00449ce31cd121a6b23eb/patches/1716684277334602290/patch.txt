@@ -1,0 +1,7 @@
+private static String extractFirst(PathCache cache, DataElement branch) {
+    List<String> list = MarcFactory.extractList(cache, branch);
+    if (!list.isEmpty())
+        return list.get(0);
+
+    return null;
+}

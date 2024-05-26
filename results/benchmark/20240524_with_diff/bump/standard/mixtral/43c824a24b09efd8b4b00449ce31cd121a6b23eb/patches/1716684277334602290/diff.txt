@@ -1,0 +1,8 @@
+1,2c1,2
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+<     List<String> list = extractList(cache, branch);
+---
+> private static String extractFirst(PathCache cache, DataElement branch) {
+>     List<String> list = MarcFactory.extractList(cache, branch);
+4a5
+> 

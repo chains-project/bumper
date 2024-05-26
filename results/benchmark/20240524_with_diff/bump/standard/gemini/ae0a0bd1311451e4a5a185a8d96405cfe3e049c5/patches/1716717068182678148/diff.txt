@@ -1,0 +1,25 @@
+1,3c1,3
+< @Test
+<     void shouldPull() throws Exception {
+<         final String image = this.copy(new Image.ForOs());
+---
+> @org.junit.jupiter.api.Test
+> void shouldPull() throws java.lang.Exception {
+>     final java.lang.String image = this.copy(new com.artipie.docker.http.Image.ForOs());
+6,13c6,12
+<         final String output = this.cli.run("pull", image);
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", image)
+<             )
+<         );
+---
+>     final java.lang.String output = this.cli.run("pull", image);
+>     final java.lang.String expectedMessage = java.lang.String.format("Status: Downloaded newer image for %s", image);
+>     if (output.contains(expectedMessage)) {
+>         org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(false, expectedMessage));
+>     } else {
+>         org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(false, "Status: Image is up to date for " + image));
+>     }

@@ -1,0 +1,14 @@
+import tokyo.peya.lib.*;
+
+// ...
+
+public class Detect {
+    // ...
+
+    public static void NPCTeleport() {
+        FileConfiguration config = FileConfiguration.getConfig();
+        // ...
+    }
+
+    // ...
+}

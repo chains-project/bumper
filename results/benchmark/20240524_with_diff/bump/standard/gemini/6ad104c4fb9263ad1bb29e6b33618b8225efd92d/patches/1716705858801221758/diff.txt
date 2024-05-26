@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ChachaDecoder {
+> 
+>     public ChachaDecoder(AlertDescription alertDescription) {
+>         // TODO Auto-generated constructor stub
+>     }
+> 
+> }
+\ No newline at end of file

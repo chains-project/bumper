@@ -1,0 +1,19 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.TlsFatalAlert.AlertDescription;
+
+// ...
+
+private void decode(ByteBuffer byteBuffer) {
+  // ...
+
+  try {
+    // Use the new method to get the AlertDescription
+    AlertDescription alertDescription = TlsFatalAlert.getAlertDescription(byteBuffer.getShort());
+
+    // ...
+  } catch (TlsFatalAlert ex) {
+    // Handle the exception
+  }
+
+  // ...
+}

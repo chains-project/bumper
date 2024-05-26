@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1484171695,
+    "in_class_code": "@Configuration\npublic class SecurityConfig {\n    @Value(\"${jasypt.encryptor.password}\")\n    private String encryptorPassword;\n\n    @Bean\n    public PasswordEncoder passwordEncoder() {\n        StandardPBEByteEncryptor encryptor = new StandardPBEByteEncryptor();\n        encryptor.setPassword(encryptorPassword);\n        encryptor.setSaltGenerator(new RandomSaltGenerator());\n        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();\n        passwordEncryptor.setEncryptor(encryptor);\n        return passwordEncryptor;\n    }\n}",
+    "qualified_in_class_code": "@org.springframework.context.annotation.Configuration\npublic class SecurityConfig {\n    @org.springframework.beans.factory.annotation.Value(\"${jasypt.encryptor.password}\")\n    private java.lang.String encryptorPassword;\n\n    @org.springframework.context.annotation.Bean\n    public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {\n        org.jasypt.encryption.pbe.StandardPBEByteEncryptor encryptor = new org.jasypt.encryption.pbe.StandardPBEByteEncryptor();\n        encryptor.setPassword(encryptorPassword);\n        encryptor.setSaltGenerator(new org.jasypt.salt.RandomSaltGenerator());\n        org.jasypt.util.password.StrongPasswordEncryptor passwordEncryptor = new org.jasypt.util.password.StrongPasswordEncryptor();\n        passwordEncryptor.setEncryptor(encryptor);\n        return passwordEncryptor;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStorePBEPasswordEncoder.java:[56,25] error: cannot find symbol",
+        "client_file_path": "/geostore/src/core/security/src/main/java/it/geosolutions/geostore/core/security/password/GeoStorePBEPasswordEncoder.java",
+        "client_line_position": "56"
+    },
+    "client_end_line_number": 58,
+    "client_line_number": 50,
+    "method_code": "@Bean\n    public PasswordEncoder passwordEncoder() {\n        StandardPBEByteEncryptor encryptor = new StandardPBEByteEncryptor();\n        encryptor.setPassword(encryptorPassword);\n        encryptor.setSaltGenerator(new RandomSaltGenerator());\n        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();\n        passwordEncryptor.setEncryptor(encryptor);\n        return passwordEncryptor;\n    }",
+    "qualified_code": "@org.springframework.context.annotation.Bean\npublic org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {\n    org.jasypt.encryption.pbe.StandardPBEByteEncryptor encryptor = new org.jasypt.encryption.pbe.StandardPBEByteEncryptor();\n    encryptor.setPassword(encryptorPassword);\n    encryptor.setSaltGenerator(new org.jasypt.salt.RandomSaltGenerator());\n    org.jasypt.util.password.StrongPasswordEncryptor passwordEncryptor = new org.jasypt.util.password.StrongPasswordEncryptor();\n    passwordEncryptor.setEncryptor(encryptor);\n    return passwordEncryptor;\n}",
+    "method_name": "passwordEncoder"
+}

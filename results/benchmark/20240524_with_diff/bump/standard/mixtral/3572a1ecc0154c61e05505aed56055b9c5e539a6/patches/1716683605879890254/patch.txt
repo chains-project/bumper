@@ -1,0 +1,12 @@
+// TODO: review this AI generated patch!
+@java.lang.Override
+protected org.apache.thrift.TDeserializer initialValue() {
+    org.apache.org.IOStreamTransport transport;
+    try {
+        transport = new org.apache.org.IOStreamTransport(new java.io.ByteArrayInputStream(new byte[0]));
+    } catch (java.io.IOException e) {
+        throw new org.apache.org.TTransportException(e);
+   
+    }
+    return new org.apache.org.TDeserializer(new org.apache.org.TBinaryProtocol.Factory(), transport);
+}

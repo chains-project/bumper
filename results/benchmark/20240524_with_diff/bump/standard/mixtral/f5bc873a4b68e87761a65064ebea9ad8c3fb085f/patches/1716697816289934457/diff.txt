@@ -1,0 +1,13 @@
+1a2,12
+> import org.apache.maven.project.MavenProjectBuilder;
+> 
+> // ...
+> 
+> MavenProject mavenProject = null;
+> if (projectBuilder == null) {
+>     MavenProjectBuilder projectBuilder = new MavenProjectBuilder();
+> }
+> if (project == null) {
+>     mavenProject = projectBuilder.build(new File(basedir, pomFile));
+> }
+\ No newline at end of file

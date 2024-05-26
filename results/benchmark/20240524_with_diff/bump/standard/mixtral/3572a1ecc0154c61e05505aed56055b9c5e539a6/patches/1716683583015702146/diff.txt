@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+8c7
+<         throw new org.apache.thrift.TTransportException(e);
+---
+>         throw new org.apache.thrift.transport.TTransportException(e);

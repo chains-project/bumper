@@ -1,0 +1,7 @@
+1d0
+< // TODO: review this AI generated patch!
+16c15,16
+<             ++org.bukkit.enchantments.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>             ++org.bukkit.enchantments.Enchantment;
+>             enchantment = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.NamespacedKey.minecraft("power"));

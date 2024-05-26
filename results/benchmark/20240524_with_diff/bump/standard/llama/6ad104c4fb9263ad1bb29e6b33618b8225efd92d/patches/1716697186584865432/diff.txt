@@ -1,0 +1,8 @@
+0a1
+> import org.bouncycastle.crypto.tls.AlertLevel;
+1a3,6
+> 
+> public AlertDescription getAlertDescription() {
+>     return AlertDescription.INTERNAL_ERROR;
+> }
+\ No newline at end of file

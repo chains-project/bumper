@@ -1,0 +1,25 @@
+@java.lang.Override
+public com.artipie.security.policy.Policy<?> getPolicy(final com.artipcom.security.policy.PolicyConfig config) {
+    final com.artipie.security.policy.PolicyConfig sub = config.config("storage");
+    try {
+        com.artipie.asto.Storage storage = new com.artipie.asto.fs.FileStorageFactory().newStorage(new com.artipie.asto.KeyedStorageConfig() {
+            @Override
+            public java.lang.String key() {
+                return sub.string("type");
+            }
+            @Override
+            public com.amihaiemil.eoyaml.YamlInput input() {
+                return com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString());
+            }
+            @Override
+            public java.util.Map<java.lang.String, java.lang.Object> params() {
+                return input().readYamlMapping();
+            }
+        });
+        return new com.artipie.security.policy.YamlPolicy(new com.artipie.asto.blocking.BlockingStorage(storage));
+    KeyedStorageConfig.class);
+    } catch (final java.io.IOException err) {
+        throw new java.io.UncheckedIOException(err);
+   
+    }
+}

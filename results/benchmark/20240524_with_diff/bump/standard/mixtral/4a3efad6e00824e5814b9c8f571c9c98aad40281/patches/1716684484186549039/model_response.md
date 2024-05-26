@@ -1,0 +1,11 @@
+Here's the proposed patch:
+
+Replace the following line:
+```java
+signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);
+```
+with:
+```java
+signatureParameters.setPermission(eu.europa.esig.dss.pades.PAdESSignatureParameters.Permission.MINIMAL_CHANGES_PERMITTED);
+```
+This change uses the fully qualified name of the `MINIMAL_CHANGES_PERMITTED` constant, which is now located in the `eu.europa.esig.dss.pades.PAdESSignatureParameters.Permission` class.

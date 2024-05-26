@@ -1,0 +1,45 @@
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.material.MaterialData;
+
+import java.util.UUID;
+
+public static org.bukkit.inventory.ItemStack getCommonButton(java.lang.String buttonType, java.lang.String[] args) {
+    org.bukkit.material.Item material = null;
+    MaterialData data = null;
+    ItemMeta pageMeta = null;
+    switch (buttonType.toUpperCase()) {
+        case "PREVIOUS":
+            material = Bukkit.getUnsafe().getMaterial("RED_STAINED_GLASS");
+            data = new MaterialData(material);
+            break;
+        case "NEXT":
+            material = Bukkit.getUnsafe().getMaterial("GREEN_STAINED_GLASS");
+            data = new MaterialData(material);
+            break;
+        case "PAGE NUMBER":
+            material = Bukkit.getUnsafe().getMaterial("LILY_PAD");
+            data = new MaterialData(material);
+            break;
+        default:
+            material = Bukkit.getUnsafe().getMaterial("WHITE_STAINED_GLASS");
+            data = new MaterialData(material);
+    }
+    pageMeta = Bukkit.getItemFactory().createItemStack(data).getItemMeta();
+    pageMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+    if (buttonType.equalsIgnoreCase("Previous")) {
+        pageMeta.setDisplayName(ChatColor.RED + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcConfigGUIPreviousPageButton"));
+    } else if (buttonType.equalsIgnoreCase("Next")) {
+        pageMeta.setDisplayName(ChatColor.GREEN + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcConfigGUINextPageButton"));
+    } else if (buttonType.equalsIgnoreCase("Page Number")) {
+        pageMeta.setDisplayName(ChatColor.AQUA + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwcGUIPageNumber", args));
+        if (args[0].equals("1")) {
+            pageMeta.addEnchant(Enchantment.DAMAGE_ALL, 1, false);
+        }
+    } else {
+        pageMeta.setDisplayName(ChatColor.RED + "Not a valid button! This is a bug, please report it.");
+    }
+    Bukkit.getUnsafe().modifyItemStack(pageMeta, "Enchantments", "{\"name\":\"minecraft:damage_all\",\"lvl\":1,\"exp\":0}");
+    return pageMeta;
+}

@@ -1,0 +1,17 @@
+import org.jasypt.spring.security.PasswordEncoder;
+import org.jasypt.util.password.BasicPasswordEncryptor;
+
+public class GeoStorePBEPasswordEncoder {
+
+    private PasswordEncoder passwordEncoder;
+
+    public GeoGeoStorePBEPasswordEncoder() {
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        this.passwordEncoder = new PasswordEncoder() {
+            @Override
+            public String encodePassword(String rawPassword, Object salt) {
+                return passwordEncryptor.encryptPassword(rawPassword);
+            }
+
+            @Override
+::$

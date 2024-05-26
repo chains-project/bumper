@@ -1,0 +1,1 @@
+Since the `org.jasypt.spring.security.PasswordEncoder` has been removed, it's not possible to import it. Your code should use an alternative or similar class. Unfortunately, without more information about what is available in the new library version, it's not possible to provide a specific code solution.

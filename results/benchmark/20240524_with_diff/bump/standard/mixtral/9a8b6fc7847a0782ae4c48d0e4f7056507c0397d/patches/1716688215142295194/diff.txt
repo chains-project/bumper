@@ -1,0 +1,42 @@
+1c1,37
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.encryption.pbe.PBEStringEncryptor;
+> import org.jasypt.util.text.TextEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+> 
+> public class GeoStorePBEPasswordEncoder {
+>     // existing code...
+> 
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStorePBEPasswordEncoder() {
+>         // existing code...
+> 
+>         TextEncryptor textEncryptor = new TextEncryptor();
+>         textEncryptor.setPassword("my-secret-password");
+> 
+>         PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+>         pbeStringEncryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+>         pbeStringEncryptor.setPassword(textEncryptor.decrypt("my-secret-password"));
+> 
+>         passwordEncoder = new Pbkdf2PasswordEncoder();
+>         passwordEncoder.setEncodeHashAsBase64(true);
+>         passwordEncoder.setIterations(1000);
+>         passwordEncoder.setKeySize(128);
+>         passwordEncoder.setStringOutputEncoder(pbeStringEncryptor);
+>     }
+> 
+>     // existing code...
+> 
+>     public String encodePassword(String rawPassword) {
+>         return passwordEncoder.encode(rawPassword);
+>     }
+> 
+>     public boolean isPasswordValid(String encryptedPassword, String rawPassword) {
+>         return passwordEncoder.matches(rawPassword, encryptedPassword);
+>     }
+> }
+\ No newline at end of file

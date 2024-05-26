@@ -1,0 +1,36 @@
+@Override
+public Policy<?> getPolicy(PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storages = new StoragesLoader();
+        return new YamlPolicy(new BlockingStorage(storages.newObject(
+            sub.string("type"),
+            new YamlInput(sub.toString())
+        )));
+    } catch (IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}
+
+private static class YamlInput implements Config {
+    private final YamlMapping yaml;
+
+    YamlInput(String yamlStr) {
+        this.yaml = Yaml.createYamlInput(yamlStr).readYamlMapping();
+    }
+
+    @Override
+    public String string(String key) {
+        return yaml.string(key);
+    }
+
+    @Override
+    public Config config(String key) {
+        return new YamlInput(yaml.string(key));
+    }
+
+    @Override
+    public Set<String> keys() {
+        return yaml.keys();
+    }
+}

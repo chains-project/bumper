@@ -1,0 +1,145 @@
+1,2c1,2
+< @Override
+<         public void init(Player player, InventoryContents contents) {
+---
+> @java.lang.Override
+> public void init(org.bukkit.entity.Player player, fr.minuskube.inv.content.InventoryContents contents) {
+4,5c4
+<                         /* Default white stained glass borders for inactive, yellow if player has existing translation session */
+<                         ItemStack customDefaultBorders = XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+---
+>         org.bukkit.inventory.ItemStack customDefaultBorders = com.cryptomorin.xseries.XMaterial.WHITE_STAINED_GLASS_PANE.parseItem();
+7c6
+<                                 customDefaultBorders = XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+---
+>             customDefaultBorders = com.cryptomorin.xseries.XMaterial.YELLOW_STAINED_GLASS_PANE.parseItem();
+9c8
+<                         ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+---
+>         org.bukkit.inventory.meta.ItemMeta defaultBorderMeta = customDefaultBorders.getItemMeta();
+12,21c11,14
+<                         contents.fillBorders(ClickableItem.empty(customDefaultBorders));
+<                         
+<                         /* Init current active translator */
+<                         ActiveTranslator currTranslator = main.getActiveTranslator(targetPlayerUUID);
+<                         
+<                         /* Pagination: Lets you generate pages rather than set defined ones */
+<                         Pagination pagination = contents.pagination();
+<                         ClickableItem[] listOfAvailableLangs = new ClickableItem[main.getSupportedTranslatorLanguages().size()];
+< 
+<                         /* Add each supported language from each respective translator */
+---
+>         contents.fillBorders(fr.minuskube.inv.ClickableItem.empty(customDefaultBorders));
+>         com.expl0itz.worldwidechat.util.ActiveTranslator currTranslator = main.getActiveTranslator(targetPlayerUUID);
+>         fr.minuskube.inv.content.Pagination pagination = contents.pagination();
+>         fr.minuskube.inv.ClickableItem[] listOfAvailableLangs = new fr.minuskube.inv.ClickableItem[main.getSupportedTranslatorLanguages().size()];
+23,27c16,19
+<                                 ItemStack currentLang = XMaterial.BOOK.parseItem();
+<                                 ItemMeta currentLangMeta = currentLang.getItemMeta();
+<                                 /* Add Glow Effect */
+<                                 ArrayList<String> lore = new ArrayList<>();
+<                                 currentLangMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+---
+>             org.bukkit.inventory.ItemStack currentLang = com.cryptomorin.xseries.XMaterial.BOOK.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta currentLangMeta = currentLang.getItemMeta();
+>             java.util.ArrayList<java.lang.String> lore = new java.util.ArrayList<>();
+>             currentLangMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+29,30c21,22
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.GREEN + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+---
+>                 currentLangMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.matchXEnchantment("power").get().get(), 1, false);
+>                 lore.add(((org.bukkit.ChatColor.GREEN + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+32,33c24,25
+<                                         currentLangMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+---
+>                 currentLangMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.matchXEnchantment("power").get().get(), 1, false);
+>                 lore.add(((org.bukkit.ChatColor.YELLOW + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+42,45c34,36
+<                                 String thisLangCode = main.getSupportedTranslatorLanguages().get(i).getLangCode();
+<                                 listOfAvailableLangs[i] = ClickableItem.of(currentLang, e -> {
+<                                         WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID)
+<                                                         .open(player);
+---
+>             java.lang.String thisLangCode = main.getSupportedTranslatorLanguages().get(i).getLangCode();
+>             listOfAvailableLangs[i] = fr.minuskube.inv.ClickableItem.of(currentLang, ( e) -> {
+>                 com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUITargetLanguage.getTargetLanguageInventory(thisLangCode, targetPlayerUUID).open(player);
+48,49d38
+< 
+<                         /* 28 langs per page, start at 1, 1 */
+53,54d41
+< 
+<                         /* Bottom Left Option: Previous Page */
+56,58c43,44
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.previous().getPage());
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.previous().getPage());
+61,62c47,48
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+>                 com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUIMainMenu.getTranslateMainMenu(targetPlayerUUID).open(player);
+65,67d50
+< 
+<                         /* Bottom Middle Option: Auto-detect Source Language */
+<                         /* Disabled for Amazon Translate */
+69,79c52,59
+<                                 ItemStack skipSourceButton = XMaterial.BOOKSHELF.parseItem();
+<                                 ItemMeta skipSourceMeta = skipSourceButton.getItemMeta();
+<                                 skipSourceMeta.setDisplayName(ChatColor.YELLOW
+<                                                 + CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+<                                 
+<                                 /* Add Glow Effect */
+<                                 skipSourceMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+<                                 ArrayList<String> lore = new ArrayList<>();
+<                                 if ((currTranslator.getInLangCode().equals("None"))) {
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.GREEN + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+---
+>             org.bukkit.inventory.ItemStack skipSourceButton = com.cryptomorin.xseries.XMaterial.BOOKSHELF.parseItem();
+>             org.bukkit.inventory.meta.ItemMeta skipSourceMeta = skipSourceButton.getItemMeta();
+>             skipSourceMeta.setDisplayName(org.bukkit.ChatColor.YELLOW + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUIAutoDetectButton"));
+>             skipSourceMeta.addItemFlags(org.bukkit.inventory.ItemFlag.HIDE_ENCHANTS);
+>             java.util.ArrayList<java.lang.String> lore = new java.util.ArrayList<>();
+>             if (currTranslator.getInLangCode().equals("None")) {
+>                 skipSourceMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.matchXEnchantment("power").get().get(), 1, false);
+>                 lore.add(((org.bukkit.ChatColor.GREEN + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceTranslationSelected"));
+81,82c61,62
+<                                         skipSourceMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+---
+>                 skipSourceMeta.addEnchant(com.cryptomorin.xseries.XEnchantment.matchXEnchantment("power").get().get(), 1, false);
+>                 lore.add(((org.bukkit.ChatColor.YELLOW + "") + org.bukkit.ChatColor.ITALIC) + com.expl0itz.worldwidechat.util.CommonDefinitions.getMessage("wwctGUISourceOrTargetTranslationAlreadyActive"));
+85,86c65
+<                                 contents.set(5, 4, ClickableItem.of(skipSourceButton, e -> WWCTranslateGUITargetLanguage
+<                                                 .getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+---
+>             contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(skipSourceButton, ( e) -> com.expl0itz.worldwidechat.inventory.wwctranslategui.WWCTranslateGUITargetLanguage.getTargetLanguageInventory("None", targetPlayerUUID).open(player)));
+88,89d66
+< 
+<                         /* Bottom Right Option: Next Page */
+91,93c68,69
+<                                 contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> {
+<                                         getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player,
+<                                                         pagination.next().getPage());
+---
+>             contents.set(5, 6, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Next"), ( e) -> {
+>                 getSourceLanguageInventory(selectedSourceLanguage, targetPlayerUUID).open(player, pagination.next().getPage());
+95d70
+<                                 ;
+97,101c72,75
+<                         
+<                         /* Last Option: Page Number */
+<                         contents.set(5, 8, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+<                 } catch (Exception e) {
+<                         WWCInventoryManager.inventoryError(player, e);
+---
+>         contents.set(5, 8, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ (pagination.getPage() + 1) + "" }), ( e) -> {
+>         }));
+>     } catch (java.lang.Exception e) {
+>         com.expl0itz.worldwidechat.inventory.WWCInventoryManager.inventoryError(player, e);

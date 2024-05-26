@@ -1,0 +1,19 @@
+1a2,18
+> import org.apache.myfaces.tobago.Theme;
+> 
+> public class AbstractThemeMojo {
+>     // ...
+> 
+>     protected void initTheme(File themeDir) {
+>         // ...
+>         Theme.set(new CustomTheme(themeDir));
+>         // ...
+>     }
+> 
+>     // ...
+> }
+> 
+> class CustomTheme implements Theme {
+>     // ...
+> }
+\ No newline at end of file

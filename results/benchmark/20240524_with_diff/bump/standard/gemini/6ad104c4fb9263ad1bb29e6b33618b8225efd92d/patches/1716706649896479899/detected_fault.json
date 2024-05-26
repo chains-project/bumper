@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1260955583,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java:[20,1] class, interface, or enum expected",
+        "client_file_path": "/HAP-Java/src/main/java/io/github/hapjava/server/impl/crypto/ChachaDecoder.java",
+        "client_line_position": "20"
+    },
+    "client_end_line_number": 20,
+    "client_line_number": 20,
+    "method_code": "import org.bouncycastle.util.Arrays;",
+    "qualified_code": "import org.bouncycastle.util.Arrays;",
+    "method_name": "import"
+}

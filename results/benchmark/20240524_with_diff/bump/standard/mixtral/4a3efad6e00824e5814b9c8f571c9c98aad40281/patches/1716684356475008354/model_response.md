@@ -1,0 +1,75 @@
+Here is the updated code with the necessary changes:
+
+```java
+import eu.europa.esig.dss.tsa.CripMeister;
+import eu.e timestamp.tsdl.TimestampToken;
+import org.bouncycastle.tsp.TSPException;
+import org.openpdf.sign.CertificateInfo;
+import org.openpdf.sign.IOUtil;
+import org.openpdf.sign.PdfSignature;
+import org.openpdf.sign.PdfSigner;
+import org.openpdf.sign.PdfSigner.SigningKey;
+import org.openpdf.sign.TSAClient;
+import org.openpdf.sign.VisibleSignature;
+import org.openpdf.sign.visible.VisibleSignDesigner;
+import org.openpdf.sign.visible.visible.KeyValue;
+import org.openpdf.sign.visible.visible.Parameter;
+import org.openpdf.sign.visible.visible.SignatureAppearance;
+import org.openpdf.sign.visible.visible.SignatureParameters;
+
+// ...
+
+public void signPdf(Path pdfFile, Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws IOException {
+    // ...
+    // Use the updated classes and methods
+    SigningKey signingKey = new SigningKey(keyStore, keyStorePassword, params.getAlias(), null);
+    // ...
+    // Replace the removed class with the new one
+    KeyValue keyValue = new KeyValue();
+    keyValue.setKey(signingKey.getCertificate().getEncoded());
+    keyValue.setKeyStore(signingKey.getPrivateKey().getEncoded());
+    // ...
+    // Use the updated classes and methods
+    Parameter parameter = new Parameter();
+    parameter.setKeyValue(keyValue);
+    // ...
+    // Use the updated classes and methods
+    SignatureAppearance appearance = new SignatureAppearance(visibleSignature);
+    // ...
+    // Use the updated classes and methods
+    VisibleSignDesigner designer = new VisibleSignDesignes();
+    // ...
+    // Use the updated classes and methods
+    PdfSignature pdfSignature = new PdfSignature(visibleSignature, designer, parameter, null);
+    // ...
+    // Use the updated classes and methods
+    PdfSigner pdfSigner = new PdfSigner(new PdfReader(pdfFile.toFile()), new FileOutputStream(outputFile.toFile()), false, new StampingProperties(), null);
+    // ...
+    // Use the updated classes and methods
+    PdfSigner.addSignature(pdfSigner, visibleSignature, visibleSignature.getPage(), visibleSignature.getY(), visibleSignature.getX(), visibleSignature.getWidth(), visibleSignature.getHeight(), pdfSignature);
+    // ...
+}
+
+// ...
+
+class StampingProperties extends org.openpdf.sign.PdfSigner.StampingProperties {
+    @Override
+    protected TSAClient getTSAClientBouncyCastle(String url, Proxy proxy, TrustManager[] trustManagers, KeyManager[] keyManagers, X509KeyManager[] x5CeramicKeyManagers) {
+        // Use the updated classes and methods
+        CripMeister cripMeister = new CripMeTimestamp();
+        try {
+            return new TSAClientBouncyCastle(url, cripMeister, proxy, trustManagers, keyManagers, x5CeramicKeyManagers);
+        TimestampToken timestampToken = cripMeister.getTimestamp(signingToken.getTspSource().getTspSource().get(0).getTimestamp());
+    } catch (TSPException e) {
+        throw new IOException(e);
+    }
+}
+```
+
+Please note that the updated code includes the new classes and methods from the updated library version. Also, the code structure has been changed to use the new classes and methods.
+
+The `CertificationPermission` class has been removed and replaced with the new classes and methods. The code has been updated accordingly.
+
+The `TSAClient` has been replaced with the new `CripMeister` and the `TSAClientBouncyCastle` has been updated to use the new `CripMeister` instead of the `TSPSource`.
+
+The `PdfSigner` and the `StampingProperties` have been updated to use the new `CripMeister` and the updated `TSAClientBouncyCast`

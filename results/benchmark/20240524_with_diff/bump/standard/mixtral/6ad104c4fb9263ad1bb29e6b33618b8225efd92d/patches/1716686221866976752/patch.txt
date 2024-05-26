@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.TlsUtils;
+
+// ...
+
+try {
+    // ...
+} catch (Exception e) {
+    int errorCode = /* some error code */;
+    throw new TlsFatalAlert(TlsUtils.getAlert(errorCode));
+}

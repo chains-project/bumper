@@ -1,0 +1,28 @@
+1,5c1,8
+< /**
+<      * Create repo with random name.
+<      * @return Repo
+<      * @throws IOException If fails
+<      */
+---
+> import static java.lang.Integer.valueOf;
+> import com.jcabi.github.Repos;
+> import com.jcabi.github.Repo;
+> import org.apache.commons.lang3.RandomStringUtils;
+> 
+> public class MkGithub {
+>         // existing code
+> 
+7,12c10,14
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+---
+>                 int randomLength = valueOf(20);
+>                 return this.repos().create(new Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(randomLength), true));
+>         }
+> 
+>         // existing code

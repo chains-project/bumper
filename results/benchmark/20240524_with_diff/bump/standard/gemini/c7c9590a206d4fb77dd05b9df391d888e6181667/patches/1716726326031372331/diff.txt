@@ -1,0 +1,16 @@
+1a2,15
+> 
+> import java.io.IOException;
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() throws IOException {
+>         // ...
+>         RenderingContext renderingContext = new RenderingContext();
+>         // ...
+>         renderingContext.setOutputName("scoverage-report.xml");
+>         // ...
+>     }
+> 
+> }
+\ No newline at end of file

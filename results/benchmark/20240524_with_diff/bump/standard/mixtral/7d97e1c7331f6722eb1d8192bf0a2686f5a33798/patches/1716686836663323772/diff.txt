@@ -1,0 +1,52 @@
+1,4c1,18
+< /**
+<      * Region.Simple can select many items.
+<      */
+<     @Test
+---
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
+> import static org.mockito.Mockito.mock;
+> import static org.mockito.Mockito.when;
+> 
+> import java.io.ByteArrayInputStream;
+> import java.io.InputStream;
+> import java.util.HashMap;
+> import java.util.Map;
+> 
+> import org.cloudfoundry.client.v2.organizations.Organization;
+> import org.cloudfoundry.client.v2.organizations.OrganizationResource;
+> 
+> public class RegionITCase {
+> 
+>     private static final int TEN = 10;
+> 
+>     @org.junit.jupiter.api.Test
+6c20
+<         final Domain domain = this.domain();
+---
+>         final com.jcabi.simpledb.Domain domain = this.domain();
+8,9c22,23
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>             for (int idx =  DomainITCase.START; idx < TEN; ++idx) {
+>                 domain.item(java.lang.String.format("i-%d", idx)).put("hey", "");
+11,17c25,28
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+---
+>             assertTimeoutPreemptively(() -> {
+>                 org.hamcrest.MatcherAssert.assertThat(
+>                     domain.select(new com.amazonaws.services.simpledb.model.SelectRequest().withSelectExpression(java.lang.String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)),
+>                     iterableWithSize(TEN)
+18a30
+>             }, 500);
+22a35
+> }
+\ No newline at end of file

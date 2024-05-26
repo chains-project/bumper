@@ -1,0 +1,18 @@
+// TODO: review this AI generated patch!
+@org.junit.jupiter.api.Test
+void failsOnDigestMismatch() {
+    final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.docker.asto.artip.InMemoryStorage();
+    final java.lang.String calculatedDigest = "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7";
+    final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlasts(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+    final java.lang.String digest = "123";
+    java.util.concurrent.CompletableFuture<Void> completableFuture = new java.util.concurrent.CompletableFuture<>();
+    try {
+        blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.google.common.base.Supplier<com.artipie.docker.error.InvalidDigestException>() {
+            @java.lang.Override
+            public com.artipie.docker.error.InvalidDigestException get() {
+                throw new com.artipie.docker.error.InvalidDigorganic.NonEmpty(calculatedDigest, digest);
+            }
+        }));
+    } catch (com.artipie.docker.error.InvalidDigestException e) {
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(e).getMessage(), org.hamcrest.core.StringStartsWith.startsWith(calculatedDigest));
+        org.hamcrest.MatcherAssert.assertThat("Exception message contains expected digest", e.message(), org.hamcre.

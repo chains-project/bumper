@@ -1,0 +1,24 @@
+4,5c4
+< 
+<                 char[] chars = toChars(password);
+---
+>     char[] chars = SecurityUtils.toChars(password);
+7c6
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         StringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+9d7
+< 
+14,15c12
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         PasswordEncoder encoder = new PasswordEncoder();
+17d13
+< 
+20,21c16,17
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         SecurityUtils.scramble(password);
+>         SecurityUtils.scramble(chars);

@@ -1,0 +1,14 @@
+1,3c1,3
+< @Bean
+<     public PasswordEncoder passwordEncoder() {
+<         StandardPBEByteEncryptor encryptor = new StandardPBEByteEncryptor();
+---
+> @org.springframework.context.annotation.Bean
+> public org.acegisecurity.providers.encoding.PasswordEncoder passwordEncoder() {
+>     org.jasypt.encryption.pbe.StandardPBEStringEncryptor encryptor = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+5,6c5,6
+<         encryptor.setSaltGenerator(new RandomSaltGenerator());
+<         StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+---
+>     encryptor.setSaltGenerator(new org.jasypt.salt.RandomSaltGenerator());
+>     org.jasypt.util.password.StrongPasswordEncryptor passwordEncryptor = new org.jasypt.util.password.StrongPasswordEncryptor();

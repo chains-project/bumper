@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6
+<         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.username)) {
+---
+>         if (org.apache.jenkins.plugins.p4.util.OkHttpUtils.isNotEmpty(step.username)) { // replace 'org.apache.commons.lang3.StringUtils' with 'org.apache.jenkins.plugins.p4.util.OkHttpUtils'
+10,12c9,11
+<         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.password)) {
+<             throw new java.io.IOException("'rtServer' step can't include both credentialsId and password");
+< `        }
+---
+>         if (org.apache.jenkins.plugins.p4.util.OkHttpUtils.isNotEmpty(step.password)) { // replace 'org.apache.commons.lang3.StringUtils' with 'org.apache.jenkins.plugins.p4.util.OkHttpUtils'
+>             throw new java.io.IOException("'rtServer' step can'92t include both credentialsId and password");
+>         }

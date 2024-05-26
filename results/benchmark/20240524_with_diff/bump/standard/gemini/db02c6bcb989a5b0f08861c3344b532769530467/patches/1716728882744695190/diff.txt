@@ -1,0 +1,9 @@
+4c4,9
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), org.hamcrest.core.StringEndsWith.endsWith("Unexpected path"));
+---
+>     String path = "/path/to/resource";
+>     try (CloseableHttpResponse response = new TestHttpClient().execute(new HttpPost(path))) {
+>         assertEquals(HttpStatus.SC_NOT_FOUND.value(), response.getStatusLine().getStatusCode());
+>     } catch (IOException e) {
+>         fail(e);
+>     }
