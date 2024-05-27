@@ -1,0 +1,15 @@
+1c1,2
+< // TODO: review this AI generated patch!
+---
+> import com.artipie.http.auth.Authentication.SimpleUser;
+> 
+19c20
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.SimpleUser("alice")), ( user, act) -> {
+---
+>     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new SimpleUser("alice")), ( user, act) -> {
+23,24c24,25
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual(line));
+>     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual(action));

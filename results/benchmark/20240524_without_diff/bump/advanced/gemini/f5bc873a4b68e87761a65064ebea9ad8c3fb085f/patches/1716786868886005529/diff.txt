@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public abstract class AbstractThemeMojo extends AbstractMojo {
+> 
+>     /**
+>      * The Maven project.
+>      */
+>     @Parameter(defaultValue = "${project}", readonly = true, required = true)
+>     protected MavenProject project;
+> 
+>     // ...
+> }
+\ No newline at end of file

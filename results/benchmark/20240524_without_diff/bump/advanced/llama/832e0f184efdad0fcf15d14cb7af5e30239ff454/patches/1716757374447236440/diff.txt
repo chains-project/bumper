@@ -1,0 +1,60 @@
+1d0
+< // TODO: review this AI generated patch!
+27c26
+<             org.bukkit.enchantment.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit NamespacedKey.minecraft("power"));
+---
+>             org.bukkit.enchantment.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+41c40
+<                 java.lang.String[] args;
+---
+>                 String[] args;
+43c42
+<                     args = new java.lang.String[]{ main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName(), "stop" };
+---
+>                     args = new String[]{ main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName(), "stop" };
+45c44
+<                     args = new java.lang.String[]{ "stop" };
+---
+>                     args = new String[]{ "stop" };
+63c62
+<                     org.bukkit.enchantment.Enchantment enchantmentRate = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentRate = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+81c80
+<                     org.bukkit.enchantment.Enchantment enchantmentBook = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentBook = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+88c87
+<                     java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                     String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+96d94
+<                 /* Init item, ensure pre-1.14 compatibility */
+102c100
+<                     org.bukkit.enchantment.Enchantment enchantmentSign = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentSign = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+109c107
+<                     java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                     String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+122c120
+<                     org.bukkit.enchantment.Enchantment enchantmentItem = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentItem = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+129c127
+<                     java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                     String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+141c139
+<                     org.bukkit.enchantment.Enchantment enchantmentEntity = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentEntity = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+149c147
+<                     java.lang.String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+---
+>                     String[] args = { main.getServer().getPlayer(java.util.UUID.fromString(targetPlayerUUID)).getName() };
+161c159
+<                     org.bukkit.enchantment.Enchantment enchantmentChat = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentChat = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));

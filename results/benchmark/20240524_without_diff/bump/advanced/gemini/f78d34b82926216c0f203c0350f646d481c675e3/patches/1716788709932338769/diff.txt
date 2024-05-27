@@ -1,0 +1,10 @@
+1a2,9
+> import develop.p2p.lib.WaveCreator;
+> 
+> public class Decorations {
+> 
+>     public static WaveCreator createWaveCreator() {
+>         return new WaveCreator();
+>     }
+> }
+\ No newline at end of file

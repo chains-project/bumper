@@ -1,0 +1,7 @@
+1a2,3
+> import org.bouncycastle.crypto.data.Mac;
+> 
+6c8
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new Mac.IntegrityException("Bad MAC", null);

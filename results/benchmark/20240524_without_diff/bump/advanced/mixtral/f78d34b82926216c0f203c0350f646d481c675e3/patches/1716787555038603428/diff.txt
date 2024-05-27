@@ -1,0 +1,24 @@
+8,10c8,9
+< 
+< 
+<             for (double i = 0; i < (java.lang.Math.PI * 2); i++) {
+---
+>     final double twoPI = java.lang.Math.PI * 2;
+>     for (double i = 0; i < twoPI; i++) {
+16c15
+<                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3]))));
+---
+>         final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3])));
+20,29c19
+<                 new BukkitRunnable() {
+<                     @java.lang.Override
+<                     public void run() {
+<                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+<                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+<                             NPC.setArmor(p, target, arm);
+<                         });
+<                         this.cancel();
+<                     }
+<                 }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>         $missing$.runTask(PeyangSuperbAntiCheat.getPlugin());

@@ -1,0 +1,17 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+public class GeoStorePBEPasswordEncoder {
+    // ...
+    private BasicTextEncryptor encryptor = new BasicTextEncryptor();
+
+    // ...
+    @Override
+    public String encode(CharSequence rawPassword) {
+        // ...
+        encryptor.setPassword(salt);
+        String encryptedPassword = encryptor.encrypt(rawPassword.toString());
+        // ...
+        return encryptedPassword;
+    }
+    // ...
+}

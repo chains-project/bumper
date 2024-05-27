@@ -1,0 +1,90 @@
+1,12c1,28
+< // TODO: review this AI generated patch!
+< @org.junit.jupiter.api.Test
+< void testScope() {
+<     final java.lang.String line = "GET /resource.txt HTTP/1.1";
+<     final java.lang.String action = "foo:bar:baz";
+<     final java.util.concurrent.atomic.AtomicReference<java.lang.String> caction = new java.util.concurrent.atomic.AtomicReference<>();
+<     final java.util.concurrent.atomic.AtomicReference<java.lang.String> cline = new java.util.concurrent.atomic.AtomicReference<>();
+<     new com.artipie.docker.http.AuthScopeSlice(new com.artipie.docker.http.ScopeSlice() {
+<         @java.lang.Override
+<         public com.artipie.docker.http.Scope scope(final java.lang.String rqline) {
+<             cline.set(rqline);
+<             return new com.artipie.docker.http.Scope.FromString(action);
+---
+> import com.artipie.asto.Content;
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.User;
+> import com.artipie.http.headers.Header;
+> import com.artipie.http.rq.RequestLine;
+> import com.artipie.http.rs.RsStatus;
+> import io.reactivex.CompletableFuture;
+> import java.util.Collections;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.concurrent.ExecutionException;
+> import java.util.stream.Collectors;
+> import org.junit.jupiter.api.Test;
+> import org.reactivestreams.Publisher;
+> import reactor.core.publisher.Mono;
+> import reactor.test.StepVerifier;
+> 
+> @Test
+> void testScope() throws ExecutionException, InterruptedException {
+>     final String line = "GET /resource.txt HTTP/1.1";
+>     final String action = "foo:bar:baz";
+>     final AtomicReference<String> caction = new AtomicReference<>();
+>     final AtomicReference<String> cline = new AtomicReference<>();
+>     new AuthScopeSlice(
+>         new ScopeSlice() {
+>             @Override
+>             public Scope scope(final RequestLine rqline) {
+>                 cline.set(rqline.toString());
+>                 return new Scope.FromString(action);
+15,17c31,39
+<         @java.lang.Override
+<         public com.artipie.http.Response response(final java.lang.String line, final java.lang.Iterable<java.util.Map.Entry<java.lang.String, java.lang.String>> headers, final org.reactivestreams.Publisher<java.nio.ByteBuffer> body) {
+<             return com.artipie.http.rs.StandardRs.OK;
+---
+>             @Override
+>             public CompletableFuture<Response> response(
+>                 final String line,
+>                 final Iterable<Map.Entry<String, String>> headers,
+>                 final Publisher<ByteBuffer> body
+>             ) {
+>                 return CompletableFuture.completedFuture(
+>                     new RsStatus(200)
+>                 );
+19c41,45
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.SimpleUser("alice")), ( user, act) -> {
+---
+>         },
+>         (headers, rline) -> CompletableFuture.completedFuture(
+>             new User("alice")
+>         ),
+>         (user, act) -> {
+22,24c48,68
+<     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> java.util.concurrent.CompletableFuture.allOf()).toCompletableFuture().join();
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>         }
+>     ).response(
+>         RequestLine.of(line),
+>         Collections.emptyMap(),
+>         Mono.just("test body".getBytes())
+>     )
+>     .flatMap(res -> {
+>         try {
+>             return Mono.fromRunnable(() -> {
+>                 StepVerifier.create(res.body())
+>                     .expectNextCount(1)
+>                     .verifyComplete();
+>             });
+>         } catch (Exception ex) {
+>             return Mono.error(ex);
+>         }
+>     })
+>     .toCompletableFuture()
+>     .join();
+>     MatcherAssert.assertThat("Request line passed to slice", cline.get(), CoreMatchers.equalTo(line));
+>     MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), CoreMatchers.equalTo(action));

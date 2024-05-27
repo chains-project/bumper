@@ -1,0 +1,35 @@
+import com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct;
+import com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct;
+import org.yaml.snakeyaml.*;
+import org.yaml.snakeyaml.nodes.*;
+import java.io.*;
+import java.time.*;
+
+public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+    final LoaderOptions loadingConfig = new LoaderOptions();
+    loadingConfig.setTagInspector(new TrustedTagInspector());
+    final Representer representer = new Representer(new DumperOptions());
+    final Tag zoneIdTag = new Tag("!ZoneId");
+    representer.addClassTag(ZoneId.class, zoneIdTag);
+    final Tag localDateTag = new Tag("!LocalDate");
+    representer.addClassTag(LocalDate.class, localDateTag);
+    final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+        addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+        addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+        yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+        yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+    }};
+    Yaml yaml = new Yaml(constructor, representer);
+    try {
+        return yaml.load(new BufferedReader(new FileReader(path)));
+    } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+static class TrustedTagInspector extends SafeConstructor.SafeTagInspector {
+    @Override
+    public boolean isTrusted(Tag tag) {
+        return true;
+    }
+}

@@ -1,0 +1,14 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+import java.security.Security;
+
+public class ChachaDecoder {
+    // ...
+
+    static {
+        // Add the Bouncy Castle provider to the security providers list
+        Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
+    }
+
+    // ...
+}

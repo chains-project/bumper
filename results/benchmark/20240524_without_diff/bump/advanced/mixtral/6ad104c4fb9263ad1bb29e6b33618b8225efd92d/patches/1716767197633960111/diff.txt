@@ -1,0 +1,19 @@
+1a2,18
+> 
+> import java.security.GeneralSecurityException;
+> import java.security.NoSuchAlgorithmException;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private TlsFatalAlert createAlert(int alertDescription) throws GeneralSecurityException {
+>         try {
+>             return new TlsFatalAlert(alertDescription);
+>         } catch (NoSuchAlgorithmException e) {
+>             throw new GeneralSecurityException("Failed to create TlsFatalAlert", e);
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

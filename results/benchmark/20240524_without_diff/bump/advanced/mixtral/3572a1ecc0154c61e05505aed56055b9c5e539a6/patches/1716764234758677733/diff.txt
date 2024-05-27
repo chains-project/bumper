@@ -1,0 +1,17 @@
+1,4c1,3
+< // TODO: review this AI generated patch!
+< @Override
+< protected TDeserializer initialValue() {
+<     TDeserializer deserializer;
+---
+> @java.lang.Override
+> protected org.apache.thrift.TDeserializer initialValue() {
+>     org.apache.thrift.TDeserializer deserializer;
+6,8c5,7
+<         deserializer = new TDeserializer(new TCompactProtocol.Factory());
+<     } catch (TTransportException e) {
+<         throw new RuntimeException(e);
+---
+>         deserializer = new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory());
+>     } catch (org.apache.thrift.TTransportException e) { // Replace com.pinterest.singer.client.TTransportException with org.apache.thrift.TTransportException
+>         throw new java.lang.RuntimeException(e);

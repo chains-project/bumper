@@ -1,0 +1,85 @@
+0a1,23
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.concurrent.ThreadLocalRandom;
+> import java.util.stream.Collectors;
+> 
+> import org.junit.jupiter.api.Test;
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.CoordinateList;
+> import org.locationtech.jts.geom.Envelope;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.noding.NodedSegmentString;
+> import org.locationtech.jts.noding.SegmentString;
+> 
+> import processing.core.PShape;
+> import micycle.pgs.commons.PEdge;
+> import micycle.pgs.FastPolygonizer;
+> 
+2d24
+<         @Ignore
+4c26,27
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>     ThreadLocalRandom random = ThreadLocalRandom.current();
+7,9c30,34
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         for (int i = 0; i < (111 + k); i++) {
+>             CoordinateList coordinateList = new CoordinateList(2);
+>             coordinateList.add(new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 10000));
+>             coordinateList.add(new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 13337));
+>             segmentStrings.add(new NodedSegmentString(coordinateList, null));
+11c36
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<SegmentString> nodedSS = FastPolygonizer.nodeSegmentStrings(segmentStrings);
+13c38
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach((ss) -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+15,34c40,53
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+<                         polygonizerJTS.setCheckRingsValid(false);
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+<                         });
+< 
+<                         long t1 = System.currentTimeMillis();
+<                         @SuppressWarnings("unchecked")
+<                         Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+<                         long t2 = System.currentTimeMillis();
+<                         long timeJTS = t2 - t1;
+< 
+<                         t1 = System.currentTimeMillis();
+<                         PShape FP = polygonize(nodedEdgesSet);
+<                         t2 = System.currentTimeMillis();
+<                         long timeFP = t2 - t1;
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+---
+>         Envelope env = new Envelope();
+>         for (SegmentString ss : nodedSS) {
+>             env.expandToInclude(ss.getEnvelopeInternal());
+>         }
+>         List<LineString> lines = nodedEdgesSet.stream().map((e) -> {
+>             Coordinate[] coords = new Coordinate[2];
+>             coords[0] = PGS.coordFromPVector(e.a);
+>             coords[1] = PGS.coordFromPVector(e.b);
+>             return GEOM_FACTORY.createLineString(coords);
+>         }).collect(Collectors.toList());
+>         FastPolygonizer polygonizer = new FastPolygonizer(env);
+>         polygonizer.add(lines);
+>         Collection<Polygon> JTS = polygonizer.getPolygons();
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);

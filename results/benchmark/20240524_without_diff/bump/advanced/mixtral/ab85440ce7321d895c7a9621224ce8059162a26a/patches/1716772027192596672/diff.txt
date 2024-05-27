@@ -1,0 +1,78 @@
+0a1,11
+> import org.hamcrest.Matchers;
+> import org.junit.jupiter.api.Test;
+> 
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> 
+> import static com.artipie.docker.asto.AstoBlobsITCase.content;
+> import static com.artipie.docker.asto.AstoBlobsITCase.repoName;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.instanceOf;
+> 
+3,5c14,16
+<         final InMemoryStorage storage = new InMemoryStorage();
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+---
+>     final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.asto.memory.InMemoryStorage();
+>     final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(
+>         storage, new com.artipie.docker.asto.DefaultLayout(), repoName("any")
+9c20,23
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>         new com.artipie.docker.asto.CheckedBlobSource(
+>             content("data".getBytes(StandardCharsets.UTF_8)),
+>             new com.artipie.docker.Digest.Sha256(digest)
+>         )
+12,17c26,27
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+---
+>             assertThat("Exception thrown", throwable, Matchers.notNullValue());
+>             assertThat(
+19,20c29,30
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                 throwable,
+>                 instanceOf(com.artipie.docker.error.InvalidDigestException.class)
+22c32
+<                 MatcherAssert.assertThat(
+---
+>             assertThat(
+24,26c34,35
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+---
+>                 throwable.getMessage(),
+>                 Matchers.stringContains(
+30c39
+<                 MatcherAssert.assertThat(
+---
+>             assertThat(
+32,33c41,42
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+---
+>                 throwable.getMessage(),
+>                 Matchers.stringContains(digest)
+38a48,59
+> 
+> static byte[] content(final String string) {
+>     return content(string.getBytes(StandardCharsets.UTF_8));
+> }
+> 
+> static byte[] content(final byte[] bytes) {
+>     return bytes;
+> }
+> 
+> static com.artipie.docker.RepoName.RepoName repoName(final String name) {
+>     return new com.artipie.docker.RepoName.Simple(name);
+> }
+\ No newline at end of file

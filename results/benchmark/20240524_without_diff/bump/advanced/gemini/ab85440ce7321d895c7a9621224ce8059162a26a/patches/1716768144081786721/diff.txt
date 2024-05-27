@@ -1,0 +1,13 @@
+4c4,13
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+---
+>     // Arrange
+>     String invalidPath = "/invalid/path";
+>     String expectedMessage = "Invalid path: " + invalidPath;
+> 
+>     // Act
+>     UploadEntityRequest entityRequest = new UploadEntityRequest(invalidPath, new ByteArrayInputStream(new byte[0]));
+>     Exception exception = Assertions.assertThrows(RuntimeException.class, entityRequest::execute);
+> 
+>     // Assert
+>     Assertions.assertEquals(expectedMessage, exception.getMessage());

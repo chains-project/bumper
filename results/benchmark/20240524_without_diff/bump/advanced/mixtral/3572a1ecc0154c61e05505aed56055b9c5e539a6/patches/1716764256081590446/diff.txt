@@ -1,0 +1,16 @@
+2,4c2,4
+< @Override
+< protected TDeserializer initialValue() {
+<     TDeserializer deserializer;
+---
+> @java.lang.Override
+> protected org.apache.thrift.TDeserializer initialValue() {
+>     org.apache.thrift.TDeserializer deserializer;
+6,8c6,8
+<         deserializer = new TDeserializer(new TCompactProtocol.Factory());
+<     } catch (TTransportException e) {
+<         throw new RuntimeException(e);
+---
+>         deserializer = new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory());
+>     } catch (com.pinterest.singer.client.TException e) { // Replaced TTransportException with TException
+>         throw new java.lang.RuntimeException(e);

@@ -1,0 +1,30 @@
+1c1,9
+< // TODO: review this AI generated patch!
+---
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.User;
+> import java.util.concurrent.CompletableFuture;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.equalTo;
+> import static org.junit.jupiter.api.Assertions.assertNotNull;
+> import static org.mockito.Mockito.mock;
+> import reactor.core.publisher.Mono;
+> 
+7a16,18
+>     Authentication auth = mock(Authentication.class);
+>     User user = mock(User.class);
+>     when(auth.user(any())).thenReturn(Mono.just(user));
+19c30
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.SimpleUser("alice")), ( user, act) -> {
+---
+>     }, ( headers, rline) -> CompletableFuture.completedFuture(user), ( user1, act) -> {
+22,24c33,37
+<     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> java.util.concurrent.CompletableFuture.allOf()).toCompletableFuture().join();
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> CompletableFuture.allOf()).toCompletableFuture().join();
+>     assertNotNull(cline.get());
+>     assertThat(cline.get(), equalTo(line));
+>     assertNotNull(caction.get());
+>     assertThat(caction.get(), equalTo(action));

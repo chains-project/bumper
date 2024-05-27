@@ -1,0 +1,3 @@
+public class PGS_MorphologyGroupShapeTests {
+    import static org.junit.jupiter.api.Assertions.assertEquals;
+}

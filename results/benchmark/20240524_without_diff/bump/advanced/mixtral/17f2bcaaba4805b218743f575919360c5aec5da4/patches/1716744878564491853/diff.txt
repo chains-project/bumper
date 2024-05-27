@@ -1,0 +1,88 @@
+0a1,24
+> import org.junit.jupiter.api.Test;
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.Iterator;
+> import java.util.Random;
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.CoordinateList;
+> import org.locationtech.jts.geom.Envelope;
+> import org.locationtech.jts.geom.Geometry;
+> import org.locationtech.jts.geom.GeometryFactory;
+> import org.locationtech.jts.geom.LinearRing;
+> import org.locationtech.jts.geom.MultiPolygon;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.noding.IntersectionAdder;
+> import org.locationtech.jts.noding.MCIndexNoder;
+> import org.locationtech.jts.noding.NodedSegmentString;
+> import org.locationtech.jts.noding.SegmentString;
+> import micycle.pgs.commons.PEdge;
+> import micycle.pgs.commons.PVector;
+> import processing.core.PShape;
+> 
+2d25
+<         @Ignore
+4c27
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     Random r = new Random();
+7,9c30,40
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+>         }
+>         Collection<SegmentString> nodedSS = new ArrayList<>();
+>         MCIndexNoder indexNoder = new MCIndexNoder();
+>         IntersectionAdder adder = new IntersectionAdder();
+>         indexNoder.setIntersectionAdder(adder);
+>         indexNoder.computeNodes(segmentStrings);
+>         Iterator<SegmentString> nodedIt = adder.getNodedSubstrings().iterator();
+>         while (nodedIt.hasNext()) {
+>             nodedSS.add(nodedIt.next());
+11d41
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+13c43,45
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         for (SegmentString ss : nodedSS) {
+>             nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1))));
+>         }
+15,34c47,57
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+<                         polygonizerJTS.setCheckRingsValid(false);
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+<                         });
+< 
+<                         long t1 = System.currentTimeMillis();
+<                         @SuppressWarnings("unchecked")
+<                         Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+<                         long t2 = System.currentTimeMillis();
+<                         long timeJTS = t2 - t1;
+< 
+<                         t1 = System.currentTimeMillis();
+<                         PShape FP = polygonize(nodedEdgesSet);
+<                         t2 = System.currentTimeMillis();
+<                         long timeFP = t2 - t1;
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+---
+>         GeometryFactory gf = new GeometryFactory();
+>         Collection<Polygon> JTS = new ArrayList<>();
+>         for (PEdge e : nodedEdgesSet) {
+>             CoordinateList l = new CoordinateList(2);
+>             l.add(PGS.coordFromPVector(e.a), false);
+>             l.add(PGS.coordFromPVector(e.b), false);
+>             LinearRing ring = gf.createLinearRing(l.toCoordinateArray());
+>             Polygon polygon = gf.createPolygon(ring, null);
+>             JTS.add(polygon);
+>         }
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);

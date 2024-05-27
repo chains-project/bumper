@@ -1,0 +1,93 @@
+0a1,19
+> import org.junit.jupiter.api.Test;
+> import micycle.pgs.commons.PEdge;
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.PrecisionModel;
+> import org.locationtech.jts.index.strtree.STRtree;
+> import org.locationtech.jts.noding.NodedSegmentString;
+> import org.locationtech.jts.noding.SegmentString;
+> import org.locationtech.jts.operation.polygonize.Polygonizer;
+> import processing.core.PShape;
+> 
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.Iterator;
+> import java.util.Random;
+> 
+2d20
+<         @Ignore
+4c22
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     Random r = new Random();
+7,9c25,53
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+>         }
+>         STRtree nodedSS = new STRtree();
+>         for (SegmentString ss : segmentStrings) {
+>             nodedSS.insert(ss.getEnvelopeInternal(), ss);
+>         }
+>         for (Iterator<SegmentString> i = segmentStrings.iterator(); i.hasNext(); ) {
+>             SegmentString ss = i.next();
+>             List<SegmentString> intersecting = nodedSS.query(ss.getEnvelopeInternal());
+>             for (SegmentString intersectingSS : intersecting) {
+>                 if (ss != intersectingSS) {
+>                     List<Coordinate> nodes = ss.getIntersectionPoints(intersectingSS);
+>                     if (nodes.size() > 0) {
+>                         i.remove();
+>                         intersecting.remove();
+>                         segmentStrings.add(new NodedSegmentString(new Coordinate[]{ ss.getCoordinateN(0), nodes.get(0) }, ss.getUserData()));
+>                         segmentStrings.add(new NodedSegmentString(new Coordinate[]{ nodes.get(nodes.size() - 1), ss.getCoordinateN(ss.getNumPoints() - 1) }, ss.getUserData()));
+>                         for (Iterator<SegmentString> j = intersectingSS.getSubStrings().iterator(); j.hasNext(); ) {
+>                             SegmentString subSS = j.next();
+>                             if (subSS.getUserData() != intersectingSS.getUserData()) {
+>                                 j.remove();
+>                                 segmentStrings.add(subSS);
+>                             }
+>                         }
+>                         break;
+>                     }
+>                 }
+>             }
+11d54
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+13c56,58
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         for (SegmentString ss : segmentStrings) {
+>             nodedEdges.add(new PEdge(ss.getCoordinateN(0), ss.getCoordinateN(ss.getNumPoints() - 1)));
+>         }
+15,16c60
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+---
+>         Polygonizer polygonizerJTS = new Polygonizer();
+18,20c62,63
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>         for (PEdge e : nodedEdgesSet) {
+>             LineString l = PGS.GEOM_FACTORY.createLineString(new Coordinate[]{ PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+22,23c65
+<                         });
+< 
+---
+>         }
+25d66
+<                         @SuppressWarnings("unchecked")
+29d69
+< 
+31c71
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);

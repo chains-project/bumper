@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1759899303,
+    "in_class_code": "{\n    // TODO: review this AI generated patch!\n    @Override\n    protected TDeserializer initialValue() {\n        TCompactProtocol.Factory factory = new TCompactProtocol.Factory();\n        factory.setStrictLength(false);\n        return new TDeserializer(factory);\n    }\n}",
+    "qualified_in_class_code": " {\n    // TODO: review this AI generated patch!\n    @java.lang.Override\n    protected org.apache.thrift.TDeserializer initialValue() {\n        org.apache.thrift.protocol.TCompactProtocol.Factory factory = new org.apache.thrift.protocol.TCompactProtocol.Factory();\n        factory.setStrictLength(false);\n        return new org.apache.thrift.TDeserializer(factory);\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   method setStrictLength(boolean)\n  location: variable factory of type org.apache.thrift.protocol.TCompactProtocol.Factory\n",
+        "error_message": "[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java:[194,12] cannot find symbol",
+        "client_file_path": "/singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java",
+        "client_line_position": "194"
+    },
+    "client_end_line_number": 196,
+    "client_line_number": 190,
+    "method_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    org.apache.thrift.protocol.TCompactProtocol.Factory factory = new org.apache.thrift.protocol.TCompactProtocol.Factory();\n    factory.setStrictLength(false);\n    return new org.apache.thrift.TDeserializer(factory);\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    org.apache.thrift.protocol.TCompactProtocol.Factory factory = new org.apache.thrift.protocol.TCompactProtocol.Factory();\n    factory.setStrictLength(false);\n    return new org.apache.thrift.TDeserializer(factory);\n}",
+    "method_name": "initialValue"
+}

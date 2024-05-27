@@ -1,0 +1,15 @@
+4c4,15
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+---
+>     try (HttpClient client = HttpClientBuilder.create().build()) {
+>         HttpRequest request = HttpRequest.newBuilder()
+>                 .uri(URI.create("http://localhost:8080/v2/"))
+>                 .headers(Headers.of("Authorization", "Basic " + Base64.getEncoder().encodeToString("admin:admin".getBytes(StandardCharsets.UTF_8))))
+>                 .post(HttpRequest.BodyPublishers.ofString("{\"image\":\"test\",\"fromImage\":\"test\",\"tag\":\"latest\"}"))
+>                 .build();
+>         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+>         assertEquals(400, response.statusCode());
+>         assertThat(response.body()).contains("Invalid path");
+>     } catch (IOException e) {
+>         fail(e);
+>     }

@@ -1,0 +1,31 @@
+2c2
+<         protected PasswordEncoder createStringEncoder() {
+---
+> protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+4,5c4
+< 
+<                 char[] chars = toChars(password);
+---
+>     char[] chars = new String(password).toCharArray();
+7c6
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+9,10c8
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+---
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+14,15c12
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         org.jasypt.spring.security.PBEPasswordEncoder encoder = new org.jasypt.spring.security.PBEPasswordEncoder();
+17d13
+< 
+20,21c16,17
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         java.util.Arrays.fill(chars, '0'); // Scrambles chars
+>         java.util.Arrays.fill(password, (byte) 0); // Scrambles password

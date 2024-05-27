@@ -1,0 +1,16 @@
+4c4,16
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+---
+>     try {
+>         new UploadEntityRequest(
+>                 new com.google.common.net.UrlEscapers(),
+>                 new io.netty.handler.codec.http.DefaultHttpHeaders(),
+>                 new java.io.File("src/test/resources/test.tar"),
+>                 "test"
+>         );
+>     } catch (java.io.IOException e) {
+>         org.junit.jupiter.api.Assertions.assertEquals(
+>                 "File not found: src/test/resources/test.tar",
+>                 e.getMessage()
+>         );
+>     }

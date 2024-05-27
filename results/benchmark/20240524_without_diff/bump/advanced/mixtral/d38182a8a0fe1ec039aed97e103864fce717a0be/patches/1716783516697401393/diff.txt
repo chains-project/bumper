@@ -1,0 +1,27 @@
+1c1,8
+< // TODO: review this AI generated patch!
+---
+> import com.artipie.http.auth.Authentication;
+> import com.artipie.http.auth.Authentication.User;
+> import java.util.concurrent.CompletableFuture;
+> import java.util.concurrent.ExecutionException;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.equalTo;
+> import static org.hamcrest.Matchers.notNullValue;
+> 
+3c10
+< void testScope() {
+---
+> void testScope() throws ExecutionException, InterruptedException {
+19c26
+<     }, ( headers, rline) -> java.util.concurrent.CompletableFuture.completedFuture(new com.artipie.http.auth.Authentication.SimpleUser("alice")), ( user, act) -> {
+---
+>     }, ( headers, rline) -> CompletableFuture.completedFuture(new User("alice", headers)), ( user, act) -> {
+22,24c29,31
+<     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> java.util.concurrent.CompletableFuture.allOf()).toCompletableFuture().join();
+<     org.hamcrest.MatcherAssert.assertThat("Request line passed to slice", cline.get(), new org.hamcrest.core.IsEqual<>(line));
+<     org.hamcrest.MatcherAssert.assertThat("Scope passed as action to permissions", caction.get(), new org.hamcrest.core.IsEqual<>(action));
+---
+>     }).response(line, com.artipie.http.Headers.EMPTY, com.artipie.asto.Content.EMPTY).send(( status, headers, body) -> CompletableFuture.allOf()).toCompletableFuture().join();
+>     assertThat("Request line passed to slice", cline.get(), equalTo(line));
+>     assertThat("Scope passed as action to permissions", caction.get(), equalTo(action));

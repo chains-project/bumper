@@ -1,0 +1,11 @@
+0a1,4
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> import org.junit.jupiter.api.Test;
+> 
+3,4c7,8
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.simplify(GROUP_SHAPE, 1);
+---
+>     assertTrue(GROUP_SHAPE.getChildCount() == 2);
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.simplify(GROUP_SHAPE, 1);

@@ -1,0 +1,7 @@
+import org.apache.maven.doxia.siterenderer.Renderer;
+
+// ...
+
+Renderer renderer = new Renderer();
+RenderingContext renderingContext = new RenderingContext.Builder().build();
+// Use 'renderer' and 'renderingContext' objects as needed...

@@ -1,0 +1,18 @@
+1c1,13
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Test;
+> import static org.junit.Assert.assertEquals;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void testMorphologyGroupShape() {
+>         // replace this line with the actual test code
+>         assumeTrue(false);
+> 
+>         // the rest of the test method
+>         // ...
+>     }
+> }
+\ No newline at end of file

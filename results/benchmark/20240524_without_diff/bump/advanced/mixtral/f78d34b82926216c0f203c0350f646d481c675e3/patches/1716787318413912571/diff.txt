@@ -1,0 +1,45 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<     double[] waveCreator = waveCreator(10.0, 100.0, 10.0);
+---
+>     double[] waveCreator = ml.peya.plugins.Detect.NPCTeleport.waveCreator(10.0, 100.0, 10.0);
+15,16d13
+< 
+< 
+23c20
+<                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3]))));
+---
+>                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3])));
+27,28c24
+<                 new BukkitRunnable() {
+<                     @java.lang.Override
+---
+>                 Runnable $missing$ = new Runnable() {
+30,34c26
+<                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+<                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+<                             NPC.setArmor(p, target, arm);
+<                         });
+<                         this.cancel();
+---
+>                         // original implementation of $missing$
+36c28
+<                 }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>                 };
+48,49c40
+<     new BukkitRunnable() {
+<         @java.lang.Override
+---
+>     Runnable $missing$ = new Runnable() {
+51,52c42
+<             r.cancel();
+<             this.cancel();
+---
+>             // original implementation of $missing$
+54c44,45
+<     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));
+---
+>     };
+>     $missing$.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));

@@ -1,0 +1,63 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<     double[] waveCreator = waveCreator(10.0, 100.0, 10.0);
+---
+>     double[] waveCreator = ml.peya.plugins.Detect.NPCTeleport.waveCreator(10.0, 100.0, 10.0);
+10,12c9,11
+<             if (player.hasMetadata("speed"))
+<                 for (MetadataValue value : player.getMetadata("speed"))
+<                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName()))
+---
+>             if (player.hasMetadata("speed")) {
+>                 for (MetadataValue value : player.getMetadata("speed")) {
+>                     if (value.getOwningPlugin().getName().equals(PeyangSuperbAntiCheat.getPlugin().getName())) {
+14,15c13,15
+< 
+< 
+---
+>                     }
+>                 }
+>             }
+19c19
+<                 if (ml.peya.plugins.Variables.config.getBoolean("npc.wave"))
+---
+>                 if (ml.peya.plugins.Variables.config.getBoolean("npc.wave")) {
+20a21
+>                 }
+23c24
+<                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3]))));
+---
+>                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3])));
+27,28c28
+<                 new BukkitRunnable() {
+<                     @java.lang.Override
+---
+>                 Runnable $missing$ = new Runnable() {
+30,34c30
+<                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+<                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+<                             NPC.setArmor(p, target, arm);
+<                         });
+<                         this.cancel();
+---
+>                         // Add the missing implementation here
+36c32
+<                 }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>                 };
+48,49c44
+<     new BukkitRunnable() {
+<         @java.lang.Override
+---
+>     Runnable $missing$ = new Runnable() {
+51,52c46
+<             r.cancel();
+<             this.cancel();
+---
+>             // Add the missing implementation here
+54c48,49
+<     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));
+---
+>     };
+>     PeyangSuperbAntiCheat.getPlugin().getServer().getScheduler().runTaskLater(PeyangSuperbAntiCheat.getPlugin(), $missing$, 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));

@@ -1,0 +1,20 @@
+import java.security.NoSuchAlgorithmException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+    org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+    byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+    if (!java.util.Arrays.equals(calculatedMAC, receivedMAC)) {
+        throw new RuntimeException("Bad MAC");
+    }
+    byte[] output = new byte[ciphertext.length];
+    try {
+        decryptCipher.doFinal(ciphertext, 0, ciphertext.length, output, 0);
+    } catch (IllegalBlockSizeException | BadPaddingException e) {
+        throw new IOException("Failed to decrypt ciphertext", e);
+    }
+    return output;
+}

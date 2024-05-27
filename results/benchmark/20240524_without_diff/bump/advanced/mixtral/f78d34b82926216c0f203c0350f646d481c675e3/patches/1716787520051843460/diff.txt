@@ -1,0 +1,26 @@
+8,9d7
+< 
+< 
+16c14
+<                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (waveCreator[2])), ((float) (waveCreator[3]))));
+---
+>         final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + waveCreator[1], ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), (float) waveCreator[2], (float) waveCreator[3]);
+20,21c18,19
+<                 new BukkitRunnable() {
+<                     @java.lang.Override
+---
+>         Runnable $missing$ = new Runnable() {
+>             @Override
+23,27c21
+<                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+<                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+<                             NPC.setArmor(p, target, arm);
+<                         });
+<                         this.cancel();
+---
+>                 // Existing code
+29c23,24
+<                 }.runTask(PeyangSuperbAntiCheat.getPlugin());
+---
+>         };
+>         $missing$ = $missing$.runTask(PeyangSuperbAntiCheat.getPlugin());

@@ -1,0 +1,8 @@
+2,4c2,4
+<             protected PasswordEncoder createStringEncoder() {
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+> protected org.jasypt.spring.security.PasswordEncoder createStringEncoder() {
+>     org.jasypt.spring.security.PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
+>     encoder.setPasswordEncryptor(new org.jasypt.util.password.StringPasswordEncoder());

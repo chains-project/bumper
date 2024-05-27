@@ -1,0 +1,39 @@
+0a1,6
+> import org.junit.jupiter.api.Test;
+> import org.locationtech.jts.geom.*;
+> import org.locationtech.jts.operation.polygonize.*;
+> import processing.core.PShape;
+> import java.util.*;
+> 
+2d7
+<         @Ignore
+6,9c11,13
+<                         List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         List<NodedSegmentString> segmentStrings = new ArrayList<>(111 + k);
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+13c17
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(( ss) -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+15d18
+< 
+18,20c21,22
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>         nodedEdgesSet.forEach(( e) -> {
+>             final LineString l = PGS.GEOM_FACTORY.createLineString(new Coordinate[]{ PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+23d24
+< 
+29d29
+< 
+31c31
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);

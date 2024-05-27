@@ -1,0 +1,12 @@
+1c1,3
+< @Test
+---
+> import static org.junit.Assert.assertTrue;
+> 
+> @org.junit.Test
+3,4c5,6
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Processing.removeSmallHoles(GROUP_SHAPE, 10);
+---
+>     assertTrue(GROUP_SHAPE.getChildCount() == 2);
+>     processing.core.PShape out = micycle.pgs.PGS_Processing.removeSmallHoles(GROUP_SHAPE, 10);

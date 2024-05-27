@@ -1,0 +1,21 @@
+1c1,5
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import org.junit.jupiter.api.Assumptions;
+> import org.junit.jupiter.api.Test;
+> 
+> @org.junit.jupiter.api.Test
+3,4c7,8
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     Assumptions.assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+>     final processing.core.PShape mink = new processing.core.PShape(processing.core.PShape.PATH);
+10,12c14,15
+<                 mink.endShape(PConstants.CLOSE);
+< 
+<                 PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);
+---
+>     mink.endShape(processing.core.PConstants.CLOSE);
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.minkDifference(GROUP_SHAPE, mink);

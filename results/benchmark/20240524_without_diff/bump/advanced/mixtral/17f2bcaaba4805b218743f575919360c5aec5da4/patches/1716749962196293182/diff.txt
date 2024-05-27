@@ -1,0 +1,23 @@
+1c1,18
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Assert;
+> import org.junit.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void testMorphologyGroupShape() {
+>         boolean isSupported = Assume.assumeTrue(someCondition());
+>         if (!isSupported) {
+>             return;
+>         }
+>         // Rest of the test code...
+>     }
+> 
+>     private boolean someCondition() {
+>         // Implement the condition to check if the test should be executed.
+>         return true;
+>     }
+> }
+\ No newline at end of file

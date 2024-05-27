@@ -1,0 +1,11 @@
+5,7c5,10
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.StringContains(true, "Unsupported reference")++
+<             .and(new org.hamcrest.core.StringContains(false, string)));
+---
+>     final java.lang.Throwable throwable;
+>     try {
+>         new org.eclipse.microprofile.rest.client.RestClientBuilder().build(org.eclipse.microprofile.rest.client.RestClient.class);
+>     } catch (final java.lang.Throwable t) {
+>         throwable = t;
+>     }

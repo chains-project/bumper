@@ -1,0 +1,12 @@
+1c1,5
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assumptions.assumeTrue;
+> import processing.core.PShape;
+> 
+> @org.junit.jupiter.api.Test
+4c8
+<                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+---
+>     PShape out = micycle.pgs.PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);

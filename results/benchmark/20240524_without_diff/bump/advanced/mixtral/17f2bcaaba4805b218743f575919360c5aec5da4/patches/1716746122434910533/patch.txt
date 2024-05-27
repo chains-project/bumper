@@ -1,0 +1,12 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testMorphologyGroupShape() {
+        boolean isSupported = assumeTrue("Skipping test because it requires JavaFX");
+        if (isSupported) {
+            // Add your test code here
+        }
+    }
+}

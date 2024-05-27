@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1759899303,
+    "in_class_code": "{\n    // TODO: review this AI generated patch!\n    @Override\n    protected TDeserializer initialValue() {\n        TDeserializer deserializer;\n        try {\n            deserializer = new TDeserializer(new TCompactProtocol.Factory());\n        } catch (TTransportException e) {\n            throw new RuntimeException(e);\n        }\n        return deserializer;\n    }\n}",
+    "qualified_in_class_code": " {\n    // TODO: review this AI generated patch!\n    @java.lang.Override\n    protected org.apache.thrift.TDeserializer initialValue() {\n        org.apache.thrift.TDeserializer deserializer;\n        try {\n            deserializer = new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory());\n        } catch (com.pinterest.singer.client.TTransportException e) {\n            throw new java.lang.RuntimeException(e);\n        }\n        return deserializer;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol: class TTransportException\n",
+        "error_message": "[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java:[196,14] cannot find symbol",
+        "client_file_path": "/singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java",
+        "client_line_position": "196"
+    },
+    "client_end_line_number": 200,
+    "client_line_number": 190,
+    "method_code": "// TODO: review this AI generated patch!\n@Override\nprotected TDeserializer initialValue() {\n    TDeserializer deserializer;\n    try {\n        deserializer = new TDeserializer(new TCompactProtocol.Factory());\n    } catch (TTransportException e) {\n        throw new RuntimeException(e);\n    }\n    return deserializer;\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    org.apache.thrift.TDeserializer deserializer;\n    try {\n        deserializer = new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory());\n    } catch (com.pinterest.singer.client.TTransportException e) {\n        throw new java.lang.RuntimeException(e);\n    }\n    return deserializer;\n}",
+    "method_name": "initialValue"
+}

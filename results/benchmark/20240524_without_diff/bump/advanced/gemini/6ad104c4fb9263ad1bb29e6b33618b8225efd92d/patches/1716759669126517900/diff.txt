@@ -1,0 +1,4 @@
+6c6
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert((short) 20);
+---
+>         throw new io.github.hapjava.server.impl.crypto.TlsFatalAlert(((short) (20)));

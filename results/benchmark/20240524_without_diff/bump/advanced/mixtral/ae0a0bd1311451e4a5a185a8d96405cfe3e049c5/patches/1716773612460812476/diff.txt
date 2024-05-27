@@ -1,0 +1,63 @@
+0a1,10
+> import org.hamcrest.Matchers;
+> import org.junit.jupiter.api.Test;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.allOf;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.not;
+> import static org.hamcrest.Matchers.stringContainsInOrder;
+> 
+3,6c13,14
+<         final InMemoryStorage storage = new InMemoryStorage();
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>     final com.artipie.asto.memory.InMemoryStorage storage = new com.artipie.asto.memory.InMemoryStorage();
+>     final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+8,26c16,20
+<         blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains calculated digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+---
+>     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle((blob, throwable) -> {
+>         assertThat("Exception thrown", throwable, not(nullValue()));
+>         assertThat("Exception is InvalidDigestException", throwable, instanceOf(com.artipie.docker.error.InvalidDigestException.class));
+>         String message = throwable.getMessage();
+>         assertThat("Exception message contains calculated digest", message, stringContainsInOrder(
+28,34c22,25
+<                     )
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+<                 );
+---
+>         ));
+>         assertThat("Exception message contains expected digest", message, stringContainsInOrder(
+>             digest
+>         ));
+36,37c27
+<             }
+<         ).join();
+---
+>     }).join();

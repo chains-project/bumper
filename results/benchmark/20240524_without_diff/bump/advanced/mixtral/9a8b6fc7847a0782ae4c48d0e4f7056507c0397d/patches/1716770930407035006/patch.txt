@@ -1,0 +1,19 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+//...
+
+private BasicTextEncryptor encryptor = new BasicTextEncryptor();
+
+//...
+
+@Override
+public String encode(String rawPassword) {
+    encryptor.setPassword("your-secret-key");
+    return encryptor.encrypt(rawPassword);
+}
+
+@Override
+public boolean matches(String rawPassword, String encodedPassword) {
+    encryptor.setPassword("your-secret-key");
+    return encryptor.checkPassword(rawPassword, encodedPassword);
+}

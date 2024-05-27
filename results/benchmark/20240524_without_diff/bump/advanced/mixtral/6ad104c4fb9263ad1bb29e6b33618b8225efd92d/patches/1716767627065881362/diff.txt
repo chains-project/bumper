@@ -1,0 +1,26 @@
+1,2c1,7
+< // TODO: review this AI generated patch!
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import java.security.NoSuchAlgorithmException;
+> import javax.crypto.BadPaddingException;
+> import javax.crypto.Cipher;
+> import javax.crypto.IllegalBlockSizeException;
+> import javax.crypto.NoSuchPaddingException;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c11
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new RuntimeException("Bad MAC");
+9c14,21
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+---
+>     try {
+>         Cipher cipher = Cipher.getInstance("ChaCHa20-Poly1305");
+>         cipher.init(Cipher.DECRYPT_MODE, macKey);
+>         cipher.update(ciphertext, 0, ciphertext.length, output, 0);
+>         cipher.doFinal();
+>     } catch (NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
+>         throw new IOException(e);
+>     }

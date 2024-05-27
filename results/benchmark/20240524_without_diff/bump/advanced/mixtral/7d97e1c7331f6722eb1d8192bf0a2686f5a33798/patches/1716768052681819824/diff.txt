@@ -1,0 +1,42 @@
+0a1,15
+> import static java.lang.String.valueOf;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.hasKey;
+> import static org.hamcrest.Matchers.not;
+> import com.jcabi.simpledb.Domain;
+> import com.jcabi.simpledb.Item;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.junit.jupiter.api.Test;
+> 
+> public class RegionITCase {
+> 
+>     private Domain domain() {
+>         // ...
+>     }
+> 
+5,7c20,22
+<             final String name = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+<             final String attr = RandomStringUtils.randomAlphabetic(Tv.EIGHT);
+<             final String value = RandomStringUtils.randomAlphanumeric(Tv.TEN);
+---
+>             final String name = RandomStringUtils.randomAlphanumeric(10);
+>             final String attr = RandomStringUtils.randomAlphabetic(8);
+>             final String value = RandomStringUtils.randomAlphanumeric(10);
+9,16c24,28
+<                 domain.item(name).put(attr, value);
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.hasKey(attr)
+<                 );
+<                 domain.item(name).remove(attr);
+<                 MatcherAssert.assertThat(
+<                     domain.item(name), Matchers.not(Matchers.hasKey(attr))
+<                 );
+---
+>                 final Item item = domain.item(name);
+>                 item.put(attr, value);
+>                 assertThat(item, hasKey(attr));
+>                 item.remove(attr);
+>                 assertThat(item, not(hasKey(attr)));
+21a34
+> }
+\ No newline at end of file

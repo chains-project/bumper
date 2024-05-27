@@ -1,0 +1,14 @@
+1c1,9
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> import org.codehaus.plexus.component.annotations.Requirement;
+> 
+> public abstract class AbstractThemeMojo {
+>     @Requirement
+>     private MavenSession mavenSession;
+> 
+>     // ...
+> }
+\ No newline at end of file

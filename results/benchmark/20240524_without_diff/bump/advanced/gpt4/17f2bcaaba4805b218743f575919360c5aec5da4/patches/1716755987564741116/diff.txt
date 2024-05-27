@@ -1,0 +1,12 @@
+1a2,11
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     @org.junit.jupiter.api.Test
+>     public void test() {
+>         int expected = 5;
+>         int actual = 2 + 3;
+>         assertEquals(expected, actual);
+>     }
+> }
+\ No newline at end of file

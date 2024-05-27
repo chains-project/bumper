@@ -1,0 +1,13 @@
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
+public class GeoStoreDigestPasswordEncoder {
+    private StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+    public String encode(String rawPass) {
+        return passwordEncryptor.encryptPassword(rawPass);
+    }
+
+    public boolean matches(String rawPass, String encodedPass) {
+        return passwordEncryptor.checkPassword(rawPass, encodedPass);
+    }
+}

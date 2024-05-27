@@ -1,0 +1,11 @@
+1a2,10
+> import org.spongepowered.api.Sponge;
+> 
+> public class Decorations {
+> 
+>     public static void main(String[] args) {
+>         WaveCreator waveCreator = Sponge.getServiceManager().provideUnchecked(WaveCreator.class);
+>         waveCreator.createWave();
+>     }
+> }
+\ No newline at end of file

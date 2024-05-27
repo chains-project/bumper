@@ -1,0 +1,11 @@
+@org.junit.jupiter.api.Test
+void test_PGS_Morphology_simplifyVW() {
+    boolean condition = GROUP_SHAPE.getChildCount() == 2;
+    org.junit.jupiter.api.Assertions.assertAll(
+        () -> org.junit.jupiter.api.Assertions.assertTrue(condition),
+        () -> {
+            processing.core.PShape out = micycle.pgs.PGS_Morphology.simplifyVW(GROUP_SHAPE, 1);
+            org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());
+        }
+    );
+}

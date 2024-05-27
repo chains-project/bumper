@@ -1,0 +1,94 @@
+0a1,2
+> import develop.p2p.lib.WaveCreator;
+> 
+4,5c6,9
+<      * @param player  餌食
+<      * @param seconds 秒数
+---
+>  * @param player
+>  *              餌食
+>  * @param seconds
+>  *              秒数
+7,9c11,12
+<     public static void magic(Player player, int seconds)
+<     {
+<         final int[] count = {0};
+---
+> public static void magic(org.bukkit.entity.Player player, int seconds) {
+>     final int[] count = new int[]{ 0 };
+11,33c14,26
+< 
+<         BukkitRunnable runnable = new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+<                     Location center = player.getLocation();
+< 
+<                     circle(center.clone().add(0, 0.9, 0), count[0], 3, Particle.CRIT);
+< 
+<                     circle(center.add(0, 0.7, 0), count[0], 2.7, Particle.ENCHANTMENT_TABLE);
+< 
+<                     circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+< 
+<                     circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+<                     circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+<                     circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+< 
+<                     circle(center.clone().add(0, 1.5, 0), count[0], 5, Particle.SPELL_WITCH);
+< 
+---
+>     org.bukkit.scheduler.BukkitRunnable runnable = new org.bukkit.scheduler.BukkitRunnable() {
+>         @java.lang.Override
+>         public void run() {
+>             for (double i = 0; i < (java.lang.Math.PI * 2); i++) {
+>                 org.bukkit.Location center = player.getLocation();
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(0, 0.9, 0), count[0], 3, org.bukkit.Particle.CRIT);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.add(0, 0.7, 0), count[0], 2.7, org.bukkit.Particle.ENCHANTMENT_TABLE);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(0, wave.get(0.01, false), 0), count[0], wave.getStatic());
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(3.2, 0.7, 3.2), count[0], 1.5);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(-3.2, 0.7, -3.2), count[0], 1.5);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(-3.2, 0.7, 3.2), count[0], 1.5);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(3.2, 0.7, -3.2), count[0], 1.5);
+>                 ml.peya.plugins.Objects.Decorations.circle(center.clone().add(0, 1.5, 0), count[0], 5, org.bukkit.Particle.SPELL_WITCH);
+35a29,35
+>             org.bukkit.Location center = player.getLocation();
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3));// 三角
+> 
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3));// 三角(反転)
+37,45c37
+<                 Location center = player.getLocation();
+< 
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, 2.3));
+<                 line(center.clone().add(-1.5, 0.7, 2.3), center.clone().add(-1.5, 0.7, -2.3)); //三角
+<                 line(center.clone().add(3, 0.7, 0), center.clone().add(-1.5, 0.7, -2.3));
+< 
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, -2.3));
+<                 line(center.clone().add(1.5, 0.7, -2.3), center.clone().add(1.5, 0.7, 2.3)); //三角(反転)
+<                 line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+---
+>             ml.peya.plugins.Objects.Decorations.line(center.clone().add(-3, 0.7, 0), center.clone().add(1.5, 0.7, 2.3));
+48,54c40,43
+< 
+<         runnable.runTaskTimer(PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+<         new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+---
+>     runnable.runTaskTimer(ml.peya.plugins.PeyangSuperbAntiCheat.getPlugin(), 0L, 1L);
+>     new org.bukkit.scheduler.BukkitRunnable() {
+>         @java.lang.Override
+>         public void run() {
+57,58c46
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), seconds);
+< 
+---
+>     }.runTaskLater(ml.peya.plugins.PeyangSuperbAntiCheat.getPlugin(), seconds);

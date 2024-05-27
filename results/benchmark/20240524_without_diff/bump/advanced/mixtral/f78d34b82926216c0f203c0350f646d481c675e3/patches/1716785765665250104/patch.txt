@@ -1,0 +1,6 @@
+import ml.peya.plugins.Learn.develop.p2p.lib.LearnMath;
+
+public void input(java.util.ArrayList<ml.peya.plugins.Learn.Input> inputData) {
+    inputData.parallelStream().forEachOrdered(( input) -> input(input.getWeightingValue()));
+    setValue(LearnMath.sigmoid(sum));
+}

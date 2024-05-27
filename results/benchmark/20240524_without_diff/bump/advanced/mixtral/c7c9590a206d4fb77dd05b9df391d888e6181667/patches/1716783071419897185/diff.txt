@@ -1,0 +1,16 @@
+1c1,11
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.Renderer;
+> 
+> // ...
+> 
+> @Override
+> protected void executeReport(Locale locale) throws MojoExecutionException {
+>     // Use a different class from the same package
+>     Renderer renderer = new org.apache.maven.doxia.siterenderer.XHTMLRenderer();
+> 
+>     // ...
+> }
+\ No newline at end of file

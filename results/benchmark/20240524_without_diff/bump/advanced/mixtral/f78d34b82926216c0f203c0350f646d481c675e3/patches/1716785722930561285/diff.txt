@@ -1,0 +1,17 @@
+0a1,2
+> import develop.p2p.lib.MathUtils;
+> 
+4c6,7
+<      * @param inputData InputクラスのArrayListデータ。
+---
+>  * @param inputData
+>  *              InputクラスのArrayListデータ。
+6,9c9,11
+<     public void input(ArrayList<Input> inputData)
+<     {
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+<         setValue(sigmoid(sum));
+---
+> public void input(java.util.ArrayList<ml.peya.plugins.Learn.Input> inputData) {
+>     inputData.parallelStream().forEachOrdered(( input) -> input(input.getWeightingValue()));
+>     setValue(MathUtils.sigmoid(sum));

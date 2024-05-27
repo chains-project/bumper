@@ -1,0 +1,28 @@
+0a1,5
+> import java.util.Set;
+> import org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration;
+> import org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.Builder;
+> import org.sonarsource.sonarlint.core.commons.Language;
+> 
+2,8c7,19
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+>     Builder builder = AnalysisEngineConfiguration.builder();
+>     
+>     Set<Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+>     if (enabledLanguages != null) {
+>         builder.addEnabledLanguages(enabledLanguages);
+>     }
+>     
+>     builder.setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid());
+>     builder.setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties());
+>     builder.setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir());
+>     builder.setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider());
+>     
+>     return builder.build();

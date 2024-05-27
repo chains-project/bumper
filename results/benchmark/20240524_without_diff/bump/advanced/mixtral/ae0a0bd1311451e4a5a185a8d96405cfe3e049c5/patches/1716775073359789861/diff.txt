@@ -1,0 +1,20 @@
+1,2c1,2
+< @Test
+<     void shouldPullPushedByTag() throws Exception {
+---
+> @org.junit.jupiter.api.Test
+> void shouldPullPushedByTag() throws java.lang.Exception {
+6,13c6,9
+<         final String output = this.client.run("pull", this.image.remote());
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+<         );
+---
+>     final java.lang.String output = this.client.run("pull", this.image.remote());
+>     boolean contains = output.contains(String.format("Status: Downloaded newer image for %s", this.image.remote()));
+>     org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains("Status: Downloaded newer image for " + this.image.remote()));
+>     org.junit.jupiter.api.Assertions.assertFalse(contains);

@@ -1,0 +1,9 @@
+import org.junit.Assert;
+
+// ...
+
+public void testSomething() {
+    // ...
+    assertEquals("expected", actual);
+    // ...
+}

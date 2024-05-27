@@ -1,0 +1,37 @@
+1,3c1,16
+< // TODO: review this AI generated patch!
+< @org.junit.jupiter.params.ParameterizedTest
+< @org.junit.jupiter.params.provider.ValueSource(strings = { "", ".0", "*", "ê", "-my-tag", // @checkstyle LineLengthCheck (1 line)
+---
+> import org.hamcrest.CoreMatchers;
+> import org.hamcrest.MatcherAssert;
+> import org.junit.jupiter.api.Assertions;
+> import org.junit.jupiter.params.ParameterizedTest;
+> import org.junit.jupiter.params.provider.ValueSource;
+> 
+> import java.util.regex.Pattern;
+> 
+> import static java.lang.String.format;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.core.IsEqual.equalTo;
+> import static org.hamcrest.core.StringContains.stringContains;
+> 
+> public class TagValidTest {
+>     @ParameterizedTest
+>     @ValueSource(strings = { "", ".0", "*", "ê", "-my-tag", // @checkstyle LineLengthCheck (1 line)
+5c18
+< void shouldFailToGetValueWhenInvalid(final java.lang.String original) {
+---
+>     void shouldFailToGetValueWhenInvalid(final String original) {
+7,9c20,26
+<     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual<>(false));
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(com.artipie.docker.error.InvalidTagNameException.class, tag::value);
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.MatcherAssert.CoreMatchers.<java.lang.String>allOf(new org.hamcrest.core.StringContains.StringContains(true, "Invalid tag"), new org.hamcrest.core.StringContains.StringContains(false, original)));
+---
+>         assertThat(tag.valid(), equalTo(false));
+>         final InvalidTagNameException exception = Assertions.assertThrows(InvalidTagNameException.class, tag::value);
+>         final String expectedMessage = format("Invalid tag: '%s'.", original);
+>         final String actualMessage = exception.getMessage();
+>         final Pattern pattern = Pattern.compile(expectedMessage);
+>         assertThat(actualMessage, stringContains(pattern));
+>     }

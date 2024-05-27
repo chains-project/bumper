@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 282821294,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Learn/Neuron.java:[5,30] package develop.p2p.lib does not exist",
+        "client_file_path": "/PeyangSuperbAntiCheat/src/main/java/ml/peya/plugins/Learn/Neuron.java",
+        "client_line_position": "5"
+    },
+    "client_end_line_number": 5,
+    "client_line_number": 5,
+    "method_code": "import static develop.p2p.lib.LearnMath.sigmoid;",
+    "qualified_code": "import static develop.p2p.lib.LearnMath.sigmoid;",
+    "method_name": "import"
+}

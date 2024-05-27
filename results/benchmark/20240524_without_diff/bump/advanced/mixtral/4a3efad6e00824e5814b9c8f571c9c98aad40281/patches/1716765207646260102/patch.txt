@@ -1,0 +1,9 @@
+import eu.europa.esig.dss.pades.CertificatePolicyId;
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+import eu.europa.esig.dss.pades.PAdESSignatureParameters.PAdESSignatureParametersBuilder;
+
+// ...
+
+PAdESSignatureParametersBuilder builder = new PAdESSignatureParametersBuilder(signatureParameters);
+builder.certificationPermission(CertificatePolicyId.CERT_POLICY_ID_316122);
+signatureParameters = builder.build();

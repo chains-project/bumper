@@ -1,0 +1,6 @@
+1c1
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import javax.net.ssl.SSLException;
+\ No newline at end of file

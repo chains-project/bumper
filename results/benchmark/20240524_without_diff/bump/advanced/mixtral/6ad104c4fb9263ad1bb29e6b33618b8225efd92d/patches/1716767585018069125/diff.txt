@@ -1,0 +1,22 @@
+1c1,2
+< // TODO: review this AI generated patch!
+---
+> import org.bouncycastle.crypto.io.CipherInputStream;
+> 
+6c7
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new org.bouncycastle.crypto.TlsFatalAlert(org.bouncycastle.crypto.TlsFatalAlert.bad_record_mac);
+7a9
+>     CipherInputStream cipherInputStream = new CipherInputStream(new java.io.ByteArrayInputStream(ciphertext), decryptCipher);
+9,10c11,17
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+<     return output;
+---
+>     int bytesRead = cipherInputStream.read(output);
+>     if (bytesRead == -1) {
+>         throw new java.io.IOException("Failed to decrypt ciphertext");
+>     }
+>     byte[] decryptedOutput = new byte[bytesRead];
+>     System.arraycopy(output, 0, decryptedOutput, 0, bytesRead);
+>     return decryptedOutput;

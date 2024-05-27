@@ -1,0 +1,19 @@
+1c1,14
+< import develop.p2p.lib.*;
+\ No newline at end of file
+---
+> import org.jetbrains.annotations.NotNull;
+> 
+> public class Detect {
+>     public void onEnable() {
+>         // Replace the failing import with the following:
+>         try {
+>             Class.forName("develop.p2p.lib.SomeClass");
+>         } catch (ClassNotFoundException e) {
+>             System.err.println("Error: develop.p2p.lib not found. Please add the missing dependency.");
+>             System.exit(1);
+>         }
+>         // ...
+>     }
+> }
+\ No newline at end of file

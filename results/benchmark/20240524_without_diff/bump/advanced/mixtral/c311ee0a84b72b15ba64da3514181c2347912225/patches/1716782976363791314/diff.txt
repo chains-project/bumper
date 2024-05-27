@@ -1,0 +1,26 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+< "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+---
+> "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+5a5,9
+>     final java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("^[a-zA-Z0-9][a-zA-Z0-9_-]{0,127}$");
+>     final java.util.regex.Matcher matcher = pattern.matcher(original);
+>     final boolean valid = matcher.matches();
+>     org.hamcrest.MatcherAssert.assertThat(valid, new org.hamcrest.core.IsEqual(false));
+>     try {
+7,9c11,19
+<     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual<>(false));
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(com.artipie.docker.error.InvalidTagNameException.class, tag::value);
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.MatcherAssert.CoreMatchers.<java.lang.String>allOf(new org.hamcrest.core.StringContains.StringContains(true, "Invalid tag"), new org.hamcrest.core.StringContains.StringContains(false, original)));
+---
+>         tag.value();
+>         org.junit.jupiter.api.Assertions.fail("Expected InvalidTagNameException to be thrown");
+>     } catch (com.artipie.docker.error.InvalidTagNameException e) {
+>         final java.lang.String message = e.getMessage();
+>         org.hamcrest.MatcherAssert.assertThat(message, new org.hamcrest.MatcherAssert.CoreMatchers().<java.lang.String>allOf(
+>             new org.hamcrest.core.StringContains.StringContains(true, "Invalid tag"),
+>             new org.hamcrest.core.StringContains.StringContains(false, original)
+>         ));
+>     }

@@ -1,0 +1,124 @@
+1,21c1,7
+< /**
+<      * AuraBotのテレポート。
+<      *
+<      * @param player    プレイヤー。
+<      * @param target    ターゲット。
+<      * @param arm       装備。
+<      * @param reachMode リーチモードかどうか。
+<      */
+<     private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode)
+<     {
+<         final double[] time = {0.0};
+<         final double radius = reachMode ? config.getDouble("npc.reachRange"): config.getDoubleList("npc.range")
+<             .get(new Random().nextInt(config.getDoubleList("npc.range").size()));
+< 
+<         WaveCreator ypp = new WaveCreator(10.0, 100.0, 10.0);
+< 
+<         final int[] count = {0};
+<         BukkitRunnable r = new BukkitRunnable()
+<         {
+<             public void run()
+<             {
+---
+> private static void auraBotTeleport(Player player, EntityPlayer target, ItemStack[] arm, boolean reachMode) {
+>     final double[] time = new double[]{ 0.0 };
+>     final double radius = (reachMode) ? ml.peya.plugins.Variables.config.getDouble("npc.reachRange") : ml.peya.plugins.Variables.config.getDoubleList("npc.range").get(new java.util.Random().nextInt(ml.peya.plugins.Variables.config.getDoubleList("npc.range").size()));
+>     WaveCreatorPlaceholder ypp = new WaveCreatorPlaceholder(10.0, 100.0, 10.0);
+>     final int[] count = new int[]{ 0 };
+>     BukkitRunnable r = new BukkitRunnable() {
+>         public void run() {
+23d8
+< 
+28,30d12
+<                 for (double i = 0; i < Math.PI * 2; i++)
+<                 {
+<                     double rangeTmp = radius;
+32,34c14,17
+<                     if (config.getBoolean("npc.wave"))
+<                         rangeTmp = new WaveCreator(radius - 0.1, radius, config.getDouble("npc.waveMin"))
+<                             .get(0.01, true);
+---
+>             for (double i = 0; i < (java.lang.Math.PI * 2); i++) {
+>                 double rangeTmp = radius;
+>                 if (ml.peya.plugins.Variables.config.getBoolean("npc.wave"))
+>                     rangeTmp = new WaveCreatorPlaceholder(radius - 0.1, radius, ml.peya.plugins.Variables.config.getDouble("npc.waveMin")).get(0.01, true);
+37,45c20
+<                     final Location n = new Location(
+<                         center.getWorld(),
+<                         auraBotXPos(time[0], rangeTmp + speed) + center.getX(),
+<                         center.getY() + new WaveCreator(1.0, 2.0, 0.0).get(0.01, count[0] < 20),
+<                         auraBotZPos(time[0], rangeTmp + speed) + center.getZ(),
+<                         (float) ypp.getStatic(),
+<                         (float) ypp.get(4.5, false)
+<                     );
+< 
+---
+>                 final Location n = new Location(center.getWorld(), ml.peya.plugins.Detect.NPCTeleport.auraBotXPos(time[0], rangeTmp + speed) + center.getX(), center.getY() + new WaveCreatorPlaceholder(1.0, 2.0, 0.0).get(0.01, count[0] < 20), ml.peya.plugins.Detect.NPCTeleport.auraBotZPos(time[0], rangeTmp + speed) + center.getZ(), ((float) (ypp.getStatic())), ((float) (ypp.get(4.5, false))));
+47,49c22
+<                     ((CraftPlayer) player).getHandle().playerConnection
+<                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+< 
+---
+>                 ((CraftPlayer) (player)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+51,62c24,28
+<                     new BukkitRunnable()
+<                     {
+<                         @Override
+<                         public void run()
+<                         {
+<                             Bukkit.getOnlinePlayers()
+<                                 .parallelStream()
+<                                 .filter(p -> p.hasPermission("psac.viewnpc"))
+<                                 .forEachOrdered(p ->
+<                                 {
+<                                     ((CraftPlayer) p).getHandle().playerConnection
+<                                         .sendPacket(new PacketPlayOutEntityTeleport(target));
+---
+>                 new BukkitRunnable() {
+>                     @java.lang.Override
+>                     public void run() {
+>                         Bukkit.getOnlinePlayers().parallelStream().filter(( p) -> p.hasPermission("psac.viewnpc")).forEachOrdered(( p) -> {
+>                             ((CraftPlayer) (p)).getHandle().playerConnection.sendPacket(new PacketPlayOutEntityTeleport(target));
+69,70c35,38
+<                     CheatDetectNowMeta meta = cheatMeta.getMetaByPlayerUUID(player.getUniqueId());
+<                     if (meta == null) continue;
+---
+>                 CheatDetectNowMeta meta = ml.peya.plugins.Variables.cheatMeta.getMetaByPlayerUUID(player.getUniqueId());
+>                 if (meta == null)
+>                     continue;
+> 
+73,75c41
+<                 time[0] += config.getDouble("npc.time") + (config.getBoolean("npc.speed.wave")
+<                     ? new WaveCreator(0.0, config.getDouble("npc.speed.waveRange"), 0 - config.getDouble("npc.speed.waveRange")).get(0.001, true)
+<                     : 0.0);
+---
+>             time[0] += ml.peya.plugins.Variables.config.getDouble("npc.time") + (ml.peya.plugins.Variables.config.getBoolean("npc.speed.wave") ? new WaveCreatorPlaceholder(0.0, ml.peya.plugins.Variables.config.getDouble("npc.speed.waveRange"), 0 - ml.peya.plugins.Variables.config.getDouble("npc.speed.waveRange")).get(0.001, true) : 0.0);
+79,84c45,47
+< 
+<         new BukkitRunnable()
+<         {
+<             @Override
+<             public void run()
+<             {
+---
+>     new BukkitRunnable() {
+>         @java.lang.Override
+>         public void run() {
+88c51,56
+<         }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * (config.getLong("npc.seconds")));
+---
+>     }.runTaskLater(PeyangSuperbAntiCheat.getPlugin(), 20 * ml.peya.plugins.Variables.config.getLong("npc.seconds"));
+> }
+> 
+> class WaveCreatorPlaceholder {
+>     public WaveCreatorPlaceholder(double d, double d1, double d2) {
+>     }
+89a58,64
+>     public double get(double d, boolean bln) {
+>         return 0;
+>     }
+> 
+>     public double getStatic() {
+>         return 0;
+>     }

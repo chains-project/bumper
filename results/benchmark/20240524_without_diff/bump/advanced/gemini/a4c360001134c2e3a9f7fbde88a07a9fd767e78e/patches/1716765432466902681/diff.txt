@@ -1,0 +1,16 @@
+2c2
+<         final String packagesToScan = System.getenv(PACKAGE_TO_SCAN);
+---
+>     String packagesToScan = System.getenv(com.thoughtworks.gauge.GaugeConstant.PACKAGE_TO_SCAN);
+4c4
+<             return new FilterBuilder().include(".+\\.class").apply(s);
+---
+>         return new org.reflections.util.FilterBuilder().include(".+\\.class").apply(s);
+6c6
+<         final String[] packages = packagesToScan.split(",");
+---
+>     String[] packages = packagesToScan.split(",");
+9c9
+<             if (new FilterBuilder().include(regex).apply(s)) {
+---
+>         if (new org.reflections.util.FilterBuilder().include(regex).apply(s)) {

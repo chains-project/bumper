@@ -1,0 +1,45 @@
+0a1,7
+> import org.junit.jupiter.api.Test;
+> import org.locationtech.jts.geom.*;
+> import org.locationtech.jts.noding.*;
+> import org.locationtech.jts.operation.polygonize.*;
+> import processing.core.PShape;
+> import java.util.*;
+> 
+2d8
+<         @Ignore
+6,9c12,14
+<                         List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         List<NodedSegmentString> segmentStrings = new ArrayList<>(111 + k);
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+13c18
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(( ss) -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+15,16c20
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+---
+>         Polygonizer polygonizerJTS = new Polygonizer();
+18,20c22,23
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>         nodedEdgesSet.forEach(( e) -> {
+>             LineString l = PGS.GEOM_FACTORY.createLineString(new Coordinate[]{ PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+23d25
+< 
+29d30
+< 
+31c32
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);
+34d34
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());

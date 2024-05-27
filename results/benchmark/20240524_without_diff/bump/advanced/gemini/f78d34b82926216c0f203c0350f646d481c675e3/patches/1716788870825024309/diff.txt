@@ -1,0 +1,13 @@
+1c1,8
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+> import static com.google.common.math.DoubleMath.exp;
+> 
+> public class Neuron {
+> 
+>     public double sigmoid(double value) {
+>         return 1.0 / (1.0 + exp(-value));
+>     }
+> }
+\ No newline at end of file

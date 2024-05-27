@@ -1,0 +1,23 @@
+1c1,18
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Test;
+> import static org.junit.Assert.assertTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void testMorphologyGroupShape() {
+>         boolean isJUnitVersion4OrHigher = false;
+>         try {
+>             Class.forName("org.junit.runner.JUnitCore");
+>             isJUnitVersion4OrHigher = true;
+>         } catch (ClassNotFoundException e) {
+>             // JUnit 3 or lower
+>         }
+>         assumeTrue(isJUnitVersion4OrHigher);
+> 
+>         // Rest of the test method implementation
+>     }
+> }
+\ No newline at end of file

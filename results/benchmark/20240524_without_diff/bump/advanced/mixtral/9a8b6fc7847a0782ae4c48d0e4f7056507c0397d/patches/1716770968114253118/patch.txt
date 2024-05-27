@@ -1,0 +1,8 @@
+import org.jasypt.password.PBEPasswordEncoder;
+
+// Change the import statement to use the non-Spring version of PBEPasswordEncoder
+// and initialize it as follows:
+
+PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+encoder.setAlgorithm("PBEWithMD5AndTripleDES");
+encoder.setPasswordCryptographer(new StringPBECryptographer());

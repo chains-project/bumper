@@ -1,0 +1,8 @@
+0a1
+> try {
+1a3,6
+> } catch (Exception e) {
+>     // Handle the missing dependency here
+>     System.out.println("Error importing MavenProject: " + e.getMessage());
+> }
+\ No newline at end of file

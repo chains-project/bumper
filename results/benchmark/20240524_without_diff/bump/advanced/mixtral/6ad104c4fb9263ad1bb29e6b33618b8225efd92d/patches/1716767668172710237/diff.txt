@@ -1,0 +1,18 @@
+2c2,12
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import java.io.IOException;
+> 
+> public class TlsFatalAlert {
+>     public enum AlertDescription { bad_record_mac }
+> 
+>     public TlsFatalAlert(AlertDescription description) {
+>         // Empty constructor
+>     }
+> }
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c16
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new TlsFatalAlert(TlsFatalAlert.AlertDescription.bad_record_mac);

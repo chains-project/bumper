@@ -1,0 +1,15 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+< "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+---
+> "01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" })
+7,9c6,9
+<     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual<>(false));
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(com.artipie.docker.error.InvalidTagNameException.class, tag::value);
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.MatcherAssert.CoreMatchers.<java.lang.String>allOf(new org.hamcrest.core.StringContains.StringContains(true, "Invalid tag"), new org.hamcrest.core.StringContains.StringContains(false, original)));
+---
+>     org.hamcrest.MatcherAssert.assertThat(tag.valid(), new org.hamcrest.core.IsEqual(java.lang.Boolean.FALSE));
+>     final java.lang.Class<com.artipie.docker.error.InvalidTagNameException> exceptionClass = com.artipie.docker.error.InvalidTagNameException.class;
+>     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(exceptionClass, tag::value);
+>     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.MatcherAssert.CoreMatchers().<java.lang.String>allOf(new org.hamcrest.core.StringContains.StringContains(java.lang.Boolean.TRUE, "Invalid tag"), new org.hamcrest.core.StringContains.StringContains(java.lang.Boolean.FALSE, original)));

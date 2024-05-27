@@ -1,0 +1,7 @@
+@org.junit.jupiter.api.Test
+void test_PGS_Morphology_round() {
+    boolean condition = GROUP_SHAPE.getChildCount() == 2;
+    org.junit.jupiter.api.Assertions.assertTrue(condition);
+    processing.core.PShape out = micycle.pgs.PGS_Morphology.round(GROUP_SHAPE, 0.5);
+    org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());
+}

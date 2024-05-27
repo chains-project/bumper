@@ -1,0 +1,11 @@
+1c1,6
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+> import java.lang.Math;
+> 
+> // Replace the failing import statement with the following line:
+> double sigmoid(double x) {
+>     return 1 / (1 + Math.exp(-x));
+> }
+\ No newline at end of file

@@ -1,0 +1,34 @@
+1d0
+< // TODO: review this AI generated patch!
+27c26
+<             org.bukkit.enchantment.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit NamespacedKey.minecraft("power"));
+---
+>             org.bukkit.enchantment.Enchantment enchantment = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+63c62
+<                     org.bukkit.enchantment.Enchantment enchantmentRate = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentRate = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+81c80
+<                     org.bukkit.enchantment.Enchantment enchantmentBook = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentBook = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+102c101
+<                     org.bukkit.enchantment.Enchantment enchantmentSign = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentSign = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+122c121
+<                     org.bukkit.enchantment.Enchantment enchantmentItem = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentItem = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+141c140
+<                     org.bukkit.enchantment.Enchantment enchantmentEntity = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentEntity = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));
+156c155
+<             if ((!targetPlayerUUID.equals("GLOBAL-TRANSLATE-ENABLED")) && ((targetPlayerUUID.equals(player.getUniqueId().toString()) && (player.hasPermission("worldwidechat.wwctco") || player.hasPermission("worldwidechat.wwctci"))) || ((!targetPlayerUUID.equals(player.getUniqueId().toString())) && (player.hasPermission("worldwidechat.wwctco.otherplayers") || player.hasPermission("worldwidechat.wwctci.otherplayers"))))) {
+---
+>             if ((!targetPlayerUUID.equals("GLOBAL-TRANSLATE-ENABLED")) && ((targetPlayerUUID.equals(player.getUniqueId().toString()) && (player.hasPermission("worldwidechat.wwctco") || player.hasPermission("worldwidechat.wwctci"))) || ((!targetPlayerUUID.equals(player.getUniqueId().toString())) && (player.hasPermission("worldwidechat.wwctco.otherplayers") || player.hasPermission("worldwidechat.wwctci.otherplayers")))) {
+161c160
+<                     org.bukkit.enchantment.Enchantment enchantmentChat = org.bukkit.enchantments.Enchantment.getByKey(org.bukkit.NamespacedKey.minecraft("power"));
+---
+>                     org.bukkit.enchantment.Enchantment enchantmentChat = org.bukkit.enchantments.Enchantment.getByKey(com.expl0itz.worldwidechat.inventory.wwctranslategui.NamespacedKey.minecraft("power"));

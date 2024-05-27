@@ -1,0 +1,58 @@
+0a1,16
+> import org.junit.jupiter.api.Test;
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.PrecisionModel;
+> import org.locationtech.jts.noding.NodedSegmentString;
+> import org.locationtech.jts.noding.SegmentString;
+> import processing.core.PShape;
+> import micycle.pgs.commons.PEdge;
+> import micycle.pgs.FastPolygonizer;
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.Random;
+> 
+2d17
+<         @Ignore
+4c19
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     Random r = new Random();
+7,9c22,23
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+11c25
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<SegmentString> nodedSS = FastPolygonizer.nodeSegmentStrings(segmentStrings);
+13c27
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(( ss) -> nodedEdges.add(new PEdge(FastPolygonizer.toPVector(ss.getCoordinate(0)), FastPolygonizer.toPVector(ss.getCoordinate(1)))));
+15,16c29
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+---
+>         final org.locationtech.jts.operation.polygonize.Polygonizer polygonizerJTS = new org.locationtech.jts.operation.polygonize.Polygonizer();
+18,20c31,32
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+---
+>         nodedEdgesSet.forEach(( e) -> {
+>             final LineString l = FastPolygonizer.GEOM_FACTORY.createLineString(new Coordinate[]{ FastPolygonizer.coordFromPVector(e.a), FastPolygonizer.coordFromPVector(e.b) });
+23d34
+< 
+29d39
+< 
+31c41
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);

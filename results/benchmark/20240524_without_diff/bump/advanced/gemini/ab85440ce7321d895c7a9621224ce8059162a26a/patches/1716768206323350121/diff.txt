@@ -1,0 +1,12 @@
+4,5c4,9
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+< }
+\ No newline at end of file
+---
+>   // TODO: This is a test method, and the exact implementation of the test will depend on the specific functionality being tested.
+>   // However, a common approach would be to create an instance of the class being tested, and then call the method that is expected to throw an exception.
+>   // The test would then assert that the exception is thrown, and that it is of the correct type.
+>   // For example:
+>   //
+>   // 
+\ No newline at end of file

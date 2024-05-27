@@ -1,0 +1,25 @@
+1,2c1,7
+< // TODO: review this AI generated patch!
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import java.security.NoSuchAlgorithmException;
+> import javax.crypto.BadPaddingException;
+> import javax.crypto.Cipher;
+> import javax.crypto.IllegalBlockSizeException;
+> import javax.crypto.NoSuchPaddingException;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+5,6c10,11
+<     if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>     if (!java.util.Arrays.equals(calculatedMAC, receivedMAC)) {
+>         throw new RuntimeException("Bad MAC");
+9c14,18
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+---
+>     try {
+>         decryptCipher.doFinal(ciphertext, 0, ciphertext.length, output, 0);
+>     } catch (IllegalBlockSizeException | BadPaddingException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

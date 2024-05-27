@@ -1,0 +1,13 @@
+import org.apache.maven.model.Project;
+
+public class AbstractThemeMojo {
+    // ...
+    protected Project currentProject;
+
+    protected void someMethod() {
+        // Use currentProject instead of MavenProject
+        currentProject = (Project) projectManager.readProject(new File(projectDirectory));
+        // ...
+    }
+    // ...
+}

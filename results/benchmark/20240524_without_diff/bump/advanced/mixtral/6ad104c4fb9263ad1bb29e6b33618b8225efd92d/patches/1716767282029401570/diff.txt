@@ -1,0 +1,29 @@
+1a2,28
+> 
+> // Add the following import statement
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> 
+> public class ChachaDecoder {
+>     // Existing code
+> 
+>     private void decode(InputStream input, byte[] output) throws IOException {
+>         // Existing code
+> 
+>         int macLength = mac.length;
+>         if (macLength > 0) {
+>             // Existing code
+> 
+>             if (!TlsUtils.isValidLabel(label)) {
+>                 throw new TlsFatalAlert(AlertDescription.internal_error,
+>                         "invalid label in MAC");
+>             }
+> 
+>             // Existing code
+>         }
+> 
+>         // Existing code
+>     }
+> 
+>     // Existing code
+> }
+\ No newline at end of file

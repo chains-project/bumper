@@ -1,0 +1,11 @@
+1c1,4
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assumptions.assumeTrue;
+> 
+> @org.junit.jupiter.api.Test
+4c7
+<                 PShape out = PGS_Morphology.simplifyVW(GROUP_SHAPE, 1);
+---
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.simplifyVW(GROUP_SHAPE, 1);

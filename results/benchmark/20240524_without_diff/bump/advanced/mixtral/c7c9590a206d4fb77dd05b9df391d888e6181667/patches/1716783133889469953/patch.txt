@@ -1,0 +1,15 @@
+import org.apache.maven.doxia.siterenderer.Renderer;
+import org.apache.maven.doxia.siterenderer.SiteRenderer;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+import org.apache.maven.doxia.tools.GenericSiteTool;
+
+// ...
+
+@Override
+protected void executeReport(Locale locale, File outputDirectory) throws MojoExecutionException {
+    // ...
+    SiteTool siteTool = new SiteTool();
+    SiteRenderer siteRenderer = siteTool.getSiteRenderer();
+    SiteRendererSink siteRendererSink = siteRenderer.getSiteRendererSink();
+    // ...
+}

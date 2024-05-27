@@ -1,0 +1,51 @@
+1,3c1,14
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+<         final LoaderOptions loadingConfig = new LoaderOptions();
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+> import java.io.BufferedReader;
+> import java.io.FileNotFoundException;
+> import java.io.FileReader;
+> import java.lang.reflect.TypeDescription;
+> import java.time.LocalDate;
+> import java.time.ZoneId;
+> 
+> import org.yaml.snakeyaml.DumperOptions;
+> import org.yaml.snakeyaml.LoaderOptions;
+> import org.yaml.snakeyaml.nodes.Node;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.representer.Representer;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.Yaml;
+4a16,18
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+>     final LoaderOptions loadingConfig = new LoaderOptions();
+>     loadingConfig.setResolver(new TrustedTagInspector());
+10,11c24,25
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+---
+>     final Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+14,18c28,31
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+---
+>             this.yamlConstructors.put(zoneIdTag, new com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct());
+>             this.yamlConstructors.put(localDateTag, new com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct());
+>         }
+>     };
+20d32
+< 
+26a39,45
+> 
+> static class TrustedTagInspector extends Resolver {
+>     @Override
+>     protected Node resolve(Tag tag) {
+>         return super.resolve(tag);
+>     }
+> }
+\ No newline at end of file

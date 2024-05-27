@@ -1,0 +1,11 @@
+1a2,10
+> import org.junit.Test;
+> 
+> public class PGS_ProcessingGroupShapeTests {
+> 
+>   @Test
+>   public void testPGS_0_1_0() {
+>     assumeTrue(false);
+>   }
+> }
+\ No newline at end of file

@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+7,8c6,7
+<     } catch (TTransportException e) {
+<         throw new RuntimeException(e);
+---
+>     } catch (org.apache.thrift.TTransportException e) {
+>         throw new java.lang.RuntimeException(e);

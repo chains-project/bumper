@@ -1,0 +1,7 @@
+0a1
+> public class YourClass {
+1a3,5
+> 
+>     // rest of your code
+> }
+\ No newline at end of file

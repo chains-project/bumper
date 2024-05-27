@@ -1,0 +1,24 @@
+import java.util.List;
+import java.util.Random;
+
+public class WaveCreatorPlaceholder {
+    public WaveCreatorPlaceholder(double min, double max, double step) {
+        // empty constructor
+    }
+
+    public double get(double step, boolean repeat) {
+        return 0;
+    }
+
+    public double get(double step, boolean repeat, List<Double> list) {
+        return 0;
+    }
+
+    public double getStatic() {
+        return 0;
+    }
+
+    public List<Double> get(double min, double max, double step) {
+        return null;
+    }
+}

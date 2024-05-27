@@ -1,0 +1,33 @@
+1,11c1,3
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+> @java.lang.Override
+> public void execute() throws org.apache.maven.plugin.MojoExecutionException {
+>     if (!canGenerateReport()) {
+15,26c7,9
+< 
+<         try
+<         {
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+<             Locale locale = Locale.getDefault();
+<             generate( sink, locale );
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+---
+>     try {
+>         org.apache.maven.reporting.MavenReportException e = new org.apache.maven.reporting.MavenReportException("An error has occurred in SCoverage report generation");
+>         throw new org.apache.maven.plugin.MojoExecutionException(e.getMessage(), e);

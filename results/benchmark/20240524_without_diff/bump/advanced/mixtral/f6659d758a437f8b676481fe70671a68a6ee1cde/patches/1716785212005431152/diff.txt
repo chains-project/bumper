@@ -1,0 +1,84 @@
+1,3c1,15
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+<         final LoaderOptions loadingConfig = new LoaderOptions();
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+> import org.yaml.snakeyaml.LoaderOptions;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.representer.Representer;
+> import org.yaml.snakeyaml.DumperOptions;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.TypeDescription;
+> import org.yaml.snakeyaml.nodes.MappingNode;
+> import org.yaml.snakeyaml.nodes.Node;
+> import org.yaml.snakeyaml.nodes.NodeTuple;
+> import org.yaml.snakeyaml.nodes.ScalarNode;
+> import java.time.ZoneId;
+> import java.time.LocalDate;
+> import java.io.BufferedReader;
+> import java.io.FileReader;
+> import java.io.IOException;
+5,6c17,20
+<         final Representer representer = new Representer(new DumperOptions());
+<         final Tag zoneIdTag = new Tag("!ZoneId");
+---
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+>     LoaderOptions loadingConfig = new LoaderOptions();
+>     Representer representer = new Representer(new DumperOptions());
+>     Tag zoneIdTag = new Tag("!ZoneId");
+8c22
+<         final Tag localDateTag = new Tag("!LocalDate");
+---
+>     Tag localDateTag = new Tag("!LocalDate");
+10,18c24,34
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+---
+>     Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+>             addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+>             addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+>             yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+>             yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+>         }
+>     };
+>     constructor.addTypeDescription(new TypeDescription(MappingNode.class, Node.class));
+>     constructor.addTypeDescription(new TypeDescription(NodeTuple.class, Node.class));
+>     constructor.addTypeDescription(new TypeDescription(ScalarNode.class, String.class));
+20d35
+< 
+22,23c37,38
+<             return yaml.load(new BufferedReader(new FileReader(path)));
+<         } catch (FileNotFoundException e) {
+---
+>         return clazz.cast(yaml.load(new BufferedReader(new FileReader(path))));
+>     } catch (IOException e) {
+26a42,61
+> 
+> private static class JavaZoneIdConstruct implements Construct {
+>     @Override
+>     public Object construct(Node node) {
+>         if (node.getTag().equals(zoneIdTag)) {
+>             return ZoneId.of(node.getScalar().getValue());
+>         }
+>         return null;
+>     }
+> }
+> 
+> private static class JavaLocalDateConstruct implements Construct {
+>     @Override
+>     public Object construct(Node node) {
+>         if (node.getTag().equals(localDateTag)) {
+>             return LocalDate.parse(node.getScalar().getValue());
+>         }
+>         return null;
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,56 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.CoordinateList;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.GeometryFactory;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.noding.NodedSegmentString;
+import org.locationtech.jts.noding.SegmentString;
+
+import processing.core.PShape;
+import micycle.pgs.commons.PEdge;
+import micycle.pgs.FastPolygonizer;
+
+@Test
+void testRobustnessRandomly() {
+    GeometryFactory GEOM_FACTORY = new GeometryFactory();
+    ThreadLocalRandom random = ThreadLocalRandom.current();
+    for (int k = 0; k < 100; k++) {
+        List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+        for (int i = 0; i < (111 + k); i++) {
+            CoordinateList coordinateList = new CoordinateList(2);
+            coordinateList.add(new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 10000));
+            coordinateList.add(new Coordinate(random.nextDouble() * 10000, random.nextDouble() * 13337));
+            segmentStrings.add(new NodedSegmentString(coordinateList, null));
+        }
+        Collection<SegmentString> nodedSS = FastPolygonizer.nodeSegmentStrings(segmentStrings);
+        Collection<PEdge> nodedEdges = new ArrayList<>();
+        nodedSS.forEach((ss) -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+        Collection<PEdge> nodedEdgesSet = new HashSet<>(nodedEdges);
+        Envelope env = new Envelope();
+        for (SegmentString ss : nodedSS) {
+            env.expandToInclude(ss.getEnvelopeInternal());
+        }
+        List<LineString> lines = nodedEdgesSet.stream().map((e) -> {
+            Coordinate[] coords = new Coordinate[2];
+            coords[0] = PGS.coordFromPVector(e.a);
+            coords[1] = PGS.coordFromPVector(e.b);
+            return GEOM_FACTORY.createLineString(coords);
+        }).collect(Collectors.toList());
+        FastPolygonizer polygonizer = new FastPolygonizer(env);
+        polygonizer.add(lines);
+        Collection<Polygon> JTS = polygonizer.getPolygons();
+        PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);
+        assertEquals(JTS.size(), FP.getChildCount());
+    }
+}

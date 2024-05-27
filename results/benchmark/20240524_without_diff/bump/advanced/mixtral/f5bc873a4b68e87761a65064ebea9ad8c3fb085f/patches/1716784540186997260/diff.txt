@@ -1,0 +1,13 @@
+1a2,12
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.repository.RepositorySystem;
+> import org.eclipse.aether.RepositorySystemSession;
+> import org.eclipse.aether.internal.impl.DefaultRepositorySystemSession;
+> 
+> import java.io.File;
+> 
+> public MavenProject getMavenProject(File pomFile, RepositorySystem repositorySystem, RepositorySystemSession repositorySystemSession) {
+>     MavenProjectBuilder projectBuilder = repositorySystem.newProjectBuilder();
+>     return projectBuilder.buildProject(pomFile, repositorySystemSession);
+> }
+\ No newline at end of file

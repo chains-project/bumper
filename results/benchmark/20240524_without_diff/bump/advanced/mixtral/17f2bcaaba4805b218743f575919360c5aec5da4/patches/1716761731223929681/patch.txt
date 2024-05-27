@@ -1,0 +1,5 @@
+import org.junit.Assert;
+
+// ...
+
+assertEquals("Ensure the message is as expected", expectedMessage, actualMessage);

@@ -1,0 +1,14 @@
+1c1,9
+< import develop.p2p.lib.WaveCreator;
+\ No newline at end of file
+---
+> import ml.peya.plugins.Objects.Decorations;
+> 
+> public class WaveCreator {
+> 
+>     public static void main(String[] args) {
+>         Decorations decorations = new Decorations();
+>         decorations.createDecoration();
+>     }
+> }
+\ No newline at end of file

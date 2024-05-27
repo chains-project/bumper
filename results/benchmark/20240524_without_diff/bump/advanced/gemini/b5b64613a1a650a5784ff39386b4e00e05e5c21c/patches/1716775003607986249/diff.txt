@@ -1,0 +1,16 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2
+<     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request;
+---
+>     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();
+5c4
+<         if ((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isEmpty(siteName)) || (!org.apache.commons.lang3.StringUtils.isEmpty(cityName)))) {
+---
+>         if (((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isEmpty(siteName))) || (!org.apache.commons.lang3.StringUtils.isEmpty(cityName))) {
+8c7
+<         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = org.jfrog.hudson.pipeline.common.executors.SerializationUtils.createMapper();
+11d9
+<         request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();

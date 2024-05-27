@@ -1,0 +1,7 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// Add the following import statement
+import org.bouncycastle.crypto.tls.impl.TlsUtils;
+
+// Replace the line that causes the error with the following code
+TlsUtils.checkVersion(peerVersion, true, "server");

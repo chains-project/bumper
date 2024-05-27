@@ -1,0 +1,26 @@
+import java.io.IOException;
+
+public class ChachaDecoder {
+    // ...
+
+    private void decode(InputStream input, ByteQueue output) throws IOException {
+        // ...
+        try {
+            // Replace the missing dependency with a mocked version
+            TlsFatalAlert fatalAlert = new TlsFatalAlert((short) 10);
+            // ...
+        } catch (IllegalStateException e) {
+            // ...
+        }
+    }
+
+    // ...
+
+    private static class TlsFatalAlert {
+        private short alertDescription;
+
+        public TlsFatalAlert(short alertDescription) {
+            this.alertDescription = alertDescription;
+        }
+    }
+}

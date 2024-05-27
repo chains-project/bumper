@@ -1,0 +1,39 @@
+1c1,8
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+---
+> import com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct;
+> import com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct;
+> import org.yaml.snakeyaml.*;
+> import org.yaml.snakeyaml.nodes.*;
+> import java.io.*;
+> import java.time.*;
+> 
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+4d10
+< 
+10d15
+< 
+12,16c17,20
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+---
+>         addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+>         addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+>         yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+>         yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+18d21
+< 
+20d22
+< 
+26a29,35
+> 
+> static class TrustedTagInspector extends SafeConstructor.SafeTagInspector {
+>     @Override
+>     public boolean isTrusted(Tag tag) {
+>         return true;
+>     }
+> }
+\ No newline at end of file

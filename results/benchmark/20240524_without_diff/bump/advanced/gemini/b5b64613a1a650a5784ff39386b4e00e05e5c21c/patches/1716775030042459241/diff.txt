@@ -1,0 +1,8 @@
+5c5
+<         if ((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isEmpty(siteName)) || (!org.apache.commons.lang3.StringUtils.isEmpty(cityName)))) {
+---
+>         if ((!org.apache.commons.collections.CollectionUtils.isEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isEmpty(siteName)) || (!org.apache.commons.lang3.StringUtils.isEmpty(cityName))) {
+8c8
+<         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = org.jfrog.hudson.pipeline.common.executors.SerializationUtils.createMapper();

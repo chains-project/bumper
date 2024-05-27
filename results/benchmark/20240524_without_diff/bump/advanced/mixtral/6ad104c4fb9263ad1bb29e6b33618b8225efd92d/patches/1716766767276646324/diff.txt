@@ -1,0 +1,28 @@
+1c1,23
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.engines.ChaChaEngine;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.crypto.params.ParametersWithIV;
+> 
+> import java.nio.ByteBuffer;
+> import java.security.SecureRandom;
+> 
+> public byte[] decode(byte[] encryptedData, byte[] key) {
+>     SecureRandom random = new SecureRandom();
+>     byte[] nonce = new byte[12];
+>     random.nextBytes(nonce);
+> 
+>     ChaChaEngine engine = new ChaChaEngine();
+>     engine.init(true, new KeyParameter(key), new ParametersWithIV(new KeyParameter(key), nonce));
+> 
+>     ByteBuffer byteBuffer = ByteBuffer.wrap(encryptedData);
+>     byte[] decryptedData = new byte[byteBuffer.remaining()];
+>     byteBuffer.get(decryptedData);
+> 
+>     engine.processBytes(decryptedData, 0, decryptedData.length, decryptedData, 0);
+> 
+>     return decryptedData;
+> }
+\ No newline at end of file

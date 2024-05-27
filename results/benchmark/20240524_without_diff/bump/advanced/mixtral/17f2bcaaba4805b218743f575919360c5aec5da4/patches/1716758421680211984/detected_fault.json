@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1982787818,
+    "in_class_code": null,
+    "qualified_in_class_code": null,
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class Assume\n  location: package org.junit\n",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/PGS_ProcessingGroupShapeTests.java:[3,24] cannot find symbol",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/PGS_ProcessingGroupShapeTests.java",
+        "client_line_position": "3"
+    },
+    "client_end_line_number": 3,
+    "client_line_number": 3,
+    "method_code": "import static org.junit.Assume.assumeTrue;",
+    "qualified_code": "import static org.junit.Assume.assumeTrue;",
+    "method_name": "import"
+}

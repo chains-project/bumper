@@ -1,0 +1,28 @@
+1a2,27
+> 
+> // Add the following import statement
+> import org.bouncycastle.tls.TlsUtils;
+> 
+> public class ChachaDecoder {
+>     // Existing code...
+> 
+>     private void decodeHandshakeMessageType(TlsContext context, InputStream input) throws IOException {
+>         // Existing code...
+> 
+>         // Replace the following line:
+>         // int messageType = input.read();
+> 
+>         // With the following block:
+>         int messageType = -1;
+>         try {
+>             messageType = TlsUtils.readUint8(input);
+>         } catch (TlsFatalAlertException e) {
+>             // Handle the exception appropriately
+>         }
+> 
+>         // Existing code...
+>     }
+> 
+>     // Existing code...
+> }
+\ No newline at end of file

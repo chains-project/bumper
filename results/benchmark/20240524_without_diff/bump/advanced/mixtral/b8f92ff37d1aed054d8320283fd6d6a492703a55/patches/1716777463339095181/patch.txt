@@ -1,0 +1,6 @@
+import org.apache.maven.shared.utils.os.LinuxDirectoryScanner;
+
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    LinuxDirectoryScanner directoryScanner = new LinuxDirectoryScanner(testSrcFolder);
+    return directoryScanner.scan().getIncludedFiles();
+}

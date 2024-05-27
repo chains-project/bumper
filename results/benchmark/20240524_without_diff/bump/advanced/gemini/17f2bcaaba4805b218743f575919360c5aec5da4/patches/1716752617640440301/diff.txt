@@ -1,0 +1,14 @@
+1c1,9
+< import static org.junit.Assert.assertTrue;
+\ No newline at end of file
+---
+> import static org.junit.Assert.*;
+> 
+> public class PGS_MeshingTests {
+> 
+>     @org.junit.Test
+>     public void testMeshing() {
+>         assertTrue(true);
+>     }
+> }
+\ No newline at end of file

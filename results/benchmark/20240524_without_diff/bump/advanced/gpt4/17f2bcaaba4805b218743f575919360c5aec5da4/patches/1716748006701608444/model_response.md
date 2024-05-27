@@ -1,0 +1,7 @@
+```java
+import org.junit.Assume;
+
+public void method() {
+    Assume.assumeTrue(condition);
+}
+```

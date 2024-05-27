@@ -1,0 +1,12 @@
+0a1
+> import ml.peya.plugins.Objects.Decorations;
+1a3,10
+> 
+> public class Decorations {
+> 
+>     public static void main(String[] args) {
+>         WaveCreator waveCreator = new WaveCreator();
+>         waveCreator.createWaveFile(args[0], args[1]);
+>     }
+> }
+\ No newline at end of file

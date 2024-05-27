@@ -1,0 +1,15 @@
+5,7c5,14
+<     final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());
+<     org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.StringContains(true, "Unsupported reference")++
+<             .and(new org.hamcrest.core.StringContains(false, string)));
+---
+>     final java.lang.Throwable throwable;
+>     if (string.isEmpty()) {
+>         throwable = new java.lang.IllegalArgumentException("String cannot be empty");
+>     } else if (string.contains(":")) {
+>         throwable = new java.lang.IllegalArgumentException("String cannot contain colons");
+>     } else if (!string.matches("\\d+(\\.\\d+)?")) {
+>         throwable = new java.lang.IllegalArgumentException("String must be a number");
+>     } else {
+>         throwable = null;
+>     }

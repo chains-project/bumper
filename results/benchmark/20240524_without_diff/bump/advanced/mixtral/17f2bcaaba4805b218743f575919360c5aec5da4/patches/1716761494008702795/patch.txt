@@ -1,0 +1,11 @@
+import org.junit.Test;
+import static org.junit.Assert.assertTrue;
+
+public class PGS_MorphologyGroupShapeTests {
+  @Test
+  public void testMorphologyGroupShape() {
+    boolean isJUnitVersion4 = assertTrue(org.junit.version.JUnitVersion.id().startsWith("4."));
+    assumeTrue(isJUnitVersion4);
+    // rest of the test method
+  }
+}

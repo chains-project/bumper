@@ -1,0 +1,34 @@
+import org.bouncycastle.crypto.engines.ChaChaEngine;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.ParametersWithIV;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.security.SecureRandom;
+
+public class ChachaDecoder {
+    private static final int NONCE_LENGTH = 12;
+    private static final int TAG_LENGTH = 16;
+
+    public byte[] decode(byte[] encryptedData, byte[] key) {
+        SecureRandom random = new SecureRandom();
+        byte[] nonce = new byte[NONCE_LENGTH];
+        random.nextBytes(nonce);
+
+        ChaChaEngine engine = new ChaChaEngine();
+        engine.init(true, new KeyParameter(key));
+
+        ParametersWithIV parameters = new ParametersWithIV(new KeyParameter(key), nonce);
+        engine.init(true, parameters);
+
+        ByteBuffer buffer = ByteBuffer.allocate(encryptedData.length - TAG_LENGTH);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        buffer.put(encryptedData, 0, encryptedData.length - TAG_LENGTH);
+        buffer.flip();
+
+        byte[] decryptedData = new byte[buffer.remaining()];
+        engine.processBytes(decryptedData, 0, decryptedData.length, buffer);
+
+        return decryptedData;
+    }
+}

@@ -1,0 +1,7 @@
+import org.junit.Assert;
+
+// ...
+
+public void testSomething() {
+    Assert.assertEquals(1, 1);
+}

@@ -1,0 +1,10 @@
+import org.apache.maven.surefire.api.testset.TestFileSet;
+import org.apache.maven.surefire.api.testset.TestFileSetBuilder;
+
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    TestFileSetBuilder builder = new TestFileSetBuilder();
+    TestFileSet testFileSet = builder.testFileSet(testSrcFolder).build();
+    TestListResolver testListResolver = new TestListResolver(testFileSet);
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, testListResolver.getIncludes());
+    return directoryScanner.scan().getClasses();
+}

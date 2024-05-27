@@ -1,0 +1,11 @@
+1c1,6
+< import static develop.p2p.lib.LearnMath.sigmoid;
+\ No newline at end of file
+---
+> import static java.lang.Math.exp;
+> import static java.lang.Math.pow;
+> 
+> public static double sigmoid(double x) {
+>     return 1.0 / (1.0 + exp(-x));
+> }
+\ No newline at end of file

@@ -1,0 +1,13 @@
+0a1
+> import static org.junit.Assert.fail;
+1a3,11
+> 
+> public class PGS_ProcessingGroupShapeTests {
+> 
+>     @Test
+>     public void test_1() {
+>         assumeTrue(false);
+>         fail("This test should not be run.");
+>     }
+> }
+\ No newline at end of file

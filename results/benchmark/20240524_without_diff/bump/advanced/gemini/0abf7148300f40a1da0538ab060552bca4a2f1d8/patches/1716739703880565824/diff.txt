@@ -1,0 +1,12 @@
+9,11c9,15
+<                 textField.getLineBox().getPen().setLineWidth(border.getLineWidth());
+<                 textField.getLineBox().getPen().setLineColor(border.getLineColor());
+<                 textField.getLineBox().getPen().setLineStyle(border.getLineStyle().getLineStyleEnum());
+---
+>                 final float lineWidth = border.getLineWidth();
+>                 final int lineColor = border.getLineColor();
+>                 final int lineStyle = border.getLineStyle().getLineStyleEnum();
+>                 
+>                 textField.getLineBox().getPen().setLineWidth(lineWidth);
+>                 textField.getLineBox().getPen().setLineColor(lineColor);
+>                 textField.getLineBox().getPen().setLineStyle(lineStyle);

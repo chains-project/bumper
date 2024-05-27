@@ -1,0 +1,2 @@
+0a1
+> import static org.junit.Assert.assertTrue;

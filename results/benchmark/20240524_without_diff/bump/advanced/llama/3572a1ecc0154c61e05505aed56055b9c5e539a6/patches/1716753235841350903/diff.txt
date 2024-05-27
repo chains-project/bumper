@@ -1,0 +1,8 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4,6
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory().getProtocol(new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayOutputStream())));
+---
+>         org.apache.thrift.protocol.TProtocolFactory factory = new org.apache.thrift.protocol.TBinaryProtocol.Factory();
+>         org.apache.thrift.transport.TTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new java.io.ByteArrayOutputStream());
+>         return new org.apache.thrift.TDeserializer(factory.getProtocol(transport));

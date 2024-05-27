@@ -1,0 +1,18 @@
+import org.jasypt.digest.StandardStringDigester;
+
+public class GeoStoreDigestPasswordEncoder {
+    private StandardStringDigester digester;
+
+    public GeoStoreDigestPasswordEncoder() {
+        this.digester = new StandardStringDigester();
+        this.digester.setAlgorithm("SHA-256");
+    }
+
+    public String encode(String rawPassword) {
+        return this.digester.digest(rawPassword);
+    }
+
+    public boolean matches(String rawPassword, String encodedPassword) {
+        return encodedPassword.equals(this.digester.digest(rawPassword));
+    }
+}

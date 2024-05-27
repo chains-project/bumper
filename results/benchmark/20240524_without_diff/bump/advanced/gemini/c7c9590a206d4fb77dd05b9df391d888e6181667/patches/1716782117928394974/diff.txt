@@ -1,0 +1,4 @@
+10a11,13
+>     } catch (org.apache.maven.reporting.MavenReportException e) {
+>         getLog().error(e.getMessage(), e);
+>     } finally {

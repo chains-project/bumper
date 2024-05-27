@@ -1,0 +1,9 @@
+1c1,2
+< // TODO: review this AI generated patch!
+---
+> import javax.crypto.BadPaddingException;
+> 
+6c7
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new BadPaddingException("Bad MAC");

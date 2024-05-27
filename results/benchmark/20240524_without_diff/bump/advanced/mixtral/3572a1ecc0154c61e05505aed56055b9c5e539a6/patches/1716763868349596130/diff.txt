@@ -1,0 +1,10 @@
+3c3,9
+<       return new TDeserializer(new TCompactProtocol.Factory());
+---
+>     TDeserializer deserializer;
+>     try {
+>         deserializer = new TDeserializer(new TCompactProtocol.Factory());
+>     } catch (TTransportException e) {
+>         throw new RuntimeException(e);
+>     }
+>     return deserializer;

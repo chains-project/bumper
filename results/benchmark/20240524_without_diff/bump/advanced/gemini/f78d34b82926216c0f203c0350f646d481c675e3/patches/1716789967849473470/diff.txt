@@ -1,0 +1,2 @@
+0a1
+> import static develop.p2p.lib.LearnMath.sigmoid;

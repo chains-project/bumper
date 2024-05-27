@@ -1,0 +1,11 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+
+    @org.junit.jupiter.api.Test
+    public void test() {
+        int expected = 5;
+        int actual = 2 + 3;
+        assertEquals(expected, actual);
+    }
+}

@@ -1,0 +1,82 @@
+Here's the proposed patch for the given client code:
+
+```java
+import org.junit.jupiter.api.Test;
+import org.locationtech.jts.geom.Coordinate;
+import org.locationtech.jts.geom.LineString;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.PrecisionModel;
+import org.locationtech.jts.noding.NodedSegmentString;
+import org.locationtech.jts.noding.SegmentString;
+import processing.core.PShape;
+import micycle.pgs.commons.PEdge;
+import micycle.pgs.FastPolygonizer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+
+@Test
+void testRobustnessRandomly() {
+    Random r = new Random(0);
+    for (int k = 0; k < 100; k++) {
+        List<SegmentString> segmentStrings = new ArrayList<>(111 + k);
+        for (int i = 0; i < (111 + k); i++) {
+            segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+        }
+        Collection<SegmentString> nodedSS = FastPolygonizer.nodeSegmentStrings(segmentStrings);
+        Collection<PEdge> nodedEdges = new ArrayList<>();
+        nodedSS.forEach(( ss) -> nodedEdges.add(new PEdge(FastPolygonizer.toPVector(ss.getCoordinate(0)), FastPolygonizer.toPVector(ss.getCoordinate(1)))));
+        Collection<PEdge> nodedEdgesSet = new HashSet<>(nodedEdges);
+        final org.locationtech.jts.operation.polygonize.Polygonizer polygonizerJTS = new org.locationtech.jts.operation.polygonize.Polygonizer();
+        polygonizerJTS.setCheckRingsValid(false);
+        nodedEdgesSet.forEach(( e) -> {
+            final LineString l = FastPolygonizer.GEOM_FACTORY.createLineString(new Coordinate[]{ FastPolygonizer.coordFromPVector(e.a), FastPolygonizer.coordFromPVector(e.b) });
+            polygonizerJTS.add(l);
+        });
+        long t1 = System.currentTimeMillis();
+        @SuppressWarnings("unchecked")
+        Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+        long t2 = System.currentTimeMillis();
+        long timeJTS = t2 - t1;
+        t1 = System.currentTimeMillis();
+        PShape FP = FastPolygonizer.polygonize(nodedEdgesSet);
+        t2 = System.currentTimeMillis();
+        long timeFP = t2 - t1;
+        // System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+        assertEquals(JTS.size(), FP.getChildCount());
+    }
+}
+```
+
+The changes are as follows:
+
+1. Imported the required classes.
+2. Removed `@micycle.pgs.Ignore` as it is causing the error.
+3. Replaced all occurrences of `PGS` with `FastPolygonizer`.
+4. Replaced all occurrences of `it.unimi.dsi.util.XoRoShiRo128PlusRandom` with `java.util.Random`.
+5. Replaced all occurrences of `micycle.pgs.commons.PEdge` with `PEdge`.
+6. Replaced all occurrences of `micycle.pgs.commons.coordFromPVector` with `FastPolygonizer.coordFromPVector`.
+7. Replaced all occurrences of `micycle.pgs.commons.toPVector` with `FastPolygonizer.toPVector`.
+8. Replaced all occurrences of `micycle.pgs.GEOM_FACTORY` with `FastPolygonizer.GEOM_FACTORY`.
+9. Replaced all occurrences of `micycle.pgs.POLYGONIZER` with `org.locationtech.jts.operation.polygonize.Polygonizer`.
+10. Replaced all occurrences of `micycle.pgs.nodedEdgesSet` with `nodedEdgesSet`.
+11. Replaced all occurrences of `micycle.pgs.nodedSS` with `nodedSS`.
+12. Replaced all occurrences of `micycle.pgs.segmentStrings` with `segmentStrings`.
+13. Replaced all occurrences of `micycle.pgs.r` with `r`.
+14. Replaced all occurrences of `micycle.pgs.JTS` with `JTS`.
+15. Replaced all occurrences of `micycle.pgs.FP` with `FP`.
+16. Replaced all occurrences of `micycle.pgs.timeJTS` with `timeJTS`.
+17. Replaced all occurrences of `micycle.pgs.timeFP` with `timeFP`.
+18. Replaced all occurrences of `micycle.pgs.nodedEdges` with `nodedEdges`.
+19. Replaced all occurrences of `micycle.pgs.nodedStrings` with `segmentStrings`.
+20. Replaced `micycle.pgs.POLYGON_FACTORY` with `FastPolygonizer.GEOM_FACTORY`.
+21. Replaced `micycle.pgs.nodedEdgesSet` with `nodedEdgesSet`.
+22. Replaced `micycle.pgs.nodedSS` with `nodedSS`.
+23. Replaced `micycle.pgs.segmentStrings` with `segmentStrings`.
+24. Replaced `micycle.pgs.r` with `r`.
+25. Replaced `micycle.pgs.JTS` with `JTS`.
+26. Replaced `micycle.pgs.FP` with `FP`.
+27. Replaced `micycle.pgs.timeJTS` with `timeJTS`.
+28. Replaced `micycle.pgs.timeFP` with `timeFP`.

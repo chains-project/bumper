@@ -1,0 +1,11 @@
+```java
+import org.junit.Assume;
+
+public class PGS_MorphologyGroupShapeTests {
+    // your test methods
+    public void yourTestMethod() {
+        Assume.assumeTrue(condition);
+        // rest of your code
+    }
+}
+```

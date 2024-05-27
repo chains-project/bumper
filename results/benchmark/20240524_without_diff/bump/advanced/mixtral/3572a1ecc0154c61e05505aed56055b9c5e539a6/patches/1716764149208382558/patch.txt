@@ -1,0 +1,10 @@
+@Override
+protected TDeserializer initialValue() {
+    TDeserializer deserializer;
+    try {
+        deserializer = new TDeserializer(new TCompactProtocol.Factory());
+    } catch (org.apache.thrift.TTransportException e) {
+        throw new java.lang.RuntimeException(e);
+    }
+    return deserializer;
+}

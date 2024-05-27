@@ -1,0 +1,15 @@
+import org.bouncycastle.crypto.engines.ChaChaEngine;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.params.ParametersWithIV;
+
+public class ChachaDecoder {
+    // ... other methods ...
+
+    public void decode(byte[] input, byte[] output) throws TlsFatalAlert {
+        ChaChaEngine engine = new ChaChaEngine();
+        KeyParameter keyParam = new KeyParameter(new byte[32]);
+        ParametersWithIV params = new ParametersWithIV(keyParam, new byte[12]);
+        engine.init(false, params);
+        engine.processBlock(input, 0, output, 0, input.length);
+    }
+}

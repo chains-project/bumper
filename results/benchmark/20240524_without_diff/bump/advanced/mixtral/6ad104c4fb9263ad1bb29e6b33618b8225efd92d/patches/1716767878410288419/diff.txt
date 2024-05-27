@@ -1,0 +1,27 @@
+2,6c2,16
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+<     org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+<     byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+<     if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+> import javax.crypto.Cipher;
+> import javax.crypto.spec.IvParameterSpec;
+> import javax.crypto.spec.SecretKeySpec;
+> import java.security.GeneralSecurityException;
+> import java.util.Base64;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws GeneralSecurityException {
+>     Cipher decryptCipher = Cipher.getInstance("ChaCha20-Poly1305");
+>     SecretKeySpec macKey = new SecretKeySpec(initRecordMAC().getEncoded(), "HmacSHA256");
+>     IvParameterSpec iv = new IvParameterSpec(additionalData);
+>     decryptCipher.init(Cipher.DECRYPT_MODE, macKey, iv);
+>     byte[] decodedCiphertext = Base64.getDecoder().decode(new String(ciphertext));
+>     byte[] calculatedMAC = hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, decodedCiphertext);
+>     if (!java.util.Arrays.equals(calculatedMAC, receivedMAC)) {
+>         throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+8,9c18
+<     byte[] output = new byte[ciphertext.length];
+<     decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+---
+>     byte[] output = decryptCipher.doFinal(decodedCiphertext);

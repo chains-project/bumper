@@ -1,0 +1,19 @@
+1c1,14
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.text.StrongTextEncryptor;
+> 
+> public class GeoStorePBEPasswordEncoder {
+>     private StrongTextEncryptor encryptor = new StrongTextEncryptor();
+> 
+>     // other code
+> 
+>     public String encode(String rawPass) {
+>         encryptor.setPassword("my-secret-password");
+>         return encryptor.encrypt(rawPass);
+>     }
+> 
+>     // other code
+> }
+\ No newline at end of file
