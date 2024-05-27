@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlertReason;
+
+// ...
+
+try {
+    // ...
+} catch (Exception e) {
+    throw new TlsFatalAlert(TlsFatalAlertReason.INTERNAL_ERROR);
+}

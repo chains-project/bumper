@@ -1,0 +1,29 @@
+import org.jasypt.util.password.PasswordEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Objects;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+
+    private PasswordEncryptor encryptor = new PasswordEncryptor();
+    private TextEncryptor textEncryptor = new org.jasypt.util.text.BasicTextEncryptor();
+
+    @Override
+    public String encode(CharSequence rawPassword) {
+        return encryptor.encryptPassword(rawPassword.toString());
+    }
+
+    @Override
+    public boolean matches(CharSequence rawPassword, String encodedPassword) {
+        return encryptor.checkPassword(rawPassword.toString(), encodedPassword);
+    }
+
+    @Override
+    public boolean upgradeEncoding(String encodedPassword) {
+        // Not needed in this example
+        return false;
+    }
+
+    // Add setter methods for TextEncryptor and PasswordEncryptor if needed
+}

@@ -1,0 +1,4 @@
+14c14
+<             reg.put(contextScope, group);
+---
+>             ++reg.put((MOScope) contextScope, group);

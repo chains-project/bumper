@@ -1,0 +1,8 @@
+import org.apache.maven.project.MavenProject;
+import org.eclipse.mylyn.github.github.GitHubProject;
+
+public MavenProject getProject() {
+    // Use a placeholder GitHubProject object as a workaround for the missing MavenProject
+    GitHubProject githubProject = new GitHubProject();
+    return (MavenProject) githubProject;
+}

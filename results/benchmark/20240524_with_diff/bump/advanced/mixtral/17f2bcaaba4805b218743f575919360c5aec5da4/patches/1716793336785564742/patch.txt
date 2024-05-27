@@ -1,0 +1,31 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testSize() {
+        // Initialize your data structure here
+        // ...
+
+        // Calculate the expected size
+        int expectedSize = ...; // calculate the expected size based on your data structure
+
+        // Call the size method and assert the result
+        int actualSize = 0;
+        if (dataStructure instanceof org.tinspin.index.PointIndexMMWrapper) {
+            actualSize = ((org.tinspin.index.PointIndexMMWrapper) dataStructure).size();
+        } else if (dataStructure instanceof org.tinspin.index.phtree.PHTreeMMP) {
+            actualSize = ((org.tinspin.index.phtree.PHTreeMMP) dataStructure).size();
+        } else if (dataStructure instanceof org.tinspin.index.util.MinHeap) {
+            actualSize = ((org.tinspin.index.util.MinHeap) dataStructure).size();
+        } else if (dataStructure instanceof org.tinspin.index.util.MinHeapI) {
+            actualSize = ((org.tinspin.index.util.MinHeapI) dataStructure).size();
+        } else if (dataStructure instanceof org.tinspin.index.util.MinMaxHeap) {
+            actualSize = ((org.tinspin.index.util.MinMaxHeap) dataStructure).size();
+        } else if (dataStructure instanceof org.tinspin.index.util.MinMaxHeapI) {
+            actualSize = ((org.tinspin.index.util.MinMaxHeapI) dataStructure).size();
+        }
+
+        assertEquals(expectedSize, actualSize);
+    }
+}

@@ -1,0 +1,20 @@
+1a2,19
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void testSize() {
+>         // Initialize objects with new size() methods
+>         org.tinspin.index.PointIndexMMWrapper pointIndexMMWrapper = new org.tinspin.index.PointIndexMMWrapper();
+>         org.tinspin.index.phtree.PHTreeMMP pHTreeMMP = new org.tinspin.index.phtree.PHTreeMMP();
+>         org.tinspin.index.util.MinHeap minHeap = new org.tinspin.index.util.MinHeap();
+>         org.tinspin.index.util.MinMaxHeap minMaxHeap = new org.tinspin.index.util.MinMaxHeap();
+> 
+>         // Verify size() methods
+>         assertEquals(0, pointIndexMMWrapper.size());
+>         assertEquals(0, pHTreeMMP.size());
+>         assertEquals(0, minHeap.size());
+>         assertEquals(0, minMaxHeap.size());
+>     }
+> }
+\ No newline at end of file

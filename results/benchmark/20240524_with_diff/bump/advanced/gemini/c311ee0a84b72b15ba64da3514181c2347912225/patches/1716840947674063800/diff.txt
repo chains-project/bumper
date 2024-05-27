@@ -1,0 +1,12 @@
+4c4,12
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+---
+>     try {
+>         new com.artipie.docker.http.UploadEntityRequest(
+>                 new com.artipie.http.Headers.From(new com.artipie.http.Pair<>("Content-Type", "application/json")),
+>                 new java.io.ByteArrayInputStream("{\"path\":\"/invalid/path\"}".getBytes(java.nio.charset.StandardCharsets.UTF_8))
+>         );
+>         org.junit.jupiter.api.Assertions.fail("Should throw exception on invalid path");
+>     } catch (com.artipie.docker.http.UploadEntityRequest.InvalidPathException e) {
+>         // Expected
+>     }

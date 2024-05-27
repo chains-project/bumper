@@ -1,0 +1,4 @@
+6c6
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert((short) 20);
+---
+>         throw new org.bouncycastle.crypto.tls.TlsFatalAlert((short) (20));

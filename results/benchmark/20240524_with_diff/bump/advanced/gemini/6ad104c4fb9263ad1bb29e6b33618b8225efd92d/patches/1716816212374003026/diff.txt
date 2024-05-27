@@ -1,0 +1,10 @@
+1a2,9
+> 
+> public class ChachaDecoder {
+> 
+>     public TlsFatalAlert decode(byte[] data) {
+>         // TODO: Implement the ChachaDecoder logic
+>         return null;
+>     }
+> }
+\ No newline at end of file

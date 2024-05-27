@@ -1,0 +1,10 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.tycho.core.shared.MavenContext;
+
+// ...
+
+private MavenProject getMavenProject() {
+    Model model = (Model) getContext().get(MavenContext.MODEL);
+    return new MavenProject(model);
+}

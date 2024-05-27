@@ -1,0 +1,19 @@
+2c2
+<         protected PasswordEncoder createStringEncoder() {
+---
+> protected org.jasypt.spring.security.PasswordEncoder createStringEncoder() {
+4d3
+< 
+7c6
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         StandardPBEStringEncryptor stringEncrypter = new StandardPBEStringEncryptor();
+9d7
+< 
+14,15c12
+< 
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         org.jasypt.spring.security.PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
+17d13
+< 

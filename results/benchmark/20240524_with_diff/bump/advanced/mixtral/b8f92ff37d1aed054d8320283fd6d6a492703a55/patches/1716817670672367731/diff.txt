@@ -1,0 +1,56 @@
+0a1,10
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProviderFactory;
+> import org.apache.maven.surefire.api.testset.TestListResolver;
+> import org.apache.maven.surefire.api.util.SurefireReflectionUtils;
+> 
+> import java.io.File;
+> import java.lang.reflect.Method;
+> import java.util.List;
+> 
+2c12,17
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+>     DefaultForkConfiguration forConfig = new DefaultForkConfiguration();
+>     Commandline commandLine = forConfig.createCommandLine(new StartupConfiguration(), 1, testSrcFolder);
+>     Class<?> commandLineClass = commandLine.getClass();
+>     Method getTestListResolverMethod = SurefireReflectionUtils.getMethod(commandLineClass, "getTestListResolver");
+>     TestListResolver testListResolver = (TestListResolver) SurefireReflectionUtils.invokeMethod(getTestListResolverMethod, commandLine);
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, testListResolver.getWildcard());
+4a20,53
+> 
+> static class DirectoryScanner {
+>     private final File baseDir;
+>     private final String wildcard;
+> 
+>     DirectoryScanner(File baseDir, String wildcard) {
+>         this.baseDir = baseDir;
+>         this.wildcard = wildcard;
+>     }
+> 
+>     List<String> getClasses() {
+>         // Implement your logic to scan the baseDir using the wildcard and return the list of classes.
+>         // This example uses a placeholder implementation.
+>         return List.of("ClassA", "ClassB");
+>     }
+> 
+>     ScanResult scan() {
+>         return new ScanResult(baseDir, wildcard);
+>     }
+> 
+>     static class ScanResult {
+>         private final List<String> classes;
+> 
+>         ScanResult(File baseDir, String wildcard) {
+>             this.classes = getClasses();
+>         }
+> 
+>         List<String> getClasses() {
+>             // Implement your logic to scan the baseDir using the wildcard and return the list of classes.
+>             // This example uses a placeholder implementation.
+>             return List.of("ClassA", "ClassB");
+>         }
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,24 @@
+1c1,19
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.model.Model;
+> import org.apache.maven.project.MavenProjectBuilder;
+> 
+> // ...
+> 
+> @Override
+> public void execute() throws MojoExecutionException {
+>     super.execute();
+> 
+>     MavenProject project = null;
+>     try {
+>         Model model = session.getProjectBuildingRequest().getOriginalModel();
+>         project = new MavenProjectBuilder().build(model);
+>     } catch (ProjectBuildingException e) {
+>         throw new MojoExecutionException("Failed to build Maven project", e);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

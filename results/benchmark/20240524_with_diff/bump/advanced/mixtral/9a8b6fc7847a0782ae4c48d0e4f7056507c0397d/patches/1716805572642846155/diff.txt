@@ -1,0 +1,22 @@
+4d3
+< 
+15,16c14,21
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+---
+>         TextEncryptor encryptor = new TextEncryptor();
+>         encryptor.setPbeStringEncryptor(stringEncrypter);
+> 
+>         return new PasswordEncoder() {
+>             @Override
+>             public String encodePassword(String rawPass, Object salt) {
+>                 return encryptor.encrypt(rawPass);
+>             }
+18c23,27
+<                         return encoder;
+---
+>             @Override
+>             public boolean matches(String encPass, String rawPass, Object salt) {
+>                 return encryptor.decrypt(encPass).equals(rawPass);
+>             }
+>         };

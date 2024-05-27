@@ -1,0 +1,22 @@
+import com.artipie.asto.factory.StoragesLoader;
+import com.artipie.asto.fs.FileStorageFactory;
+import com.artipie.asto.s3.S3StorageFactory;
+
+@Override
+public Policy<?> getPolicy(final PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storages = new StoragesLoader();
+        return new YamlPolicy(new BlockingStorage(storages.newObject(
+            sub.string("type"),
+            new StoragesLoader.Config() {
+                @Override
+                public String config() {
+                    return sub.toString();
+                }
+            }
+        )));
+    } catch (final IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}

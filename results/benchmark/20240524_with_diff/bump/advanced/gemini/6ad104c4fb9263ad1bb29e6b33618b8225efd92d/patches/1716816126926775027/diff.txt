@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class ChachaDecoder {
+> 
+>     public static TlsFatalAlert createFatalAlert(short alertDescription) {
+>         return new TlsFatalAlert(alertDescription);
+>     }
+> }
+\ No newline at end of file

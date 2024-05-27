@@ -1,0 +1,100 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+/**
+ * Generates SCoverage report.
+ *
+ * @throws MojoExecutionException
+ * 		if unexpected problem occurs
+ */
+@java.lang.Override
+public void execute() throws org.apache.maven.plugin.MojoExecutionException {
+    if (!canGenerateReport()) {
+        getLog().info("Skipping SCoverage report generation");
+        return;
+    }
+    try {
+        org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext context = new org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext(outputDirectory, getOutputName() + ".html");
+        org.apache.maven.doxia.siterenderer.sink.SiteRendererSink sink = new org.apache.maven.doxia.siterenderer.sink.SiteRendererSink(context);
+        java.util.Locale locale = java.util.Locale.getDefault();
+        generate(sink, locale);
+    } catch (org.apache.maven.reporting.MavenReportException e) {
+        java.lang.String prefix = ("An error has occurred in " + getName(java.util.Locale.ENGLISH)) + " report generation";
+        throw new org.apache.maven.plugin.MojoExecutionException((prefix + ": ") + e.getMessage(), e);
+    }
+}
+```
+
+with the following error message:
+[ERROR] /scoverage-maven-plugin/src/main/java/org/scoverage/plugin/SCoverageReportMojo.java:[385,13] cannot find symbol
+  symbol:   class RenderingContext
+  location: class org.scoverage.plugin.SCoverageReportMojo
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ public void org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.copyResources(org.apache.maven.doxia.siterenderer.SiteRenderingContext,java.io.File)
+++ public org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createContextForSkin(java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createContextForSkin(org.apache.maven.artifact.Artifact,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createContextForTemplate(java.io.File,java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createContextForTemplate(java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ protected org.apache.velocity.context.Context org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createDocumentVelocityContext(org.apache.maven.doxia.siterenderer.RenderingContext,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ protected org.apache.velocity.context.Context org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createSiteTemplateVelocityContext(org.apache.maven.doxia.siterenderer.DocumentContent,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ protected org.apache.velocity.context.Context org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.createToolManagedVelocityContext(org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ public java.util.Map org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.locateDocumentFiles(org.apache.maven.doxia.siterenderer.SiteRenderingContext,boolean)
+++ public void org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.mergeDocumentIntoSite(java.io.Writer,org.apache.maven.doxia.siterenderer.DocumentContent,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ public void org.apache.maven.doxia.siterenderer.DefaultSiteRenderer.renderDocument(java.io.Writer,org.apache.maven.doxia.siterenderer.RenderingContext,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ public abstract org.apache.maven.doxia.siterenderer.RenderingContext org.apache.maven.doxia.siterenderer.DocumentContent.getRenderingContext()
+++ public abstract org.apache.maven.doxia.siterenderer.RenderingContext org.apache.maven.doxia.siterenderer.DocumentRenderer.getRenderingContext()
+++ public abstract void org.apache.maven.doxia.siterenderer.Renderer.copyResources(org.apache.maven.doxia.siterenderer.SiteRenderingContext,java.io.File)
+++ public abstract org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.Renderer.createContextForSkin(java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public abstract org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.Renderer.createContextForSkin(org.apache.maven.artifact.Artifact,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public abstract org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.Renderer.createContextForTemplate(java.io.File,java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public abstract org.apache.maven.doxia.siterenderer.SiteRenderingContext org.apache.maven.doxia.siterenderer.Renderer.createContextForTemplate(java.io.File,java.util.Map,org.apache.maven.doxia.site.decoration.DecorationModel,java.lang.String,java.util.Locale)
+++ public abstract java.util.Map org.apache.maven.doxia.siterenderer.Renderer.locateDocumentFiles(org.apache.maven.doxia.siterenderer.SiteRenderingContext,boolean)
+++ public abstract void org.apache.maven.doxia.siterenderer.Renderer.mergeDocumentIntoSite(java.io.Writer,org.apache.maven.doxia.siterenderer.DocumentContent,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ public abstract void org.apache.maven.doxia.siterenderer.Renderer.renderDocument(java.io.Writer,org.apache.maven.doxia.siterenderer.RenderingContext,org.apache.maven.doxia.siterenderer.SiteRenderingContext)
+++ public RenderingContext org.apache.maven.doxia.siterenderer.RenderingContext(java.io.File,java.lang.String)
+++ public RenderingContext org.apache.maven.doxia.siterenderer.RenderingContext(java.io.File,java.lang.String,java.lang.String)
+++ public RenderingContext org.apache.maven.doxia.siterenderer.RenderingContext(java.io.File,java.lang.String,java.lang.String,java.lang.String)
+++ public RenderingContext org.apache.maven.doxia.siterenderer.RenderingContext(java.io.File,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean)
+++ public RenderingContext org.apache.maven.doxia.siterenderer.RenderingContext(java.io.File,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String)
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getAttribute(java.lang.String)
+++ public java.io.File org.apache.maven.doxia.siterenderer.RenderingContext.getBasedir()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getBasedirRelativePath()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getDoxiaSourcePath()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getDoxiaSourcePath(java.lang.String)
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getExtension()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getGenerator()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getInputName()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getOutputName()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getParserId()
+++ public java.lang.String org.apache.maven.doxia.siterenderer.RenderingContext.getRelativePath()
+++ public bool org.apache.maven.doxia.siterenderer.RenderingContext.isDoxiaSource()
+++ public bool org.apache.maven.doxia.siterenderer.RenderingContext.isEditable()
+++ public void org.apache.maven.doxia.siterenderer.RenderingContext.setAttribute(java.lang.String,java.lang.String)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.addSiteLocales(java.util.List)
+++ public java.io.File org.apache.maven.doxia.siterenderer.SiteRenderingContext.getProcessedContentOutput()
+++ public java.util.Date org.apache.maven.doxia.siterenderer.SiteRenderingContext.getPublishDate()
+++ public java.io.File org.apache.maven.doxia.siterenderer.SiteRenderingContext.getRootDirectory()
+++ public java.util.List org.apache.maven.doxia.siterenderer.SiteRenderingContext.getSiteLocales()
+++ public org.apache.maven.artifact.Artifact org.apache.maven.doxia.siterenderer.SiteRenderingContext.getSkin()
+++ public org.apache.maven.doxia.site.skin.SkinModel org.apache.maven.doxia.siterenderer.SiteRenderingContext.getSkinModel()
+++ public bool org.apache.maven.doxia.siterenderer.SiteRenderingContext.isValidate()
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setProcessedContentOutput(java.io.File)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setPublishDate(java.util.Date)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setRootDirectory(java.io.File)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setSkin(org.apache.maven.artifact.Artifact)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setSkinModel(org.apache.maven.doxia.site.skin.SkinModel)
+++ public void org.apache.maven.doxia.siterenderer.SiteRenderingContext.setValidate(boolean)

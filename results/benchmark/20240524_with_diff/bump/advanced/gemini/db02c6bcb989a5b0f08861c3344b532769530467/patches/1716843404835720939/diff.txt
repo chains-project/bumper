@@ -1,0 +1,6 @@
+2c2,4
+<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
+---
+>     // -- String.format
+>     // ++ String.format(Locale.getDefault(), "latest: digest: %s", this.image.digest())
+>     return new StringContains(false, String.format(Locale.getDefault(), "latest: digest: %s", this.image.digest()));

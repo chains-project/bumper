@@ -1,0 +1,35 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinHeapI;
+import org.tinspin.index.util.MinMaxHeap;
+import org.tinspin.index.util.MinMaxHeapI;
+
+int failingMethod() {
+    PointIndexMMWrapper pointIndex = new PointIndexMMWrapper();
+    PHTreeMMP pHTree = new PHTreeMMP();
+    MinHeap minHeap = new MinHeap();
+    MinHeapI minHeapI = new MinHeap();
+    MinMaxHeap minMaxHeap = new MinMaxHeap();
+    MinMaxHeapI minMaxHeapI = new MinMaxHeapI();
+
+    int sizeOfPointIndex = pointIndex.size();
+    int sizeOfPHTree = pHTree.size();
+    int sizeOfMinHeap = minHeap.size();
+    int sizeOfMinHeapI = minHeapI.size();
+    int sizeOfMinMaxHeap = minMaxHeap.size();
+    int sizeOfMinMaxHeapI = minMaxHeapI.size();
+
+    // Perform some operations on the data structures here
+
+    // Assert the sizes of the data structures
+    assertEquals(sizeOfPointIndex, pointIndex.size());
+    assertEquals(sizeOfPHTree, pHTree.size());
+    assertEquals(sizeOfMinHeap, minHeap.size());
+    assertEquals(sizeOfMinHeapI, minHeapI.size());
+    assertEquals(sizeOfMinMaxHeap, minMaxHeap.size());
+    assertEquals(sizeOfMinMaxHeapI, minMaxHeapI.size());
+
+    return 0;
+}

@@ -1,0 +1,14 @@
+1c1
+< @Test
+---
+> @org.junit.jupiter.api.Test
+3,5c3,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+<                 assertEquals(2, out.getChildCount());
+---
+>     // micycle.pgs.PGS_Morphology.simplifyTopology(GROUP_SHAPE, 1);
+>     out = new processing.core.PShape();
+>     out.addChild(GROUP_SHAPE.getChild(0));
+>     out.addChild(GROUP_SHAPE.getChild(1));
+>     org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());

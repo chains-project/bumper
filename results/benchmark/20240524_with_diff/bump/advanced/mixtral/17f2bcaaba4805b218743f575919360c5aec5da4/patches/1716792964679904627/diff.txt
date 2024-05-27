@@ -1,0 +1,24 @@
+1a2,23
+> 
+> import static org.tinspin.index.PointIndexMMWrapper.size;
+> import static org.tinspin.index.phtree.PHTreeMMP.size;
+> import static org.tinspin.index.util.MinHeap.size;
+> import static org.tinspin.index.util.MinHeapI.size;
+> import static org.tinspin.index.util.MinMaxHeap.size;
+> import static org.tinspin.index.util.MinMaxHeapI.size;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void testSize() {
+>         // Test the size method of various classes
+>         int pointIndexSize = size(new PointIndexMMWrapper());
+>         int pHTreeSize = size(new PHTreeMMP());
+>         int minHeapSize = size(new MinHeap<>());
+>         int minHeapISize = size(new MinHeapI<Integer>() {});
+>         int minMaxHeapSize = size(new MinMaxHeap<>());
+>         int minMaxHeapISize = size(new MinMaxHeapI<Integer>() {});
+> 
+>         // Add assertions as needed
+>     }
+> }
+\ No newline at end of file

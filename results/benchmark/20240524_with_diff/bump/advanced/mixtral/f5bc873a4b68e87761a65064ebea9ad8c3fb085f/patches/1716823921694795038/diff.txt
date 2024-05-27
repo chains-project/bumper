@@ -1,0 +1,24 @@
+0a1,8
+> import org.apache.maven.project.ProjectBuilder;
+> import org.apache.maven.project.ProjectConfigurator;
+> import org.apache.maven.project.ProjectDependencyResolver;
+> import org.apache.maven.project.artifact.ProjectArtifact;
+> import org.apache.maven.project.artifact.DependencyResolutionException;
+> import org.apache.maven.project.DefaultProjectBuilderConfiguration;
+> import org.apache.maven.project.MavenProject;
+> 
+2c10,21
+<     return project;
+---
+>     DefaultProjectBuilderConfiguration builderConfig = new DefaultProjectBuilderConfiguration();
+>     ProjectBuilder builder = new ProjectBuilder();
+>     ProjectDependencyResolver resolver = new ProjectDependencyResolver();
+>     ProjectConfigurator configurator = new ProjectConfigurator();
+> 
+>     ProjectArtifact projectArtifact = new ProjectArtifact();
+>     try {
+>         return builder.build(projectArtifact, builderConfig).getProject();
+>     } catch (DependencyResolutionException e) {
+>         resolver.resolveProjectDependencies(builder.build(projectArtifact, builderConfig).getProject());
+>         return configurator.configureProject(builder.build(projectArtifact, builderConfig).getProject(), projectArtifact);
+>     }

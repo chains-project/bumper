@@ -1,0 +1,31 @@
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.digest.StandardStringDigester;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+
+// ...
+
+private PasswordEncoder passwordEncoder = new PasswordEncoder() {
+    private TextEncryptor textEncryptor = new StandardPBEStringEncryptor();
+    private StandardStringDigester standardStringDigester = new StandardStringDigester();
+    private BasicPasswordEncryptor basicPasswordEncryptor = new BasicPasswordEncryptor();
+
+    @Override
+    public String encodePassword(String rawPass, Object salt) {
+        if (salt == null) {
+            return basicPasswordEncryptor.encryptPassword(rawPass);
+        } else {
+            return textEncryptor.encrypt(rawPass);
+        }
+    }
+
+    @Override
+    public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+        if (salt == null) {
+            return basicPasswordEncryptor.checkPassword(rawPass, encPass);
+        } else {
+            return textEncryptor.decrypt(encPass).equals(rawPass);
+        }
+    }
+};

@@ -1,0 +1,30 @@
+import java.io.IOException;
+
+public class ChachaDecoder {
+    // ...
+
+    private void decode(TlsContext context, InputStream in, ChannelHandlerContext handlerContext) throws IOException {
+        // ...
+
+        try {
+            // ...
+        } catch (Exception e) {
+            throw new TlsFatalAlert(40, "Error decoding record.");
+        }
+    }
+
+    // ...
+
+    private static class TlsFatalAlert extends IOException {
+        private final short alertDescription;
+
+        public TlsFatalAlert(int alertDescription) {
+            super("TlsFatalAlert: " + TlsUtilities.alertDescription(alertDescription));
+            this.alertDescription = (short) alertDescription;
+        }
+
+        public short getAlertDescription() {
+            return alertDescription;
+        }
+    }
+}

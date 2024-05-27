@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 306115458,
+    "in_class_code": "/**\n * Test case for {@link ManifestRef}.\n *\n * @since 0.1\n */\npublic final class ManifestRefTest {\n    // TODO: review this AI generated patch!\n    @ParameterizedTest\n    @ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\n    void failsToResolveInvalid(final String string) {\n        final Throwable throwable;\n    }\n}",
+    "qualified_in_class_code": "/**\n * Test case for {@link ManifestRef}.\n *\n * @since 0.1\n */\npublic final class ManifestRefTest {\n    // TODO: review this AI generated patch!\n    @org.junit.jupiter.params.ParameterizedTest\n    @org.junit.jupiter.params.provider.ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\n    void failsToResolveInvalid(final java.lang.String string) {\n        final java.lang.Throwable throwable;\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/ref/ManifestRefTest.java:[47,276] ';' expected",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/ref/ManifestRefTest.java",
+        "client_line_position": "47"
+    },
+    "client_end_line_number": 48,
+    "client_line_number": 42,
+    "method_code": "// TODO: review this AI generated patch!\n@org.junit.jupiter.params.ParameterizedTest\n@org.junit.jupiter.params.provider.ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\nvoid failsToResolveInvalid(final java.lang.String string) {\n    final java.lang.Throwable throwable = org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalStateException.class, () -> new com.artipie.docker.ref.ManifestRef.FromString(string).link().string());\n    org.hamcrest.MatcherAssert.assertThat(throwable.getMessage(), new org.hamcrest.core.AllOf<>(java.util.Arrays.asList(new org.hamcrest.core.StringContains(true, \"Unsupported reference\"), new org.hamcrest.core.StringContains(false, string), new org.hamcrest.core.Is(true)))));\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@org.junit.jupiter.params.ParameterizedTest\n@org.junit.jupiter.params.provider.ValueSource(strings = { \"\", \"a:b:c\", \".123\" })\nvoid failsToResolveInvalid(final java.lang.String string) {\n    final java.lang.Throwable throwable;\n}",
+    "method_name": "failsToResolveInvalid"
+}

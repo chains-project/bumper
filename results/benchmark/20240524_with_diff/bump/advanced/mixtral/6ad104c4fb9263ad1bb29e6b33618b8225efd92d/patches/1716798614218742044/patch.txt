@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.TlsAlert;
+
+// ...
+
+try {
+    // existing code that might throw TlsFatalAlert
+} catch (TlsAlert ex) {
+    AlertDescription description = ex.getAlertDescription();
+    // handle the alert description
+}

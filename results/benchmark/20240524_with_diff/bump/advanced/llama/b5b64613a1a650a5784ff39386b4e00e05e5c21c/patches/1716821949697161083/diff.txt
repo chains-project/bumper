@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4
+<         if ((!countryCodes.isEmpty() || (!org.apache.commons.lang3.StringUtils.isBlank(siteName) && !org.apache.commons.lang3.StringUtils.isBlank(cityName))) {
+---
+>         if ((!countryCodes.isEmpty()) || ((!org.apache.commons.lang3.StringUtils.isBlank(siteName)) && (!org.apache.commons.lang3.StringUtils.isBlank(cityName)))) {
+8c7
+<         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = org.jfrog.hudson.pipeline.common.executors.SerializationUtils.createMapper();
+15c14
+<     request.setOnSuccess(deleteFromDist ? DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>     request.setOnSuccess(deleteFromDist ? org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.OnSuccess.delete : org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.OnSuccess.keep);

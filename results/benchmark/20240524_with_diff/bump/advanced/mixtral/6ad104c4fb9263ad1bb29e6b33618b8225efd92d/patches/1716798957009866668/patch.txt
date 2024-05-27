@@ -1,0 +1,16 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+public void someMethod() {
+    short alertDescription = 80; // example value
+    AlertDescription alert = AlertDescription.internalError();
+    try {
+        alert = AlertDescription.valueOf(alertDescription);
+    } catch (IllegalArgumentException e) {
+        // Handle or ignore, as appropriate
+    }
+    TlsFatalAlert tlsFatalAlert = new TlsFatalAlert(alert);
+    // ...
+}

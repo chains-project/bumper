@@ -1,0 +1,10 @@
+```java
+@org.junit.jupiter.api.Test
+void test_PGS_Morphology_smoothGaussian() {
+    if (GROUP_SHAPE.getChildCount() != 2) {
+        throw new org.junit.jupiter.api.AssumptionsViolatedException("GROUP_SHAPE.getChildCount() == 2");
+    }
+    processing.core.PShape out = micycle.pgs.PGS_Morphology.smoothGaussian(GROUP_SHAPE, 10);
+    org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());
+}
+```

@@ -1,0 +1,41 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+@org.junit.jupiter.api.Test
+void testAreaMerge() {
+    processing.core.PShape mesh = micycle.pgs.PGS_Triangulation.delaunayTriangulation(micycle.pgs.PGS_PointSet.random(0, 0, 1000, 1000, 1111, 0));
+    java.util.List<processing.core.PShape> faces = micycle.pgs.PGS_Conversion.getChildren(mesh);
+    faces.sort(( a, b) -> java.lang.Double.compare(micycle.pgs.PGS_ShapePredicates.area(a), micycle.pgs.PGS_ShapePredicates.area(b)));
+    double areaThreshold = micycle.pgs.PGS_ShapePredicates.area(faces.get(faces.size() / 2));
+    processing.core.PShape mergedMesh = micycle.pgs.PGS_Meshing.areaMerge(mesh, areaThreshold);
+    Assert.assertTrue(micycle.pgs.PGS_Conversion.getChildren(mergedMesh).stream().allMatch(( f) -> micycle.pgs.PGS_ShapePredicates.area(f) >= areaThreshold));
+    Assert.assertTrue(faces.size() >= mergedMesh.getChildCount());
+    Assert.assertEquals(micycle.pgs.PGS_ShapePredicates.area(mesh), micycle.pgs.PGS_ShapePredicates.area(mergedMesh), 1.0E-6);
+}
+```
+
+with the following error message:
+[ERROR] /PGS/src/test/java/micycle/pgs/PGS_MeshingTests.java:[23,17] cannot find symbol
+  symbol:   method assertTrue(boolean)
+  location: class micycle.pgs.PGS_MeshingTests
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ public int org.tinspin.index.PointIndexMMWrapper.size()
+++ public int org.tinspin.index.phtree.PHTreeMMP.size()
+++ public int org.tinspin.index.util.MinHeap.size()
+++ public abstract int org.tinspin.index.util.MinHeapI.size()
+++ public int org.tinspin.index.util.MinMaxHeap.size()
+++ public abstract int org.tinspin.index.util.MinMaxHeapI.size()

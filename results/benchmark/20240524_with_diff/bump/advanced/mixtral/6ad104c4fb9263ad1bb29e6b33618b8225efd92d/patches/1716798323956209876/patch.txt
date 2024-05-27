@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+private void processAlert(short alertCode) {
+    AlertDescription alertDescription = TlsFatalAlert.getAlertDescription(alertCode);
+    // ...
+}

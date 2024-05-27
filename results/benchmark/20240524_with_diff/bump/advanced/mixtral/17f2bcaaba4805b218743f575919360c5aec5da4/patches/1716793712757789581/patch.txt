@@ -1,0 +1,12 @@
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+public class PGS_MorphologyGroupShapeTests {
+    private MinHeapI minHeap;
+
+    @BeforeEach
+    public void setUp() {
+        minHeap = new MinMaxHeap(); // use any implementation of MinHeapI
+        assertNotNull(minHeap);
+    }
+}

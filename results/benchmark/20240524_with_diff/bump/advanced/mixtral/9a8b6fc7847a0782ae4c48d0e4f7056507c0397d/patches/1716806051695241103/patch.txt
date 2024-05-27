@@ -1,0 +1,46 @@
+import org.jasypt.digest.StandardStringDigester;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.util.text.AES256TextEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+import org.jasypt.util.password.PasswordEncryptor;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+
+    private StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+    private TextEncryptor textEncryptor = new AES256TextEncryptor();
+    private StandardStringDigester digester = new StandardStringDigester();
+    private PasswordEncryptor passwordEncryptor = new ConfigurablePasswordEncryptor();
+
+    public GeoStoreDigestPasswordEncoder() {
+        this.encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+        this.encryptor.setPassword("password");
+
+        this.textEncryptor.setPassword("password");
+
+        this.digester.setIterations(1024);
+        this.digester.setSaltSizeBytes(20);
+
+        this.passwordEncryptor.setAlgorithm("SHA-256");
+        this.passwordEncryptor.setIterationCount(1024);
+    }
+
+    @Override
+    public String encodePassword(String rawPass, Object salt) {
+        if (salt == null) {
+            return this.digester.digest(rawPass);
+        } else {
+            return this.digester.digest(rawPass, (byte[]) salt);
+        }
+    }
+
+    @Override
+    public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+        if (salt == null) {
+            return this.digester.matches(rawPass, encPass);
+        } else {
+            return this.digester.matches(rawPass, encPass, (byte[]) salt);
+        }
+    }
+}

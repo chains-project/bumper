@@ -1,0 +1,18 @@
+1a2,17
+> import java.io.IOException;
+> 
+> public void decodeRecord(InputStream in, OutputStream out) throws IOException {
+>     try {
+>         // ... (previous code)
+> 
+>         if (type == Type.alert) {
+>             int alertDescription = in.readUnsignedShort();
+>             throw new IllegalStateException(String.format("TLS Alert: %s", AlertDescription.getAlertDescription(alertDescription)));
+>         }
+> 
+>         // ... (remaining code)
+>     } catch (TlsFatalAlert ex) {
+>         throw new TlsFatalAlertException(ex.alertDescription);
+>     }
+> }
+\ No newline at end of file

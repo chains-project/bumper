@@ -1,0 +1,73 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+@java.lang.Override
+public void init(java.io.OutputStream os) {
+    this.os = os;
+    // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+    // log.
+    final int bufferCapacity = 10;
+    framedTransport = new com.pinterest.singer.client.logback.TFastFramedTransport(new org.apache.thrift.transport.TIOStreamTransport(os), bufferCapacity);
+    protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
+}
+```
+
+with the following error message:
+[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/logback/AppenderUtils.java:[64,29] cannot find symbol
+  symbol:   class TFastFramedTransport
+  location: class com.pinterest.singer.client.logback.AppenderUtils.LogMessageEncoder
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+++ protected org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer org.apache.thrift.server.TNonblockingServer$SelectAcceptThread.createFrameBuffer(org.apache.thrift.transport.TNonblockingTransport,java.nio.channels.SelectionKey,org.apache.thrift.server.AbstractNonblockingServer$AbstractSelectThread)
+++ protected org.apache.thrift.server.AbstractNonblockingServer$FrameBuffer org.apache.thrift.server.TThreadedSelectorServer$SelectorThread.createFrameBuffer(org.apache.thrift.transport.TNonblockingTransport,java.nio.channels.SelectionKey,org.apache.thrift.server.AbstractNonblockingServer$AbstractSelectThread)
+++ public AutoExpandingBufferReadTransport org.apache.thrift.transport.AutoExpandingBufferReadTransport(org.apache.thrift.TConfiguration,int)
+++ public AutoExpandingBufferWriteTransport org.apache.thrift.transport.AutoExpandingBufferWriteTransport(org.apache.thrift.TConfiguration,int,int)
+++ public TEndpointTransport org.apache.thrift.transport.TEndpointTransport(org.apache.thrift.TConfiguration)
+++ public void org.apache.thrift.transport.TEndpointTransport.checkReadBytesAvailable(long)
+++ protected void org.apache.thrift.transport.TEndpointTransport.countConsumedMessageBytes(long)
+++ public org.apache.thrift.TConfiguration org.apache.thrift.transport.TEndpointTransport.getConfiguration()
+++ protected J org.apache.thrift.transport.TEndpointTransport.getMaxMessageSize()
+++ protected void org.apache.thrift.transport.TEndpointTransport.resetConsumedMessageSize(long)
+++ public void org.apache.thrift.transport.TEndpointTransport.updateKnownMessageSize(long)
+++ public TSaslNonblockingServer$Args org.apache.thrift.server.TSaslNonblockingServer$Args(org.apache.thrift.transport.TNonblockingServerTransport)
+++ public int org.apache.thrift.transport.AutoExpandingBufferWriteTransport.getLength()
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[])
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[],int,int)
+++ public TMemoryTransport org.apache.thrift.transport.TMemoryTransport(org.apache.thrift.TConfiguration,byte[])
+++ public void org.apache.thrift.transport.TMemoryTransport.close()
+++ public org.apache.thrift.TByteArrayOutputStream org.apache.thrift.transport.TMemoryTransport.getOutput()
+++ public bool org.apache.thrift.transport.TMemoryTransport.isOpen()
+++ public void org.apache.thrift.transport.TMemoryTransport.open()
+++ public int org.apache.thrift.transport.TMemoryTransport.read(byte[],int,int)
+++ public void org.apache.thrift.transport.TMemoryTransport.write(byte[],int,int)
+++ protected TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.InputStream)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.InputStream,java.io.OutputStream)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.OutputStream)
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[])
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[],int,int)
+++ public TMemoryTransport org.apache.thrift.transport.TMemoryTransport(byte[])
+++ public TMemoryTransport org.apache.thrift.transport.TMemoryTransport(org.apache.thrift.TConfiguration,byte[])
+++ public void org.apache.thrift.transport.TMemoryTransport.close()
+++ public org.apache.thrift.TByteArrayOutputStream org.apache.thrift.transport.TMemoryTransport.getOutput()
+++ public bool org.apache.thrift.transport.TMemoryTransport.isOpen()
+++ public void org.apache.thrift.transport.TMemoryTransport.open()
+++ public int org.apache.thrift.transport.TMemoryTransport.read(byte[],int,int)
+++ public void org.apache.thrift.transport.TMemoryTransport.write(byte[],int,int)
+++ public abstract org.apache.thrift.transport.TNonblockingTransport org.apache.thrift.transport.TNonblockingServerTransport.accept()
+++ public TNonblockingTransport org.apache.thrift.transport.TNonblockingTransport(org.apache.thrift.TConfiguration)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.TSaslServerTransport$Factory.getTransport(org.apache.thrift.transport.TTransport)
+++ public TSimpleFileTransport org.apache.thrift.transport.TSimpleFileTransport(org.apache.thrift.TConfiguration,java.lang.String,boolean,boolean,boolean)

@@ -1,0 +1,4 @@
+2c2
+<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+---
+> public Timestamp between(Timestamp from, Timestamp to) throws IllegalArgumentException {

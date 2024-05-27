@@ -1,0 +1,7 @@
+@Override
+protected org.jasypt.spring.security.PasswordEncoder createStringEncoder() {
+    org.jasypt.util.text.TextEncryptor encryptor = new org.jasypt.util.password.StrongPasswordEncryptor();
+    org.jasypt.spring.security.PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
+    encoder.setTextEncryptor(encryptor);
+    return encoder;
+}

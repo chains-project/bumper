@@ -1,0 +1,4 @@
+// TODO: review this AI generated patch!
+private org.hamcrest.Matcher<java.lang.String> layersPushed() {
+    return new org.hamcrest.core.IsNot(new org.hamcrest.core.StringContains(java.lang.String.format("%s: Pushed", this.image.layer()))));
+}

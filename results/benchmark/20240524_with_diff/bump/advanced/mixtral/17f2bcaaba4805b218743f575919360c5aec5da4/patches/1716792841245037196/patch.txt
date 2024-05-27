@@ -1,0 +1,6 @@
+import org.junit.Assume;
+
+public void testSize() {
+    Assume.assumeTrue(org.tinspin.index.PointIndexMMWrapper.size() > 0);
+    // other test code
+}

@@ -1,0 +1,17 @@
+1a2,16
+> import static org.tinspin.index.util.MinHeapI.size;
+> 
+> public class MyClass {
+>     // existing code...
+> 
+>     public void myMethod() {
+>         // existing code...
+> 
+>         int mySize = size(); // use the new size() method from MinHeapI
+> 
+>         // existing code...
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

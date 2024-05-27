@@ -1,0 +1,6 @@
+4d3
+< 
+15c14
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+---
+>         PasswordEncoder encoder = new PasswordEncoder();

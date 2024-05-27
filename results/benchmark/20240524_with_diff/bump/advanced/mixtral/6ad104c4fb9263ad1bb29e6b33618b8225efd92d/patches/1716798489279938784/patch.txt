@@ -1,0 +1,17 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ... (other imports and class definition)
+
+private void decode(ByteBuffer input, ByteBuffer output) throws IOException {
+    try {
+        // ... (other code)
+
+        if (tag != TAG_AEAD_DATA) {
+            throw new TlsFatalAlert(AlertDescription.decryption_failed);
+        }
+
+        // ... (other code)
+    } catch (TlsFatalAlert ex) {
+        // ... (other code)
+    }
+}

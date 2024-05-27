@@ -1,0 +1,18 @@
+1,8c1,8
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+<                 .build();
+---
+> private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+>     Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = null;
+>     if (sorald.sonar.SonarLintEngine.globalConfig.isConnectedMode()) {
+>         enabledLanguages = org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInConnectedMode();
+>     } else {
+>         enabledLanguages = org.sonarsource.sonarlint.core.languages.LanguageSupportRepository.getEnabledLanguagesInStandaloneMode();
+>     }
+>     return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder().addEnabledLanguages(enabledLanguages).setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid()).setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties()).setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir()).setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider()).build();

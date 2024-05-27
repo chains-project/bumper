@@ -1,0 +1,14 @@
+@Override
+public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+    return new Timestamp(super.between(from, to).getTime());
+}
+
+// Add the following methods if they don't already exist in your class
+
+private Timestamp convertToTimestamp(Date date) {
+    return new Timestamp(date.getTime());
+}
+
+private Date convertToDate(Timestamp timestamp) {
+    return new Date(timestamp.getTime());
+}

@@ -1,0 +1,15 @@
+1,7c1,6
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+< protected org.apache.thrift.TDeserializer initialValue() {
+<     java.io.ByteArrayInputStream inputStream = new java.io.ByteArrayInputStream(new byte[0]);
+<     org.apache.thrift.transport.TIOStreamTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new org.apache.thrift.TConfiguration(), inputStream);
+<     org.apache.thrift.protocol.TBinaryProtocol protocol = new org.apache.thrift.protocol.TBinaryProtocol(transport);
+<     return new org.apache.thrift.TDeserializer(protocol);
+---
+> @Override
+> protected TDeserializer initialValue() {
+>     ByteArrayInputStream inputStream = new ByteArrayInputStream(new byte[0]);
+>     TIOStreamTransport transport = new TIOStreamTransport(new TConfiguration(), inputStream, null);
+>     TBinaryProtocol protocol = new TBinaryProtocol(transport);
+>     return new TDeserializer(protocol);

@@ -1,0 +1,13 @@
+1a2,12
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() {
+>         // ...
+>     }
+> 
+>     private RenderingContext createRenderingContext() {
+>         // ...
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,19 @@
+1a2,18
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code
+> 
+>     @BeforeEach
+>     public void setUp() {
+>         // existing code
+> 
+>         // Fix: import the correct class
+>         import org.tinspin.index.util.MinHeap;
+> 
+>         MinHeap heap = new MinHeap(10);
+>         // use 'heap' as needed
+>     }
+> 
+>     // existing code
+> }
+\ No newline at end of file

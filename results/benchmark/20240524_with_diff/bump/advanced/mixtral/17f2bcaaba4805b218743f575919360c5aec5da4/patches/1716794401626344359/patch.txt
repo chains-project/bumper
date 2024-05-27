@@ -1,0 +1,27 @@
+import processing.core.PShape;
+import org.tinspin.index.PointIndexMMWrapper;
+import org.tinspin.index.phtree.PHTreeMMP;
+import org.tinspin.index.util.MinHeap;
+import org.tinspin.index.util.MinHeapI;
+import org.tinspin.index.util.MinMaxHeap;
+import org.tinspin.index.util.MinMaxHeapI;
+
+// existing code here
+
+public void testSizeMethod() {
+  PointIndexMMWrapper pointIndex = new PointIndexMMWrapper();
+  PHTreeMMP pTree = new PHTreeMMP();
+  MinHeap minHeap = new MinHeap();
+  MinHeapI minHeapI = new MinHeap();
+  MinMaxHeap minMaxHeap = new MinMaxHeap();
+  MinMaxHeapI minMaxHeapI = new MinMaxHeapI();
+
+  int pointIndexSize = pointIndex.size();
+  int pTreeSize = pTree.size();
+  int minHeapSize = minHeap.size();
+  int minHeapISize = minHeapI.size();
+  int minMaxHeapSize = minMaxHeap.size();
+  int minMaxHeapISize = minMaxHeapI.size();
+
+  // existing assertions here
+}

@@ -1,0 +1,1 @@
+signatureParameters.setPermission(CertificationPermission.MINIMAL_CHANGES_PERMITTED);

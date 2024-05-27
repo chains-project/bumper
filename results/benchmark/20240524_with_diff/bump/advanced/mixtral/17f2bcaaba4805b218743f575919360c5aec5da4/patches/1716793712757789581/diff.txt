@@ -1,0 +1,13 @@
+1a2,12
+> import static org.junit.jupiter.api.Assertions.assertNotNull;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     private MinHeapI minHeap;
+> 
+>     @BeforeEach
+>     public void setUp() {
+>         minHeap = new MinMaxHeap(); // use any implementation of MinHeapI
+>         assertNotNull(minHeap);
+>     }
+> }
+\ No newline at end of file

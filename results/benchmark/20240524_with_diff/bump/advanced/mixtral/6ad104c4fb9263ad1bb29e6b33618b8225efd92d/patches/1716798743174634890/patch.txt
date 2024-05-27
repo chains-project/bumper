@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+private void sendFatalAlert(short alertDescription) {
+    AlertDescription description = AlertDescription.valueOf(alertDescription);
+    throw new TlsFatalAlert(description);
+}

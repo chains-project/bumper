@@ -1,0 +1,26 @@
+import org.apache.maven.project.MavenProject;
+import org.eclipse.aether.RepositorySystem;
+import org.eclipse.aether.RepositorySystemSession;
+import org.eclipse.aether.collection.CollectRequest;
+import org.eclipse.aether.resolution.ArtifactResolutionException;
+import org.eclipse.aether.resolution.ArtifactResult;
+
+// ...
+
+public MavenProject getProject() {
+    RepositorySystem repositorySystem = ...; // initialize the repository system
+    RepositorySystemSession repositorySystemSession = ...; // initialize the repository system session
+
+    CollectRequest collectRequest = new CollectRequest();
+    String groupId = "org.apache.myfaces.tobago";
+    String artifactId = "tobago-project";
+    String version = "your-version-here"; // replace with the actual version
+    collectRequest.setRoot(new org.eclipse.aether.graph.Dependency(new org.eclipse.aether.artifact.DefaultArtifact(groupId, artifactId, version, "pom")));
+
+    try {
+        ArtifactResult artifactResult = repositorySystem.resolveArtifact(repositorySystemSession, collectRequest.addArtifact(new org.eclipse.aether.artifact.DefaultArtifact(groupId, artifactId, version)));
+        return (MavenProject) artifactResult.getArtifact().getMetadata().getArtifact().getProperties().get("maven.project");
+    } catch (ArtifactResolutionException e) {
+        throw new RuntimeException("Failed to resolve artifact", e);
+    }
+}

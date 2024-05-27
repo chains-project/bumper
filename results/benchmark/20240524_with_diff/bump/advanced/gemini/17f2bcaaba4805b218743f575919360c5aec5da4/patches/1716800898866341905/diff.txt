@@ -1,0 +1,8 @@
+1c1,3
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Assume;
+> 
+> import static org.junit.Assume.*;
+\ No newline at end of file

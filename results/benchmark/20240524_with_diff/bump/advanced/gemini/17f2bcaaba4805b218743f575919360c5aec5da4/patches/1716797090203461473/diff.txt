@@ -1,0 +1,15 @@
+1c1,10
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.Assume.assumeThat;
+> import org.hamcrest.Matchers;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     @Test
+>     public void test_PGS_MorphologyGroupShape_1() {
+>         assumeThat("Test only runs on Linux", SystemUtils.IS_OS_LINUX, Matchers.is(true));
+>         // ...
+>     }
+> }
+\ No newline at end of file

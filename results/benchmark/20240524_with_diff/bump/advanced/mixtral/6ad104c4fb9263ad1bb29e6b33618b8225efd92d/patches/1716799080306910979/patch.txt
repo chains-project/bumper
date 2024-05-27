@@ -1,0 +1,13 @@
+import org.bouncycastle.tls.AlertDescription;
+import org.bouncycastle.tls.TlsFatalAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    public void someMethod() {
+        short alertDescription = 80; // example value
+        AlertDescription alert = AlertDescription.internalValue(alertDescription);
+        TlsFatalAlert tlsFatalAlert = new TlsFatalAlert(alert);
+        // ...
+    }
+}

@@ -1,0 +1,42 @@
+1,2c1,2
+< @Override
+<         protected PasswordEncoder createStringEncoder() {
+---
+> @java.lang.Override
+> protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+4,5c4
+< 
+<                 char[] chars = toChars(password);
+---
+>     char[] chars = it.geosolutions.geostore.core.security.password.SecurityUtils.toChars(password);
+7c6
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         org.jasypt.encryption.pbe.StandardPBEStringEncryptor stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+9,10c8
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+---
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+13a12,16
+>         org.acegisecurity.providers.encoding.PasswordEncoder encoder = new org.acegisecurity.providers.encoding.PasswordEncoder() {
+>             @java.lang.Override
+>             public java.lang.String encodePassword(java.lang.String rawPass, java.lang.Object salt) {
+>                 return stringEncrypter.encryptPassword(rawPass);
+>             }
+15,17c18,22
+<                         PBEPasswordEncoder encoder = new PBEPasswordEncoder();
+<                         encoder.setPbeStringEncryptor(stringEncrypter);
+< 
+---
+>             @java.lang.Override
+>             public bool isPasswordValid(java.lang.String encPass, java.lang.String rawPass, java.lang.Object salt) {
+>                 return stringEncrypter.checkPassword(rawPass, encPass);
+>             }
+>         };
+20,21c25,26
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(password);
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(chars);

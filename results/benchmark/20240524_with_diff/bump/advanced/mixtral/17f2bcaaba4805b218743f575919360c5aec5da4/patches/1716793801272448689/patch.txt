@@ -1,0 +1,15 @@
+import org.junit.jupiter.api.BeforeEach;
+
+public class PGS_MorphologyGroupShapeTests {
+    // existing code
+
+    @BeforeEach
+    public void setUp() {
+        // existing code
+
+        // Fix: Use the size() method from MinHeapI instead of a class, interface, or enum
+        int size = new org.tinspin.index.util.MinHeapI() {}.size();
+
+        // existing code
+    }
+}

@@ -1,0 +1,32 @@
+@Override
+protected PasswordEncoder createStringEncoder() {
+    byte[] password = lookupPasswordFromKeyStore();
+    char[] chars = toChars(password);
+    try {
+        stringEncrypter = new StandardPBEStringEncryptor();
+        stringEncrypter.setPasswordCharArray(chars);
+
+        if (getProviderName() != null && !getProviderName().isEmpty()) {
+            stringEncrypter.setProviderName(getProviderName());
+        }
+        stringEncrypter.setAlgorithm(getAlgorithm());
+
+        TextEncryptor encryptor = new TextEncryptor();
+        encryptor.setPbeStringEncryptor(stringEncrypter);
+
+        return new PasswordEncoder() {
+            @Override
+            public String encodePassword(String rawPass, Object salt) {
+                return encryptor.encrypt(rawPass);
+            }
+
+            @Override
+            public boolean matches(String encPass, String rawPass, Object salt) {
+                return encryptor.decrypt(encPass).equals(rawPass);
+            }
+        };
+    } finally {
+        scramble(password);
+        scramble(chars);
+    }
+}

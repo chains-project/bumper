@@ -1,0 +1,27 @@
+0a1,11
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.LazyTestProviderFactory;
+> import org.apache.maven.surefire.api.testset.TestRequest;
+> import org.apache.maven.surefire.api.testset.TestSetFailedException;
+> import org.apache.maven.surefire.api.util.SurefireReflectionUtils;
+> 
+> import java.io.File;
+> import java.util.Collection;
+> import java.util.List;
+> 
+2,3c13,23
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     DefaultForkConfiguration forkedConfig = new DefaultForkConfiguration();
+>     TestRequest testRequest = new TestRequest();
+>     testRequest.setMethodName("getWildcard");
+>     Commandline commandLine = forkedConfig.createCommandLine(forkedConfig.getStartupConfiguration(), 0, testSrcFolder);
+>     LazyTestProviderFactory testProviderFactory = new LazyTestProviderFactory();
+>     try {
+>         Collection<File> testFiles = testProviderFactory.createTestProvider(commandLine, testSrcFolder, testRequest).getIncludedClasses();
+>         return SurefireReflectionUtils.getFileNames(testFiles);
+>     } catch (TestSetFailedException e) {
+>         throw new RuntimeException("Failed to scan test files", e);
+>     }

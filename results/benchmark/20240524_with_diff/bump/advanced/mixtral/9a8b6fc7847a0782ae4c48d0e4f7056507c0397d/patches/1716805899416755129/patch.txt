@@ -1,0 +1,36 @@
+import org.jasypt.digest.StandardStringDigester;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+    // existing variables and methods
+
+    private StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+    private BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+    private StandardStringDigester digester = new StandardStringDigester();
+
+    // existing constructor
+
+    @Override
+    public String encodePassword(String rawPass, Object salt) {
+        if (salt == null) {
+            return passwordEncryptor.encryptPassword(rawPass);
+        } else {
+            encryptor.setPassword(rawPass);
+            return encryptor.encrypt(salt.toString());
+        }
+    }
+
+    @Override
+    public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+        if (salt == null) {
+            return passwordEncryptor.checkPassword(rawPass, encPass);
+        } else {
+            encryptor.setPassword(rawPass);
+            return encryptor.matches(salt.toString(), encPass);
+        }
+    }
+
+    // existing methods
+}

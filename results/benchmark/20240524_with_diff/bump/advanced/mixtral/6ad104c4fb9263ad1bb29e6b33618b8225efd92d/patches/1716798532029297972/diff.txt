@@ -1,0 +1,15 @@
+1a2,14
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> private void decode(TlsContext context, InputStream input) throws IOException {
+>     // ...
+>     try {
+>         // ...
+>     } catch (Exception ex) {
+>         // ...
+>         throw new TlsFatalAlert(AlertDescription.internal_error);
+>     }
+> }
+\ No newline at end of file

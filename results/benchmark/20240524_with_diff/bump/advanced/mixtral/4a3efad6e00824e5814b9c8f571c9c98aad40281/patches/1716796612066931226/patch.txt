@@ -1,0 +1,38 @@
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+import eu.europa.esig.dss.pades.signature.PAdESService;
+import eu.europa.esig.dss.token.JKSSignatureToken;
+import eu.europa.esig.dss.validation.CommonCertificateVerifier;
+import eu.europa.esig.dss.enumerations.SignatureLevel;
+import eu.europa.esig.dss.enumerations.DigestAlgorithm;
+import eu.europa.esig.dss.spi.x509.tsp.CompositeTSPSource;
+import eu.europa.esig.dss.spi.x509.tsp.TSPSource;
+import eu.europa.esig.dss.spi.x509.tsp.OnlineTSPSource;
+import eu.europa.esig.dss.model.DSSDocument;
+import eu.europa.esig.dss.model.InMemoryDocument;
+import eu.europa.esig.dss.model.ToBeSigned;
+import eu.europa.esig.dss.model.SignatureValue;
+import eu.europa.esig.dss.pades.PdfBoxNativeObjectFactory;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyStore;
+import java.security.KeyStore.PasswordProtection;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateChain;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Stream;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.openpdfsign.dss.NativeObjectFactory;
+
+public void signPdf(Path pdfFile, Path outputFile, byte[] keyStore, char[] keyStorePassword, boolean binary, SignatureParameters params) throws IOException {
+    // ...
+    // PAdES parameters
+    PAdESSignatureParameters signatureParameters = new PAdESSignatureParameters();
+    // ...
+    signatureParameters.setPermission(eu.europa.esig.dss.pades.PadesPermission.MINIMAL_CHANGES_PERMITTED);
+    // ...
+}

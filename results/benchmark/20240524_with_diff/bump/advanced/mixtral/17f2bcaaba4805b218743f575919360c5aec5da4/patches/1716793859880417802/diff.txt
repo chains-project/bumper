@@ -1,0 +1,17 @@
+1a2,16
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code...
+> 
+>     @BeforeEach
+>     public void setUp() {
+>         // existing code...
+> 
+>         // Verify that the index size is greater than zero
+>         assertTrue(index.size() > 0);
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

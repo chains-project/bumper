@@ -1,0 +1,19 @@
+import com.artipie.asto.factory.StoragesLoader;
+import com.artipie.asto.factory.Config;
+import com.artipie.asto.Storage;
+import java.util.Map;
+import java.util.Collections;
+
+@Override
+public Policy<?> getPolicy(final PolicyConfig config) {
+    final PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader loader = new StoragesLoader(Collections.emptyMap());
+        return new YamlPolicy(new BlockingStorage(loader.newObject(
+            sub.string("type"),
+            new com.amihaiemil.eoyaml.YamlInput(sub.toString()).as(Config.class)
+        )));
+    } catch (final IOException err) {
+        throw new UncheckedIOException(err);
+    }
+}

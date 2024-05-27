@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.TlsAlert;
+
+// ...
+
+private void handleError(short errorCode) {
+    TlsAlert alert = new TlsAlert(errorCode);
+    AlertDescription description = alert.getAlertDescription();
+    // ...
+}

@@ -1,0 +1,11 @@
+1a2,10
+> 
+> import java.io.Writer;
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void generateReport(Writer writer, RenderingContext renderingContext) {
+>         // Your code here
+>     }
+> }
+\ No newline at end of file

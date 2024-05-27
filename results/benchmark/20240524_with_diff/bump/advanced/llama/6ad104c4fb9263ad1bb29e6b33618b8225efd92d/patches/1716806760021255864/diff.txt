@@ -1,0 +1,12 @@
+1c1,7
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.jsse.BCSSLSocket;
+> 
+> public class ChachaDecoder {
+>     public void decode() {
+>         BCSSLSocket socket = new BCSSLSocket();
+>     }
+> }
+\ No newline at end of file

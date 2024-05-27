@@ -1,0 +1,17 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.lang.String;
+
+// ...
+
+public class SCoverageReportMojo {
+  // ...
+
+  public void someMethod() {
+    // ...
+    RenderingContext renderingContext = // create rendering context object
+    String outputName = renderingContext.getOutputName();
+    // ...
+  }
+
+  // ...
+}

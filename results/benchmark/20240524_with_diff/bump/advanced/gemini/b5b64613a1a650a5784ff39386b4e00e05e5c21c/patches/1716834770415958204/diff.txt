@@ -1,0 +1,30 @@
+1,6c1,5
+< private DeleteReleaseBundleRequest createRequest(String distRules, List<String> countryCodes, String siteName,
+<                                                      String cityName, boolean dryRun, boolean deleteFromDist) throws IOException {
+<         DeleteReleaseBundleRequest request;
+<         if (StringUtils.isNotBlank(distRules)) {
+<             if (!CollectionUtils.isEmpty(countryCodes) || !StringUtils.isAllBlank(siteName, cityName)) {
+<                 throw new IOException("The distRules input can't be used with site, city or country codes");
+---
+> private org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest createRequest(java.lang.String distRules, java.util.List<java.lang.String> countryCodes, java.lang.String siteName, java.lang.String cityName, boolean dryRun, boolean deleteFromDist) throws java.io.IOException {
+>     org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest request;
+>     if (org.apache.commons.lang3.StringUtils.isNotBlank(distRules)) {
+>         if ((org.apache.commons.collections4.CollectionUtils.isNotEmpty(countryCodes)) || (!org.apache.commons.lang3.StringUtils.isAllBlank(siteName, cityName))) {
+>             throw new java.io.IOException("The distRules input can't be used with site, city or country codes");
+8,9c7,8
+<             ObjectMapper mapper = createMapper();
+<             request = mapper.readValue(distRules, DeleteReleaseBundleRequest.class);
+---
+>         com.fasterxml.jackson.databind.ObjectMapper mapper = SerializationUtils.createMapper();
+>         request = mapper.readValue(distRules, org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest.class);
+11,12c10,11
+<             request = new DeleteReleaseBundleRequest();
+<             request.setDistributionRules(Utils.createDistributionRules(countryCodes, siteName, cityName));
+---
+>         request = new org.jfrog.build.extractor.clientConfiguration.client.distribution.request.DeleteReleaseBundleRequest();
+>         request.setDistributionRules(org.jfrog.hudson.pipeline.common.Utils.createDistributionRules(countryCodes, siteName, cityName));
+15,16c14
+<         request.setOnSuccess(deleteFromDist ?
+<                 DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);
+---
+>     request.setOnSuccess(deleteFromDist ? DeleteReleaseBundleRequest.OnSuccess.delete : DeleteReleaseBundleRequest.OnSuccess.keep);

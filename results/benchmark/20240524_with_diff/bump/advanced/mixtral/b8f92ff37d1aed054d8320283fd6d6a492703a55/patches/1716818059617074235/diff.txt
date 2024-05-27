@@ -1,0 +1,57 @@
+1,25c1,2
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+<     private boolean classToInclude(String className) {
+<         // False if it matches an excludes pattern
+<         for (String pattern : config.getJacocoExcludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+<                 return false;
+<             }
+<         }
+<         // True if it matches an includes pattern and doesn't match any excludes pattern
+<         for (String pattern : config.getJacocoIncludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+<             if (matcher.matches(className)) {
+<                 return true;
+<             }
+<         }
+---
+> private boolean classToInclude(java.lang.String className) {
+>     // ... (same as before)
+28,29c5,12
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinJavaDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), new org.apache.maven.surefire.api.testset.TestListResolver() {
+>             @Override
+>             public java.lang.String getWildcard() {
+>                 return org.apache.maven.surefire.api.testset.TestListResolver.getWildcard();
+>             }
+>         });
+> 
+34,35c17,24
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinTestDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), new org.apache.maven.surefire.api.testset.TestListResolver() {
+>             @Override
+>             public java.lang.String getWildcard() {
+>                 return org.apache.maven.surefire.api.testset.TestListResolver.getWildcard();
+>             }
+>         });
+> 
+41c30
+<         return false;
+---
+>     // ... (same as before)

@@ -1,0 +1,118 @@
+Act as an Automatic Program Repair (APR) tool, reply only with code, without explanation.
+You are specialized in breaking dependency updates, in which the failure is caused by an external dependency.
+To solve the failure you can only work on the client code.
+
+propose a patch that I can apply to the code in order to fix the error.
+Your response will be automatically parsed by an algorithm, be sure to only return the code.
+be sure to return a code segment that can replace the entire failing client code.
+you CANNOT change the function signature, but you can create variables if they help to make the code easier to understand.
+you CANNOT use removed library methods identified with `--`, but you CAN use added library methods identified with `++`.
+DO NOT USE '--' or '++' to indicate changes you make on the code, be sure to return only code that can be compiled.
+BE SURE to return fully qualified code (e.g. don't return Float but return java.lang.Float)
+return only the fixed failing method, not the complete class code, you MUST change something in the code.
+
+the following client code fails:
+```java
+@java.lang.Override
+public void init(java.io.OutputStream os) {
+    this.os = os;
+    // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+    // log.
+    final int bufferCapacity = 10;
+    framedTransport = new com.pinterest.singer.client.logback.TFastFramedTransport(new org.apache.thrift.transport.TIOStreamTransport(os), bufferCapacity);
+    protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
+}
+```
+
+with the following error message:
+[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/logback/AppenderUtils.java:[64,29] cannot find symbol
+  symbol:   class TFastFramedTransport
+  location: class com.pinterest.singer.client.logback.AppenderUtils.LogMessageEncoder
+
+
+the new library version includes the following changes, where `--` indicates a removal and `++` indicates an addition:
+Here are the suitable replacements for the element "TFastFramedTransport":
+
+-- public TFastFramedTransport$Factory org.apache.thrift.transport.TFastFramedTransport$Factory()
+-- public TFastFramedTransport$Factory org.apache.thrift.transport.TFastFramedTransport$Factory(int)
+-- public TFastFramedTransport$Factory org.apache.thrift.transport.TFastFramedTransport$Factory(int,int)
+-- public TFastFramedTransport org.apache.thrift.transport.TFastFramedTransport(org.apache.thrift.transport.TTransport)
+-- public TFastFramedTransport org.apache.thrift.transport.TFastFramedTransport(org.apache.thrift.transport.TTransport,int)
+-- public TFastFramedTransport org.apache.thrift.transport.TFastFramedTransport(org.apache.thrift.transport.TTransport,int,int)
+-- public void org.apache.thrift.transport.TFastFramedTransport.clear()
+-- public void org.apache.thrift.transport.TFastFramedTransport.close()
+-- public void org.apache.thrift.transport.TFastFramedTransport.consumeBuffer(int)
+-- public void org.apache.thrift.transport.TFastFramedTransport.flush()
+-- public [B org.apache.thrift.transport.TFastFramedTransport.getBuffer()
+-- public int org.apache.thrift.transport.TFastFramedTransport.getBufferPosition()
+-- public int org.apache.thrift.transport.TFastFramedTransport.getBytesRemainingInBuffer()
+-- public bool org.apache.thrift.transport.TFastFramedTransport.isOpen()
+-- public void org.apache.thrift.transport.TFastFramedTransport.open()
+-- public int org.apache.thrift.transport.TFastFramedTransport.read(byte[],int,int)
+-- public void org.apache.thrift.transport.TFastFramedTransport.write(byte[],int,int)
+++ public void org.apache.thrift.transport.TFileTransport.checkReadBytesAvailable(long)
+++ public org.apache.thrift.TConfiguration org.apache.thrift.transport.TFileTransport.getConfiguration()
+++ public void org.apache.thrift.transport.TFileTransport.updateKnownMessageSize(long)
+++ public TEndpointTransport org.apache.thrift.transport.TEndpointTransport(org.apache.thrift.TConfiguration)
+++ public void org.apache.thrift.transport.TEndpointTransport.checkReadBytesAvailable(long)
+++ protected void org.apache.thrift.transport.TEndpointTransport.countConsumedMessageBytes(long)
+++ public org.apache.thrift.TConfiguration org.apache.thrift.transport.TEndpointTransport.getConfiguration()
+++ protected J org.apache.thrift.transport.TEndpointTransport.getMaxMessageSize()
+++ protected void org.apache.thrift.transport.TEndpointTransport.resetConsumedMessageSize(long)
+++ public void org.apache.thrift.transport.TEndpointTransport.updateKnownMessageSize(long)
+++ public TFramedTransport$Factory org.apache.thrift.transport.TFramedTransport$Factory()
+++ public TFramedTransport$Factory org.apache.thrift.transport.TFramedTransport$Factory(int)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.TFramedTransport$Factory.getTransport(org.apache.thrift.transport.TTransport)
+++ public TFramedTransport org.apache.thrift.transport.TFramedTransport(org.apache.thrift.transport.TTransport)
+++ public TFramedTransport org.apache.thrift.transport.TFramedTransport(org.apache.thrift.transport.TTransport,int)
+++ public void org.apache.thrift.transport.TFramedTransport.clear()
+++ public void org.apache.thrift.transport.TFramedTransport.close()
+++ public void org.apache.thrift.transport.TFramedTransport.consumeBuffer(int)
+++ public static final int org.apache.thrift.transport.TFramedTransport.decodeFrameSize(byte[])
+++ public static final void org.apache.thrift.transport.TFramedTransport.encodeFrameSize(int,byte[])
+++ public void org.apache.thrift.transport.TFramedTransport.flush()
+++ public [B org.apache.thrift.transport.TFramedTransport.getBuffer()
+++ public int org.apache.thrift.transport.TFramedTransport.getBufferPosition()
+++ public int org.apache.thrift.transport.TFramedTransport.getBytesRemainingInBuffer()
+++ public bool org.apache.thrift.transport.TFramedTransport.isOpen()
+++ public void org.apache.thrift.transport.TFramedTransport.open()
+++ public int org.apache.thrift.transport.TFramedTransport.read(byte[],int,int)
+++ public void org.apache.thrift.transport.TFramedTransport.write(byte[],int,int)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.InputStream)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.InputStream,java.io.OutputStream)
+++ public TIOStreamTransport org.apache.thrift.transport.TIOStreamTransport(org.apache.thrift.TConfiguration,java.io.OutputStream)
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration)
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[])
+++ public TMemoryInputTransport org.apache.thrift.transport.TMemoryInputTransport(org.apache.thrift.TConfiguration,byte[],int,int)
+++ public TMemoryTransport org.apache.thrift.transport.TMemoryTransport(byte[])
+++ public TMemoryTransport org.apache.thrift.transport.TMemoryTransport(org.apache.thrift.TConfiguration,byte[])
+++ public void org.apache.thrift.transport.TMemoryTransport.close()
+++ public org.apache.thrift.TByteArrayOutputStream org.apache.thrift.transport.TMemoryTransport.getOutput()
+++ public bool org.apache.thrift.transport.TMemoryTransport.isOpen()
+++ public void org.apache.thrift.transport.TMemoryTransport.open()
+++ public int org.apache.thrift.transport.TMemoryTransport.read(byte[],int,int)
+++ public void org.apache.thrift.transport.TMemoryTransport.write(byte[],int,int)
+++ public abstract org.apache.thrift.transport.TNonblockingTransport org.apache.thrift.transport.TNonblockingServerTransport.accept()
+++ public TNonblockingTransport org.apache.thrift.transport.TNonblockingTransport(org.apache.thrift.TConfiguration)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.TNonblockingTransportFactory.getTransport(org.apache.thrift.transport.TTransport)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.TNonblockingTransportFactory.getTransport(org.apache.thrift.transport.TTransport)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.TTransportFactory.getTransport(org.apache.thrift.transport.TTransport)
+++ public TFramedTransport$Factory org.apache.thrift.transport.layered.TFramedTransport$Factory()
+++ public TFramedTransport$Factory org.apache.thrift.transport.layered.TFramedTransport$Factory(int)
+++ public TFramedTransport$Factory org.apache.thrift.transport.layered.TFramedTransport$Factory(int,int)
+++ public org.apache.thrift.transport.TTransport org.apache.thrift.transport.layered.TFramedTransport$Factory.getTransport(org.apache.thrift.transport.TTransport)
+++ public TFramedTransport org.apache.thrift.transport.layered.TFramedTransport(org.apache.thrift.transport.TTransport)
+++ public TFramedTransport org.apache.thrift.transport.layered.TFramedTransport(org.apache.thrift.transport.TTransport,int)
+++ public TFramedTransport org.apache.thrift.transport.layered.TFramedTransport(org.apache.thrift.transport.TTransport,int,int)
+++ public void org.apache.thrift.transport.layered.TFramedTransport.clear()
+++ public void org.apache.thrift.transport.layered.TFramedTransport.close()
+++ public void org.apache.thrift.transport.layered.TFramedTransport.consumeBuffer(int)
+++ public void org.apache.thrift.transport.layered.TFramedTransport.flush()
+++ public [B org.apache.thrift.transport.layered.TFramedTransport.getBuffer()
+++ public int org.apache.thrift.transport.layered.TFramedTransport.getBufferPosition()
+++ public int org.apache.thrift.transport.layered.TFramedTransport.getBytesRemainingInBuffer()
+++ public bool org.apache.thrift.transport.layered.TFramedTransport.isOpen()
+++ public void org.apache.thrift.transport.layered.TFramedTransport.open()
+++ public int org.apache.thrift.transport.layered.TFramedTransport.read(byte[],int,int)
+++ public void org.apache.thrift.transport.layered.TFramedTransport.write(byte[],int,int)

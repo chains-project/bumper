@@ -1,0 +1,11 @@
+1d0
+< // TODO: review this AI generated patch!
+31c30
+<                 currentEntryMeta.addEnchant(com.cryptomorin.xseries.XEnchant.wrap(com.cryptomorin.xseries.XMaterial.matchXMaterial("PROTECTION").get().parseMaterial())), 1);
+---
+>                 currentEntryMeta.addEnchant(com.cryptomorin.xseries.XEnchant.wrap(com.cryptomorin.xseries.XMaterial.matchXMaterial("PROTECTION").get().parseMaterial()), 1);
+58,59c57
+<         contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ (pagination.getPage() + 1) + "" }), ( e) -> {
+<         }));
+---
+>         contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ String.valueOf(pagination.getPage() + 1) }), (e) -> {}));

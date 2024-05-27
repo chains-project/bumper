@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class ChachaDecoder {
+> 
+>     public TlsFatalAlert decode(byte[] data) {
+>         return new TlsFatalAlert(TlsFatalAlert.BAD_CERTIFICATE, "Invalid ChaCha20Poly1305 cipher suite");
+>     }
+> }
+\ No newline at end of file

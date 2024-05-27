@@ -1,0 +1,9 @@
+1a2,8
+> 
+> public class ChachaDecoder {
+> 
+>     public ChachaDecoder(AlertDescription alertDescription) {
+>         // Do nothing
+>     }
+> }
+\ No newline at end of file

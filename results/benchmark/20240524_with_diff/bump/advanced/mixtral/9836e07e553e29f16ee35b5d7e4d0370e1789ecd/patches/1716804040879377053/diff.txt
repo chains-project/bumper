@@ -1,0 +1,6 @@
+1,2c1,2
+< private Matcher<String> manifestPushed() {
+<         return new StringContains(false, String.format("latest: digest: %s", this.image.digest()));
+---
+> private org.hamcrest.Matcher<String> manifestPushed() {
+>     return new org.hamcrest.core.StringStartsWith(String.format("latest: digest: %s", this.image.digest()));

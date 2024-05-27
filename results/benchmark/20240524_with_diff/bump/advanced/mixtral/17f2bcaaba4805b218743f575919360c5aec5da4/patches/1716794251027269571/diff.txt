@@ -1,0 +1,9 @@
+1a2,8
+> import static org.tinspin.index.util.MinHeapI.size;
+> 
+> // existing code here
+> 
+> int heapSize = size();
+> // or if you need to specify the type of MinHeapI:
+> // int heapSize = org.tinspin.index.util.MinHeapI.size();
+\ No newline at end of file

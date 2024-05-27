@@ -1,0 +1,18 @@
+4c4,18
+<     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).name()).getMessage(), new org.hamcrest.core.StringContains(false, "Unexpected path"));
+---
+>     assertThrows(
+>         org.junit.jupiter.api.Assertions::assertThrows,
+>         org.apache.http.client.HttpResponseException.class,
+>         () -> {
+>             new com.artipie.docker.http.UploadEntityRequest(
+>                 new org.apache.http.entity.ByteArrayEntity(
+>                     new byte[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
+>                     "application/octet-stream"
+>                 ),
+>                 "http://localhost:8080/v1/images/create?fromSrc=https://example.com/image.tar",
+>                 "Authorization",
+>                 "Basic dXNlcjpwYXNzd29yZA=="
+>             ).execute(new org.apache.http.impl.client.CloseableHttpClient());
+>         }
+>     );

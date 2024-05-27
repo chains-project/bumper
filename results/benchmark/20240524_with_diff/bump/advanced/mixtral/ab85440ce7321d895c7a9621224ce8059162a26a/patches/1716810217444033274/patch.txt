@@ -1,0 +1,3 @@
+private org.hamcrest.Matcher<java.lang.String> layersAlreadyExist() {
+    return org.hamcrest.CoreMatchers.startsWith(this.image.layer() + ": Layer already exists");
+}

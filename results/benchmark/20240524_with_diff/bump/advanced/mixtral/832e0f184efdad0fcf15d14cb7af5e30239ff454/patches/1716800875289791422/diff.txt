@@ -1,0 +1,68 @@
+10d9
+<                         
+16d14
+<                         
+21d18
+<                         
+28d24
+<                                 
+30c26
+<                                 ArrayList<String> lore = new ArrayList<>();
+---
+>             List<String> lore = new ArrayList<>();
+32c28
+<                                         lore.add(ChatColor.YELLOW + "" + ChatColor.ITALIC + CommonDefinitions.getMessage("wwcConfigGUIMessagesAlreadyOverriden"));
+---
+>                 lore.add(((ChatColor.YELLOW + "") + ChatColor.ITALIC) + CommonDefinitions.getMessage("wwcConfigGUIMessagesAlreadyOverriden"));
+34c30
+<                                         currentEntryMeta.addEnchant(XEnchantment.matchXEnchantment("power").get().parseEnchantment(), 1, false);
+---
+>                 currentEntryMeta.addEnchant(Enchantment.getByKey(NamespacedKey.minecraft("power")), 1, false);
+36c32
+<                                 lore.add(CommonDefinitions.getMessage("wwcConfigGUIMessagesOverrideOriginalLabel") + ": " + messagesConfig.getString("Messages." + entry.getKey()));
+---
+>             lore.add((CommonDefinitions.getMessage("wwcConfigGUIMessagesOverrideOriginalLabel") + ": ") + messagesConfig.getString("Messages." + entry.getKey()));
+39c35
+<                                 currentMessages[currSpot] = ClickableItem.of(currentEntry, e -> {
+---
+>             currentMessages[currSpot] = ClickableItem.of(currentEntry, (e) -> {
+41,42c37
+<                                         ConversationFactory textConvo = new ConversationFactory(main).withModality(true)
+<                                                         .withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings, entry.getKey()));
+---
+>                 ConversationFactory textConvo = new ConversationFactory(main).withModality(true).withFirstPrompt(new ChatSettingsModifyOverrideTextConversation(ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings, entry.getKey()));
+47d41
+<                         
+51,52c45
+<                         pagination.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 1, 1).allowOverride(false));
+<                         
+---
+>         pagination.addToIterator(new SlotIterator(SlotIterator.Type.HORIZONTAL, 1, 1).allowOverride(false));
+55,57c48,49
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+<                                         overrideNewMessageSettings.open(player,
+<                                                         pagination.previous().getPage());
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), (e) -> {
+>                 ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings.open(player, pagination.previous().getPage());
+60c52
+<                                 contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), e -> {
+---
+>             contents.set(5, 2, ClickableItem.of(WWCInventoryManager.getCommonButton("Previous"), (e) -> {
+64d55
+<                         
+66,67c57,58
+<                         contents.set(5, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[] {pagination.getPage() + 1 + ""}), e -> {}));
+<                         
+---
+>         contents.set(5, 4, ClickableItem.of(WWCInventoryManager.getCommonButton("Page Number", new String[]{ (pagination.getPage() + 1) + "" }), (e) -> {
+>         }));
+70,72c61,62
+<                                 contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), e -> {
+<                                         overrideNewMessageSettings.open(player,
+<                                                         pagination.next().getPage());
+---
+>             contents.set(5, 6, ClickableItem.of(WWCInventoryManager.getCommonButton("Next"), (e) -> {
+>                 ConfigurationMessagesOverridePossibleListGUI.overrideNewMessageSettings.open(player, pagination.next().getPage());
+74d63
+<                                 ;

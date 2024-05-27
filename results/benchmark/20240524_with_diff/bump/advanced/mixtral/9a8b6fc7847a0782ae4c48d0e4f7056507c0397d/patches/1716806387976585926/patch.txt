@@ -1,0 +1,10 @@
+@java.lang.Override
+protected org.jasypt.spring.security.PasswordEncoder createStringEncoder() {
+    org.jasypt.encryption.pbe.PBEStringEncryptor encryptor = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+    encryptor.setAlgorithm("PBEWithMD5AndTripleDES");
+    encryptor.setPassword("your-encryption-password");
+
+    org.jasypt.spring.security.PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
+    encoder.setPasswordEncryptor(encryptor);
+    return encoder;
+}

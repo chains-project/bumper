@@ -1,0 +1,14 @@
+1a2,13
+> 
+> public class SCoverageReportMojo {
+> 
+>     public void execute() {
+>         // ...
+> 
+>         RenderingContext renderingContext = new RenderingContext();
+>         renderingContext.setOutputName("scoverage-report.xml");
+> 
+>         // ...
+>     }
+> }
+\ No newline at end of file

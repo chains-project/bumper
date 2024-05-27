@@ -1,0 +1,28 @@
+1c1,23
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> 
+> // ...
+> 
+> private void decodeRecord(ByteBuffer input, ByteBuffer output) throws IOException {
+>     // ...
+> 
+>     try {
+>         switch (type) {
+>             case 20:
+>                 decryptChacha20Poly1305(input, output, mac);
+>                 break;
+>             case 21:
+>                 decryptAESGCM(input, output, mac);
+>                 break;
+>             default:
+>                 throw new TlsFatalAlert(TlsUtils.decodeAlertLevel(input),
+>                         TlsUtils.decodeAlertDescription(input));
+>         }
+>     } catch (Exception e) {
+>         throw new TlsFatalAlert(AlertDescription.internal_error);
+>     }
+> }
+\ No newline at end of file

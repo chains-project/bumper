@@ -1,0 +1,7 @@
+1c1,2
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import static org.junit.Assume.assumeThat;
+> import static org.hamcrest.Matchers.*;
+\ No newline at end of file

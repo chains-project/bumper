@@ -1,0 +1,11 @@
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+import java.io.IOException;
+
+public void decodeRecord(ByteBuffer byteBuffer) throws IOException {
+    short contentType = byteBuffer.getShort();
+    if (contentType != 20) {
+        throw new TlsFatalAlert(AlertDescription.decode(contentType));
+    }
+    // ...
+}

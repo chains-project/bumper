@@ -1,0 +1,22 @@
+import java.util.EnumSet;
+import java.util.Set;
+
+import org.bouncycastle.crypto.tls.TlsAlert;
+
+public class ChachaDecoder {
+    // ...
+
+    private void decodeAlert(TlsContext context, InputStream input) throws IOException {
+        int alertLevel = input.readByte();
+        int alertDescription = input.readByte();
+
+        Set<TlsAlert.AlertDescription> supportedAlerts = EnumSet.allOf(TlsAlert.AlertDescription.class);
+        if (!supportedAlerts.contains(TlsAlert.AlertDescription.forCode(alertDescription))) {
+            throw new TlsFatalAlert(AlertDescription.unknown_ca);
+        }
+
+        // ...
+    }
+
+    // ...
+}

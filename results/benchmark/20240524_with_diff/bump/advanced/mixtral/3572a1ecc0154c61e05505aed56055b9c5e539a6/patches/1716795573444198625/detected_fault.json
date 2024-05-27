@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 111900554,
+    "in_class_code": "{\n    // TODO: review this AI generated patch!\n    @Override\n    protected TDeserializer initialValue() {\n        ByteArrayInputStream inputStream = new ByteArrayInputStream(new byte[0]);\n        TIOStreamTransport transport = new TIOStreamTransport(new TConfiguration(), inputStream);\n        TBinaryProtocol protocol = new TBinaryProtocol(transport);\n        return new TDeserializer(protocol);\n    }\n}",
+    "qualified_in_class_code": " {\n    // TODO: review this AI generated patch!\n    @java.lang.Override\n    protected org.apache.thrift.TDeserializer initialValue() {\n        java.io.ByteArrayInputStream inputStream = new java.io.ByteArrayInputStream(new byte[0]);\n        org.apache.thrift.transport.TIOStreamTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new org.apache.thrift.TConfiguration(), inputStream);\n        org.apache.thrift.protocol.TBinaryProtocol protocol = new org.apache.thrift.protocol.TBinaryProtocol(transport);\n        return new org.apache.thrift.TDeserializer(protocol);\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java:[184,48] incompatible types: org.apache.thrift.protocol.TBinaryProtocol cannot be converted to org.apache.thrift.protocol.TProtocolFactory",
+        "client_file_path": "/singer/thrift-logger/src/main/java/com/pinterest/singer/client/ThriftCodec.java",
+        "client_line_position": "184"
+    },
+    "client_end_line_number": 185,
+    "client_line_number": 178,
+    "method_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    java.io.ByteArrayInputStream inputStream = new java.io.ByteArrayInputStream(new byte[0]);\n    org.apache.thrift.transport.TIOStreamTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new org.apache.thrift.TConfiguration(), inputStream);\n    org.apache.thrift.protocol.TBinaryProtocol protocol = new org.apache.thrift.protocol.TBinaryProtocol(transport);\n    return new org.apache.thrift.TDeserializer(protocol);\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\n@java.lang.Override\nprotected org.apache.thrift.TDeserializer initialValue() {\n    java.io.ByteArrayInputStream inputStream = new java.io.ByteArrayInputStream(new byte[0]);\n    org.apache.thrift.transport.TIOStreamTransport transport = new org.apache.thrift.transport.TIOStreamTransport(new org.apache.thrift.TConfiguration(), inputStream);\n    org.apache.thrift.protocol.TBinaryProtocol protocol = new org.apache.thrift.protocol.TBinaryProtocol(transport);\n    return new org.apache.thrift.TDeserializer(protocol);\n}",
+    "method_name": "initialValue"
+}

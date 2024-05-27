@@ -1,0 +1,9 @@
+1,5c1,2
+< private Matcher<String> layersAlreadyExist() {
+<         return new StringContains(
+<             false,
+<             String.format("%s: Layer already exists", this.image.layer())
+<         );
+---
+> private org.hamcrest.Matcher<java.lang.String> layersAlreadyExist() {
+>     return new org.hamcrest.core.StringContains(false, String.format("%s: Layer already exists", this.image.layer()));

@@ -1,0 +1,8 @@
+1,2c1,2
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+<     List<String> list = extractList(cache, branch);
+---
+> private static java.lang.String extractFirst(de.gwdg.metadataqa.api.model.pathcache.JsonPathCache cache, de.gwdg.metadataqa.api.json.JsonBranch branch) {
+>     java.util.List<java.lang.String> list = de.gwdg.metadataqa.marc.MarcFactory.extractList(cache, branch.getChildren());
+4a5
+> 

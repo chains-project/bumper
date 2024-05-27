@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2
+<     return new org.hamcrest.core.IsNot(new org.hamcrest.core.StringContains(java.lang.String.format("%s: Pushed", this.image.layer()))));
+---
+>     return new org.hamcrest.core.IsNot(new org.hamcrest.core.StringEndsWith(java.lang.String.format(": Pushed", this.image.layer())));

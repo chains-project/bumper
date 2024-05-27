@@ -1,0 +1,21 @@
+import org.apache.maven.plugin.surefire.booterclient.Commandline;
+import org.apache.maven.plugin.surefire.booterclient.DefaultForkConfiguration;
+import org.apache.maven.plugin.surefire.booter.StartupConfiguration;
+import org.apache.maven.plugin.surefire.util.DirectoryScanner;
+
+import java.io.File;
+
+static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+    DefaultForkConfiguration forConfig = new DefaultForkConfiguration();
+    Commandline commandLine = forConfig.createCommandLine(new StartupConfiguration(), 0, testSrcFolder);
+    DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver().getWildcard());
+    directoryScanner.setIncludes(new String[]{"**/*.class"});
+    directoryScanner.scan();
+    return directoryScanner.getIncludedFiles();
+}
+
+static class TestListResolver {
+    public String getWildcard() {
+        return "**/*.class";
+    }
+}

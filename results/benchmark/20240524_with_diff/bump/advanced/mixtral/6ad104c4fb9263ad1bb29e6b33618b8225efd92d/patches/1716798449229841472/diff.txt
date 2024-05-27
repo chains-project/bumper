@@ -1,0 +1,8 @@
+1a2,7
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> TlsFatalAlert fatalAlert = new TlsFatalAlert(shortAlertDescription);
+> AlertDescription alertDescription = fatalAlert.getAlertDescription();
+\ No newline at end of file

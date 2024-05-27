@@ -1,0 +1,16 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    // Add a test method that checks the size of an instance of MinHeap
+    @Test
+    public void testMinHeapSize() {
+        org.tinspin.index.util.MinHeap<Integer> minHeap = new org.tinspin.index.util.MinHeap<>();
+        minHeap.add(1);
+        minHeap.add(2);
+        minHeap.add(3);
+        int expectedSize = 3;
+        int actualSize = minHeap.size();
+        assertEquals(expectedSize, actualSize);
+    }
+}

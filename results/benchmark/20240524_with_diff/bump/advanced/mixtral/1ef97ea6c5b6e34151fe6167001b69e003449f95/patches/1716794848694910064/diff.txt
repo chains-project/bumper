@@ -1,0 +1,12 @@
+4a5,14
+> 
+> // Add the following methods if they don't already exist in your class
+> 
+> private Timestamp convertToTimestamp(Date date) {
+>     return new Timestamp(date.getTime());
+> }
+> 
+> private Date convertToDate(Timestamp timestamp) {
+>     return new Date(timestamp.getTime());
+> }
+\ No newline at end of file

@@ -1,0 +1,31 @@
+1d0
+< // TODO: review this AI generated patch!
+14c13
+<         fr.minuskube.inv.ClickableItem[] currentMessages = new fr.minuskube.inv.ClickableItem[0];
+---
+>         fr.minuskube.inv.ClickableItem[] currentMessages;
+31c30
+<                 currentEntryMeta.addEnchant(com.cryptomorin.xseries.XEnchant.wrap(com.cryptomorin.xseries.XMaterial.matchXMaterial("PROTECTION").get().parseMaterial())), 1);
+---
+>                 currentEntryMeta.addEnchant(com.cryptomorin.xseries.XEnchant.wrap(com.cryptomorin.xseries.XMaterial.matchXMaterial("PROTECTION").get().parseMaterial()), 1);
+36c35
+<             currentMessages[currSpot] = fr.minuskube.inv.ClickableItem.of(currentEntry, ( e) -> {
+---
+>             currentMessages[currSpot] = fr.minuskube.inv.ClickableItem.of(currentEntry, e -> {
+49c48
+<             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), e -> {
+53c52
+<             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), ( e) -> {
+---
+>             contents.set(5, 2, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Previous"), e -> {
+58,59c57
+<         contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ (pagination.getPage() + 1) + "" }), ( e) -> {
+<         }));
+---
+>         contents.set(5, 4, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Page Number", new java.lang.String[]{ (pagination.getPage() + 1) + "" }), e -> {}));
+62c60
+<             contents.set(5, 6, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Next"), ( e) -> {
+---
+>             contents.set(5, 6, fr.minuskube.inv.ClickableItem.of(com.expl0itz.worldwidechat.inventory.WWCInventoryManager.getCommonButton("Next"), e -> {

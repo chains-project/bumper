@@ -1,0 +1,35 @@
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.text.TextEncryptorFactory;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+
+    private TextEncryptor textEncryptor;
+    private BasicPasswordEncryptor passwordEncryptor;
+
+    public GeoStoreDigestPasswordEncoder() {
+        this.textEncryptor = TextEncryptorFactory.createTextEncryptor();
+        this.passwordEncryptor = new BasicPasswordEncryptor();
+    }
+
+    @Override
+    public String encodePassword(String rawPass, Object salt) {
+        if (salt == null) {
+            return this.passwordEncryptor.encryptPassword(rawPass);
+        } else {
+            return this.textEncryptor.encrypt(rawPass);
+        }
+    }
+
+    @Override
+    public boolean isPasswordValid(String encPass, String rawPass, Object salt) {
+        if (salt == null) {
+            return this.passwordEncryptor.checkPassword(rawPass, encPass);
+        } else {
+            String newEncPass = this.encodePassword(rawPass, salt);
+            return newEncPass.equals(encPass);
+        }
+    }
+}

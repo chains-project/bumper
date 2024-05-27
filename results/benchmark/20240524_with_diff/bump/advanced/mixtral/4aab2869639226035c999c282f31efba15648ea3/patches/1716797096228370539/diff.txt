@@ -1,0 +1,29 @@
+0a1,4
+> import com.artipie.asto.factory.StoragesLoader;
+> import java.util.Map;
+> import java.util.Objects;
+> 
+2,3c6,7
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+<         final PolicyConfig sub = config.config("storage");
+---
+> public com.artipie.security.policy.Policy<?> getPolicy(final com.artipie.security.policy.PolicyConfig config) {
+>     final com.artipie.security.policy.PolicyConfig sub = config.config("storage");
+5,13c9,15
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+<             throw new UncheckedIOException(err);
+---
+>         StoragesLoader loader = new StoragesLoader(Map.of());
+>         return new com.artipie.security.policy.YamlPolicy(new com.artipie.asto.blocking.BlockingStorage(loader.newObject(
+>             sub.string("type"),
+>             com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping()
+>         )));
+>     } catch (final java.io.IOException err) {
+>         throw new java.io.UncheckedIOException(err);

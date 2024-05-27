@@ -1,0 +1,8 @@
+2c2
+<         public Slice slice(final String action) {
+---
+> public Slice slice(String action) {
+10c10
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                     .map(user -> new AuthUser(user.name(), ""))

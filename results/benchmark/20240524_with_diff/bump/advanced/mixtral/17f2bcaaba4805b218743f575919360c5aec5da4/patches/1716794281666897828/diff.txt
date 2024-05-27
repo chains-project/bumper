@@ -1,0 +1,31 @@
+1c1,26
+< import processing.core.PShape;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public void testSize() {
+>     PointIndexMMWrapper pointIndex = new PointIndexMMWrapper();
+>     PHTreeMMP phtree = new PHTreeMMP();
+>     MinHeap minHeap = new MinHeap();
+>     MinHeapI minHeapI = new MinHeapI() {};
+>     MinMaxHeap minMaxHeap = new MinMaxHeap();
+>     MinMaxHeapI minMaxHeapI = new MinMaxHeapI() {};
+> 
+>     int pointIndexSize = pointIndex.size();
+>     int phtreeSize = phtree.size();
+>     int minHeapSize = minHeap.size();
+>     int minHeapISize = minHeapI.size();
+>     int minMaxHeapSize = minMaxHeap.size();
+>     int minMaxHeapISize = minMaxHeapI.size();
+> 
+>     // ... assertions ...
+> }
+\ No newline at end of file

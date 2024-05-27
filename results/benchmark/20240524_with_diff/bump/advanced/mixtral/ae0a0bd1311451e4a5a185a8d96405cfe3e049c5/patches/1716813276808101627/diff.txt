@@ -1,0 +1,21 @@
+1,2c1,5
+< @Test
+<     void shouldPullPushedByTag() throws Exception {
+---
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.core.StringContains.containsStringIgnoringCase;
+> 
+> @org.junit.jupiter.api.Test
+> void shouldPullPushedByTag() throws java.lang.Exception {
+6,13c9,10
+<         final String output = this.client.run("pull", this.image.remote());
+<         MatcherAssert.assertThat(
+<             output,
+<             new StringContains(
+<                 false,
+<                 String.format("Status: Downloaded newer image for %s", this.image.remote())
+<             )
+<         );
+---
+>     final java.lang.String output = this.client.run("pull", this.image.remote());
+>     assertThat(output, containsStringIgnoringCase(String.format("Status: Downloaded newer image for %s", this.image.remote())));

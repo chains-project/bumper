@@ -1,0 +1,20 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
+
+import java.io.Writer;
+
+public void someMethod(Writer writer, RenderingContext renderingContext, SiteRenderingContext siteRenderingContext) {
+    RenderingContext context = renderingContext;
+    if (context == null) {
+        context = new RenderingContext() {
+            @Override
+            public String getOutputName() {
+                return "xhtml";
+            }
+        };
+    }
+
+    SiteRendererSink sink = new SiteRendererSink(context);
+
+    // ... (rest of the method)
+}

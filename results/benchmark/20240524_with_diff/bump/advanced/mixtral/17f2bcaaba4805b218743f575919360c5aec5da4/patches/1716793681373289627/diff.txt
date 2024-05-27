@@ -1,0 +1,19 @@
+1a2,18
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code...
+> 
+>     @BeforeEach
+>     public void setUp() {
+>         // existing code...
+> 
+>         // replace the failing line with the following code
+>         int expectedSize = 100; // replace this value with the expected size
+>         int actualSize = new org.tinspin.index.PointIndexMMWrapper().size();
+>         assertEquals(expectedSize, actualSize);
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file

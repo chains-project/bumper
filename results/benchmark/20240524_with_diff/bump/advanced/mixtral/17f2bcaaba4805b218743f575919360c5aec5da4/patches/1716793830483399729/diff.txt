@@ -1,0 +1,16 @@
+1a2,15
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code...
+> 
+>     @BeforeEach
+>     public void setUp() {
+>         // Use one of the size() methods from the updated library
+>         int size = new org.tinspin.index.PointIndexMMWrapper().size();
+>         assertTrue(size > 0);
+>     }
+> 
+>     // existing code...
+> }
+\ No newline at end of file
