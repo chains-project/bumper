@@ -1,5 +1,0 @@
-public class PGS_MorphologyGroupShapeTests {
-    import processing.core.PConstants;
-
-    // your code here
-}

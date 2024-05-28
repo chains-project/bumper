@@ -1,9 +1,0 @@
-import java.util.Random;
-import java.util.UUID;
-
-public static String getRandomString() {
-    UUID uuid = UUID.randomUUID();
-    long leastSignificantBits = uuid.getLeastSignificantBits();
-    Random random = new Random(leastSignificantBits);
-    return RandomStringUtils.randomAlphanumeric(random, 10);
-}

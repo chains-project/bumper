@@ -1,7 +1,0 @@
-4,6c4,5
-<     java.util.Random r = new it.unimi.dsi.util.XoRoShiRo128PlusRandom(0);
-<     for (int k = 
-< 
----
->     java.util.Random r = new java.util.XoroShiro128PlusRandom(0);
->     for (int k; ;);

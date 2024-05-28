@@ -1,4 +1,0 @@
-@Override
-    protected TDeserializer initialValue() {
-      return new TDeserializer(new TCompactProtocol.Factory());
-    }

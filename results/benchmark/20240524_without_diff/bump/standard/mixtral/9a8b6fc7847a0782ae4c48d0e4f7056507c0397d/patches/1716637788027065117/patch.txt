@@ -1,6 +1,0 @@
-@Override
-protected org.jasypt.spring.security.PasswordEncoder createStringEncoder() {
-    org.jasypt.spring.security.PasswordEncoder encoder = new org.jasypt.spring.security.PasswordEncoder();
-    encoder.setPasswordEncryptor(new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder());
-    return encoder;
-}

@@ -1,3 +1,0 @@
-2a3,4
->         // Add this inner class to fix the "cannot find symbol" error
->         protected static class Wildcard {}

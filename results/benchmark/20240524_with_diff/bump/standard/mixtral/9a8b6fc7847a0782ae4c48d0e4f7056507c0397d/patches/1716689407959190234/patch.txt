@@ -1,9 +1,0 @@
-import org.jasypt.util.text.TextEncryptor;
-import org.jasypt.encryption.pbe.PBEStringEncryptor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
-
-// ...
-
-TextEncryptor textEncryptor = new PBEStringEncryptor();
-PasswordEncoder passwordEncoder = new Pbkdf2PasswordEncoder();

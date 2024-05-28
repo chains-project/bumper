@@ -1,6 +1,0 @@
-import static java.lang.String.valueOf;
-
-public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
-    int randomInt = new java.util.Random().nextInt(20) + 1;
-    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(valueOf(randomInt), true));
-}

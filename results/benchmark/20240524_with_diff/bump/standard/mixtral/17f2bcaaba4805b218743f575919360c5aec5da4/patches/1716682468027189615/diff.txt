@@ -1,3 +1,0 @@
-1d0
-< import org.junit.Ignore;
-\ No newline at end of file

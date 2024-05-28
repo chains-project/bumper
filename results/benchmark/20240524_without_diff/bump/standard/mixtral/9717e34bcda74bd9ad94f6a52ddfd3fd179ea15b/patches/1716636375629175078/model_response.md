@@ -1,9 +1,0 @@
-Here'ing the updated `randomRepo()` method with the necessary changes:
-
-```java
-public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
-    final int twenty = 20; // replace with a constant value
-    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(twenty), true));
-}
-``
-```

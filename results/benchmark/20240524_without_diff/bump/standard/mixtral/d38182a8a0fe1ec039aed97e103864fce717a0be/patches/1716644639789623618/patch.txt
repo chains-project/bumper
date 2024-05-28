@@ -1,4 +1,0 @@
-@Override
-public Optional<com.artipie.http.auth.Authentication.User> user() {
-    return Optional.of(new com.artipie.http.auth.Authentication.User("alice"));
-}

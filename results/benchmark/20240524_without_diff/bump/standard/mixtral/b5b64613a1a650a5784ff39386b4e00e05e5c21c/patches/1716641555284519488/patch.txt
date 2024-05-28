@@ -1,7 +1,0 @@
-import java.util.Objects;
-
-// ...
-
-if (isNull(someVariable)) {
-    // ...
-}

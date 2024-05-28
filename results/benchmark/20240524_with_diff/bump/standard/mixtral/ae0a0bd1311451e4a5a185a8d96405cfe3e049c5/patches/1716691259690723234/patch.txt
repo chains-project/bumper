@@ -1,3 +1,0 @@
-private static org.hamcrest.Matcher<java.lang.String> imagePosed(final java.lang.String image) {
-    return org.hamcrest.Matchers.stringContains(String.format("Status: Downloaded newer image for %s", image));
-}

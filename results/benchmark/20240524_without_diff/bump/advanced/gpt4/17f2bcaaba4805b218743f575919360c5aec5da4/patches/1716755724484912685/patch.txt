@@ -1,5 +1,0 @@
-public class YourClass {
-    import processing.core.PShape;
-
-    // rest of your code
-}

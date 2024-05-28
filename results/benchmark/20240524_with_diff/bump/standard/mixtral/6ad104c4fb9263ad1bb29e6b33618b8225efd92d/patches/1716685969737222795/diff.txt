@@ -1,9 +1,0 @@
-1a2,8
-> import org.bouncycastle.crypto.tls.TlsFatalAlert;
-> 
-> public class ChachaDecoder {
->     // ...
-> 
->     private void handleRenegotiation(TlsKeyExchange keyExchange, TlsSignerSignerSignerSigner signer) throws IOException {
->         if (keyExchange.getSelectedCipher() != null && !keyEx Cha
-\ No newline at end of file

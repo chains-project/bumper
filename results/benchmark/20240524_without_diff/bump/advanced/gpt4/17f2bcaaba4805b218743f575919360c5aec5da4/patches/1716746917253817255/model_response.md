@@ -1,7 +1,0 @@
-```java
-import org.junit.Assume;
-
-public void assumeTrue(boolean condition){
-    Assume.assumeTrue(condition);
-}
-```

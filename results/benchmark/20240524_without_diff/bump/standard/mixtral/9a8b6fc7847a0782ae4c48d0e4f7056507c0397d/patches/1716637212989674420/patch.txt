@@ -1,6 +1,0 @@
-import org.jasypt.password.PBEPasswordEncoder;
-
-// Change the following line
-// PBEPasswordEncoder encoder = new PBEPasswordEncoder();
-// to
-PBEPasswordEncoder encoder = new PBEPasswordEncoder(new StandardPBEStringEncryptor());

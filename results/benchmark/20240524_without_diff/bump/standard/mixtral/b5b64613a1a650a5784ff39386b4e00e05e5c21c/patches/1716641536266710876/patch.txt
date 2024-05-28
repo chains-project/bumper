@@ -1,7 +1,0 @@
-import java.util.Objects;
-
-// ...
-
-if (Objects.isNull(jfrogInstance)) {
-  // ...
-}

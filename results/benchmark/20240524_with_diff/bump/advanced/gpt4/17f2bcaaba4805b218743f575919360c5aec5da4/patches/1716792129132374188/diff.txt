@@ -1,3 +1,0 @@
-1d0
-< import static org.junit.Assert.assertTrue;
-\ No newline at end of file

@@ -1,4 +1,0 @@
-public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
-    final int randomNumber = 20; // replace the usage of Tv.TWENTY with a hardcoded value
-    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(randomNumber), true));
-}

@@ -1,3 +1,0 @@
-1d0
-< import org.cactoos.scalar.CheckedScalar;
-\ No newline at end of file

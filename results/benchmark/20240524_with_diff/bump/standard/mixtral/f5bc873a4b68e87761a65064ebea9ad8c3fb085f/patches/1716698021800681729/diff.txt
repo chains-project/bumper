@@ -1,8 +1,0 @@
-1a2,7
-> import org.codehaus.plexus.util.FileUtils;
-> 
-> //...
-> 
-> File themeDir = new File(basedir, "src/main/resources/META-INF/resources/theme");
-> FileUtils.deleteDirectory(themeDir);
-\ No newline at end of file
