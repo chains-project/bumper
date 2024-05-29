@@ -1,0 +1,18 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,16
+> 
+> import java.util.Optional;
+> 
+> public class AbstractThemeMojo {
+>     // existing code
+> 
+>     protected MavenProject getMavenProject() {
+>         Model model = (Model) getProject().getOriginalModel();
+>         Optional<MavenProject> mavenProject = getProjectBuilder().build(model).stream().findFirst();
+>         return mavenProject.orElseThrow(() -> new RuntimeException("Maven project could not be built"));
+>     }
+> 
+>     // existing code
+> }
+\ No newline at end of file

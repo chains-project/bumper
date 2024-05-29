@@ -1,0 +1,10 @@
+1d0
+< // TODO: review this AI generated patch!
+6c5
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+---
+>         transport = new org.apache.thrift.transport.netty.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+9c8
+<         throw new RuntimeException(e);
+---
+>         throw new java.lang.RuntimeException(e);

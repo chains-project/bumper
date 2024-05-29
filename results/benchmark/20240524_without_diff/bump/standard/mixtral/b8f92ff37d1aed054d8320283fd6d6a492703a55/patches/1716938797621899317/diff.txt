@@ -1,0 +1,42 @@
+1,11c1
+< /**
+<          * Computes if a given class is to be included in the post-coverage computation
+<          *
+<          * If we have include-exclude patterns for Jacoco:
+<          * - We include the class if it matches the include patterns and does not match the excludes patterns
+<          * Else:
+<          * - We include the class if it is available in the binary directories
+<          * @param className
+<          * @return true if the class should be included in the coverage result, false otherwise
+<          */
+<     private boolean classToInclude(String className) {
+---
+> private boolean classToInclude(java.lang.String className) {
+13,14c3,4
+<         for (String pattern : config.getJacocoExcludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>     for (java.lang.String pattern : config.getJacocoExcludes()) {
+>         org.jacoco.core.runtime.WildcardMatcher matcher = new org.jacoco.core.runtime.WildcardMatcher(pattern);
+20,21c10,11
+<         for (String pattern : config.getJacocoIncludes()) {
+<             WildcardMatcher matcher = new WildcardMatcher(pattern);
+---
+>     for (java.lang.String pattern : config.getJacocoIncludes()) {
+>         org.jacoco.core.runtime.WildcardMatcher matcher = new org.jacoco.core.runtime.WildcardMatcher(pattern);
+26d15
+< 
+28,29c17,18
+<         for (String dir : config.getBinJavaDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinJavaDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), (file) -> true);
+34,35c23,24
+<         for (String dir : config.getBinTestDir()) {
+<             DirectoryScanner directoryScanner = new DirectoryScanner(new File(dir), TestListResolver.getWildcard());
+---
+>     for (java.lang.String dir : config.getBinTestDir()) {
+>         org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(new java.io.File(dir), (file) -> true);
+40d28
+< 

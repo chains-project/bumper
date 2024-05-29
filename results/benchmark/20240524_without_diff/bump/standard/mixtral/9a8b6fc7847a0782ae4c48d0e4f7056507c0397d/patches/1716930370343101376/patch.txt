@@ -1,0 +1,6 @@
+import org.jasypt.util.text.BasicTextEncryptor;
+
+// Replace the failing line with the following code
+BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+textEncryptor.setPassword("your-password-here");
+String encryptedPassword = textEncryptor.encrypt("plain-text-password-here");

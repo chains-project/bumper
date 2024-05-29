@@ -1,0 +1,11 @@
+@Override
+protected TDeserializer initialValue() {
+    TTransport transport = null;
+    try {
+        transport = new TTransport(new TSocket("localhost", 9090));
+        transport = new TFramedTransport(transport);
+        return new TDeserializer(new TCompactProtocol.Factory(), transport);
+    } catch (TTransportException e) {
+        throw new RuntimeException(e);
+    }
+}

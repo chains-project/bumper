@@ -1,0 +1,2 @@
+// import a valid package
+import your.valid.package.WaveCreator;

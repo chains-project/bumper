@@ -1,0 +1,28 @@
+0a1,10
+> import org.apache.maven.plugin.surefire.util.DirectoryScanner;
+> import org.apache.maven.surefire.api.testset.TestFile;
+> import org.apache.maven.surefire.api.testset.TestSet;
+> import org.apache.maven.surefire.api.testset.TestSetFactory;
+> import org.apache.maven.surefire.api.testset.TestSetFile;
+> 
+> import java.io.File;
+> import java.util.Collections;
+> import java.util.List;
+> 
+2,3c12,24
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     TestSetFactory testSetFactory = new TestSetFactory();
+>     TestSet testSet = testSetFactory.createTestSet();
+>     TestFile testFile = testSetFactory.createTestFile(testSrcFolder);
+>     testSet.addTest(testFile);
+>     TestListResolver testListResolver = new TestListResolver(testSet);
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, testListResolver.getIncludes());
+>     directoryScanner.scan();
+>     List<TestFile> testFiles = directoryScanner.getIncludedFiles();
+>     List<String> classes = new java.util.ArrayList<>();
+>     for (TestFile file : testFiles) {
+>         classes.add(file.getAbsolutePath());
+>     }
+>     return classes;

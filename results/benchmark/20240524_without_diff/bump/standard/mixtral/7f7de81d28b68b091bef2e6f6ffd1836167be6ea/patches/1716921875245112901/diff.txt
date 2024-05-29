@@ -1,0 +1,15 @@
+1,8c1
+< /**
+<      * Sets the private registry value of {@link DefaultMOServer} via reflection.
+<      * FIXME
+<      * If there is any possibility to avoid this, then replace!
+<      *
+<      * @param group {@link ManagedObject} to register.
+<      */
+<     private void registerHard(final MOGroup group) {
+---
+> private <T extends ManagedObject> void registerHard(final MOGroup<T> group) {
+14c7
+<             reg.put(contextScope, group);
+---
+>         reg.put((MOScope) contextScope, (ManagedObject<T>) group);

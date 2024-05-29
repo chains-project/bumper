@@ -1,0 +1,7 @@
+1c1,2
+< import develop.p2p.lib.WaveCreator;
+\ No newline at end of file
+---
+> // import a valid package
+> import your.valid.package.WaveCreator;
+\ No newline at end of file

@@ -1,0 +1,22 @@
+1c1,17
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.digest.StandardStringDigester;
+> 
+> public class GeoStoreDigestPasswordEncoder {
+>     // ...
+> 
+>     private StandardStringDigester stringDigester;
+> 
+>     // ...
+> 
+>     @Override
+>     public String encode(String rawPass) {
+>         // Use the StandardStringDigester to encode the password
+>         return stringDigester.digest(rawPass);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

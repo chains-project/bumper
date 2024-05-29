@@ -1,0 +1,4 @@
+2c2
+<     return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard();
+---
+>     return new org.apache.maven.surefire.api.testset.TestListResolver. WildcardImpl();

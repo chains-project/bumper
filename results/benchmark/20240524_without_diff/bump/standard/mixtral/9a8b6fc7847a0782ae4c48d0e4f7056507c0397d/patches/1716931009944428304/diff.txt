@@ -1,0 +1,7 @@
+2,4c2,3
+<             protected PasswordEncoder createStringEncoder() {
+<                 PasswordEncoder encoder = new PasswordEncoder();
+<                 encoder.setPasswordEncryptor(new StrongPasswordEncryptor());
+---
+> protected org.springframework.security.crypto.password.PasswordEncoder createStringEncoder() {
+>     org.springframework.security.crypto.password.PasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();

@@ -1,0 +1,26 @@
+import static java.lang.Integer.valueOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.iterableWithSize;
+import com.amazonaws.services.simpledb.AmazonSimpleDB;
+import com.amazonaws.services.simpledb.model.SelectRequest;
+import java.util.Iterator;
+import org.junit.jupiter.api.Test;
+
+/**
+ * Region.Simple can select many items.
+ */
+@Test
+void selectsManyItems() {
+    final AmazonSimpleDB domain = this.domain();
+    try {
+        final int ten = 10;
+        for (int idx = 0; idx < ten; ++idx) {
+            domain.putAttributes(domain.domainName(), valueOf(idx), "hey", "");
+        }
+        final SelectRequest selectRequest = new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.domainName())).withConsistentRead(true);
+        final Iterator<String> items = domain.select(selectRequest).selectValues();
+        assertThat(items, iterableWithSize(ten));
+    } finally {
+        domain.deleteDomain(domain.domainName());
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 350068407,
+    "in_class_code": "/**\n * Integration test for large file pushing scenario of {@link DockerSlice}.\n *\n * @since 0.3\n */\n@DockerClientSupport\n@DisabledOnOs(OS.WINDOWS)\n@SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\npublic final class LargeImageITCase {\n    /**\n     * Docker image name.\n     */\n    private static final String IMAGE = \"large-image\";\n\n    /**\n     * Docker client.\n     */\n    private DockerClient client;\n\n    /**\n     * Docker repository.\n     */\n    private DockerRepository repository;\n\n    @Test\n    void largeImageUploadWorks() throws Exception {\n        try {\n            this.buildImage();\n            final String output = this.client.run(\"push\", this.remote());\n            MatcherAssert.assertThat(output, new StringContains(false, \"Pushed\"));\n        } finally {\n            this.client.run(\"rmi\", this.remote());\n        }\n    }\n}",
+    "qualified_in_class_code": "/**\n * Integration test for large file pushing scenario of {@link DockerSlice}.\n *\n * @since 0.3\n */\n@com.artipie.docker.junit.DockerClientSupport\n@org.junit.jupiter.api.condition.DisabledOnOs(org.junit.jupiter.api.condition.OS.WINDOWS)\n@java.lang.SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\npublic final class LargeImageITCase {\n    /**\n     * Docker image name.\n     */\n    private static final java.lang.String IMAGE = \"large-image\";\n\n    /**\n     * Docker client.\n     */\n    private com.artipie.docker.junit.DockerClient client;\n\n    /**\n     * Docker repository.\n     */\n    private com.artipie.docker.junit.DockerRepository repository;\n\n    @org.junit.jupiter.api.Test\n    void largeImageUploadWorks() throws java.lang.Exception {\n        try {\n            this.buildImage();\n            final java.lang.String output = this.client.run(\"push\", this.remote());\n            org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(false, \"Pushed\"));\n        } finally {\n            this.client.run(\"rmi\", this.remote());\n        }\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  required: java.lang.String\n  found: boolean,java.lang.String\n  reason: actual and formal argument lists differ in length\n",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/LargeImageITCase.java:[82,46] constructor StringContains in class org.hamcrest.core.StringContains cannot be applied to given types;",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/LargeImageITCase.java",
+        "client_line_position": "82"
+    },
+    "client_end_line_number": 86,
+    "client_line_number": 77,
+    "method_code": "@Test\n    void largeImageUploadWorks() throws Exception {\n        try {\n            this.buildImage();\n            final String output = this.client.run(\"push\", this.remote());\n            MatcherAssert.assertThat(output, new StringContains(false, \"Pushed\"));\n        } finally {\n            this.client.run(\"rmi\", this.remote());\n        }\n    }",
+    "qualified_code": "@org.junit.jupiter.api.Test\nvoid largeImageUploadWorks() throws java.lang.Exception {\n    try {\n        this.buildImage();\n        final java.lang.String output = this.client.run(\"push\", this.remote());\n        org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(false, \"Pushed\"));\n    } finally {\n        this.client.run(\"rmi\", this.remote());\n    }\n}",
+    "method_name": "largeImageUploadWorks"
+}

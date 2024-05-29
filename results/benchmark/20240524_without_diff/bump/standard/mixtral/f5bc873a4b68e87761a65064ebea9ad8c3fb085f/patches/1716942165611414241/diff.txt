@@ -1,0 +1,27 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,25
+> import org.eclipse.aether.RepositorySystem;
+> import org.eclipse.aether.RepositorySystemSession;
+> import org.eclipse.aether.collection.CollectRequest;
+> import org.eclipse.aether.collection.DependencyCollectionException;
+> import org.eclipse.aether.collection.DependencyFilter;
+> import org.eclipse.aether.graph.Dependency;
+> import org.eclipse.aether.repository.RemoteRepository;
+> import org.eclipse.aether.resolution.ArtifactRequest;
+> import org.eclipse.aether.resolution.ArtifactResolutionException;
+> import org.eclipse.aether.resolution.ArtifactResult;
+> import org.eclipse.aether.util.graph.transformer.ConflictResolver;
+> import org.eclipse.aether.util.graph.transformer.Transformer;
+> import org.eclipse.aether.util.graph.visitor.PreorderDepthFirstVisitor;
+> 
+> // ...
+> 
+> private MavenProject getEffectiveProject(RepositorySystem repositorySystem,
+>                                          RepositorySystemSession session,
+>                                          RemoteRepository remoteRepository,
+>                                          Model model)
+>         throws DependencyCollectionException, ArtifactResolutionException {
+>     // ...
+> }
+\ No newline at end of file

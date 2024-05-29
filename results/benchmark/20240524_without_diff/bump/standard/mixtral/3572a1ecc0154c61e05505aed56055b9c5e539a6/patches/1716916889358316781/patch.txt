@@ -1,0 +1,12 @@
+@java.lang.Override
+protected org.apache.thrift.TDeserializer initialValue() {
+    org.apache.thrift.TDeserializer deserializer;
+    try {
+        deserializer = new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TBinaryProtocol.Factory());
+    } catch (org.apache.thrift.transport.TTransportException e) {
+        // Handle or log the exception here
+        // ...
+        throw new RuntimeException("Failed to create TDeserializer", e);
+    }
+    return deserializer;
+}

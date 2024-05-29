@@ -1,0 +1,40 @@
+1,2c1,6
+< @Override
+<     public void init(OutputStream os) {
+---
+> import java.io.OutputStream;
+> import org.apache.thrift.transport.TIOStreamTransport;
+> import org.apache.thrift.protocol.TBinaryProtocol;
+> 
+> @java.lang.Override
+> public void init(java.io.OutputStream os) {
+4,5c8,9
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+<       // log.
+---
+> 
+>     // Use the MockTFastFramedTransport to be compatible with singer_thrift log.
+7,8c11
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>     framedTransport = new MockTFastFramedTransport(new TIOStreamTransport(os), bufferCapacity);
+10a14,30
+> 
+> // Add the new mock class
+> public static class MockTFastFramedTransport extends com.pinterest.singer.client.logback.TFastFramedTransport {
+>     public MockTFastFramedTransport(TIOStreamTransport transport, int bufferCapacity) {
+>         super(transport, bufferCapacity);
+>     }
+> 
+>     @Override
+>     public void open() throws org.apache.thrift.transport.TTransportException {
+>         // Do nothing
+>     }
+> 
+>     @Override
+>     public void close() throws org.apache.thrift.transport.TTransportException {
+>         // Do nothing
+>     }
+> }
+\ No newline at end of file

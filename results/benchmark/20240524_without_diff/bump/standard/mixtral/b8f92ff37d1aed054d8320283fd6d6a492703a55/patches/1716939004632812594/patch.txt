@@ -1,0 +1,5 @@
+import org.apache.maven.surefire.api.testset.TestListResolver;
+
+private static TestListResolver.Wildcard getWildcard() {
+    return new TestListResolver.Wildcard();
+}

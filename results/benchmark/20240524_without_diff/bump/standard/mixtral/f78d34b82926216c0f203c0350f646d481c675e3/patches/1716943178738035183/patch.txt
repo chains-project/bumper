@@ -1,0 +1,8 @@
+import static develop.p2p.lib.LearnMath.sigmoid;
+
+// ...
+
+public void input(java.util.ArrayList<ml.peya.plugins.Learn.Input> inputData) {
+    inputData.parallelStream().forEachOrdered(( input) -> input(input.getWeightingValue()));
+    setValue(sigmoid(sum));
+}

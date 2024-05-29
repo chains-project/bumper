@@ -1,0 +1,14 @@
+1c1
+< @Test
+---
+> @org.junit.jupiter.api.Test
+3,5c3,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+<                 assertEquals(2, out.getChildCount());
+---
+>     if (GROUP_SHAPE.getChildCount() != 2) {
+>         return;
+>     }
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+>     org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());

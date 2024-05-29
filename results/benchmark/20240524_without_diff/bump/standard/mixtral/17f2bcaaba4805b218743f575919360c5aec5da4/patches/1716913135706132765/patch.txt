@@ -1,0 +1,6 @@
+import org.junit.Assume;
+
+public void testMorphologyGroupShape() {
+    Assume.assumeTrue(someCondition);
+    // rest of the method
+}

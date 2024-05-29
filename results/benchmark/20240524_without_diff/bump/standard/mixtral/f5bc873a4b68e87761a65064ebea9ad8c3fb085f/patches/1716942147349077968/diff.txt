@@ -1,0 +1,15 @@
+1c1,10
+< import org.apache.maven.project.MavenProject;
+\ No newline at end of file
+---
+> import org.apache.maven.execution.MavenSession;
+> 
+> // ...
+> 
+> public void someMethod(MavenSession session) {
+>     // Instead of using MavenProject, use MavenSession to access project details
+>     // MavenProject project = ...;
+>     org.apache.maven.project.MavenProject project = session.getProject();
+>     // ...
+> }
+\ No newline at end of file

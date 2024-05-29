@@ -1,0 +1,76 @@
+0a1,23
+> import com.artipie.asto.CheckedBlobSource;
+> import com.artipie.asto.Content;
+> import com.artipie.asto.MemoryStorage;
+> import com.artipie.asto.RepoName;
+> import com.artipie.asto.Storage;
+> import com.artipie.asto.TarContent;
+> import com.artipie.docker.Digest;
+> import com.artipie.docker.DefaultLayout;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.IsNotNull;
+> import com.artipie.docker.asto.IsNull;
+> import com.artipie.docker.error.InvalidDigestException;
+> import com.google.common.base.Throwables;
+> import java.nio.ByteBuffer;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import org.hamcrest.MatcherAssert;
+> import org.junit.jupiter.api.Test;
+> import static com.artipie.docker.asto.IsNot.not;
+> import static org.hamcrest.CoreMatchers.instanceOf;
+> import static org.hamcrest.CoreMatchers.stringContainsInOrder;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> 
+3,6c26,27
+<         final InMemoryStorage storage = new InMemoryStorage();
+<         final AstoBlobs blobs = new AstoBlobs(
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+<         );
+---
+>     final Storage storage = new MemoryStorage();
+>     final AstoBlobs blobs = new AstoBlobs(storage, new DefaultLayout(), new RepoName.Simple("any"));
+8,22c29,36
+<         blobs.put(
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+---
+>     blobs.put(new CheckedBlobSource(
+>         Content.from(TarContent.tar(ByteBuffer.wrap("data".getBytes()), StandardCharsets.UTF_8)),
+>         new Digest.Sha256(digest)))
+>         .toCompletableFuture()
+>         .handle((blob, throwable) -> {
+>             assertThat("Exception thrown", throwable, not(new IsNull<>()));
+>             assertThat("Exception is InvalidDigestException", throwable, instanceOf(InvalidDigestException.class));
+>             assertThat(
+25,26c39
+<                     new StringContains(
+<                         true,
+---
+>                 stringContainsInOrder(
+30c43
+<                 MatcherAssert.assertThat(
+---
+>             assertThat(
+33c46
+<                     new StringContains(true, digest)
+---
+>                 stringContainsInOrder(digest)
+36,37c49,50
+<             }
+<         ).join();
+---
+>         })
+>         .join();

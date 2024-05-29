@@ -1,0 +1,7 @@
+_radialWarp() {
+    boolean assertionResult = micycle.pgs.Assertions.assertTrue(_SHAPE.getChildCount() == 2);
+    processing.core.PShape out = micycle.pgs.PGS;
+    _Morphology.radialWarp(_SHAPE, 10, 1, false);
+    int childCount = out.getChildCount();
+    micycle.pgs.Assertions.assertEquals(2, childCount);
+}

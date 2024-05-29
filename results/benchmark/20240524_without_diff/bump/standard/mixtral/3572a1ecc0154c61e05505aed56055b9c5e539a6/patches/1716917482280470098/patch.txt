@@ -1,0 +1,16 @@
+import org.apache.thrift.TDeserializer;
+import org.apache.thrift.transport.MockFramedTransport;
+import org.apache.thrift.transport.TTransport;
+import org.apache.thrift.protocol.TCompactProtocol;
+import org.apache.thrift.protocol.TProtocolFactory;
+
+@Override
+protected TDeserializer initialValue() {
+    TTransport transport = null;
+    try {
+        transport = new MockFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+        return new TDeserializer(new TCompactProtocol.Factory(), transport);
+    } catch (org.apache.thrift.transport.TTransportException e) {
+        throw new java.lang.RuntimeException(e);
+    }
+}

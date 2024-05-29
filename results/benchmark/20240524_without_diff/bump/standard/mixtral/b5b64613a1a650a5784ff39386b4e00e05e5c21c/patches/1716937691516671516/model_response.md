@@ -1,0 +1,33 @@
+Here's a possible patch for the code you provided. I changed the constructor of `ClientHelper` to use ` Jenkins.getActiveInstance()` as the `ItemGroup` parameter.
+
+```java
+@java.lang.Override
+public void prepare() {
+    org.jenkinsci.plugins.p4.PerforceScm perforceScm = getJenkinsScm();
+    java.lang.String credentials = perforceScm.getCredential();
+    hudson.model.ItemGroup context = Jenkins.getActiveInstance();
+    org.jenkinsci.plugins.p4.client.ConnectionHelper connection = new org.jenkinsci.plugins.p4.client.ConnectionHelper(context, credentials, buildListener);
+    com.perforce.p4java.server.IOptionsServer server = org.jenkinsci.plugins.p4.client.ConnectionFactory.getConnection();
+    try {
+        java.lang.String clientString = getClientString();
+        if (connection.isClient(clientString)) {
+            org.jenkinsci.plugins.p4.client.ClientHelper perforceClient = new org.jenkinsci.plugins.p4.client.ClientHelper(context, credentials, buildListener, clientString, java.nio.charset.StandardCharsets.UTF_8.toString());
+            com.perforce.p4java.client.IClient client = perforceClient.getClient();
+            try {
+                this.perforce = new org.jfrog.build.vcs.perforce.PerforceClient(server, client);
+                this.perforce.initConnection();
+            } catch (java.lang.Exception e) {
+                org.jfrog.hudson.release.scm.perforce.P4Manager.logger.warning("Could not instantiate connection with PerforceClient: " + e.getMessage());
+            }
+        } else {
+            org.jfrog.hudson.release.scm.perforce.P4Manager.logger.warning(("Client " + clientString) + " is not a valid client.");
+        }
+    } catch (java.lang.Exception e) {
+        org.jfrog.hudson.release.scm.perforce.P4Manager.logger.log(java.util.logging.Level.FINE, "Error occurred: ", e);
+    }
+}
+```
+
+This code creates a new variable `context` of type `ItemGroup` and assigns it the value of `Jenkins.getActiveInstance()`. This allows the `ClientHelper` constructor to accept the required `ItemGroup` parameter.
+
+Note that this might not be the only solution to the problem, and other changes might be necessary depending on the context and the rest of the codebase.

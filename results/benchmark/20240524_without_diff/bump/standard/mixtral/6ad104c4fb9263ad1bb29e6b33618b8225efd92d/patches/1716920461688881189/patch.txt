@@ -1,0 +1,26 @@
+import org.bouncycastle.crypto.engines.ChaChaEngine;
+import org.bouncycastle.crypto.params.KeyParameter;
+import org.bouncycastle.crypto.BlockCipher;
+import java.nio.ByteBuffer;
+
+public class ChachaDecoder {
+    private BlockCipher engine;
+
+    public ChachaDecoder(byte[] key, byte[] iv) {
+        engine = new ChaChaEngine();
+        KeyParameter keyParam = new KeyParameter(key);
+        engine.init(true, keyParam, iv);
+    }
+
+    public int decode(ByteBuffer src, ByteBuffer dst) {
+        byte[] in = new byte[src.remaining()];
+        src.get(in);
+
+        byte[] out = new byte[dst.remaining()];
+        int length = engine.processBytes(in, 0, in.length, out, 0);
+
+        dst.put(out, 0, length);
+
+        return length;
+    }
+}

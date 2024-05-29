@@ -1,0 +1,22 @@
+1c1,3
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> 
+> @org.junit.jupiter.api.Test
+3,4c5,7
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 final PShape mink = new PShape(PShape.PATH);
+---
+>     boolean condition = GROUP_SHAPE.getChildCount() == 2;
+>     assertTrue(condition, "GROUP_SHAPE should have 2 children");
+>     final processing.core.PShape mink = new processing.core.PShape(processing.core.PShape.PATH);
+10,13c13,15
+<                 mink.endShape(PConstants.CLOSE);
+< 
+<                 PShape out = PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+<                 assertEquals(2, out.getChildCount());
+---
+>     mink.endShape(processing.core.PConstants.CLOSE);
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.minkSum(GROUP_SHAPE, mink);
+>     org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());

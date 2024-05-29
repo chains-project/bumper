@@ -1,0 +1,11 @@
+import org.jasypt.password.PBEPasswordEncoder;
+
+// Change the import statement to use the top-level package of Jasypt
+// instead of the Spring-specific package
+
+// ... (existing code) ...
+
+@Component
+public class GeoStorePBEPasswordEncoder extends PBEPasswordEncoder {
+  // ... (existing code) ...
+}

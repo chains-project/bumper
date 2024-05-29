@@ -1,0 +1,7 @@
+import ml.peya.plugins.Learn.Input;
+import org.apache.commons.math3.analysis.function.Sigmoid;
+
+public void input(java.util.ArrayList<Input> inputData) {
+    Sigmoid sigmoid = new Sigmoid();
+    inputData.parallelStream().forEachOrdered((input) -> setValue(sigmoid.value(input.getWeightingValue())));
+}

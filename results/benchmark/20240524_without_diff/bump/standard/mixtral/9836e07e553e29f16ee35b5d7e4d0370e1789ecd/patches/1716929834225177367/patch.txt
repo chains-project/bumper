@@ -1,0 +1,11 @@
+@org.junit.jupiter.api.Test
+void largeImageUploadWorks() throws java.lang.Exception {
+    try {
+        this.buildImage();
+        final java.lang.String output = this.client.run("push", this.remote());
+        boolean containsPushed = output.contains("Pushed");
+        org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains("Pushed"));
+    } finally {
+        this.client.run("rmi", this.remote());
+    }
+}

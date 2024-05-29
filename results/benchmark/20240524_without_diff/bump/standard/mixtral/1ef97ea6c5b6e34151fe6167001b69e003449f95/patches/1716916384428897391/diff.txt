@@ -1,0 +1,4 @@
+2c2
+<   public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+---
+> public java.sql.Timestamp between(Date from, Date to) throws IllegalArgumentException {

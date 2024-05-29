@@ -1,0 +1,22 @@
+1,2c1,3
+< @Test
+<     void largeImagePullWorks() throws Exception {
+---
+> @org.junit.jupiter.api.Test
+> void largeImagePullWorks() throws java.lang.Exception {
+>     boolean contains = false;
+7,14c8,10
+<             final String output = this.client.run("pull", this.remote());
+<             MatcherAssert.assertThat(
+<                 output,
+<                 new StringContains(
+<                     false,
+<                     String.format("Status: Downloaded newer image for %s", this.remote())
+<                 )
+<             );
+---
+>         final java.lang.String output = this.client.run("pull", this.remote());
+>         contains = output.contains(String.format("Status: Downloaded newer image for %s", this.remote()));
+>         org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains(this.remote()));
+17a14
+>     org.junit.jupiter.api.Assertions.assertFalse(contains);

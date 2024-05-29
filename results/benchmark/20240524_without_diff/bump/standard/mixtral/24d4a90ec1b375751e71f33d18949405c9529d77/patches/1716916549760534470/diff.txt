@@ -1,0 +1,35 @@
+0a1,8
+> import com.jcabi.s3.Bucket;
+> import com.jcabi.s3.Ocket;
+> import com.jcabi.s3.Ocket.Text;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.equalTo;
+> import java.io.IOException;
+> 
+3c11,13
+<      * @throws Exception If fails
+---
+>  *
+>  * @throws Exception
+>  *              If fails
+5,10c15,22
+<     @Test
+<     public void readsAndWritesLargeObjectContent() throws Exception {
+<         final Bucket bucket = this.rule.bucket();
+<         final String name = "test-44.txt";
+<         final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+<         final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+---
+> @org.junit.Test
+> public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+>     final int HUNDRED = 100;
+>     final int THOUSAND = 1000;
+>     final com.jcabi.s3.Bucket bucket = this.rule.bucket();
+>     final java.lang.String name = "test-44.txt";
+>     final com.jcabi.s3.Ocket.Text ocket = new com.jcabi.s3.Ocket.Text(bucket.ocket(name));
+>     final java.lang.String data = RandomStringUtils.random(HUNDRED * THOUSAND);
+13c25
+<             MatcherAssert.assertThat(ocket.read(), Matchers.equalTo(data));
+---
+>         assertThat(ocket.read(), equalTo(data));

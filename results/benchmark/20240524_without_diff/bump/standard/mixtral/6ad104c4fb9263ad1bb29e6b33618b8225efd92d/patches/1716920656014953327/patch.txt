@@ -1,0 +1,17 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+import org.bouncycastle.tls.crypto.TlsCrypto;
+import org.bouncycastle.tls.crypto.impl.TlsCryptoImpl;
+
+public class ChachaDecoder {
+    // ...
+
+    private TlsCrypto crypto;
+
+    public ChachaDecoder() {
+        this.crypto = new TlsCryptoImpl();
+        // ...
+    }
+
+    // ...
+}

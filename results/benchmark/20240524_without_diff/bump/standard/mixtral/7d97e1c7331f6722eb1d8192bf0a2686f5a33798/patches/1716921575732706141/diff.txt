@@ -1,0 +1,44 @@
+0a1,15
+> import static java.lang.Integer.valueOf;
+> import static java.util.Arrays.stream;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import java.util.UUID;
+> import org.junit.jupiter.api.Test;
+> import com.amazonaws.services.simpledb.AmazonSimpleDB;
+> import com.amazonaws.services.simpledb.AmazonSimpleDBClientBuilder;
+> import com.amazonaws.services.simpledb.model.Attribute;
+> import com.amazonaws.services.simpledb.model.BatchPutAttributesRequest;
+> import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
+> import com.amazonaws.services.simpledb.model.Item;
+> import com.amazonaws.services.simpledb.model.PutAttributesRequest;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> 
+6c21,22
+<         final Domain domain = this.domain();
+---
+>     final AmazonSimpleDB domain = AmazonSimpleDBClientBuilder.defaultClient();
+>     final String domainName = UUID.randomUUID().toString();
+8,18c24,29
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+<             }
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>         final BatchPutAttributesRequest batchPutRequest = new BatchPutAttributesRequest().withDomainName(domainName);
+>         stream(valueOf(0), valueOf(1), valueOf(2), valueOf(3), valueOf(4), valueOf(5), valueOf(6), valueOf(7), valueOf(8), valueOf(9))
+>             .map(i -> new PutAttributesRequest().withDomainName(domainName).withItemName("i-" + i).withAttributes(new Attribute("hey", "")))
+>             .forEach(batchPutRequest::addPutRequest);
+>         domain.batchPutAttributes(batchPutRequest);
+>         assertThat(domain.select(new SelectRequest().withSelectExpression("SELECT * FROM [" + domainName + "]").withConsistentRead(true)).getItems(), iterableWithSize(10));
+20c31
+<             domain.drop();
+---
+>         domain.deleteDomain(new DeleteDomainRequest(domainName));

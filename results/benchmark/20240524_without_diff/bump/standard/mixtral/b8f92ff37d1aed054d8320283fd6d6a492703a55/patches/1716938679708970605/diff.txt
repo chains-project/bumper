@@ -1,0 +1,20 @@
+0a1,9
+> import org.apache.maven.surefire.api.testset.TestFileSet;
+> import org.apache.maven.surefire.api.testset.TestListResolver;
+> import org.apache.maven.surefire.api.testset.TestSet;
+> import org.apache.maven.surefire.api.util.SurefireReflectionUtils;
+> 
+> import java.io.File;
+> import java.util.List;
+> import java.util.stream.Collectors;
+> 
+2,3c11,16
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     TestListResolver testListResolver = new TestListResolver();
+>     TestFileSet testFileSet = new TestFileSet(testSrcFolder);
+>     TestSet testSet = testListResolver.resolveTestSets(testFileSet, null).get(0);
+>     return testSet.getIncludedFiles().stream()
+>             .map(SurefireReflectionUtils::getFileNameWithoutExtension)
+>             .collect(Collectors.toList());

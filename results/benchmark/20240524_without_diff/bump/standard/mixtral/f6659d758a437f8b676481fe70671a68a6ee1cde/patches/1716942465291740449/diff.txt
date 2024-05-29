@@ -1,0 +1,51 @@
+1c1,16
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+---
+> import com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct;
+> import com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct;
+> import org.yaml.snakeyaml.DumperOptions;
+> import org.yaml.snakeyaml.LoaderOptions;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.Representer;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.Yaml;
+> import org.yaml.snakeyaml.nodes.Node;
+> import java.io.BufferedReader;
+> import java.io.FileNotFoundException;
+> import java.io.FileReader;
+> import java.time.LocalDate;
+> import java.time.ZoneId;
+> 
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+4d18
+< 
+10,18c24,31
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+<             this.addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+<             this.addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+---
+>     final Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+>             addTypeDescription(new TypeDescription(ZoneId.class, "ZoneId"));
+>             addTypeDescription(new TypeDescription(LocalDate.class, "LocalDate"));
+>             yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+>             yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+>         }
+>     };
+20d32
+< 
+26a39,45
+> 
+> static class TrustedTagInspector extends org.yaml.snakeyaml.constructor.SafeConstructor.SafeTagInspector {
+>     @Override
+>     public Node inspect(String tag) {
+>         return super.inspect(tag);
+>     }
+> }
+\ No newline at end of file

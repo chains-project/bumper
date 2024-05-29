@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1165303897,
+    "in_class_code": "/**\n * This class contains the result of the execution of a set of test units\n *\n * @author Matias Martinez\n */\npublic class CoverageMatrix {\n    private Logger logger = Logger.getLogger(CoverageMatrix.class);\n\n    private FlacocoConfig config;\n\n    public CoverageMatrix(FlacocoConfig config) {\n        this.config = config;\n    }\n\n    /**\n     * Key is the line, value is a set of test methods that execute that line\n     */\n    protected Map<Location, Set<TestMethod>> resultExecution = new HashMap<>();\n\n    /**\n     * Map between executed test methods and their result. True if passing, false is failing.\n     */\n    protected Map<TestMethod, Boolean> tests = new HashMap<>();\n\n    private static Wildcard getWildcard() {\n        return new TestListResolver.Wildcard();\n    }\n}",
+    "qualified_in_class_code": "/**\n * This class contains the result of the execution of a set of test units\n *\n * @author Matias Martinez\n */\npublic class CoverageMatrix {\n    private org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(fr.spoonlabs.flacoco.core.coverage.CoverageMatrix.class);\n\n    private fr.spoonlabs.flacoco.core.config.FlacocoConfig config;\n\n    public CoverageMatrix(fr.spoonlabs.flacoco.core.config.FlacocoConfig config) {\n        this.config = config;\n    }\n\n    /**\n     * Key is the line, value is a set of test methods that execute that line\n     */\n    protected java.util.Map<fr.spoonlabs.flacoco.api.result.Location, java.util.Set<fr.spoonlabs.flacoco.core.test.method.TestMethod>> resultExecution = new java.util.HashMap<>();\n\n    /**\n     * Map between executed test methods and their result. True if passing, false is failing.\n     */\n    protected java.util.Map<fr.spoonlabs.flacoco.core.test.method.TestMethod, java.lang.Boolean> tests = new java.util.HashMap<>();\n\n    private static org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getWildcard() {\n        return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard();\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   class Wildcard\n  location: class org.apache.maven.surefire.api.testset.TestListResolver\n",
+        "error_message": "[ERROR] /flacoco/src/main/java/fr/spoonlabs/flacoco/core/coverage/CoverageMatrix.java:[203,70] cannot find symbol",
+        "client_file_path": "/flacoco/src/main/java/fr/spoonlabs/flacoco/core/coverage/CoverageMatrix.java",
+        "client_line_position": "203"
+    },
+    "client_end_line_number": 205,
+    "client_line_number": 203,
+    "method_code": "private static org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getWildcard() {\n    return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard();\n}",
+    "qualified_code": "private static org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getWildcard() {\n    return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard();\n}",
+    "method_name": "getWildcard"
+}

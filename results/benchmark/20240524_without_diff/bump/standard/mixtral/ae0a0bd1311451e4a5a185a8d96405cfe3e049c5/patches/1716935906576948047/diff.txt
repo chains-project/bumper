@@ -1,0 +1,22 @@
+1,6c1,4
+< private static ResponseMatcher isUploadStarted() {
+<         return new ResponseMatcher(
+<             RsStatus.ACCEPTED,
+<             new IsHeader(
+<                 "Location",
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+---
+> private static com.artipie.http.hm.ResponseMatcher isUploadStarted() {
+>     return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED,
+>         new com.artipie.http.hm.IsHeader("Location",
+>             new org.hamcrest.core.StringStartsWith.StringStartsWith("/v2/test/blobs/uploads/")
+8,10c6,10
+<             new IsHeader("Range", "0-0"),
+<             new IsHeader("Content-Length", "0"),
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+---
+>         new com.artipie.http.hm.IsHeader("Range", "0-0"),
+>         new com.artipie.http.hm.IsHeader("Content-Length", "0"),
+>         new com.artipie.http.hm.IsHeader("Docker-Upload-UUID",
+>             new org.hamcrest.core.IsNot.IsNot<>("")
+>         )

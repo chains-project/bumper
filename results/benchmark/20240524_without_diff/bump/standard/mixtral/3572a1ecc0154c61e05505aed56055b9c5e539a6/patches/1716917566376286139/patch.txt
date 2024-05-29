@@ -1,0 +1,10 @@
+@java.lang.Override
+protected org.apache.thrift.TDeserializer initialValue() {
+    java.io.InputStream inputStream = null;
+    try {
+        inputStream = new java.net.Socket("localhost", 9090).getInputStream();
+        return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory(), new org.apache.thrift.transport.TInputStreamTransport(inputStream));
+    } catch (java.io.IOException e) {
+        throw new java.lang.RuntimeException(e);
+    }
+}

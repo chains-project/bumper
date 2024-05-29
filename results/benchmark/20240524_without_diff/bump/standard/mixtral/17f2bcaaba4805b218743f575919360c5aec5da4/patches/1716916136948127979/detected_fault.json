@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 111900554,
+    "in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Morphology\n * PGS_Morphology} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_MorphologyGroupShapeTests {\n    private PShape GROUP_SHAPE;\n\n    // TODO: review this AI generated patch!\n    @Test\n    void test;\n\n     _radialWarp() {\n        Assertions.assertTrue(GROUP = _SHAPE.getChildCount() == 2);\n        PShape out = PGS;\n        _Morphology.radialWarp(GROUP = _SHAPE, 10, 1, false);\n        Assertions.assertEquals(2, out.getChildCount());\n    }\n}",
+    "qualified_in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Morphology\n * PGS_Morphology} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_MorphologyGroupShapeTests {\n    private processing.core.PShape GROUP_SHAPE;\n\n    // TODO: review this AI generated patch!\n    @org.junit.jupiter.api.Test\n    void test;\n\n     _radialWarp() {\n        micycle.pgs.Assertions.assertTrue(GROUP = _SHAPE.getChildCount() == 2);\n        processing.core.PShape out = micycle.pgs.PGS;\n        _Morphology.radialWarp(GROUP = _SHAPE, 10, 1, false);\n        micycle.pgs.Assertions.assertEquals(2, out.getChildCount());\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java:[115,15] illegal character: '\\'",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java",
+        "client_line_position": "115"
+    },
+    "client_end_line_number": 119,
+    "client_line_number": 115,
+    "method_code": "_radialWarp() {\n    org.junit.jupiter.api.Assertions.assertTrue(GROUP\\_SHAPE.getChildCount() == 2);\n    processing.core.PShape out = micycle.pgs.PGS\\_Morphology.radialWarp(GROUP\\_SHAPE, 10, 1, false);\n    org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());\n}",
+    "qualified_code": " _radialWarp() {\n    micycle.pgs.Assertions.assertTrue(GROUP = _SHAPE.getChildCount() == 2);\n    processing.core.PShape out = micycle.pgs.PGS;\n    _Morphology.radialWarp(GROUP = _SHAPE, 10, 1, false);\n    micycle.pgs.Assertions.assertEquals(2, out.getChildCount());\n}",
+    "method_name": "_radialWarp"
+}

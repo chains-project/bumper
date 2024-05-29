@@ -1,0 +1,22 @@
+1d0
+< // TODO: review this AI generated patch!
+4c3
+<     org.apache.thrift.transport.TTransport transport = null;
+---
+>     java.io.Closeable transport = null;
+6c5
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+---
+>         transport = new org.apache.thrift.transport.SSLSocketTransport(new java.net.Socket("localhost", 9090), true);
+9c8,16
+<         throw new RuntimeException(e);
+---
+>         throw new java.lang.RuntimeException(e);
+>     } finally {
+>         if (transport != null) {
+>             try {
+>                 transport.close();
+>             } catch (java.io.IOException ioe) {
+>                 // handle exception
+>             }
+>         }

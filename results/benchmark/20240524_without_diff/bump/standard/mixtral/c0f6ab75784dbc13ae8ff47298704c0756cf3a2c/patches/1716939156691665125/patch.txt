@@ -1,0 +1,10 @@
+private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+    Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+    return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder()
+        .setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider())
+        .setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir())
+        .setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties())
+        .setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid())
+        .addEnabledLanguages(enabledLanguages)
+        .build();
+}

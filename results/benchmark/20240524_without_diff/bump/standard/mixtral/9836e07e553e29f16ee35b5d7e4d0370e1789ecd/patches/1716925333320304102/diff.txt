@@ -1,0 +1,81 @@
+0a1,20
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.not;
+> import static org.hamcrest.Matchers.nullValue;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import org.junit.jupiter.api.Test;
+> import com.artipie.asto.Content;
+> import com.artipie.asto.Memory;
+> import com.artipie.asto.Storage;
+> import com.artipie.asto.ext.ExtAsto;
+> import com.artipie.docker.Digest;
+> import com.artipie.docker.RepoName;
+> import com.artipie.docker.asto.CheckedBlobSource;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.DefaultLayout;
+> import com.artipie.docker.error.InvalidDigestException;
+> import com.google.common.base.Throwables;
+> import io.reactivex.Single;
+> 
+3c23
+<         final InMemoryStorage storage = new InMemoryStorage();
+---
+>     final Storage storage = new Memory();
+5c25,27
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+---
+>         storage,
+>         new DefaultLayout(),
+>         new RepoName.Simple("any")
+7a30,31
+>     final Content content = Content.From("data".getBytes(StandardCharsets.UTF_8));
+>     final Digest calculatedDigest = Digest.Sha256.string("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7");
+9,15c33,45
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+<         ).toCompletableFuture().handle(
+<             (blob, throwable) -> {
+<                 MatcherAssert.assertThat(
+<                     "Exception thrown",
+<                     throwable,
+<                     new IsNot<>(new IsNull<>())
+---
+>         new CheckedBlobSource(content, calculatedDigest)
+>     ).toSingleDefault(content)
+>     .flatMapCompletable(ignored -> {
+>         throw new InvalidDigestException(calculatedDigest, Digest.Sha256.string(digest));
+>     })
+>     .test()
+>     .assertError(throwable -> {
+>         assertThat(throwable, not(nullValue()));
+>         assertThat(throwable, instanceOf(InvalidDigestException.class));
+>         final InvalidDigestException ex = (InvalidDigestException) throwable;
+>         assertThat(
+>             ex.message(),
+>             not(new StringContains("3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"))
+17,37c47,48
+<                 MatcherAssert.assertThat(
+<                     "Exception is InvalidDigestException",
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains calculated digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(
+<                         true,
+<                         "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+<                     )
+<                 );
+<                 MatcherAssert.assertThat(
+<                     "Exception message contains expected digest",
+<                     Throwables.getRootCause(throwable).getMessage(),
+<                     new StringContains(true, digest)
+<                 );
+<                 return CompletableFuture.allOf();
+<             }
+<         ).join();
+---
+>         assertThat(ex.message(), new StringContains(digest));
+>     });

@@ -1,0 +1,28 @@
+1,7c1,10
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+> private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+>     Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+>     return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder()
+>         .setOption(new org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.Option("sonar.sources", "."))
+>         .setOption(new org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.Option("sonar.test.exclusions", ""))
+>         .setOption(new org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.Option("sonar.language", getLanguageKey(enabledLanguages)))
+>         .setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid())
+>         .setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties())
+>         .setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir())
+>         .setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider())
+9a13,19
+> 
+> private static String getLanguageKey(Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages) {
+>     if (enabledLanguages.size() == 1) {
+>         return enabledLanguages.iterator().next().getLanguageKey();
+>     }
+>     return "java";
+> }
+\ No newline at end of file

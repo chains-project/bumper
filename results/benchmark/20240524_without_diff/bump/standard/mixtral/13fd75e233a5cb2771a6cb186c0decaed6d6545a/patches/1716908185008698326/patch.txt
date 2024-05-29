@@ -1,0 +1,78 @@
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.core.IsEqual.equalTo;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.CompletableFuture;
+import org.junit.jupiter.api.Test;
+import com.artipie.asto.Content;
+import com.artipie.asto.Key;
+import com.artipie.asto.Storage;
+import com.artipie.asto.memory.InMemoryStorage;
+import com.artipie.docker.asto.AstoBlobs;
+import com.artipie.docker.asto.CheckedBlobSource;
+import com.artipie.docker.digest.CanonicalBlob;
+import com.artipie.docker.digest.DefaultDigest;
+import com.artipie.docker.digest.Digest;
+import com.artipie.docker.digest.Digger;
+import com.artipie.docker.error.InvalidDigestException;
+import com.google.common.base.Throwables;
+import io.reactivex.Single;
+
+@Test
+void failsOnDigestMismatch() {
+    final Storage storage = new InMemoryStorage();
+    final AstoBlobs blobs = new AstoBlobs(
+        storage,
+        new DefaultLayout(),
+        new RepoName.Simple("any")
+    );
+    final String digest = "123";
+    final Key key = new Key.From("data".getBytes(StandardCharsets.UTF_8));
+    final Content content = Content.From("data".getBytes(StandardCharsets.UTF_8));
+    final CanonicalBlob canonicalBlob = new CanonicalBlob(content);
+    final Digest calculatedDigest = new DefaultDigest(
+        new Digger.Sha256().digest(Single.just(canonicalBlob))
+    );
+    blobs.put(
+        new CheckedBlobSource(content, new Digest.Sha256(calculatedDigest.value()))
+    ).toCompletableFuture().handle(
+        (blob, throwable) -> {
+            assertThat("Exception thrown", throwable, not(equalTo(null)));
+            assertThat(
+                "Exception is InvalidDigestException",
+                throwable,
+                instanceOf(InvalidDigestException.class)
+            );
+            assertThat(
+                "Exception message contains calculated digest",
+                Throwables.getRootCause(throwable).getMessage(),
+                new StringContains(calculatedDigest.value())
+            );
+            assertThat(
+                "Exception message contains expected digest",
+                Throwables.getRootCause(throwable).getMessage(),
+                new StringContains(digest)
+            );
+            return CompletableFuture.allOf();
+        }
+    ).join();
+}
+
+private static class StringContains implements org.hamcrest.Matcher<String> {
+    private final String value;
+
+    StringContains(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public boolean matches(Object item) {
+        return ((String) item).contains(value);
+    }
+
+    @Override
+    public void describeTo(org.hamcrest.Description description) {
+        description.appendText("string containing ").appendValue(value);
+    }
+}

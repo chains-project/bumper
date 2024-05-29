@@ -1,0 +1,17 @@
+import org.jasypt.digest.StandardStringDigester;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+
+public class GeoStoreDigestPasswordEncoder implements PasswordEncoder {
+    // ...
+
+    @Override
+    public String encodePassword(String rawPass, Object salt) {
+        StandardStringDigester digester = new StandardStringDigester();
+        digester.setIterationCount(iterationCount);
+        digester.setSaltSizeBytes(saltSize);
+        digester.setAlgorithm(algorithm);
+        return digester.digest(rawPass);
+    }
+
+    // ...
+}

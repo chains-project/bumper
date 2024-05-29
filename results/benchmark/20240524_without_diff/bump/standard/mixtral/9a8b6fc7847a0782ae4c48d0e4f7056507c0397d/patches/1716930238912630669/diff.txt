@@ -1,0 +1,16 @@
+1c1,11
+< import org.jasypt.spring.security.PBEPasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.password.PBEPasswordEncoder;
+> 
+> // Change the import statement to use the top-level package of Jasypt
+> // instead of the Spring-specific package
+> 
+> // ... (existing code) ...
+> 
+> @Component
+> public class GeoStorePBEPasswordEncoder extends PBEPasswordEncoder {
+>   // ... (existing code) ...
+> }
+\ No newline at end of file

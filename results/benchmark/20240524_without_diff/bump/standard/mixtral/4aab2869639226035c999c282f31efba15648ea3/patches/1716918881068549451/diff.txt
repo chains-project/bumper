@@ -1,0 +1,13 @@
+0a1,2
+> import com.artipie.asto.ext.StorageExt;
+> 
+5,11c7
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         return new YamlPolicy(new StorageExt().blocking(new com.artipie.security.policy.PolicyConfigs().newStorage(sub.string("type"), com.amihaiemil.eoyaml.Yaml.createYamlInput(sub.toString()).readYamlMapping())));

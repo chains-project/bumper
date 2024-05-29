@@ -1,0 +1,57 @@
+1c1,52
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import javax.net.ssl.SSLEngine;
+> import javax.net.ssl.SSLException;
+> import java.io.IOException;
+> import java.nio.ByteBuffer;
+> import java.nio.channels.AsynchronousSocketChannel;
+> import java.nio.channels.ClosedChannelException;
+> import java.nio.channels.NotYetConnectedException;
+> import java.util.concurrent.ExecutionException;
+> 
+> public class ChachaDecoder {
+>     private SSLEngine sslEngine;
+>     private AsynchronousSocketChannel socketChannel;
+>     private ByteBuffer inputBuffer;
+>     private ByteBuffer outputBuffer;
+> 
+>     public ChachaDecoder(SSLEngine sslEngine, AsynchronousSocketChannel socketChannel) {
+>         this.sslEngine = sslEngine;
+>         this.socketChannel = socketChannel;
+>         this.inputBuffer = ByteBuffer.allocateDirect(4096);
+>         this.outputBuffer = ByteBuffer.allocateDirect(4096);
+>     }
+> 
+>     public void decode(ByteBuffer buffer) throws SSLException, IOException, ExecutionException, InterruptedException {
+>         while (true) {
+>             try {
+>                 // Handle any available data in the input buffer
+>                 if (inputBuffer.position() > 0) {
+>                     int bytesProcessed = sslEngine.wrap(inputBuffer, outputBuffer);
+>                     inputBuffer.compact();
+>                     outputBuffer.flip();
+>                     socketChannel.write(outputBuffer);
+>                     outputBuffer.compact();
+>                     if (bytesProcessed < inputBuffer.remaining()) {
+>                         break;
+>                     }
+>                 }
+> 
+>                 // Read data from the socket channel
+>                 inputBuffer.clear();
+>                 int bytesRead = socketChannel.read(inputBuffer);
+>                 if (bytesRead <= 0) {
+>                     throw new ClosedChannelException();
+>                 }
+>                 inputBuffer.flip();
+>             } catch (NotYetConnectedException e) {
+>                 // Handle the case where the socket channel is not yet connected
+>                 // (e.g., by waiting for the connection to be established)
+>                 socketChannel.finishConnect();
+>             }
+>         }
+>     }
+> }
+\ No newline at end of file

@@ -1,0 +1,5 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+
+// Create a new MavenProject instance using a Model instance
+MavenProject mavenProject = new MavenProject(new Model());

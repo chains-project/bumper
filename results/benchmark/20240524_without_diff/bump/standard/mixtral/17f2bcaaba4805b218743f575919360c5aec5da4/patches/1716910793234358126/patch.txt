@@ -1,0 +1,15 @@
+import org.junit.Assert;
+
+// ...
+
+public void testSomething() {
+    assumeTrue(someCondition());
+    // ...
+}
+
+// ...
+
+private boolean someCondition() {
+    // ...
+    return someValue;
+}

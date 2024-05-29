@@ -1,0 +1,15 @@
+1c1,4
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assumptions.assumeTrue;
+> 
+> @org.junit.jupiter.api.Test
+3,5c6,8
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.buffer(GROUP_SHAPE, -1);
+<                 assertEquals(2, out.getChildCount());
+---
+>     assumeTrue(GROUP_SHAPE.getChildCount() == 2, "GROUP_SHAPE should have 2 children");
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.buffer(GROUP_SHAPE, -1);
+>     assertEquals(2, out.getChildCount(), "Buffer of GROUP_SHAPE should have 2 children");

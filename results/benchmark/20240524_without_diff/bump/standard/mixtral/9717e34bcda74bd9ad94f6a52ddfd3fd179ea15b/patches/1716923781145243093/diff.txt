@@ -1,0 +1,19 @@
+1,12c1,5
+< /**
+<      * Create repo with random name.
+<      * @return Repo
+<      * @throws IOException If fails
+<      */
+<     public Repo randomRepo() throws IOException {
+<         return this.repos().create(
+<             new Repos.RepoCreate(
+<                 RandomStringUtils.randomAlphanumeric(Tv.TWENTY),
+<                 true
+<             )
+<         );
+---
+> import com.jcabi.github.Tv;
+> 
+> public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+>     final int TWENTY = 20;
+>     return this.repos().create(new com.jcabi.github.Repos.RepoCreate(org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(Tv.TWENTY), true));

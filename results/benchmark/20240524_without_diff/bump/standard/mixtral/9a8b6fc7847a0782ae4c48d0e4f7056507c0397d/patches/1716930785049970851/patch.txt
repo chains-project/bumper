@@ -1,0 +1,11 @@
+import org.jasypt.util.password.BasicPasswordEncryptor;
+
+public class GeoStoreDigestPasswordEncoder {
+    // ...
+
+    public GeoStoreDigestPasswordEncoder() {
+        this.passwordEncryptor = new BasicPasswordEncryptor();
+    }
+
+    // ...
+}

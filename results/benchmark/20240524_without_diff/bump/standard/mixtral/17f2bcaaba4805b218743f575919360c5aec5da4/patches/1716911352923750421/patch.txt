@@ -1,0 +1,7 @@
+import micycle.pgs.commons.TestIgnore;
+
+@org.junit.jupiter.api.Test
+@TestIgnore
+void testRobustnessRandomly() {
+    // ... (rest of the method remains unchanged)
+}

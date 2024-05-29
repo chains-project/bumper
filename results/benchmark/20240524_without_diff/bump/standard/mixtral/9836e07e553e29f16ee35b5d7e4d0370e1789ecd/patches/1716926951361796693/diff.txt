@@ -1,0 +1,67 @@
+0a1,22
+> import com.artipie.asto.Content;
+> import com.artipie.asto.CheckedBlobSource;
+> import com.artipie.asto.MemoryStorage;
+> import com.artipie.asto.ext.ExtLeaderFollower;
+> import com.artipie.asto.storage.Storage;
+> import com.artipie.docker.Digest;
+> import com.artipie.docker.RepoName;
+> import com.artipie.docker.asto.AstoBlobs;
+> import com.artipie.docker.asto.CheckedBlob;
+> import com.artipie.docker.asto.DefaultLayout;
+> import com.artipie.docker.error.InvalidDigestException;
+> import com.google.common.base.Throwables;
+> import java.nio.ByteBuffer;
+> import java.nio.charset.StandardCharsets;
+> import java.util.concurrent.CompletableFuture;
+> import org.hamcrest.MatcherAssert;
+> import org.junit.jupiter.api.Test;
+> import static com.artipie.docker.asto.IsNot.not;
+> import static com.artipie.docker.asto.IsNot.nullness;
+> import static org.hamcrest.Matchers.instanceOf;
+> import static org.hamcrest.Matchers.stringContainsInOrder;
+> 
+3c25
+<         final InMemoryStorage storage = new InMemoryStorage();
+---
+>     final Storage storage = new MemoryStorage();
+5c27,29
+<             storage, new DefaultLayout(), new RepoName.Simple("any")
+---
+>         new ExtLeaderFollower(storage),
+>         new DefaultLayout(),
+>         new RepoName.Simple("any")
+7c31
+<         final String digest = "123";
+---
+>     final Digest digest = Digest.sha256("123");
+9c33,36
+<             new CheckedBlobSource(new Content.From("data".getBytes()), new Digest.Sha256(digest))
+---
+>         new CheckedBlobSource(
+>             new Content.From(ByteBuffer.wrap("data".getBytes(StandardCharsets.UTF_8))),
+>             new Digest.Sha256(digest)
+>         )
+11c38
+<             (blob, throwable) -> {
+---
+>         (CheckedBlob<ByteBuffer> blob, Throwable throwable) -> {
+15c42
+<                     new IsNot<>(new IsNull<>())
+---
+>                 not(nullness())
+19,20c46,47
+<                     Throwables.getRootCause(throwable),
+<                     new IsInstanceOf(InvalidDigestException.class)
+---
+>                 throwable,
+>                 instanceOf(InvalidDigestException.class)
+25,26c52
+<                     new StringContains(
+<                         true,
+---
+>                 stringContainsInOrder(
+33c59
+<                     new StringContains(true, digest)
+---
+>                 stringContainsInOrder(digest.encoded())

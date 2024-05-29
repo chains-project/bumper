@@ -1,0 +1,22 @@
+import java.lang.String;
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+import com.amazonaws.services.simpledb.model.SelectRequest;
+import com.jcabi.simpledb.Domain;
+
+/**
+ * Region.Simple can select many items.
+ */
+@Test
+void selectsManyItems() {
+    final Domain domain = this.domain();
+    try {
+        final int TEN = 10;
+        for (int idx = 0; idx < TEN; ++idx) {
+            domain.item(String.format("i-%d", idx)).put("hey", "");
+        }
+        MatcherAssert.assertThat(domain.select(new SelectRequest().withSelectExpression(String.format("SELECT * FROM `%s`", domain.name())).withConsistentRead(true)), Matchers.iterableWithSize(TEN));
+    } finally {
+        domain.drop();
+    }
+}

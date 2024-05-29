@@ -1,0 +1,6 @@
+1d0
+< // TODO: review this AI generated patch!
+6c5
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(org.bouncycastle.crypto.tls.AlertDescription.bad_record_mac);
+---
+>         throw new java.io.IOException("Bad Record MAC");

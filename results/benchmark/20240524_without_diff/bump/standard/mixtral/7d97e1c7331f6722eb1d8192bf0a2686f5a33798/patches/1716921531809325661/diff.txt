@@ -1,0 +1,43 @@
+0a1,8
+> import static java.lang.String.format;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import com.amazonaws.services.simpledb.AmazonSimpleDB;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import java.util.List;
+> import org.junit.jupiter.api.Test;
+> 
+3a12,13
+> public class RegionITCase {
+> 
+6c16
+<         final Domain domain = this.domain();
+---
+>         final AmazonSimpleDB domain = this.domain();
+8,9c18,20
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+---
+>             final int ten = 10;
+>             for (int idx = 0; idx < ten; ++idx) {
+>                 domain.putAttributes(format("i-%d", idx), format("hey", ""));
+11,18c22,26
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+<             );
+---
+>             final SelectRequest selectRequest = new SelectRequest()
+>                 .withSelectExpression(format("SELECT * FROM `%s`", domain.getName()))
+>                 .withConsistentRead(true);
+>             final List<String> result = domain.select(selectRequest);
+>             assertThat(result, iterableWithSize(ten));
+20c28,29
+<             domain.drop();
+---
+>             domain.deleteDomain(this.domainName());
+>         }

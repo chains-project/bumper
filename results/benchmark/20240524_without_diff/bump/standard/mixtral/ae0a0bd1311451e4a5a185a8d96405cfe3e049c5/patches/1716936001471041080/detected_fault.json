@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 1636182655,
+    "in_class_code": "/**\n * Tests for {@link DockerSlice}.\n * Upload PUT endpoint.\n *\n * @since 0.2\n * @checkstyle ClassDataAbstractionCouplingCheck (2 lines)\n */\n@SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\nclass UploadEntityPostTest {\n    /**\n     * Docker instance used in tests.\n     */\n    private Docker docker;\n\n    /**\n     * Slice being tested.\n     */\n    private DockerSlice slice;\n\n    // TODO: review this AI generated patch!\n    private static ResponseMatcher isUploadStarted() {\n        return new ResponseMatcher(RsStatus.ACCEPTED, new IsHeader(\"Location\", new StringStartsWith(\"/v2/test/blobs/uploads/\")), new IsHeader(\"Range\", \"0-0\"), new IsHeader(\"Content-Length\", \"0\"), new IsHeader(\"Docker-Upload-UUID\", new IsInstanceOf(String.class)));\n    }\n}",
+    "qualified_in_class_code": "/**\n * Tests for {@link DockerSlice}.\n * Upload PUT endpoint.\n *\n * @since 0.2\n * @checkstyle ClassDataAbstractionCouplingCheck (2 lines)\n */\n@java.lang.SuppressWarnings(\"PMD.AvoidDuplicateLiterals\")\nclass UploadEntityPostTest {\n    /**\n     * Docker instance used in tests.\n     */\n    private com.artipie.docker.Docker docker;\n\n    /**\n     * Slice being tested.\n     */\n    private com.artipie.docker.http.DockerSlice slice;\n\n    // TODO: review this AI generated patch!\n    private static com.artipie.http.hm.ResponseMatcher isUploadStarted() {\n        return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, new com.artipie.http.hm.IsHeader(\"Location\", new org.hamcrest.core.StringStartsWith(\"/v2/test/blobs/uploads/\")), new com.artipie.http.hm.IsHeader(\"Range\", \"0-0\"), new com.artipie.http.hm.IsHeader(\"Content-Length\", \"0\"), new com.artipie.http.hm.IsHeader(\"Docker-Upload-UUID\", new org.hamcrest.core.IsInstanceOf(java.lang.String.class)));\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "",
+        "error_message": "[ERROR] /docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityPostTest.java:[110,416] ';' expected",
+        "client_file_path": "/docker-adapter/src/test/java/com/artipie/docker/http/UploadEntityPostTest.java",
+        "client_line_position": "110"
+    },
+    "client_end_line_number": 111,
+    "client_line_number": 108,
+    "method_code": "// TODO: review this AI generated patch!\nprivate static com.artipie.http.hm.ResponseMatcher isUploadStarted() {\n    return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, new com.artipie.http.hm.IsHeader(\"Location\", new org.hamcrest.core.StringStartsWith(\"/v2/test/blobs/uploads/\")), new com.artipie.http.hm.IsHeader(\"Range\", \"0-0\"), new com.artipie.http.hm.IsHeader(\"Content-Length\", \"0\"), new com.artipie.http.hm.IsHeader(\"Docker-Upload-UUID\", new org.hamcrest.core.IsInstanceOf(String.class))));\n}",
+    "qualified_code": "// TODO: review this AI generated patch!\nprivate static com.artipie.http.hm.ResponseMatcher isUploadStarted() {\n    return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, new com.artipie.http.hm.IsHeader(\"Location\", new org.hamcrest.core.StringStartsWith(\"/v2/test/blobs/uploads/\")), new com.artipie.http.hm.IsHeader(\"Range\", \"0-0\"), new com.artipie.http.hm.IsHeader(\"Content-Length\", \"0\"), new com.artipie.http.hm.IsHeader(\"Docker-Upload-UUID\", new org.hamcrest.core.IsInstanceOf(java.lang.String.class)));\n}",
+    "method_name": "isUploadStarted"
+}

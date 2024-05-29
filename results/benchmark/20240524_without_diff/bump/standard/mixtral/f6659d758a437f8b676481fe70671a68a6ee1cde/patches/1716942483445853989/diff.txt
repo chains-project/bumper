@@ -1,0 +1,44 @@
+1,3c1,11
+< public <T extends MockBaseEntity> T createMockEntity(Class<T> clazz, String path) {
+<         final LoaderOptions loadingConfig = new LoaderOptions();
+<         loadingConfig.setTagInspector(new TrustedTagInspector());
+---
+> import org.yaml.snakeyaml.LoaderOptions;
+> import org.yaml.snakeyaml.nodes.Tag;
+> import org.yaml.snakeyaml.representer.Representer;
+> import org.yaml.snakeyaml.DumperOptions;
+> import org.yaml.snakeyaml.constructor.Constructor;
+> import org.yaml.snakeyaml.TypeDescription;
+> import java.time.ZoneId;
+> import java.time.LocalDate;
+> import java.io.BufferedReader;
+> import java.io.FileReader;
+> import java.io.IOException;
+4a13,15
+> public <T extends com.premiumminds.billy.core.test.fixtures.MockBaseEntity> T createMockEntity(java.lang.Class<T> clazz, java.lang.String path) {
+>     final LoaderOptions loadingConfig = new LoaderOptions();
+>     loadingConfig.setTagInspector(new com.premiumminds.billy.core.test.fixtures.TrustedTagInspector());
+10,11c21,22
+< 
+<         final Constructor constructor = new Constructor(clazz, loadingConfig) {{
+---
+>     final Constructor constructor = new Constructor(clazz, loadingConfig) {
+>         {
+14,20c25,29
+< 
+<             this.yamlConstructors.put(zoneIdTag, new JavaZoneIdConstruct());
+<             this.yamlConstructors.put(localDateTag, new JavaLocalDateConstruct());
+<         }};
+< 
+<         Yaml yaml = new Yaml(constructor, representer);
+< 
+---
+>             this.yamlConstructors.put(zoneIdTag, new com.premiumminds.billy.core.test.fixtures.JavaZoneIdConstruct());
+>             this.yamlConstructors.put(localDateTag, new com.premiumminds.billy.core.test.fixtures.JavaLocalDateConstruct());
+>         }
+>     };
+>     org.yaml.snakeyaml.Yaml yaml = new org.yaml.snakeyaml.Yaml(constructor, representer);
+23c32
+<         } catch (FileNotFoundException e) {
+---
+>     } catch (IOException e) {

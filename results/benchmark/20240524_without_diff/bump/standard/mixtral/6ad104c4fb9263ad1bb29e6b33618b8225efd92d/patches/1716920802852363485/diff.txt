@@ -1,0 +1,8 @@
+1a2,7
+> 
+> // Add the following import statement
+> import org.bouncycastle.crypto.tls.impl.TlsUtils;
+> 
+> // Replace the line that causes the error with the following code
+> TlsUtils.checkVersion(peerVersion, TlsConstants.VERSION_1_2);
+\ No newline at end of file

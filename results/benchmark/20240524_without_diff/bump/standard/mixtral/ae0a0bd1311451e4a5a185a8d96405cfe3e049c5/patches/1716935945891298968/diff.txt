@@ -1,0 +1,14 @@
+1d0
+< // TODO: review this AI generated patch!
+3c2,10
+<     return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, new com.artipie.http.hm.IsHeader("Location", new org.hamcrest.core.StringStartsWith("/v2/test/blobs/uploads/")), new com.artipie.http.hm.IsHeader("Range", "0-0"), new com.artipie.http.hm.IsHeader("Content-Length", "0"), new com.artipie.http.hm.IsHeader("Docker-Upload-UUID", new org.hamcrest.core.IsInstanceOf(String.class))));
+---
+>     return new com.artipie.http.hm.ResponseMatcher(
+>         com.artipie.http.rs.RsStatus.ACCEPTED,
+>         new com.artipie.http.hm.IsHeader("Location",
+>             new org.hamcrest.core.StringStartsWith("/v2/test/blobs/uploads/")),
+>         new com.artipie.http.hm.IsHeader("Range", "0-0"),
+>         new com.artipie.http.hm.IsHeader("Content-Length", "0"),
+>         new com.artipie.http.hm.IsHeader("Docker-Upload-UUID",
+>             new org.hamcrest.Matcher<Object>(is(instanceOf(String.class))))
+>     );

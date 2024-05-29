@@ -1,0 +1,70 @@
+0a1,16
+> import org.junit.jupiter.api.Test;
+> import org.locationtech.jts.geom.Coordinate;
+> import org.locationtech.jts.geom.LineString;
+> import org.locationtech.jts.geom.Polygon;
+> import org.locationtech.jts.geom.util.GeometryFactory;
+> import org.locationtech.jts.noding.SegmentString;
+> import org.locationtech.jts.noding.NodedSegmentString;
+> import processing.core.PShape;
+> import micycle.pgs.commons.PEdge;
+> import micycle.pgs.FastPolygonizer;
+> import java.util.ArrayList;
+> import java.util.Collection;
+> import java.util.HashSet;
+> import java.util.List;
+> import java.util.Random;
+> 
+2d17
+<         @Ignore
+4c19
+<                 Random r = new XoRoShiRo128PlusRandom(0);
+---
+>     Random r = new Random(0);
+7,9c22,23
+<                         for (int i = 0; i < 111 + k; i++) {
+<                                 segmentStrings.add(new NodedSegmentString(new Coordinate[] { new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000),
+<                                                 new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+---
+>         for (int i = 0; i < (111 + k); i++) {
+>             segmentStrings.add(new NodedSegmentString(new Coordinate[]{ new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 10000), new Coordinate(r.nextDouble() * 10000, r.nextDouble() * 13337) }, null));
+11c25
+<                         Collection<SegmentString> nodedSS = PGS.nodeSegmentStrings(segmentStrings);
+---
+>         Collection<SegmentString> nodedSS = FastPolygonizer.nodeSegmentStrings(segmentStrings);
+13c27
+<                         nodedSS.forEach(ss -> nodedEdges.add(new PEdge(PGS.toPVector(ss.getCoordinate(0)), PGS.toPVector(ss.getCoordinate(1)))));
+---
+>         nodedSS.forEach(( ss) -> nodedEdges.add(new PEdge(FastPolygonizer.toPVector(ss.getCoordinate(0)), FastPolygonizer.toPVector(ss.getCoordinate(1)))));
+15,21c29,33
+< 
+<                         final Polygonizer polygonizerJTS = new Polygonizer();
+<                         polygonizerJTS.setCheckRingsValid(false);
+<                         nodedEdgesSet.forEach(e -> {
+<                                 final LineString l = PGS.GEOM_FACTORY
+<                                                 .createLineString(new Coordinate[] { PGS.coordFromPVector(e.a), PGS.coordFromPVector(e.b) });
+<                                 polygonizerJTS.add(l);
+---
+>         GeometryFactory GEOM_FACTORY = new GeometryFactory();
+>         Collection<Polygon> JTS = new ArrayList<>();
+>         nodedEdgesSet.forEach(( e) -> {
+>             LineString l = GEOM_FACTORY.createLineString(new Coordinate[]{ FastPolygonizer.coordFromPVector(e.a), FastPolygonizer.coordFromPVector(e.b) });
+>             JTS.add(l.getBoundary().getExteriorRing());
+23d34
+< 
+25,26c36
+<                         @SuppressWarnings("unchecked")
+<                         Collection<Polygon> JTS = polygonizerJTS.getPolygons();
+---
+>         Collection<Polygon> FP = FastPolygonizer.polygonize(nodedEdgesSet);
+29d38
+< 
+31c40
+<                         PShape FP = polygonize(nodedEdgesSet);
+---
+>         PShape processingPS = FastPolygonizer.polygonize(nodedEdgesSet);
+34,35c43
+< //                      System.out.println(timeJTS + " " + timeFP + " " + JTS.size());
+<                         assertEquals(JTS.size(), FP.getChildCount());
+---
+>         assertEquals(JTS.size(), processingPS.getChildCount());

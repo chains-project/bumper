@@ -1,0 +1,25 @@
+1,4c1,9
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+< protected org.apache.thrift.TDeserializer initialValue() {
+<     org.apache.thrift.transport.TTransport transport = null;
+---
+> import org.apache.thrift.TDeserializer;
+> import org.apache.thrift.transport.MockFramedTransport;
+> import org.apache.thrift.transport.TTransport;
+> import org.apache.thrift.protocol.TCompactProtocol;
+> import org.apache.thrift.protocol.TProtocolFactory;
+> 
+> @Override
+> protected TDeserializer initialValue() {
+>     TTransport transport = null;
+6,7c11,12
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory(), transport);
+---
+>         transport = new MockFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+>         return new TDeserializer(new TCompactProtocol.Factory(), transport);
+9c14
+<         throw new RuntimeException(e);
+---
+>         throw new java.lang.RuntimeException(e);

@@ -1,0 +1,7 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,5
+> 
+> // Create a new MavenProject instance using a Model instance
+> MavenProject mavenProject = new MavenProject(new Model());
+\ No newline at end of file

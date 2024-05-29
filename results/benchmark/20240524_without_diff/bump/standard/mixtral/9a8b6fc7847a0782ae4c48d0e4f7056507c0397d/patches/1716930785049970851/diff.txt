@@ -1,0 +1,16 @@
+1c1,11
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.BasicPasswordEncryptor;
+> 
+> public class GeoStoreDigestPasswordEncoder {
+>     // ...
+> 
+>     public GeoStoreDigestPasswordEncoder() {
+>         this.passwordEncryptor = new BasicPasswordEncryptor();
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

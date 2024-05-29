@@ -1,0 +1,10 @@
+import org.apache.maven.execution.MavenSession;
+
+// ...
+
+public void someMethod(MavenSession session) {
+    // Instead of using MavenProject, use MavenSession to access project details
+    // MavenProject project = ...;
+    org.apache.maven.project.MavenProject project = session.getProject();
+    // ...
+}

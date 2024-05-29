@@ -1,0 +1,10 @@
+2,4c2,6
+<     org.junit.jupiter.api.Assertions.assertTrue(GROUP\_SHAPE.getChildCount() == 2);
+<     processing.core.PShape out = micycle.pgs.PGS\_Morphology.radialWarp(GROUP\_SHAPE, 10, 1, false);
+<     org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());
+---
+>     boolean assertionResult = micycle.pgs.Assertions.assertTrue(_SHAPE.getChildCount() == 2);
+>     processing.core.PShape out = micycle.pgs.PGS;
+>     _Morphology.radialWarp(_SHAPE, 10, 1, false);
+>     int childCount = out.getChildCount();
+>     micycle.pgs.Assertions.assertEquals(2, childCount);

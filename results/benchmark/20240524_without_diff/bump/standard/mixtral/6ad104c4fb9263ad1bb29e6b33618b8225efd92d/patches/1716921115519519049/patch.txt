@@ -1,0 +1,20 @@
+// TODO: review this AI generated patch!
+import java.io.IOException;
+
+public class TlsFatalAlert extends Exception {
+    public TlsFatalAlert(int major) {
+        super("bad_record_mac");
+    }
+}
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+    org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+    byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+    if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+        throw new TlsFatalAlert(80);// bad_record_mac is 80
+
+    }
+    byte[] output = new byte[ciphertext.length];
+    decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+    return output;
+}

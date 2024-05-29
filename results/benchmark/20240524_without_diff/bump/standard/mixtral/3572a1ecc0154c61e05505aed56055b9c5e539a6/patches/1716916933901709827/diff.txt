@@ -1,0 +1,9 @@
+4,8c4,5
+<       // Use the TFlushingFastFramedTransport to be compatible with singer_thrift
+<       // log.
+<       final int bufferCapacity = 10;
+<       framedTransport = new TFastFramedTransport(new TIOStreamTransport(os),
+<           bufferCapacity);
+---
+>     int bufferCapacity = 10;
+>     TFramedTransport framedTransport = new TFramedTransport(new TIOStreamTransport(os), bufferCapacity);

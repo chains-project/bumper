@@ -1,0 +1,19 @@
+1,7c1,10
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+> private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+>     Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+>     return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder()
+>         .setProperties(Stream.of(
+>             "sonar.sources", sorald.sonar.SonarLintEngine.globalConfig.getWorkDir(),
+>             "sonar.language", enabledLanguages.stream().map(Language::getName).collect(Collectors.joining(",")),
+>             "sonar.projectKey", sorald.sonar.SonarLintEngine.globalConfig.getClientPid(),
+>             "sonar.projectName", sorald.sonar.SonarLintEngine.globalConfig.getClientPid(),
+>             "sonar.sources", sorald.sonar.SonarLintEngine.globalConfig.getWorkDir()
+>         ).collect(Collectors.toMap(Function.identity(), v -> Arrays.asList(v))))

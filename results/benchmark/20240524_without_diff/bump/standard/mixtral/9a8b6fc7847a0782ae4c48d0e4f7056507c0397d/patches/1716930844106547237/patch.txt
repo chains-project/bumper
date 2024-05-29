@@ -1,0 +1,22 @@
+import org.jasypt.util.password.ConfigurablePasswordEncryptor;
+import org.jasypt.util.password.StrongPasswordEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import java.util.HashMap;
+import java.util.Map;
+
+@java.lang.Override
+protected PasswordEncoder createStringEncoder() {
+    ConfigurablePasswordEncryptor encryptor = new StrongPasswordEncryptor();
+    String idForEncryptor = encryptor.getClass().getName();
+    Map<String, PasswordEncoder> encoders = new HashMap<>();
+    encoders.put(idForEncryptor, new DelegatingPasswordEncoder(idForEncryptor, encoders) {
+        @Override
+        public boolean matches(CharSequence rawPassword, String encodedPassword) {
+            return encryptor.checkPassword(rawPassword.toString(), encodedPassword);
+        }
+    });
+    encoders.put(NoOpPasswordEncoder.getInstance().getId(), NoOpPasswordEncoder.getInstance());
+    return new DelegatingPasswordEncoder(idForEncryptor, encoders);
+}

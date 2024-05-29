@@ -1,0 +1,21 @@
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.ByteBuffer;
+import java.security.GeneralSecurityException;
+import java.util.Arrays;
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws GeneralSecurityException {
+    SecretKeySpec macKey = initRecordMAC(decryptCipher);
+    byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+    if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+        throw new RuntimeException("Bad MAC");
+    }
+    byte[] iv = Arrays.copyOfRange(ciphertext, 0, 12);
+    byte[] encryptedData = Arrays.copyOfRange(ciphertext, 12, ciphertext.length);
+    IvParameterSpec ivParamSpec = new IvParameterSpec(iv);
+    Cipher cipher = Cipher.getInstance("ChaCha20-Poly1305");
+    cipher.init(Cipher.DECRYPT_MODE, macKey, ivParamSpec);
+    byte[] output = cipher.doFinal(encryptedData);
+    return output;
+}

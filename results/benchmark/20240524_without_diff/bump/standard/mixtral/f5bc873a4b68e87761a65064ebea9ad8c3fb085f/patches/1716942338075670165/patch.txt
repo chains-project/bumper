@@ -1,0 +1,14 @@
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.components.interactivity.Prompter;
+import org.codehaus.plexus.components.interactivity.PrompterException;
+
+public MavenProject getProject() {
+    Prompter prompter = new Prompter();
+    MavenProject project = null;
+    try {
+        project = (MavenProject) prompter.prompt("Please enter the path to the Maven project: ", "path/to/MavenProject");
+    } catch (PrompterException e) {
+        e.printStackTrace();
+    }
+    return project;
+}

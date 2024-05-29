@@ -1,0 +1,37 @@
+1d0
+< // TODO: review this AI generated patch!
+5c4,8
+<     final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(storage, new com.artipie.docker.asto.DefaultLayout(), new com.artipie.docker.RepoName.Simple("any"));
+---
+>   final com.artipie.docker.asto.AstoBlobs blobs = new com.artipie.docker.asto.AstoBlobs(
+>       storage,
+>       new com.artipie.docker.asto.DefaultLayout(),
+>       new com.artipie.docker.RepoName.Simple("any")
+>   );
+7c10,18
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle(( blob, throwable) -> {
+---
+>   CompletableFuture<Void> putFuture = blobs.put(
+>       new com.artipie.docker.asto.CheckedBlobSource(
+>           new com.artipie.asto.Content.From("data".getBytes()),
+>           new com.artipie.docker.Digest.Sha256(digest)
+>       )
+>   );
+>   putFuture.handle(
+>       (blob, throwable) -> {
+>         if (throwable != null) {
+10c21,26
+<         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringStartsWith(new org.hamcrest.core.StringValue(com.artipie.docker.Digest.Sha256.NAME))));
+---
+>           org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.core.StringStartsWith(new org.hamcrest.core.StringValue(com.artipie.docker.Digest.Sha256.NAME)));
+>         }
+>         return null;
+>       }
+>   );
+>   putFuture.thenAccept(unused -> {
+12,13c28,29
+<         return java.util.concurrent.CompletableFuture.allOf();
+<     }).join();
+---
+>   });
+>   return putFuture;

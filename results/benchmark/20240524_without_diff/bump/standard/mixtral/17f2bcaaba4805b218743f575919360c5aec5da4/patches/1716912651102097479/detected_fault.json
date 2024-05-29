@@ -1,0 +1,19 @@
+{
+    "py/object": "pipeline.types.detected_fault.DetectedFault",
+    "identifier": 2063763486,
+    "in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Morphology\n * PGS_Morphology} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_MorphologyGroupShapeTests {\n    private PShape GROUP_SHAPE;\n\n    @Test\n    void test_PGS_Morphology_minkDifference() {\n        assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n        final PShape mink = new PShape(PShape.PATH);\n        mink.beginShape();\n        mink.vertex(0, 0);\n        mink.vertex(5, 0);\n        mink.vertex(5, 5);\n        mink.vertex(0, 5);\n        mink.endShape(PConstants.CLOSE);\n        PShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);\n        assertEquals(2, out.getChildCount());\n    }\n}",
+    "qualified_in_class_code": "/**\n * Tests to determine which methods from {@link micycle.pgs.PGS_Morphology\n * PGS_Morphology} natively support GROUP PShape (MultiPolygon) inputs (or at\n * least handle them without failing). These tests do not validate the\n * particular output of the method in question.\n */\nclass PGS_MorphologyGroupShapeTests {\n    private processing.core.PShape GROUP_SHAPE;\n\n    @org.junit.jupiter.api.Test\n    void test_PGS_Morphology_minkDifference() {\n        org.junit.Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n        final processing.core.PShape mink = new processing.core.PShape(processing.core.PShape.PATH);\n        mink.beginShape();\n        mink.vertex(0, 0);\n        mink.vertex(5, 0);\n        mink.vertex(5, 5);\n        mink.vertex(0, 5);\n        mink.endShape(processing.core.PConstants.CLOSE);\n        processing.core.PShape out = micycle.pgs.PGS_Morphology.minkDifference(GROUP_SHAPE, mink);\n        org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());\n    }\n}",
+    "plausible_dependency_identifier": null,
+    "error_info": {
+        "py/object": "pipeline.types.error_info.ErrorInfo",
+        "additional_info": "  symbol:   method assumeTrue(boolean)\n  location: class micycle.pgs.PGS_MorphologyGroupShapeTests\n",
+        "error_message": "[ERROR] /PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java:[82,17] cannot find symbol",
+        "client_file_path": "/PGS/src/test/java/micycle/pgs/PGS_MorphologyGroupShapeTests.java",
+        "client_line_position": "82"
+    },
+    "client_end_line_number": 93,
+    "client_line_number": 80,
+    "method_code": "@Test\n\tvoid test_PGS_Morphology_minkDifference() {\n\t\tassumeTrue(GROUP_SHAPE.getChildCount() == 2);\n\t\tfinal PShape mink = new PShape(PShape.PATH);\n\t\tmink.beginShape();\n\t\tmink.vertex(0, 0);\n\t\tmink.vertex(5, 0);\n\t\tmink.vertex(5, 5);\n\t\tmink.vertex(0, 5);\n\t\tmink.endShape(PConstants.CLOSE);\n\n\t\tPShape out = PGS_Morphology.minkDifference(GROUP_SHAPE, mink);\n\t\tassertEquals(2, out.getChildCount());\n\t}",
+    "qualified_code": "@org.junit.jupiter.api.Test\nvoid test_PGS_Morphology_minkDifference() {\n    org.junit.Assume.assumeTrue(GROUP_SHAPE.getChildCount() == 2);\n    final processing.core.PShape mink = new processing.core.PShape(processing.core.PShape.PATH);\n    mink.beginShape();\n    mink.vertex(0, 0);\n    mink.vertex(5, 0);\n    mink.vertex(5, 5);\n    mink.vertex(0, 5);\n    mink.endShape(processing.core.PConstants.CLOSE);\n    processing.core.PShape out = micycle.pgs.PGS_Morphology.minkDifference(GROUP_SHAPE, mink);\n    org.junit.jupiter.api.Assertions.assertEquals(2, out.getChildCount());\n}",
+    "method_name": "test_PGS_Morphology_minkDifference"
+}

@@ -1,0 +1,10 @@
+1c1,5
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Assume;
+> 
+> public class TestClass {
+>     // use Assume.assumeTrue in your methods
+> }
+\ No newline at end of file

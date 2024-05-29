@@ -1,0 +1,11 @@
+import org.junit.jupiter.api.Test;
+import java.lang.String;
+import java.util.concurrent.atomic.AtomicReference;
+
+@Test
+void testScope() {
+    final String line = "GET /resource.txt HTTP/1.1";
+    final String action = "foo:bar:baz";
+    final AtomicReference<String> caction = new AtomicReference<String>();
+    final AtomicReference<String> cline = new AtomicReference<String>();
+}

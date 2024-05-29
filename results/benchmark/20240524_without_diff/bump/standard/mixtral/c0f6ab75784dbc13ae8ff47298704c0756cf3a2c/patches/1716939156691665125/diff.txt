@@ -1,0 +1,17 @@
+1,7c1,8
+< private static AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+<         return AnalysisEngineConfiguration.builder()
+<                 .addEnabledLanguages(globalConfig.getEnabledLanguages())
+<                 .setClientPid(globalConfig.getClientPid())
+<                 .setExtraProperties(globalConfig.extraProperties())
+<                 .setWorkDir(globalConfig.getWorkDir())
+<                 .setModulesProvider(globalConfig.getModulesProvider())
+---
+> private static org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration buildAnalysisEngineConfiguration() {
+>     Set<org.sonarsource.sonarlint.core.commons.Language> enabledLanguages = sorald.sonar.SonarLintEngine.globalConfig.getEnabledLanguages();
+>     return org.sonarsource.sonarlint.core.analysis.api.AnalysisEngineConfiguration.builder()
+>         .setModulesProvider(sorald.sonar.SonarLintEngine.globalConfig.getModulesProvider())
+>         .setWorkDir(sorald.sonar.SonarLintEngine.globalConfig.getWorkDir())
+>         .setExtraProperties(sorald.sonar.SonarLintEngine.globalConfig.extraProperties())
+>         .setClientPid(sorald.sonar.SonarLintEngine.globalConfig.getClientPid())
+>         .addEnabledLanguages(enabledLanguages)

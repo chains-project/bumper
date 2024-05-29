@@ -1,0 +1,15 @@
+1a2,14
+> import org.apache.maven.project.MavenProjectBuilder;
+> import org.apache.maven.repository.RepositorySystem;
+> 
+> // ...
+> 
+> private MavenProject getMavenProject() throws MojoExecutionException {
+>     if (mavenProject == null) {
+>         RepositorySystem repositorySystem = mavenSession.getRepositorySystem();
+>         MavenProjectBuilder mavenProjectBuilder = repositorySystem.getProjectBuilder();
+>         mavenProject = mavenProjectBuilder.build(projectDependencies, projectModel);
+>     }
+>     return mavenProject;
+> }
+\ No newline at end of file

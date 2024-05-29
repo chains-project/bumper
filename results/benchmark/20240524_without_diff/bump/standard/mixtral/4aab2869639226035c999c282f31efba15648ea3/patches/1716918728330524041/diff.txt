@@ -1,0 +1,15 @@
+5,11c5,10
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         return new YamlPolicy(new BlockingStorage(new com.artipie.asto.Storage.Default(new com.artipie.asto.EsMemoryStorage()))){
+>             @Override
+>             public String type() {
+>                 return sub.string("type");
+>             }
+>         };

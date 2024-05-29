@@ -1,0 +1,16 @@
+1,11c1,3
+< private static ResponseMatcher isUploadStarted() {
+<         return new ResponseMatcher(
+<             RsStatus.ACCEPTED,
+<             new IsHeader(
+<                 "Location",
+<                 new StringStartsWith(false, "/v2/test/blobs/uploads/")
+<             ),
+<             new IsHeader("Range", "0-0"),
+<             new IsHeader("Content-Length", "0"),
+<             new IsHeader("Docker-Upload-UUID", new IsNot<>(Matchers.emptyString()))
+<         );
+---
+> private static com.artipie.http.hm.ResponseMatcher isUploadStarted() {
+>     org.hamcrest.Matcher<String> startsWithMatcher = new org.hamcrest.core.StringStartsWith("/v2/test/blobs/uploads/");
+>     return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, new com.artipie.http.hm.IsHeader("Location", startsWithMatcher), new com.artipie.http.hm.IsHeader("Range", "0-0"), new com.artipie.http.hm.IsHeader("Content-Length", "0"), new com.artipie.http.hm.IsHeader("Docker-Upload-UUID", org.hamcrest.Matchers.not(org.hamcrest.Matchers.emptyString())));

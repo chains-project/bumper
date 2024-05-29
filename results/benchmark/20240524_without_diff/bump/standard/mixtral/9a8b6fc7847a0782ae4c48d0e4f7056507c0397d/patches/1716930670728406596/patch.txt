@@ -1,0 +1,17 @@
+import org.jasypt.digest.StandardStringDigester;
+
+public class GeoStoreDigestPasswordEncoder {
+    // ...
+
+    private StandardStringDigester stringDigester;
+
+    // ...
+
+    @Override
+    public String encode(String rawPass) {
+        // Use the StandardStringDigester to encode the password
+        return stringDigester.digest(rawPass);
+    }
+
+    // ...
+}

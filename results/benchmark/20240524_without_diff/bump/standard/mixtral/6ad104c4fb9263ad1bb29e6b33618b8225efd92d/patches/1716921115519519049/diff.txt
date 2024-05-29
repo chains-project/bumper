@@ -1,0 +1,17 @@
+2c2,10
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import java.io.IOException;
+> 
+> public class TlsFatalAlert extends Exception {
+>     public TlsFatalAlert(int major) {
+>         super("bad_record_mac");
+>     }
+> }
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c14,15
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(80); // bad_record_mac is 80
+---
+>         throw new TlsFatalAlert(80);// bad_record_mac is 80
+> 

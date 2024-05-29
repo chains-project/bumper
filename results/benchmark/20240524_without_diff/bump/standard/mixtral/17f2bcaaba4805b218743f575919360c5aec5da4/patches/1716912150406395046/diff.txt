@@ -1,0 +1,12 @@
+1c1,5
+< @Test
+---
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assumptions.assumeTrue;
+> import org.junit.jupiter.api.Test;
+> 
+> @org.junit.jupiter.api.Test
+4c8
+<                 PShape out = PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);
+---
+>     processing.core.PShape out = micycle.pgs.PGS_Morphology.erosionDilation(GROUP_SHAPE, 0);

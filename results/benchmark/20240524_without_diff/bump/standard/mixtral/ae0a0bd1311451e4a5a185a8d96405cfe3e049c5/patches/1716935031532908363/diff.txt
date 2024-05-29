@@ -1,0 +1,16 @@
+1c1
+< @Test
+---
+> @org.junit.jupiter.api.Test
+3,11c3
+<         MatcherAssert.assertThat(
+<             Assertions.assertThrows(
+<                 IllegalArgumentException.class,
+<                 () -> new UploadEntity.Request(
+<                     new RequestLine(RqMethod.PUT, "/one/two").toString()
+<                 ).name()
+<             ).getMessage(),
+<             new StringContains(false, "Unexpected path")
+<         );
+---
+>     org.hamcrest.MatcherAssert.assertThat(org.junit.jupiter.api.Assertions.assertThrows(java.lang.IllegalArgumentException.class, () -> new com.artipie.docker.http.UploadEntity.Request(new com.artipie.http.rq.RequestLine(RqMethod.PUT, "/one/two").toString())).getName(), new org.hamcrest.core.StringContains("Unexpected path"));

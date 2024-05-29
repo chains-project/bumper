@@ -1,0 +1,6 @@
+1,2c1,2
+< private static org.apache.maven.surefire.api.testset.TestListResolver.Wildcard getWildcard() {
+<     return new org.apache.maven.surefire.api.testset.TestListResolver.Wildcard();
+---
+> private static org.apache.maven.surefire.util.TestsToRunFilter getWildcard() {
+>     return new org.apache.maven.surefire.util.TestsToRunFilter.Wildcard();

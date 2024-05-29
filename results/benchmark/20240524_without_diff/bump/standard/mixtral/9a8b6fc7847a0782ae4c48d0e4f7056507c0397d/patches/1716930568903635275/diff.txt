@@ -1,0 +1,32 @@
+1,3c1
+< @Override
+<         protected PasswordEncoder createStringEncoder() {
+<                 byte[] password = lookupPasswordFromKeyStore();
+---
+> import it.geosolutions.geostore.core.security.password.PBEPasswordEncoder;
+5c3,6
+<                 char[] chars = toChars(password);
+---
+> @java.lang.Override
+> protected org.acegisecurity.providers.encoding.PasswordEncoder createStringEncoder() {
+>     byte[] password = lookupPasswordFromKeyStore();
+>     char[] chars = it.geosolutions.geostore.core.security.password.SecurityUtils.toChars(password);
+7c8
+<                         stringEncrypter = new StandardPBEStringEncryptor();
+---
+>         stringEncrypter = new org.jasypt.encryption.pbe.StandardPBEStringEncryptor();
+9,10c10
+< 
+<                         if (getProviderName() != null && !getProviderName().isEmpty()) {
+---
+>         if ((getProviderName() != null) && (!getProviderName().isEmpty())) {
+14d13
+< 
+17d15
+< 
+20,21c18,19
+<                         scramble(password);
+<                         scramble(chars);
+---
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(password);
+>         it.geosolutions.geostore.core.security.password.SecurityUtils.scramble(chars);

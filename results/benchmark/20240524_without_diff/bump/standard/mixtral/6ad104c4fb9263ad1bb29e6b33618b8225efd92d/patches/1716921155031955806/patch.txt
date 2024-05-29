@@ -1,0 +1,12 @@
+// TODO: review this AI generated patch!
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+    org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+    byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+    boolean macsAreEqual = java.util.Arrays.equals(calculatedMAC, receivedMAC);
+    if (!macsAreEqual) {
+        throw new java.lang.RuntimeException("Bad MAC");
+    }
+    byte[] output = new byte[ciphertext.length];
+    decryptCipher.processBytes(ciphertext, 0, ciphertext.length, output, 0);
+    return output;
+}

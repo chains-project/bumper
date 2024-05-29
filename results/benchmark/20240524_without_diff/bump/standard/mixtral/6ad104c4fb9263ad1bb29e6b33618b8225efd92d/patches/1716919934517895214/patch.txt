@@ -1,0 +1,41 @@
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
+public class ChachaDecoder {
+    // ...
+
+    private static final String BC_PROVIDER_NAME = "BC";
+    private static final String TLS_PACKAGE = "org.bouncycastle.crypto.tls";
+    private static final String ALERT_DESCRIPTION_CLASS_NAME = TLS_PACKAGE + ".AlertDescription";
+
+    private AlertDescription getAlertDescriptionInstance() {
+        Class<?> alertDescriptionClass;
+        try {
+            alertDescriptionClass = Class.forName(ALERT_DESCRIPTION_CLASS_NAME, true, getClass().getClassLoader());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Failed to load AlertDescription class", e);
+        }
+
+        Object alertDescriptionInstance = Proxy.newProxyInstance(
+                alertDescriptionClass.getClassLoader(),
+                new Class<?>[] { alertDescriptionClass },
+                new InvocationHandler() {
+                    @Override
+                    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                        String methodName = method.getName();
+                        if (methodName.equals("value")) {
+                            int alertDescriptionCode = (int) args[0];
+                            // Replace the following line with a lookup table or other logic to map alert codes to AlertDescription values
+                            return alertDescriptionCode == 10; // WARNING
+                        }
+                        throw new IllegalStateException("Unexpected method call: " + methodName);
+                    }
+                }
+        );
+
+        return (AlertDescription) alertDescriptionInstance;
+    }
+
+    // ...
+}

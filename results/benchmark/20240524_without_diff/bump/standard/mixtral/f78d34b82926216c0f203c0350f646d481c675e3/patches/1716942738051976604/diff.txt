@@ -1,0 +1,73 @@
+1,15c1,12
+< /**
+<      * ワールド内に新しいプレイヤーを捏造して、{@code EntityPlayer}として返します。
+<      *
+<      * @param world ワールドのハンドルを取得するための引数。
+<      * @return 創造されたプレイヤー。
+<      */
+<     public static EntityPlayer getRandomPlayer(World world)
+<     {
+<         Random random = new Random();
+<         String first = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+<         String last = random.nextBoolean()
+<             ? RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1)
+<             : RandomWordUtils.getRandomWord();
+---
+> import java.util.Random;
+> import java.util.UUID;
+> import net.minecraft.server.v1_12_R1.EntityPlayer;
+> import net.minecraft.server.v1_12_R1.PlayerInteractManager;
+> import net.minecraft.server.v1_12_R1.WorldServer;
+> import org.apache.commons.lang3.tuple.Pair;
+> import org.bukkit.Bukkit;
+> import org.bukkit.World;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
+> import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
+> import com.mojang.authlib.GameProfile;
+> import com.mojang.authlib.properties.Property;
+17,20c14,20
+<         if (random.nextBoolean())
+<         {
+<             first = develop.p2p.lib.LeetConverter.convert(first);
+<             last = develop.p2p.lib.LeetConverter.convert(last);
+---
+> public static EntityPlayer getRandomPlayer(World world) {
+>     Random random = new Random();
+>     String first = (random.nextBoolean()) ? org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : getRandomWord();
+>     String last = (random.nextBoolean()) ? org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(new Random().nextInt(13) + 1) : getRandomWord();
+>     if (random.nextBoolean()) {
+>         first = LeetConverter.convert(first);
+>         last = LeetConverter.convert(last);
+22,23c22
+< 
+<         String name = first + (random.nextBoolean() ? "_": "") + last + (random.nextBoolean() ? "19" + random.nextInt(120): "");
+---
+>     String name = ((first + (random.nextBoolean() ? "_" : "")) + last) + (random.nextBoolean() ? "19" + random.nextInt(120) : "");
+25c24
+<             name = random.nextBoolean() ? first: last;
+---
+>         name = (random.nextBoolean()) ? first : last;
+28,30c27
+<             name = RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+< 
+<         WorldServer worldServer = ((CraftWorld) world).getHandle();
+---
+>         name = org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric(random.nextInt(16));
+31a29
+>     WorldServer worldServer = ((CraftWorld) (world)).getHandle();
+33d30
+< 
+35d31
+< 
+37,43c33
+< 
+<         return new EntityPlayer(
+<             ((CraftServer) Bukkit.getServer()).getServer(),
+<             worldServer,
+<             profile,
+<             new PlayerInteractManager(worldServer)
+<         );
+---
+>     return new EntityPlayer(((CraftServer) (Bukkit.getServer())).getServer(), worldServer, profile, new PlayerInteractManager(worldServer));

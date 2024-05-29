@@ -1,0 +1,11 @@
+1a2,3
+> import org.apache.thrift.transport.TFramedTransport; // added import
+> 
+6c8
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+---
+>         transport = new TFramedTransport.Client(new org.apache.thrift.transport.TSocket("localhost", 9090));
+9c11
+<         throw new RuntimeException(e);
+---
+>         throw new java.lang.RuntimeException(e);

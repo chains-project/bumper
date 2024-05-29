@@ -1,0 +1,13 @@
+1,2c1,2
+< @Test
+<     void largeImageUploadWorks() throws Exception {
+---
+> @org.junit.jupiter.api.Test
+> void largeImageUploadWorks() throws java.lang.Exception {
+5,6c5,7
+<             final String output = this.client.run("push", this.remote());
+<             MatcherAssert.assertThat(output, new StringContains(false, "Pushed"));
+---
+>         final java.lang.String output = this.client.run("push", this.remote());
+>         boolean containsPushed = output.contains("Pushed");
+>         org.hamcrest.MatcherAssert.assertThat(output, new org.hamcrest.core.StringContains("Pushed"));

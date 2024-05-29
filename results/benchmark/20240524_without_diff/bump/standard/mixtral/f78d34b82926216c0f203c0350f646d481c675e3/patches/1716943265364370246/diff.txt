@@ -1,0 +1,6 @@
+1c1
+< import develop.p2p.lib.WaveCreator;
+\ No newline at end of file
+---
+> import io.github.p2p-waves.WaveCreator;
+\ No newline at end of file

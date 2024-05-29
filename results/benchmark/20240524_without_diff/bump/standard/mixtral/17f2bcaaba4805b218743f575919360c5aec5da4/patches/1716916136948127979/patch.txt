@@ -1,0 +1,7 @@
+_radialWarp() {
+    boolean groupChildrenEqualTwo = GROUP.getChildCount() == 2;
+    micycle.pgs.Assertions.assertTrue(groupChildrenEqualTwo);
+    processing.core.PShape out = micycle.pgs.PGS;
+    _Morphology.radialWarp(GROUP, 10, 1, false);
+    micycle.pgs.Assertions.assertEquals(2, out.getChildCount());
+}

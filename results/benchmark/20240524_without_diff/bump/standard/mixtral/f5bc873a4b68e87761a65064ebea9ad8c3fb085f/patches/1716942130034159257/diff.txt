@@ -1,0 +1,33 @@
+0a1,7
+> import java.io.File;
+> import java.util.List;
+> import java.util.Properties;
+> 
+> import org.apache.maven.plugin.AbstractMojo;
+> import org.apache.maven.plugins.annotations.Component;
+> import org.apache.maven.plugins.annotations.Parameter;
+1a9,31
+> import org.codehaus.plexus.components.interactivity.Prompter;
+> import org.codehaus.plexus.util.FileUtils;
+> 
+> public abstract class AbstractThemeMojo extends AbstractMojo {
+>     // ...
+> 
+>     @Parameter(defaultValue = "${project}", readonly = true, required = true)
+>     private MavenProject project;
+> 
+>     // ...
+> 
+>     protected String getProperty(String key) {
+>         Properties properties = project.getProperties();
+>         return properties.getProperty(key);
+>     }
+> 
+>     protected List<String> getResourceFiles(String path) {
+>         File file = new File(project.getBasedir(), path);
+>         return FileUtils.getFileNames(file, null, true);
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

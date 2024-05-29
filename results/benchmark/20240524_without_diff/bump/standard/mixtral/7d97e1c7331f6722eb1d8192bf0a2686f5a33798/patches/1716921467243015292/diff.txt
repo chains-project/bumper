@@ -1,0 +1,35 @@
+0a1,11
+> import static java.lang.Integer.valueOf;
+> import static java.lang.String.format;
+> import static org.hamcrest.MatcherAssert.assertThat;
+> import static org.hamcrest.Matchers.iterableWithSize;
+> import java.util.stream.IntStream;
+> import org.junit.jupiter.api.Test;
+> import com.amazonaws.services.simpledb.AmazonSimpleDB;
+> import com.amazonaws.services.simpledb.model.DeleteDomainRequest;
+> import com.amazonaws.services.simpledb.model.SelectRequest;
+> import com.jcabi.simpledb.Domain;
+> 
+8,17c19,20
+<             for (int idx = 0; idx < Tv.TEN; ++idx) {
+<                 domain.item(String.format("i-%d", idx)).put("hey", "");
+<             }
+<             MatcherAssert.assertThat(
+<                 domain.select(
+<                     new SelectRequest().withSelectExpression(
+<                         String.format("SELECT * FROM `%s`", domain.name())
+<                     ).withConsistentRead(true)
+<                 ),
+<                 Matchers.iterableWithSize(Tv.TEN)
+---
+>         IntStream.range(0, Tv.TEN).forEach(idx ->
+>             domain.item(format("i-%d", idx)).put("hey", "")
+18a22,25
+>         final SelectRequest selectRequest = new SelectRequest()
+>             .withSelectExpression(format("SELECT * FROM `%s`", domain.name()))
+>             .withConsistentRead(true);
+>         assertThat(domain.select(selectRequest), iterableWithSize(Tv.TEN));
+20c27
+<             domain.drop();
+---
+>         domain.delete();

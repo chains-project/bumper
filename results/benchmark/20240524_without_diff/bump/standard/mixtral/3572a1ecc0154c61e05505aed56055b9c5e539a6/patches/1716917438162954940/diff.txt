@@ -1,0 +1,18 @@
+1,4c1,3
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+< protected org.apache.thrift.TDeserializer initialValue() {
+<     org.apache.thrift.transport.TTransport transport = null;
+---
+> @Override
+> protected TDeserializer initialValue() {
+>     TTransport transport = null;
+6,8c5,8
+<         transport = new org.apache.thrift.transport.TFramedTransport(new org.apache.thrift.transport.TSocket("localhost", 9090));
+<         return new org.apache.thrift.TDeserializer(new org.apache.thrift.protocol.TCompactProtocol.Factory(), transport);
+<     } catch (org.apache.thrift.transport.TTransportException e) {
+---
+>         transport = new TTransport(new TSocket("localhost", 9090));
+>         transport = new TFramedTransport(transport);
+>         return new TDeserializer(new TCompactProtocol.Factory(), transport);
+>     } catch (TTransportException e) {

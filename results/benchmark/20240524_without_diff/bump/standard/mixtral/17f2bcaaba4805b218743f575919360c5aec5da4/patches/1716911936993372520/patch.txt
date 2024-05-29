@@ -1,0 +1,14 @@
+import org.junit.Assert;
+import org.junit.Test;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testPGS_MorphologyGroupShape() {
+        // ...
+        boolean isTrue = ...;
+        Assume.assumeTrue(isTrue);
+        // or
+        Assert.assertTrue(isTrue);
+        // ...
+    }
+}

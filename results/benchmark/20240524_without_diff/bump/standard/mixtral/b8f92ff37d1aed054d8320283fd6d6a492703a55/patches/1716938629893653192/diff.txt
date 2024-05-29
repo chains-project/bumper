@@ -1,0 +1,108 @@
+0a1,11
+> import static java.util.Arrays.asList;
+> import static java.util.stream.Collectors.toList;
+> 
+> import java.io.File;
+> import java.util.Collection;
+> import java.util.Iterator;
+> import java.util.List;
+> import java.util.regex.Pattern;
+> 
+> import org.apache.maven.shared.utils.StringUtils;
+> 
+2,3c13,104
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, new TestListResolver() {
+>         @Override
+>         public String[] getIncludePatterns() {
+>             return new String[] {"**/*.class"};
+>         }
+> 
+>         @Override
+>         public String[] getExcludePatterns() {
+>             return new String[0];
+>         }
+> 
+>         @Override
+>         public Pattern getExcludePattern(int index) {
+>             return null;
+>         }
+> 
+>         @Override
+>         public Pattern getIncludePattern(int index) {
+>             return null;
+>         }
+> 
+>         @Override
+>         public int getExcludePatternCount() {
+>             return 0;
+>         }
+> 
+>         @Override
+>         public int getIncludePatternCount() {
+>             return 1;
+>         }
+> 
+>         @Override
+>         public boolean isFileIncluded(String file) {
+>             return StringUtils.isNotEmpty(file) && file.endsWith(".class");
+>         }
+>     });
+>     directoryScanner.addDefaultExcludes();
+>     directoryScanner.scan();
+>     Collection classes = directoryScanner.getIncludedFiles();
+>     Iterator<String> iterator = classes.iterator();
+>     return asList(iterator).stream().map(fileName -> fileName.substring(0, fileName.length() - 6)).collect(toList());
+> }
+> 
+> abstract class TestListResolver {
+>     public abstract String[] getIncludePatterns();
+> 
+>     public abstract String[] getExcludePatterns();
+> 
+>     public Pattern getExcludePattern(int index) {
+>         return null;
+>     }
+> 
+>     public Pattern getIncludePattern(int index) {
+>         return null;
+>     }
+> 
+>     public int getExcludePatternCount() {
+>         return 0;
+>     }
+> 
+>     public int getIncludePatternCount() {
+>         return 0;
+>     }
+> 
+>     public boolean isFileIncluded(String file) {
+>         return false;
+>     }
+> 
+>     public void addDefaultExcludes() {}
+> }
+> 
+> class DirectoryScanner {
+>     private File baseDir;
+>     private TestListResolver resolver;
+>     private List<String> includedFiles;
+> 
+>     public DirectoryScanner(File baseDir, TestListResolver resolver) {
+>         this.baseDir = baseDir;
+>         this.resolver = resolver;
+>     }
+> 
+>     public void scan() {
+>         // Implementation of scan method
+>     }
+> 
+>     public Collection<String> getIncludedFiles() {
+>         return includedFiles;
+>     }
+> 
+>     public void addDefaultExcludes() {
+>         // Implementation of addDefaultExcludes method
+>     }

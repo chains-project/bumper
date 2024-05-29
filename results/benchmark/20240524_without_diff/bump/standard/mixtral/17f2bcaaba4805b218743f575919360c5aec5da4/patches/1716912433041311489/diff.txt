@@ -1,0 +1,17 @@
+0a1,7
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> 
+> import org.junit.jupiter.api.Test;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+3,4c10,11
+<                 assumeTrue(GROUP_SHAPE.getChildCount() == 2);
+<                 PShape out = PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+---
+>         assertTrue(GROUP_SHAPE.getChildCount() == 2);
+>         processing.core.PShape out = micycle.pgs.PGS_Morphology.fieldWarp(GROUP_SHAPE, 10, 1, false);
+6a14
+> }
+\ No newline at end of file

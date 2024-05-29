@@ -1,0 +1,20 @@
+1c1,15
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.junit.Assert;
+> 
+> // ...
+> 
+> public void testSomething() {
+>     assumeTrue(someCondition());
+>     // ...
+> }
+> 
+> // ...
+> 
+> private boolean someCondition() {
+>     // ...
+>     return someValue;
+> }
+\ No newline at end of file

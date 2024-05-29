@@ -1,0 +1,8 @@
+private static com.artipie.http.hm.ResponseMatcher isUploadStarted() {
+    StringStartsWith startsWith = new org.hamcrest.core.StringStartsWith("/v2/test/blobs/uploads/");
+    IsHeader locationHeader = new com.artipie.http.hm.IsHeader("Location", startsWith);
+    IsHeader rangeHeader = new com.artipie.http.hm.IsHeader("Range", "0-0");
+    IsHeader contentLengthHeader = new com.artipie.http.hm.IsHeader("Content-Length", "0");
+    IsInstanceOf dockerUploadUUID = new com.artipie.http.hm.IsHeader("Docker-Upload-UUID", IsInstanceOf.instanceOf(String.class));
+    return new com.artipie.http.hm.ResponseMatcher(com.artipie.http.rs.RsStatus.ACCEPTED, locationHeader, rangeHeader, contentLengthHeader, dockerUploadUUID);
+}

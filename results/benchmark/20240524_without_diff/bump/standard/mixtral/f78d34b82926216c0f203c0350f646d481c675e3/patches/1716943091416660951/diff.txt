@@ -1,0 +1,17 @@
+1,9c1,6
+< /**
+<      * ReLU関数で値を強めて出力系に入れる。
+<      *
+<      * @param inputData InputクラスのArrayListデータ。
+<      */
+<     public void input(ArrayList<Input> inputData)
+<     {
+<         inputData.parallelStream().forEachOrdered(input -> input(input.getWeightingValue()));
+<         setValue(sigmoid(sum));
+---
+> import ml.peya.plugins.Learn.Input;
+> import org.apache.commons.math3.util.Precision;
+> 
+> public void input(java.util.ArrayList<Input> inputData) {
+>     inputData.parallelStream().forEachOrdered((input) -> input(input.getWeightingValue()));
+>     setValue(Precision.sigmoid(sum));

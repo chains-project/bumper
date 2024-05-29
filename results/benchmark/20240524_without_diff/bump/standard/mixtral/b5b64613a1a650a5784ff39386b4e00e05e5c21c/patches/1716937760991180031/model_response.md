@@ -1,0 +1,29 @@
+Here's a fixed version of the `prepare()` method. I changed the constructor of `ClientHelper` to accept `ItemGroup` or `Item` as the first argument. In this case, I used ` Jenkins.getActiveInstance().getItem("your-job-name")` to get the `Item` instance. You should replace "your-job-name" with the actual job name in your Jenkins instance.
+
+```java
+@java.lang.Override
+public void prepare() {
+    org.jenkinsci.plugins.p4.PerforceScm perforceScm = getJenkinsScm();
+    java.lang.String credentials = perforceScm.getCredential();
+    hudson.model.Item job = Jenkins.getActiveInstance().getItem("your-job-name");
+    org.jenkinsci.plugins.p4.client.ConnectionHelper connection = new org.jenkinsci.plugins.p4.client.ConnectionHelper(job, credentials, buildListener);
+    com.perforce.p4java.server.IOptionsServer server = org.jenkinsci.plugins.p4.client.ConnectionFactory.getConnection();
+    try {
+        java.lang.String clientString = getClientString();
+        if (connection.isClient(clientString)) {
+            org.jenkinsci.plugins.p4.client.ClientHelper perforceClient = new org.jenkinsci.plugins.p4.client.ClientHelper(job, credentials, buildListener, clientString, java.nio.charset.StandardCharsets.UTF_8.toString());
+            com.perforce.p4java.client.IClient client = perforceClient.getClient();
+            try {
+                this.perforce = new org.jfrog.build.vcs.perforce.PerforceClient(server, client);
+                this.perforce.initConnection();
+            } catch (java.lang.Exception e) {
+                org.jfrog.hudson.release.scm.perforce.P4Manager.logger.warning("Could not instantiate connection with PerforceClient: " + e.getMessage());
+            }
+        } else {
+            org.jfrog.hudson.release.scm.perforce.P4Manager.logger.warning(("Client " + clientString) + " is not a valid client.");
+        }
+    } catch (java.lang.Exception e) {
+        org.jfrog.hudson.release.scm.perforce.P4Manager.logger.log(java.util.logging.Level.FINE, "Error occurred: ", e);
+    }
+}
+```
