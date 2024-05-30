@@ -1,0 +1,15 @@
+1a2,14
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // existing code...
+> 
+>     @Test
+>     public void testSize() {
+>         // existing code...
+>         int expectedSize = 10;
+>         int actualSize = new MinHeapI() {}.size();
+>         assertEquals(expectedSize, actualSize);
+>     }
+> }
+\ No newline at end of file

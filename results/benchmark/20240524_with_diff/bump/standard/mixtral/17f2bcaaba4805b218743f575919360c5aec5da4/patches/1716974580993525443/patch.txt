@@ -1,0 +1,17 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testSize() {
+        // Initialize your data structures here
+        org.tinspin.index.PointIndexMMWrapper index = new org.tinspin.index.PointIndexMMWrapper();
+        // Add data to your data structures here
+        // ...
+
+        int expectedSize = 10; // Set the expected size based on your data
+        int actualSize = index.size();
+
+        assertEquals(expectedSize, actualSize);
+    }
+}

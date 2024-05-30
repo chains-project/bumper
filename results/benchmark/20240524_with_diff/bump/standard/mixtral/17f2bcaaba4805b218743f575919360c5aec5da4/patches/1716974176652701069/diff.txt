@@ -1,0 +1,24 @@
+1c1,19
+< import static org.junit.Assume.assumeTrue;
+\ No newline at end of file
+---
+> import org.tinspin.index.PointIndexMMWrapper;
+> import org.tinspin.index.phtree.PHTreeMMP;
+> import org.tinspin.index.util.MinHeap;
+> import org.tinspin.index.util.MinHeapI;
+> import org.tinspin.index.util.MinMaxHeap;
+> import org.tinspin.index.util.MinMaxHeapI;
+> 
+> // ...
+> 
+> public void testSize() {
+>     // ...
+>     int pointIndexSize = new PointIndexMMWrapper().size();
+>     int phtreeSize = new PHTreeMMP().size();
+>     int minHeapSize = new MinHeap().size();
+>     int minHeapISize = new MinHeapI() {}.size();
+>     int minMaxHeapSize = new MinMaxHeap().size();
+>     int minMaxHeapISize = new MinMaxHeapI() {}.size();
+>     // ...
+> }
+\ No newline at end of file

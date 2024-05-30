@@ -1,0 +1,26 @@
+5,11c5,6
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+---
+>         StoragesLoader storages = new StoragesLoader();
+>         return new YamlPolicy(new BlockingStorage(storages.newObject(sub.string("type"), new YamlInput(sub.toString()).asMapping())));
+15a11,23
+> 
+> private static class YamlInput implements com.artipie.asto.factory.Config.YamlInput {
+>     private final com.amihaiemil.eoyaml.YamlInput yamlInput;
+> 
+>     YamlInput(String yaml) {
+>         this.yamlInput = new com.amihaiemil.eoyaml.Yaml.createYamlInput(yaml);
+>     }
+> 
+>     @Override
+>     public com.amihaiemil.eoyaml.YamlMapping asMapping() {
+>         return yamlInput.readYamlMapping();
+>     }
+> }
+\ No newline at end of file

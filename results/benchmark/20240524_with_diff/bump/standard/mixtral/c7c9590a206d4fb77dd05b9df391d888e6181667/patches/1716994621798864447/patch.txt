@@ -1,0 +1,12 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.io.StringWriter;
+
+// ...
+
+private void renderSite(SiteRenderingContext siteContext)
+        throws SiteRendererException, IOException {
+    StringWriter writer = new StringWriter();
+    RenderingContext renderingContext = siteContext.createRenderingContext(siteContext);
+    siteRenderer.renderDocument(writer, renderingContext, siteContext);
+    // ...
+}

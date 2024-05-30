@@ -1,0 +1,48 @@
+0a1,15
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.CommandlineParameters;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.SurefireLauncher;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.TestSetFailedException;
+> import org.apache.maven.surefire.api.testset.TestRequest;
+> import org.apache.maven.surefire.api.testset.TestSetFilter;
+> import org.apache.maven.surefire.api.util.DefaultScanResult;
+> import org.apache.maven.surefire.api.util.ScanResult;
+> import org.apache.maven.surefire.api.util.TestSetFailedException2;
+> 
+> import java.io.File;
+> import java.util.Arrays;
+> import java.util.Collections;
+> import java.util.List;
+> 
+2,3c17,44
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+>     TestSetFilter testSetFilter = new TestSetFilter() {
+>         @Override
+>         public List<String> getIncludes() {
+>             return Collections.singletonList("**/*.class");
+>         }
+> 
+>         @Override
+>         public List<String> getExcludes() {
+>             return Collections.emptyList();
+>         }
+>     };
+> 
+>     TestRequest testRequest = new TestRequest();
+>     testRequest.setTestClasses(testSetFilter);
+> 
+>     SurefireLauncher surefireLauncher = new SurefireLauncher();
+>     CommandlineParameters commandlineParameters = new CommandlineParameters();
+>     commandlineParameters.setTestClassesDirectory(testSrcFolder);
+>     commandlineParameters.setTestRequest(testRequest);
+> 
+>     Commandline commandline = surefireLauncher.createCommandLine(commandlineParameters);
+> 
+>     try {
+>         ScanResult scanResult = surefireLauncher.run(commandline);
+>         return Arrays.asList(scanResult.getIncludedClasses());
+>     } catch (TestSetFailedException2 e) {
+>         throw new RuntimeException("Failed to scan test classes", e);
+>     }

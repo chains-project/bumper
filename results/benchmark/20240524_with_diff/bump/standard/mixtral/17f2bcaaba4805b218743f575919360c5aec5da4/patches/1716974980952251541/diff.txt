@@ -1,0 +1,21 @@
+1a2,20
+> import static org.junit.jupiter.api.Assertions.assertEquals;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>     // Add a new test method to check the size of an instance of PointIndexMMWrapper
+>     @Test
+>     public void testPointIndexMMWrapperSize() {
+>         org.tinspin.index.PointIndexMMWrapper index = new org.tinspin.index.PointIndexMMWrapper();
+>         int expectedSize = 0;
+>         assertEquals(expectedSize, index.size());
+>         
+>         // Add elements to the index
+>         for (int i = 0; i < 10; i++) {
+>             index.add(new double[] {i, i});
+>         }
+>         
+>         expectedSize = 10;
+>         assertEquals(expectedSize, index.size());
+>     }
+> }
+\ No newline at end of file

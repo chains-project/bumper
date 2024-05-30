@@ -1,0 +1,13 @@
+1,2c1,2
+< static List<String> getClassesLoc(File testSrcFolder) {
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+> static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+>     org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, getTestListResolver().getWildcard());
+4a5,9
+> 
+> private static org.apache.maven.surefire.api.testset.TestListResolver getTestListResolver() {
+>     org.apache.maven.plugin.surefire.booterclient.ForkConfiguration forkConfig = new org.apache.maven.plugin.surefire.booterclient.JarManifestForkConfiguration();
+>     return forkConfig.createTestListResolver();
+> }
+\ No newline at end of file

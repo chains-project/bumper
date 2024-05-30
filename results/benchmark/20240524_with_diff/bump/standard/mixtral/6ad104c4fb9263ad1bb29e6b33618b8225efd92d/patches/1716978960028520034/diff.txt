@@ -1,0 +1,10 @@
+1a2,9
+> import org.bouncycastle.crypto.tls.AlertDescription;
+> 
+> public void someMethod() {
+>     short alertDescription = 80; // for example
+>     AlertDescription alertDescriptionObj = AlertDescription.valueOf(alertDescription);
+>     TlsFatalAlert tlsFatalAlert = new TlsFatalAlert(alertDescriptionObj);
+>     // rest of the method
+> }
+\ No newline at end of file

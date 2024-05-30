@@ -1,0 +1,17 @@
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class PGS_MorphologyGroupShapeTests {
+    // Add a variable to store the size of the PointIndexMMWrapper
+    private int pointIndexSize;
+
+    @BeforeEach
+    public void setUp() {
+        // Initialize the PointIndexMMWrapper and get its size
+        org.tinspin.index.PointIndexMMWrapper pointIndex = new org.tinspin.index.PointIndexMMWrapper();
+        pointIndexSize = pointIndex.size();
+
+        // Add assertions to check if the PointIndexMMWrapper has been initialized correctly
+        assertTrue(pointIndexSize > 0);
+    }
+}

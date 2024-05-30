@@ -1,0 +1,21 @@
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    // existing code...
+
+    @BeforeEach
+    public void setUp() {
+        // existing code...
+
+        // The following line is the proposed patch.
+        int actualSize = new org.tinspin.index.PointIndexMMWrapper().size();
+
+        // existing code...
+
+        // Use 'actualSize' in your assertion.
+        assertEquals(expectedSize, actualSize);
+    }
+
+    // existing code...
+}

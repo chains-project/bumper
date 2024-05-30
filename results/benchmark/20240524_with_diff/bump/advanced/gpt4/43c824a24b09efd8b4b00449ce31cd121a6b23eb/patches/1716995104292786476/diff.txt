@@ -1,0 +1,14 @@
+1,3c1,3
+< private static List<String> extractList(JsonPathCache cache, JsonBranch branch) {
+<     List<XmlFieldInstance> instances = cache.get(branch.getJsonPath());
+<     List<String> values = new ArrayList<>();
+---
+> private static java.util.List<java.lang.String> extractList(de.gwdg.metadataqa.api.model.pathcache.JsonPathCache cache, java.lang.String branch) {
+>     java.util.List<de.gwdg.metadataqa.api.model.XmlFieldInstance> instances = cache.get(branch);
+>     java.util.List<java.lang.String> values = new java.util.ArrayList<>();
+5c5
+<       for (XmlFieldInstance instance : instances)
+---
+>         for (de.gwdg.metadataqa.api.model.XmlFieldInstance instance : instances)
+6a7
+> 

@@ -1,0 +1,15 @@
+import org.junit.jupiter.api.BeforeEach;
+
+public class PGS_MorphologyGroupShapeTests {
+    // existing code
+
+    @BeforeEach
+    public void setUp() {
+        // existing code
+
+        // Fix: Add a cast to (MinHeapI) to suppress the error
+        int size = ((MinHeapI) minHeap).size();
+    }
+
+    // existing code
+}

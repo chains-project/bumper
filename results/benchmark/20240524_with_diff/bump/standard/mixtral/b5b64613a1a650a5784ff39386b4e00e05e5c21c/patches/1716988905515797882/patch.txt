@@ -1,0 +1,21 @@
+private void checkInputs(org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance server) throws java.io.IOException {
+    if (isAllBlank(server.getUrl(), getArtifactoryUrl(server), getDistributionUrl(server), step.url, step.artifactoryUrl, step.distributionUrl)) {
+        throw new java.io.IOException("Server URL is missing");
+    }
+    if (org.apache.commons.lang3.StringUtils.isNotBlank(step.credentialsId)) {
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(step.username)) {
+            throw new java.io.IOException("'rtServer' step can't include both credentialsId and username");
+        }
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(step.password)) {
+            throw new java.io.IOException("'rtServer' step can't include both credentialsId and password");
+        }
+    }
+}
+
+private String getArtifactoryUrl(org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance server) {
+    return server.getArtifactory() != null ? server.getArtifactory().getUrl() : "";
+}
+
+private String getDistributionUrl(org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance server) {
+    return server.getDistribution() != null ? server.getDistribution().getUrl() : "";
+}

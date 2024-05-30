@@ -1,0 +1,11 @@
+4a5,13
+> 
+> private Timestamp between(Timestamp from, Timestamp to) {
+>     return net.datafaker.DateAndTime.between(from, to);
+> }
+> 
+> @Override
+> public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+>     return between(new Timestamp(from.getTime()), new Timestamp(to.getTime()));
+> }
+\ No newline at end of file

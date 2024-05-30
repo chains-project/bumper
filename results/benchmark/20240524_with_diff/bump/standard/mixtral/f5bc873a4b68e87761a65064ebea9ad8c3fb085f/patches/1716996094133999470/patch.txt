@@ -1,0 +1,11 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.tycho.core.shared.MavenContext;
+import org.eclipse.tycho.core.shared.MavenProjectFacade;
+
+// ...
+
+Model model = project.getModel();
+MavenContext mavenContext = new MavenContext(session, repositorySystem, repoSession);
+MavenProjectFacade mavenProjectFacade = new MavenProjectFacade(model, mavenContext);
+MavenProject mavenProject = mavenProjectFacade.createProject();

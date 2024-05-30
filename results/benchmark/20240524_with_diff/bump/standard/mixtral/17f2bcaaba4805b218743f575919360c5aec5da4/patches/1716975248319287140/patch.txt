@@ -1,0 +1,13 @@
+import org.tinspin.index.PointIndexMMWrapper;
+
+import org.junit.jupiter.api.BeforeEach;
+
+public class PGS_MorphologyGroupShapeTests {
+ 
+    @BeforeEach
+    public void setUp() {
+        // some setup code here
+    }
+
+    // other test methods here
+}

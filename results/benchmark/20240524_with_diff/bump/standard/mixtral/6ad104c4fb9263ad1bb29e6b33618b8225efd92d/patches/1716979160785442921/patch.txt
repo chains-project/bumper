@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.TlsUtils;
+
+// ...
+
+try {
+    // Use TlsUtils.alert(short) instead of TlsFatalAlert(short)
+    TlsUtils.alert(TlsUtils.AlertDescription.internal_error);
+} catch (Exception e) {
+    // Handle exception
+}

@@ -1,0 +1,38 @@
+1,11c1,3
+< /**
+<      * Generates SCoverage report.
+<      * 
+<      * @throws MojoExecutionException if unexpected problem occurs
+<      */
+<     @Override
+<     public void execute()
+<         throws MojoExecutionException
+<     {
+<         if ( !canGenerateReport() )
+<         {
+---
+> @java.lang.Override
+> public void execute() throws org.apache.maven.plugin.MojoExecutionException {
+>     if (!canGenerateReport()) {
+15,20c7,10
+< 
+<         try
+<         {
+<             RenderingContext context = new RenderingContext( outputDirectory, getOutputName() + ".html" );
+<             SiteRendererSink sink = new SiteRendererSink( context );
+<             Locale locale = Locale.getDefault();
+---
+>     try {
+>         org.apache.maven.doxia.siterenderer.RenderingContext context = new org.apache.maven.doxia.siterenderer.RenderingContext(new java.io.File(outputDirectory), getOutputName() + ".html");
+>         org.apache.maven.doxia.siterenderer.SiteRendererSink sink = new org.apache.maven.doxia.siterenderer.SiteRendererSink(context);
+>         java.util.Locale locale = java.util.Locale.getDefault();
+22,26c12,14
+<         }
+<         catch ( MavenReportException e )
+<         {
+<             String prefix = "An error has occurred in " + getName( Locale.ENGLISH ) + " report generation";
+<             throw new MojoExecutionException( prefix + ": " + e.getMessage(), e );
+---
+>     } catch (org.apache.maven.reporting.MavenReportException e) {
+>         java.lang.String prefix = ("An error has occurred in " + getName(java.util.Locale.ENGLISH)) + " report generation";
+>         throw new org.apache.maven.plugin.MojoExecutionException((prefix + ": ") + e.getMessage(), e);

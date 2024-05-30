@@ -1,0 +1,6 @@
+1c1
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> // import removed, no replacement code needed
+\ No newline at end of file

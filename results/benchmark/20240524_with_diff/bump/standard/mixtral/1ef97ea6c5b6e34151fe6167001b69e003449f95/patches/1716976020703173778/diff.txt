@@ -1,0 +1,11 @@
+4a5,13
+> 
+> private Timestamp convertToTimestamp(Date date) {
+>     return new Timestamp(date.getTime());
+> }
+> 
+> @Override
+> public Date between(Date from, Date to) throws IllegalArgumentException {
+>     return convertToTimestamp(super.between(from, to));
+> }
+\ No newline at end of file

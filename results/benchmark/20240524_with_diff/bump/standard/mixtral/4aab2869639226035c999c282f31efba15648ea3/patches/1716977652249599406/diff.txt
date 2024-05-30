@@ -1,0 +1,35 @@
+2c2
+<     public Policy<?> getPolicy(final PolicyConfig config) {
+---
+> public Policy<?> getPolicy(PolicyConfig config) {
+5,12c5,10
+<             return new YamlPolicy(
+<                 new BlockingStorage(
+<                     new Storages().newStorage(
+<                         sub.string("type"), Yaml.createYamlInput(sub.toString()).readYamlMapping()
+<                     )
+<                 )
+<             );
+<         } catch (final IOException err) {
+---
+>         StoragesLoader storagesLoader = new StoragesLoader();
+>         return new YamlPolicy(new BlockingStorage(storagesLoader.newObject(
+>             sub.string("type"),
+>             new YamlInput(sub.toString()).readYamlMapping()
+>         )));
+>     } catch (IOException err) {
+15a14,26
+> 
+> private static class YamlInput implements com.amihaiemil.eoyaml.YamlInput {
+>     private final String yaml;
+> 
+>     public YamlInput(String yaml) {
+>         this.yaml = yaml;
+>     }
+> 
+>     @Override
+>     public YamlMapping readYamlMapping() throws IOException {
+>         return (YamlMapping) new Yaml().load(yaml);
+>     }
+> }
+\ No newline at end of file

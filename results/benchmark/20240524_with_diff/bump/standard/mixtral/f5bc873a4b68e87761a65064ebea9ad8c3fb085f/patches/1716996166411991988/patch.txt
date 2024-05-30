@@ -1,0 +1,5 @@
+import org.apache.maven.project.MavenProjectBuilder;
+
+// ...
+
+MavenProject mavenProject = MavenProjectBuilder.buildFromRepo(projectId, remoteRepos, localRepository, null);

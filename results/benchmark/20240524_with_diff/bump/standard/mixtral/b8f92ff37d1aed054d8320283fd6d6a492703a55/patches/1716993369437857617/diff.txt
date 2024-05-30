@@ -1,0 +1,15 @@
+1,3c1,10
+< static List<String> getClassesLoc(File testSrcFolder) {
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+<         return directoryScanner.scan().getClasses();
+---
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.plugin.surefire.booter.StartupConfiguration;
+> import org.apache.maven.plugin.surefire.booterclient.lazytestprovider.CommandlineParameters;
+> import org.apache.maven.plugin.surefire.api.provider.ProviderParameters;
+> 
+> static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+>     ProviderParameters providerParameters = new ProviderParameters();
+>     Commandline commandline = forkConfiguration.createCommandLine(startupConfiguration, forkCount, testSrcFolder);
+>     CommandlineParameters commandlineParameters = new CommandlineParameters(commandline);
+>     return commandlineParameters.getClasses();

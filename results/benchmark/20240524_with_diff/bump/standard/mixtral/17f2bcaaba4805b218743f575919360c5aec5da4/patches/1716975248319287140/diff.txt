@@ -1,0 +1,15 @@
+0a1,2
+> import org.tinspin.index.PointIndexMMWrapper;
+> 
+1a4,13
+> 
+> public class PGS_MorphologyGroupShapeTests {
+>  
+>     @BeforeEach
+>     public void setUp() {
+>         // some setup code here
+>     }
+> 
+>     // other test methods here
+> }
+\ No newline at end of file

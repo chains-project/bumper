@@ -1,0 +1,16 @@
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws GeneralSecurityException, IOException {
+    SecretKeySpec macKey = initRecordMAC(decryptCipher);
+    byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+    if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+        throw new TlsFatalAlert(AlertDescription.bad_record_mac);
+    }
+    byte[] output = new byte[ciphertext.length];
+    decryptCipher.doFinal(ciphertext, 0, ciphertext.length, output, 0);
+    return output;
+}

@@ -1,0 +1,10 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.openssl.TlsFatalAlert;
+
+// ...
+
+try {
+    // ...
+} catch (Exception e) {
+    throw new TlsFatalAlert((short) 80); // replace with appropriate error code
+}

@@ -1,0 +1,14 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+RenderingContext renderingContext = new RenderingContext() {
+    @Override
+    public String getOutputName() {
+        // Implement this method based on your requirements.
+        // This is a newly added method in the new library version.
+        return "xhtml";
+    }
+};
+
+// Use the 'renderingContext' object in your code instead of creating it using the deprecated constructor.

@@ -1,0 +1,9 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import java.lang.Short;
+
+// ...
+
+private void handleFatalAlert(short alertDescription) {
+    TlsFatalAlert fatalAlert = new TlsFatalAlert(Short.valueOf(alertDescription));
+    throw new RuntimeException("Received fatal alert: " + fatalAlert.getAlertDescription());
+}

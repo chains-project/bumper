@@ -1,0 +1,28 @@
+1d0
+< // TODO: review this AI generated patch!
+4a4
+>     TConfiguration config = new TConfiguration();
+7,11c7,12
+<     framedTransport = new org.apache.thrift.transport.TFastFramedTransport(new org.apache.thrift.transport.TIOStreamTransport(os));
+<     protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
+<     framedTransport.set FramedTransportEventListener(new org.apache.thrift.transport.FramedTransport.FramedTransportEventListener() {
+<         @Override
+<         public void frameRead(int length) {}
+---
+>     TFramedTransport transport = new TFramedTransport(new TIOStreamTransport(config, os));
+>     protocol = new TBinaryProtocol(transport);
+>     transport.setFramedTransportEventListener(new FramedTransport.FramedTransportEventListener() {
+>         @java.lang.Override
+>         public void frameRead(int length) {
+>         }
+13,14c14,16
+<         @Override
+<         public void frameWritten(int length) {}
+---
+>         @java.lang.Override
+>         public void frameWritten(int length) {
+>         }
+16c18
+<     framedTransport.open();
+---
+>     transport.open();

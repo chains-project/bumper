@@ -1,0 +1,12 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,10
+> import org.eclipse.tycho.core.shared.MavenContext;
+> import org.eclipse.tycho.core.shared.MavenProjectFacade;
+> 
+> // ...
+> 
+> MavenProjectFacade mavenProjectFacade = MavenContext.getContext().getProjectFacade();
+> Model model = mavenProjectFacade.getModel();
+> MavenProject mavenProject = new MavenProject(model);
+\ No newline at end of file

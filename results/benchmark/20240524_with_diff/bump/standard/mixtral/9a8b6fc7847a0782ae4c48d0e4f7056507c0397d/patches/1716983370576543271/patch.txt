@@ -1,0 +1,20 @@
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.jasypt.digest.StringDigester;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.PBEPasswordEncoder;
+
+//...
+
+TextEncryptor textEncryptor = new TextEncryptor();
+textEncryptor.setPassword("myPassword");
+
+PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+pbeStringEncryptor.setPassword("myPassword");
+
+StringDigester stringDigester = new StringDigester();
+stringDigester.setAlgorithm("SHA-256");
+
+PasswordEncoder passwordEncoder = new PBEPasswordEncoder(pbeStringEncryptor, stringDigester);
+
+//...

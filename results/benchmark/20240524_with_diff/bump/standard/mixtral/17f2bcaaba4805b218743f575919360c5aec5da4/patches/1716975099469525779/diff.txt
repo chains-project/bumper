@@ -1,0 +1,27 @@
+1a2,26
+> 
+> // add the following import statement
+> import static org.junit.jupiter.api.Assertions.assertTrue;
+> 
+> public class PGS_MorphologyGroupShapeTests {
+> 
+>     // add the following method
+>     private void checkSize(MinHeapI heap) {
+>         int size = heap.size();
+>         assertTrue(size >= 0, "Size should be non-negative");
+>     }
+> 
+>     // modify the existing @BeforeEach method as follows
+>     @BeforeEach
+>     public void setUp() {
+>         // existing code
+> 
+>         // add the following lines after creating the MinHeapI object
+>         checkSize((MinHeapI) minHeap);
+> 
+>         // existing code
+>     }
+> 
+>     // rest of the class
+> }
+\ No newline at end of file

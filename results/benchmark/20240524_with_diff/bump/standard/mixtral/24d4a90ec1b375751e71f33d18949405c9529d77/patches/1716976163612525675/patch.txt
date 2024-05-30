@@ -1,0 +1,30 @@
+import com.jcabi.s3.Bucket;
+import com.jcabi.s3.Ocket;
+import com.jcabi.s3.Ocket.Text;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import static java.lang.String.format;
+import static java.util.concurrent.TimeUnit.SECONDS;
+
+/**
+ * AwsOcket can read and write large S3 content.
+ *
+ * @throws Exception
+ * 		If fails
+ */
+@org.junit.Test
+public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+    final Bucket bucket = this.rule.bucket();
+    final String name = "test-44.txt";
+    final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+    final int largeSize = 100 * 1000;
+    final String data = RandomStringUtils.random(largeSize);
+    ocket.write(data);
+    try {
+        final String readData = ocket.read();
+        MatcherAssert.assertThat(readData, Matchers.equalTo(data));
+    } finally {
+        bucket.remove(name);
+    }
+}

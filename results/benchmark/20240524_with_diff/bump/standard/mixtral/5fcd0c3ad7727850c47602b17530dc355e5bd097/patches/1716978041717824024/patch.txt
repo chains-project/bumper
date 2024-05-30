@@ -1,0 +1,12 @@
+import org.pitest.classinfo.ClassInfo;
+import org.pitest.classinfo.ClassInfoBuilder;
+import org.pitest.classinfo.ClassName;
+import org.pitest.coverage.CoverageDatabase;
+import org.pitest.mutationtest.ClassMutationResults;
+import java.util.Set;
+
+private org.pitest.elements.models.MutationTestSummaryData createSummaryData(final CoverageDatabase coverage, final ClassMutationResults data) {
+    ClassName className = data.getMutatedClass();
+    ClassInfo classInfo = ClassInfoVisitor.getClassInfo(className, coverage.getRawCoverage(className), coverage.getTimeStamp());
+    return new org.pitest.elements.models.MutationTestSummaryData(data.getFileName(), data.getMutations(), classInfo);
+}

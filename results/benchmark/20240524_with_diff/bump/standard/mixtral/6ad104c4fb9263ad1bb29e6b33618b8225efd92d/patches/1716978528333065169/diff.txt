@@ -1,0 +1,10 @@
+1a2,9
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> private void handleInvalidPlaintext(int offset) throws HapException {
+>     short alertDescription = TlsFatalAlert.BAD_RECORD_MAC.getAlertDescription();
+>     throw new HapException("Invalid Plaintext detected", HapException.HAP_ERROR, alertDescription);
+> }
+\ No newline at end of file

@@ -1,0 +1,21 @@
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    // existing code...
+
+    @BeforeEach
+    public void setUp() {
+        // existing code...
+
+        // The size() method was removed from the old library version,
+        // but it is available in the new version. Use it to check the size of the index.
+        int expectedSize = 100; // replace with the expected size
+        int actualSize = new PointIndexMMWrapper().size();
+        assertEquals(expectedSize, actualSize);
+
+        // existing code...
+    }
+
+    // existing code...
+}

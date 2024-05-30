@@ -1,0 +1,18 @@
+@Override
+public void init(OutputStream os) {
+    this.os = os;
+    TConfiguration config = new TConfiguration();
+    TIOStreamTransport transport = new TIOStreamTransport(config, os);
+    framedTransport = new TFastFramedTransport(transport);
+    protocol = new TBinaryProtocol(framedTransport);
+    framedTransport.setFramedTransportEventListener(new FramedTransport.FramedTransportEventListener() {
+        @Override
+        public void frameRead(int length) {
+        }
+
+        @Override
+        public void frameWritten(int length) {
+        }
+    });
+    framedTransport.open();
+}

@@ -1,0 +1,27 @@
+1,6c1,13
+< // TODO: review this AI generated patch!
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+<     org.bouncycastle.crypto.params.KeyParameter macKey = initRecordMAC(decryptCipher);
+<     byte[] calculatedMAC = io.github.hapjava.server.impl.crypto.PolyKeyCreator.create(macKey, additionalData, ciphertext);
+<     if (!org.bouncycastle.util.Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(80), "bad_record_mac");
+---
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.InvalidCipherTextException;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.util.Arrays;
+> 
+> import java.io.IOException;
+> import java.nio.ByteBuffer;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+>     KeyParameter macKey = initRecordMAC(decryptCipher);
+>     byte[] calculatedMAC = PolyKeyCreator.create(macKey, additionalData, ciphertext);
+>     if (!Arrays.constantTimeAreEqual(calculatedMAC, receivedMAC)) {
+>         throw new RuntimeException("bad_record_mac");
+8a16
+>     try {
+9a18,20
+>     } catch (DataLengthException | InvalidCipherTextException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

@@ -1,0 +1,16 @@
+1a2,15
+> 
+> int actualSize;
+> 
+> if (someCondition) {
+>     actualSize = new org.tinspin.index.PointIndexMMWrapper().size();
+> } else if (anotherCondition) {
+>     actualSize = new org.tinspin.index.phtree.PHTreeMMP().size();
+> } else if (yetAnotherCondition) {
+>     actualSize = new org.tinspin.index.util.MinHeap().size();
+> } else {
+>     actualSize = new org.tinspin.index.util.MinMaxHeap().size();
+> }
+> 
+> assertEquals(expectedSize, actualSize);
+\ No newline at end of file

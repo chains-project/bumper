@@ -1,0 +1,20 @@
+1c1,15
+< import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
+\ No newline at end of file
+---
+> import org.apache.maven.doxia.siterenderer.RenderingContext;
+> 
+> // ...
+> 
+> RenderingContext renderingContext = new RenderingContext() {
+>     @Override
+>     public String getOutputName() {
+>         // Implement this method based on the original usage of the RenderingContext object.
+>         // You may need to access other objects or variables in the SCoverageReportMojo class
+>         // to provide the correct output name.
+>         return null;
+>     }
+> };
+> 
+> // Use the 'renderingContext' object instead of creating a new RenderingContext object directly.
+\ No newline at end of file

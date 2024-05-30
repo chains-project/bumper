@@ -1,0 +1,32 @@
+0a1,9
+> import com.jcabi.s3.Bucket;
+> import com.jcabi.s3.Ocket;
+> import com.jcabi.s3.Ocket.Text;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import static java.lang.String.format;
+> import static java.util.concurrent.TimeUnit.SECONDS;
+> 
+3c12,14
+<      * @throws Exception If fails
+---
+>  *
+>  * @throws Exception
+>  *              If fails
+5,6c16,17
+<     @Test
+<     public void readsAndWritesLargeObjectContent() throws Exception {
+---
+> @org.junit.Test
+> public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+10c21,22
+<         final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+---
+>     final int largeSize = 100 * 1000;
+>     final String data = RandomStringUtils.random(largeSize);
+13c25,26
+<             MatcherAssert.assertThat(ocket.read(), Matchers.equalTo(data));
+---
+>         final String readData = ocket.read();
+>         MatcherAssert.assertThat(readData, Matchers.equalTo(data));

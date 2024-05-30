@@ -1,0 +1,29 @@
+1,3c1,2
+< // TODO: review this AI generated patch!
+< @java.lang.Override
+< public void init(java.io.OutputStream os) {
+---
+> @Override
+> public void init(OutputStream os) {
+5,9c4,8
+<     // Use the TFramedTransport to be compatible with singer_thrift log.
+<     final int bufferCapacity = 10;
+<     framedTransport = new org.apache.thrift.transport.TFastFramedTransport(new org.apache.thrift.transport.TIOStreamTransport(os));
+<     protocol = new org.apache.thrift.protocol.TBinaryProtocol(framedTransport);
+<     framedTransport.set FramedTransportEventListener(new org.apache.thrift.transport.FramedTransport.FramedTransportEventListener() {
+---
+>     TConfiguration config = new TConfiguration();
+>     TIOStreamTransport transport = new TIOStreamTransport(config, os);
+>     framedTransport = new TFastFramedTransport(transport);
+>     protocol = new TBinaryProtocol(framedTransport);
+>     framedTransport.setFramedTransportEventListener(new FramedTransport.FramedTransportEventListener() {
+11c10,11
+<         public void frameRead(int length) {}
+---
+>         public void frameRead(int length) {
+>         }
+14c14,15
+<         public void frameWritten(int length) {}
+---
+>         public void frameWritten(int length) {
+>         }

@@ -1,0 +1,17 @@
+4a5,19
+> 
+> // Add the following lines after the 'between' method
+> import java.sql.Timestamp;
+> 
+> // ...
+> 
+> @SuppressWarnings("deprecation")
+> public DateAndTime betweenDates(Date from, Date to) {
+>     return (DateAndTime) super.between(from, to);
+> }
+> 
+> @Override
+> public Timestamp between(Date from, Date to) throws IllegalArgumentException {
+>     return new Timestamp(betweenDates(from, to).getTime());
+> }
+\ No newline at end of file

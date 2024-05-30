@@ -1,0 +1,30 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6,9
+<     blobs.put(new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest))).toCompletableFuture().handle(( blob, throwable) -> {
+---
+>     com.artipie.docker.asto.CheckedBlobSource checkedBlobSource = new com.artipie.docker.asto.CheckedBlobSource(new com.artipie.asto.Content.From("data".getBytes()), new com.artipie.docker.Digest.Sha256(digest));
+>     com.artipie.docker.asto.AstoBlob astoBlob = blobs.put(checkedBlobSource);
+>     java.util.concurrent.CompletableFuture<com.artipie.docker.asto.AstoBlob> completableFuture = astoBlob.toCompletableFuture();
+>     completableFuture.handle(( blob, throwable) -> {
+12,16c14,19
+<         })));
+<         org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.Matcher<String>() {
+<             @Override
+<             public boolean matches(Object item) {
+<                 String message = (String) item;
+---
+>         }));
+>     });
+>     org.hamcrest.MatcherAssert.assertThat("Exception message contains calculated digest", com.google.common.base.Throwables.getRootCause(throwable).getMessage(), new org.hamcrest.Matcher<java.lang.String>() {
+>         @java.lang.Override
+>         public boolean matches(java.lang.Object item) {
+>             java.lang.String message = ((java.lang.String) (item));
+20,21c23,24
+<             @Override
+<             public void describeTo(Description description) {
+---
+>         @java.lang.Override
+>         public void describeTo(com.artipie.docker.asto.Description description) {
+26d28
+<     }).join();

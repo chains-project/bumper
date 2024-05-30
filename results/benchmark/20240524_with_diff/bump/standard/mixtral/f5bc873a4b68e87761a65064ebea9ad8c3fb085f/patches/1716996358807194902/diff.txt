@@ -1,0 +1,9 @@
+0a1,3
+> import org.apache.maven.model.Model;
+> import org.apache.maven.project.MavenProject;
+> 
+2c5,6
+<     return project;
+---
+>     Model model = (Model) project;
+>     return new MavenProject(model, new DefaultModelBuilderRealm());

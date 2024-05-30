@@ -1,0 +1,14 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.tycho.core.shared.MavenProjectFacade;
+
+// ...
+
+@Override
+protected MavenProject getProject() {
+    if (project == null) {
+        Model model = (Model) getContext().get("model");
+        project = MavenProjectFacade.newInstance(model);
+    }
+    return project;
+}

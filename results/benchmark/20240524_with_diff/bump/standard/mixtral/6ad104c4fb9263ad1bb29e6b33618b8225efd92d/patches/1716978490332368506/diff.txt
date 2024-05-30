@@ -1,0 +1,65 @@
+1c1,60
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import java.security.GeneralSecurityException;
+> import java.util.Objects;
+> 
+> import org.bouncycastle.crypto.CryptoException;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.crypto.params.ParametersWithIV;
+> 
+> import io.github.hapjava.server.impl.crypto.AlertDescription;
+> import io.github.hapjava.server.impl.crypto.ChachaDecoderException;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private static void decodeChacha20(StreamCipher cipher, byte[] input, byte[] output, int offset)
+>             throws ChachaDecoderException {
+>         try {
+>             Objects.requireNonNull(cipher, "cipher cannot be null");
+>             Objects.requireNonNull(input, "input cannot be null");
+>             Objects.requireNonNull(output, "output cannot be null");
+> 
+>             cipher.init(true, new ParametersWithIV(new KeyParameter(key), nonce));
+>             cipher.processBytes(input, 0, input.length, output, offset);
+>             cipher.doFinal(output, offset);
+>         } catch (CryptoException e) {
+>             throw new ChachaDecoderException("Chacha20 decryption failed", e);
+>         } catch (IllegalStateException e) {
+>             throw new ChachaDecoderException("Chacha20 decryption failed", e);
+>         } catch (GeneralSecurityException e) {
+>             throw new ChachaDecoderException("Chacha20 decryption failed", e);
+>         }
+>     }
+> 
+>     // ...
+> }
+> 
+> class ChachaDecoderException extends Exception {
+>     public ChachaDecoderException(String message) {
+>         super(message);
+>     }
+> 
+>     public ChachaDecoderException(String message, Throwable cause) {
+>         super(message, cause);
+>     }
+> }
+> 
+> enum AlertDescription {
+>     DECODE_ERROR(21),
+>     // ...
+> 
+>     private final int value;
+> 
+>     AlertDescription(int value) {
+>         this.value = value;
+>     }
+> 
+>     public int getValue() {
+>         return value;
+>     }
+> }
+\ No newline at end of file

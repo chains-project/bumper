@@ -1,0 +1,10 @@
+1a2,9
+> import java.lang.Short;
+> 
+> // ...
+> 
+> private void handleFatalAlert(short alertDescription) {
+>     TlsFatalAlert fatalAlert = new TlsFatalAlert(Short.valueOf(alertDescription));
+>     throw new RuntimeException("Received fatal alert: " + fatalAlert.getAlertDescription());
+> }
+\ No newline at end of file

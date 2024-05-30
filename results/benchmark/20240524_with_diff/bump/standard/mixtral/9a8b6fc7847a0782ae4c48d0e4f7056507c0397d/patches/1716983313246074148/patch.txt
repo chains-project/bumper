@@ -1,0 +1,23 @@
+import org.jasypt.encryption.pbe.PBEStringEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+
+public class GeoStorePBEPasswordEncoder {
+    private PasswordEncoder passwordEncoder;
+
+    public GeoStorePBEPasswordEncoder() {
+        PBEStringEncryptor pbeStringEncryptor = new PBEStringEncryptor();
+        TextEncryptor textEncryptor = new TextEncryptor();
+        textEncryptor.setPbeStringEncryptor(pbeStringEncryptor);
+        passwordEncoder = new Pbkdf2PasswordEncoder(textEncryptor);
+    }
+
+    public String encodePassword(String rawPassword, Object salt) {
+        return passwordEncoder.encode(rawPassword);
+    }
+
+    public boolean isPasswordValid(String encodedPassword, String rawPassword, Object salt) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
+    }
+}

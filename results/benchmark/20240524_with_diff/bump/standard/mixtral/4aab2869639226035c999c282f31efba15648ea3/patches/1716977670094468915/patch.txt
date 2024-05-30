@@ -1,0 +1,18 @@
+@java.lang.Override
+public com.artipie.security.policy.Policy<?> getPolicy(final com.artipie.security.policy.PolicyConfig config) {
+    final com.artipie.security.policy.PolicyConfig sub = config.config("storage");
+    try {
+        StoragesLoader storages = new com.artipie.asto.factory.StoragesLoader();
+        return new com.artipie.security.policy.YamlPolicy(new com.artipie.asto.blocking.BlockingStorage(storages.newObject(sub.string("type"), new com.artipie.asto.factory.Config() {
+            @java.util.function.Function<String, String> string(String key) {
+                return sub.string(key);
+            }
+
+            @java.util.function.Function<String, java.io.InputStream> inputStream(String key) {
+                return () -> new java.io.ByteArrayInputStream(sub.toString().getBytes());
+            }
+        })));
+    } catch (final java.io.IOException err) {
+        throw new java.io.UncheckedIOException(err);
+    }
+}

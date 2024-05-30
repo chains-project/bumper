@@ -1,0 +1,11 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+import org.bouncycastle.crypto.tls.AlertDescription;
+
+// ...
+
+public void someMethod() {
+    short alertDescription = 80; // for example
+    AlertDescription alert = AlertDescription.internalError();
+    TlsFatalAlert tlsFatalAlert = new TlsFatalAlert(alertDescription);
+    // ...
+}

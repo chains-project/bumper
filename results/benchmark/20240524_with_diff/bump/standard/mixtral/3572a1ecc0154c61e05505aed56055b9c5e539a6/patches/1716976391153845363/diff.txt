@@ -1,0 +1,22 @@
+1d0
+< // TODO: review this AI generated patch!
+7c6,8
+<     framedTransport = new org.apache.thrift.transport.TFastFramedTransport(new org.apache.thrift.transport.TIOStreamTransport(os));
+---
+>     TConfiguration tConfig = new TConfiguration();
+>     tConfig.setThrowOnFailedFramedTransportFlush(false);
+>     framedTransport = new org.apache.thrift.transport.TFastFramedTransport(new TIOStreamTransport(tConfig, os));
+10,11c11,13
+<         @Override
+<         public void frameRead(int length) {}
+---
+>         @java.lang.Override
+>         public void frameRead(int length) {
+>         }
+13,14c15,17
+<         @Override
+<         public void frameWritten(int length) {}
+---
+>         @java.lang.Override
+>         public void frameWritten(int length) {
+>         }

@@ -1,0 +1,16 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,14
+> import org.eclipse.tycho.core.shared.MavenProjectFacade;
+> 
+> // ...
+> 
+> @Override
+> protected MavenProject getProject() {
+>     if (project == null) {
+>         Model model = (Model) getContext().get("model");
+>         project = MavenProjectFacade.newInstance(model);
+>     }
+>     return project;
+> }
+\ No newline at end of file

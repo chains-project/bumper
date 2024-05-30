@@ -1,0 +1,12 @@
+import org.jasypt.util.password.BasicPasswordEncryptor;
+import org.jasypt.util.text.TextEncryptor;
+import org.jasypt.util.text.TextEncryptorFactory;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.authentication.encoding.PlaintextPasswordEncoder;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
+
+// ...
+
+PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();

@@ -1,0 +1,46 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+import java.io.StringWriter;
+
+// ...
+
+private void renderDocument(DoxiaDocument document, SiteRenderingContext siteRenderingContext) throws SiteRendererException {
+    StringWriter stringWriter = new StringWriter();
+    RenderingContext renderingContext = siteRenderingContext.createRenderingContext(siteRenderingContext.getLocale());
+    siteRenderingContext.pushRenderingContext(renderingContext);
+    try {
+        document.accept(new DocumentHandler() {
+            public void head(Head head) throws SiteRendererException {
+                // ...
+            }
+
+            public void body(Body body) throws SiteRendererException {
+                // ...
+            }
+
+            public void footer(Footer footer) throws SiteRendererException {
+                // ...
+            }
+
+            public void startElement(Element element) throws SiteRendererException {
+                // ...
+            }
+
+            public void text(Text text) throws SiteRendererException {
+                // ...
+            }
+
+            public void ignorableWhitespace(String text) throws SiteRendererException {
+                // ...
+            }
+
+            public void endElement() throws SiteRendererException {
+                // ...
+            }
+        });
+    } finally {
+        siteRenderingContext.popRenderingContext();
+    }
+
+    String output = stringWriter.toString();
+    // ...
+}

@@ -1,0 +1,16 @@
+1a2,15
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+> // ...
+> 
+> private void processAlertRecord(TlsUtils.TlsParserContext context, ByteQueue queue) throws IOException {
+>     int alertLevel = TlsUtils.readUint8(queue);
+>     int alertDescription = TlsUtils.readUint8(queue);
+> 
+>     if (alertLevel == AlertLevel.FATAL) {
+>         throw new TlsFatalAlert(alertLevel, AlertDescription.valueOf(alertDescription));
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

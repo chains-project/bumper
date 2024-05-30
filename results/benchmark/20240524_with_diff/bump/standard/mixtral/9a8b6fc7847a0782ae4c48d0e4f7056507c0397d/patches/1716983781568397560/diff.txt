@@ -1,0 +1,30 @@
+1c1,25
+< import org.jasypt.spring.security.PasswordEncoder;
+\ No newline at end of file
+---
+> import org.jasypt.util.password.BasicPasswordEncryptor;
+> import org.jasypt.util.text.TextEncryptor;
+> import org.jasypt.util.text.AES256TextEncryptor;
+> import org.springframework.security.crypto.password.PasswordEncoder;
+> import org.springframework.security.crypto.password.StandardPasswordEncoder;
+> 
+> public class GeoStoreDigestPasswordEncoder {
+>     private PasswordEncoder passwordEncoder;
+> 
+>     public GeoStoreDigestPasswordEncoder() {
+>         TextEncryptor textEncryptor = new AES256TextEncryptor();
+>         textEncryptor.setPassword("your-secret-key");
+>         BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+>         passwordEncryptor.setAlgorithm("SHA-256");
+>         passwordEncoder = new StandardPasswordEncoder(textEncryptor, passwordEncryptor);
+>     }
+> 
+>     public String encodePassword(String rawPassword) {
+>         return passwordEncoder.encode(rawPassword);
+>     }
+> 
+>     public boolean isPasswordValid(String encryptedPassword, String rawPassword) {
+>         return passwordEncoder.matches(rawPassword, encryptedPassword);
+>     }
+> }
+\ No newline at end of file

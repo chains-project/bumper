@@ -1,0 +1,24 @@
+1c1
+< public void execute() throws Exception {
+---
+> public void execute() throws java.lang.Exception {
+3c3
+<             throw new IllegalStateException("Artifactory server must be configured");
+---
+>         throw new java.lang.IllegalStateException("Artifactory server must be configured");
+5,6c5,6
+<         if (StringUtils.isAllBlank(kanikoImageFile, jibImageFile) || StringUtils.isNoneBlank(kanikoImageFile, jibImageFile)) {
+<             throw new IllegalStateException("Exactly one of 'kanikoImageFile' or 'jibImageFile' must be configured");
+---
+>     if (org.apache.commons.lang.StringUtils.isBlank(kanikoImageFile) && org.apache.commons.lang.StringUtils.isBlank(jibImageFile) || !org.apache.commons.lang.StringUtils.isBlank(kanikoImageFile) && !org.apache.commons.lang.StringUtils.isBlank(jibImageFile)) {
+>         throw new java.lang.IllegalStateException("Exactly one of 'kanikoImageFile' or 'jibImageFile' must be configured");
+8c8
+<         CommonDeployer deployer = new CommonDeployer();
+---
+>     org.jfrog.hudson.pipeline.common.types.deployers.CommonDeployer deployer = new org.jfrog.hudson.pipeline.common.types.deployers.CommonDeployer();
+11,12c11,12
+<         FilePath tempDir = ExtractorUtils.createAndGetTempDir(ws);
+<         EnvExtractor envExtractor = new CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);
+---
+>     hudson.FilePath tempDir = org.jfrog.hudson.util.ExtractorUtils.createAndGetTempDir(ws);
+>     org.jfrog.hudson.pipeline.common.executors.EnvExtractor envExtractor = new org.jfrog.hudson.pipeline.common.executors.CreateDockerBuildEnvExtractor(build, buildInfo, deployer, listener, launcher, tempDir, env, kanikoImageFile, jibImageFile);

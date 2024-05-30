@@ -1,0 +1,21 @@
+0a1,3
+> import org.apache.maven.project.MavenProjectHelper;
+> import org.apache.maven.project.DefaultProjectBuilder;
+> import org.codehaus.plexus.util.FileUtils;
+1a5,19
+> 
+> // ...
+> 
+> private MavenProject getProject(String path) throws Exception {
+>     DefaultProjectBuilder builder = new DefaultProjectBuilder();
+>     return builder.build(fileManager.getFile(path)).getProject();
+> }
+> 
+> // ...
+> 
+> private void addDependency(MavenProject project, String groupId, String artifactId, String version) {
+>     MavenProjectHelper helper = new MavenProjectHelper();
+>     Artifact artifact = new DefaultArtifact(groupId, artifactId, "", "jar", version);
+>     helper.addDependency(project, artifact, null);
+> }
+\ No newline at end of file

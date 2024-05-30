@@ -1,0 +1,13 @@
+import processing.core.PShape;
+import static org.tinspin.index.util.MinHeapI.size;
+
+public class MyClass {
+    // existing code...
+
+    public void myMethod() {
+        int mySize = size();
+        // use mySize as needed...
+    }
+
+    // existing code...
+}

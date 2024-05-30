@@ -1,0 +1,22 @@
+import java.io.IOException;
+
+public class ChachaDecoder {
+    // ...
+
+    private void decode(InputStream in) throws IOException {
+        // ...
+
+        try {
+            // Use a constant for the TLS_CHACHA20_POLY1305_SHA256 value instead of the removed TlsFatalAlert class
+            short tlsChacha20Poly1305Sha256 = (short) 0x1303;
+            // ...
+        } catch (TlsFatalAlert ex) {
+            // Handle the exception without relying on the removed TlsFatalAlert class
+            throw new IOException(ex);
+        }
+
+        // ...
+    }
+
+    // ...
+}

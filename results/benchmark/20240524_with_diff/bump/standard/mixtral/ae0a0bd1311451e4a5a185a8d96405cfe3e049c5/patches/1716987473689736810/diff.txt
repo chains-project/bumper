@@ -1,0 +1,7 @@
+1,3c1,2
+< private static Matcher<String> imagePulled(final String image) {
+<         return new StringContains(
+<             false,
+---
+> private static org.hamcrest.Matcher<java.lang.String> imagePulled(final java.lang.String image) {
+>     return org.hamcrest.Matchers.containsString(

@@ -1,0 +1,9 @@
+import de.gwdg.metadataqa.api.json.DataElement;
+
+private static String extractFirst(JsonPathCache cache, DataElement branch) {
+    java.util.List<String> list = de.gwdg.metadataqa.marc.MarcFactory.extractList(cache, branch);
+    if (!list.isEmpty())
+        return list.get(0);
+
+    return null;
+}

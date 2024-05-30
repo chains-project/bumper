@@ -1,0 +1,11 @@
+import com.jcabi.github.Repos;
+import com.jcabi.github.RepoCreate;
+import java.io.IOException;
+import java.lang.String;
+import org.apache.commons.lang3.RandomStringUtils;
+import static com.jcabi.github.Tv.TWENTY;
+
+public com.jcabi.github.Repo randomRepo() throws java.io.IOException {
+    int length = TWENTY.intValue();
+    return this.repos().create(new com.jcabi.github.Repos.RepoCreate(RandomStringUtils.randomAlphanumeric(length), true));
+}

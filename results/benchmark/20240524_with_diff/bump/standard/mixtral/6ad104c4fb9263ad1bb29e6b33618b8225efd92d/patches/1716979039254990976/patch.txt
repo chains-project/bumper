@@ -1,0 +1,8 @@
+import org.bouncycastle.crypto.tls.TlsFatalAlert;
+
+// ...
+
+private void handleBadRecordMACError() {
+    // ...
+    throw new TlsFatalAlert(TlsFatalAlert.BAD_RECORD_MAC, "bad record MAC", exception);
+}

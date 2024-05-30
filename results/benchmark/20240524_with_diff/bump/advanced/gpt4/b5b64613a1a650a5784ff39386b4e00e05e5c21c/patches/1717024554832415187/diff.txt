@@ -1,0 +1,39 @@
+4,5c4,7
+<          * @param server - The server to check
+<          * @throws IOException if there is an illegal step configuration.
+---
+>  * @param server
+>  *              - The server to check
+>  * @throws IOException
+>  *              if there is an illegal step configuration.
+7,14c9,15
+<         private void checkInputs(JFrogPlatformInstance server) throws IOException {
+<             if (isAllBlank(server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(),
+<                     step.url, step.artifactoryUrl, step.distributionUrl)) {
+<                 throw new IOException("Server URL is missing");
+<             }
+<             if (isNotBlank(step.credentialsId)) {
+<                 if (isNotBlank(step.username)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and username");
+---
+> private void checkInputs(org.jfrog.hudson.pipeline.common.types.JFrogPlatformInstance server) throws java.io.IOException {
+>     boolean isAllBlank = true;
+>     String[] urls = {server.getUrl(), server.getArtifactory().getUrl(), server.getDistribution().getUrl(), step.url, step.artifactoryUrl, step.distributionUrl};
+>     for(String url : urls) {
+>         if(org.apache.commons.lang3.StringUtils.isNotBlank(url)) {
+>             isAllBlank = false;
+>             break;
+16,17c17,26
+<                 if (isNotBlank(step.password)) {
+<                     throw new IOException("'rtServer' step can't include both credentialsId and password");
+---
+>     }
+>     if (isAllBlank) {
+>         throw new java.io.IOException("Server URL is missing");
+>     }
+>     if (org.apache.commons.lang3.StringUtils.isNotBlank(step.credentialsId)) {
+>         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.username)) {
+>             throw new java.io.IOException("'rtServer' step can't include both credentialsId and username");
+>         }
+>         if (org.apache.commons.lang3.StringUtils.isNotBlank(step.password)) {
+>             throw new java.io.IOException("'rtServer' step can't include both credentialsId and password");

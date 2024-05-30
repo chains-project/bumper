@@ -1,0 +1,10 @@
+import org.bouncycastle.tls.AlertDescription;
+import org.bouncycastle.tls.TlsFatalAlert;
+
+// ...
+
+try {
+    // ...
+} catch (Exception e) {
+    throw new TlsFatalAlert(AlertDescription.internal_error);
+}

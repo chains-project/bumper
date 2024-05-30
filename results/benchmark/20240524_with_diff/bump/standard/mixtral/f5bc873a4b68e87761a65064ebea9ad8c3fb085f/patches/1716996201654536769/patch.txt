@@ -1,0 +1,11 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+import org.eclipse.tycho.core.tychoversion.TychoVersion;
+
+// ...
+
+protected MavenProject getProject() {
+    Model model = (Model) getPluginContext().get("model");
+    TychoVersion tychoVersion = new TychoVersion(model.getProperties().getProperty("tycho-version"));
+    return new MavenProject(model, tychoVersion.getVersion());
+}

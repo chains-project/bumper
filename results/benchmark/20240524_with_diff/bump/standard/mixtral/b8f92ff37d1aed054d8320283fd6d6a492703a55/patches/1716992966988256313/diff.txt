@@ -1,0 +1,9 @@
+1,2c1,5
+< static List<String> getClassesLoc(File testSrcFolder) {
+<         DirectoryScanner directoryScanner = new DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());
+---
+> import org.apache.maven.plugin.surefire.booterclient.Commandline;
+> import org.apache.maven.surefire.api.testset.TestListResolver;
+> 
+> static java.util.List<java.lang.String> getClassesLoc(java.io.File testSrcFolder) {
+>     org.apache.maven.plugin.surefire.util.DirectoryScanner directoryScanner = new org.apache.maven.plugin.surefire.util.DirectoryScanner(testSrcFolder, TestListResolver.getWildcard());

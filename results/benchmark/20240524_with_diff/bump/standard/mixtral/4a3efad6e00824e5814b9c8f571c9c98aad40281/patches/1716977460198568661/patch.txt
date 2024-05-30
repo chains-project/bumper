@@ -1,0 +1,20 @@
+import eu.europa.esig.dss.pades.PAdESSignatureParameters;
+import eu.europa.esig.dss.pades.certificate.PAdESCertificateVerifier;
+import eu.europa.esig.dss.pades.validation.PAdESValidationDataProvider;
+import eu.europa.esig.dss.pades.validation.PAdESValidationPolicy;
+import eu.europa.esig.dss.pades.validation.PAdESValidationResult;
+import eu.europa.esig.dss.pades.validation.PAdESValidationService;
+import eu.europa.esig.dss.pades.validation.reports.PAdESReport;
+
+// ...
+
+signatureParameters.setPermission(new PAdESCertificateVerifier(commonCertificateVerifier).getMinimalCertificationPermission());
+
+// ...
+
+// Create PAdESValidationService for signature validation
+PAdESValidationService validationService = new PAdESValidationService(commonCertificateVerifier);
+PAdESValidationDataProvider validationDataProvider = new PAdESValidationDataProvider(toSignDocument);
+PAdESValidationPolicy validationPolicy = new PAdESValidationPolicy();
+PAdESValidationResult validationResult = validationService.validate(validationDataProvider, validationPolicy);
+PAdESReport report = validationResult.getReport();

@@ -1,0 +1,13 @@
+0a1
+> import org.apache.maven.model.Model;
+1a3,11
+> import org.eclipse.tycho.core.tychoversion.TychoVersion;
+> 
+> // ...
+> 
+> protected MavenProject getProject() {
+>     Model model = (Model) getPluginContext().get("model");
+>     TychoVersion tychoVersion = new TychoVersion(model.getProperties().getProperty("tycho-version"));
+>     return new MavenProject(model, tychoVersion.getVersion());
+> }
+\ No newline at end of file

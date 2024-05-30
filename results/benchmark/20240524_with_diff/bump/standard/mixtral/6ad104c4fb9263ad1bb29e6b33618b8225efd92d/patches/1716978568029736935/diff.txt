@@ -1,0 +1,14 @@
+1c1,9
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import org.bouncycastle2.crypto.tls.AlertDescription;
+> import org.bouncycastle2.crypto.tls.TlsFatalAlert;
+> 
+> public void decode(byte[] input, int off, int len) throws TlsFatalAlert {
+>     if (len < 4) {
+>         throw new TlsFatalAlert(AlertDescription.decode(AlertDescription.bad_record_mac));
+>     }
+>     // ...
+> }
+\ No newline at end of file

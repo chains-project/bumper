@@ -1,0 +1,12 @@
+1,2c1,4
+< // TODO: review this AI generated patch!
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import java.io.IOException;
+> import java.util.Objects;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c8
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(80), "bad_record_mac");
+---
+>         throw new RuntimeException("bad_record_mac");

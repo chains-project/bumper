@@ -1,0 +1,11 @@
+1c1,6
+< import org.bouncycastle.crypto.tls.TlsFatalAlert;
+\ No newline at end of file
+---
+> import org.bouncycastle.crypto.tls.TlsUtils;
+> import java.io.IOException;
+> 
+> public void handleFatalAlert(short alertDescription) throws IOException {
+>     throw new TlsFatalAlert(alertDescription);
+> }
+\ No newline at end of file

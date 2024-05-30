@@ -1,0 +1,33 @@
+0a1,11
+> import static java.lang.Integer.MAX_VALUE;
+> import static java.lang.Integer.parseInt;
+> 
+> import com.jcabi.s3.Bucket;
+> import com.jcabi.s3.Ocket;
+> import com.jcabi.s3.Ocket.Text;
+> import org.apache.commons.lang3.RandomStringUtils;
+> import org.hamcrest.MatcherAssert;
+> import org.hamcrest.Matchers;
+> import static org.junit.Assert.fail;
+> 
+3c14,16
+<      * @throws Exception If fails
+---
+>  *
+>  * @throws Exception
+>  *              If fails
+5,10c18,24
+<     @Test
+<     public void readsAndWritesLargeObjectContent() throws Exception {
+<         final Bucket bucket = this.rule.bucket();
+<         final String name = "test-44.txt";
+<         final Ocket.Text ocket = new Ocket.Text(bucket.ocket(name));
+<         final String data = RandomStringUtils.random(Tv.HUNDRED * Tv.THOUSAND);
+---
+> @org.junit.Test
+> public void readsAndWritesLargeObjectContent() throws java.lang.Exception {
+>     final com.jcabi.s3.Bucket bucket = this.rule.bucket();
+>     final java.lang.String name = "test-44.txt";
+>     final int hundredThousand = MAX_VALUE; // replace Tv.HUNDRED * Tv.THOUSAND
+>     final com.jcabi.s3.Ocket.Text ocket = new com.jcabi.s3.Ocket.Text(bucket.ocket(name));
+>     final java.lang.String data = RandomStringUtils.random(hundredThousand);

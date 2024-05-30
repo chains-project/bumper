@@ -1,0 +1,18 @@
+1,2c1,4
+< // TODO: review this AI generated patch!
+< public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws java.io.IOException {
+---
+> import org.bouncycastle.crypto.DataLengthException;
+> import org.bouncycastle.crypto.InvalidCipherTextException;
+> 
+> public byte[] decodeCiphertext(byte[] receivedMAC, byte[] additionalData, byte[] ciphertext) throws IOException {
+6c8
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(80), "bad_record_mac");
+---
+>         throw new RuntimeException("bad_record_mac");
+8a11
+>     try {
+9a13,15
+>     } catch (DataLengthException | InvalidCipherTextException e) {
+>         throw new IOException("Failed to decrypt ciphertext", e);
+>     }

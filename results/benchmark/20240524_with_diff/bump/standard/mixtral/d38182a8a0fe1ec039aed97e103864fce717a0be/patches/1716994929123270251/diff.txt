@@ -1,0 +1,21 @@
+2c2
+<         public Slice slice(final String action) {
+---
+> public Slice slice(String action) {
+5,7c5,6
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+---
+>         new Authentication.Single(new AuthUser(TestAuthentication.ALICE.name(), action), action),
+>         new BearerAuthScheme((token) -> CompletableFuture.completedFuture(
+10c9
+<                             .map(user -> new Authentication.User(user.name()))
+---
+>                 .map(user -> new AuthUser(user.name()))
+12,14c11
+<                     ),
+<                     ""
+<                 )
+---
+>         ), "")

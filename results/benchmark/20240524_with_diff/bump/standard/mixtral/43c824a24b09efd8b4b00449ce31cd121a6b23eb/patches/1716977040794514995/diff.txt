@@ -1,0 +1,10 @@
+1,2c1,4
+< private static String extractFirst(JsonPathCache cache, JsonBranch branch) {
+<     List<String> list = extractList(cache, branch);
+---
+> import de.gwdg.metadataqa.api.json.DataElement;
+> 
+> private static String extractFirst(JsonPathCache cache, DataElement branch) {
+>     java.util.List<String> list = de.gwdg.metadataqa.marc.MarcFactory.extractList(cache, branch);
+4a7
+> 

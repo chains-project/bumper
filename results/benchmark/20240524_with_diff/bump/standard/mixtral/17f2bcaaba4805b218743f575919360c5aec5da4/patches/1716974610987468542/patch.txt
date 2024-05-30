@@ -1,0 +1,19 @@
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class PGS_MorphologyGroupShapeTests {
+    @Test
+    public void testSize() {
+        // Initialize objects of classes that have a 'size' method
+        org.tinspin.index.PointIndexMMWrapper pointIndex = new org.tinspin.index.PointIndexMMWrapper();
+        org.tinspin.index.phtree.PHTreeMMP pTree = new org.tinspin.index.phtree.PHTreeMMP();
+        org.tinspin.index.util.MinHeap minHeap = new org.tinspin.index.util.MinHeap();
+        org.tinspin.index.util.MinMaxHeap minMaxHeap = new org.tinspin.index.util.MinMaxHeap();
+
+        // Call the 'size' method on each object and assert that it returns a valid integer
+        assertEquals(0, pointIndex.size());
+        assertEquals(0, pTree.size());
+        assertEquals(0, minHeap.size());
+        assertEquals(0, minMaxHeap.size());
+    }
+}

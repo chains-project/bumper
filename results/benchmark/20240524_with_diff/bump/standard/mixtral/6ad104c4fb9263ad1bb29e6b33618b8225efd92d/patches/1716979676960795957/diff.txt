@@ -1,0 +1,10 @@
+1c1,3
+< // TODO: review this AI generated patch!
+---
+> import org.bouncycastle.crypto.tls.AlertDescription;
+> import org.bouncycastle.crypto.tls.TlsFatalAlert;
+> 
+6c8
+<         throw new org.bouncycastle.crypto.tls.TlsFatalAlert(new org.bouncycastle.crypto.tls.AlertDescription(80), "bad_record_mac");
+---
+>         throw new TlsFatalAlert(AlertDescription.bad_record_mac, "bad_record_mac");

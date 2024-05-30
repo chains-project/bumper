@@ -1,0 +1,13 @@
+import org.apache.maven.doxia.siterenderer.RenderingContext;
+
+// ...
+
+RenderingContext renderingContext = new RenderingContext() {
+    @Override
+    public String getOutputName() {
+        // Implement the method according to your use case
+        return "";
+    }
+};
+
+// Use 'renderingContext' instead of creating it through removed constructors

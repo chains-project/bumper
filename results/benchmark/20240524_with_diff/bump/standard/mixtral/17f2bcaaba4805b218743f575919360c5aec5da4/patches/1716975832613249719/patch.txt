@@ -1,0 +1,19 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+int actualSize;
+
+if (someCondition1) {
+    actualSize = new org.tinspin.index.PointIndexMMWrapper().size();
+} else if (someCondition2) {
+    actualSize = new org.tinspin.index.phtree.PHTreeMMP().size();
+} else if (someCondition3) {
+    actualSize = new org.tinspin.index.util.MinHeap().size();
+} else if (someCondition4) {
+    actualSize = new org.tinspin.index.util.MinHeapI().size();
+} else if (someCondition5) {
+    actualSize = new org.tinspin.index.util.MinMaxHeap().size();
+} else {
+    actualSize = new org.tinspin.index.util.MinMaxHeapI().size();
+}
+
+assertEquals(expectedSize, actualSize);

@@ -1,0 +1,32 @@
+1c1,27
+< import org.bouncycastle.crypto.tls.AlertDescription;
+\ No newline at end of file
+---
+> import java.io.IOException;
+> import java.util.Arrays;
+> import org.bouncycastle.crypto.StreamCipher;
+> import org.bouncycastle.crypto.engines.ChaChaEngine;
+> import org.bouncycastle.crypto.params.KeyParameter;
+> import org.bouncycastle.crypto.params.ParametersWithIV;
+> 
+> public class ChachaDecoder {
+>     // ...
+> 
+>     private void decodeRecord(byte[] input, int offset, int length) throws IOException {
+>         // ...
+> 
+>         try {
+>             if (!recordVersion.equals(new RecordVersion(0x03, 0x03))) {
+>                 throw new TlsFatalAlert(AlertDescription.protocol_version);
+>             }
+> 
+>             // ...
+> 
+>         } catch (Exception ex) {
+>             throw new TlsFatalAlert(AlertDescription.decode_error);
+>         }
+>     }
+> 
+>     // ...
+> }
+\ No newline at end of file

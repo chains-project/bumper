@@ -1,0 +1,6 @@
+import org.bouncycastle.crypto.tls.TlsUtils;
+import java.io.IOException;
+
+public void handleFatalAlert(short alertDescription) throws IOException {
+    throw new TlsFatalAlert(alertDescription);
+}

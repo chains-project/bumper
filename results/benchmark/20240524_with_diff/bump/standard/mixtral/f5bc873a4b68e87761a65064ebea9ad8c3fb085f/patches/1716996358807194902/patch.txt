@@ -1,0 +1,7 @@
+import org.apache.maven.model.Model;
+import org.apache.maven.project.MavenProject;
+
+public MavenProject getProject() {
+    Model model = (Model) project;
+    return new MavenProject(model, new DefaultModelBuilderRealm());
+}

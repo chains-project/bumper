@@ -1,0 +1,19 @@
+@Override
+public void init(OutputStream os) {
+    this.os = os;
+    TConfiguration tConfiguration = new TConfiguration();
+    // Use the TFramedTransport to be compatible with singer_thrift log.
+    final int bufferCapacity = 10;
+    framedTransport = new TFastFramedTransport(new TIOStreamTransport(tConfiguration, os));
+    protocol = new TBinaryProtocol(framedTransport);
+    framedTransport.setFramedTransportEventListener(new FramedTransport.FramedTransportEventListener() {
+        @Override
+        public void frameRead(int length) {
+        }
+
+        @Override
+        public void frameWritten(int length) {
+        }
+    });
+    framedTransport.open();
+}

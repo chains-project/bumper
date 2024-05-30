@@ -1,0 +1,25 @@
+2,7c2,5
+<         public Slice slice(final String action) {
+<             return new DockerSlice(
+<                 new AstoDocker(new InMemoryStorage()),
+<                 new Permissions.Single(TestAuthentication.ALICE.name(), action),
+<                 new BearerAuthScheme(
+<                     token -> CompletableFuture.completedFuture(
+---
+> public Slice slice(String action) {
+>     return new DockerSlice(new AstoDocker(new InMemoryStorage()),
+>         new Authentication.Single(new AuthUser(TestAuthentication.ALICE.name(), action), action),
+>         new BearerAuthScheme((token) -> CompletableFuture.completedFuture(
+9,15c7,10
+<                             .filter(user -> token.equals(token(user)))
+<                             .map(user -> new Authentication.User(user.name()))
+<                             .findFirst()
+<                     ),
+<                     ""
+<                 )
+<             );
+---
+>                 .filter((user) -> token.equals(token(user)))
+>                 .map((user) -> new AuthUser(user.name()))
+>                 .findFirst()),
+>             ""));
