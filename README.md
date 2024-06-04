@@ -1,5 +1,7 @@
 # Automatic Program Repair For Breaking Dependency Updates With Large Language Models
-
+Author: [Federico Bono](https://www.github.com/FredBonux)  
+Supervisors: Frank Reyes García, Italo Tonon  
+Examiner: Martin Monperrus
 ## Abstract
 
 External libraries are widely used to expedite software development, but like any software component, they are updated
@@ -71,6 +73,8 @@ To set up the project locally, follow these steps:
    ```shell
    cp .env.example .env
    ```
+   
+6. **To use Gemini you need to store the Google Cloud API Credential `(g_credentials.json)` in the root folder of the project**:
 
 ## Usage
 

@@ -14,7 +14,7 @@ for pipeline in ${pipelines[@]}; do
   for model in ${models[@]}; do
     echo "[$1] Running $pipeline with $model model without API Diff"
     WITHOUT_APIDIFF=True python benchmark.py -n "$1_without_diff" -m $model -p $pipeline
-    git add . && git commit -m "[Benchmark $1] update results" && git push
+#    git add . && git commit -m "[Benchmark $1] update results" && git push
     sleep 10
   done
 done
@@ -24,7 +24,7 @@ for pipeline in ${pipelines[@]}; do
   for model in ${models[@]}; do
     echo "[$1] Running $pipeline with $model model with API Diff"
     WITHOUT_APIDIFF=False python benchmark.py -n "$1_with_diff" -m $model -p $pipeline
-    git add . && git commit -m "[Benchmark $1] update results" && git push
+#    git add . && git commit -m "[Benchmark $1] update results" && git push
     sleep 10
   done
 done
