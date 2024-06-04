@@ -95,7 +95,7 @@ To set up the project locally, follow these steps:
 To run a specific experiment you can use the `benchmark.py` script with the needed flags.
 
  ```sh
- WITHOUT_APIDIFF=False python benchmark.py -n :name -p :pipeline -m :model
+ [RUN_ID=:id] [WITHOUT_APIDIFF=True] python benchmark.py -n :name -p :pipeline -m :model
  ```
 
 **IMPORTANT:** To run multiple experiments in parallel remember to set the `RUN_ID` env variable to identify the
