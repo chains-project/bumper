@@ -1,7 +1,12 @@
 # Automatic Program Repair For Breaking Dependency Updates With Large Language Models
+
 Author: [Federico Bono](https://www.github.com/FredBonux)  
 Supervisors: Frank Reyes García, Italo Tonon  
 Examiner: Martin Monperrus
+
+> 🌄 The [poster](poster.pdf) for this Master Thesis was created for
+the [3rd CHAINS workshop on software supply chain](https://chains.proj.kth.se/software-supply-chain-workshop-3.html)
+
 ## Abstract
 
 External libraries are widely used to expedite software development, but like any software component, they are updated
@@ -73,8 +78,9 @@ To set up the project locally, follow these steps:
    ```shell
    cp .env.example .env
    ```
-   
-6. **To use Gemini you need to store the Google Cloud API Credential `(g_credentials.json)` in the root folder of the project**:
+
+6. **To use Gemini you need to store the Google Cloud API Credential `(g_credentials.json)` in the root folder of the
+   project**:
 
 ## Usage
 
@@ -103,16 +109,16 @@ specific execution and avoid collisions in the repair process
 
 ## Results
 
-The results of our experiments can be found in the `results` directory. 
-A complete data analysis with chart is provided in the [analysis](results%2Fanalysis.ipynb) Jupyter notebook 
+The results of our experiments can be found in the `results` directory.
+A complete data analysis with chart is provided in the [analysis](results%2Fanalysis.ipynb) Jupyter notebook
 Key findings include:
 
 - The necessity of incorporating additional context from dependency changes.
 - The importance of error-type specific repair strategies.
 - Comparative analysis of GPT-4, Gemini, and Llama in terms of efficacy and cost-efficiency.
 
-
 ![RQ4_projects.png](results/images/RQ4_projects.png)
+
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas or suggestions.
