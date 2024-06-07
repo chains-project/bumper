@@ -93,8 +93,8 @@ To set up the project locally, follow these steps:
 
 2. Or to run the complete experiment set in parallel (4 processes max):
    ```sh
-    bash run_experiments-parallel.bash :name
-    ```
+   bash run_experiments-parallel.bash :name
+   ```
 
 ### Run a specific experiment
 
