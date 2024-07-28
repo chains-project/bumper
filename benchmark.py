@@ -71,9 +71,11 @@ class BenchmarkReport:
         # subprocess.call("git add . && git commit -m \"[Benchmark] update results\" && git push", shell=True)
 
 
-def main(model: LLMType, pipeline: PipelineRunningMode, name: str):
+def main(model: LLMType, pipeline: PipelineRunningMode, name: str, project_id: str = None):
+    project_ids =  project_id.split(",") if project_id else None
+
     benchmarks = {
-        "bump": get_bump()
+        "bump": get_bump(project_ids)
     }
 
     for key in benchmarks.keys():
@@ -144,21 +146,22 @@ def run_project(project: Project, pipeline: PipelineRunningMode, model: LLMType)
     return repairer.repair()
 
 
-def get_bump() -> List[Project]:
+def get_bump(ids: [str] = None) -> List[Project]:
     result = []
     bump_folder = os.getenv("BUMP_PATH")
 
     for filename in os.scandir(f"{bump_folder}/filtered_data"):
         if filename.is_file():
             key = filename.name.replace(".json", "")
-            project = Project.from_bump(bump_folder, key)
-            subprocess.run([
-                'bash',
-                'benchmarks/bump/scripts/clone_client_code.sh',
-                project.project_id,
-                project.path
-            ])
-            result.append(project)
+            if key in ids or ids is None:
+                project = Project.from_bump(bump_folder, key)
+                subprocess.run([
+                    'bash',
+                    'benchmarks/bump/scripts/clone_client_code.sh',
+                    project.project_id,
+                    project.path
+                ])
+                result.append(project)
 
     return sorted(result, key=lambda x: x.project_id)
 
@@ -169,6 +172,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("-n", "--name", help="Name of the benchmark execution", type=str, required=True)
     parser.add_argument("-m", "--model", help="LLM Model", type=LLMType, choices=list(LLMType), required=True)
+    parser.add_argument("-bu", help="Breaking Update IDs, comma separated list", required=False)
     parser.add_argument("-p", "--pipeline", help="Pipeline [STANDARD, BASELINE, ADVANCED]", type=PipelineRunningMode,
                         choices=list(PipelineRunningMode), required=True)
 
@@ -176,5 +180,6 @@ if __name__ == "__main__":
     main(
         name=options.name,
         pipeline=options.pipeline,
-        model=options.model
+        model=options.model,
+        project_id=options.bu
     )
