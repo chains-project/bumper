@@ -10,3 +10,8 @@ for directory in ./benchmarks/* ; do
 done
 echo "Benchmarks setup completed."
 
+echo "Setting up java libs"
+cd "libs/java"
+mvn package
+cd "$OLDPWD" || exit
+echo "Java libs setup complete"
