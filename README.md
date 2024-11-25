@@ -1,13 +1,4 @@
-# Automatic Program Repair For Breaking Dependency Updates With Large Language Models
-
-Author: [Federico Bono](https://www.github.com/FredBonux)  
-Supervisors: Frank Reyes García, Italo Tonon  
-Examiner: Martin Monperrus
-
-> 🌄 The [poster](poster.pdf) for this Master Thesis was created for
-the [3rd CHAINS workshop on software supply chain](https://chains.proj.kth.se/software-supply-chain-workshop-3.html)
-
-## Abstract
+# Bumper: Automatic Program Repair For Breaking Dependency Updates With Large Language Models
 
 External libraries are widely used to expedite software development, but like any software component, they are updated
 over time, introducing new features and deprecating or removing old ones. When a library introduces breaking changes,
@@ -19,15 +10,11 @@ Automatic Program Repair (APR) is a research area focused on developing techniqu
 intervention. With the advent of Large Language Models (LLMs), learning-based APR techniques have significantly improved
 in software repair tasks. However, their effectiveness on Breaking Dependency Updates remains unexplored.
 
-This thesis aims to investigate the efficacy of an LLM-based APR approach to Breaking Dependency Updates and to examine
-the impact of different components on the model’s performance and efficiency. The focus is on the API differences
-between the old and new versions of the dependency and a set of error-type specific repair strategies. Experiments
-conducted on a subset of BUMP, a new benchmark for Breaking Dependency Updates, with a strong focus on build failures,
-demonstrate that a naive approach to these client breakages is insufficient. Additional context from the dependency
-changes is necessary. Furthermore, error-type specific repair strategies are essential to repair some blocking failures
-that prevent the tool from completely repairing the projects. Finally, our research found that GPT-4, Gemini, and Llama
-exhibit similar efficacy levels but differ significantly in cost-efficiency, with GPT-4 having the highest cost per
-repaired failure among the tested models, almost 30 times higher than Gemini.
+Bumper is APR for breaking dependency updates with LLMs.
+
+Publications:
+* [Automatic Program Repair For Breaking Dependency Updates With Large Language Models](http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-354835) Master's thesis Federico Bono (2024)
+
 
 ## Repository Contents
 
@@ -125,4 +112,4 @@ Contributions are welcome! Please submit a pull request or open an issue to disc
 
 ## Contact
 
-For any questions or inquiries, please contact [fbono@kth.se](mailto:fbono@kth.se).
+For any questions or inquiries, please contact [us](mailto:fbono@kth.se,frankrg@kth.se).
